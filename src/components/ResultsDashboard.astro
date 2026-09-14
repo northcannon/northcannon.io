@@ -10,7 +10,7 @@ const arms = ['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺'];
     <div class="rail-status"><span class="status-label">{text('label-preparation')}</span><p>{text('label-independent-review-status')}</p><strong>{text('label-null')}</strong></div>
   </aside>
   <div class="dashboard-workspace">
-    <div class="dashboard-summary">{metricIds.map(id => <section class="panel stat-card"><h2>{text(id)}</h2><span class="stat-rule" aria-hidden="true"></span></section>)}</div>
+    <div class="dashboard-summary">{metricIds.map(id => <section class="panel stat-card"><h2>{text(id)}</h2><p>{text(id === 'label-experiment-status' ? 'label-preparation' : 'label-null')}</p><span class="stat-rule" aria-hidden="true"></span></section>)}</div>
     <div class="result-arms">{arms.map((arm, i) => <section class="panel arm-panel" id={`arm-${i}`}>
       <header class="arm-header"><h2>{arm}</h2><span class="status-label">{text('label-preparation')}</span></header>
       <p class="arm-empty">{text('status-gate1-preparation')}</p>

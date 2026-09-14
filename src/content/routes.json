@@ -11,7 +11,11 @@
       "label-status",
       "status-gate1-preparation",
       "patent-pending",
-      "label-preparation"
+      "label-preparation",
+      "contact-hello",
+      "label-provenance",
+      "label-vision",
+      "methodology-evidence"
     ],
     "nav": false,
     "publish": true
@@ -34,7 +38,11 @@
       "label-approval-events",
       "label-evidence",
       "label-preparation",
-      "label-null"
+      "label-null",
+      "contact-hello",
+      "label-early-access",
+      "label-claim-id",
+      "label-review-date"
     ],
     "nav": true,
     "publish": true
@@ -62,7 +70,9 @@
       "label-version-identifiers",
       "label-model-versions",
       "label-reproducibility-status",
-      "label-independent-review-status"
+      "label-independent-review-status",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": true,
     "publish": true
@@ -72,9 +82,12 @@
     "title_claim_or_label": "demo-coming-soon",
     "claim_ids": [
       "demo-coming-soon",
+      "brand-core-principle",
       "brand-company",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": true,
     "publish": true
@@ -94,7 +107,9 @@
       "label-changelog",
       "label-provenance",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": true,
     "publish": true
@@ -107,7 +122,16 @@
       "brand-core-principle",
       "status-gate1-preparation",
       "label-status",
-      "label-preparation"
+      "label-preparation",
+      "contact-hello",
+      "label-early-access",
+      "label-stage",
+      "label-null",
+      "label-experiment-status",
+      "label-independent-review-status",
+      "label-version-identifiers",
+      "label-model-versions",
+      "label-reproducibility-status"
     ],
     "nav": false,
     "publish": true
@@ -122,7 +146,9 @@
       "contact-security",
       "label-disclosure",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": false,
     "publish": true
@@ -137,7 +163,9 @@
       "site-csp",
       "label-site-security",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": false,
     "publish": true
@@ -152,7 +180,10 @@
       "label-about",
       "about-founder-bio",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access",
+      "vision-statement"
     ],
     "nav": true,
     "publish": true,
@@ -189,7 +220,9 @@
       "vision-statement",
       "brand-mission",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": false,
     "publish": true
@@ -202,7 +235,9 @@
       "brand-core-principle",
       "about-founder-bio",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": false,
     "publish": true
@@ -228,7 +263,9 @@
       "brand-company",
       "brand-core-principle",
       "label-preparation",
-      "status-gate1-preparation"
+      "status-gate1-preparation",
+      "contact-hello",
+      "label-early-access"
     ],
     "nav": false,
     "publish": true

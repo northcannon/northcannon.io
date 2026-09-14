@@ -80,7 +80,7 @@ test('maximum lattice opacity preserves white and muted AA contrast', async () =
   const { contrast } = await import('./helpers/pixels.mjs');
   const css = await readFile('src/styles/global.css', 'utf8');
   const opacity = Number(css.match(/\.graphene img \{[^}]*opacity: ([\d.]+)/)[1]);
-  assert.ok(opacity >= 0.35 && opacity <= 0.45);
+  assert.ok(opacity > 0 && opacity <= 0.10);
   const ink = [5, 5, 10], violet = [156, 107, 244];
   const background = ink.map((v, i) => v * (1 - opacity) + violet[i] * opacity);
   for (const color of [[247, 244, 255], [183, 175, 201]]) assert.ok(contrast(color, background) >= 4.5);

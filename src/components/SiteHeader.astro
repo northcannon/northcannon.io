@@ -4,7 +4,6 @@ import { claim } from '../governance/claim';
 const copy = {
   company: await claim('brand-company'),
   status: await claim('status-gate1-preparation'),
-  preparation: await claim('label-preparation'),
 };
 interface Props {
   items?: ReadonlyArray<{ label: string; href: string }>;
@@ -22,7 +21,7 @@ const normalize = (path: string) => path.replace(/\/$/, '') || '/';
         <img src="/northcannon-mark.svg" width="54" height="36" alt="" />
         <span>{copy.company}</span>
       </a>
-      {showStatus && <a class="header-status" href="/trust/status/" aria-label={copy.status}><span aria-hidden="true"></span>{copy.preparation}</a>}
+      {showStatus && <a class="header-status" href="/trust/status/" aria-label={copy.status}><span class="header-status__dot" aria-hidden="true"></span><span class="header-status__text">{copy.status}</span></a>}
       {items.length > 0 && (
         <nav aria-label="Primary">
           <ul class="navigation desktop-navigation">

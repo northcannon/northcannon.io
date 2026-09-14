@@ -1,0 +1,12 @@
+---
+import ActionLink from './ActionLink.astro';
+interface Props { text: (id: string) => string }
+const { text } = Astro.props;
+const fields = ['label-independent-review-status', 'label-version-identifiers', 'label-model-versions', 'label-reproducibility-status'];
+---
+<div class="gate-layout">
+  <section class="panel gate-stage"><h2>{text('label-stage')}</h2><p class="status-label">{text('label-preparation')}</p><p>{text('status-gate1-preparation')}</p></section>
+  <section class="panel"><h2>{text('label-experiment-status')}</h2><dl class="gate-fields">{fields.map(id => <div><dt>{text(id)}</dt><dd>{text('label-null')}</dd></div>)}</dl></section>
+  <section class="panel"><h2>Comparison arms</h2><div class="gate-arms">{['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺'].map(arm => <div><h3>{arm}</h3><p>{text('label-preparation')}</p></div>)}</div></section>
+  <div class="action-group"><ActionLink href="/results/">{text('label-results')}</ActionLink><ActionLink href="/evidence/" variant="secondary">{text('label-evidence')}</ActionLink></div>
+</div>

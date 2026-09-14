@@ -4,6 +4,7 @@ import { claim } from '../governance/claim';
 const copy = {
   company: await claim('brand-company'),
   principle: await claim('brand-core-principle'),
+  email: await claim('contact-hello'),
 };
 ---
 <footer class="site-footer">
@@ -11,6 +12,7 @@ const copy = {
     <div class="site-footer__inner">
       <span>{copy.company}</span>
       <p>{copy.principle}</p>
+      <a href={`mailto:${copy.email}`}>{copy.email}</a>
     </div>
   </Container>
 </footer>

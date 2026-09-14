@@ -102,6 +102,7 @@ test('standalone WP4 rebuilds current provenance from source only and rejects mi
       'src/components/ActionLink.astro', 'src/components/Container.astro', 'src/components/Graphene.astro',
       'src/components/SiteFooter.astro', 'src/components/SiteHeader.astro', 'src/components/WP4Review.astro',
       'src/components/ResultsDashboard.astro', 'src/components/EvidenceOverview.astro', 'src/components/ChangeIntelligencePreview.astro',
+      'src/components/ContactPanel.astro', 'src/components/GateStatus.astro',
       'src/layouts/Document.astro', 'src/pages/404.astro', 'src/pages/index.astro', 'src/pages/[...route].astro', 'src/styles/global.css',
       'scripts/content-integration.mjs', 'scripts/publication.mjs', 'scripts/check-publication.mjs',
       'scripts/validate.mjs', 'scripts/policy.mjs',

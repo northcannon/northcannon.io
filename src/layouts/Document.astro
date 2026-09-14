@@ -16,7 +16,7 @@ const { title, shell = true } = Astro.props;
   </head>
   <body>
     <Graphene />
-    {shell && <SiteHeader />}
+    {shell && <SiteHeader showStatus />}
     <slot />
     {shell && <SiteFooter />}
   </body>

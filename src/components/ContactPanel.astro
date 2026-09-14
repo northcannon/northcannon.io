@@ -1,0 +1,9 @@
+---
+import ActionLink from './ActionLink.astro';
+interface Props { text: (id: string) => string }
+const { text } = Astro.props;
+---
+<section class="panel contact-panel">
+  <div><h2>{text('label-early-access')}</h2><p>{text('brand-core-principle')}</p></div>
+  <ActionLink href={`mailto:${text('contact-hello')}`}>{text('contact-hello')}</ActionLink>
+</section>

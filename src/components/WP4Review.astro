@@ -2,6 +2,8 @@
 import ResultsDashboard from './ResultsDashboard.astro';
 import EvidenceOverview from './EvidenceOverview.astro';
 import ChangeIntelligencePreview from './ChangeIntelligencePreview.astro';
+import ContactPanel from './ContactPanel.astro';
+import GateStatus from './GateStatus.astro';
 import Document from '../layouts/Document.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
@@ -36,7 +38,7 @@ const bodyIds: Record<string, string[]> = {
   <SiteHeader items={items} currentPath={route.path} showStatus />
   {!demo && review && <Container><p class="eyebrow">{draftBanner}</p></Container>}
   <main id="main" tabindex="-1" class:list={[home ? 'home-main' : 'page-main', { 'demo-main': demo }]}>
-    <Container narrow={!home && !['/results/', '/evidence/', '/about/'].includes(route.path)}>
+    <Container narrow={demo || route.path === '/404.html'}>
       <div class:list={{ 'about-split': route.path === '/about/' }}>
       <div>
       {home ? <div class="hero"><div class="hero__copy">
@@ -49,21 +51,21 @@ const bodyIds: Record<string, string[]> = {
       </div><div class="hero-art" aria-hidden="true"><img src="/northcannon-mark.svg" width="280" height="188" alt="" /></div></div> : <>
         {demo ? <h1 class="page-title demo-title"><span>{text('label-demo')}</span><span class="demo-subtitle">Coming Soon</span></h1> : <h1 class:list={['page-title', { 'page-title--recovery': route.path === '/404.html', 'page-title--about': route.path.startsWith('/about/') }]}>{title}</h1>}
         {route.path.startsWith('/about/') && <ul class="about-navigation">{aboutPages.map(r => <li><a href={r.path} aria-current={route.path === r.path ? 'page' : undefined}>{text(r.title_claim_or_label)}</a></li>)}</ul>}
-        {route.path === '/about/company/' && <div class="company-sections">{[['Mission statement', 'brand-mission'], ['Company vision', 'vision-statement']].map(([heading, id]) => <section><h2>{heading}</h2>{text(id!).split('\n\n').map(paragraph => <p class="hero__mission">{paragraph}</p>)}</section>)}</div>}
+        {['/about/', '/about/company/'].includes(route.path) && <div class="company-sections">{[['Mission statement', 'brand-mission'], ['Company vision', 'vision-statement']].map(([heading, id]) => <section class="panel"><h2>{heading}</h2>{text(id!).split('\n\n').map(paragraph => <p class="hero__mission">{paragraph}</p>)}</section>)}</div>}
         {(bodyIds[route.path] ?? []).flatMap(id => text(id).split('\n\n').filter((_, index) => route.path !== '/about/company/' || [1, 2, 4].includes(index)).map(paragraph => <p class="hero__mission">{paragraph}</p>))}
         {route.path === '/evidence/' && <EvidenceOverview text={text} />}
-        {route.path === '/about/' && <div class="company-sections"><section><h2>Mission statement</h2><p class="hero__mission">{text('brand-mission')}</p></section><section><h2>About the founder</h2><p class="hero__mission">{text('about-founder-bio')}</p></section></div>}
         {route.path === '/results/' && <ResultsDashboard text={text} metricIds={metricIds} />}
         {route.path === '/404.html' && <div class="action-group"><ActionLink href="/">Return home</ActionLink></div>}
-        {route.path === '/trust/status/' && <p class="hero__mission">{text('label-preparation')}</p>}
-        {route.path === '/trust/' && <ul>{routes.filter(r => r.path.startsWith('/trust/') && r.path !== '/trust/' && (review || r.publish)).map(r => <li><a href={r.path}>{text(r.title_claim_or_label)}</a></li>)}</ul>}
+        {route.path === '/trust/status/' && <GateStatus text={text} />}
+        {route.path === '/trust/' && <ul class="trust-paths">{routes.filter(r => r.path.startsWith('/trust/') && r.path !== '/trust/' && (review || r.publish)).map(r => <li class="panel"><a href={r.path}>{text(r.title_claim_or_label)}</a></li>)}</ul>}
         {['/early-access/', '/trust/disclosure/'].includes(route.path) && <p class="hero__mission"><a href={`mailto:${text(route.path === '/early-access/' ? 'contact-hello' : 'contact-security')}`}>{text(route.path === '/early-access/' ? 'contact-hello' : 'contact-security')}</a></p>}
       </>}
       </div>
-      {home && <div class="home-sections"><p class="panel experiment-banner">{text('status-gate1-preparation')}</p><div class="home-cards">{[['/evidence/', 'label-evidence'], ['/results/', 'label-results'], ['/about/', 'label-about']].map(([href, id]) => <a class="panel destination-card" href={href}><span class="card-number" aria-hidden="true"></span><h2>{text(id!)}</h2><span aria-hidden="true">↗</span></a>)}</div><div class="panel contact-panel"><p>{text('brand-core-principle')}</p><ActionLink href="/early-access/" variant="secondary">{text('label-early-access')}</ActionLink></div></div>}
+      {home && <div class="home-sections"><p class="panel experiment-banner">{text('status-gate1-preparation')}</p><div class="capability-cards">{[['label-evidence', 'methodology-evidence'], ['label-provenance', 'brand-core-principle'], ['label-vision', 'brand-company-motto']].map(([heading, copy]) => <section class="panel"><h2>{text(heading!)}</h2><p>{text(copy!)}</p></section>)}</div><div class="home-cards">{[['/evidence/', 'label-evidence'], ['/results/', 'label-results'], ['/about/', 'label-about']].map(([href, id]) => <a class="panel destination-card" href={href}><h2>{text(id!)}</h2><span aria-hidden="true">↗</span></a>)}</div></div>}
       {route.path === '/about/' && review && <ChangeIntelligencePreview text={text} />}
       </div>
+      {!demo && route.path !== '/404.html' && <ContactPanel text={text} />}
     </Container>
   </main>
-  {!demo && <SiteFooter />}
+  <SiteFooter />
 </Document>

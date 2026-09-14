@@ -18,9 +18,22 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
       await expect(page.locator('.desktop-navigation a').first()).toHaveText('About');
       await expect(page.locator('.mobile-navigation .navigation a').first()).toHaveText('About');
     }
-    if (page.viewportSize().width > 1024 && !['/results/', '/evidence/'].includes(route.path)) {
-      const copy = await page.locator(route.path === '/' ? '.hero__copy' : route.path === '/about/' ? '.about-split > div' : 'main > .site-container').boundingBox();
-      expect(copy.width).toBeLessThanOrEqual(760);
+    if (page.viewportSize().width === 1440 && !['/demo/', '/404.html'].includes(route.path)) {
+      const canvas = await page.locator('main > .site-container').boundingBox();
+      expect(canvas.x).toBe(72);
+      expect(canvas.width).toBe(1296);
+      expect((await page.locator('.site-header').boundingBox()).height).toBeLessThanOrEqual(90);
+    }
+    await expect(page.locator('.site-footer a[href="mailto:hello@northcannon.io"]')).toBeVisible();
+    await expect(page.locator('.site-footer a')).toHaveText('hello@northcannon.io');
+    await expect(page.locator('.header-status')).toBeVisible();
+    await expect(page.locator('.header-status')).toHaveAttribute('aria-label', 'Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.');
+    if (!['/demo/', '/404.html'].includes(route.path)) await expect(page.locator('.contact-panel a[href="mailto:hello@northcannon.io"]')).toBeVisible();
+    if (route.path === '/trust/disclosure/') await expect(page.locator('main a[href="mailto:security@northcannon.io"]')).toBeVisible();
+    if (route.path === '/') {
+      await expect(page.locator('.capability-cards > section')).toHaveCount(3);
+      expect(await page.locator('.home-cards a').evaluateAll(links => links.map(link => link.getAttribute('href')))).toEqual(['/evidence/', '/results/', '/about/']);
+      expect(await page.locator('.hero').evaluate(el => getComputedStyle(el).columnGap)).toBe('24px');
     }
     expect(await paintedBoxes(page)).toEqual([]);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
@@ -46,12 +59,17 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
       if (route.path === '/results/') {
         await expect(page.locator('.result-arms h2')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
         await expect(page.locator('.stat-card')).toHaveCount(14);
+        await expect(page.locator('.stat-card p')).toHaveText(['Preparation', ...Array(13).fill('Not supplied')]);
         await expect(page.locator('.metric-list')).toHaveCount(0);
         await expect(page.locator('.arm-empty')).toHaveCount(4);
         for (const arm of await page.locator('.arm-empty').all()) {
           await expect(arm).toHaveText('Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.');
         }
-      } else expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
+      } else {
+        expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
+        await expect(page.locator('.gate-fields dd')).toHaveText(Array(4).fill('Not supplied'));
+        await expect(page.locator('.gate-arms h3')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
+      }
     }
     if (route.path.startsWith('/about/')) await expect(page.locator('.about-navigation a')).toHaveText(['Company', 'About the founder']);
     if (route.path === '/about/company/') await expect(page.locator('.company-sections p')).toHaveCount(7);
@@ -65,13 +83,18 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
       }
     }
     if (route.path === '/evidence/') {
-      await expect(page.locator('table')).toHaveCount(0);
+      await expect(page.locator('table')).toHaveCount(1);
+      await expect(page.locator('tbody tr')).toHaveCount(1);
+      await expect(page.locator('tbody')).toHaveText('Not supplied');
+      await expect(page.locator('.evidence-details dd')).toHaveText(Array(4).fill('Not supplied'));
+      expect(await page.locator('main').innerText()).not.toMatch(/Verified|Frozen|SHA-256|2025|[a-f0-9]{32,}/);
       await expect(page.locator('.evidence-cards h2')).toHaveText(['Evidence packets', 'Execution records', 'Artifact hashes']);
       await expect(page.locator('.evidence-cards p')).toHaveText(Array(3).fill('Not supplied'));
     }
     if (route.path === '/about/founder/') await expect(page.locator('main')).toContainText('Max Brooks is the founder of NorthCannon.');
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/wp4-${review ? 'review' : 'production'}`, { recursive: true });
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: `test-results/wp4-${review ? 'review' : 'production'}/${name}-${testInfo.project.name === 'mobile' ? 375 : 1440}.png`, fullPage: true });
     await page.setViewportSize({ width: 320, height: 800 });
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
