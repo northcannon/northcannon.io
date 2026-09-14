@@ -20,6 +20,15 @@
       "brand-company",
       "brand-core-principle",
       "methodology-evidence",
+      "label-status",
+      "status-gate1-preparation",
+      "label-claims",
+      "trust-index",
+      "label-provenance",
+      "label-basis",
+      "label-source-files",
+      "label-output-files",
+      "label-approval-events",
       "label-evidence"
     ],
     "nav": true,
@@ -34,7 +43,7 @@
       "label-vision",
       "vision-statement"
     ],
-    "nav": true,
+    "nav": false,
     "publish": true
   },
   {
@@ -44,7 +53,23 @@
       "brand-company",
       "brand-core-principle",
       "status-gate1-preparation",
-      "label-results"
+      "label-results",
+      "label-null",
+      "label-preparation",
+      "label-experiment-status",
+      "label-evaluation-count",
+      "label-p95-latency",
+      "label-token-usage",
+      "label-average-context-size",
+      "label-failed-evaluations",
+      "label-abstention-rate",
+      "label-verification-rate",
+      "label-evidence-packet-count",
+      "label-last-evaluation-timestamp",
+      "label-version-identifiers",
+      "label-model-versions",
+      "label-reproducibility-status",
+      "label-independent-review-status"
     ],
     "nav": true,
     "publish": true
@@ -53,7 +78,8 @@
     "path": "/demo/",
     "title_claim_or_label": "demo-coming-soon",
     "claim_ids": [
-      "demo-coming-soon"
+      "demo-coming-soon",
+      "brand-company"
     ],
     "nav": true,
     "publish": true
@@ -135,7 +161,21 @@
       "changelog-empty",
       "about-founder-bio",
       "vision-statement",
-      "patent-pending"
+      "patent-pending",
+      "label-experiment-status",
+      "label-evaluation-count",
+      "label-p95-latency",
+      "label-token-usage",
+      "label-average-context-size",
+      "label-failed-evaluations",
+      "label-abstention-rate",
+      "label-verification-rate",
+      "label-evidence-packet-count",
+      "label-last-evaluation-timestamp",
+      "label-version-identifiers",
+      "label-model-versions",
+      "label-reproducibility-status",
+      "label-independent-review-status"
     ],
     "nav": false,
     "publish": true
@@ -206,6 +246,50 @@
       "about-founder-bio"
     ],
     "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/about/company/",
+    "title_claim_or_label": "Company",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "vision-statement"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/about/mission/",
+    "title_claim_or_label": "Mission statement",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "brand-mission"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/about/vision/",
+    "title_claim_or_label": "Company vision",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "vision-statement"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/about/founder/",
+    "title_claim_or_label": "About the founder",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "about-founder-bio"
+    ],
+    "nav": false,
     "publish": true
   },
   {

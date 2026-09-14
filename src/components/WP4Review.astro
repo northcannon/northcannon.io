@@ -6,30 +6,37 @@ import SiteFooter from './SiteFooter.astro';
 import Container from './Container.astro';
 import ActionLink from './ActionLink.astro';
 import { loadGovernance } from '../governance/registry.mjs';
-import { readRoutes, routeClaim, navigationClaimId, draftBanner } from '../governance/routes.mjs';
+import { readRoutes, routeClaim, navigationClaimId, draftBanner, legacyLabels } from '../governance/routes.mjs';
 interface Props { route: ReturnType<typeof readRoutes>[number]; review?: boolean }
 const { route, review = true } = Astro.props;
 const data = loadGovernance();
 const routes = readRoutes(data.claims);
-const text = (id: string): string => routeClaim(data.claims, route, routes, id, { review });
+const text = (id: string): string => legacyLabels.has(id) ? id : routeClaim(data.claims, route, routes, id, { review });
 const title = route.path === '/404.html' ? 'Page not found' : text(route.title_claim_or_label);
 const demo = route.path === '/demo/';
 const home = route.path === '/';
-const items = demo ? [] : routes.filter(r => r.nav && (review || r.publish)).map(r => ({ href: r.path, label: text(navigationClaimId(r)) }));
+const items = routes.filter(r => r.nav && (review || r.publish)).sort((a, b) => Number(b.path === '/about/') - Number(a.path === '/about/')).map(r => ({ href: r.path, label: text(navigationClaimId(r)) }));
+const aboutPages = routes.filter(r => r.path.startsWith('/about/') && r.path !== '/about/' && (review || r.publish));
 const approved = data.claims.filter(c => c.approval_state === 'approved');
 const provenance = review && route.path === '/trust/provenance/' ? readProductionProvenance() : null;
+const metricIds = ['label-experiment-status', 'label-evaluation-count', 'label-p95-latency', 'label-token-usage', 'label-average-context-size', 'label-failed-evaluations', 'label-abstention-rate', 'label-verification-rate', 'label-evidence-packet-count', 'label-last-evaluation-timestamp', 'label-version-identifiers', 'label-model-versions', 'label-reproducibility-status', 'label-independent-review-status'];
 const bodyIds: Record<string, string[]> = {
   '/evidence/': data.methodology.flatMap((e: { claim_ids: string[] }) => e.claim_ids),
   '/vision/': ['vision-statement'], '/results/': ['status-gate1-preparation'],
   '/trust/': ['trust-index'], '/trust/status/': [data.status[0].claim_id],
   '/trust/disclosure/': ['disclosure-report'], '/trust/site-security/': ['site-static', 'site-csp'],
   '/trust/changelog/': data.changelog.length ? data.changelog.flatMap((e: { claim_ids: string[] }) => e.claim_ids) : ['changelog-empty'],
-  '/about/': ['about-founder-bio'],
+  '/about/': ['brand-mission'],
+  '/about/company/': ['vision-statement'],
+  '/about/mission/': ['brand-mission'],
+  '/about/vision/': ['vision-statement'],
+  '/about/founder/': ['about-founder-bio'],
 };
 ---
 <Document title={title} shell={false}>
-  {!demo && <><SiteHeader items={items} currentPath={route.path} />{review && <Container><p class="eyebrow">{draftBanner}</p></Container>}</>}
-  <main id="main" tabindex="-1" class:list={[home ? 'home-main' : 'page-main']}>
+  <SiteHeader items={items} currentPath={route.path} />
+  {!demo && review && <Container><p class="eyebrow">{draftBanner}</p></Container>}
+  <main id="main" tabindex="-1" class:list={[home ? 'home-main' : 'page-main', { 'demo-main': demo }]}>
     <Container narrow={!home}>
       {home ? <div class="hero"><div class="hero__copy">
         <p class="eyebrow">{text('brand-core-principle')}</p>
@@ -39,8 +46,15 @@ const bodyIds: Record<string, string[]> = {
         <div class="action-group"><ActionLink href="/early-access/">{text('label-early-access')}</ActionLink></div>
         <p class="hero__mission">{text('patent-pending')}</p>
       </div></div> : <>
-        <h1 class:list={['page-title', { 'page-title--recovery': route.path === '/404.html' }]}>{title}</h1>
-        {(bodyIds[route.path] ?? []).flatMap(id => text(id).split('\n\n').map(paragraph => <p class="hero__mission">{paragraph}</p>))}
+        {demo ? <h1 class="page-title demo-title"><span>{text('label-demo')}</span><span class="demo-subtitle">Coming Soon</span></h1> : <h1 class:list={['page-title', { 'page-title--recovery': route.path === '/404.html' }]}>{title}</h1>}
+        {route.path.startsWith('/about/') && <ul class="about-navigation">{aboutPages.map(r => <li><a href={r.path} aria-current={route.path === r.path ? 'page' : undefined}>{text(r.title_claim_or_label)}</a></li>)}</ul>}
+        {(bodyIds[route.path] ?? []).flatMap(id => text(id).split('\n\n').filter((_, index) => route.path !== '/about/company/' || [1, 2, 4].includes(index)).map(paragraph => <p class="hero__mission">{paragraph}</p>))}
+        {route.path === '/evidence/' && <div class="evidence-sections">
+          <section class="evidence-section"><h2>{text('label-status')}</h2><p class="hero__mission">{text('status-gate1-preparation')}</p></section>
+          <section class="evidence-section"><h2>{text('label-claims')}</h2><p class="hero__mission">{text('trust-index')}</p><div class="action-group"><ActionLink href="/trust/claims/">{text('label-claims')}</ActionLink></div></section>
+          <section class="evidence-section"><h2>{text('label-provenance')}</h2><ol class="provenance-links"><li><a href="/trust/claims/">{text('label-basis')}</a></li><li><a href="/trust/provenance/">{text('label-source-files')}</a></li><li><a href="/trust/provenance/">{text('label-output-files')}</a></li><li><a href="/trust/provenance/">{text('label-approval-events')}</a></li></ol></section>
+        </div>}
+        {route.path === '/results/' && <div class="result-arms">{['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺'].map(arm => <section class="evidence-section"><h2>{arm}</h2><dl class="metric-list">{metricIds.map(id => <div><dt>{text(id)}</dt><dd>{text(id === 'label-experiment-status' ? 'label-preparation' : 'label-null')}</dd></div>)}</dl></section>)}</div>}
         {route.path === '/404.html' && <div class="action-group"><ActionLink href="/">Return home</ActionLink></div>}
         {route.path === '/trust/status/' && <p class="hero__mission">{text('label-preparation')}</p>}
         {route.path === '/trust/' && <ul>{routes.filter(r => r.path.startsWith('/trust/') && r.path !== '/trust/' && (review || r.publish)).map(r => <li><a href={r.path}>{text(r.title_claim_or_label)}</a></li>)}</ul>}

@@ -15,8 +15,8 @@ import { env as environment } from 'node:process';
 
 test('manifest rejects published pending copy and unapproved labels', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
-  assert.equal(routes.filter(r => r.publish).length, 15);
-  assert.equal(routes.length, 15);
+  assert.equal(routes.filter(r => r.publish).length, 19);
+  assert.equal(routes.length, 19);
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
   const label = structuredClone(routes); label[0].title_claim_or_label = 'Unapproved label';

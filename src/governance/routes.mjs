@@ -3,7 +3,7 @@ import { z } from 'astro/zod';
 import { eligibleClaim } from './schema.mjs';
 import { loadGovernance } from './registry.mjs';
 
-export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
+export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary', 'Company', 'Mission statement', 'Company vision', 'About the founder', 'Coming Soon', 'Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
 export const draftBanner = 'DRAFT — pending founder approval';
 const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z-]+(?:\/[a-z-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean() }).strict();
 export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(readFileSync('src/content/routes.json', 'utf8'))) {
@@ -33,7 +33,7 @@ export const routeFile = route => route.path === '/404.html' ? '404.html' : rout
 export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
 export function reviewDependencies(route, routes, { review = true } = {}) {
   return new Set([...route.claim_ids, ...(review ? route.review_claim_ids : []),
-    ...(route.path === '/demo/' ? [] : routes.filter(r => r.nav && (review || r.publish)).map(navigationClaimId))]);
+    ...routes.filter(r => r.nav && (review || r.publish)).map(navigationClaimId)]);
 }
 export function routeClaim(claims, route, routes, id, { review = true } = {}) {
   if (!reviewDependencies(route, routes, { review }).has(id)) throw new Error(`Undeclared route claim: ${route.path}: ${id}`);
