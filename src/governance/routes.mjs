@@ -3,7 +3,7 @@ import { z } from 'astro/zod';
 import { eligibleClaim } from './schema.mjs';
 import { loadGovernance } from './registry.mjs';
 
-export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary', 'Company', 'Mission statement', 'Company vision', 'About the founder', 'Coming Soon', 'Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
+export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary', 'Company', 'Mission statement', 'Company vision', 'About the founder', 'Coming Soon', 'Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺', 'Comparison arms', '↗', 'Evidence generation', 'Generation', 'Evidence store', 'Evidence packets', 'Execution records', 'Artifact hashes', 'Packet', 'State', 'Content hash', 'Source', 'Run', 'Arm', 'Provenance hash', 'Artifact', 'Scope']);
 export const draftBanner = 'DRAFT — pending founder approval';
 const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z-]+(?:\/[a-z-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean() }).strict();
 export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(readFileSync('src/content/routes.json', 'utf8'))) {

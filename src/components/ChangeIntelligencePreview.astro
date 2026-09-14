@@ -1,0 +1,24 @@
+---
+interface Props { text: (id: string) => string }
+const { text } = Astro.props;
+---
+<aside class="concept-preview">
+  <p class="concept-disclaimer">{text('mock-disclaimer')}</p>
+  <section class="panel concept-app">
+    <header class="concept-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><h2>{text('mock-workspace')}</h2></header>
+    <div class="concept-body">
+      <p class="dashboard-kicker">{text('mock-change-intelligence')}</p>
+      <h3>{text('mock-change')}</h3>
+      <p class="concept-record">{text('mock-record')}</p>
+      <div class="change-comparison"><div><span>{text('mock-before')}</span><strong>{text('mock-before-date')}</strong></div><span class="change-arrow" aria-hidden="true">↗</span><div><span>{text('mock-after')}</span><strong>{text('mock-after-date')}</strong></div></div>
+      <div class="impact-heading"><strong>{text('mock-impact')}</strong><span class="status-label">{text('mock-review')}</span></div>
+      <ul class="impact-list">{['mock-decision-one', 'mock-decision-two', 'mock-decision-three'].map(id => <li><span class="impact-node" aria-hidden="true"></span>{text(id)}</li>)}</ul>
+      <a class="concept-link" href="#mock-packet">{text('mock-packet')}</a>
+    </div>
+  </section>
+  <section class="panel concept-packet" id="mock-packet">
+    <header class="arm-header"><h2>{text('mock-packet')}</h2><span class="packet-id">{text('mock-id')}</span></header>
+    <dl class="packet-fields"><div><dt>{text('mock-source')}</dt><dd>{text('mock-change')}</dd></div><div><dt>{text('mock-affected')}</dt><dd>{text('mock-impact')}</dd></div><div><dt>{text('mock-review-state')}</dt><dd>{text('mock-review')}</dd></div></dl>
+    <details class="packet-details"><summary>{text('mock-inspect')}</summary><p>{text('mock-explanation')}</p></details>
+  </section>
+</aside>

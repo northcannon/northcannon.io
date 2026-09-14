@@ -13,14 +13,14 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     expect(response.status()).toBe(200);
     for (const [name, value] of Object.entries(requiredHeaders)) expect(response.headers()[name]).toBe(value);
     await expect(page.locator('script, style, [style], form, input')).toHaveCount(0);
-    expect(await page.locator('main h1').evaluate(el => getComputedStyle(el).color)).toBe('rgb(156, 107, 244)');
+    expect(await page.locator('main h1').evaluate(el => getComputedStyle(el).color)).toBe(route.path.startsWith('/about/') ? 'rgb(247, 244, 255)' : 'rgb(156, 107, 244)');
     if (review || route.path !== '/404.html') {
       await expect(page.locator('.desktop-navigation a').first()).toHaveText('About');
       await expect(page.locator('.mobile-navigation .navigation a').first()).toHaveText('About');
     }
-    if (page.viewportSize().width >= 1024) {
-      const copy = await page.locator(route.path === '/' ? '.hero__copy' : 'main > .site-container').boundingBox();
-      expect(copy.x + copy.width).toBeLessThanOrEqual(page.viewportSize().width / 2);
+    if (page.viewportSize().width > 1024 && !['/results/', '/evidence/'].includes(route.path)) {
+      const copy = await page.locator(route.path === '/' ? '.hero__copy' : route.path === '/about/' ? '.about-split > div' : 'main > .site-container').boundingBox();
+      expect(copy.width).toBeLessThanOrEqual(760);
     }
     expect(await paintedBoxes(page)).toEqual([]);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
@@ -45,13 +45,30 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
       await expect(page.locator('table')).toHaveCount(0);
       if (route.path === '/results/') {
         await expect(page.locator('.result-arms h2')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
-        for (const arm of await page.locator('.metric-list').all()) {
-          await expect(arm.locator('dt')).toHaveCount(14);
-          expect(await arm.locator('dd').allTextContents()).toEqual(['Preparation', ...Array(13).fill('Not supplied')]);
+        await expect(page.locator('.stat-card')).toHaveCount(14);
+        await expect(page.locator('.metric-list')).toHaveCount(0);
+        await expect(page.locator('.arm-empty')).toHaveCount(4);
+        for (const arm of await page.locator('.arm-empty').all()) {
+          await expect(arm).toHaveText('Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.');
         }
       } else expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
     }
-    if (route.path === '/vision/') await expect(page.locator('main p.hero__mission')).toHaveCount(6);
+    if (route.path.startsWith('/about/')) await expect(page.locator('.about-navigation a')).toHaveText(['Company', 'About the founder']);
+    if (route.path === '/about/company/') await expect(page.locator('.company-sections p')).toHaveCount(7);
+    if (route.path === '/about/') {
+      await expect(page.locator('.concept-preview')).toHaveCount(review ? 1 : 0);
+      if (review) {
+        await expect(page.locator('.concept-disclaimer')).toContainText('fictional data');
+        if (page.viewportSize().width > 1024) expect((await page.locator('.concept-preview').boundingBox()).x).toBeGreaterThanOrEqual(page.viewportSize().width / 2);
+        await page.locator('.packet-details summary').click();
+        await expect(page.locator('.packet-details p')).toBeVisible();
+      }
+    }
+    if (route.path === '/evidence/') {
+      await expect(page.locator('table')).toHaveCount(0);
+      await expect(page.locator('.evidence-cards h2')).toHaveText(['Evidence packets', 'Execution records', 'Artifact hashes']);
+      await expect(page.locator('.evidence-cards p')).toHaveText(Array(3).fill('Not supplied'));
+    }
     if (route.path === '/about/founder/') await expect(page.locator('main')).toContainText('Max Brooks is the founder of NorthCannon.');
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/wp4-${review ? 'review' : 'production'}`, { recursive: true });
@@ -82,6 +99,8 @@ for (const review of [true, false]) test(`WP4 ${review ? 'review' : 'production'
       await page.goto(`http://127.0.0.1:${review ? 4323 : 4321}/`);
       const before = await page.locator('main').boundingBox();
       await page.keyboard.press('Tab'); await page.keyboard.press('Tab'); await page.keyboard.press('Tab');
+      await expect(page.locator('.header-status')).toBeFocused();
+      await page.keyboard.press('Tab');
       await expect(page.locator('summary')).toBeFocused();
       await page.keyboard.press('Enter');
       const menu = await page.locator('.mobile-navigation .navigation').boundingBox();

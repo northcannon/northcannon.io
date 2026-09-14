@@ -8,7 +8,10 @@
       "brand-core-principle",
       "brand-mission",
       "label-early-access",
-      "patent-pending"
+      "label-status",
+      "status-gate1-preparation",
+      "patent-pending",
+      "label-preparation"
     ],
     "nav": false,
     "publish": true
@@ -29,21 +32,11 @@
       "label-source-files",
       "label-output-files",
       "label-approval-events",
-      "label-evidence"
+      "label-evidence",
+      "label-preparation",
+      "label-null"
     ],
     "nav": true,
-    "publish": true
-  },
-  {
-    "path": "/vision/",
-    "title_claim_or_label": "label-vision",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "label-vision",
-      "vision-statement"
-    ],
-    "nav": false,
     "publish": true
   },
   {
@@ -79,7 +72,9 @@
     "title_claim_or_label": "demo-coming-soon",
     "claim_ids": [
       "demo-coming-soon",
-      "brand-company"
+      "brand-company",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
     "publish": true
@@ -97,7 +92,9 @@
       "label-disclosure",
       "label-site-security",
       "label-changelog",
-      "label-provenance"
+      "label-provenance",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
     "publish": true
@@ -116,71 +113,6 @@
     "publish": true
   },
   {
-    "path": "/trust/claims/",
-    "title_claim_or_label": "label-claims",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "label-claims",
-      "brand-company-motto",
-      "brand-mission",
-      "status-gate1-preparation",
-      "label-claim-id",
-      "label-category",
-      "label-basis",
-      "label-review-date",
-      "contact-hello",
-      "contact-security",
-      "contact-contact",
-      "label-evidence",
-      "label-vision",
-      "label-results",
-      "label-trust",
-      "label-status",
-      "label-disclosure",
-      "label-site-security",
-      "label-changelog",
-      "label-provenance",
-      "label-about",
-      "label-early-access",
-      "label-demo",
-      "label-preparation",
-      "label-stage",
-      "label-source-commit",
-      "label-source-files",
-      "label-output-files",
-      "label-approval-events",
-      "label-astro-version",
-      "label-null",
-      "methodology-evidence",
-      "demo-coming-soon",
-      "trust-index",
-      "disclosure-report",
-      "site-static",
-      "site-csp",
-      "changelog-empty",
-      "about-founder-bio",
-      "vision-statement",
-      "patent-pending",
-      "label-experiment-status",
-      "label-evaluation-count",
-      "label-p95-latency",
-      "label-token-usage",
-      "label-average-context-size",
-      "label-failed-evaluations",
-      "label-abstention-rate",
-      "label-verification-rate",
-      "label-evidence-packet-count",
-      "label-last-evaluation-timestamp",
-      "label-version-identifiers",
-      "label-model-versions",
-      "label-reproducibility-status",
-      "label-independent-review-status"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
     "path": "/trust/disclosure/",
     "title_claim_or_label": "label-disclosure",
     "claim_ids": [
@@ -188,7 +120,9 @@
       "brand-core-principle",
       "disclosure-report",
       "contact-security",
-      "label-disclosure"
+      "label-disclosure",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -201,36 +135,9 @@
       "brand-core-principle",
       "site-static",
       "site-csp",
-      "label-site-security"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
-    "path": "/trust/changelog/",
-    "title_claim_or_label": "label-changelog",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "changelog-empty",
-      "label-changelog"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
-    "path": "/trust/provenance/",
-    "title_claim_or_label": "label-provenance",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "label-provenance",
-      "label-source-commit",
-      "label-astro-version",
-      "label-null",
-      "label-source-files",
-      "label-output-files",
-      "label-approval-events"
+      "label-site-security",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -243,10 +150,35 @@
       "brand-core-principle",
       "brand-mission",
       "label-about",
-      "about-founder-bio"
+      "about-founder-bio",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
-    "publish": true
+    "publish": true,
+    "review_claim_ids": [
+      "mock-disclaimer",
+      "mock-workspace",
+      "mock-change-intelligence",
+      "mock-change",
+      "mock-record",
+      "mock-before",
+      "mock-before-date",
+      "mock-after",
+      "mock-after-date",
+      "mock-impact",
+      "mock-review",
+      "mock-decision-one",
+      "mock-decision-two",
+      "mock-decision-three",
+      "mock-packet",
+      "mock-id",
+      "mock-source",
+      "mock-affected",
+      "mock-review-state",
+      "mock-inspect",
+      "mock-explanation"
+    ]
   },
   {
     "path": "/about/company/",
@@ -254,29 +186,10 @@
     "claim_ids": [
       "brand-company",
       "brand-core-principle",
-      "vision-statement"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
-    "path": "/about/mission/",
-    "title_claim_or_label": "Mission statement",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "brand-mission"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
-    "path": "/about/vision/",
-    "title_claim_or_label": "Company vision",
-    "claim_ids": [
-      "brand-company",
-      "brand-core-principle",
-      "vision-statement"
+      "vision-statement",
+      "brand-mission",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -287,7 +200,9 @@
     "claim_ids": [
       "brand-company",
       "brand-core-principle",
-      "about-founder-bio"
+      "about-founder-bio",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -299,7 +214,9 @@
       "brand-company",
       "brand-core-principle",
       "contact-hello",
-      "label-early-access"
+      "label-early-access",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -309,7 +226,9 @@
     "title_claim_or_label": "Page not found",
     "claim_ids": [
       "brand-company",
-      "brand-core-principle"
+      "brand-core-principle",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
