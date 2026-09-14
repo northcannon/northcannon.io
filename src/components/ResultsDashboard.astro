@@ -1,0 +1,19 @@
+---
+interface Props { text: (id: string) => string; metricIds: string[] }
+const { text, metricIds } = Astro.props;
+const arms = ['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺'];
+---
+<div class="dashboard-shell">
+  <aside class="dashboard-rail panel">
+    <p class="dashboard-kicker">{text('label-results')}</p>
+    <nav aria-label="Comparison arms"><ul>{arms.map((arm, i) => <li><a href={`#arm-${i}`}>{arm}<span aria-hidden="true">↗</span></a></li>)}</ul></nav>
+    <div class="rail-status"><span class="status-label">{text('label-preparation')}</span><p>{text('label-independent-review-status')}</p><strong>{text('label-null')}</strong></div>
+  </aside>
+  <div class="dashboard-workspace">
+    <div class="dashboard-summary">{['label-experiment-status', 'label-evaluation-count', 'label-p95-latency', 'label-evidence-packet-count'].map((id, i) => <section class="panel stat-card"><h2>{text(id)}</h2><p>{text(i === 0 ? 'label-preparation' : 'label-null')}</p><span class="stat-rule" aria-hidden="true"></span></section>)}</div>
+    <div class="result-arms">{arms.map((arm, i) => <section class="panel arm-panel" id={`arm-${i}`}>
+      <header class="arm-header"><h2>{arm}</h2><span class="status-label">{text('label-preparation')}</span></header>
+      <dl class="metric-list">{metricIds.map(id => <div><dt>{text(id)}</dt><dd>{text(id === 'label-experiment-status' ? 'label-preparation' : 'label-null')}</dd></div>)}</dl>
+    </section>)}</div>
+  </div>
+</div>

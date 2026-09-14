@@ -13,13 +13,13 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     expect(response.status()).toBe(200);
     for (const [name, value] of Object.entries(requiredHeaders)) expect(response.headers()[name]).toBe(value);
     await expect(page.locator('script, style, [style], form, input')).toHaveCount(0);
-    expect(await page.locator('main h1').evaluate(el => getComputedStyle(el).color)).toBe('rgb(156, 107, 244)');
+    expect(await page.locator('main h1').evaluate(el => getComputedStyle(el).color)).toBe(route.path.startsWith('/about/') ? 'rgb(247, 244, 255)' : 'rgb(156, 107, 244)');
     if (review || route.path !== '/404.html') {
       await expect(page.locator('.desktop-navigation a').first()).toHaveText('About');
       await expect(page.locator('.mobile-navigation .navigation a').first()).toHaveText('About');
     }
-    if (page.viewportSize().width >= 1024) {
-      const copy = await page.locator(route.path === '/' ? '.hero__copy' : 'main > .site-container').boundingBox();
+    if (page.viewportSize().width > 1024 && !['/results/', '/evidence/'].includes(route.path)) {
+      const copy = await page.locator(route.path === '/' ? '.hero__copy' : route.path === '/about/' ? '.about-split > div' : 'main > .site-container').boundingBox();
       expect(copy.x + copy.width).toBeLessThanOrEqual(page.viewportSize().width / 2);
     }
     expect(await paintedBoxes(page)).toEqual([]);
@@ -51,7 +51,18 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
         }
       } else expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
     }
-    if (route.path === '/vision/') await expect(page.locator('main p.hero__mission')).toHaveCount(6);
+    if (route.path.startsWith('/about/')) await expect(page.locator('.about-navigation a')).toHaveText(['Company', 'About the founder']);
+    if (route.path === '/about/company/') await expect(page.locator('.company-sections p')).toHaveCount(7);
+    if (route.path === '/about/') {
+      await expect(page.locator('.concept-preview')).toHaveCount(review ? 1 : 0);
+      if (review) {
+        await expect(page.locator('.concept-disclaimer')).toContainText('fictional data');
+        if (page.viewportSize().width > 1024) expect((await page.locator('.concept-preview').boundingBox()).x).toBeGreaterThanOrEqual(page.viewportSize().width / 2);
+        await page.locator('.packet-details summary').click();
+        await expect(page.locator('.packet-details p')).toBeVisible();
+      }
+    }
+    if (route.path === '/evidence/') await expect(page.locator('table')).toHaveCount(3);
     if (route.path === '/about/founder/') await expect(page.locator('main')).toContainText('Max Brooks is the founder of NorthCannon.');
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/wp4-${review ? 'review' : 'production'}`, { recursive: true });

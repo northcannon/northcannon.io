@@ -1,9 +1,9 @@
 {
   "base": "8bf774a8ebcca609162652467e37de9c5c43a8a0",
-  "bases": { "dist/index.html": "Founder website feedback: About first; Vision moved under About" },
+  "bases": { "dist/index.html": "Website notes v2: shared content wrappers for About columns; home copy and navigation unchanged" },
   "previous_home_sha256": "7394362a243ef008cf6ff86233082b207cfdff52c9435b601a676aeae7d121c1",
   "html": {
-    "dist/index.html": "11d4a88e062d27e88686aa3d12fb8b3e805ba4effcfdf6a05679b968071e3309",
+    "dist/index.html": "c73ffb80fda9021e1a934752d95e01ee7dc425e1e8d9ecd15a6544b7a04a022c",
     "dist/404.html": "447c91db0d5c59f73d5860da1c792e81b1cae895837e6594cc074b16926a5634",
     ".review-dist/index.html": "740a13c799a1eafed789562c9287b574044db829b0272afb84fa0d633df47faa"
   }

@@ -29,9 +29,10 @@ export async function paintedBoxes(page) {
         const fail = property => failures.push(`${label}${pseudo ?? ''}: ${property}`);
         // Existing primary button fill, panel surface, neutral status-label surface.
         const component = !pseudo && el.matches('.action-link--primary, .panel, .status-label');
+        const indicator = !pseudo && el.matches('.stat-rule, .window-dots i, .impact-node');
         // The native open mobile menu owns its own translucent surface in flow.
         const menu = !pseudo && el.matches('.mobile-navigation[open] > .navigation');
-        const surface = component || menu || (!pseudo && lattice);
+        const surface = component || indicator || menu || (!pseudo && lattice);
         if (!surface && !transparent(s.backgroundColor)) fail('background-color');
         // Components never gain gradient/mask permission from their surface exception.
         if (!(lattice && !pseudo) && s.backgroundImage !== 'none') fail('background-image');

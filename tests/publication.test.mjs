@@ -15,8 +15,13 @@ import { env as environment } from 'node:process';
 
 test('manifest rejects published pending copy and unapproved labels', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
-  assert.equal(routes.filter(r => r.publish).length, 19);
-  assert.equal(routes.length, 19);
+  assert.equal(routes.filter(r => r.publish).length, 13);
+  assert.equal(routes.length, 13);
+  for (const path of ['/trust/claims/', '/trust/provenance/', '/trust/changelog/', '/about/mission/', '/about/vision/']) assert.ok(!routes.some(r => r.path === path));
+  const mock = claims.find(c => c.claim_id === 'mock-disclaimer');
+  assert.equal(mock.approval_state, 'pending');
+  assert.deepEqual(inspectReviewOutput(`<p>${mock.statement}</p>`, claims, 'about/index.html'), []);
+  assert.ok(inspectReviewOutput(`<p>${mock.statement}</p>`, claims, 'about/index.html', { review: false }).length);
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
   const label = structuredClone(routes); label[0].title_claim_or_label = 'Unapproved label';
@@ -46,8 +51,8 @@ test('production gates reject pending navigation and undeclared text while accep
   assert.throws(() => readRoutes(pending), /ineligible/);
   const vision = claims.find(c => c.claim_id === 'vision-statement').statement;
   const html = vision.split('\n\n').map(p => `<p>${p}</p>`).join('');
-  assert.deepEqual(inspectReviewOutput(html, claims, 'vision/index.html', { review: false }), []);
-  assert.ok(inspectReviewOutput(html.replace('AI should', 'AI definitely should'), claims, 'vision/index.html', { review: false }).length);
+  assert.deepEqual(inspectReviewOutput(html, claims, 'about/company/index.html', { review: false }), []);
+  assert.ok(inspectReviewOutput(html.replace('AI should', 'AI definitely should'), claims, 'about/company/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput(html, claims, 'evidence/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput(`<p>${draftBanner}</p>`, claims, 'vision/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput('<p>vision-statement</p>', claims, 'vision/index.html', { review: false }).length);
@@ -87,7 +92,7 @@ test('standalone WP4 rebuilds current provenance from source only and rejects mi
     // credentials, ignored output, or the entire checkout.
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
-      'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md',
+      'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/CONCEPT_PREVIEW.md',
       'public/_headers', 'public/robots.txt', 'public/.well-known/security.txt',
       'public/graphene-lattice.svg', 'public/northcannon-mark.svg',
       'src/content.config.ts', 'src/content/collections.json', 'src/content/routes.json',
@@ -96,6 +101,7 @@ test('standalone WP4 rebuilds current provenance from source only and rejects mi
       'src/governance/schema.mjs', 'src/governance/wp4-output.mjs',
       'src/components/ActionLink.astro', 'src/components/Container.astro', 'src/components/Graphene.astro',
       'src/components/SiteFooter.astro', 'src/components/SiteHeader.astro', 'src/components/WP4Review.astro',
+      'src/components/ResultsDashboard.astro', 'src/components/EvidenceOverview.astro', 'src/components/ChangeIntelligencePreview.astro',
       'src/layouts/Document.astro', 'src/pages/404.astro', 'src/pages/index.astro', 'src/pages/[...route].astro', 'src/styles/global.css',
       'scripts/content-integration.mjs', 'scripts/publication.mjs', 'scripts/check-publication.mjs',
       'scripts/validate.mjs', 'scripts/policy.mjs',
@@ -116,14 +122,11 @@ test('standalone WP4 rebuilds current provenance from source only and rejects mi
     });
     const checkDisplayed = async () => {
       const data = JSON.parse(await readFile(path.join(root, 'dist/provenance.json'), 'utf8'));
-      const html = await readFile(path.join(root, '.review-dist-wp4/trust/provenance/index.html'), 'utf8');
       for (const [name, digest] of Object.entries(data.sources)) {
         assert.equal(digest, hash(await readFile(path.join(root, name))));
-        assert.ok(html.includes(digest), `Displayed source digest: ${name}`);
       }
       for (const [name, digest] of Object.entries(data.files)) {
         assert.equal(digest, hash(await readFile(path.join(root, 'dist', name))));
-        assert.ok(html.includes(digest), `Displayed output digest: ${name}`);
       }
       return data;
     };
@@ -149,8 +152,8 @@ test('standalone WP4 rebuilds current provenance from source only and rejects mi
     const manifestPath = path.join(root, 'src/content/routes.json');
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
     for (const [route, id] of [
-      ['/trust/status/', 'label-preparation'], ['/trust/claims/', 'brand-company-motto'],
-      ['/trust/claims/', 'label-category'], ['/trust/provenance/', 'label-output-files'],
+      ['/trust/status/', 'label-preparation'], ['/about/company/', 'brand-mission'],
+      ['/results/', 'label-evaluation-count'], ['/evidence/', 'label-null'],
       ['/trust/', 'label-disclosure'],
     ]) {
       const changed = structuredClone(manifest);
