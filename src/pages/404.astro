@@ -1,0 +1,15 @@
+---
+import Document from '../layouts/Document.astro';
+import { claim } from '../governance/claim';
+const company = await claim('brand-company');
+import Container from '../components/Container.astro';
+import ActionLink from '../components/ActionLink.astro';
+---
+<Document title={`Page not found — ${company}`}>
+  <main id="main" tabindex="-1" class="page-main">
+    <Container narrow>
+      <h1 class="page-title page-title--recovery">Page not found</h1>
+      <div class="action-group"><ActionLink href="/">Return home</ActionLink></div>
+    </Container>
+  </main>
+</Document>

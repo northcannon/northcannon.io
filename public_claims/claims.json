@@ -1,0 +1,483 @@
+[
+  {
+    "claim_id": "brand-company",
+    "statement": "NorthCannon",
+    "category": "brand",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-13",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "brand-company-motto",
+    "statement": "Designed to be falsified. Built for trust.",
+    "category": "brand",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-13",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "brand-core-principle",
+    "statement": "Evidence over confidence.",
+    "category": "principle",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-13",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "brand-mission",
+    "statement": "Build the trust infrastructure for machine intelligence — making AI-driven decisions verifiable, accountable, and governable wherever the consequences matter.",
+    "category": "mission",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-13",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "status-gate1-preparation",
+    "statement": "Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.",
+    "category": "status",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-13",
+    "approval_record": "founder_attestation",
+    "status_stage": "preparation"
+  },
+  {
+    "claim_id": "tagline-know-the-answer-show-the-proof",
+    "statement": "Know the answer. Show the proof.",
+    "category": "other",
+    "basis": "docs/public-conceptual-direction.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mission-trust-infrastructure",
+    "statement": "NorthCannon builds trust infrastructure for enterprise AI — helping organizations make consequential machine-driven decisions more verifiable, governable, and accountable.",
+    "category": "other",
+    "basis": "docs/public-conceptual-direction.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "evidence-lifecycle-current-status",
+    "statement": "Gate 1 Frozen — Undergoing Independent Stress Test. Live Results Coming Soon.",
+    "category": "other",
+    "basis": "docs/public-conceptual-direction.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "trust-no-analytics-or-tracking",
+    "statement": "This site collects no analytics, cookies, or tracking by default.",
+    "category": "other",
+    "basis": "docs/public-conceptual-direction.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "trust-repo-isolated-from-private-infra",
+    "statement": "This repository is isolated from NorthCannon's private infrastructure and source code.",
+    "category": "other",
+    "basis": "docs/public-conceptual-direction.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "contact-hello",
+    "statement": "hello@northcannon.io",
+    "category": "contact",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "contact-security",
+    "statement": "security@northcannon.io",
+    "category": "contact",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "contact-contact",
+    "statement": "contact@northcannon.io",
+    "category": "contact",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-evidence",
+    "statement": "Evidence",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-vision",
+    "statement": "Vision",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-results",
+    "statement": "Results",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-trust",
+    "statement": "Trust Center",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-status",
+    "statement": "Status",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-claims",
+    "statement": "Claims",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-disclosure",
+    "statement": "Disclosure",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-site-security",
+    "statement": "Site security",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-changelog",
+    "statement": "Changelog",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-provenance",
+    "statement": "Provenance",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-about",
+    "statement": "About",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-early-access",
+    "statement": "Request early access",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-demo",
+    "statement": "Demo",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-claim-id",
+    "statement": "Claim ID",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-category",
+    "statement": "Category",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-basis",
+    "statement": "Basis",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-review-date",
+    "statement": "Review date",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-preparation",
+    "statement": "Preparation",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-stage",
+    "statement": "Lifecycle stage",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-source-commit",
+    "statement": "Source commit",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-source-files",
+    "statement": "Source files",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-output-files",
+    "statement": "Output files",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-approval-events",
+    "statement": "Approval events",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-astro-version",
+    "statement": "Astro version",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-null",
+    "statement": "Not supplied",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "methodology-evidence",
+    "statement": "Evidence is the basis for a public statement.",
+    "category": "methodology",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-coming-soon",
+    "statement": "Demo — Coming Soon",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "trust-index",
+    "statement": "Public claim records and site information.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "disclosure-report",
+    "statement": "Send a security report by email.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "site-static",
+    "statement": "This site serves static documents without browser JavaScript.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "site-csp",
+    "statement": "The site header policy blocks scripts and limits styles and images to this site.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "changelog-empty",
+    "statement": "No changelog entries are listed.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-founder-bio",
+    "statement": "Max Brooks is the founder of NorthCannon. Before starting NorthCannon in 2026, he spent close to a decade in data and analytics engineering — most recently as Director of Business Intelligence for a multi-state legal services enterprise, building governed reporting and data-model infrastructure across data-heavy operating environments. He holds a B.A. in Economics from Binghamton University and is a Certified Scrum Product Owner. NorthCannon is his first company.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "vision-statement",
+    "statement": "AI should be able to reason without asking us to simply trust that it reasoned correctly.\n\nNorthCannon is working toward a future where machine intelligence can operate over persistent, verifiable state rather than repeatedly reconstructing the world from prompts and context alone.\n\nThe goal is not to make probabilistic models deterministic. It is to build an assurance layer around them: preserving what is known, where it came from, when it was valid, what changed, why it changed, and what evidence supports a consequential decision.\n\nThat also means treating change itself as first-class intelligence. NorthCannon is designed to understand how facts, rules, evidence, dependencies, and environmental conditions evolve over time; determine which prior conclusions are affected; and trigger the right re-evaluation rather than forcing a system to start from scratch.\n\nNorthCannon is beginning with regulated decision systems, where provenance, reproducibility, temporal accuracy, explicit uncertainty, and change awareness are requirements rather than conveniences. The longer-term vision is broader: infrastructure that allows increasingly capable AI systems to remain grounded in evidence as they reason, act, adapt, and evolve.\n\nTrusted machine intelligence should not only know what is true. It should know when truth changes, what that change affects, and how to prove it.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "patent-pending",
+    "statement": "Patent pending",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  }
+]

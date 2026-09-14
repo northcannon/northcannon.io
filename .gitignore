@@ -1,0 +1,63 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.en[v]*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Astro and local test artifacts
+/dist/
+/.astro/
+/test-results/
+/playwright-report/
+/.review-dist/
+/tests/fixtures/design-system/.astro/
+/tests/fixtures/design-system/node_modules/
+/.review-dist-wp4/
+/tests/fixtures/wp4/.astro/
+/tests/fixtures/wp4/node_modules/
+
+# Internal build-process records: not public site content.
+/ASTRA_IMPLEMENTATION_READINESS.md
+/docs/WP1_FOUNDATION.md
+/docs/WP2_DESIGN_SYSTEM.md
+/docs/WP2_LUNA_ACCEPTANCE_REMEDIATION.md
+/docs/WP2_OPUS_REMEDIATION.md
+/docs/WP3_CONTENT_GOVERNANCE.md
+/docs/WP4_COPY_FOR_FOUNDER_APPROVAL.md
+/docs/WP4_PAGES_AND_PUBLICATION.md

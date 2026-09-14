@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 6 240 160" role="img" aria-labelledby="title desc">
+  <title id="title">NorthCannon trust mark</title>
+  <desc id="desc">Three interlocking violet peaks surrounding a central proof point.</desc>
+  <defs>
+    <linearGradient id="northcannon-violet" x1="26" y1="18" x2="208" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CDBDFF"/>
+      <stop offset=".22" stop-color="#8C5AF3"/>
+      <stop offset=".58" stop-color="#5B2A86"/>
+      <stop offset="1" stop-color="#210A50"/>
+    </linearGradient>
+    <linearGradient id="northcannon-edge" x1="38" y1="28" x2="186" y2="138" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3EEFF" stop-opacity=".8"/>
+      <stop offset=".38" stop-color="#C5ADDD" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#C5ADDD" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="northcannon-elevation" x="-12%" y="-12%" width="124%" height="136%">
+      <feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#120629" flood-opacity=".72"/>
+    </filter>
+  </defs>
+  <g fill="none" stroke="#1B0740" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="8" opacity=".58" transform="translate(0 5)">
+    <path d="M14 130 62 42 110 130H87L62 84 38 130"/>
+    <path d="M92 69 120 23 148 69"/>
+    <path d="M92 103 120 57 148 103 120 148 92 103Z"/>
+    <path d="M130 130 178 42 226 130H202L178 84 154 130"/>
+  </g>
+  <g fill="none" stroke="url(#northcannon-violet)" stroke-width="11" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="8" filter="url(#northcannon-elevation)">
+    <path d="M14 130 62 42 110 130H87L62 84 38 130"/>
+    <path d="M92 69 120 23 148 69"/>
+    <path d="M92 103 120 57 148 103 120 148 92 103Z"/>
+    <path d="M130 130 178 42 226 130H202L178 84 154 130"/>
+  </g>
+  <g fill="none" stroke="url(#northcannon-edge)" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" opacity=".75">
+    <path d="M14 130 62 42 110 130H87L62 84 38 130"/>
+    <path d="M92 69 120 23 148 69"/>
+    <path d="M92 103 120 57 148 103 120 148 92 103Z"/>
+    <path d="M130 130 178 42 226 130H202L178 84 154 130"/>
+  </g>
+</svg>

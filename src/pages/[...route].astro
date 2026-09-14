@@ -1,0 +1,9 @@
+---
+import Page from '../components/WP4Review.astro';
+import { readRoutes } from '../governance/routes.mjs';
+export function getStaticPaths() {
+  return readRoutes().filter(r => r.publish && !['/', '/404.html'].includes(r.path)).map(route => ({ params: { route: route.path.slice(1, -1) }, props: { route } }));
+}
+const { route } = Astro.props;
+---
+<Page route={route} review={false} />

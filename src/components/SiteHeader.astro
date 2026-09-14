@@ -1,0 +1,41 @@
+---
+import Container from './Container.astro';
+import { claim } from '../governance/claim';
+const copy = {
+  company: await claim('brand-company'),
+};
+interface Props {
+  items?: ReadonlyArray<{ label: string; href: string }>;
+  currentPath?: string;
+}
+const { items = [], currentPath = Astro.url.pathname } = Astro.props;
+const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+---
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <Container>
+    <div class="site-header__inner">
+      <a class="wordmark" href="/" aria-label={`${copy.company} home`}>
+        <img src="/northcannon-mark.svg" width="54" height="36" alt="" />
+        <span>{copy.company}</span>
+      </a>
+      {items.length > 0 && (
+        <nav aria-label="Primary">
+          <ul class="navigation desktop-navigation">
+            {items.map(item => (
+              <li><a href={item.href} aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}>{item.label}</a></li>
+            ))}
+          </ul>
+          <details class="mobile-navigation">
+            <summary>Menu</summary>
+            <ul class="navigation">
+              {items.map(item => (
+                <li><a href={item.href} aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}>{item.label}</a></li>
+              ))}
+            </ul>
+          </details>
+        </nav>
+      )}
+    </div>
+  </Container>
+</header>

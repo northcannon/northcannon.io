@@ -1,0 +1,4 @@
+Contact: mailto:security@northcannon.io
+Expires: 2027-09-12T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://northcannon.io/.well-known/security.txt

@@ -1,0 +1,5 @@
+---
+interface Props { href: string; variant?: 'primary' | 'secondary' }
+const { href, variant = 'primary' } = Astro.props;
+---
+<a href={href} class:list={['action-link', `action-link--${variant}`]}><slot /></a>

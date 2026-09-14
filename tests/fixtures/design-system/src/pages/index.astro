@@ -1,0 +1,31 @@
+---
+import Document from '../../../../../src/layouts/Document.astro';
+import SiteHeader from '../../../../../src/components/SiteHeader.astro';
+import SiteFooter from '../../../../../src/components/SiteFooter.astro';
+import Container from '../../../../../src/components/Container.astro';
+import Panel from '../../../../../src/components/Panel.astro';
+import StatusLabel from '../../../../../src/components/StatusLabel.astro';
+import ActionLink from '../../../../../src/components/ActionLink.astro';
+// These destinations are fragment fixtures, not additional website routes.
+const labels = ['Home', 'About', 'Research', 'Product', 'Evidence', 'Trust Center', 'Early Access', 'Contact'];
+const items = labels.map((label, index) => ({ label, href: index === 0 ? '/' : '#review' }));
+---
+<Document title="WP2 component review" shell={false}>
+  <SiteHeader items={items} currentPath="/" />
+  <main id="main" tabindex="-1" class="page-main">
+    <Container narrow>
+      <h1 class="page-title" id="review">WP2 component review</h1>
+      <div class="action-group">
+        <ActionLink href="#panel">Primary link</ActionLink>
+        <ActionLink href="#panel" variant="secondary">Secondary link</ActionLink>
+      </div>
+      <div class="action-group">
+        <Panel id="panel" title="Panel heading">
+          <p>Presentation fixture for text wrapping, contrast, and keyboard review.</p>
+          <StatusLabel>Review fixture</StatusLabel>
+        </Panel>
+      </div>
+    </Container>
+  </main>
+  <SiteFooter />
+</Document>

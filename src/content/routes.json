@@ -1,0 +1,233 @@
+[
+  {
+    "path": "/",
+    "title_claim_or_label": "brand-company",
+    "claim_ids": [
+      "brand-company",
+      "brand-company-motto",
+      "brand-core-principle",
+      "brand-mission",
+      "label-early-access",
+      "patent-pending"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/evidence/",
+    "title_claim_or_label": "label-evidence",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "methodology-evidence",
+      "label-evidence"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/vision/",
+    "title_claim_or_label": "label-vision",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "label-vision",
+      "vision-statement"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/results/",
+    "title_claim_or_label": "label-results",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "status-gate1-preparation",
+      "label-results"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/demo/",
+    "title_claim_or_label": "demo-coming-soon",
+    "claim_ids": [
+      "demo-coming-soon"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/trust/",
+    "title_claim_or_label": "label-trust",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "trust-index",
+      "label-trust",
+      "label-status",
+      "label-claims",
+      "label-disclosure",
+      "label-site-security",
+      "label-changelog",
+      "label-provenance"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/trust/status/",
+    "title_claim_or_label": "label-status",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "status-gate1-preparation",
+      "label-status",
+      "label-preparation"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/trust/claims/",
+    "title_claim_or_label": "label-claims",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "label-claims",
+      "brand-company-motto",
+      "brand-mission",
+      "status-gate1-preparation",
+      "label-claim-id",
+      "label-category",
+      "label-basis",
+      "label-review-date",
+      "contact-hello",
+      "contact-security",
+      "contact-contact",
+      "label-evidence",
+      "label-vision",
+      "label-results",
+      "label-trust",
+      "label-status",
+      "label-disclosure",
+      "label-site-security",
+      "label-changelog",
+      "label-provenance",
+      "label-about",
+      "label-early-access",
+      "label-demo",
+      "label-preparation",
+      "label-stage",
+      "label-source-commit",
+      "label-source-files",
+      "label-output-files",
+      "label-approval-events",
+      "label-astro-version",
+      "label-null",
+      "methodology-evidence",
+      "demo-coming-soon",
+      "trust-index",
+      "disclosure-report",
+      "site-static",
+      "site-csp",
+      "changelog-empty",
+      "about-founder-bio",
+      "vision-statement",
+      "patent-pending"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/trust/disclosure/",
+    "title_claim_or_label": "label-disclosure",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "disclosure-report",
+      "contact-security",
+      "label-disclosure"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/trust/site-security/",
+    "title_claim_or_label": "label-site-security",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "site-static",
+      "site-csp",
+      "label-site-security"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/trust/changelog/",
+    "title_claim_or_label": "label-changelog",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "changelog-empty",
+      "label-changelog"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/trust/provenance/",
+    "title_claim_or_label": "label-provenance",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "label-provenance",
+      "label-source-commit",
+      "label-astro-version",
+      "label-null",
+      "label-source-files",
+      "label-output-files",
+      "label-approval-events"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/about/",
+    "title_claim_or_label": "label-about",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "brand-mission",
+      "label-about",
+      "about-founder-bio"
+    ],
+    "nav": true,
+    "publish": true
+  },
+  {
+    "path": "/early-access/",
+    "title_claim_or_label": "label-early-access",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle",
+      "contact-hello",
+      "label-early-access"
+    ],
+    "nav": false,
+    "publish": true
+  },
+  {
+    "path": "/404.html",
+    "title_claim_or_label": "Page not found",
+    "claim_ids": [
+      "brand-company",
+      "brand-core-principle"
+    ],
+    "nav": false,
+    "publish": true
+  }
+]
