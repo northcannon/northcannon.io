@@ -3,12 +3,15 @@ import Container from './Container.astro';
 import { claim } from '../governance/claim';
 const copy = {
   company: await claim('brand-company'),
+  status: await claim('status-gate1-preparation'),
+  preparation: await claim('label-preparation'),
 };
 interface Props {
   items?: ReadonlyArray<{ label: string; href: string }>;
   currentPath?: string;
+  showStatus?: boolean;
 }
-const { items = [], currentPath = Astro.url.pathname } = Astro.props;
+const { items = [], currentPath = Astro.url.pathname, showStatus = false } = Astro.props;
 const normalize = (path: string) => path.replace(/\/$/, '') || '/';
 ---
 <a class="skip-link" href="#main">Skip to content</a>
@@ -19,6 +22,7 @@ const normalize = (path: string) => path.replace(/\/$/, '') || '/';
         <img src="/northcannon-mark.svg" width="54" height="36" alt="" />
         <span>{copy.company}</span>
       </a>
+      {showStatus && <a class="header-status" href="/trust/status/" aria-label={copy.status}><span aria-hidden="true"></span>{copy.preparation}</a>}
       {items.length > 0 && (
         <nav aria-label="Primary">
           <ul class="navigation desktop-navigation">

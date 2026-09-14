@@ -8,7 +8,10 @@
       "brand-core-principle",
       "brand-mission",
       "label-early-access",
-      "patent-pending"
+      "label-status",
+      "status-gate1-preparation",
+      "patent-pending",
+      "label-preparation"
     ],
     "nav": false,
     "publish": true
@@ -69,7 +72,9 @@
     "title_claim_or_label": "demo-coming-soon",
     "claim_ids": [
       "demo-coming-soon",
-      "brand-company"
+      "brand-company",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
     "publish": true
@@ -87,7 +92,9 @@
       "label-disclosure",
       "label-site-security",
       "label-changelog",
-      "label-provenance"
+      "label-provenance",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
     "publish": true
@@ -113,7 +120,9 @@
       "brand-core-principle",
       "disclosure-report",
       "contact-security",
-      "label-disclosure"
+      "label-disclosure",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -126,7 +135,9 @@
       "brand-core-principle",
       "site-static",
       "site-csp",
-      "label-site-security"
+      "label-site-security",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -139,7 +150,9 @@
       "brand-core-principle",
       "brand-mission",
       "label-about",
-      "about-founder-bio"
+      "about-founder-bio",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": true,
     "publish": true,
@@ -174,7 +187,9 @@
       "brand-company",
       "brand-core-principle",
       "vision-statement",
-      "brand-mission"
+      "brand-mission",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -185,7 +200,9 @@
     "claim_ids": [
       "brand-company",
       "brand-core-principle",
-      "about-founder-bio"
+      "about-founder-bio",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -197,7 +214,9 @@
       "brand-company",
       "brand-core-principle",
       "contact-hello",
-      "label-early-access"
+      "label-early-access",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
@@ -207,7 +226,9 @@
     "title_claim_or_label": "Page not found",
     "claim_ids": [
       "brand-company",
-      "brand-core-principle"
+      "brand-core-principle",
+      "label-preparation",
+      "status-gate1-preparation"
     ],
     "nav": false,
     "publish": true
