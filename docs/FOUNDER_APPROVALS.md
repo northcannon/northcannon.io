@@ -200,6 +200,70 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Founder approval given and transcribed by Opus, recorded by Astra."
+  },
+  {
+    "event_id": "founder-approval-003",
+    "timestamp": "2026-09-14T15:24:56+00:00",
+    "founder_words": "approved metrics: Experiment status\nEvaluation count\np95 latency\nToken usage\nAverage context size\nFailed evaluations\nAbstention rate\nVerification rate\nEvidence-packet count\nLast evaluation timestamp\nGate / config / dataset version identifiers\nModel version(s)\nHash / reproducibility status\nIndependent-review status",
+    "claims": [
+      {
+        "claim_id": "label-experiment-status",
+        "statement": "Experiment status"
+      },
+      {
+        "claim_id": "label-evaluation-count",
+        "statement": "Evaluation count"
+      },
+      {
+        "claim_id": "label-p95-latency",
+        "statement": "p95 latency"
+      },
+      {
+        "claim_id": "label-token-usage",
+        "statement": "Token usage"
+      },
+      {
+        "claim_id": "label-average-context-size",
+        "statement": "Average context size"
+      },
+      {
+        "claim_id": "label-failed-evaluations",
+        "statement": "Failed evaluations"
+      },
+      {
+        "claim_id": "label-abstention-rate",
+        "statement": "Abstention rate"
+      },
+      {
+        "claim_id": "label-verification-rate",
+        "statement": "Verification rate"
+      },
+      {
+        "claim_id": "label-evidence-packet-count",
+        "statement": "Evidence-packet count"
+      },
+      {
+        "claim_id": "label-last-evaluation-timestamp",
+        "statement": "Last evaluation timestamp"
+      },
+      {
+        "claim_id": "label-version-identifiers",
+        "statement": "Gate / config / dataset version identifiers"
+      },
+      {
+        "claim_id": "label-model-versions",
+        "statement": "Model version(s)"
+      },
+      {
+        "claim_id": "label-reproducibility-status",
+        "statement": "Hash / reproducibility status"
+      },
+      {
+        "claim_id": "label-independent-review-status",
+        "statement": "Independent-review status"
+      }
+    ],
+    "relay": "Founder supplied this field list directly in the website-feedback session. This event approves labels only, not metric values, experiment execution, or result publication."
   }
 ]
 ```

@@ -1,5 +1,5 @@
 // Changing these pins is an approval event requiring founder confirmation at PR review.
-// Only Opus-transcribed founder words may create an event. This pins the existing approval.
+// Only verbatim founder words may create an event. Field approval does not approve values.
 export const approvalEvents = {
   "founder-approval-001": {
     "sha256": "b4ce0bcd35746fe7040fa0ae85a61c589e9657a2a1391051afac261f07b7ca16",
@@ -52,6 +52,25 @@ export const approvalEvents = {
       "about-founder-bio",
       "vision-statement",
       "patent-pending"
+    ]
+  },
+  "founder-approval-003": {
+    "sha256": "d88689159591461604d4f11555665dacd0d73de0c0f36de4287db648a2803885",
+    "claim_ids": [
+      "label-experiment-status",
+      "label-evaluation-count",
+      "label-p95-latency",
+      "label-token-usage",
+      "label-average-context-size",
+      "label-failed-evaluations",
+      "label-abstention-rate",
+      "label-verification-rate",
+      "label-evidence-packet-count",
+      "label-last-evaluation-timestamp",
+      "label-version-identifiers",
+      "label-model-versions",
+      "label-reproducibility-status",
+      "label-independent-review-status"
     ]
   }
 };

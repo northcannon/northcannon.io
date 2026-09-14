@@ -479,5 +479,145 @@
     "lifecycle_state": "approved",
     "review_date": "2026-09-14",
     "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-experiment-status",
+    "statement": "Experiment status",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-evaluation-count",
+    "statement": "Evaluation count",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-p95-latency",
+    "statement": "p95 latency",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-token-usage",
+    "statement": "Token usage",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-average-context-size",
+    "statement": "Average context size",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-failed-evaluations",
+    "statement": "Failed evaluations",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-abstention-rate",
+    "statement": "Abstention rate",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-verification-rate",
+    "statement": "Verification rate",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-evidence-packet-count",
+    "statement": "Evidence-packet count",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-last-evaluation-timestamp",
+    "statement": "Last evaluation timestamp",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-version-identifiers",
+    "statement": "Gate / config / dataset version identifiers",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-model-versions",
+    "statement": "Model version(s)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-reproducibility-status",
+    "statement": "Hash / reproducibility status",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-independent-review-status",
+    "statement": "Independent-review status",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-14",
+    "approval_record": "founder_attestation"
   }
 ]
