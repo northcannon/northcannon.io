@@ -13,12 +13,24 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     expect(response.status()).toBe(200);
     for (const [name, value] of Object.entries(requiredHeaders)) expect(response.headers()[name]).toBe(value);
     await expect(page.locator('script, style, [style], form, input')).toHaveCount(0);
+    expect(await page.locator('main h1').evaluate(el => getComputedStyle(el).color)).toBe('rgb(156, 107, 244)');
+    if (review || route.path !== '/404.html') {
+      await expect(page.locator('.desktop-navigation a').first()).toHaveText('About');
+      await expect(page.locator('.mobile-navigation .navigation a').first()).toHaveText('About');
+    }
+    if (page.viewportSize().width >= 1024) {
+      const copy = await page.locator(route.path === '/' ? '.hero__copy' : 'main > .site-container').boundingBox();
+      expect(copy.x + copy.width).toBeLessThanOrEqual(page.viewportSize().width / 2);
+    }
     expect(await paintedBoxes(page)).toEqual([]);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
     const demo = route.path === '/demo/';
     if (demo) {
-      expect(await page.locator('body').innerText()).toBe('Demo — Coming Soon');
-      await expect(page.locator('a, button, details, input, nav')).toHaveCount(0);
+      expect(await page.locator('main').innerText()).toBe('Demo\nComing Soon');
+      expect(await page.locator('.demo-subtitle').evaluate(el => getComputedStyle(el).color)).toBe('rgb(183, 175, 201)');
+      await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible();
+      const title = await page.locator('h1').boundingBox();
+      expect(Math.abs(title.y + title.height / 2 - page.viewportSize().height / 2)).toBeLessThan(2);
     } else {
       if (review) await expect(page.getByText(draftBanner, { exact: true })).toBeVisible();
       else await expect(page.getByText(draftBanner, { exact: true })).toHaveCount(0);
@@ -31,10 +43,16 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     if (['/results/', '/trust/status/'].includes(route.path)) {
       await expect(page.locator('main')).toContainText('Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.');
       await expect(page.locator('table')).toHaveCount(0);
-      expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
+      if (route.path === '/results/') {
+        await expect(page.locator('.result-arms h2')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺']);
+        for (const arm of await page.locator('.metric-list').all()) {
+          await expect(arm.locator('dt')).toHaveCount(14);
+          expect(await arm.locator('dd').allTextContents()).toEqual(['Preparation', ...Array(13).fill('Not supplied')]);
+        }
+      } else expect((await page.locator('main').innerText()).replaceAll('Gate 1', 'Gate')).not.toMatch(/\d/);
     }
     if (route.path === '/vision/') await expect(page.locator('main p.hero__mission')).toHaveCount(6);
-    if (route.path === '/about/') await expect(page.locator('main')).toContainText('Max Brooks is the founder of NorthCannon.');
+    if (route.path === '/about/founder/') await expect(page.locator('main')).toContainText('Max Brooks is the founder of NorthCannon.');
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/wp4-${review ? 'review' : 'production'}`, { recursive: true });
     await page.screenshot({ path: `test-results/wp4-${review ? 'review' : 'production'}/${name}-${testInfo.project.name === 'mobile' ? 375 : 1440}.png`, fullPage: true });

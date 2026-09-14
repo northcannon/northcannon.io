@@ -48,7 +48,7 @@ export async function paintedBoxes(page) {
           (forced ? s[`border${side}Color`] === canvasText : s[`border${side}Color`] === (el.matches(':active') ? 'rgb(247, 244, 255)' : 'rgb(156, 107, 244)')));
         for (const side of ['Top', 'Right', 'Bottom', 'Left']) {
           // Preserve only the header bottom and footer top rule lines.
-          const rule = !pseudo && ((el.matches('.site-header') && side === 'Bottom') || (el.matches('.site-footer') && side === 'Top'));
+          const rule = !pseudo && ((el.matches('.site-header') && side === 'Bottom') || (el.matches('.site-footer, .evidence-section') && side === 'Top'));
           if (!component && !menu && !secondaryBorder && !rule && parseFloat(s[`border${side}Width`]) > 0 && !['none', 'hidden'].includes(s[`border${side}Style`]) && !transparent(s[`border${side}Color`])) fail(`border-${side.toLowerCase()}`);
         }
         const visibleOutline = !['none', 'hidden'].includes(s.outlineStyle) && parseFloat(s.outlineWidth) > 0 && !transparent(s.outlineColor);

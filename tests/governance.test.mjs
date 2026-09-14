@@ -98,10 +98,10 @@ test('migration preserves each baseline ID and approval state once, with a singl
   assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 5);
 });
 
-test('both founder events match exactly and single-character mutations fail on either side', async () => {
+test('founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 43);
+  assert.equal(attested.length, 57);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));
