@@ -1,6 +1,6 @@
 ---
-import Page from '../components/WP4Review.astro';
+import SitePage from '../components/SitePage.astro';
 import { readRoutes } from '../governance/routes.mjs';
 const route = readRoutes().find(r => r.path === '/')!;
 ---
-<Page route={route} review={false} />
+<SitePage route={route} review={false} />

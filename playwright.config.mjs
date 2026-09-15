@@ -9,7 +9,8 @@ export default defineConfig({
     { command: 'npm run build:review && node scripts/serve.mjs .review-dist 4322', url: 'http://127.0.0.1:4322', reuseExistingServer: false },
   ],
   projects: [
-    { name: 'mobile', use: { viewport: { width: 375, height: 812 } } },
+    { name: 'mobile-375', use: { viewport: { width: 375, height: 812 } } },
+    { name: 'mobile', use: { viewport: { width: 390, height: 844 } } },
     { name: 'desktop', use: { viewport: { width: 1440, height: 1000 } } },
   ],
 });

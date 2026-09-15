@@ -44,7 +44,8 @@ for (const [name, text] of files) {
     if (!wp4 && text.includes(draftBanner)) errors.push('Review banner in production');
     if (wp4 && name !== 'demo/index.html' && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
-  if (!wp4 && !fixture && name.endsWith('.txt')) for (const claim of claims.filter(c => c.approval_state !== 'approved')) if (text.includes(claim.statement)) errors.push('Pending claim in production text artifact');
+  // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.
+  if (!wp4 && !fixture && name.endsWith('.txt')) { const values = text.replace(/^[A-Za-z-]+:/gm, ''); for (const claim of claims.filter(c => c.approval_state !== 'approved')) if (values.includes(claim.statement)) errors.push(`Pending claim in production text artifact: ${claim.claim_id}`); }
   if (/\.(html|svg)$/.test(name)) {
     const document = inspectMarkup(text, name);
     errors.push(...document.errors);

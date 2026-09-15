@@ -8,12 +8,14 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   const routes = readRoutes(claims);
   const route = routes.find(r => routeFile(r) === name);
   if (!route || (!review && !route.publish)) return ['Unknown or unpublished route'];
-  const dependencies = reviewDependencies(route, routes, { review });
+  const dependencies = reviewDependencies(route, routes, { review, claims });
   const declared = claims.filter(c => dependencies.has(c.claim_id));
   const data = review && name === 'trust/provenance/index.html' ? readProductionProvenance() : null;
   const allowed = new Set([...legacyLabels, ...(review ? [draftBanner] : []), ...declared.filter(c => c.lifecycle_state !== 'retired' && (review ? c.approval_state !== 'rejected' : c.approval_state === 'approved')).flatMap(c => [c.statement, ...c.statement.split('\n\n')]).map(s => s.replace(/\s+/gu, ' ').trim())]);
   const company = claims.find(c => c.claim_id === 'brand-company').statement;
   allowed.add(`${company} home`);
+  // A declared status claim may show the date its current statement was attested.
+  for (const c of declared.filter(c => c.category === 'status' && c.approval_state === 'approved')) allowed.add(c.review_date);
   for (const c of declared.filter(c => route.path === '/trust/claims/' && c.approval_state === 'approved')) {
     for (const v of [c.claim_id, c.category, c.basis, c.review_date]) allowed.add(v);
   }

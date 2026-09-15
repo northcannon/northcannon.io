@@ -1,0 +1,99 @@
+---
+// Evidence — Wireframes B, 04. No evidence exists before execution, so the ledger,
+// hash and viewer render deliberate empty states rather than illustrative records.
+import Icon from '../Icon.astro';
+import StatusBanner from '../StatusBanner.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; [key: string]: unknown }
+const { copy } = Astro.props;
+const { t, href, statusDate } = copy;
+const headline = t('evidence-headline');
+const cards = [
+  { title: 'evidence-frozen-title', body: 'evidence-frozen-body', icon: 'cube' },
+  { title: 'evidence-executed-title', body: 'evidence-executed-body', icon: 'gear' },
+  { title: 'evidence-supports-title', body: 'evidence-supports-body', icon: 'document' },
+].filter(card => t(card.title));
+const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'label-status'];
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <section class="page-hero" aria-labelledby="evidence-title">
+      <div class="page-hero__copy">
+        {headline && <p class="eyebrow">{t('label-evidence')}</p>}
+        <h1 class="page-title" id="evidence-title">{headline ?? t('label-evidence')}</h1>
+        <p class="lede">{t('methodology-evidence')}</p>
+      </div>
+      <div class="evidence-art" aria-hidden="true">
+        <span class="evidence-art__sheet evidence-art__sheet--back"></span>
+        <span class="evidence-art__sheet evidence-art__sheet--front"><i></i><i></i><i></i><i></i></span>
+        <span class="evidence-art__shield"><Icon name="shield-check" size={96} /></span>
+      </div>
+    </section>
+
+    <StatusBanner tone="pending" id="evidence-status" meta={[{ label: t('label-last-updated'), date: statusDate }]}>
+      {t('evidence-status-title') && <Fragment slot="title">{t('evidence-status-title')}</Fragment>}
+      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+    </StatusBanner>
+
+    {cards.length > 0 && (
+      <ul class="explainer-grid">
+        {cards.map(card => (
+          <li class="panel explainer-card">
+            <Icon name={card.icon} size={36} />
+            <h2 class="card-title explainer-card__title">{t(card.title)}</h2>
+            {t(card.body) && <p class="card-text">{t(card.body)}</p>}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {t('ledger-title') && (
+      <section class="panel" aria-labelledby="ledger-title">
+        <div class="section-head section-head--center">
+          <div class="section-head__title"><Icon name="ledger" size={32} /><h2 class="section-title" id="ledger-title">{t('ledger-title')}</h2></div>
+          {t('ledger-browse') && href('/trust/claims/') && <a class="inline-link" href="/trust/claims/">{t('ledger-browse')}<Icon name="arrow-right" /></a>}
+        </div>
+        <div class="table-scroll" role="region" tabindex="0" aria-labelledby="ledger-title">
+          <table class="ledger">
+            <thead><tr>{columns.map(id => <th scope="col">{t(id)}</th>)}<th scope="col" class="ledger__action"></th></tr></thead>
+            <tbody>
+              <tr><td colspan="6"><div class="ledger__empty"><Icon name="ledger" size={28} /><span>{t('ledger-empty') ?? t('evidence-status-title')}</span></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    {(t('hash-title') || t('viewer-title')) && (
+      <div class="artifact-grid">
+        {t('hash-title') && (
+          <section class="panel" aria-labelledby="hash-title">
+            <div class="section-head__title section-head--compact"><Icon name="hash" size={28} /><h2 class="section-title" id="hash-title">{t('hash-title')}</h2></div>
+            <div class="hash-block">
+              <p class="hash-block__algorithm">{t('hash-algorithm')}</p>
+              <p class="hash-block__value">{t('hash-empty') ?? t('evidence-status-title')}</p>
+            </div>
+            {t('hash-caption') && <p class="card-text">{t('hash-caption')}</p>}
+          </section>
+        )}
+        {t('viewer-title') && (
+          <section class="panel" aria-labelledby="viewer-title">
+            <div class="section-head__title section-head--compact"><Icon name="document" size={28} /><h2 class="section-title" id="viewer-title">{t('viewer-title')}</h2></div>
+            <div class="artifact-viewer">
+              <span class="artifact-viewer__thumb" aria-hidden="true"><img src="/northcannon-mark.svg" width="72" height="48" alt="" /></span>
+              <div class="artifact-viewer__body">
+                <p class="artifact-viewer__empty">{t('viewer-empty') ?? t('evidence-status-title')}</p>
+                {t('viewer-action') && <span class="action-link action-link--static">{t('viewer-action')}<Icon name="arrow-up-right" /></span>}
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+    )}
+
+    <div class="panel updated-strip">
+      <p class="updated-strip__time"><Icon name="clock" size={28} />{t('label-last-updated') && <span class="label-colon">{t('label-last-updated')}</span>}<time datetime={statusDate}>{statusDate}</time></p>
+      {t('changelog-link') && <a class="inline-link" href="/trust/changelog/">{t('changelog-link')}<Icon name="arrow-right" /></a>}
+    </div>
+  </div>
+</main>

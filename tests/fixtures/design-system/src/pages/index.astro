@@ -6,14 +6,17 @@ import Container from '../../../../../src/components/Container.astro';
 import Panel from '../../../../../src/components/Panel.astro';
 import StatusLabel from '../../../../../src/components/StatusLabel.astro';
 import ActionLink from '../../../../../src/components/ActionLink.astro';
+import { claim } from '../../../../../src/governance/claim';
 // These destinations are fragment fixtures, not additional website routes.
-const labels = ['Home', 'About', 'Research', 'Product', 'Evidence', 'Trust Center', 'Early Access', 'Contact'];
+const labels = await Promise.all(['label-company', 'label-about', 'label-gate-1', 'label-demo', 'label-evidence', 'label-trust', 'label-early-access', 'label-contact'].map(claim));
 const items = labels.map((label, index) => ({ label, href: index === 0 ? '/' : '#review' }));
+const company = await claim('brand-company');
+const status = { label: await claim('label-preparation'), description: await claim('status-gate1-preparation'), href: '#review' };
 ---
-<Document title="WP2 component review" shell={false}>
-  <SiteHeader items={items} currentPath="/" />
+<Document title="WP2 component review">
+  <SiteHeader company={company} items={items} currentPath="/" status={status} />
   <main id="main" tabindex="-1" class="page-main">
-    <Container narrow>
+    <Container>
       <h1 class="page-title" id="review">WP2 component review</h1>
       <div class="action-group">
         <ActionLink href="#panel">Primary link</ActionLink>
@@ -27,5 +30,5 @@ const items = labels.map((label, index) => ({ label, href: index === 0 ? '/' : '
       </div>
     </Container>
   </main>
-  <SiteFooter />
+  <SiteFooter fragmentFixture />
 </Document>

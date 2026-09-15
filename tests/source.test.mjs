@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, writeFile, rm, readFile, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { scanTracked } from '../scripts/scan-source.mjs';
 
 test('bracket ignore glob preserves all six original ignore decisions', async () => {
@@ -76,15 +76,15 @@ test('all disclosure pattern families reject runtime fixtures with no exemptions
   }
 });
 
-test('maximum lattice opacity preserves white and muted AA contrast', async () => {
-  const { contrast } = await import('./helpers/pixels.mjs');
+test('lattice is deterministic decorative artwork with no resources or scripts', async () => {
+  const svg = await readFile('public/graphene-lattice.svg', 'utf8');
+  assert.doesNotMatch(svg, /<script|<foreignObject|<animate|<set|href=|url\((?!#)/i);
+  const result = spawnSync(process.execPath, ['scripts/generate-lattice.mjs', '--check'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
   const css = await readFile('src/styles/global.css', 'utf8');
-  const opacity = Number(css.match(/\.graphene img \{[^}]*opacity: ([\d.]+)/)[1]);
-  assert.ok(opacity >= 0.35 && opacity <= 0.45);
-  const ink = [5, 5, 10], violet = [156, 107, 244];
-  const background = ink.map((v, i) => v * (1 - opacity) + violet[i] * opacity);
-  for (const color of [[247, 244, 255], [183, 175, 201]]) assert.ok(contrast(color, background) >= 4.5);
-  console.log(`Lattice maximum ${opacity}: white ${contrast([247, 244, 255], background).toFixed(4)}:1; muted ${contrast([183, 175, 201], background).toFixed(4)}:1`);
+  assert.match(css, /\.graphene \{ position: absolute; inset: 0;/);
+  assert.match(svg, /<pattern id="lattice" patternUnits="userSpaceOnUse"/);
+  assert.match(css, /forced-colors: active\) \{\n  \.graphene \{ display: none; \}/);
 });
 
 test('public documentation markdown links resolve after conceptual rename', async () => {

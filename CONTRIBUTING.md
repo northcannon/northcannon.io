@@ -46,7 +46,10 @@ The check now blocks every approved claim lacking its pinned founder attestation
 `src/content/routes.json` controls publication: each published route requires
 approved pinned claims and approved interface labels; production links may not
 target unpublished routes. Review builds permit pending drafts only outside
-dist. Only the founder may authorize new pinned approval events or route promotion.
+dist. A route's `claim_ids` are required; its `review_claim_ids` are optional copy slots that
+render in review builds and reach production only once founder-attested, so an approval
+event completes a page without code changes. Only the founder may authorize new pinned
+approval events or route promotion.
 
 ## Workflow
 

@@ -194,4 +194,5 @@ Wireframe text is checked string by string against `public_claims/claims.json` a
    registered as pending copy instead.
 
 Production renders only founder-attested claims. The review build renders the full
-composition with pending copy under the draft banner.
+composition with pending copy under the draft banner. Per-component status is in
+[the fidelity matrix](WIREFRAME_FIDELITY_MATRIX.md).

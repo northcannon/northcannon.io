@@ -1,0 +1,128 @@
+---
+// Results — Wireframes A, 03. Pre-execution: labels and structure only, no values.
+import Icon from '../Icon.astro';
+import StatusBanner from '../StatusBanner.astro';
+import LinkCard from '../LinkCard.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; [key: string]: unknown }
+const { copy } = Astro.props;
+const { t, statusDate } = copy;
+const steps = [
+  { id: 'readiness-definition', icon: 'document' },
+  { id: 'readiness-datasets', icon: 'database' },
+  { id: 'readiness-methods', icon: 'flask' },
+  { id: 'stage-independent-review', icon: 'shield-check' },
+  { id: 'readiness-execution', icon: 'circle' },
+].filter(step => t(step.id));
+// Founder-approved metric labels (approval event 003) in the wireframe's 3 × 2 card grid.
+const metrics = [
+  { id: 'label-verification-rate', icon: 'target' },
+  { id: 'label-failed-evaluations', icon: 'x-circle' },
+  { id: 'label-abstention-rate', icon: 'shield' },
+  { id: 'label-p95-latency', icon: 'clock' },
+  { id: 'label-token-usage', icon: 'nodes' },
+  { id: 'label-average-context-size', icon: 'layers' },
+];
+const metadata = ['label-experiment-status', 'label-evaluation-count', 'label-evidence-packet-count', 'label-last-evaluation-timestamp', 'label-version-identifiers', 'label-model-versions', 'label-reproducibility-status', 'label-independent-review-status'];
+const arms = [
+  { id: 'arm-treatment', tab: 'arm-treatment-tab', anchor: 'arm-treatment' },
+  { id: 'arm-baseline-a', tab: 'arm-baseline-a', anchor: 'arm-baseline-a' },
+  { id: 'arm-baseline-b', tab: 'arm-baseline-b', anchor: 'arm-baseline-b' },
+  { id: 'arm-r-plus', tab: 'arm-r-plus', anchor: 'arm-r-plus' },
+].filter(arm => t(arm.tab));
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <StatusBanner tone="pending" headingLevel="h1" id="results-title" meta={[{ label: t('label-experiment-id') }, { label: t('label-last-updated'), date: statusDate }]}>
+      <Fragment slot="title">{t('results-banner-title') ?? t('label-results')}</Fragment>
+      {t('results-banner-body') && <p class="status-banner__text status-banner__text--lead">{t('results-banner-body')}</p>}
+      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+    </StatusBanner>
+
+    {t('readiness-title') && (
+      <section class="panel readiness" aria-labelledby="readiness-title">
+        <div class="readiness__head">
+          <span class="readiness__signal"><Icon name="pending-circle" size={36} /></span>
+          <div>
+            <h2 class="section-title" id="readiness-title">{t('readiness-title')}</h2>
+            {t('readiness-summary') && <p class="section-intro">{t('readiness-summary')}</p>}
+          </div>
+        </div>
+        <ol class="readiness__steps">
+          {steps.map(step => (
+            <li class="readiness__step">
+              <Icon name={step.icon} />
+              <div>
+                <p class="readiness__name">{t(step.id)}</p>
+                {t('state-pending') && <p class="readiness__state tone-pending">{t('state-pending')}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {t('metrics-title') && (
+      <section class="panel" aria-labelledby="metrics-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="metrics-title">{t('metrics-title')}</h2>
+            {t('metrics-intro') && <p class="section-intro">{t('metrics-intro')}</p>}
+          </div>
+        </div>
+        <ul class="metric-grid">
+          {metrics.map(metric => (
+            <li class="card metric-card">
+              <Icon name={metric.icon} />
+              <div>
+                <h3 class="metric-card__name">{t(metric.id)}</h3>
+                <p class="metric-card__value"><span class="empty-value"></span></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {t('metadata-title') && (
+          <div class="card metadata-card">
+            <Icon name="cube" size={36} />
+            <div class="metadata-card__body">
+              <h3 class="card-title">{t('metadata-title')}</h3>
+              {t('metadata-intro') && <p class="card-text">{t('metadata-intro')}</p>}
+              <dl class="metadata-grid">
+                {metadata.map(id => (
+                  <div>
+                    <dt>{t(id)}</dt>
+                    <dd>{id === 'label-experiment-status' ? <span class="tone-pending">{t('label-preparation')}</span> : <span class="empty-value"></span>}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        )}
+      </section>
+    )}
+
+    {t('arms-title') && (
+      <section class="panel" aria-labelledby="result-arms-title">
+        <h2 class="section-title section-title--spaced" id="result-arms-title">{t('arms-title')}</h2>
+        <div class="arm-tabs">
+          <ul class="arm-tabs__list">
+            {arms.map(arm => <li><a class:list={['arm-tabs__tab', `arm-tabs__tab--${arm.anchor}`]} href={`#${arm.anchor}`}>{t(arm.tab)}</a></li>)}
+          </ul>
+          <div class="arm-tabs__panels">
+            {arms.map(arm => (
+              <section class:list={['arm-tabs__panel', `arm-tabs__panel--${arm.anchor}`]} id={arm.anchor} aria-label={t(arm.id)}>
+                <div class="chart-placeholder">
+                  <Icon name="chart" size={64} />
+                  {t('results-placeholder-title') && <h3 class="chart-placeholder__title">{t('results-placeholder-title')}</h3>}
+                  {t('results-placeholder-body') && <p class="chart-placeholder__text">{t('results-placeholder-body')}</p>}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {t('cta-explore-evidence') && <LinkCard href="/evidence/" icon="document" title={t('cta-explore-evidence')!} text={t('results-evidence-body')} />}
+  </div>
+</main>

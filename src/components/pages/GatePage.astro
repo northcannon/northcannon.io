@@ -1,0 +1,119 @@
+---
+// Gate 1 — Wireframes A, 02. State comes from the governed Gate 1 status; no
+// illustrative stage, identifier, arm detail or checklist completion is rendered.
+import Icon from '../Icon.astro';
+import StatusBanner from '../StatusBanner.astro';
+import LinkCard from '../LinkCard.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; [key: string]: unknown }
+const { copy } = Astro.props;
+const { t, href, stageIndex, statusDate } = copy;
+const stages = ['stage-defined', 'stage-frozen', 'stage-independent-review', 'stage-stress-test', 'stage-authorized', 'stage-executing', 'stage-results-published'];
+const arms = [
+  { name: 'arm-treatment', sub: 'arm-treatment-sub', selected: true, named: true },
+  { name: 'arm-baseline-a', sub: 'arm-baseline-a-sub' },
+  { name: 'arm-baseline-b', sub: 'arm-baseline-b-sub' },
+  { name: 'arm-r-plus', sub: 'arm-r-plus-sub', named: true },
+].filter(arm => t(arm.name));
+const fields = ['label-model', 'label-config', 'label-notes'].filter(id => t(id));
+const criteria = ['falsification-plan'].map(t).filter(Boolean);
+const checklist = ['checklist-task', 'checklist-datasets', 'checklist-methods', 'checklist-falsification', 'checklist-review', 'checklist-compute', 'checklist-reproducibility', 'checklist-authorization'].map(t).filter(Boolean);
+const gate = t('label-gate-1');
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <StatusBanner tone="pending" headingLevel="h1" id="gate-title" meta={[{ label: t('label-experiment-id') }, { label: t('label-last-updated'), date: statusDate }]}>
+      <Fragment slot="title">{gate && <span class="status-banner__gate">{gate}</span>}<span>{t('label-preparation')}</span></Fragment>
+      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+      {t('gate-share') && href('/gate-1/') && <a slot="action" class="action-link action-link--quiet" href="/gate-1/"><Icon name="share" />{t('gate-share')}</a>}
+    </StatusBanner>
+
+    {t('gate-lifecycle-title') && (
+      <section class="panel" aria-labelledby="lifecycle-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="lifecycle-title">{t('gate-lifecycle-title')}</h2>
+            {t('label-current-status') && <p class="section-intro"><span class="label-colon">{t('label-current-status')}</span> <span class="tone-pending">{t('label-preparation')}</span></p>}
+          </div>
+        </div>
+        <ol class="lifecycle">
+          {stages.map((id, index) => (
+            <li class:list={['lifecycle__step', { 'is-current': index === stageIndex, 'is-complete': index < stageIndex }]} aria-current={index === stageIndex ? 'step' : undefined}>
+              <span class="lifecycle__marker" aria-hidden="true"></span>
+              <span class="lifecycle__label">{t(id)}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {t('gate-what-title') && (
+      <section class="panel" aria-labelledby="what-title">
+        <h2 class="section-title" id="what-title">{t('gate-what-title')}</h2>
+        {t('gate-what-body') && <p class="card-text gate-what">{t('gate-what-body')}</p>}
+      </section>
+    )}
+
+    {t('arms-title') && (
+      <section class="panel" aria-labelledby="arms-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="arms-title">{t('arms-title')}</h2>
+            {t('arms-intro') && <p class="section-intro">{t('arms-intro')}</p>}
+          </div>
+        </div>
+        <ul class="arm-grid">
+          {arms.map(arm => (
+            <li class:list={['card arm-card', { 'arm-card--accent': arm.selected, 'arm-card--named': arm.named }]}>
+              <h3 class="arm-card__name">{t(arm.name)}</h3>
+              {t(arm.sub) && <p class="arm-card__sub">{t(arm.sub)}</p>}
+              <dl class="arm-card__fields">
+                {fields.map(id => <div><dt>{t(id)}</dt><dd><span class="empty-value"></span></dd></div>)}
+              </dl>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {t('falsification-title') && (
+      <section class="panel falsification" aria-labelledby="falsification-title">
+        <div class="section-head">
+          <div class="section-head__title">
+            <Icon name="alert" class="falsification__icon" size={40} />
+            <div>
+              <h2 class="section-title" id="falsification-title">{t('falsification-title')}</h2>
+              {t('falsification-intro') && <p class="section-intro">{t('falsification-intro')}</p>}
+            </div>
+          </div>
+        </div>
+        <ul class="criteria">{criteria.map(item => <li>{item}</li>)}</ul>
+      </section>
+    )}
+
+    {t('readiness-checklist-title') && (
+      <section class="panel" aria-labelledby="checklist-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="checklist-title">{t('readiness-checklist-title')}</h2>
+            {t('readiness-checklist-intro') && <p class="section-intro">{t('readiness-checklist-intro')}</p>}
+          </div>
+        </div>
+        <ul class="checklist">
+          {checklist.map(item => (
+            <li class="checklist__item">
+              <span class="checklist__state checklist__state--pending"><Icon name="pending-circle" /></span>
+              <span>{item}</span>
+              {t('state-pending') && <span class="visually-hidden">{t('state-pending')}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <div class="link-cards">
+      {t('gate-results-cta') && <LinkCard href="/results/" icon="chart" title={t('gate-results-cta')!} text={t('gate-results-cta-body')} />}
+      {t('cta-explore-evidence') && <LinkCard href="/evidence/" icon="document" title={t('cta-explore-evidence')!} text={t('gate-evidence-cta-body')} />}
+    </div>
+  </div>
+</main>

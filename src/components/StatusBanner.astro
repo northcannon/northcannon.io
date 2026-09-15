@@ -1,0 +1,33 @@
+---
+// Experiment status banner (brief panel 06). Tone carries semantic colour; the title
+// and text carry the meaning, so status never depends on colour alone.
+interface Meta { label: string | undefined; value?: string | undefined; date?: string | undefined }
+interface Props {
+  tone: 'pending' | 'verified' | 'failed';
+  headingLevel?: 'h1' | 'h2';
+  id?: string;
+  meta?: Meta[];
+}
+const { tone, headingLevel = 'h2', id, meta = [] } = Astro.props;
+const Heading = headingLevel;
+const rows = meta.filter(row => row.label);
+const hasTitle = Astro.slots.has('title');
+---
+<section class:list={['status-banner', `status-banner--${tone}`]} aria-labelledby={hasTitle ? id : undefined}>
+  <span class="status-banner__signal" aria-hidden="true"><span class:list={['status-dot', `status-dot--${tone}`]}></span></span>
+  <div class="status-banner__main">
+    {hasTitle && <Heading class="status-banner__title" id={id}><slot name="title" /></Heading>}
+    <slot />
+  </div>
+  {rows.length > 0 && (
+    <dl class="status-banner__meta">
+      {rows.map(row => (
+        <div>
+          <dt>{row.label}</dt>
+          <dd>{row.date ? <time datetime={row.date}>{row.date}</time> : row.value ?? <span class="empty-value"></span>}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+  <slot name="action" />
+</section>

@@ -1,16 +1,22 @@
 ---
-import Container from './Container.astro';
 import { claim } from '../governance/claim';
+interface Props { fragmentFixture?: boolean }
+const { fragmentFixture = false } = Astro.props;
 const copy = {
   company: await claim('brand-company'),
   principle: await claim('brand-core-principle'),
 };
+const links = [
+  { label: await claim('label-trust'), href: '/trust/' },
+  { label: await claim('label-disclosure'), href: '/trust/disclosure/' },
+  { label: await claim('label-contact'), href: '/contact/' },
+];
 ---
 <footer class="site-footer">
-  <Container>
-    <div class="site-footer__inner">
-      <span>{copy.company}</span>
-      <p>{copy.principle}</p>
-    </div>
-  </Container>
+  <div class="site-container site-footer__inner">
+    <p class="site-footer__brand"><span>{copy.company}</span><span class="rule-divider" aria-hidden="true"></span><span>{copy.principle}</span></p>
+    <ul class="site-footer__links">
+      {links.map(link => <li><a href={fragmentFixture ? '#review' : link.href}>{link.label}</a></li>)}
+    </ul>
+  </div>
 </footer>

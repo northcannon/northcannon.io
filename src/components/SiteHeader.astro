@@ -1,41 +1,46 @@
 ---
-import Container from './Container.astro';
-import { claim } from '../governance/claim';
-const copy = {
-  company: await claim('brand-company'),
-};
+import { loadGovernance } from '../governance/registry.mjs';
+import { eligibleClaim } from '../governance/schema.mjs';
+import Icon from './Icon.astro';
 interface Props {
-  items?: ReadonlyArray<{ label: string; href: string }>;
-  currentPath?: string;
+  company: string;
+  items: ReadonlyArray<{ label: string; href: string }>;
+  currentPath: string;
+  status: { label: string; gate?: string | undefined; description: string; href: string };
 }
-const { items = [], currentPath = Astro.url.pathname } = Astro.props;
-const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+const { company, items, currentPath, status } = Astro.props;
+const { claims } = loadGovernance();
+for (const text of [company, ...items.map(item => item.label), status.label, status.gate, status.description].filter(Boolean)) {
+  const registered = claims.find(c => c.statement === text);
+  if (!registered) throw new Error('Unregistered header copy');
+  eligibleClaim(registered, registered.claim_id);
+}
+const current = (href: string) => (href === currentPath ? 'page' : undefined);
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
-  <Container>
-    <div class="site-header__inner">
-      <a class="wordmark" href="/" aria-label={`${copy.company} home`}>
-        <img src="/northcannon-mark.svg" width="54" height="36" alt="" />
-        <span>{copy.company}</span>
-      </a>
-      {items.length > 0 && (
-        <nav aria-label="Primary">
-          <ul class="navigation desktop-navigation">
-            {items.map(item => (
-              <li><a href={item.href} aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}>{item.label}</a></li>
-            ))}
+  <div class="site-container site-header__inner">
+    <a class="wordmark" href="/" aria-label={`${company} home`}>
+      <img src="/northcannon-mark.svg" width="36" height="24" alt="" />
+      <span>{company}</span>
+    </a>
+    <a class="status-chip" href={status.href} aria-label={status.description}>
+      <span class="status-dot status-dot--pending" aria-hidden="true"></span>
+      {status.gate && <span class="status-chip__gate">{status.gate}</span>}
+      <span>{status.label}</span>
+    </a>
+    {items.length > 0 && (
+      <nav aria-label="Primary" class="primary-nav">
+        <ul class="navigation desktop-navigation">
+          {items.map(item => <li><a href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}
+        </ul>
+        <details class="mobile-navigation">
+          <summary><Icon name="menu" /><span class="visually-hidden">Menu</span></summary>
+          <ul class="navigation">
+            {items.map(item => <li><a href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}
           </ul>
-          <details class="mobile-navigation">
-            <summary>Menu</summary>
-            <ul class="navigation">
-              {items.map(item => (
-                <li><a href={item.href} aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}>{item.label}</a></li>
-              ))}
-            </ul>
-          </details>
-        </nav>
-      )}
-    </div>
-  </Container>
+        </details>
+      </nav>
+    )}
+  </div>
 </header>

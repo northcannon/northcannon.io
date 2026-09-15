@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  id: string;
+  title: string;
+  text?: string | undefined;
+  action?: { href: string; label: string } | undefined;
+  variant?: 'primary' | 'quiet';
+}
+const { id, title, text, action, variant = 'quiet' } = Astro.props;
+---
+<section class="contact-cta" aria-labelledby={id}>
+  <Icon name="mail" />
+  <div class="contact-cta__body">
+    <h2 class="contact-cta__title" id={id}>{title}</h2>
+    {text && <p class="contact-cta__text">{text}</p>}
+  </div>
+  {action && <a class:list={['action-link', variant === 'primary' ? 'action-link--primary' : 'action-link--quiet']} href={action.href}>{action.label}<Icon name="arrow-right" /></a>}
+</section>
