@@ -1,0 +1,14 @@
+---
+interface Props { text: (id: string) => string }
+const { text } = Astro.props;
+const tables = [
+  { title: 'Evidence packets', columns: ['Packet', 'State', 'Content hash', 'Source'] },
+  { title: 'Execution records', columns: ['Run', 'Arm', 'State', 'Provenance hash'] },
+  { title: 'Artifact hashes', columns: ['Artifact', 'Content hash', 'Scope', 'Source'] },
+];
+---
+<div class="evidence-register">
+  <p class="panel evidence-notice">{text('status-gate1-preparation')}</p>
+  <section class="panel evidence-block"><h2>Evidence generation</h2><dl class="generation-grid"><div><dt>Generation</dt><dd class="status-label">{text('label-preparation')}</dd></div><div><dt>Evidence store</dt><dd class="status-label">{text('label-null')}</dd></div></dl></section>
+  <div class="evidence-cards">{tables.map(table => <section class="panel evidence-block"><span class="card-number" aria-hidden="true"></span><h2>{table.title}</h2><p>{text('label-null')}</p></section>)}</div>
+</div>

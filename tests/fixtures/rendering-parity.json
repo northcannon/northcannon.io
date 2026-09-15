@@ -1,9 +1,12 @@
 {
   "base": "8bf774a8ebcca609162652467e37de9c5c43a8a0",
-  "bases": { "dist/index.html": "WP4 stage 2 authorized navigation, CTA and patent copy" },
+  "bases": {
+    "dist/index.html": "Image-reference layout update: hero, status and destination cards; approved copy preserved",
+    "dist/404.html": "Image-reference shared header with preparation status"
+  },
   "previous_home_sha256": "7394362a243ef008cf6ff86233082b207cfdff52c9435b601a676aeae7d121c1",
   "html": {
-    "dist/index.html": "bed9575062921ba9ecdd43b62dbc07bf77479fc7769d0fad40c232ce9d0f8b1a",
+    "dist/index.html": "f50ae02db39d372e4137e3133ef9b8df7dd624d3f22d15b4f6de5e0a63d79afd",
     "dist/404.html": "447c91db0d5c59f73d5860da1c792e81b1cae895837e6594cc074b16926a5634",
     ".review-dist/index.html": "740a13c799a1eafed789562c9287b574044db829b0272afb84fa0d633df47faa"
   }

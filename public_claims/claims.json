@@ -2619,5 +2619,215 @@
     "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-disclaimer",
+    "statement": "Illustrative concept — fictional data. Not a live product or experiment result.",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-workspace",
+    "statement": "Customer workspace",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-change-intelligence",
+    "statement": "Change intelligence",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-change",
+    "statement": "Supplier renewal date changed",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-record",
+    "statement": "Example supplier",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-before",
+    "statement": "Before",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-before-date",
+    "statement": "30 September 2027",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-after",
+    "statement": "After",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-after-date",
+    "statement": "31 October 2027",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-impact",
+    "statement": "3 affected decisions",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-review",
+    "statement": "Review required",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-decision-one",
+    "statement": "Supplier eligibility",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-decision-two",
+    "statement": "Renewal reminder",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-decision-three",
+    "statement": "Review schedule",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-packet",
+    "statement": "Mock evidence packet",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-id",
+    "statement": "MOCK-001",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-source",
+    "statement": "Source change",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-affected",
+    "statement": "Affected decisions",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-review-state",
+    "statement": "Review state",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-inspect",
+    "statement": "Inspect the change record",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-explanation",
+    "statement": "This fictional example connects one changed record to the decisions that need review. The original and updated values remain visible together.",
+    "category": "other",
+    "basis": "docs/CONCEPT_PREVIEW.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
   }
 ]

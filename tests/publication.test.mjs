@@ -117,7 +117,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const pages = ['AboutPage', 'ContactPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
-      'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md',
+      'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md',
       'public/_headers', 'public/robots.txt', 'public/.well-known/security.txt',
       'public/graphene-lattice.svg', 'public/northcannon-mark.svg',
       'src/content.config.ts', 'src/content/collections.json', 'src/content/routes.json',

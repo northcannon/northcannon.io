@@ -173,7 +173,9 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('h1')).toHaveText('Verification, evidence, and change intelligence for consequential machine decisions.');
     await expect(page.locator('.about-card h2')).toHaveText(['NorthCannon', 'Why now', 'Founder']);
     await expect(page.locator('.mock-panel h2')).toHaveText(['Mock Evidence Packet', 'Mock Change Intelligence Console']);
-    await expect(page.locator('.mock-panel .section-intro')).toHaveText(Array(2).fill('Illustrative example for public understanding.'));
+    await expect(page.locator('.mock-panel__head .section-intro')).toHaveText(Array(2).fill('Illustrative example for public understanding.'));
+    await expect(page.locator('.mock-panel > .section-intro')).toHaveText(Array(2).fill('These mockups are for public understanding only; they are not live product screenshots or experiment results.'));
+    for (const panel of await page.locator('.mock-panel').all()) await expect(panel).toHaveAttribute('aria-describedby', 'mock-disclaimer');
     await expect(page.locator('.disclaimer-bar')).toHaveText('These mockups are for public understanding only; they are not live product screenshots or experiment results.');
     await expect(page.locator('.mock-panel a')).toHaveCount(0);
   });

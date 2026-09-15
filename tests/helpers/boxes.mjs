@@ -20,7 +20,7 @@ export async function paintedBoxes(page) {
         if (Math.abs(rect.left + scrollX) > 1 || Math.abs(rect.top + scrollY) > 1 || Math.abs(rect.width - width) > 1 || Math.abs(rect.height - height) > 1) failures.push(`${label}: bounded lattice`);
       }
       // The existing local trust mark and decorative lattice are the only images.
-      if (el.matches('img, svg') && !(el.matches('.wordmark > img[src="/northcannon-mark.svg"]') || el.matches('body > .graphene > img[src="/graphene-lattice.svg"]'))) failures.push(`${label}: unapproved image`);
+      if (el.matches('img, svg') && !(el.matches('.wordmark > img[src="/northcannon-mark.svg"], .hero-art > img[src="/northcannon-mark.svg"]') || el.matches('body > .graphene > img[src="/graphene-lattice.svg"]'))) failures.push(`${label}: unapproved image`);
       for (const pseudo of [null, '::before', '::after']) {
         const s = getComputedStyle(el, pseudo);
         // Non-generated pseudos and hidden elements do not paint visible boxes.
@@ -28,10 +28,11 @@ export async function paintedBoxes(page) {
         if (s.display === 'none' || s.visibility === 'hidden' || !el.checkVisibility()) continue;
         const fail = property => failures.push(`${label}${pseudo ?? ''}: ${property}`);
         // Existing primary button fill, panel surface, neutral status-label surface.
-        const component = !pseudo && el.matches('.action-link--primary, .panel, .status-label');
+        const component = !pseudo && el.matches('.action-link--primary, .panel, .status-label, .header-status, .header-status > span');
+        const indicator = !pseudo && el.matches('.stat-rule, .window-dots i, .impact-node');
         // The native open mobile menu owns its own translucent surface in flow.
         const menu = !pseudo && el.matches('.mobile-navigation[open] > .navigation');
-        const surface = component || menu || (!pseudo && lattice);
+        const surface = component || indicator || menu || (!pseudo && (lattice || el.matches('.site-header')));
         if (!surface && !transparent(s.backgroundColor)) fail('background-color');
         // Components never gain gradient/mask permission from their surface exception.
         if (!(lattice && !pseudo) && s.backgroundImage !== 'none') fail('background-image');
@@ -48,7 +49,7 @@ export async function paintedBoxes(page) {
           (forced ? s[`border${side}Color`] === canvasText : s[`border${side}Color`] === (el.matches(':active') ? 'rgb(247, 244, 255)' : 'rgb(156, 107, 244)')));
         for (const side of ['Top', 'Right', 'Bottom', 'Left']) {
           // Preserve only the header bottom and footer top rule lines.
-          const rule = !pseudo && ((el.matches('.site-header') && side === 'Bottom') || (el.matches('.site-footer') && side === 'Top'));
+          const rule = !pseudo && ((el.matches('.site-header') && side === 'Bottom') || (el.matches('.site-footer, .evidence-section') && side === 'Top'));
           if (!component && !menu && !secondaryBorder && !rule && parseFloat(s[`border${side}Width`]) > 0 && !['none', 'hidden'].includes(s[`border${side}Style`]) && !transparent(s[`border${side}Color`])) fail(`border-${side.toLowerCase()}`);
         }
         const visibleOutline = !['none', 'hidden'].includes(s.outlineStyle) && parseFloat(s.outlineWidth) > 0 && !transparent(s.outlineColor);
