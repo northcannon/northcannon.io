@@ -11,7 +11,7 @@ import { claim } from '../../../../../src/governance/claim';
 const labels = await Promise.all(['label-company', 'label-about', 'label-gate-1', 'label-demo', 'label-evidence', 'label-trust', 'label-early-access', 'label-contact'].map(claim));
 const items = labels.map((label, index) => ({ label, href: index === 0 ? '/' : '#review' }));
 const company = await claim('brand-company');
-const status = { label: await claim('label-preparation'), description: await claim('status-gate1-preparation'), href: '#review' };
+const status = { label: await claim('stage-frozen'), description: await claim('status-gate1-frozen-stress'), href: '#review' };
 ---
 <Document title="WP2 component review">
   <SiteHeader company={company} items={items} currentPath="/" status={status} />

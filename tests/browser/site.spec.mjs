@@ -10,8 +10,8 @@ import { requiredHeaders } from '../../scripts/policy.mjs';
 // pending copy; production (4321) renders only founder-attested claims.
 const REVIEW = 'http://127.0.0.1:4323';
 const PRODUCTION = 'http://127.0.0.1:4321';
-const status = 'Gate 1 — preparation in progress. The evaluation has not been executed, and no results exist yet.';
-const statusDate = loadGovernance().claims.find(c => c.claim_id === 'status-gate1-preparation').review_date;
+const status = 'Gate 1 is frozen, pending independent stress testing.';
+const statusDate = loadGovernance().claims.find(c => c.claim_id === 'status-gate1-frozen-stress').review_date;
 const fabricated = /Frozen —|Evidence System Operational|NC-\d|Jan \d|2025|[a-f0-9]{16,}|Not supplied/;
 const desktop = testInfo => testInfo.project.name === 'desktop';
 
@@ -50,6 +50,9 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     }
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/site-${review ? 'review' : 'production'}`, { recursive: true });
+    // Skip-link checks scroll the main into view; reset before full-page capture
+    // so the sticky header does not cover the heading in visual evidence.
+    await page.evaluate(() => scrollTo(0, 0));
     await page.screenshot({ path: `test-results/site-${review ? 'review' : 'production'}/${name}-${testInfo.project.use.viewport.width}.png`, fullPage: true });
     // 200% text at 320px must reflow without horizontal page scroll.
     await page.setViewportSize({ width: 320, height: 800 });
@@ -84,7 +87,7 @@ test.describe('approved design acceptance (review build)', () => {
       if (!desktop(testInfo)) {
         await expect(page.locator('.desktop-navigation')).toBeHidden();
         await expect(page.locator('.status-chip')).toBeVisible();
-        await expect(page.locator('.status-chip')).toHaveText(/Gate 1\s*Preparation/);
+        await expect(page.locator('.status-chip')).toHaveText(/Gate 1\s*Frozen/);
         await page.locator('.mobile-navigation summary').click();
       } else {
         await expect(page.locator('.status-chip')).toBeHidden();
@@ -122,12 +125,13 @@ test.describe('approved design acceptance (review build)', () => {
 
   test('gate 1: status banner, lifecycle, explanation, arms, falsification, readiness and links', async ({ page }) => {
     await page.goto(REVIEW + '/gate-1/');
-    await expect(page.locator('h1')).toHaveText(/Gate 1\s*Preparation/);
+    await expect(page.locator('h1')).toHaveText(/Gate 1\s*Frozen/);
     await expect(page.locator('.status-banner')).toContainText(status);
     await expect(page.locator('.status-banner')).toHaveClass(/status-banner--pending/);
     await expect(page.locator('.status-banner time')).toHaveText(statusDate);
     await expect(page.locator('.lifecycle__label')).toHaveText(['Defined', 'Frozen', 'Independent Review', 'Stress Test', 'Authorized', 'Executing', 'Results Published']);
     await expect(page.locator('.lifecycle [aria-current="step"]')).toHaveCount(1);
+    await expect(page.locator('.lifecycle [aria-current="step"] .lifecycle__label')).toHaveText('Frozen');
     await expect(page.locator('.lifecycle .is-complete')).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'What is Gate 1?' })).toBeVisible();
     await expect(page.locator('.arm-card__name')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'R+']);

@@ -53,7 +53,7 @@ const Page = pages[route.path] ?? SupportingPage;
   ) : (
     <>
       {review && <p class="draft-bar">{draftBanner}</p>}
-      <SiteHeader company={company} items={items} currentPath={route.path} status={{ label: t('label-preparation')!, gate: t('label-gate-1'), description: t('status-gate1-preparation')!, href: copy.href('/gate-1/') ?? '/trust/status/' }} />
+      <SiteHeader company={company} items={items} currentPath={route.path} status={{ label: t('stage-frozen')!, gate: t('label-gate-1'), description: t('status-gate1-frozen-stress')!, href: copy.href('/gate-1/') ?? '/trust/status/' }} />
       <Page copy={copy} route={route} routes={routes} claims={data.claims} title={title} />
       <SiteFooter />
     </>

@@ -13,7 +13,7 @@
   .home-hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: center; min-height: 35rem; padding-block: 2rem; }
   .home-hero__copy { grid-column: 1 / span 7; max-width: 37.5rem; }
   .home-hero__title { max-width: 13em; margin: 0; font-size: 2.875rem; line-height: 1.12; letter-spacing: -0.025em; }
-  .home-hero__copy .lede { font-size: 1.0625rem; }
+  .home-hero__copy .lede { font-size: 1.0625rem; color: #cbd5e1; }
   .home-hero__visual { grid-column: 8 / span 5; display: grid; place-items: center; min-height: 30rem; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--color-violet) 14%, transparent), transparent 65%), var(--color-panel); }
   .layer-stack { position: relative; container-type: inline-size; width: 100%; height: 26rem; }
   .layer { position: absolute; left: calc(50% - min(6rem, 27.5cqw)); width: min(12rem, 55cqw); height: min(12rem, 55cqw); }
@@ -251,6 +251,10 @@
   .demo-title { margin: 0; font-size: 2.25rem; text-align: center; }
 }
 
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+  .home-hero__title { font-size: 2rem; }
+}
+
 @media (max-width: 63.99rem) {
   /* Let enlarged text size intrinsic grid/flex children without widening the page. */
   .founder-sheet, .mock-panel { grid-template-columns: minmax(0, 1fr); }
@@ -263,7 +267,7 @@
   .layer__label { left: 60%; top: 77%; width: 90%; white-space: normal; }
   .home-hero, .page-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-block: 0.5rem; }
   .home-hero__copy, .home-hero__visual { grid-column: auto; }
-  .home-hero__title { font-size: 2.125rem; }
+  .home-hero__title { font-size: 1.625rem; }
   .home-hero__visual { min-height: 22rem; }
   .layer-stack { height: 22rem; transform: scale(0.78); }
   .evidence-art { display: none; }

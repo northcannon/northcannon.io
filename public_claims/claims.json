@@ -2829,5 +2829,16 @@
     "lifecycle_state": "review",
     "review_date": null,
     "approval_record": "none"
+  },
+  {
+    "claim_id": "status-gate1-frozen-stress",
+    "statement": "Gate 1 is frozen, pending independent stress testing.",
+    "category": "status",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation",
+    "status_stage": "frozen"
   }
 ]

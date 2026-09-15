@@ -36,7 +36,7 @@ const arms = [
     <StatusBanner tone="pending" headingLevel="h1" id="results-title" meta={[{ label: t('label-experiment-id') }, { label: t('label-last-updated'), date: statusDate }]}>
       <Fragment slot="title">{t('results-banner-title') ?? t('label-results')}</Fragment>
       {t('results-banner-body') && <p class="status-banner__text status-banner__text--lead">{t('results-banner-body')}</p>}
-      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+      <p class="status-banner__text">{t('status-gate1-frozen-stress')}</p>
     </StatusBanner>
 
     {t('readiness-title') && (
@@ -91,7 +91,7 @@ const arms = [
                 {metadata.map(id => (
                   <div>
                     <dt>{t(id)}</dt>
-                    <dd>{id === 'label-experiment-status' ? <span class="tone-pending">{t('label-preparation')}</span> : <span class="empty-value"></span>}</dd>
+                    <dd>{id === 'label-experiment-status' ? <span class="tone-pending">{t('stage-frozen')}</span> : <span class="empty-value"></span>}</dd>
                   </div>
                 ))}
               </dl>

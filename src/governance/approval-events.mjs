@@ -253,5 +253,11 @@ export const approvalEvents = {
     "founder-gate-title",
     "contact-intro"
   ]
+},
+  "founder-approval-005": {
+  "sha256": "22ee49fe81a7259ad81f71787b760cc86e5988335e985927ddd5b686a770fcc4",
+  "claim_ids": [
+    "status-gate1-frozen-stress"
+  ]
 }
 };

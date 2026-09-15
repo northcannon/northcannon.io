@@ -15,7 +15,7 @@ const body: Record<string, string[]> = {
   '/vision/': ['vision-statement'],
   '/trust/claims/': [],
   '/trust/': ['trust-index'],
-  '/trust/status/': ['status-gate1-preparation'],
+  '/trust/status/': ['status-gate1-frozen-stress'],
   '/trust/disclosure/': ['disclosure-report'],
   '/trust/site-security/': ['site-static', 'site-csp'],
   '/trust/changelog/': ['changelog-empty'],
@@ -29,7 +29,7 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container"><div class="page-stack page-stack--narrow">
     <h1 class="page-title">{title}</h1>
-    {route.path === '/trust/status/' && <p class="status-inline"><span class="status-dot status-dot--pending" aria-hidden="true"></span><span>{t('label-preparation')}</span></p>}
+    {route.path === '/trust/status/' && <p class="status-inline"><span class="status-dot status-dot--pending" aria-hidden="true"></span><span>{t('stage-frozen')}</span></p>}
     {paragraphs.length > 0 && <div class="panel prose">{paragraphs.map(paragraph => <p>{paragraph}</p>)}</div>}
     {email && <div class="action-group"><a class="action-link action-link--primary" href={`mailto:${email}`}><Icon name="mail" />{email}</a></div>}
     {route.path === '/404.html' && <div class="action-group"><a class="action-link action-link--primary" href="/">Return home</a></div>}

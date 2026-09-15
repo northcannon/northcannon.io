@@ -32,7 +32,7 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
 
     <StatusBanner tone="pending" id="evidence-status" meta={[{ label: t('label-last-updated'), date: statusDate }]}>
       {t('evidence-status-title') && <Fragment slot="title">{t('evidence-status-title')}</Fragment>}
-      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+      <p class="status-banner__text">{t('status-gate1-frozen-stress')}</p>
     </StatusBanner>
 
     {cards.length > 0 && (

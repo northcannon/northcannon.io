@@ -188,7 +188,7 @@
   .status-chip { white-space: normal; }
   .site-footer__links a { padding-inline: 0.625rem; }
   .site-footer__links li:first-child a { padding-left: 0; }
-  .wordmark { gap: 0.5rem; font-size: 1rem; white-space: nowrap; }
+  .wordmark { gap: 0.5rem; font-size: 1rem; max-width: 100%; flex-wrap: wrap; }
   .wordmark img { width: 1.75rem; }
   .status-chip { gap: 0.375rem; min-height: 2rem; padding-inline: 0.625rem; font-size: 0.75rem; }
   .mobile-navigation[open] > .navigation { position: absolute; top: 100%; left: calc(-1 * var(--margin)); right: calc(-1 * var(--margin)); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0.75rem var(--margin) 1rem; border-bottom: 1px solid var(--color-border); background: var(--color-bg); }

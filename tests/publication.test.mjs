@@ -76,7 +76,7 @@ test('production gates reject pending navigation and undeclared text while accep
   assert.ok(inspectReviewOutput(html, claims, 'evidence/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput(`<p>${draftBanner}</p>`, claims, 'vision/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput('<p>vision-statement</p>', claims, 'vision/index.html', { review: false }).length);
-  const date = claims.find(c => c.claim_id === 'status-gate1-preparation').review_date;
+  const date = claims.find(c => c.claim_id === 'status-gate1-frozen-stress').review_date;
   assert.deepEqual(inspectReviewOutput(`<time>${date}</time>`, claims, 'results/index.html', { review: false }), []);
   assert.ok(inspectReviewOutput('<time>2025-01-15</time>', claims, 'results/index.html', { review: false }).length, 'only the attested status date renders');
 });
@@ -179,7 +179,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const manifestPath = path.join(root, 'src/content/routes.json');
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
     for (const [route, id, list] of [
-      ['/trust/status/', 'label-preparation', 'claim_ids'], ['/trust/claims/', 'brand-company-motto', 'claim_ids'],
+      ['/trust/status/', 'stage-frozen', 'claim_ids'], ['/trust/claims/', 'brand-company-motto', 'claim_ids'],
       ['/results/', 'label-p95-latency', 'claim_ids'], ['/trust/', 'label-disclosure', 'claim_ids'],
       ['/gate-1/', 'falsification-title', 'review_claim_ids'], ['/about/', 'mock-disclaimer-bar', 'review_claim_ids'],
     ]) {

@@ -976,6 +976,18 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Recorded from the founder's NORTHCANNON.IO FINALIZATION instruction in this session. Timestamp records transcription. Explicit revised claims are transcribed in claims; remaining approvals cover structural/interface labels and the expressly approved fictional specimens only. Twenty additional prose claims remain pending. No new Gate 1 status, execution, readiness completion, merge, or deployment approval is recorded."
+  },
+  {
+    "event_id": "founder-approval-005",
+    "timestamp": "2026-09-15T18:50:56.129Z",
+    "founder_words": "Yes, use that exact statement",
+    "claims": [
+      {
+        "claim_id": "status-gate1-frozen-stress",
+        "statement": "Gate 1 is frozen, pending independent stress testing."
+      }
+    ],
+    "relay": "Founder confirmed the exact proposed public statement: “Gate 1 is frozen, pending independent stress testing.” This separately supersedes the current preparation status. It does not authorize execution, attest individual readiness items, or supply experiment identities, dates, or results. Timestamp records this transcription, not the time of experiment freeze."
   }
 ]
 ```

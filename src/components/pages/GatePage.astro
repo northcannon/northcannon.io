@@ -23,8 +23,8 @@ const gate = t('label-gate-1');
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <StatusBanner tone="pending" headingLevel="h1" id="gate-title" meta={[{ label: t('label-experiment-id') }, { label: t('label-last-updated'), date: statusDate }]}>
-      <Fragment slot="title">{gate && <span class="status-banner__gate">{gate}</span>}<span>{t('label-preparation')}</span></Fragment>
-      <p class="status-banner__text">{t('status-gate1-preparation')}</p>
+      <Fragment slot="title">{gate && <span class="status-banner__gate">{gate}</span>}<span>{t('stage-frozen')}</span></Fragment>
+      <p class="status-banner__text">{t('status-gate1-frozen-stress')}</p>
       {t('gate-share') && href('/gate-1/') && <a slot="action" class="action-link action-link--quiet" href="/gate-1/"><Icon name="share" />{t('gate-share')}</a>}
     </StatusBanner>
 
@@ -33,12 +33,12 @@ const gate = t('label-gate-1');
         <div class="section-head">
           <div>
             <h2 class="section-title" id="lifecycle-title">{t('gate-lifecycle-title')}</h2>
-            {t('label-current-status') && <p class="section-intro"><span class="label-colon">{t('label-current-status')}</span> <span class="tone-pending">{t('label-preparation')}</span></p>}
+            {t('label-current-status') && <p class="section-intro"><span class="label-colon">{t('label-current-status')}</span> <span class="tone-pending">{t('stage-frozen')}</span></p>}
           </div>
         </div>
         <ol class="lifecycle">
           {stages.map((id, index) => (
-            <li class:list={['lifecycle__step', { 'is-current': index === stageIndex, 'is-complete': index < stageIndex }]} aria-current={index === stageIndex ? 'step' : undefined}>
+            <li class:list={['lifecycle__step', { 'is-current': index === stageIndex }]} aria-current={index === stageIndex ? 'step' : undefined}>
               <span class="lifecycle__marker" aria-hidden="true"></span>
               <span class="lifecycle__label">{t(id)}</span>
             </li>
