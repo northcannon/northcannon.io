@@ -64,9 +64,16 @@ test('status rejects result fields and requires replacement attestation on stage
   for (const field of ['metric', 'metrics', 'benchmark', 'benchmarks', 'result', 'results', 'score', 'accuracy']) {
     assert.equal(schema.safeParse({ ...entry, [field]: 0.95 }).success, false, field);
   }
-  for (const stage of ['frozen', 'executing', 'complete']) assert.equal(schema.safeParse({ ...entry, stage }).success, false);
+  for (const stage of ['preparation', 'executing', 'complete']) assert.equal(schema.safeParse({ ...entry, stage }).success, false);
   assert.equal(statusSchema([...current.claims, fixture]).safeParse({ ...entry, claim_id: fixture.claim_id }).success, false);
   assert.ok(current.claims.find(c => c.claim_id === entry.claim_id).statement.includes('Gate 1'));
+});
+
+test('founder-approved frozen status replaces preparation without execution authorization', () => {
+  assert.deepEqual(current.status, [{ entry_id: 'gate1', stage: 'frozen', claim_id: 'status-gate1-frozen-stress' }]);
+  assert.equal(current.claims.find(c => c.claim_id === current.status[0].claim_id).statement, 'Gate 1 is frozen, pending independent stress testing.');
+  assert.deepEqual(current.gate1, []);
+  assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('status-gate1-preparation'), 'historical approval remains intact');
 });
 
 // Frozen snapshot of `public_claims/public_claim_registry.yaml` at commit 8bf774a, the legacy
@@ -95,13 +102,13 @@ test('migration preserves each baseline ID and approval state once, with a singl
   await assert.rejects(access('public_claims/public_claim_registry.yaml'));
   await assert.rejects(access('src/content/foundation.json'));
   assert.ok(current.claims.length >= 13);
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 5);
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 9);
 });
 
-test('founder events match exactly and single-character mutations fail on either side', async () => {
+test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 57);
+  assert.equal(attested.length, 234);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));

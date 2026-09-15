@@ -3,9 +3,14 @@ import { z } from 'astro/zod';
 import { eligibleClaim } from './schema.mjs';
 import { loadGovernance } from './registry.mjs';
 
-export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary', 'Company', 'Mission statement', 'Company vision', 'About the founder', 'Coming Soon', 'Treatment', 'Baseline A', 'Baseline B', 'Arm R⁺', 'Comparison arms', '↗', 'Evidence generation', 'Generation', 'Evidence store', 'Evidence packets', 'Execution records', 'Artifact hashes', 'Packet', 'State', 'Content hash', 'Source', 'Run', 'Arm', 'Provenance hash', 'Artifact', 'Scope']);
+export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
 export const draftBanner = 'DRAFT — pending founder approval';
-const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z-]+(?:\/[a-z-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean() }).strict();
+const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean() }).strict();
+const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecycle_state === 'approved' && claim.approval_record === 'founder_attestation';
+
+// claim_ids are required: a published route needs every one approved.
+// review_claim_ids are slots that render in review builds and, once founder-attested,
+// in production. Until then production omits them; it never renders pending copy.
 export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(readFileSync('src/content/routes.json', 'utf8'))) {
   const routes = z.array(routeSchema).parse(input);
   if (new Set(routes.map(r => r.path)).size !== routes.length) throw new Error('Duplicate route');
@@ -22,22 +27,32 @@ export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(
     if (title && !route.claim_ids.includes(title.claim_id)) throw new Error(`Undeclared route title: ${route.path}`);
   }
   for (const route of routes.filter(r => r.publish)) {
-    for (const id of reviewDependencies(route, routes, { review: false })) {
+    for (const id of reviewDependencies(route, routes, { review: false, claims })) {
       if (eligibleClaim(claims.find(c => c.claim_id === id), id).approval_record !== 'founder_attestation') throw new Error('Published navigation requires pinned attestation');
     }
   }
   return routes;
 }
 export const routeFile = route => route.path === '/404.html' ? '404.html' : route.path.slice(1) + 'index.html';
-// Navigation is a transitive dependency; production includes published destinations only.
-export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
-export function reviewDependencies(route, routes, { review = true } = {}) {
-  return new Set([...route.claim_ids, ...(review ? route.review_claim_ids : []),
-    ...routes.filter(r => r.nav && (review || r.publish)).map(navigationClaimId)]);
+// Navigation is a transitive dependency; production includes published destinations
+// whose navigation label is founder-attested.
+export const navigationClaimId = route => route.path === '/' ? 'label-company' : route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
+export function navigationRoutes(routes, { review = true, claims = loadGovernance().claims } = {}) {
+  return routes.filter(r => r.nav && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r))))));
+}
+export function reviewDependencies(route, routes, { review = true, claims = loadGovernance().claims } = {}) {
+  const optional = review ? route.review_claim_ids : route.review_claim_ids.filter(id => isApproved(claims.find(c => c.claim_id === id)));
+  return new Set([...route.claim_ids, ...optional,
+    ...(route.path === '/demo/' ? [] : navigationRoutes(routes, { review, claims }).map(navigationClaimId))]);
 }
 export function routeClaim(claims, route, routes, id, { review = true } = {}) {
-  if (!reviewDependencies(route, routes, { review }).has(id)) throw new Error(`Undeclared route claim: ${route.path}: ${id}`);
+  if (!reviewDependencies(route, routes, { review, claims }).has(id)) throw new Error(`Undeclared route claim: ${route.path}: ${id}`);
   return review ? draftClaim(claims, id) : eligibleClaim(claims.find(c => c.claim_id === id), id).statement;
+}
+// Optional copy: the statement when this build may render it, otherwise undefined.
+export function routeCopy(claims, route, routes, id, { review = true } = {}) {
+  if (!route.claim_ids.includes(id) && !route.review_claim_ids.includes(id) && !reviewDependencies(route, routes, { review: true, claims }).has(id)) throw new Error(`Undeclared route claim: ${route.path}: ${id}`);
+  return reviewDependencies(route, routes, { review, claims }).has(id) ? routeClaim(claims, route, routes, id, { review }) : undefined;
 }
 export function draftClaim(claims, id) {
   const claim = claims.find(c => c.claim_id === id);

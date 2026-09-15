@@ -2,8 +2,8 @@
   "status": [
     {
       "entry_id": "gate1",
-      "stage": "preparation",
-      "claim_id": "status-gate1-preparation"
+      "stage": "frozen",
+      "claim_id": "status-gate1-frozen-stress"
     }
   ],
   "gate1": [],

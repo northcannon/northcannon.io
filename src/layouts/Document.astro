@@ -1,10 +1,9 @@
 ---
 import '../styles/global.css';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/pages.css';
 import Graphene from '../components/Graphene.astro';
-interface Props { title: string; shell?: boolean }
-const { title, shell = true } = Astro.props;
+interface Props { title: string }
+const { title } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -16,8 +15,6 @@ const { title, shell = true } = Astro.props;
   </head>
   <body>
     <Graphene />
-    {shell && <SiteHeader />}
     <slot />
-    {shell && <SiteFooter />}
   </body>
 </html>

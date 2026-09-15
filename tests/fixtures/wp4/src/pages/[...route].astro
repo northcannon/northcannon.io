@@ -1,5 +1,5 @@
 ---
-import ReviewPage from '../../../../../src/components/WP4Review.astro';
+import ReviewPage from '../../../../../src/components/SitePage.astro';
 import { readRoutes } from '../../../../../src/governance/routes.mjs';
 export function getStaticPaths() {
   return readRoutes().filter(r => r.path !== '/404.html').map(route => ({ params: { route: route.path === '/' ? undefined : route.path.slice(1, -1) }, props: { route } }));

@@ -1,0 +1,127 @@
+---
+// About — Wireframes B, 05. The evidence packet and change intelligence console are
+// labelled mockups; their values are fictional and never presented as operational data.
+import Icon from '../Icon.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; title: string; [key: string]: unknown }
+const { copy, title } = Astro.props;
+const { t, paragraphs } = copy;
+const headline = t('about-headline');
+const cards = [
+  { title: 'brand-company', body: 'brand-company-motto', icon: 'mark' },
+  { title: 'about-why-title', body: 'about-why-body', icon: 'clock' },
+  { title: 'label-founder', body: 'about-founder-card', icon: 'users' },
+].filter(card => t(card.title) && t(card.body));
+const stat = (id: string) => { const [value, label] = paragraphs(id); return { value, label }; };
+const supporting = ['mock-dataset', 'mock-notebook', 'mock-model-config'];
+const references = ['mock-policy', 'mock-rules'];
+const blast = [['mock-stat-impacted', 'tone-indigo'], ['mock-stat-systems', 'tone-failed'], ['mock-stat-policy', 'tone-verified'], ['mock-stat-risk', 'tone-pending']];
+const notifications = [['mock-stat-notified', 'tone-verified'], ['mock-stat-pending', 'tone-pending'], ['mock-stat-failed', 'tone-violet']];
+const queue = [['mock-stat-queue', 'tone-pending'], ['mock-stat-review', ''], ['mock-stat-completed', 'tone-verified']];
+const actions = [['mock-action-1', 'mock-high', 'failed', true], ['mock-action-2', 'mock-medium', 'pending', false], ['mock-action-3', 'mock-medium', 'pending', true], ['mock-action-4', 'mock-low', 'verified', true]] as const;
+const timeline = [['mock-time-now', 'mock-change-1'], ['mock-time-1d', 'mock-change-2'], ['mock-time-1d', 'mock-change-3'], ['mock-time-2d', 'mock-change-4']];
+const mocks = t('mock-packet-title') && t('mock-console-title') && t('mock-disclaimer-bar') && t('mock-caption');
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <section class="page-hero page-hero--text" aria-labelledby="about-title">
+      {t('about-eyebrow') && <p class="eyebrow">{t('about-eyebrow')}</p>}
+      <h1 class="page-title" id="about-title">{headline ?? title}</h1>
+      <p class="lede">{t('brand-mission')}</p>
+    </section>
+
+    <ul class="about-cards">
+      {cards.map(card => (
+        <li class="panel about-card">
+          {card.icon === 'mark' ? <img class="about-card__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" /> : <Icon name={card.icon} size={40} />}
+          <h2 class="card-title about-card__title">{t(card.title)}</h2>
+          <p class="card-text">{t(card.body)}</p>
+        </li>
+      ))}
+    </ul>
+
+    {mocks && (
+      <div class="mock-grid">
+        <section class="panel mock-panel" aria-labelledby="mock-packet" aria-describedby="mock-disclaimer">
+          <div class="mock-panel__head">
+            <span class="mock-panel__info"><Icon name="info" size={28} /></span>
+            <div><h2 class="section-title" id="mock-packet">{t('mock-packet-title')}</h2><p class="section-intro">{t('mock-caption')}</p></div>
+          </div>
+          <p class="section-intro">{t('mock-disclaimer-bar')}</p>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-decision-summary')}</h3>
+            <span class="skeleton" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-supporting')}</h3>
+            <ul class="mock-files">{supporting.map(id => <li><Icon name="document" />{t(id)}<Icon name="external" class="mock-files__open" /></li>)}</ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-policy-refs')}</h3>
+            <ul class="mock-files">{references.map(id => <li><Icon name="document" />{t(id)}<Icon name="external" class="mock-files__open" /></li>)}</ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-provenance')}</h3>
+            <span class="provenance-chain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-confidence')}</h3>
+            <div class="confidence">
+              <span class="chip chip--verified"><Icon name="check-circle" />{t('mock-high-confidence')}</span>
+              <span class="meter" aria-hidden="true"><i></i></span>
+            </div>
+            <p class="confidence__abstain"><span class="ring" aria-hidden="true"></span>{t('mock-not-abstained')}</p>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-hash-title')}</h3>
+            <p class="mock-hash"><span>{t('mock-hash')}</span><Icon name="copy" /></p>
+          </div>
+          <div class="mock-actions">
+            <span class="action-link action-link--primary action-link--mock">{t('mock-view-packet')}</span>
+            <span class="action-link action-link--quiet action-link--mock">{t('mock-export')}<Icon name="download" /></span>
+          </div>
+        </section>
+
+        <section class="panel mock-panel" aria-labelledby="mock-console" aria-describedby="mock-disclaimer">
+          <div class="mock-panel__head">
+            <Icon name="document" size={28} />
+            <div><h2 class="section-title" id="mock-console">{t('mock-console-title')}</h2><p class="section-intro">{t('mock-caption')}</p></div>
+          </div>
+          <p class="section-intro">{t('mock-disclaimer-bar')}</p>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-blast')}</h3>
+            <ul class="mock-stats mock-stats--4">{blast.map(([id, tone]) => { const s = stat(id!); return <li><p class:list={['mock-stat__value', tone]}>{s.value}</p><p class="mock-stat__label">{s.label}</p></li>; })}</ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-dependencies')}</h3>
+            <span class="skeleton" aria-hidden="true"><i></i><i></i></span>
+          </div>
+          <div class="mock-box">
+            <div class="mock-box__row"><h3 class="mock-box__title">{t('mock-notifications')}</h3><span class="mock-link">{t('mock-view-all')}<Icon name="arrow-right" /></span></div>
+            <ul class="mock-stats mock-stats--3">{notifications.map(([id, tone]) => { const s = stat(id!); return <li><p class:list={['mock-stat__value', tone]}>{s.value}</p><p class="mock-stat__label">{s.label}</p></li>; })}</ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-actions')}</h3>
+            <ul class="mock-tasks">
+              {actions.map(([task, priority, tone, done]) => (
+                <li><span class:list={['mock-check', { 'mock-check--done': done }]} aria-hidden="true"></span><span class="mock-tasks__name">{t(task)}</span><span class:list={['chip', `chip--${tone}`]}>{t(priority)}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-queue')}</h3>
+            <ul class="mock-stats mock-stats--3">{queue.map(([id, tone]) => { const s = stat(id!); return <li><p class:list={['mock-stat__value', tone]}>{s.value}</p><p class="mock-stat__label">{s.label}</p></li>; })}</ul>
+          </div>
+          <div class="mock-box">
+            <h3 class="mock-box__title">{t('mock-timeline')}</h3>
+            <ol class="mock-timeline">
+              {timeline.map(([time, change], index) => <li><span class:list={['mock-timeline__dot', { 'mock-timeline__dot--open': index === 0 }]} aria-hidden="true"></span><span class="mock-timeline__time">{t(time!)}</span><span class="mock-timeline__change">{t(change!)}</span></li>)}
+            </ol>
+          </div>
+        </section>
+      </div>
+    )}
+
+    {mocks && <p id="mock-disclaimer" class="panel disclaimer-bar"><Icon name="info" />{t('mock-disclaimer-bar')}</p>}
+  </div>
+</main>

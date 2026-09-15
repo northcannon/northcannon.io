@@ -621,6 +621,2006 @@
     "approval_record": "founder_attestation"
   },
   {
+    "claim_id": "label-company",
+    "statement": "Company",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-gate-1",
+    "statement": "Gate 1",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-founder",
+    "statement": "Founder",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-contact",
+    "statement": "Contact",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-last-updated",
+    "statement": "Last updated",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-experiment-id",
+    "statement": "Experiment ID",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "state-pending",
+    "statement": "Pending",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cta-get-in-touch",
+    "statement": "Get in touch",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cta-explore-evidence",
+    "statement": "Explore Evidence",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-evaluation",
+    "statement": "Evaluation",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-change-intelligence",
+    "statement": "Change Intelligence",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-treatment",
+    "statement": "Treatment",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-baseline-a",
+    "statement": "Baseline A",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-baseline-b",
+    "statement": "Baseline B",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-r-plus",
+    "statement": "R+",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arms-title",
+    "statement": "Comparison Arms",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-layer-data",
+    "statement": "Data",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-layer-impact",
+    "statement": "Impact",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cta-view-gate-1",
+    "statement": "View Gate 1",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-capabilities-title",
+    "statement": "Core Capabilities",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-capabilities-intro",
+    "statement": "Three core capabilities of NorthCannon’s trust architecture.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cap-verification",
+    "statement": "Verification",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cap-verification-body",
+    "statement": "Verify whether consequential machine decisions are supported by the required evidence, policy, authorization, and current state.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cap-provenance-body",
+    "statement": "Preserve what was known, where it came from, when it was valid, and what supported the decision.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cap-change-body",
+    "statement": "Detect changes in facts, rules, evidence, dependencies, and conditions; determine what they affect; and trigger targeted re-evaluation.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-title",
+    "statement": "What NorthCannon is / is not",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is",
+    "statement": "What it is",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-not",
+    "statement": "What it is not",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-1",
+    "statement": "Evidence-driven and methodical",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-2",
+    "statement": "Focused on evidence, provenance, and reproducibility",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-3",
+    "statement": "Open about methods, limitations, and results",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-is-4",
+    "statement": "Designed for consequential machine decisions",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-not-1",
+    "statement": "Not a foundation model",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-not-2",
+    "statement": "Not another black-box decision system",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-not-3",
+    "statement": "Not the decision-maker",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-not-4",
+    "statement": "Not a substitute for accountable human authority",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-interop-title",
+    "statement": "Built to interoperate",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-interop-intro",
+    "statement": "Designed to interoperate with models, agents, evidence systems, and enterprise systems of record.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "interop-sources",
+    "statement": "Data Sources",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "interop-sources-body",
+    "statement": "APIs, docs, web, internal",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-layer",
+    "statement": "NorthCannon Verification + Change Intelligence Layer",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "interop-adapters",
+    "statement": "Adapters",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "interop-outputs",
+    "statement": "Outputs",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "interop-outputs-body",
+    "statement": "Verified decision state, evidence packets, and change-impact signals",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "home-contact-body",
+    "statement": "Building adjacent infrastructure or a regulated AI workflow? Let’s compare notes.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "cta-contact-us",
+    "statement": "Contact Us",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-share",
+    "statement": "Share",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-lifecycle-title",
+    "statement": "Experiment Lifecycle",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-current-status",
+    "statement": "Current status",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-defined",
+    "statement": "Defined",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-frozen",
+    "statement": "Frozen",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-independent-review",
+    "statement": "Independent Review",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-stress-test",
+    "statement": "Stress Test",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-authorized",
+    "statement": "Authorized",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-executing",
+    "statement": "Executing",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "stage-results-published",
+    "statement": "Results Published",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-what-title",
+    "statement": "What is Gate 1?",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-what-body",
+    "statement": "Gate 1 is NorthCannon’s first controlled falsification benchmark. It tests the persistent verified-state thesis on a pre-authored synthetic corpus using comparison arms, evaluation rules, and metrics defined before execution. The design undergoes independent technical review and adversarial stress testing before execution, and results will be published after the run.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arms-intro",
+    "statement": "Models and configurations to be evaluated.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "arm-treatment-sub",
+    "statement": "Persistent verified state",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-baseline-a-sub",
+    "statement": "Conventional re-inference",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-baseline-b-sub",
+    "statement": "Caching / memory baseline",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "arm-r-plus-sub",
+    "statement": "Routed re-inference comparator",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-model",
+    "statement": "Model",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-config",
+    "statement": "Config",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "label-notes",
+    "statement": "Notes",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "falsification-title",
+    "statement": "Falsification Criteria",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "falsification-intro",
+    "statement": "Conditions under which the experiment will be considered a failure or inconclusive.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "falsification-plan",
+    "statement": "Gate 1’s hypotheses, comparison arms, thresholds, and statistical plan are pre-specified before execution. The applicable methodology will be published with the experiment record so the evaluation criteria cannot be changed after observing the results.",
+    "category": "methodology",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-checklist-title",
+    "statement": "Experiment Readiness Checklist",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-checklist-intro",
+    "statement": "Items to complete before execution.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-task",
+    "statement": "Task definition and scope finalized",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-datasets",
+    "statement": "Datasets selected and documented",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-methods",
+    "statement": "Evaluation methods defined",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-falsification",
+    "statement": "Falsification criteria agreed",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-review",
+    "statement": "Independent review scheduled",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-compute",
+    "statement": "Compute and tooling ready",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-reproducibility",
+    "statement": "Reproducibility package prepared",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "checklist-authorization",
+    "statement": "Final authorization",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-results-cta",
+    "statement": "View Results (coming soon)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "gate-results-cta-body",
+    "statement": "Results will be published after execution.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "gate-evidence-cta-body",
+    "statement": "Datasets, methods and configurations.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "results-banner-title",
+    "statement": "Pre-execution",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "results-banner-body",
+    "statement": "Results will be published after the experiment executes.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "readiness-title",
+    "statement": "Experiment Readiness",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-summary",
+    "statement": "Preparation is in progress. Results are not yet available.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "readiness-definition",
+    "statement": "Definition",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-datasets",
+    "statement": "Datasets",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-methods",
+    "statement": "Methods",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "readiness-execution",
+    "statement": "Execution",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "metrics-title",
+    "statement": "Metrics that will be published",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "metrics-intro",
+    "statement": "Key metrics for comparing experimental arms. Values will be published after execution.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "metadata-title",
+    "statement": "Operational metadata",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "metadata-intro",
+    "statement": "Dates, versions, environment, sample sizes and other context.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "arm-treatment-tab",
+    "statement": "Treatment (T)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "results-placeholder-title",
+    "statement": "Results (coming soon)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "results-placeholder-body",
+    "statement": "Chart will show metric comparison across arms once the experiment has executed.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "results-evidence-body",
+    "statement": "View the public methodology, evidence records, and reproducibility metadata.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-headline",
+    "statement": "From claims to verifiable evidence.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-status-title",
+    "statement": "Execution evidence will appear after Gate 1 runs.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-frozen-title",
+    "statement": "What was frozen",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-frozen-body",
+    "statement": "The configuration identities, task-suite identity, model/runtime identities, and evaluation methodology bound for the experiment.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-executed-title",
+    "statement": "What was executed",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-executed-body",
+    "statement": "Execution records, arm identity, inputs and outputs, and run provenance.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-supports-title",
+    "statement": "What supports the claim",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "evidence-supports-body",
+    "statement": "Public evidence artifacts, content hashes, provenance, and independent-review status.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-title",
+    "statement": "Evidence Ledger",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-browse",
+    "statement": "Browse all evidence",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-date",
+    "statement": "Date (UTC)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-claim",
+    "statement": "Claim / Topic",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-type",
+    "statement": "Evidence Type",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-hash",
+    "statement": "Artifact Hash",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "ledger-empty",
+    "statement": "No evidence records yet. Evidence will appear after execution.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "hash-title",
+    "statement": "Artifact Hash (Human Readable)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "hash-algorithm",
+    "statement": "SHA-256",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "hash-empty",
+    "statement": "No public artifact hash yet.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "hash-caption",
+    "statement": "Used to verify that a published artifact matches the referenced content.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "viewer-title",
+    "statement": "Artifact Viewer",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "viewer-empty",
+    "statement": "No public artifact available yet.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "viewer-action",
+    "statement": "View Artifact",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "changelog-link",
+    "statement": "See change log",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-eyebrow",
+    "statement": "About NorthCannon",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-headline",
+    "statement": "Verification, evidence, and change intelligence for consequential machine decisions.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-why-title",
+    "statement": "Why now",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-why-body",
+    "statement": "AI is moving from recommendation toward consequential action. The harder question is not only what a model produced, but whether a decision was supportable — and whether it remains supportable when facts, rules, evidence, or conditions change.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "about-founder-card",
+    "statement": "Max Brooks is the founder of NorthCannon.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "mock-packet-title",
+    "statement": "Mock Evidence Packet",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-caption",
+    "statement": "Illustrative example for public understanding.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-decision-summary",
+    "statement": "Decision Summary",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-supporting",
+    "statement": "Supporting Evidence (3)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-dataset",
+    "statement": "Source artifact",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-notebook",
+    "statement": "Rule / policy reference",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-model-config",
+    "statement": "Execution record",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-policy-refs",
+    "statement": "Policy / Rule References (2)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-policy",
+    "statement": "Example policy",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-rules",
+    "statement": "Example decision rules",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-provenance",
+    "statement": "Provenance Chain",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-confidence",
+    "statement": "Support / Abstention State",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-high-confidence",
+    "statement": "Supported",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-not-abstained",
+    "statement": "Not abstained",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-hash-title",
+    "statement": "Artifact Hash",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-hash",
+    "statement": "SHA-256: 0000000000000000…",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-view-packet",
+    "statement": "View Full Packet",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-export",
+    "statement": "Export (ZIP)",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-console-title",
+    "statement": "Mock Change Intelligence Console",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-blast",
+    "statement": "Blast Radius Summary",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-impacted",
+    "statement": "124\n\nImpacted decisions",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-systems",
+    "statement": "5\n\nSystems affected",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-policy",
+    "statement": "3\n\nPolicy areas",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-risk",
+    "statement": "Medium\n\nOverall risk",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-notifications",
+    "statement": "Stakeholder Notifications",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-view-all",
+    "statement": "View all",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-notified",
+    "statement": "12\n\nNotified",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-pending",
+    "statement": "3\n\nPending",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-failed",
+    "statement": "0\n\nFailed",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-actions",
+    "statement": "Action Items",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-action-1",
+    "statement": "Review impacted decisions",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-action-2",
+    "statement": "Validate new evidence",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-action-3",
+    "statement": "Notify stakeholders",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-action-4",
+    "statement": "Schedule re-evaluation",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-high",
+    "statement": "High",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-medium",
+    "statement": "Medium",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-low",
+    "statement": "Low",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-queue",
+    "statement": "Re-evaluation Queue",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-queue",
+    "statement": "8\n\nIn queue",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-review",
+    "statement": "2\n\nIn review",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-stat-completed",
+    "statement": "5\n\nCompleted",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-dependencies",
+    "statement": "Affected dependencies",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-timeline",
+    "statement": "Recent Changes / Timeline",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-time-now",
+    "statement": "Now",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-time-1d",
+    "statement": "1 day ago",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-time-2d",
+    "statement": "2 days ago",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-change-1",
+    "statement": "New dataset version detected",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-change-2",
+    "statement": "124 decisions flagged",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-change-3",
+    "statement": "Notifications sent",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-change-4",
+    "statement": "Re-evaluation started",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "mock-disclaimer-bar",
+    "statement": "These mockups are for public understanding only; they are not live product screenshots or experiment results.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-headline",
+    "statement": "Building trust infrastructure for machine intelligence.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-why-title",
+    "statement": "Why NorthCannon exists",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-background-title",
+    "statement": "Selected background",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-background-card",
+    "statement": "Data and analytics engineering",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-credibility",
+    "statement": "Credibility",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-cred-methods",
+    "statement": "Transparent methods",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-cred-public",
+    "statement": "Builds in public",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-cred-commitment",
+    "statement": "Long-term commitment",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-building-title",
+    "statement": "Currently building",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-focus-1",
+    "statement": "Expanding public evidence and reproducibility surfaces",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-focus-2",
+    "statement": "Improving change intelligence and targeted re-evaluation workflows",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-focus-3",
+    "statement": "Sharing methods, findings, and learnings in public",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-focus-4",
+    "statement": "Engaging with builders working on trustworthy and regulated AI",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-contact-body",
+    "statement": "I’d love to hear from you — ideas, feedback, or collaboration opportunities.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-learn-title",
+    "statement": "Learn more about NorthCannon",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-learn-body",
+    "statement": "Our mission, approach and principles.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-gate-title",
+    "statement": "See Gate 1",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "founder-gate-body",
+    "statement": "Current focus and status.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "contact-intro",
+    "statement": "For partnerships, design-partner conversations, research, or general inquiries: <hello@northcannon.io>.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "falsification-1",
+    "statement": "Rejected; replaced by the approved pre-specified methodology statement.",
+    "category": "methodology",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "rejected",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "falsification-2",
+    "statement": "Rejected; replaced by the approved pre-specified methodology statement.",
+    "category": "methodology",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "rejected",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "falsification-3",
+    "statement": "Rejected; replaced by the approved pre-specified methodology statement.",
+    "category": "methodology",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "rejected",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "falsification-4",
+    "statement": "Rejected; replaced by the approved pre-specified methodology statement.",
+    "category": "methodology",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "rejected",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
     "claim_id": "mock-disclaimer",
     "statement": "Illustrative concept — fictional data. Not a live product or experiment result.",
     "category": "other",
@@ -829,5 +2829,16 @@
     "lifecycle_state": "review",
     "review_date": null,
     "approval_record": "none"
+  },
+  {
+    "claim_id": "status-gate1-frozen-stress",
+    "statement": "Gate 1 is frozen, pending independent stress testing.",
+    "category": "status",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-15",
+    "approval_record": "founder_attestation",
+    "status_stage": "frozen"
   }
 ]

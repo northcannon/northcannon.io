@@ -1,13 +1,42 @@
 {
-  "base": "8bf774a8ebcca609162652467e37de9c5c43a8a0",
-  "bases": {
-    "dist/index.html": "Image-reference layout update: hero, status and destination cards; approved copy preserved",
-    "dist/404.html": "Image-reference shared header with preparation status"
+  "base": "Wireframe finalization with founder status approval 005; implementation regression baseline, not independent acceptance",
+  "excluded": {
+    ".review-dist-wp4/trust/provenance/index.html": "Source-bound digests change with this baseline; independently validated by provenance tests."
   },
-  "previous_home_sha256": "7394362a243ef008cf6ff86233082b207cfdff52c9435b601a676aeae7d121c1",
   "html": {
-    "dist/index.html": "f50ae02db39d372e4137e3133ef9b8df7dd624d3f22d15b4f6de5e0a63d79afd",
-    "dist/404.html": "447c91db0d5c59f73d5860da1c792e81b1cae895837e6594cc074b16926a5634",
-    ".review-dist/index.html": "740a13c799a1eafed789562c9287b574044db829b0272afb84fa0d633df47faa"
+    "dist/index.html": "84c145cbae552f9aa916d1e4a1a4d9e997a3b70bcd27a8115ac9f5e5666bc2fe",
+    "dist/gate-1/index.html": "881ab8c3219ab474459002c343efbe1dc33aca700867fef6eab70c63e6659024",
+    "dist/results/index.html": "54fd4ab8b24d269b1ef01a8c0df3ef6b810e0b3e8749bab97671027104927028",
+    "dist/evidence/index.html": "6f17405f1e026669343e6f5ce13468176db10ddc85f6a762c454c5448ca63968",
+    "dist/about/index.html": "91969a0051b899689a99e11feb0f9a47a013183b7605c3a41a8021258c12f0e9",
+    "dist/founder/index.html": "b92d807be963ccb43a6190518093a91a09dea05fb8313beef4666d57bb5e5eb8",
+    "dist/contact/index.html": "8ea6e70d5ca76450873dc96939ca052e49667b4416eb86cec8e059e4b638d958",
+    "dist/vision/index.html": "63ba54306431f67ba784b39796ac6877c8f9e32dc1b3c8c955400c6cb2a96003",
+    "dist/demo/index.html": "4b58f38825f7cac560c8dea59cd9b93b442dec504f3a784dadf8818485046340",
+    "dist/trust/index.html": "186ed42680680ffcd71141a1b109305274e1f3f839004725a2628b5e8789be49",
+    "dist/trust/status/index.html": "7a5451f99d4b5eb8464237bea1cc431401093e39d9b1a3ab7bfd079ef7729ef5",
+    "dist/trust/claims/index.html": "b5f4544720053900ae5668b871e407cd6ad1d75e2095d25d65dfe2b57c05d599",
+    "dist/trust/disclosure/index.html": "dc94a09f8bf7cc19f211eb5e56129b21ff0801a101f959b8c2ab0f9bda979e7b",
+    "dist/trust/site-security/index.html": "0715486ef6e10b0521a3ab4a79c9588d12bd2fbc4f238484ae72e5d6ebef4fd3",
+    "dist/trust/changelog/index.html": "1123231d46b6e4ad6e5d7dca3b28b8ab2745635d5db11e305b62995efa92dbf2",
+    "dist/trust/provenance/index.html": "f2c3d7cd43db43856117f9ad8de11fe39889211117152f38d4ead061bc6e3b60",
+    "dist/404.html": "5a7450e33fe83f6cb3fb97cbccf80111e5179e88b5ed9ea5bedb799d7113e896",
+    ".review-dist-wp4/index.html": "bab94972398ac7c12a1d61d6ae91a9df7de9c7b4d53b9c2d437f19390507fc48",
+    ".review-dist-wp4/gate-1/index.html": "09b977b316401c56ac0b07a791afac4e127373b0e3c591544995fe1499b53178",
+    ".review-dist-wp4/results/index.html": "f115683bf051ebb93f65ad09c2f1d2f6a09f2b810ccb630cf6f41dcc31a17fc7",
+    ".review-dist-wp4/evidence/index.html": "3dcbd32bba3b2b8a1b402bfd5eb720a8f3a264e440ca4ebbb50df026a1e12b24",
+    ".review-dist-wp4/about/index.html": "1ba8c88be24516afa38e4070a0f542f3ad6c0a15499b2c7ccfb026b0e80c0a34",
+    ".review-dist-wp4/founder/index.html": "87700d010c491c7344b244f7cd21e8fac5843eab445907d632e6805c7e2f3e1d",
+    ".review-dist-wp4/contact/index.html": "eb2a4880fdbbe983d0ff0dee98cf0572c66e463591e8c486e80f85388a85d9b1",
+    ".review-dist-wp4/vision/index.html": "0e4f279411bd1943b8d43b3aa86056070fd59ca51a5c974879c2c40c53ee840a",
+    ".review-dist-wp4/demo/index.html": "4b58f38825f7cac560c8dea59cd9b93b442dec504f3a784dadf8818485046340",
+    ".review-dist-wp4/trust/index.html": "774258cb28ee1f8b2838bb3f8a7f3e97993d93e3bb10d822e1a1eb842892a0fd",
+    ".review-dist-wp4/trust/status/index.html": "92635683c75945cd12415d116696f453ff135eb4e8c1c2bfd4480232b0afb27b",
+    ".review-dist-wp4/trust/claims/index.html": "e5114830d789d8569c0921f97fb66165f176526a54a9d6260c6f56d27d8ee148",
+    ".review-dist-wp4/trust/disclosure/index.html": "6e6a71fd2c2556e2b51c9fc32c3aa5587daaef8cb3e16a75cf4c49ad103766fb",
+    ".review-dist-wp4/trust/site-security/index.html": "dbbb7ad4219720ded69f00209a758a60f459e9a0be50157c20e4881ab24252f3",
+    ".review-dist-wp4/trust/changelog/index.html": "a502a9a6526156bcca597fe7667cc203434753183d04c11d779e01c0a69618ff",
+    ".review-dist-wp4/404.html": "f4adc9bf6a6ac18c90e422ac58ee5ea800fcd259abc78b46242e54e6576bf7e5",
+    ".review-dist/index.html": "2d47a0aa6f534bef239f7a2d11bd169d0f8c4eaff71baa373e79de266340d699"
   }
 }

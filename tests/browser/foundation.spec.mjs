@@ -45,7 +45,7 @@ test('works with browser JavaScript disabled and handles missing routes', async 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/');
-  await expect(page.getByRole('heading', { name: 'NorthCannon', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Designed to be falsified. Built for trust.', exact: true })).toBeVisible();
   const response = await page.goto('http://127.0.0.1:4321/missing/');
   expect(response.status()).toBe(404);
   await page.getByRole('link', { name: 'Return home' }).click();

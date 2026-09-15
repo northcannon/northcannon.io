@@ -1,0 +1,198 @@
+# Public site specification
+
+This document transcribes the founder-supplied design inputs for the public site
+into a reviewable, text-searchable specification. The images remain the normative
+source; where this transcription and an image disagree, the image wins.
+
+## Authoritative inputs
+
+The three images are local reference copies kept out of Git by `.gitignore`
+(founder decision). Their identity is pinned here so any copy can be verified.
+
+| Input | File name | SHA-256 |
+| --- | --- | --- |
+| Wireframes A (Home, Gate 1, Results) | `NorthCannon_Wireframes_A.PNG` | `d9d4fa3c34e662a6eb0038f2ee287475a382d714cddb3a769085ac0290206aa4` |
+| Implementation brief | `NorthCannon_Public_Site_Implementation_Brief.PNG` | `4771249189c7181b571b5bd46a40f5154768dc1873edd304a553a5909ceb9c40` |
+| Wireframes B (Evidence, About, Founder) | `NorthCannon_Wireframes_B.PNG` | `10b1f57c1aa345fd9456db1fcf4eb34e2481f21e52da9ffe45317bc17cb068e1` |
+
+Authority when inputs conflict: founder instruction, the corrective directive,
+Wireframes A, the implementation brief, Wireframes B, founder-approved claims,
+repository governance, existing implementation, existing tests.
+
+## Information architecture
+
+Primary navigation, in order: Company (`/`), Gate 1 (`/gate-1/`), Results
+(`/results/`), Evidence (`/evidence/`), About (`/about/`), Founder (`/founder/`),
+Contact (`/contact/`). Trust Center pages, Demo and the vision page are supporting
+routes outside the primary navigation.
+
+## Layout system (brief 04)
+
+| Token | Value |
+| --- | --- |
+| Desktop breakpoint | ≥ 1024 px |
+| Max width (desktop) | 1440 px |
+| Grid | 12 columns |
+| Outer margins | 72 px |
+| Gutters | 24 px |
+| Section spacing | 96 px |
+| Card radius | 16 px |
+| Sticky top navigation height | 80 px |
+| Max text width | 760 px (hero copy ≈ 600 px, explanatory panels ≈ 720 px) |
+| Mobile reference width | 390 px |
+| Mobile side margins | 24 px |
+| Mobile layout | one column, stacked cards |
+
+## Design tokens (brief 05)
+
+| Token | Value |
+| --- | --- |
+| Background | `#0B0F17` |
+| Panel | `#131A26` |
+| Elevated panel | `#182233` |
+| Primary text | `#F5F7FB` |
+| Secondary text | `#A7B1C2` |
+| Border | `#2A3242` |
+| Primary accent (violet) | `#8B5CF6` |
+| Secondary accent (indigo) | `#6366F1` |
+| Verified (green) | `#22C55E` |
+| Pending (amber) | `#F59E0B` |
+| Failed (red) | `#EF4444` |
+| Hex pattern overlay | `#1B2333`, opacity 8–10% |
+
+The corrective directive summarised two values as `#885CF6` and `#080F17`; the
+brief reads `#8B5CF6` and `#0B0F17`, and the brief is authoritative.
+
+## Semantic colour usage (brief 09)
+
+- Green: verified — validated data, completed steps, confirmed state.
+- Amber: pending or abstention — in progress, under review, explicitly abstained.
+- Red: failed or not supported — failed validation, criteria not met, not supported.
+- Violet: brand emphasis — key actions, active states, brand elements.
+
+Status meaning is never conveyed by colour alone: every state also has an icon
+shape and text.
+
+## Navigation (brief 03)
+
+- Desktop: mark and wordmark, then the seven primary links separated by thin rules,
+  active link in violet with an underline.
+- Mobile: mark and wordmark, a persistent Gate 1 status chip, and a hamburger menu.
+
+## Component rules (brief 06)
+
+- Experiment status banner: live experiment status, shown prominently.
+- Lifecycle stepper: seven numbered stages — Defined, Frozen, Independent Review,
+  Stress Test, Authorized, Executing, Results Published — current stage in violet.
+- Comparison-arm tabs: segmented tabs, active tab filled violet.
+- Evidence ledger card, hash block, contact CTA, last-updated timestamp.
+- JSON status endpoint: shown in the brief; not implemented because the site serves
+  static documents and no machine-readable status contract has been approved.
+
+## Content and UX rules (brief 07)
+
+Do not make demo claims. Use hello@northcannon.io for all inquiries. Keep the
+build-in-public framing. Explain Gate 1 simply. Explain the evidence packet and
+change intelligence. Support public scrutiny with links to sources and methods.
+Do not overload pages with empty data tables.
+
+## Implementation priorities (brief 08)
+
+1. Gate 1 page (core experience)
+2. Status surfaces (global and on relevant pages)
+3. Reduce "Not supplied" clutter
+4. Evidence page upgrades (ledger, provenance, hashes)
+5. About page enhancement (mission, approach, credibility)
+6. Founder motivation block (personal story and why now)
+7. Visible desktop navigation (as specified)
+8. Public methodology and version history
+
+## Delivery notes (brief 10)
+
+Desktop first with responsive mobile; maintain the visual identity; WCAG AA
+contrast; semantic HTML; restrained, purposeful motion only; reuse components and
+tokens; test across modern browsers; keep performance in mind.
+
+## Page composition
+
+### Home / Company (Wireframes A, 01)
+
+1. Hero (≈ 560 px): evidence eyebrow, one-to-two-line headline, supporting text
+   (≈ 600 px), primary "View Gate 1" and secondary "Explore Evidence" actions;
+   right column shows a four-layer stack visual labelled Data, Evaluation, Evidence,
+   Impact.
+2. Core Capabilities: three equal-width cards (≈ 240 px) with icons — Verification,
+   Provenance, Change Intelligence.
+3. What NorthCannon is / is not: two columns, green affirmative list and red
+   negative list, four concise bullets each.
+4. Built to interoperate (≈ 220 px): Data Sources → NorthCannon Evaluation Layer
+   (Adapters, Evaluation, Provenance, Evidence) → Outputs.
+5. Get in touch: restrained bordered CTA with mail icon and "Contact Us" action.
+
+### Gate 1 (Wireframes A, 02)
+
+1. Status banner with state, experiment identity, last-updated time and share action.
+2. Experiment Lifecycle: current status line and the seven-stage stepper.
+3. What is Gate 1?: concise explanation (≈ 720 px).
+4. Comparison Arms: four cards — Treatment, Baseline A, Baseline B, R+ — each with
+   subtitle and Model / Config / Notes rows.
+5. Falsification Criteria: warning panel with four numbered criteria.
+6. Experiment Readiness Checklist: two columns of four items each.
+7. Two link cards: View Results and Explore Evidence.
+
+### Results (Wireframes A, 03)
+
+1. Pre-execution banner (amber) with experiment identity and last-updated time.
+2. Experiment Readiness: summary line and a five-step row (Definition, Datasets,
+   Methods, Independent Review, Execution) with states.
+3. Metrics that will be published: six compact metric cards in a 3 × 2 grid and a
+   full-width operational-metadata card.
+4. Comparison Arms: four segmented tabs above a results chart placeholder
+   ("Results (coming soon)").
+5. Explore Evidence link card.
+
+### Evidence (Wireframes B, 04)
+
+1. Hero: eyebrow, "From claims to verifiable evidence.", supporting text, document
+   and shield illustration.
+2. Evidence system status banner with last-updated time.
+3. Three explanatory cards: What was frozen, What was executed, What supports the claim.
+4. Evidence Ledger table: Date (UTC), Claim / Topic, Evidence Type, Artifact Hash,
+   Status, link column; "Browse all evidence" link.
+5. Artifact Hash (human readable) panel and Artifact Viewer panel side by side.
+6. Last-updated strip with "See change log" link.
+
+### About (Wireframes B, 05)
+
+1. Intro: eyebrow, headline, supporting text.
+2. Three cards: NorthCannon, Why now, Founder.
+3. Mock Evidence Packet (left) and Mock Change Intelligence Console (right), each
+   labelled as an illustrative example.
+4. Disclaimer bar stating the mockups are not live product screenshots.
+
+### Founder (Wireframes B, 06)
+
+1. Founder hero: portrait placeholder, eyebrow, headline, introduction.
+2. Why NorthCannon exists.
+3. Selected background card and Credibility list side by side.
+4. Currently building: introduction and focus bullets.
+5. Get in touch CTA with filled "Contact" action.
+6. Two lower navigation cards: Learn more about NorthCannon, See Gate 1.
+
+## Copy governance
+
+Wireframe text is checked string by string against `public_claims/claims.json` and
+[Founder approvals](../FOUNDER_APPROVALS.md):
+
+1. Where an approved claim carries the same content, it is used.
+2. Where wireframe prose is illustrative and an approved claim fills the same role
+   (headline, mission, principle, biography, vision), the approved claim is used.
+3. Structural labels, headings, actions and descriptions without an approved claim
+   are registered verbatim as pending claims — an approval block, not a deletion.
+4. Illustrative state or data (dates, experiment IDs, hashes, "Frozen", "Complete",
+   "Operational", counts) is never rendered as fact. A truthful empty state is
+   registered as pending copy instead.
+
+Production renders only founder-attested claims. The review build renders the full
+composition with pending copy under the draft banner. Per-component status is in
+[the fidelity matrix](WIREFRAME_FIDELITY_MATRIX.md).
