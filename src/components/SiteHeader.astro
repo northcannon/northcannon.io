@@ -4,13 +4,13 @@ import { eligibleClaim } from '../governance/schema.mjs';
 import Icon from './Icon.astro';
 interface Props {
   company: string;
-  items: ReadonlyArray<{ label: string; href: string }>;
+  items: ReadonlyArray<{ label: string; href: string; children?: ReadonlyArray<{ label: string; href: string }> }>;
   currentPath: string;
   status: { label: string; gate?: string | undefined; description: string; href: string };
 }
 const { company, items, currentPath, status } = Astro.props;
 const { claims } = loadGovernance();
-for (const text of [company, ...items.map(item => item.label), status.label, status.gate, status.description].filter(Boolean)) {
+for (const text of [company, ...items.flatMap(item => [item.label, ...(item.children ?? []).map(child => child.label)]), status.label, status.gate, status.description].filter(Boolean)) {
   const registered = claims.find(c => c.statement === text);
   if (!registered) throw new Error('Unregistered header copy');
   eligibleClaim(registered, registered.claim_id);
@@ -32,12 +32,30 @@ const current = (href: string) => (href === currentPath ? 'page' : undefined);
     {items.length > 0 && (
       <nav aria-label="Primary" class="primary-nav">
         <ul class="navigation desktop-navigation">
-          {items.map(item => <li><a href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}
+          {items.map(item => (
+            <li class:list={{ 'has-submenu': item.children?.length }}>
+              <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+              {item.children?.length ? (
+                <ul class="submenu">
+                  {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
+                </ul>
+              ) : null}
+            </li>
+          ))}
         </ul>
         <details class="mobile-navigation">
           <summary><Icon name="menu" /><span class="visually-hidden">Menu</span></summary>
           <ul class="navigation">
-            {items.map(item => <li><a href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}
+            {items.map(item => (
+              <li>
+                <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+                {item.children?.length ? (
+                  <ul class="submenu-mobile">
+                    {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
           </ul>
         </details>
       </nav>

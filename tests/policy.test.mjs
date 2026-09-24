@@ -81,3 +81,30 @@ test('review output uses the same rejection policy with a separate route invento
     assert.notEqual(run(true).status, 0, 'review mode rejects extra routes');
   } finally { await rm(dir, { recursive: true }); }
 });
+
+test('output validator permits only self-hosted woff2 @font-face', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'northcannon-font-policy-'));
+  const html = '<!doctype html><html lang="en"><head><title>Fixture</title><link rel="stylesheet" href="/site.css"></head><body><main><h1>Fixture</h1></main></body></html>';
+  const run = () => spawnSync(process.execPath, ['scripts/validate.mjs', dir, '--review'], { encoding: 'utf8' });
+  try {
+    await writeFile(path.join(dir, '_headers'), await readFile('public/_headers', 'utf8'));
+    await writeFile(path.join(dir, 'index.html'), html);
+    await writeFile(path.join(dir, 'site.css'), '@font-face{font-family:Inter;src:url(/fonts/inter-latin-400-normal.woff2) format("woff2")}');
+    assert.equal(run().status, 0, 'local font must be accepted');
+    for (const css of [
+      '@font-face{font-family:X;src:url(https://example.com/x.woff2)}',
+      '@font-face{font-family:X;src:url(//example.com/x.woff2)}',
+      '@font-face{font-family:X;src:url(/other/x.woff2)}',
+      '@font-face{font-family:X;src:url(/fonts/x.woff2),url(https://example.com/x.woff2)}',
+      '@font-face{font-family:X;src:url("https://example.com/x.woff2")}',
+      '@font-face{font-family:X;src:url(/fonts/../x.woff2)}',
+      '@font-face{font-family:X;src:url(/fonts/x.woff)}',
+      'p{background:url(/fonts/inter-latin-400-normal.woff2)}',
+    ]) {
+      await writeFile(path.join(dir, 'site.css'), css);
+      assert.notEqual(run().status, 0, `must reject: ${css}`);
+    }
+  } finally {
+    await rm(dir, { recursive: true });
+  }
+});

@@ -22,6 +22,11 @@ async function collect(dir) {
     if (item.isDirectory()) await collect(full);
     else {
       const name = path.relative(root, full).split(path.sep).join('/');
+      if (/^fonts\/[\w.-]+\.woff2$/.test(name)) {
+        // Self-hosted fonts are the only binary output; check the WOFF2 signature and keep them out of text scans.
+        if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
+        continue;
+      }
       if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers') {
         errors.push(`${name}: unexpected output type`);
         continue;
@@ -55,7 +60,19 @@ for (const [name, text] of files) {
     // At-rule conditions can use newer CSS syntax than the parser understands.
     // Parse every declaration value, including custom properties, for resources.
     const ast = parse(text, { parseAtrulePrelude: false, parseCustomProperty: true, onParseError: (error) => { throw error; } });
+    // Self-hosted fonts are the only permitted CSS resource: @font-face whose every url() is a local /fonts/*.woff2 path.
+    const localFont = /^\/fonts\/[\w.-]+\.woff2$/;
+    const allowed = new Set();
     walk(ast, node => {
+      if (node.type !== 'Atrule' || node.name.toLowerCase() !== 'font-face' || !node.block) return;
+      allowed.add(node);
+      const urls = [];
+      walk(node.block, inner => { if (inner.type === 'Url' || (inner.type === 'Function' && inner.name.toLowerCase() === 'url') || (inner.type === 'Function' && ['image-set', '-webkit-image-set'].includes(inner.name.toLowerCase()))) urls.push(inner); });
+      const ok = urls.every(inner => inner.type === 'Url' && localFont.test(inner.value));
+      if (ok) { for (const inner of urls) allowed.add(inner); } else allowed.delete(node);
+    });
+    walk(ast, node => {
+      if (allowed.has(node)) return;
       const decoded = (typeof node.name === 'string' ? node.name : '').replace(/\\([0-9a-f]{1,6})\s?|\\(.)/gi, (_, hex, char) => hex ? String.fromCodePoint(parseInt(hex, 16)) : char).toLowerCase();
       if (node.type === 'Url' || (node.type === 'Atrule' && ['import', 'font-face'].includes(decoded)) || (node.type === 'Function' && ['url', 'image-set', '-webkit-image-set'].includes(decoded))) {
         errors.push(`${name}: CSS resource loading is prohibited in WP1`);
