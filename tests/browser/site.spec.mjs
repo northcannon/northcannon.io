@@ -183,22 +183,21 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('main .eyebrow').first()).toHaveText('About NorthCannon');
     await expect(page.locator('h1')).toHaveText('Verification, evidence, and change intelligence for consequential machine decisions.');
     expect(await page.locator('main .site-container > *').first().evaluate(el => el.className)).toContain('about-subnav');
-    // The NorthCannon banner is a charcoal box only: no module frame, no header band, full content width.
+    // The NorthCannon banner sits above the page text, directly on the page background: no box, border, frame or band.
     const banner = page.locator('.about-banner');
-    await expect(banner.locator('h2')).toHaveText('NorthCannon');
+    await expect(banner.locator('.about-banner__name')).toHaveText('NorthCannon');
     await expect(banner.locator('.about-banner__motto')).toHaveText('Designed to be falsified. Built for trust.');
     await expect(banner.locator('img[src="/northcannon-mark.svg"]')).toHaveCount(1);
-    await expect(banner.locator('.module__head')).toHaveCount(0);
+    await expect(banner.locator('.module__head, h1, h2, h3')).toHaveCount(0);
     expect(await banner.evaluate(el => el.closest('.module'))).toBeNull();
-    const style = await banner.evaluate(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth + ' ' + s.borderTopColor, radius: s.borderTopLeftRadius, image: s.backgroundImage, pad: parseFloat(s.paddingTop) }; });
-    expect(style).toMatchObject({ border: '1px rgb(46, 46, 59)', radius: '16px' });
-    expect(style.image).toMatch(/rgb\(18, 18, 22\).*rgb\(13, 13, 16\)/);
-    expect(style.pad).toBeGreaterThanOrEqual(32);
-    const container = await page.locator('main .site-container').boundingBox(), box = await banner.boundingBox();
-    expect(Math.abs(box.width - container.width)).toBeLessThan(1);
+    const style = await banner.evaluate(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth, image: s.backgroundImage, color: s.backgroundColor }; });
+    expect(style).toEqual({ border: '0px', image: 'none', color: 'rgba(0, 0, 0, 0)' });
+    const hero = await page.locator('main .page-hero').boundingBox(), box = await banner.boundingBox();
+    expect(box.y + box.height).toBeLessThanOrEqual(hero.y + 1);
+    const container = await page.locator('main .site-container').boundingBox();
     // Mark on the left, name and motto beside it (stacked only on the narrowest screens).
-    if ((page.viewportSize()?.width ?? 0) > 480) expect((await banner.locator('img').boundingBox()).x).toBeLessThan((await banner.locator('h2').boundingBox()).x);
-    expect(parseFloat(await banner.locator('h2').evaluate(el => getComputedStyle(el).fontSize))).toBeGreaterThan(parseFloat(await page.locator('#about-why').evaluate(el => getComputedStyle(el).fontSize)) * 2);
+    if ((page.viewportSize()?.width ?? 0) > 480) expect((await banner.locator('img').boundingBox()).x).toBeLessThan((await banner.locator('.about-banner__name').boundingBox()).x);
+    expect(parseFloat(await banner.locator('.about-banner__name').evaluate(el => getComputedStyle(el).fontSize))).toBeGreaterThan(parseFloat(await page.locator('#about-why').evaluate(el => getComputedStyle(el).fontSize)) * 2);
     // Why now follows as its own full-width section with a charcoal body.
     const why = page.locator('section:has(> #about-why)');
     expect(Math.abs((await why.boundingBox()).width - container.width)).toBeLessThan(1);
@@ -304,7 +303,7 @@ test.describe('approved design acceptance (review build)', () => {
     expect((await numbers()).some(content => /counter|0\d/.test(content) || content.includes('·'))).toBe(true);
   });
 
-  test('company page order: eyebrow, headline, mission, banner, Why now, Vision, capabilities, is / is not, interoperate, contact', async ({ page }) => {
+  test('company page order: banner, eyebrow, headline, mission, Why now, Vision, capabilities, is / is not, interoperate, contact', async ({ page }) => {
     for (const base of [REVIEW, PRODUCTION]) {
       await page.goto(base + '/about/company/');
       const order = await page.locator('main .site-container > *').evaluateAll(els => els.map(el => {
@@ -315,7 +314,7 @@ test.describe('approved design acceptance (review build)', () => {
         return el.querySelector(':scope > .module__head')?.textContent.trim() ?? el.className;
       }));
       // The subnav needs its pending label (label-about-sections), so production omits it until attested.
-      expect(order, base).toEqual([...(base === REVIEW ? ['subnav'] : []), 'eyebrow>h1>mission', 'banner', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
+      expect(order, base).toEqual([...(base === REVIEW ? ['subnav'] : []), 'banner', 'eyebrow>h1>mission', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
       await expect(page.locator('main .page-hero .lede')).toHaveText(loadGovernance().claims.find(c => c.claim_id === 'brand-mission').statement);
       await expect(page.locator('main .contact-cta')).toContainText('Get in touch');
     }
@@ -372,7 +371,7 @@ test.describe('approved design acceptance (review build)', () => {
       // Order: banner, Why now, Vision, then Core Capabilities.
       const heads = await page.locator('main .module__head').allTextContents();
       expect(heads.slice(0, 3)).toEqual(['Why now', 'Vision', 'Core Capabilities']);
-      await expect(page.locator('main h2').first()).toHaveText('NorthCannon');
+      await expect(page.locator('main .about-banner__name')).toHaveText('NorthCannon');
       expect(await page.locator('.vision-box').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
     }
     // The Founder page's Vision link lands on that anchor; /vision/ stays published.

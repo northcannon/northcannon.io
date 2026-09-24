@@ -22,18 +22,17 @@ const contactHref = href('/contact/');
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <AboutSubnav copy={copy} currentPath={route.path} />
+    <div class="about-banner on-lattice">
+      <img class="about-banner__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
+      <div class="about-banner__copy">
+        <p class="about-banner__name">{t('brand-company')}</p>
+        <p class="about-banner__motto">{t('brand-company-motto')}</p>
+      </div>
+    </div>
     <section class="page-hero page-hero--text" aria-labelledby="company-title">
       {t('about-eyebrow') && <p class="eyebrow">{t('about-eyebrow')}</p>}
       <h1 class="page-title" id="company-title">{t('about-headline') ?? title}</h1>
       <p class="lede">{t('brand-mission')}</p>
-    </section>
-
-    <section class="box about-banner" aria-labelledby="about-company">
-      <img class="about-banner__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
-      <div class="about-banner__copy">
-        <h2 class="about-banner__name" id="about-company">{t('brand-company')}</h2>
-        <p class="about-banner__motto">{t('brand-company-motto')}</p>
-      </div>
     </section>
 
     {t('about-why-title') && t('about-why-body') && (
