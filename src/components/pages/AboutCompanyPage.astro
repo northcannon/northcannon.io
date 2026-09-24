@@ -52,7 +52,7 @@ const contactHref = href('/contact/');
 
         <ul class="capability-grid">
           {capabilities.map(card => (
-            <li class="card capability-card">
+            <li class="box capability-card">
               <Icon name={card.icon} />
               <h3 class="card-title">{t(card.title)}</h3>
               {t(card.body) && <p class="card-text">{t(card.body)}</p>}

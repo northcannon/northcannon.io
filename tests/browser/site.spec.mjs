@@ -249,6 +249,22 @@ test.describe('approved design acceptance (review build)', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 
+  test('About pages use charcoal inner boxes inside purple modules', async ({ page }) => {
+    for (const [path, selector] of [['/about/company/', '.box--intro, .capability-card, .truth, .interop__node'], ['/about/features/', '.event-strip, .readout-row, .lineage, .support-cells, .drawer'], ['/about/founder/', '.box']]) {
+      await page.goto(REVIEW + path);
+      const boxes = await page.locator(selector).evaluateAll(els => els.map(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth + ' ' + s.borderTopColor, radius: s.borderTopLeftRadius, image: s.backgroundImage }; }));
+      expect(boxes.length, path).toBeGreaterThan(2);
+      for (const box of boxes) {
+        expect(box.radius, path).toBe('16px');
+        expect(box.image, path).toContain('rgb(18, 18, 22)');
+        expect(box.image, path).toContain('rgb(13, 13, 16)');
+        if (!path.includes('company') || !/^3px/.test(box.border)) expect(box.border, path).toBe('1px rgb(46, 46, 59)');
+      }
+      // The section modules keep the purple outline and header band.
+      expect(await page.locator('.module').first().evaluate(el => getComputedStyle(el).borderTopColor)).toBe('rgba(197, 173, 221, 0.72)');
+    }
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);

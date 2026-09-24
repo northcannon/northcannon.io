@@ -20,6 +20,10 @@
   --color-border: #3f3358;
   --color-plate-border: #716786;
   --color-outline: rgb(197 173 221 / 0.72);
+  /* Charcoal inner boxes on the About pages: the original site card look inside purple modules. */
+  --box-charcoal-hi: #121216;
+  --box-charcoal-lo: #0d0d10;
+  --box-charcoal-border: #2e2e3b;
   --color-band: #331f58;
   --color-band-end: #2e1b4e;
   --color-drawer: #222226;
@@ -153,6 +157,7 @@
   .module__head { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.625rem 1.25rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: #efe6f8; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; line-height: 1.4; text-transform: uppercase; }
   .module--numbered > .module__head::before { counter-increment: module; content: counter(module, decimal-leading-zero) " ·"; color: var(--color-key); }
   .module__body { padding: 1.5rem 1.75rem; text-align: left; }
+  .module__body > .section-intro { margin: 0 0 1.25rem; }
   .module--drawer { border-color: var(--color-plate-border); background: linear-gradient(180deg, var(--color-drawer), var(--color-drawer-end)); }
 
   /* Readout: big value under a yellow mono key label. */
@@ -176,6 +181,12 @@
   .support-cell--unsupported .support-cell__hex { background: var(--color-unsupported); }
   .support-cell__label { color: var(--color-text); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; }
   .card--elevated { background: var(--color-elevated); }
+  /* Charcoal inner box (About pages): neutral border, 16px radius; sections stay purple modules. */
+  .box, .capability-card, .truth, .interop__node, .interop__layer, .event-strip, .readout-row, .verdict-row, .lineage, .support-cells, .drawer, .table-scroll:has(.workload) {
+    padding: 1.25rem 1.5rem; border: 1px solid var(--box-charcoal-border); border-radius: var(--radius-card);
+    background: linear-gradient(var(--box-charcoal-hi), var(--box-charcoal-lo));
+  }
+  .box > .icon:first-child, .capability-card > .icon:first-child { margin-bottom: 0.75rem; color: var(--color-violet-text); }
   .section-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.5rem var(--gutter); margin-bottom: 1.25rem; }
   .section-head__title { display: flex; align-items: center; gap: 0.875rem; }
   .section-head__title .icon { color: var(--color-violet-text); }

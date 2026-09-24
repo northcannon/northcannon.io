@@ -22,9 +22,9 @@
   .capability-card .card-text { max-width: 24rem; font-size: 0.9375rem; }
 
   .truth-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
-  .truth { padding: 1.5rem 1.75rem; border: 1px solid; border-radius: calc(var(--radius-card) - 4px); background: var(--color-card); }
-  .truth--is { border-color: color-mix(in srgb, var(--color-verified) 70%, var(--color-border)); }
-  .truth--not { border-color: color-mix(in srgb, var(--color-failed) 70%, var(--color-border)); }
+  .truth { padding: 1.5rem 1.75rem; }
+  .truth--is { border-top: 3px solid var(--color-verified); }
+  .truth--not { border-top: 3px solid var(--color-failed); }
   .truth__title { display: flex; align-items: center; gap: 0.875rem; margin: 0 0 1rem; font-size: 1.0625rem; }
   .truth--not .truth__title { color: var(--color-failed-text); }
   .truth__badge { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; color: var(--color-bg); }
@@ -38,7 +38,7 @@
   .truth--not .truth__list .icon { color: var(--color-failed-text); }
 
   .interop { display: grid; grid-template-columns: minmax(0, 2fr) auto minmax(0, 5fr) auto minmax(0, 2fr); align-items: stretch; gap: 0.75rem; min-height: 9.5rem; }
-  .interop__node, .interop__layer { display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 1.5rem; border: 1px solid color-mix(in srgb, var(--color-violet) 55%, var(--color-border)); border-radius: calc(var(--radius-card) - 4px); background: var(--color-card); }
+  .interop__node, .interop__layer { display: flex; flex-direction: column; justify-content: center; }
   .interop__arrow { display: grid; place-items: center; color: var(--color-violet-text); }
   .interop__layer { align-items: center; gap: 1rem; }
   .interop__layer-title { margin: 0; color: var(--color-violet-text); font-size: 1rem; text-align: center; }
@@ -185,7 +185,7 @@
   .disclosure-line .icon { flex: none; color: var(--color-key); }
   .disclosure-line--inline { padding: 0; border: 0; background: none; color: var(--color-muted); font-size: 0.75rem; }
   .feature-stack { display: grid; gap: 1.5rem; }
-  .event-strip { padding: 0.875rem 1.25rem; border: 1px solid var(--color-plate-border); border-left: 4px solid var(--color-reeval); border-radius: var(--radius-control); background: var(--color-card); }
+  .event-strip { padding: 0.875rem 1.25rem; border-left: 4px solid var(--color-reeval); }
   .event-strip .readout__value { font-family: var(--font-sans); font-size: 1.25rem; }
   .feature-summary { margin: 0; color: var(--color-text); font-family: var(--font-mono); font-size: 0.875rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .feature-institution { margin: 0; color: var(--color-key); font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -212,7 +212,7 @@
   .lineage__bar { fill: var(--color-plate-border); }
   .lineage__fold { fill: var(--color-unsupported); }
   .lineage__alt { max-width: var(--text-width); color: var(--color-muted); font-size: 0.8125rem; line-height: 1.5; }
-  .drawer { display: grid; margin: 0; }
+  .drawer { display: grid; margin: 0; padding-block: 0.5rem; }
   .drawer__row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--color-plate-border); }
   .drawer__row:last-child { border-bottom: 0; }
   .drawer dt { color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -261,7 +261,7 @@
   .lineage__plane { min-width: 720px; }
   .lineage__cols { font-size: 0.6875rem; letter-spacing: 0.1em; }
   /* Workload table: stacked label/value rows on narrow screens; never clip or break words. */
-  .table-scroll:has(.workload) { overflow: visible; border: 0; }
+  .table-scroll:has(.workload) { overflow: visible; padding: 0; border: 0; background: none; }
   .workload, .workload thead, .workload tbody, .workload tr, .workload td, .workload tbody th, .workload caption { display: block; min-width: 0; width: 100%; }
   .workload thead { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); }
   .workload__caption { padding-inline: 0; overflow-wrap: normal; }
