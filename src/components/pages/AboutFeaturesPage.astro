@@ -17,7 +17,7 @@ const { t } = copy;
 const need = (...ids: string[]) => copy.all(...ids);
 const ready = need('feat-headline', 'feat-lede', 'feat-disclosure');
 const disclosure = t('feat-disclosure');
-const ci = need('feat-ci-title', 'feat-ci-event-label', 'feat-ci-event', 'feat-ci-affected', 'feat-ci-date-prior-label', 'feat-ci-date-prior', 'feat-ci-date-new-label', 'feat-ci-date-new', 'feat-ci-date-proposed-label', 'feat-ci-date-proposed', 'feat-ci-verdict-prior-label', 'feat-ci-verdict-new-label', 'feat-verdict-proceed', 'feat-verdict-refuse', 'feat-wl-caption', 'label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes', 'feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-source', 'feat-wl-row-closes');
+const ci = need('feat-ci-title', 'feat-ci-event-label', 'feat-ci-event', 'feat-ci-affected', 'feat-ci-date-prior-label', 'feat-ci-date-prior', 'feat-ci-date-new-label', 'feat-ci-date-new', 'feat-ci-date-proposed-label', 'feat-ci-date-proposed', 'feat-ci-verdict-prior-label', 'feat-ci-verdict-new-label', 'feat-verdict-proceed', 'feat-verdict-refuse', 'feat-wl-caption', 'label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes', 'feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-closes');
 const lineage = need('feat-lineage-title', 'feat-lineage-institution', 'feat-lineage-summary', 'feat-lineage-col-source', 'feat-lineage-col-derived', 'feat-lineage-col-decision', 'feat-lineage-alt');
 const evidence = need('feat-ev-title', 'feat-ev-drawer-title', 'feat-decision-label', 'feat-verdict-refuse', 'label-evidence', 'feat-cell-rule', 'feat-cell-time', 'feat-cell-authority', 'feat-cell-state', 'feat-cells-label', 'feat-cell-supported', 'feat-cell-unsupported', 'feat-ev-evidence-value', 'feat-ev-rule-value', 'feat-ev-time-value', 'feat-ev-authority-value', 'feat-ev-state-value', 'feat-ev-hash-label', 'feat-ev-hash');
 const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: supported ? 'supported' as const : 'unsupported' as const, stateLabel: t(supported ? 'feat-cell-supported' : 'feat-cell-unsupported')! });
@@ -53,7 +53,7 @@ const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: suppor
           <WorkloadTable
             caption={t('feat-wl-caption')!}
             columns={['label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes'].map(id => t(id)!)}
-            rows={[['feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-source', 'feat-wl-row-closes'].map(id => t(id)!)]}
+            rows={[['feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-ci-verdict-new-label', 'feat-wl-row-closes'].map(id => t(id)!)]}
           />
           <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
         </div>

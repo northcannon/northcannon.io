@@ -254,7 +254,6 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-wl-row-id` | ACT-0003 |
 | `feat-wl-row-action` | Propose a date on or after SEP 28 |
 | `feat-wl-row-assigned` | Proposing agent (fictional) |
-| `feat-wl-row-source` | Re-evaluated decision |
 | `feat-wl-row-closes` | A revised date verifies on or after SEP 28 |
 | `feat-lineage-title` | Mock downstream lineage |
 | `feat-lineage-institution` | Harbor National Bank · FICTIONAL DEMO INSTITUTION |
@@ -357,6 +356,8 @@ paragraph renders as a pull-quote. Until it is attested, production keeps the se
 ### Retired
 
 The pending `label-overview`, `about-link-company-body`, `about-link-features-body` and `about-link-founder-body` claims are retired (IDs kept): there is no About overview page; `/about/` redirects to `/about/company/`.
+
+The pending `feat-wl-row-source` ("Re-evaluated decision") is retired (ID kept) because it duplicated `feat-ci-verdict-new-label`; the workload table's Source cell reuses that claim.
 
 The pending `interop-origin-title`, `interop-origin-enterprise`, `interop-origin-devices`, `interop-origin-workflow`,
 `interop-arrow-out` and `interop-arrow-back` claims of the earlier two-way diagram are retired (IDs kept). `interop-origin-models`
