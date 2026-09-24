@@ -22,9 +22,9 @@ test('manifest follows the approved information architecture and rejects publish
   assert.deepEqual(routes.filter(r => r.parent).map(r => [r.path, r.parent]), [['/about/company/', '/about/'], ['/about/features/', '/about/'], ['/about/founder/', '/about/']]);
   assert.equal(routes.length, 19);
   assert.equal(routes.find(r => r.path === '/demo/').publish, true, 'the demo stays published with its approved title');
-  assert.equal(routes.filter(r => r.publish).length, 16);
+  assert.equal(routes.filter(r => r.publish).length, 18);
   assert.ok(!routes.some(r => r.path === '/founder/'), 'the standalone founder route is removed');
-  assert.ok(routes.filter(r => r.parent).every(r => !r.publish), 'About subpages stay unpublished until the founder promotes them');
+  assert.deepEqual(routes.filter(r => r.parent && r.publish).map(r => r.path), ['/about/company/', '/about/founder/'], 'Company and Founder are published (approved copy); Features waits for approval');
   assert.ok(!routes.some(r => r.path === '/early-access/'));
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
@@ -46,10 +46,10 @@ test('optional copy renders in review, is omitted from production, and appears t
   assert.throws(() => routeCopy(claims, home, routes, 'evidence-headline', { review: true }), /Undeclared route claim/);
   const attested = attest(claims, ['cta-view-gate-1', 'label-company']);
   assert.equal(routeCopy(attested, home, routes, 'cta-view-gate-1', { review: false }), 'View Gate 1');
-  // Production navigation lists only published, attested destinations; unpublished About subpages never appear.
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/demo/', '/contact/']);
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims: attested }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/demo/', '/contact/']);
-  assert.deepEqual(navigationTree(routes, { review: false, claims }).find(item => item.route.path === '/about/').children, []);
+  // Production navigation lists only published, attested destinations; the unpublished Features page never appears.
+  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/founder/', '/demo/', '/contact/']);
+  assert.deepEqual(navigationRoutes(routes, { review: false, claims: attested }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/founder/', '/demo/', '/contact/']);
+  assert.deepEqual(navigationTree(routes, { review: false, claims }).find(item => item.route.path === '/about/').children.map(r => r.path), ['/about/company/', '/about/founder/']);
   assert.deepEqual(navigationTree(routes, { review: true, claims }).find(item => item.route.path === '/about/').children.map(r => r.path), ['/about/company/', '/about/features/', '/about/founder/']);
   const company = routes.find(r => r.path === '/about/company/');
   assert.equal(routeCopy(claims, company, routes, 'interop-sources-body', { review: false }), undefined);
@@ -126,7 +126,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
       'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md',
-      'public/_headers', 'public/robots.txt', 'public/.well-known/security.txt',
+      'public/_headers', 'public/_redirects', 'public/robots.txt', 'public/.well-known/security.txt',
       'public/graphene-lattice.svg', 'public/northcannon-mark.svg',
       ...['ibm-plex-mono-latin-400-normal', 'ibm-plex-mono-latin-500-normal', 'inter-latin-400-normal', 'inter-latin-500-normal', 'inter-latin-600-normal'].map(name => `public/fonts/${name}.woff2`),
       'src/content.config.ts', 'src/content/collections.json', 'src/content/routes.json',

@@ -4,7 +4,7 @@ import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { inspectMarkup, readHeaders, disclosureErrors } from '../scripts/policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors } from '../scripts/policy.mjs';
 
 for (const markup of [
   '<script src="/local.js"></script>', '<script>alert(1)</script>',
@@ -107,4 +107,12 @@ test('output validator permits only self-hosted woff2 @font-face', async () => {
   } finally {
     await rm(dir, { recursive: true });
   }
+});
+
+test('redirects file holds exactly the four reviewed permanent moves', async () => {
+  const text = await readFile('public/_redirects', 'utf8');
+  assert.deepEqual(text.trim().split('\n'), requiredRedirects);
+  assert.equal(requiredRedirects.length, 4);
+  assert.doesNotThrow(() => readRedirects(text));
+  for (const invalid of [text + '/x /y 301\n', text.replace('301', '302'), text.replace('/about/company/', 'https://example.com/'), text.split('\n').slice(1).join('\n'), '']) assert.throws(() => readRedirects(invalid));
 });

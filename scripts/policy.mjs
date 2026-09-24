@@ -9,6 +9,14 @@ export const requiredHeaders = {
   'strict-transport-security': 'max-age=31536000',
 };
 
+// Cloudflare Pages redirects: exactly these permanent moves, so no route is silently lost or hijacked.
+export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301'];
+export function readRedirects(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if (JSON.stringify(lines) !== JSON.stringify(requiredRedirects)) throw new Error('Redirects do not match the reviewed policy');
+  return lines.map(line => { const [from, to, status] = line.split(' '); return { from, to, status: Number(status) }; });
+}
+
 export function readHeaders(text) {
   const lines = text.trim().split(/\r?\n/);
   if (lines.shift() !== '/*') throw new Error('Headers must cover all paths');

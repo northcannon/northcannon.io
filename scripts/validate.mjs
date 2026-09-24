@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, disclosureErrors } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -27,7 +27,7 @@ async function collect(dir) {
         if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
         continue;
       }
-      if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers') {
+      if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers' && name !== '_redirects') {
         errors.push(`${name}: unexpected output type`);
         continue;
       }
@@ -37,6 +37,10 @@ async function collect(dir) {
 }
 await collect(root);
 readHeaders(files.get('_headers') ?? '');
+// Production carries the reviewed redirects; each must land on a page that exists in this output.
+if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {
+  for (const { to } of readRedirects(files.get('_redirects') ?? '')) if (!files.has(to.slice(1) + 'index.html')) errors.push(`_redirects: target is not a published page: ${to}`);
+}
 const expectedRoutes = fixture ? ['index.html'] : routes.filter(r => wp4 || r.publish).map(routeFile);
 if (wp4 && root === path.resolve('dist')) throw new Error('Review output may never be dist');
 const actualRoutes = [...files.keys()].filter(name => name.endsWith('.html')).sort();

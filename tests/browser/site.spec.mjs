@@ -273,11 +273,11 @@ test('production renders only attested navigation and publishes all approved pri
   await page.goto(PRODUCTION + '/');
   if (!desktop(testInfo)) await page.locator('.mobile-navigation summary').click();
   const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
-  // Unpublished About subpages never appear in production navigation, and the removed /founder/ route does not exist.
-  await expect(links).toHaveText(['Gate 1', 'Results', 'Evidence', 'About', 'Demo', 'Contact']);
-  await expect(page.locator('.submenu, .submenu-mobile, .about-subnav')).toHaveCount(0);
-  for (const path of ['/gate-1/', '/about/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
-  for (const path of ['/founder/', '/about/company/', '/about/features/', '/about/founder/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(404);
+  // Unpublished routes (Features) never appear in production navigation.
+  await expect(links).toHaveText(['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Founder', 'Demo', 'Contact']);
+  await expect(page.locator('a[href="/about/features/"]')).toHaveCount(0);
+  for (const path of ['/gate-1/', '/about/company/', '/about/founder/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
+  expect((await page.goto(PRODUCTION + '/about/features/')).status()).toBe(404);
   await page.goto(PRODUCTION + '/results/');
   await expect(page.locator('h1')).toHaveText('Pre-execution');
   await expect(page.locator('.status-banner')).toContainText(status);
@@ -303,4 +303,22 @@ for (const review of [true, false]) test(`${review ? 'review' : 'production'} mo
     await page.keyboard.press('Space');
     await expect(page.locator('.mobile-navigation .navigation')).toBeHidden();
   } finally { await context.close(); }
+});
+
+test('production keeps the removed routes alive with permanent redirects', async ({ request }) => {
+  for (const [from, to] of [['/founder/', '/about/founder/'], ['/founder', '/about/founder/'], ['/about/', '/about/company/'], ['/about', '/about/company/']]) {
+    const response = await request.get(PRODUCTION + from, { maxRedirects: 0 });
+    expect(response.status(), from).toBe(301);
+    expect(response.headers().location, from).toBe(to);
+  }
+});
+
+test('production links only target published pages', async ({ page }) => {
+  const published = new Set(readRoutes().filter(r => r.publish).map(r => r.path));
+  for (const path of published) {
+    if (path === '/404.html') continue;
+    await page.goto(PRODUCTION + path);
+    const hrefs = await page.locator('a[href^="/"]').evaluateAll(els => els.map(el => el.getAttribute('href').split('#')[0]));
+    for (const href of hrefs) expect(published.has(href) || /\.(svg|txt|xml)$/.test(href), `${path} links to ${href}`).toBe(true);
+  }
 });

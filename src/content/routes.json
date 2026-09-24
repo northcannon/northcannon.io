@@ -325,7 +325,7 @@
       "label-about-sections"
     ],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "parent": "/about/"
   },
   {
@@ -470,7 +470,7 @@
       "label-about-sections"
     ],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "parent": "/about/"
   },
   {

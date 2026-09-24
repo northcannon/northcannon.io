@@ -36,7 +36,7 @@ export async function scanTracked(root, read = readFile) {
       if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
       continue;
     }
-    if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers'].includes(basename) && !name.endsWith('.example')) {
+    if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers', '_redirects'].includes(basename) && !name.endsWith('.example')) {
       errors.push(`${name}: unsupported source format requires explicit review`);
       continue;
     }
