@@ -549,7 +549,8 @@
       "arm-baseline-b",
       "arm-r-plus",
       "arms-title",
-      "contact-intro"
+      "contact-intro",
+      "contact-intro-email"
     ],
     "nav": true,
     "publish": true

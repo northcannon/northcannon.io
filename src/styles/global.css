@@ -44,7 +44,10 @@
   --color-failed-text: #e57a74;
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --shadow-module: inset 0 1px 0 rgb(255 255 255 / 0.08), inset 0 -2px 0 rgb(0 0 0 / 0.4), 0 2px 0 #07040d, 0 14px 28px -10px rgb(0 0 0 / 0.7);
+  /* Near-3D module: lit top bevel, dark bottom bevel, a stacked slab edge, then contact and cast shadows. */
+  --shadow-module: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 1px 0 0 rgb(255 255 255 / 0.04), inset -1px 0 0 rgb(0 0 0 / 0.25), inset 0 -2px 0 rgb(0 0 0 / 0.5), 0 1px 0 rgb(197 173 221 / 0.28), 0 3px 0 #1c1131, 0 5px 0 #140c24, 0 7px 0 #0b0714, 0 10px 18px -4px rgb(0 0 0 / 0.6), 0 30px 48px -16px rgb(0 0 0 / 0.78);
+  --shadow-band: inset 0 1px 0 rgb(255 255 255 / 0.14), inset 0 -1px 0 rgb(0 0 0 / 0.35);
+  --shadow-box: inset 0 1px 0 rgb(255 255 255 / 0.06), inset 0 -1px 0 rgb(0 0 0 / 0.5), 0 2px 0 #050407, 0 8px 14px -8px rgb(0 0 0 / 0.7);
 
   /* Layout system: brief panel 04. */
   --canvas: 1440px;
@@ -154,7 +157,7 @@
   /* Module: numbered header band over a purple-outlined body. Numbers are CSS counters, never copy. */
   body { counter-reset: module; }
   .module { padding: 0; overflow: hidden; }
-  .module__head { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.625rem 1.25rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: #efe6f8; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; line-height: 1.4; text-transform: uppercase; }
+  .module__head { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.625rem 1.25rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); box-shadow: var(--shadow-band); color: #efe6f8; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; line-height: 1.4; text-transform: uppercase; }
   .module--numbered > .module__head::before { counter-increment: module; content: counter(module, decimal-leading-zero) " ·"; color: var(--color-key); }
   .module__body { padding: 1.5rem 1.75rem; text-align: left; }
   .module__body > .section-intro { margin: 0 0 1.25rem; }
@@ -185,6 +188,7 @@
   .box, .capability-card, .truth, .event-strip, .readout-row, .verdict-row, .lineage, .support-cells, .drawer, .table-scroll:has(.workload) {
     padding: 1.25rem 1.5rem; border: 1px solid var(--box-charcoal-border); border-radius: var(--radius-card);
     background: linear-gradient(var(--box-charcoal-hi), var(--box-charcoal-lo));
+    box-shadow: var(--shadow-box);
   }
   .box > .icon:first-child, .capability-card > .icon:first-child { margin-bottom: 0.75rem; color: var(--color-violet-text); }
   .section-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.5rem var(--gutter); margin-bottom: 1.25rem; }

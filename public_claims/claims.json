@@ -2581,6 +2581,16 @@
     "approval_record": "founder_attestation"
   },
   {
+    "claim_id": "contact-intro-email",
+    "statement": "For partnerships, design-partner conversations, research, or general inquiries, email hello@northcannon.io.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
     "claim_id": "falsification-1",
     "statement": "Rejected; replaced by the approved pre-specified methodology statement.",
     "category": "methodology",
