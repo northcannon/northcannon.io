@@ -204,3 +204,92 @@ The founder's finalization instruction approves revised claims, structural/inter
 | `founder-gate-title` | approved | See Gate 1 |
 | `founder-gate-body` | pending | Current focus and status. |
 | `contact-intro` | approved | For partnerships, design-partner conversations, research, or general inquiries: <hello@northcannon.io>. |
+
+<!-- redesign-copy:start -->
+
+## Redesign copy awaiting founder approval
+
+These statements were added for the About section, Features page and Demo page. Every one is a
+**pending** claim in `public_claims/claims.json`: it renders in review builds and is omitted from
+production until the founder attests it in `docs/FOUNDER_APPROVALS.md`. The Features copy describes
+designed behavior on fictional data only; it contains no penalty or dollar figures, no Gate 1
+language, no confidence score, and no statute or regulation citations. "Harbor National Bank"
+always appears with "FICTIONAL DEMO INSTITUTION".
+
+### About section (`/about/`, subnav and link blurbs)
+
+| Claim ID | Statement |
+| --- | --- |
+| `label-features` | Features |
+| `label-overview` | Overview |
+| `label-about-sections` | About sections |
+| `about-link-company-body` | Capabilities, what NorthCannon is and is not, and how it fits alongside existing systems. |
+| `about-link-features-body` | Illustrative views of Change Intelligence and Evidence, drawn with fictional data. |
+| `about-link-founder-body` | Why the founder started NorthCannon, and what is being built. |
+
+### Features (`/about/features/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `feat-headline` | Change Intelligence and Evidence, illustrated |
+| `feat-lede` | Two illustrative views of how NorthCannon is designed to work. Every case, name, date and record shown is fictional. |
+| `feat-disclosure` | Illustrative · fictional data · designed behavior, not yet implemented |
+| `feat-ci-title` | Mock Change Intelligence |
+| `feat-ci-event-label` | Change event |
+| `feat-ci-event` | Amended return of service recorded |
+| `feat-ci-affected` | 1 of 4 prior decisions affected · 3 unaffected — not re-run |
+| `feat-ci-date-prior-label` | Deadline before the change |
+| `feat-ci-date-prior` | SEP 18 |
+| `feat-ci-date-new-label` | Deadline after the change |
+| `feat-ci-date-new` | SEP 28 |
+| `feat-ci-date-proposed-label` | Proposed date |
+| `feat-ci-date-proposed` | SEP 24 |
+| `feat-ci-verdict-prior-label` | Prior decision |
+| `feat-ci-verdict-new-label` | Re-evaluated decision |
+| `feat-verdict-proceed` | Proceed |
+| `feat-verdict-refuse` | Refuse |
+| `feat-wl-caption` | Open action for the affected decision |
+| `feat-wl-id` | ID |
+| `feat-wl-action` | Action |
+| `feat-wl-assigned` | Assigned to |
+| `feat-wl-source` | Source |
+| `feat-wl-closes` | Closes when |
+| `feat-wl-row-status` | Open |
+| `feat-wl-row-id` | DEC-0003 |
+| `feat-wl-row-action` | Re-evaluate the affected decision |
+| `feat-wl-row-assigned` | Reviewer (fictional role) |
+| `feat-wl-row-source` | Amended return of service |
+| `feat-wl-row-closes` | A reviewer confirms the re-evaluated decision |
+| `feat-lineage-title` | Mock downstream lineage |
+| `feat-lineage-institution` | Harbor National Bank · FICTIONAL DEMO INSTITUTION |
+| `feat-lineage-summary` | 5 of 10 downstream assets affected |
+| `feat-lineage-col-source` | Changed source |
+| `feat-lineage-col-derived` | Derived assets |
+| `feat-lineage-col-decision` | Reports and decisions |
+| `feat-lineage-alt` | Lineage graph: one changed source feeds five derived assets, three of them affected; those feed five reports and decisions, two of them affected. Five of the ten downstream assets are affected in total. |
+| `feat-ev-title` | Mock Evidence |
+| `feat-ev-drawer-title` | Decision provenance |
+| `feat-decision-label` | Decision |
+| `feat-cell-rule` | Rule |
+| `feat-cell-time` | Time |
+| `feat-cell-authority` | Authority |
+| `feat-cell-state` | State |
+| `feat-cells-label` | Support checks for the re-evaluated decision |
+| `feat-cell-supported` | Support confirmed |
+| `feat-cell-unsupported` | Support not confirmed |
+| `feat-ev-evidence-value` | Amended return of service, recorded (fictional) |
+| `feat-ev-rule-value` | Response-deadline rule, version 3 (fictional) |
+| `feat-ev-time-value` | Evaluated as of the recorded change |
+| `feat-ev-authority-value` | Reviewer sign-off required (fictional role) |
+| `feat-ev-state-value` | Open — awaiting reviewer confirmation |
+| `feat-ev-hash-label` | Record hash |
+| `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
+| `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
+
+### Retired
+
+The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs kept). The approved
+`mock-*` claims remain in the registry with their founder attestations intact but are no longer
+referenced by any route, so they render nowhere; retiring them formally needs a founder attestation change.
+
+<!-- redesign-copy:end -->

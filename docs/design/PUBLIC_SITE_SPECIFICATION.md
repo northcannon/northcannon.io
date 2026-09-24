@@ -21,10 +21,25 @@ repository governance, existing implementation, existing tests.
 
 ## Information architecture
 
-Primary navigation, in order: Company (`/`), Gate 1 (`/gate-1/`), Results
-(`/results/`), Evidence (`/evidence/`), About (`/about/`), Founder (`/founder/`),
-Contact (`/contact/`). Trust Center pages, Demo and the vision page are supporting
-routes outside the primary navigation.
+Primary navigation, in order: Gate 1 (`/gate-1/`), Results (`/results/`), Evidence
+(`/evidence/`), About (`/about/`) with a dropdown, Demo (`/demo/`), Contact (`/contact/`).
+The wordmark links to the landing page (`/`). The About dropdown lists Company
+(`/about/company/`), Features (`/about/features/`) and Founder (`/about/founder/`); it
+opens on hover and keyboard focus with no JavaScript, the mobile menu (a `<details>`
+element) indents the same links under About, and every About page carries a local
+subnav (Overview, Company, Features, Founder) with `aria-current` on the active page.
+`/about/company/`, `/about/features/` and `/about/founder/` are review-only until the
+founder promotes them; production navigation lists only published, attested routes.
+The former `/founder/` route is removed. Trust Center pages and the vision page are
+supporting routes outside the primary navigation.
+
+## Visual system ("instrument")
+
+Inter and IBM Plex Mono are self-hosted (SIL OFL) in `public/fonts/`. Content sits in
+purple-outlined modules with a header band and a CSS-counter module number; readouts
+use a yellow mono key label over a large value; verdicts pair a beacon with a large
+word; support cells are five hex checks that always carry a text label and glyph. The
+palette tokens live in `src/styles/global.css`; every text pair keeps WCAG AA.
 
 ## Layout system (brief 04)
 
@@ -162,22 +177,34 @@ tokens; test across modern browsers; keep performance in mind.
 5. Artifact Hash (human readable) panel and Artifact Viewer panel side by side.
 6. Last-updated strip with "See change log" link.
 
-### About (Wireframes B, 05)
+### Landing (`/`)
 
-1. Intro: eyebrow, headline, supporting text.
-2. Three cards: NorthCannon, Why now, Founder.
-3. Mock Evidence Packet (left) and Mock Change Intelligence Console (right), each
-   labelled as an illustrative example.
-4. Disclaimer bar stating the mockups are not live product screenshots.
+Principle eyebrow, motto headline, mission lede, three calls to action (View Gate 1,
+Explore Evidence, About) and a decorative verification module. Company content moved
+to `/about/company/`.
 
-### Founder (Wireframes B, 06)
+### About overview (`/about/`)
 
-1. Founder hero: portrait placeholder, eyebrow, headline, introduction.
-2. Why NorthCannon exists.
-3. Selected background card and Credibility list side by side.
-4. Currently building: introduction and focus bullets.
-5. Get in touch CTA with filled "Contact" action.
-6. Two lower navigation cards: Learn more about NorthCannon, See Gate 1.
+Founder's text first: eyebrow, headline, mission; then a NorthCannon module, a Why now
+module, and three link modules to Company, Features and Founder.
+
+### About / Company (`/about/company/`)
+
+Core capabilities, what NorthCannon is and is not, built to interoperate, and Get in
+touch (moved from the former landing page).
+
+### About / Features (`/about/features/`)
+
+Persistent disclosure line: "Illustrative · fictional data · designed behavior, not yet
+implemented". Mock Change Intelligence (event strip, affected count, date readouts,
+Proceed to Refuse verdicts, workload table), a downstream lineage graph for a fictional
+institution, and Mock Evidence (five support cells and a static provenance drawer). No
+scores, confidence meters, penalty or dollar figures, or Gate 1 language.
+
+### About / Founder (`/about/founder/`)
+
+Founder hero, why NorthCannon exists, selected background and credibility, currently
+building, Get in touch, and two lower navigation cards.
 
 ## Copy governance
 

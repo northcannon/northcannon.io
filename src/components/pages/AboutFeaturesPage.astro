@@ -1,15 +1,97 @@
 ---
-// About / Features: illustrative views of the designed behavior (content added in the Features phase).
+// About / Features: two illustrative views (Change Intelligence and Evidence) on fictional data.
+// Everything here is labelled illustrative; nothing is operational data or a result.
+import Icon from '../Icon.astro';
+import Module from '../Module.astro';
+import Readout from '../Readout.astro';
+import Verdict from '../Verdict.astro';
+import SupportCells from '../SupportCells.astro';
+import WorkloadTable from '../WorkloadTable.astro';
+import LineageGraph from '../LineageGraph.astro';
+import EvidenceDrawer from '../EvidenceDrawer.astro';
 import AboutSubnav from '../AboutSubnav.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
 const { copy, route, title } = Astro.props;
+const { t } = copy;
+const need = (...ids: string[]) => copy.all(...ids);
+const ready = need('feat-headline', 'feat-lede', 'feat-disclosure');
+const disclosure = t('feat-disclosure');
+const ci = need('feat-ci-title', 'feat-ci-event-label', 'feat-ci-event', 'feat-ci-affected', 'feat-ci-date-prior-label', 'feat-ci-date-prior', 'feat-ci-date-new-label', 'feat-ci-date-new', 'feat-ci-date-proposed-label', 'feat-ci-date-proposed', 'feat-ci-verdict-prior-label', 'feat-ci-verdict-new-label', 'feat-verdict-proceed', 'feat-verdict-refuse', 'feat-wl-caption', 'label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes', 'feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-source', 'feat-wl-row-closes');
+const lineage = need('feat-lineage-title', 'feat-lineage-institution', 'feat-lineage-summary', 'feat-lineage-col-source', 'feat-lineage-col-derived', 'feat-lineage-col-decision', 'feat-lineage-alt');
+const evidence = need('feat-ev-title', 'feat-ev-drawer-title', 'feat-decision-label', 'feat-verdict-refuse', 'label-evidence', 'feat-cell-rule', 'feat-cell-time', 'feat-cell-authority', 'feat-cell-state', 'feat-cells-label', 'feat-cell-supported', 'feat-cell-unsupported', 'feat-ev-evidence-value', 'feat-ev-rule-value', 'feat-ev-time-value', 'feat-ev-authority-value', 'feat-ev-state-value', 'feat-ev-hash-label', 'feat-ev-hash');
+const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: supported ? 'supported' as const : 'unsupported' as const, stateLabel: t(supported ? 'feat-cell-supported' : 'feat-cell-unsupported')! });
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <AboutSubnav copy={copy} currentPath={route.path} />
     <section class="page-hero page-hero--text" aria-labelledby="features-title">
-      <h1 class="page-title" id="features-title">{title}</h1>
+      {t('label-features') && <p class="eyebrow">{t('label-features')}</p>}
+      <h1 class="page-title" id="features-title">{t('feat-headline') ?? title}</h1>
+      {t('feat-lede') && <p class="lede">{t('feat-lede')}</p>}
     </section>
+    {ready && <p class="disclosure-line"><Icon name="info" />{disclosure}</p>}
+
+    {ready && ci && (
+      <Module id="feat-ci" title={t('feat-ci-title')!} numbered>
+        <div class="feature-stack">
+          <div class="event-strip">
+            <Readout label={t('feat-ci-event-label')!} value={t('feat-ci-event')!} />
+          </div>
+          <p class="feature-summary">{t('feat-ci-affected')}</p>
+          <div class="readout-row">
+            <Readout label={t('feat-ci-date-prior-label')!} value={t('feat-ci-date-prior')!} />
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <Readout label={t('feat-ci-date-new-label')!} value={t('feat-ci-date-new')!} />
+            <Readout label={t('feat-ci-date-proposed-label')!} value={t('feat-ci-date-proposed')!} />
+          </div>
+          <div class="verdict-row">
+            <div class="verdict-row__item"><p class="readout__label">{t('feat-ci-verdict-prior-label')}</p><Verdict tone="supported">{t('feat-verdict-proceed')}</Verdict></div>
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <div class="verdict-row__item"><p class="readout__label">{t('feat-ci-verdict-new-label')}</p><Verdict tone="unsupported">{t('feat-verdict-refuse')}</Verdict></div>
+          </div>
+          <WorkloadTable
+            caption={t('feat-wl-caption')!}
+            columns={['label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes'].map(id => t(id)!)}
+            rows={[['feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-source', 'feat-wl-row-closes'].map(id => t(id)!)]}
+          />
+          <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
+        </div>
+      </Module>
+    )}
+
+    {ready && lineage && (
+      <Module id="feat-lineage" title={t('feat-lineage-title')!} numbered>
+        <div class="feature-stack">
+          <p class="feature-institution">{t('feat-lineage-institution')}</p>
+          <p class="feature-summary">{t('feat-lineage-summary')}</p>
+          <LineageGraph id="feat-lineage-alt" alt={t('feat-lineage-alt')!} columns={[t('feat-lineage-col-source')!, t('feat-lineage-col-derived')!, t('feat-lineage-col-decision')!]} />
+          <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
+        </div>
+      </Module>
+    )}
+
+    {ready && evidence && (
+      <Module id="feat-ev" title={t('feat-ev-title')!} numbered>
+        <div class="feature-stack">
+          <SupportCells label={t('feat-cells-label')!} cells={[cell('label-evidence', true), cell('feat-cell-rule', true), cell('feat-cell-time', true), cell('feat-cell-authority', false), cell('feat-cell-state', true)]} />
+          <EvidenceDrawer
+            id="feat-ev-drawer"
+            title={t('feat-ev-drawer-title')!}
+            rows={[
+              { label: t('feat-decision-label')!, value: t('feat-verdict-refuse')! },
+              { label: t('label-evidence')!, value: t('feat-ev-evidence-value')! },
+              { label: t('feat-cell-rule')!, value: t('feat-ev-rule-value')! },
+              { label: t('feat-cell-time')!, value: t('feat-ev-time-value')! },
+              { label: t('feat-cell-authority')!, value: t('feat-ev-authority-value')! },
+              { label: t('feat-cell-state')!, value: t('feat-ev-state-value')! },
+              { label: t('feat-ev-hash-label')!, value: t('feat-ev-hash')!, mono: true },
+            ]}
+            note={t('feat-ev-hash-scope')}
+          />
+          <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
+        </div>
+      </Module>
+    )}
   </div>
 </main>

@@ -1,0 +1,14 @@
+---
+// A real table with a caption: one row per open action. All strings come from registered copy.
+interface Props { caption: string; columns: string[]; rows: string[][] }
+const { caption, columns, rows } = Astro.props;
+---
+<div class="table-scroll" role="region" aria-label={caption} tabindex="0">
+  <table class="workload">
+    <caption class="workload__caption">{caption}</caption>
+    <thead><tr>{columns.map(column => <th scope="col">{column}</th>)}</tr></thead>
+    <tbody>
+      {rows.map(row => <tr>{row.map((cell, index) => index === 0 ? <th scope="row"><span class="workload__status">{cell}</span></th> : <td>{cell}</td>)}</tr>)}
+    </tbody>
+  </table>
+</div>

@@ -187,6 +187,35 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.mock-panel, .mock-grid')).toHaveCount(0);
   });
 
+  test('features: labelled illustrative mocks with no scores, dollars, penalties or Gate 1 language', async ({ page }) => {
+    await page.goto(REVIEW + '/about/features/');
+    await expect(page.locator('h1')).toHaveText('Change Intelligence and Evidence, illustrated');
+    await expect(page.locator('.disclosure-line').first()).toHaveText('Illustrative · fictional data · designed behavior, not yet implemented');
+    await expect(page.locator('.disclosure-line--inline')).toHaveCount(3);
+    await expect(page.locator('main .module > .module__head')).toHaveText(['Mock Change Intelligence', 'Mock downstream lineage', 'Mock Evidence', 'Decision provenance']);
+    await expect(page.locator('.feature-summary').first()).toHaveText('1 of 4 prior decisions affected · 3 unaffected — not re-run');
+    await expect(page.locator('.readout__value')).toHaveText(['Amended return of service recorded', 'SEP 18', 'SEP 28', 'SEP 24']);
+    await expect(page.locator('.verdict__word')).toHaveText(['Proceed', 'Refuse']);
+    await expect(page.locator('table.workload caption')).toHaveText('Open action for the affected decision');
+    await expect(page.locator('table.workload thead th')).toHaveText(['Status', 'ID', 'Action', 'Assigned to', 'Source', 'Closes when']);
+    // The fictional institution is never shown without its label.
+    await expect(page.locator('.feature-institution')).toHaveText('Harbor National Bank · FICTIONAL DEMO INSTITUTION');
+    expect(await page.locator('main').innerText()).not.toMatch(/Harbor National Bank(?! · FICTIONAL DEMO INSTITUTION)/);
+    const svg = page.locator('.lineage__svg');
+    await expect(svg).toHaveAttribute('role', 'img');
+    await expect(svg.locator('text')).toHaveCount(0);
+    // The changed source plus five affected downstream assets (of ten); five unaffected.
+    await expect(page.locator('.lineage__plate--affected')).toHaveCount(6);
+    await expect(page.locator('.lineage__fold')).toHaveCount(6);
+    await expect(page.locator('.lineage__plate--neutral')).toHaveCount(5);
+    await expect(page.getByRole('img', { name: /Five of the ten downstream assets are affected/ })).toBeVisible();
+    await expect(page.locator('.support-cell__label')).toHaveText(['Evidence', 'Rule', 'Time', 'Authority', 'State']);
+    await expect(page.locator('.support-cell--unsupported')).toHaveCount(1);
+    await expect(page.locator('.drawer dt')).toHaveText(['Decision', 'Evidence', 'Rule', 'Time', 'Authority', 'State', 'Record hash']);
+    await expect(page.locator('main')).not.toContainText(/confidence meter|\$\d|penalt|Gate 1|U\.S\.C|C\.F\.R|§/i);
+    await expect(page.locator('.meter, [role="meter"], progress')).toHaveCount(0);
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/', '/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);
