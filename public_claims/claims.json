@@ -3497,7 +3497,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3527,7 +3527,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3537,7 +3537,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3547,7 +3547,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3557,7 +3557,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3567,13 +3567,243 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
   {
     "claim_id": "interop-footnote",
     "statement": "Integration categories are illustrative design targets, not current integrations.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-statutes",
+    "statement": "State and federal statutes",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-regulations",
+    "statement": "Regulations and agency rules",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-guidance",
+    "statement": "Official agency guidance and notices",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-court",
+    "statement": "Court filings and public records",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-contracts",
+    "statement": "Contracts and internal policies",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-records",
+    "statement": "System-of-record data",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-src-apis",
+    "statement": "APIs and documents",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-reasoning-title",
+    "statement": "Reasoning",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-reasoning-workflow",
+    "statement": "Workflow automation",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-title",
+    "statement": "Systems of record and actions",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-crm",
+    "statement": "CRM",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-erp",
+    "statement": "ERP",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-servicing",
+    "statement": "Loan-servicing and case systems",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-decisions",
+    "statement": "Decisions and approvals",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-communications",
+    "statement": "Customer and borrower communications",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-filings",
+    "statement": "Regulatory filings",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-agent-title",
+    "statement": "AI agent → decision",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-agent-body",
+    "statement": "An agent proposes a decision; NorthCannon verifies it against the rule in force and the evidence before it is acted on.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-model-title",
+    "statement": "Model → CRM record",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-model-body",
+    "statement": "A model updates a customer record; NorthCannon checks the change against policy and provenance before the write is accepted.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-letter-title",
+    "statement": "CRM → borrower letter",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-letter-body",
+    "statement": "A system of record triggers a borrower letter; NorthCannon confirms the notice rule in force on the mailing date before it goes out.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-change-loop",
+    "statement": "When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation.",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",

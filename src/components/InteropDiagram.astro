@@ -1,0 +1,112 @@
+---
+// Built to interoperate: four stacked layers, three checkpoint paths through the NorthCannon band, and the
+// change-intelligence loop. Static HTML/CSS; every word is a governed claim; arrows and checkpoints are decorative.
+// Production shows the approved Data Sources -> layer -> Outputs stack until every new claim is attested.
+import Icon from './Icon.astro';
+import type { Copy } from './copy';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const { t } = copy;
+const sourceIds = ['interop-src-statutes', 'interop-src-regulations', 'interop-src-guidance', 'interop-src-court', 'interop-src-contracts', 'interop-src-records', 'interop-src-apis'];
+const reasoningIds = ['interop-origin-models', 'interop-origin-agents', 'interop-reasoning-workflow'];
+const recordIds = ['interop-records-crm', 'interop-records-erp', 'interop-records-servicing', 'interop-records-decisions', 'interop-records-communications', 'interop-records-filings'];
+const flows = [
+  { title: 'interop-flow-agent-title', body: 'interop-flow-agent-body', from: 'interop-origin-agents', to: 'interop-records-decisions', fromBelow: false },
+  { title: 'interop-flow-model-title', body: 'interop-flow-model-body', from: 'interop-origin-models', to: 'interop-records-crm', fromBelow: false },
+  { title: 'interop-flow-letter-title', body: 'interop-flow-letter-body', from: 'interop-records-crm', to: 'interop-records-communications', fromBelow: true },
+];
+const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company',
+  ...sourceIds, ...reasoningIds, ...recordIds, ...flows.flatMap(flow => [flow.title, flow.body]));
+const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
+const chips = (ids: string[]) => ids.map(id => t(id)!);
+const company = t('brand-company');
+---
+{full ? (
+  <figure class="lmap" aria-describedby="lmap-desc">
+    <div class="lmap__grid">
+      <div class="box lmap__band lmap__band--sources">
+        <h3 class="lmap__label">{t('interop-auth-title')}</h3>
+        <p class="lmap__intro">{t('interop-auth-body')}</p>
+        <ul class="lmap__chips">{chips(sourceIds).map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      <div class="box lmap__band lmap__band--reasoning">
+        <h3 class="lmap__label">{t('interop-reasoning-title')}</h3>
+        <ul class="lmap__chips">{chips(reasoningIds).map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      {flows.filter(flow => !flow.fromBelow).map((flow, index) => (
+        <div class:list={['lmap__conn', 'lmap__conn--in', `lmap__col-${index + 1}`]} aria-hidden="true">
+          <span class="lmap__step">{t(flow.from)}</span>
+          <span class="lmap__arrow lmap__arrow--down"></span>
+        </div>
+      ))}
+      <div class="lmap__loop" aria-hidden="true"></div>
+      <p class="lmap__loop-caption"><span class="lmap__loop-mark" aria-hidden="true"></span><span>{t('interop-change-loop')}</span></p>
+      <div class="lmap__band lmap__band--nc">
+        <h3 class="lmap__nc-head">{t('interop-layer')}</h3>
+        <div class="lmap__checks" aria-hidden="true">
+          {flows.map((flow, index) => <span class:list={['lmap__check', `lmap__col-${index + 1}`, { 'lmap__check--turn': flow.fromBelow }]}><span class="lmap__check-ring"><Icon name="check" size={18} /></span></span>)}
+        </div>
+        <ul class="interop__modules lmap__nc-chips">{layerChips.map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      {flows.map((flow, index) => (
+        <div class:list={['lmap__conn', 'lmap__conn--out', `lmap__col-${index + 1}`, { 'lmap__conn--turn': flow.fromBelow }]} aria-hidden="true">
+          {flow.fromBelow && (
+            <span class="lmap__lane"><span class="lmap__arrow lmap__arrow--up"></span><span class="lmap__step">{t(flow.from)}</span></span>
+          )}
+          <span class="lmap__lane"><span class="lmap__arrow lmap__arrow--down"></span><span class="lmap__step">{t(flow.to)}</span></span>
+        </div>
+      ))}
+      <div class="box lmap__outputs">
+        <h3 class="card-title">{t('interop-outputs')}</h3>
+        <p class="card-text">{t('interop-outputs-body')}</p>
+      </div>
+      <div class="box lmap__band lmap__band--records">
+        <h3 class="lmap__label">{t('interop-records-title')}</h3>
+        <ul class="lmap__chips">{chips(recordIds).map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      <ul class="lmap__flows">
+        {flows.map(flow => (
+          <li class="box lmap__flow">
+            <h4 class="lmap__flow-title">{t(flow.title)}</h4>
+            <ol class="lmap__steps">
+              <li>{t(flow.from)}</li>
+              <li class="lmap__steps-nc">{company}</li>
+              <li>{t(flow.to)}</li>
+            </ol>
+            <p class="card-text">{t(flow.body)}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <figcaption class="lmap__note">{t('interop-footnote')}</figcaption>
+    <div class="visually-hidden" id="lmap-desc">
+      <ol>
+        <li>{t('interop-auth-title')}</li>
+        <li>{t('interop-reasoning-title')}</li>
+        <li>{t('interop-layer')}</li>
+        <li>{t('interop-records-title')}</li>
+      </ol>
+      <ol>
+        {flows.map(flow => <li><span>{t(flow.title)}</span> <span>{t(flow.body)}</span></li>)}
+        <li>{t('interop-change-loop')}</li>
+      </ol>
+    </div>
+  </figure>
+) : (
+  <div class="lmap lmap--basic">
+    <div class="box lmap__band">
+      <h3 class="lmap__label">{t('interop-sources')}</h3>
+      {t('interop-sources-body') && <p class="lmap__intro">{t('interop-sources-body')}</p>}
+    </div>
+    <span class="lmap__arrow lmap__arrow--down lmap__join" aria-hidden="true"></span>
+    <div class="lmap__band lmap__band--nc">
+      <h3 class="lmap__nc-head">{t('interop-layer')}</h3>
+      <ul class="interop__modules lmap__nc-chips">{layerChips.map(chip => <li>{chip}</li>)}</ul>
+    </div>
+    <span class="lmap__arrow lmap__arrow--down lmap__join" aria-hidden="true"></span>
+    <div class="box lmap__band">
+      <h3 class="lmap__label">{t('interop-outputs')}</h3>
+      <p class="lmap__intro">{t('interop-outputs-body')}</p>
+    </div>
+  </div>
+)}

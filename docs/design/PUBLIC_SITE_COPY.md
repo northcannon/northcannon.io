@@ -282,20 +282,46 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
 | `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
 
-### Company (`/about/company/`): data sources and interoperability diagram
+### Company (`/about/company/`): layered interoperability diagram
+
+Four layers top to bottom (authoritative sources, reasoning, the NorthCannon band, systems of record and
+actions), three checkpoint paths through the NorthCannon band, and the change-intelligence loop. Reused, not
+duplicated: `interop-auth-title` labels the sources layer, `interop-auth-body` is its intro line, the approved
+`interop-layer` names the NorthCannon band (with the approved `interop-adapters`, `label-evaluation`,
+`label-provenance`, `label-evidence` and `label-change-intelligence` chips), the approved `interop-outputs` and
+`interop-outputs-body` are what the band returns, and the pending `interop-origin-models` ("Models") and
+`interop-origin-agents` ("AI agents") are the reasoning chips. No vendor or product names. Until every claim
+below is attested, production renders the approved Data Sources → layer → Outputs stack.
 
 | Claim ID | Statement |
 | --- | --- |
 | `interop-auth-title` | Authoritative sources |
 | `interop-auth-body` | State and federal statutes and regulations, official agency rules and guidance, court filings and public records, contracts and internal policies, and system-of-record data, APIs and documents. |
-| `interop-origin-title` | Where decisions originate |
+| `interop-src-statutes` | State and federal statutes |
+| `interop-src-regulations` | Regulations and agency rules |
+| `interop-src-guidance` | Official agency guidance and notices |
+| `interop-src-court` | Court filings and public records |
+| `interop-src-contracts` | Contracts and internal policies |
+| `interop-src-records` | System-of-record data |
+| `interop-src-apis` | APIs and documents |
+| `interop-reasoning-title` | Reasoning |
 | `interop-origin-models` | Models |
 | `interop-origin-agents` | AI agents |
-| `interop-origin-enterprise` | Enterprise systems (CRM, ERP) |
-| `interop-origin-devices` | Devices and firmware |
-| `interop-origin-workflow` | Workflow and case systems |
-| `interop-arrow-out` | Proposed decisions and context → |
-| `interop-arrow-back` | ← Verified decision state and change-impact signals |
+| `interop-reasoning-workflow` | Workflow automation |
+| `interop-records-title` | Systems of record and actions |
+| `interop-records-crm` | CRM |
+| `interop-records-erp` | ERP |
+| `interop-records-servicing` | Loan-servicing and case systems |
+| `interop-records-decisions` | Decisions and approvals |
+| `interop-records-communications` | Customer and borrower communications |
+| `interop-records-filings` | Regulatory filings |
+| `interop-flow-agent-title` | AI agent → decision |
+| `interop-flow-agent-body` | An agent proposes a decision; NorthCannon verifies it against the rule in force and the evidence before it is acted on. |
+| `interop-flow-model-title` | Model → CRM record |
+| `interop-flow-model-body` | A model updates a customer record; NorthCannon checks the change against policy and provenance before the write is accepted. |
+| `interop-flow-letter-title` | CRM → borrower letter |
+| `interop-flow-letter-body` | A system of record triggers a borrower letter; NorthCannon confirms the notice rule in force on the mailing date before it goes out. |
+| `interop-change-loop` | When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation. |
 | `interop-footnote` | Integration categories are illustrative design targets, not current integrations. |
 
 ### Founder photo (`/about/founder/`)
@@ -331,6 +357,10 @@ paragraph renders as a pull-quote. Until it is attested, production keeps the se
 ### Retired
 
 The pending `label-overview`, `about-link-company-body`, `about-link-features-body` and `about-link-founder-body` claims are retired (IDs kept): there is no About overview page; `/about/` redirects to `/about/company/`.
+
+The pending `interop-origin-title`, `interop-origin-enterprise`, `interop-origin-devices`, `interop-origin-workflow`,
+`interop-arrow-out` and `interop-arrow-back` claims of the earlier two-way diagram are retired (IDs kept). `interop-origin-models`
+and `interop-origin-agents` stay pending: their text is reused by the reasoning layer rather than duplicated.
 
 The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs kept). The approved
 `mock-*` claims remain in the registry with their founder attestations intact but are no longer

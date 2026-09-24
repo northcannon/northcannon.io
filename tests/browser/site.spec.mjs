@@ -117,16 +117,15 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.capability-card h3')).toHaveText(['Verification', 'Provenance', 'Change Intelligence']);
     await expect(page.locator('.truth--is li')).toHaveCount(4);
     await expect(page.locator('.truth--not li')).toHaveCount(4);
-    await expect(page.locator('.imap__sources h3')).toHaveText('Authoritative sources');
-    await expect(page.locator('.imap__sources .card-text')).toContainText('State and federal statutes and regulations');
-    await expect(page.locator('.imap__outputs h3')).toHaveText('Outputs');
-    // Production keeps the approved layout and title until the new pair is attested.
+    await expect(page.locator('.lmap__band--sources h3')).toHaveText('Authoritative sources');
+    await expect(page.locator('.lmap__band--sources .lmap__intro')).toContainText('State and federal statutes and regulations');
+    await expect(page.locator('.lmap__outputs h3')).toHaveText('Outputs');
+    // Production keeps the approved Data Sources -> layer -> Outputs content until the new claims are attested.
     await page.goto(PRODUCTION + '/about/company/');
-    await expect(page.locator('.interop__node h3')).toHaveText(['Data Sources', 'Outputs']);
-    await expect(page.locator('.interop__node .card-text').first()).toHaveText('');
+    await expect(page.locator('.lmap--basic .lmap__label')).toHaveText(['Data Sources', 'Outputs']);
     await expect(page.locator('main')).not.toContainText('Authoritative sources');
+    await expect(page.locator('.lmap--basic .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
     await page.goto(REVIEW + '/about/company/');
-    await expect(page.locator('.interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });
 
@@ -276,7 +275,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('About pages use charcoal inner boxes inside purple modules', async ({ page }) => {
-    for (const [path, selector] of [['/about/company/', '.box--intro, .capability-card, .truth, .interop__node'], ['/about/features/', '.event-strip, .readout-row, .lineage, .support-cells, .drawer'], ['/about/founder/', '.box']]) {
+    for (const [path, selector] of [['/about/company/', '.box--intro, .capability-card, .truth, .lmap__band.box, .lmap__flow'], ['/about/features/', '.event-strip, .readout-row, .lineage, .support-cells, .drawer'], ['/about/founder/', '.box']]) {
       await page.goto(REVIEW + path);
       const boxes = await page.locator(selector).evaluateAll(els => els.map(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth + ' ' + s.borderTopColor, radius: s.borderTopLeftRadius, image: s.backgroundImage }; }));
       expect(boxes.length, path).toBeGreaterThan(2);
@@ -357,27 +356,79 @@ test.describe('approved design acceptance (review build)', () => {
     expect((await page.goto(PRODUCTION + '/vision/')).status()).toBe(200);
   });
 
-  test('interoperability diagram: originating systems, two-way flows, layer, outputs and sources', async ({ page }) => {
+  test('interoperability diagram: four layers, three checkpoint paths through NorthCannon, the change loop and outputs', async ({ page }) => {
+    const claims = loadGovernance().claims;
+    const text = id => claims.find(c => c.claim_id === id).statement;
     await page.goto(REVIEW + '/about/company/');
-    await expect(page.locator('.imap__origin h3')).toHaveText('Where decisions originate');
-    await expect(page.locator('.imap__chips li')).toHaveText(['Models', 'AI agents', 'Enterprise systems (CRM, ERP)', 'Devices and firmware', 'Workflow and case systems']);
-    await expect(page.locator('.imap__flow')).toHaveText(['Proposed decisions and context →', '← Verified decision state and change-impact signals']);
-    await expect(page.locator('.imap__layer .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
-    await expect(page.locator('.imap__outputs h3')).toHaveText('Outputs');
-    await expect(page.locator('.imap__sources h3')).toHaveText('Authoritative sources');
-    await expect(page.locator('.imap__note')).toHaveText('Integration categories are illustrative design targets, not current integrations.');
-    await expect(page.locator('.imap svg text')).toHaveCount(0);
-    expect(await page.locator('.imap').innerText()).not.toMatch(/salesforce|sap|oracle|openai|anthropic|microsoft/i);
-    // Sources sit below at desktop width and first on mobile.
-    const sources = await page.locator('.imap__sources').boundingBox(), origin = await page.locator('.imap__origin').boundingBox();
-    if ((page.viewportSize()?.width ?? 0) >= 1024) expect(sources.y).toBeGreaterThan(origin.y);
-    else expect(sources.y).toBeLessThan(origin.y);
+    const map = page.locator('.lmap');
+    // Four layers top to bottom; the sources label reuses interop-auth-title and the band reuses the approved interop-layer.
+    await expect(map.locator('.lmap__grid > .lmap__band h3')).toHaveText(['Authoritative sources', 'Reasoning', 'NorthCannon Verification + Change Intelligence Layer', 'Systems of record and actions']);
+    expect(claims.filter(c => c.statement === 'Authoritative sources').map(c => c.claim_id)).toEqual(['interop-auth-title']);
+    expect(claims.filter(c => c.statement === text('interop-layer')).map(c => c.claim_id)).toEqual(['interop-layer']);
+    await expect(map.locator('.lmap__band--sources .lmap__intro')).toHaveText(text('interop-auth-body'));
+    await expect(map.locator('.lmap__band--sources .lmap__chips li')).toHaveText(['State and federal statutes', 'Regulations and agency rules', 'Official agency guidance and notices', 'Court filings and public records', 'Contracts and internal policies', 'System-of-record data', 'APIs and documents']);
+    await expect(map.locator('.lmap__band--reasoning .lmap__chips li')).toHaveText(['Models', 'AI agents', 'Workflow automation']);
+    await expect(map.locator('.lmap__band--nc .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
+    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveText(['CRM', 'ERP', 'Loan-servicing and case systems', 'Decisions and approvals', 'Customer and borrower communications', 'Regulatory filings']);
+    await expect(map.locator('.lmap__flow-title')).toHaveText(['AI agent → decision', 'Model → CRM record', 'CRM → borrower letter']);
+    await expect(map.locator('.lmap__flow .card-text')).toHaveText(['interop-flow-agent-body', 'interop-flow-model-body', 'interop-flow-letter-body'].map(text));
+    await expect(map.locator('.lmap__loop-caption')).toHaveText(text('interop-change-loop'));
+    await expect(map.locator('.lmap__outputs')).toContainText('Outputs');
+    await expect(map.locator('.lmap__outputs .card-text')).toHaveText(text('interop-outputs-body'));
+    await expect(page.locator('.lmap__note')).toHaveText('Integration categories are illustrative design targets, not current integrations.');
+    // The NorthCannon band is dominant: purple outline and header band.
+    const band = await map.locator('.lmap__band--nc').evaluate(el => ({ border: getComputedStyle(el).borderTopWidth, color: getComputedStyle(el).borderTopColor, head: getComputedStyle(el.querySelector('.lmap__nc-head')).backgroundImage }));
+    expect(band.border).toBe('2px');
+    expect(band.color).toBe('rgb(139, 92, 246)');
+    expect(band.head).toContain('rgb(51, 31, 88)');
+    // Hidden description: layers, then the three flows and the loop, in order.
+    const description = page.locator('#lmap-desc');
+    await expect(map).toHaveAttribute('aria-describedby', 'lmap-desc');
+    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', 'NorthCannon Verification + Change Intelligence Layer', 'Systems of record and actions']);
+    await expect(description.locator('ol').last().locator('li')).toHaveCount(4);
+    await expect(description.locator('ol').last().locator('li').first()).toContainText('AI agent → decision');
+    await expect(map.locator('svg text')).toHaveCount(0);
+    expect(await map.innerText()).not.toMatch(/salesforce|\bsap\b|oracle|openai|anthropic|microsoft|workday|servicenow/i);
+    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Proposed decisions and context|Devices and firmware/);
+    const width = page.viewportSize()?.width ?? 0;
+    const box = sel => map.locator(sel).first().boundingBox();
+    const nc = await box('.lmap__band--nc');
+    if (width >= 1024) {
+      // Each path has an arrow into the band and one out of it; the loop runs from sources to the band.
+      await expect(map.locator('.lmap__conn--in')).toHaveCount(2);
+      await expect(map.locator('.lmap__conn--out')).toHaveCount(3);
+      await expect(map.locator('.lmap__conn--out .lmap__arrow--up')).toHaveCount(1);
+      await expect(map.locator('.lmap__check')).toHaveCount(3);
+      for (const arrow of await map.locator('.lmap__conn--in .lmap__arrow').all()) expect(Math.abs((await arrow.boundingBox()).y + (await arrow.boundingBox()).height - nc.y)).toBeLessThan(3);
+      for (const arrow of await map.locator('.lmap__conn--out .lmap__arrow').all()) expect(Math.abs((await arrow.boundingBox()).y - (nc.y + nc.height))).toBeLessThan(3);
+      const loop = await box('.lmap__loop'), sources = await box('.lmap__band--sources');
+      expect(loop.y).toBeGreaterThan(sources.y);
+      expect(loop.y).toBeLessThan(sources.y + sources.height);
+      expect(loop.y + loop.height).toBeGreaterThan(nc.y);
+      expect(loop.y + loop.height).toBeLessThan(nc.y + nc.height);
+      expect(await map.locator('.lmap__loop').evaluate(el => getComputedStyle(el).borderTopStyle)).toBe('dashed');
+      const outputs = await box('.lmap__outputs'), records = await box('.lmap__band--records');
+      expect(outputs.y).toBeGreaterThan(nc.y + nc.height);
+      expect(outputs.y + outputs.height).toBeLessThan(records.y);
+    } else {
+      // Narrow: stacked layers, each path a vertical source -> NorthCannon -> destination sequence.
+      await expect(map.locator('.lmap__conn').first()).toBeHidden();
+      for (const flow of await map.locator('.lmap__flow').all()) {
+        await expect(flow.locator('.lmap__steps li')).toHaveCount(3);
+        await expect(flow.locator('.lmap__steps li').nth(1)).toHaveText('NorthCannon');
+        const steps = await flow.locator('.lmap__steps li').evaluateAll(els => els.map(el => el.getBoundingClientRect().y));
+        expect(steps[0]).toBeLessThan(steps[1]); expect(steps[1]).toBeLessThan(steps[2]);
+        expect(await flow.locator('.lmap__steps li').nth(1).evaluate(el => getComputedStyle(el, '::after').borderTopStyle)).toBe('solid');
+      }
+      const order = await Promise.all(['.lmap__band--sources', '.lmap__band--reasoning', '.lmap__band--nc', '.lmap__band--records'].map(sel => box(sel).then(b => b.y)));
+      expect([...order].sort((a, b) => a - b)).toEqual(order);
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     // Production keeps the approved layout until every new claim is attested.
     await page.goto(PRODUCTION + '/about/company/');
-    await expect(page.locator('.imap')).toHaveCount(0);
-    await expect(page.locator('.interop')).toHaveCount(1);
-    await expect(page.locator('main')).not.toContainText('Where decisions originate');
+    await expect(page.locator('.lmap__grid')).toHaveCount(0);
+    await expect(page.locator('.lmap--basic')).toHaveCount(1);
+    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower/);
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {

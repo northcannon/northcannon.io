@@ -182,7 +182,7 @@
   .support-cell__label { color: var(--color-text); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; }
   .card--elevated { background: var(--color-elevated); }
   /* Charcoal inner box (About pages): neutral border, 16px radius; sections stay purple modules. */
-  .box, .capability-card, .truth, .interop__node, .interop__layer, .event-strip, .readout-row, .verdict-row, .lineage, .support-cells, .drawer, .table-scroll:has(.workload) {
+  .box, .capability-card, .truth, .event-strip, .readout-row, .verdict-row, .lineage, .support-cells, .drawer, .table-scroll:has(.workload) {
     padding: 1.25rem 1.5rem; border: 1px solid var(--box-charcoal-border); border-radius: var(--radius-card);
     background: linear-gradient(var(--box-charcoal-hi), var(--box-charcoal-lo));
   }

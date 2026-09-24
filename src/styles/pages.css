@@ -37,11 +37,6 @@
   .truth--is .truth__list .icon { color: var(--color-verified); }
   .truth--not .truth__list .icon { color: var(--color-failed-text); }
 
-  .interop { display: grid; grid-template-columns: minmax(0, 2fr) auto minmax(0, 5fr) auto minmax(0, 2fr); align-items: stretch; gap: 0.75rem; min-height: 9.5rem; }
-  .interop__node, .interop__layer { display: flex; flex-direction: column; justify-content: center; }
-  .interop__arrow { display: grid; place-items: center; color: var(--color-violet-text); }
-  .interop__layer { align-items: center; gap: 1rem; }
-  .interop__layer-title { margin: 0; color: var(--color-violet-text); font-size: 1rem; text-align: center; }
   .interop__modules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.625rem; width: 100%; }
   .interop__modules li { display: grid; place-items: center; min-height: 3.25rem; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-elevated); color: var(--color-muted); font-size: 0.8125rem; text-align: center; }
 
@@ -251,20 +246,43 @@
   .ci-beacon--live { fill: var(--color-unsupported); }
   .ci-beacon--steady { fill: var(--color-supported); }
 
-  /* Interoperability diagram: origins <-> layer -> outputs, fed by authoritative sources. Static HTML, text never in SVG. */
-  .imap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 12rem) minmax(0, 2fr) 2rem minmax(0, 1fr); grid-template-areas: "origin flows layer arrow outputs" ". . up . ." "sources sources sources sources sources"; align-items: stretch; gap: 0.75rem; }
-  .imap__origin { grid-area: origin; } .imap__flows { grid-area: flows; } .imap__layer { grid-area: layer; } .imap__arrow { grid-area: arrow; } .imap__outputs { grid-area: outputs; } .imap__up { grid-area: up; } .imap__sources { grid-area: sources; }
-  .imap__chips { display: grid; gap: 0.5rem; margin-top: 0.75rem; }
-  .imap__chips li { padding: 0.5rem 0.75rem; border: 1px solid var(--box-charcoal-border); border-radius: var(--radius-control); background: linear-gradient(var(--box-charcoal-hi), var(--box-charcoal-lo)); color: var(--color-text); font-size: 0.875rem; }
-  .imap__flows { display: grid; align-content: center; gap: 1.25rem; }
-  .imap__flow { display: flex; align-items: center; gap: 0.5rem; margin: 0; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; line-height: 1.4; }
-  .imap__flow--out { justify-content: flex-end; text-align: right; }
-  .imap__flow .icon { flex: none; width: 1.5rem; height: 1.5rem; }
-  .imap__flow--back .icon { transform: rotate(180deg); }
-  .imap__arrow, .imap__up { display: grid; place-items: center; color: var(--color-violet-text); }
-  .imap__up { justify-self: center; transform: rotate(-90deg); }
-  .imap__layer .interop__modules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .imap__note { margin: 0.75rem 0 0; color: var(--color-muted); font-size: 0.8125rem; }
+  /* Interoperability: four stacked layers inside one module; checkpoint paths (violet) pass through the
+     NorthCannon band; the change loop (amber, dashed, arrowhead and caption) returns from sources to the band.
+     All text is HTML; arrows and checkpoints are decorative CSS. */
+  .lmap { display: grid; gap: 0.75rem; margin: 0; }
+  .lmap__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  .lmap__band { display: grid; gap: 0.625rem; }
+  .lmap__label { margin: 0; color: var(--color-key); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+  .lmap__intro { margin: 0; color: var(--color-muted); font-size: 0.875rem; line-height: 1.55; }
+  .lmap__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .lmap__chips li, .lmap__step, .lmap__steps li { padding: 0.375rem 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-card); color: var(--color-text); font-size: 0.8125rem; line-height: 1.35; }
+  .lmap__band--nc { gap: 0; overflow: hidden; border: 2px solid var(--color-violet); border-radius: var(--radius-card); background: linear-gradient(180deg, var(--color-panel), var(--color-panel-end)); box-shadow: var(--shadow-module), 0 0 0 4px color-mix(in srgb, var(--color-violet) 18%, transparent); }
+  .lmap__nc-head { margin: 0; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: #efe6f8; font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.1em; line-height: 1.4; text-transform: uppercase; }
+  .lmap__nc-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 1rem 1.25rem 1.25rem; }
+  .lmap__nc-chips li { color: var(--color-text); }
+  .lmap__checks { display: none; }
+  .lmap__conn, .lmap__loop { display: none; }
+  .lmap__arrow { position: relative; display: block; flex: 1 1 auto; width: 0; min-height: 2rem; margin-inline: auto; border-left: 2px solid var(--color-violet); }
+  .lmap__arrow::after { content: ""; position: absolute; left: -7px; border: 6px solid transparent; }
+  .lmap__arrow--down::after { bottom: -1px; border-bottom-width: 0; border-top: 9px solid var(--color-violet); }
+  .lmap__arrow--up::after { top: -1px; border-top-width: 0; border-bottom: 9px solid var(--color-violet); }
+  .lmap__join { flex: none; height: 1.5rem; min-height: 0; }
+  .lmap__step { display: block; max-width: 100%; text-align: center; }
+  .lmap__outputs { border-top: 3px solid var(--color-verified); }
+  .lmap__loop-caption { display: flex; align-items: flex-start; gap: 0.75rem; margin: 0; padding: 0.75rem 1rem; border: 1.5px dashed var(--color-pending); border-radius: var(--radius-control); background: color-mix(in srgb, var(--color-pending) 8%, var(--color-bg)); color: var(--color-text); font-size: 0.8125rem; line-height: 1.5; }
+  /* Change mark: an upward return arrow, so the loop never depends on colour. */
+  .lmap__loop-mark { position: relative; flex: none; width: 0.75rem; height: 1.25rem; margin: 0.125rem 0.25rem 0; border: 2px solid var(--color-pending); border-right: 0; border-radius: 6px 0 0 6px; }
+  .lmap__loop-mark::after { content: ""; position: absolute; top: -6px; right: -6px; border: 5px solid transparent; border-right-width: 0; border-left: 8px solid var(--color-pending); }
+  .lmap__flows { display: grid; gap: 0.75rem; }
+  .lmap__flow { display: grid; align-content: start; gap: 0.625rem; border-top: 3px solid var(--color-violet); }
+  .lmap__flow-title { margin: 0; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em; }
+  .lmap__flow .card-text { margin: 0; }
+  .lmap__steps { display: grid; justify-items: start; gap: 1.5rem; }
+  .lmap__steps li { position: relative; }
+  .lmap__steps li + li::before { content: ""; position: absolute; left: 1.25rem; bottom: calc(100% + 1px); height: calc(1.5rem - 2px); border-left: 2px solid var(--color-violet); }
+  .lmap__steps li + li::after { content: ""; position: absolute; left: calc(1.25rem - 6px); bottom: calc(100% + 1px); border: 6px solid transparent; border-bottom-width: 0; border-top: 8px solid var(--color-violet); }
+  .lmap__steps .lmap__steps-nc { border: 2px solid var(--color-violet); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); font-weight: 600; }
+  .lmap__note { margin: 0; color: var(--color-muted); font-size: 0.8125rem; }
 
   /* Contact and supporting pages. */
   .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
@@ -279,6 +297,39 @@
   .record-fields--digest div { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
 }
 
+/* Interoperability on desktop: bands span four columns; paths and the loop occupy their own tracks. */
+@media (min-width: 64rem) {
+  .lmap__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.15fr) 2.5rem; gap: 0 1rem; }
+  .lmap__grid .lmap__band--sources { grid-area: 1 / 1 / 2 / 5; }
+  .lmap__grid .lmap__band--reasoning { grid-area: 2 / 1 / 3 / 5; margin-top: 1rem; }
+  .lmap__grid .lmap__band--nc { grid-area: 4 / 1 / 5 / 5; display: grid; grid-template-columns: subgrid; }
+  .lmap__grid .lmap__band--records { grid-area: 6 / 1 / 7 / 5; }
+  .lmap__grid .lmap__flows { grid-area: 7 / 1 / 8 / 4; display: grid; grid-template-columns: subgrid; margin-top: 1rem; }
+  .lmap__grid .lmap__steps { display: none; }
+  .lmap__grid .lmap__col-1 { grid-column: 1; } .lmap__grid .lmap__col-2 { grid-column: 2; } .lmap__grid .lmap__col-3 { grid-column: 3; }
+  .lmap__grid .lmap__conn { display: flex; flex-direction: column; align-items: center; gap: 0.375rem; min-height: 5.5rem; padding-block: 0.625rem 0; }
+  .lmap__grid .lmap__conn--in { grid-row: 3; }
+  .lmap__grid .lmap__conn--out { grid-row: 5; flex-direction: row; justify-content: center; align-items: stretch; gap: 1.25rem; padding-block: 0 0.625rem; }
+  .lmap__grid .lmap__lane { display: flex; flex-direction: column; align-items: center; gap: 0.375rem; min-width: 0; max-width: 11rem; }
+  .lmap__grid .lmap__conn .lmap__step { font-size: 0.75rem; }
+  .lmap__grid .lmap__band--nc > .lmap__nc-head { grid-column: 1 / -1; }
+  .lmap__grid .lmap__checks { display: grid; grid-template-columns: subgrid; grid-column: 1 / 4; grid-row: 2; }
+  .lmap__grid .lmap__check { display: flex; flex-direction: column; align-items: center; justify-content: center; border-inline: 0; background: linear-gradient(var(--color-violet), var(--color-violet)) center / 2px 100% no-repeat; }
+  .lmap__grid .lmap__check-ring { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 2px solid var(--color-violet); border-radius: 50%; background: var(--color-panel); color: var(--color-violet-text); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-violet) 22%, transparent); }
+  .lmap__grid .lmap__band--nc > .lmap__nc-chips { grid-column: 4; grid-row: 2; padding-inline: 0 1.25rem; }
+  .lmap__grid .lmap__outputs { grid-area: 5 / 4; position: relative; display: grid; align-content: center; margin-block: 1.5rem; }
+  .lmap__grid .lmap__outputs::before, .lmap__grid .lmap__outputs::after { content: ""; position: absolute; left: 50%; height: 1.5rem; border-left: 2px solid var(--color-verified); }
+  .lmap__grid .lmap__outputs::before { bottom: 100%; }
+  .lmap__grid .lmap__outputs::after { top: 100%; }
+  .lmap__grid .lmap__loop-caption { grid-area: 3 / 3 / 4 / 5; align-self: center; margin-block: 0.75rem; }
+  .lmap__grid .lmap__loop { display: block; position: relative; grid-area: 1 / 5 / 5 / 6; margin: 3rem 0 3rem -1rem; border: 2px dashed var(--color-pending); border-left: 0; border-radius: 0 14px 14px 0; }
+  .lmap__grid .lmap__loop::before { content: ""; position: absolute; top: -6px; left: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--color-pending); }
+  .lmap__grid .lmap__loop::after { content: ""; position: absolute; bottom: -8px; left: -10px; border: 7px solid transparent; border-left-width: 0; border-right: 10px solid var(--color-pending); }
+  .lmap__grid .lmap__check--turn { background: linear-gradient(var(--color-violet), var(--color-violet)) 25% 100% / 2px 50% no-repeat, linear-gradient(var(--color-violet), var(--color-violet)) 75% 100% / 2px 50% no-repeat, linear-gradient(var(--color-violet), var(--color-violet)) center / 50% 2px no-repeat; }
+  .lmap__grid .lmap__conn--turn { gap: 0; }
+  .lmap__grid .lmap__conn--turn .lmap__lane { flex: 1 1 0; max-width: none; }
+  .lmap--basic .lmap__nc-chips { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
 /* Wide screens: About prose stays full width; larger type and leading keep long lines readable. */
 @media (min-width: 100rem) {
   .prose p, .prose .bullet-list, .prose-lead, .vision-box__p { font-size: 1.1875rem; line-height: 1.75; }
@@ -302,15 +353,9 @@
   .workload td::before, .workload tbody th::before { content: attr(data-label); color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; overflow-wrap: normal; }
 }
 @media (max-width: 63.99rem) {
-  /* Interoperability diagram stacks: sources, originate, layer, outputs, with direction labels. */
-  .imap { grid-template-columns: minmax(0, 1fr); grid-template-areas: "sources" "up" "origin" "flows" "layer" "arrow" "outputs"; }
-  .imap__flows { gap: 0.75rem; }
-  .imap__flow--out { justify-content: flex-start; text-align: left; flex-direction: row-reverse; }
-  .imap__flow .icon { transform: rotate(90deg); }
-  .imap__flow--back .icon { transform: rotate(-90deg); }
-  .imap__arrow { transform: rotate(90deg); }
-  .imap__up { transform: rotate(90deg); }
-  .imap__layer .interop__modules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Interoperability stacks: layers, then the change loop after the band, then each checkpoint path as steps. */
+  .lmap__grid > .lmap__band--sources { order: 1; } .lmap__grid > .lmap__band--reasoning { order: 2; } .lmap__grid > .lmap__band--nc { order: 3; }
+  .lmap__grid > .lmap__loop-caption { order: 4; } .lmap__grid > .lmap__outputs { order: 5; } .lmap__grid > .lmap__band--records { order: 6; } .lmap__grid > .lmap__flows { order: 7; }
   /* Let enlarged text size intrinsic grid/flex children without widening the page. */
   .contact-card > *, .artifact-viewer__body { min-width: 0; max-width: 100%; }
   .section-head__title, .mock-panel__head, .mock-box__row, .confidence, .mock-tasks li { flex-wrap: wrap; }
@@ -327,8 +372,6 @@
   .drawer__row { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
   .capability-grid, .truth-grid, .explainer-grid, .artifact-grid, .contact-grid, .background-grid { grid-template-columns: minmax(0, 1fr); }
   .capability-card { min-height: 0; }
-  .interop { grid-template-columns: minmax(0, 1fr); }
-  .interop__arrow { transform: rotate(90deg); }
   .interop__modules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lifecycle { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
   .lifecycle__step { flex-direction: row; text-align: left; }
@@ -357,6 +400,8 @@
   .lineage__plate rect:first-child, .lineage__edge { stroke: CanvasText; }
   .lineage__fold, .lineage__bar { forced-color-adjust: none; fill: CanvasText; }
   .disclosure-line { border-color: CanvasText; }
+  /* Arrowheads are border triangles: keep their authored colours so direction stays visible. */
+  .lmap__arrow::after, .lmap__loop::after, .lmap__loop::before, .lmap__loop-mark::after, .lmap__steps li + li::after { forced-color-adjust: none; }
   .lifecycle__marker, .criteria li::before { border-color: CanvasText; }
   .is-current .lifecycle__marker { forced-color-adjust: none; background: Highlight; color: HighlightText; }
 }

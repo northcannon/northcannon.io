@@ -102,8 +102,13 @@ test('migration preserves each baseline ID and approval state once, with a singl
   await assert.rejects(access('public_claims/public_claim_registry.yaml'));
   await assert.rejects(access('src/content/foundation.json'));
   assert.ok(current.claims.length >= 13);
-  // Nine baseline retirements, 21 pending mock-* claims, and 4 pending About-overview claims retired by the redesign.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 34);
+  // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
+  // and 6 pending claims of the earlier two-way interoperability diagram.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 40);
+  for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
+    const claim = current.claims.find(c => c.claim_id === id);
+    assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');
+  }
 });
 
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
