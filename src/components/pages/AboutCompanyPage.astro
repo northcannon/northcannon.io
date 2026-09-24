@@ -7,7 +7,8 @@ import AboutSubnav from '../AboutSubnav.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
 const { copy, route, title } = Astro.props;
-const { t, href } = copy;
+const { t, href, paragraphs } = copy;
+const vision = paragraphs('vision-statement');
 const capabilities = [
   { title: 'cap-verification', body: 'cap-verification-body', icon: 'flask' },
   { title: 'label-provenance', body: 'cap-provenance-body', icon: 'database' },
@@ -43,6 +44,14 @@ const contactHref = href('/contact/');
         </Module>
       )}
     </div>
+
+    {t('label-vision') && vision.length > 0 && (
+      <Module id="vision" title={t('label-vision')!} numbered>
+        <div class="box vision-box">
+          {vision.map((paragraph, index) => <p class:list={['vision-box__p', { 'pull-quote': index === 0 || index === vision.length - 1 }]}>{paragraph}</p>)}
+        </div>
+      </Module>
+    )}
 
     {t('home-capabilities-title') && (
       <section class="module module--numbered panel" aria-labelledby="capabilities-title">

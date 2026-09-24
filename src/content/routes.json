@@ -14,7 +14,9 @@
       "brand-company-motto",
       "brand-mission",
       "label-provenance",
-      "label-evidence"
+      "label-evidence",
+      "label-vision",
+      "vision-statement"
     ],
     "review_claim_ids": [
       "label-gate-1",

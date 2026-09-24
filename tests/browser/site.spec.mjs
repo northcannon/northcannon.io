@@ -265,6 +265,29 @@ test.describe('approved design acceptance (review build)', () => {
     }
   });
 
+  test('company vision section: verbatim approved statement in one charcoal box, anchored at #vision', async ({ page }) => {
+    const statement = loadGovernance().claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
+    expect(statement).toHaveLength(6);
+    for (const base of [REVIEW, PRODUCTION]) {
+      await page.goto(base + '/about/company/#vision');
+      await expect(page.locator('h2#vision')).toHaveText('Vision');
+      await expect(page.locator('.vision-box')).toHaveCount(1);
+      await expect(page.locator('.vision-box p')).toHaveText(statement);
+      await expect(page.locator('.vision-box .pull-quote')).toHaveCount(2);
+      await expect(page.locator('.vision-box .pull-quote').first()).toContainText('AI should be able to reason');
+      await expect(page.locator('.vision-box .pull-quote').last()).toContainText('Trusted machine intelligence should not only know what is true');
+      // Order: intro modules, Vision, then Core Capabilities.
+      const heads = await page.locator('main .module__head').allTextContents();
+      expect(heads.slice(0, 4)).toEqual(['NorthCannon', 'Why now', 'Vision', 'Core Capabilities']);
+      expect(await page.locator('.vision-box').evaluate(el => parseFloat(getComputedStyle(el).maxWidth) > 0)).toBe(true);
+    }
+    // The Founder page's Vision link lands on that anchor; /vision/ stays published.
+    await page.goto(REVIEW + '/about/founder/');
+    await page.getByRole('link', { name: 'Vision' }).click();
+    await expect(page).toHaveURL(/\/about\/company\/#vision$/);
+    expect((await page.goto(PRODUCTION + '/vision/')).status()).toBe(200);
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);
@@ -321,6 +344,7 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.prose .bullet-list li')).toHaveCount(4);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
     expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/gate-1/']);
+    await expect(page.getByRole('link', { name: 'Vision' })).toHaveAttribute('href', '/about/company/#vision');
   });
 
   test('contact: general and security destinations', async ({ page }) => {
