@@ -35,22 +35,22 @@ const contactHref = href('/contact/');
       <p class="lede">{t('brand-mission')}</p>
     </section>
 
-    <div class="about-modules">
-      <Module id="about-company" title={t('brand-company')!}>
+    <section class="box about-banner" aria-labelledby="about-company">
+      <img class="about-banner__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
+      <div class="about-banner__copy">
+        <h2 class="about-banner__name" id="about-company">{t('brand-company')}</h2>
+        <p class="about-banner__motto">{t('brand-company-motto')}</p>
+      </div>
+    </section>
+
+    {t('about-why-title') && t('about-why-body') && (
+      <Module id="about-why" title={t('about-why-title')!}>
         <div class="box box--intro">
-          <img class="box__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
-          <p class="prose-lead">{t('brand-company-motto')}</p>
+          <Icon name="clock" size={40} />
+          <p class="prose-lead">{t('about-why-body')}</p>
         </div>
       </Module>
-      {t('about-why-title') && t('about-why-body') && (
-        <Module id="about-why" title={t('about-why-title')!}>
-          <div class="box box--intro">
-            <Icon name="clock" size={40} />
-            <p class="prose-lead">{t('about-why-body')}</p>
-          </div>
-        </Module>
-      )}
-    </div>
+    )}
 
     {t('label-vision') && vision.length > 0 && (
       <Module id="vision" title={t('label-vision')!}>

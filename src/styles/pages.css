@@ -180,7 +180,12 @@
   .vision-box__p { margin: 0 0 1rem; color: var(--color-muted); line-height: 1.7; }
   .vision-box__p:last-child { margin-bottom: 0; }
   .vision-box .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
-  .about-modules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); align-items: start; }
+  /* NorthCannon banner: a charcoal box only (no module frame or band), full content width. */
+  .about-banner { display: flex; align-items: center; gap: 2.5rem; padding: 3.5rem 3rem; }
+  .about-banner__mark { flex: none; width: 7.5rem; height: auto; }
+  .about-banner__copy { min-width: 0; }
+  .about-banner__name { margin: 0; font-size: 3rem; line-height: 1.1; letter-spacing: -0.02em; }
+  .about-banner__motto { margin: 0.75rem 0 0; color: var(--color-violet-text); font-size: 1.75rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; }
   .prose-lead { max-width: var(--text-width); margin: 0; color: var(--color-text); font-size: 1.0625rem; line-height: 1.6; }
   .link-cards--triple { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .link-cards--triple > li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
@@ -308,7 +313,11 @@
   .home-hero__copy, .home-hero__visual { grid-column: auto; }
   .home-hero__title { font-size: 1.625rem; }
   .evidence-art { display: none; }
-  .about-modules, .link-cards--triple { grid-template-columns: minmax(0, 1fr); }
+  .link-cards--triple { grid-template-columns: minmax(0, 1fr); }
+  .about-banner { gap: 1.25rem; padding: 2rem 1.5rem; }
+  .about-banner__mark { width: 4.5rem; }
+  .about-banner__name { font-size: 2rem; }
+  .about-banner__motto { font-size: 1.25rem; }
   .drawer__row { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
   .capability-grid, .truth-grid, .explainer-grid, .artifact-grid, .contact-grid, .background-grid { grid-template-columns: minmax(0, 1fr); }
   .capability-card { min-height: 0; }
@@ -335,6 +344,7 @@
   .record-fields div, .record-fields--digest div { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
 @media (max-width: 30rem) {
+  .about-banner { flex-direction: column; align-items: flex-start; }
   .arm-grid, .metric-grid, .readiness__steps, .metadata-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (forced-colors: active) {

@@ -183,10 +183,28 @@ test.describe('approved design acceptance (review build)', () => {
     await page.goto(REVIEW + '/about/company/');
     await expect(page.locator('main .eyebrow').first()).toHaveText('About NorthCannon');
     await expect(page.locator('h1')).toHaveText('Verification, evidence, and change intelligence for consequential machine decisions.');
-    await expect(page.locator('.about-modules .module__head')).toHaveText(['NorthCannon', 'Why now']);
-    await expect(page.locator('.about-modules .box--intro img[src="/northcannon-mark.svg"]')).toHaveCount(1);
-    await expect(page.locator('.about-modules .box--intro .icon')).toHaveCount(1);
     expect(await page.locator('main .site-container > *').first().evaluate(el => el.className)).toContain('about-subnav');
+    // The NorthCannon banner is a charcoal box only: no module frame, no header band, full content width.
+    const banner = page.locator('.about-banner');
+    await expect(banner.locator('h2')).toHaveText('NorthCannon');
+    await expect(banner.locator('.about-banner__motto')).toHaveText('Designed to be falsified. Built for trust.');
+    await expect(banner.locator('img[src="/northcannon-mark.svg"]')).toHaveCount(1);
+    await expect(banner.locator('.module__head')).toHaveCount(0);
+    expect(await banner.evaluate(el => el.closest('.module'))).toBeNull();
+    const style = await banner.evaluate(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth + ' ' + s.borderTopColor, radius: s.borderTopLeftRadius, image: s.backgroundImage, pad: parseFloat(s.paddingTop) }; });
+    expect(style).toMatchObject({ border: '1px rgb(46, 46, 59)', radius: '16px' });
+    expect(style.image).toMatch(/rgb\(18, 18, 22\).*rgb\(13, 13, 16\)/);
+    expect(style.pad).toBeGreaterThanOrEqual(32);
+    const container = await page.locator('main .site-container').boundingBox(), box = await banner.boundingBox();
+    expect(Math.abs(box.width - container.width)).toBeLessThan(1);
+    // Mark on the left, name and motto beside it (stacked only on the narrowest screens).
+    if ((page.viewportSize()?.width ?? 0) > 480) expect((await banner.locator('img').boundingBox()).x).toBeLessThan((await banner.locator('h2').boundingBox()).x);
+    expect(parseFloat(await banner.locator('h2').evaluate(el => getComputedStyle(el).fontSize))).toBeGreaterThan(parseFloat(await page.locator('#about-why').evaluate(el => getComputedStyle(el).fontSize)) * 2);
+    // Why now follows as its own full-width section with a charcoal body.
+    const why = page.locator('section:has(> #about-why)');
+    expect(Math.abs((await why.boundingBox()).width - container.width)).toBeLessThan(1);
+    await expect(why.locator('.box .icon')).toHaveCount(1);
+    expect(await page.evaluate(() => { const b = document.querySelector('.about-banner'), w = document.querySelector('section:has(> #about-why)'); return !!(b.compareDocumentPosition(w) & Node.DOCUMENT_POSITION_FOLLOWING); })).toBe(true);
   });
 
   test('features: labelled illustrative mocks with no scores, dollars, penalties or Gate 1 language', async ({ page }) => {
@@ -298,9 +316,10 @@ test.describe('approved design acceptance (review build)', () => {
       await expect(page.locator('.vision-box .pull-quote')).toHaveCount(2);
       await expect(page.locator('.vision-box .pull-quote').first()).toContainText('AI should be able to reason');
       await expect(page.locator('.vision-box .pull-quote').last()).toContainText('Trusted machine intelligence should not only know what is true');
-      // Order: intro modules, Vision, then Core Capabilities.
+      // Order: banner, Why now, Vision, then Core Capabilities.
       const heads = await page.locator('main .module__head').allTextContents();
-      expect(heads.slice(0, 4)).toEqual(['NorthCannon', 'Why now', 'Vision', 'Core Capabilities']);
+      expect(heads.slice(0, 3)).toEqual(['Why now', 'Vision', 'Core Capabilities']);
+      await expect(page.locator('main h2').first()).toHaveText('NorthCannon');
       expect(await page.locator('.vision-box').evaluate(el => parseFloat(getComputedStyle(el).maxWidth) > 0)).toBe(true);
     }
     // The Founder page's Vision link lands on that anchor; /vision/ stays published.
