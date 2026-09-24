@@ -21,7 +21,7 @@ const gateHref = href('/gate-1/');
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <AboutSubnav copy={copy} currentPath={route.path} />
-    <Module id="founder-module" title={t('label-founder')!} plainBand numbered>
+    <Module id="founder-module" title={t('label-founder')!} plainBand>
       <section class="founder-hero" aria-labelledby="founder-title">
         <span class="founder-hero__portrait">
           <picture>
@@ -38,7 +38,7 @@ const gateHref = href('/gate-1/');
     </Module>
 
     {t('founder-why-title') && (
-      <Module id="why-title" title={t('founder-why-title')!} numbered>
+      <Module id="why-title" title={t('founder-why-title')!}>
         <div class="box">
           <div class="prose">{vision.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
         </div>
@@ -47,7 +47,7 @@ const gateHref = href('/gate-1/');
     )}
 
     {t('founder-background-title') && (
-      <Module id="background-title" title={t('founder-background-title')!} numbered>
+      <Module id="background-title" title={t('founder-background-title')!}>
         <div class="background-grid">
           <div class="box background-card">
             <Icon name="book" size={32} />
@@ -65,7 +65,7 @@ const gateHref = href('/gate-1/');
     )}
 
     {t('founder-building-title') && (
-      <Module id="building-title" title={t('founder-building-title')!} numbered>
+      <Module id="building-title" title={t('founder-building-title')!}>
         <div class="box">
           <div class="prose">
             {vision[4] && <p>{vision[4]}</p>}

@@ -273,6 +273,20 @@ test.describe('approved design acceptance (review build)', () => {
     }
   });
 
+  test('About pages carry no module numbering; other pages keep it', async ({ page }) => {
+    const numbers = () => page.locator('main .module__head').evaluateAll(els => els.map(el => getComputedStyle(el, '::before').content));
+    for (const base of [REVIEW, PRODUCTION]) for (const path of ['/about/company/', '/about/features/', '/about/founder/']) {
+      if (base === PRODUCTION && path === '/about/features/') continue;
+      await page.goto(base + path);
+      const heads = await numbers();
+      expect(heads.length, path).toBeGreaterThan(0);
+      for (const content of heads) expect(content, path).toBe('none');
+      expect(await page.locator('main').innerText(), path).not.toMatch(/\b0\d ·/);
+    }
+    await page.goto(REVIEW + '/gate-1/');
+    expect((await numbers()).some(content => /counter|0\d/.test(content) || content.includes('·'))).toBe(true);
+  });
+
   test('company vision section: verbatim approved statement in one charcoal box, anchored at #vision', async ({ page }) => {
     const statement = loadGovernance().claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
     expect(statement).toHaveLength(6);

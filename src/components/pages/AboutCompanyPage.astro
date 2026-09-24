@@ -36,14 +36,14 @@ const contactHref = href('/contact/');
     </section>
 
     <div class="about-modules">
-      <Module id="about-company" title={t('brand-company')!} numbered>
+      <Module id="about-company" title={t('brand-company')!}>
         <div class="box box--intro">
           <img class="box__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
           <p class="prose-lead">{t('brand-company-motto')}</p>
         </div>
       </Module>
       {t('about-why-title') && t('about-why-body') && (
-        <Module id="about-why" title={t('about-why-title')!} numbered>
+        <Module id="about-why" title={t('about-why-title')!}>
           <div class="box box--intro">
             <Icon name="clock" size={40} />
             <p class="prose-lead">{t('about-why-body')}</p>
@@ -53,7 +53,7 @@ const contactHref = href('/contact/');
     </div>
 
     {t('label-vision') && vision.length > 0 && (
-      <Module id="vision" title={t('label-vision')!} numbered>
+      <Module id="vision" title={t('label-vision')!}>
         <div class="box vision-box">
           {vision.map((paragraph, index) => <p class:list={['vision-box__p', { 'pull-quote': index === 0 || index === vision.length - 1 }]}>{paragraph}</p>)}
         </div>
@@ -61,7 +61,7 @@ const contactHref = href('/contact/');
     )}
 
     {t('home-capabilities-title') && (
-      <section class="module module--numbered panel" aria-labelledby="capabilities-title">
+      <section class="module panel" aria-labelledby="capabilities-title">
 <h2 class="module__head" id="capabilities-title">{t('home-capabilities-title')}</h2>
 <div class="module__body">
 {t('home-capabilities-intro') && <p class="section-intro">{t('home-capabilities-intro')}</p>}
@@ -80,7 +80,7 @@ const contactHref = href('/contact/');
     )}
 
     {t('home-is-title') && (
-      <section class="module module--numbered panel" aria-labelledby="truth-title">
+      <section class="module panel" aria-labelledby="truth-title">
 <h2 class="module__head" id="truth-title">{t('home-is-title')}</h2>
 <div class="module__body">
 
@@ -100,7 +100,7 @@ const contactHref = href('/contact/');
     )}
 
     {t('home-interop-title') && (
-      <section class="module module--numbered panel" aria-labelledby="interop-title">
+      <section class="module panel" aria-labelledby="interop-title">
 <h2 class="module__head" id="interop-title">{t('home-interop-title')}</h2>
 <div class="module__body">
 {t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
