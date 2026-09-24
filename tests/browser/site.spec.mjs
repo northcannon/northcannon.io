@@ -304,6 +304,32 @@ test.describe('approved design acceptance (review build)', () => {
     expect((await numbers()).some(content => /counter|0\d/.test(content) || content.includes('·'))).toBe(true);
   });
 
+  test('company page order: eyebrow, headline, mission, banner, Why now, Vision, capabilities, is / is not, interoperate, contact', async ({ page }) => {
+    for (const base of [REVIEW, PRODUCTION]) {
+      await page.goto(base + '/about/company/');
+      const order = await page.locator('main .site-container > *').evaluateAll(els => els.map(el => {
+        if (el.matches('.about-subnav')) return 'subnav';
+        if (el.matches('.page-hero')) return [...el.children].map(child => child.matches('.eyebrow') ? 'eyebrow' : child.matches('h1') ? 'h1' : child.matches('.lede') ? 'mission' : '?').join('>');
+        if (el.matches('.about-banner')) return 'banner';
+        if (el.matches('.contact-cta')) return 'contact';
+        return el.querySelector(':scope > .module__head')?.textContent.trim() ?? el.className;
+      }));
+      // The subnav needs its pending label (label-about-sections), so production omits it until attested.
+      expect(order, base).toEqual([...(base === REVIEW ? ['subnav'] : []), 'eyebrow>h1>mission', 'banner', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
+      await expect(page.locator('main .page-hero .lede')).toHaveText(loadGovernance().claims.find(c => c.claim_id === 'brand-mission').statement);
+      await expect(page.locator('main .contact-cta')).toContainText('Get in touch');
+    }
+  });
+
+  test('non-About pages keep the Module treatment', async ({ page }) => {
+    for (const path of ['/gate-1/', '/results/', '/evidence/', '/contact/', '/demo/']) {
+      await page.goto(REVIEW + path);
+      const module = page.locator('main .module').first();
+      expect(await module.evaluate(el => getComputedStyle(el).borderTopColor), path).toBe('rgba(197, 173, 221, 0.72)');
+      expect(await module.locator('.module__head').first().evaluate(el => getComputedStyle(el).backgroundImage), path).toContain('rgb(51, 31, 88)');
+    }
+  });
+
   test('About prose uses the full inner width of its box at 1440 and 1920, with larger type on wide screens', async ({ browser }, testInfo) => {
     test.skip(!desktop(testInfo), 'desktop widths only');
     for (const width of [1440, 1920]) {
