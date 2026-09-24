@@ -152,7 +152,7 @@
   .module { padding: 0; overflow: hidden; }
   .module__head { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.625rem 1.25rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: #efe6f8; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; line-height: 1.4; text-transform: uppercase; }
   .module--numbered > .module__head::before { counter-increment: module; content: counter(module, decimal-leading-zero) " ·"; color: var(--color-key); }
-  .module__body { padding: 1.5rem 1.75rem; }
+  .module__body { padding: 1.5rem 1.75rem; text-align: left; }
   .module--drawer { border-color: var(--color-plate-border); background: linear-gradient(180deg, var(--color-drawer), var(--color-drawer-end)); }
 
   /* Readout: big value under a yellow mono key label. */

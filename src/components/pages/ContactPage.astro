@@ -13,18 +13,26 @@ const { t } = copy;
       {t('contact-intro') && <p class="lede">{t('contact-intro')}</p>}
     </section>
     <div class="contact-grid">
-      <section class="panel contact-card" aria-labelledby="contact-hello">
+      <section class="module module--numbered panel contact-card" aria-labelledby="contact-hello">
+<h2 class="module__head" id="contact-hello">{t('label-early-access')}</h2>
+<div class="module__body">
+
         <Icon name="mail" size={36} />
-        <h2 class="section-title" id="contact-hello">{t('label-early-access')}</h2>
+        
         <a class="action-link action-link--primary" href={`mailto:${t('contact-hello')}`}>{t('contact-hello')}</a>
-      </section>
-      <section class="panel contact-card" aria-labelledby="contact-security">
+      </div>
+</section>
+      <section class="module module--numbered panel contact-card" aria-labelledby="contact-security">
+<h2 class="module__head" id="contact-security">{t('label-disclosure')}</h2>
+<div class="module__body">
+
         <Icon name="shield-check" size={36} />
-        <h2 class="section-title" id="contact-security">{t('label-disclosure')}</h2>
+        
         <p class="card-text">{t('disclosure-report')}</p>
         <a class="action-link action-link--quiet" href={`mailto:${t('contact-security')}`}>{t('contact-security')}</a>
         <a class="inline-link" href="/trust/site-security/">{t('label-site-security')}<Icon name="arrow-right" /></a>
-      </section>
+      </div>
+</section>
     </div>
   </div>
 </main>

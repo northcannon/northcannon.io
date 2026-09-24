@@ -48,11 +48,11 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
     )}
 
     {t('ledger-title') && (
-      <section class="panel" aria-labelledby="ledger-title">
-        <div class="section-head section-head--center">
-          <div class="section-head__title"><Icon name="ledger" size={32} /><h2 class="section-title" id="ledger-title">{t('ledger-title')}</h2></div>
-          {t('ledger-browse') && href('/trust/claims/') && <a class="inline-link" href="/trust/claims/">{t('ledger-browse')}<Icon name="arrow-right" /></a>}
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="ledger-title">
+<h2 class="module__head" id="ledger-title">{t('ledger-title')}</h2>
+<div class="module__body">
+{t('ledger-browse') && href('/trust/claims/') && <a class="inline-link" href="/trust/claims/">{t('ledger-browse')}<Icon name="arrow-right" /></a>}
+
         <div class="table-scroll" role="region" tabindex="0" aria-labelledby="ledger-title">
           <table class="ledger">
             <thead><tr>{columns.map(id => <th scope="col">{t(id)}</th>)}<th scope="col" class="ledger__action"></th></tr></thead>
@@ -61,24 +61,30 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
+</section>
     )}
 
     {(t('hash-title') || t('viewer-title')) && (
       <div class="artifact-grid">
         {t('hash-title') && (
-          <section class="panel" aria-labelledby="hash-title">
-            <div class="section-head__title section-head--compact"><Icon name="hash" size={28} /><h2 class="section-title" id="hash-title">{t('hash-title')}</h2></div>
+          <section class="module module--numbered panel" aria-labelledby="hash-title">
+<h2 class="module__head" id="hash-title">{t('hash-title')}</h2>
+<div class="module__body">
+
             <div class="hash-block">
               <p class="hash-block__algorithm">{t('hash-algorithm')}</p>
               <p class="hash-block__value">{t('hash-empty') ?? t('evidence-status-title')}</p>
             </div>
             {t('hash-caption') && <p class="card-text">{t('hash-caption')}</p>}
-          </section>
+          </div>
+</section>
         )}
         {t('viewer-title') && (
-          <section class="panel" aria-labelledby="viewer-title">
-            <div class="section-head__title section-head--compact"><Icon name="document" size={28} /><h2 class="section-title" id="viewer-title">{t('viewer-title')}</h2></div>
+          <section class="module module--numbered panel" aria-labelledby="viewer-title">
+<h2 class="module__head" id="viewer-title">{t('viewer-title')}</h2>
+<div class="module__body">
+
             <div class="artifact-viewer">
               <span class="artifact-viewer__thumb" aria-hidden="true"><img src="/northcannon-mark.svg" width="72" height="48" alt="" /></span>
               <div class="artifact-viewer__body">
@@ -86,7 +92,8 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
                 {t('viewer-action') && <span class="action-link action-link--static">{t('viewer-action')}<Icon name="arrow-up-right" /></span>}
               </div>
             </div>
-          </section>
+          </div>
+</section>
         )}
       </div>
     )}

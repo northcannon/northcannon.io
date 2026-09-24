@@ -302,7 +302,7 @@ test.describe('approved design acceptance (review build)', () => {
     for (const heading of ['Why NorthCannon exists', 'Selected background', 'Currently building', 'Get in touch']) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible();
     await expect(page.locator('.background-card')).toContainText('Max Brooks is the founder of NorthCannon.');
     await expect(page.locator('.credibility li')).toHaveCount(5);
-    await expect(page.locator('.founder-section .prose .bullet-list li')).toHaveCount(4);
+    await expect(page.locator('.prose .bullet-list li')).toHaveCount(4);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
     expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/gate-1/']);
   });

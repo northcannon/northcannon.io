@@ -3,6 +3,7 @@
 // vision and the not-found page, in the shared design system.
 import Icon from '../Icon.astro';
 import LinkCard from '../LinkCard.astro';
+import Module from '../Module.astro';
 import { readProductionProvenance } from '../../governance/wp4-output.mjs';
 import type { Copy } from '../copy';
 interface Route { path: string; title_claim_or_label: string; claim_ids: string[]; publish: boolean }
@@ -54,10 +55,9 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
           <div><dt>{t('label-astro-version')}</dt><dd>{provenance.astro_version}</dd></div>
         </dl>
         {(['sources', 'files', 'approval_events'] as const).map((group, index) => (
-          <section class="panel">
-            <h2 class="section-title section-title--spaced">{t(['label-source-files', 'label-output-files', 'label-approval-events'][index]!)}</h2>
+          <Module id={`provenance-${group}`} title={t(['label-source-files', 'label-output-files', 'label-approval-events'][index]!)!} numbered>
             <dl class="record-fields record-fields--digest">{Object.entries(provenance[group]).map(([name, digest]) => <div><dt>{name}</dt><dd>{String(digest)}</dd></div>)}</dl>
-          </section>
+          </Module>
         ))}
       </div>
     )}

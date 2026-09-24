@@ -16,10 +16,10 @@
   .home-hero__copy .lede { font-size: 1.0625rem; color: #cbd5e1; }
 
   .capability-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
-  .capability-card { display: flex; flex-direction: column; align-items: center; min-height: 15rem; justify-content: center; padding: 1.75rem 1.5rem; text-align: center; }
+  .capability-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 15rem; justify-content: flex-start; padding: 1.75rem 1.5rem; text-align: left; }
   .capability-card > .icon { width: 2.75rem; height: 2.75rem; margin-bottom: 1rem; color: var(--color-violet-text); }
   .capability-card .card-title { font-size: 1.1875rem; }
-  .capability-card .card-text { max-width: 18rem; font-size: 0.9375rem; }
+  .capability-card .card-text { max-width: 24rem; font-size: 0.9375rem; }
 
   .truth-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
   .truth { padding: 1.5rem 1.75rem; border: 1px solid; border-radius: calc(var(--radius-card) - 4px); background: var(--color-card); }
@@ -150,22 +150,16 @@
   /* About. */
 
   /* Founder. */
-  .founder-sheet { display: grid; gap: 0; padding: 2rem 2.25rem; }
   .founder-hero { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; align-items: center; padding-bottom: 2rem; }
   .founder-hero__portrait { display: grid; place-items: center; width: 15rem; height: 15rem; border: 2px solid var(--color-violet); border-radius: 50%; background: var(--color-elevated); color: #5b6680; }
   .founder-hero__portrait .icon { stroke-width: 1.2; }
   .founder-hero .page-title { max-width: 36rem; }
-  .founder-section { padding-block: 1.75rem; border-top: 1px solid var(--color-border); }
-  .founder-section .section-head__title .icon { color: var(--color-violet-text); }
-  .founder-indent { padding-left: 2.875rem; }
   .background-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
   .background-card { padding: 1.25rem 1.5rem; }
   .credibility__title { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 0.75rem; font-size: 1.0625rem; }
   .credibility__title .icon { color: var(--color-violet-text); }
   .bullet-list { display: grid; gap: 0.375rem; margin-top: 0.875rem; padding-left: 1.25rem; list-style: disc; color: var(--color-muted); }
   .credibility .bullet-list { padding-left: 3.75rem; }
-  .founder-sheet .contact-cta { margin-top: 0.5rem; }
-  .founder-sheet .link-cards { margin-top: var(--gutter); }
 
   /* Home hero visual: decorative verification module (no copy). */
   .home-hero__visual { grid-column: 8 / span 5; display: grid; place-items: center; }
@@ -277,8 +271,7 @@
 }
 @media (max-width: 63.99rem) {
   /* Let enlarged text size intrinsic grid/flex children without widening the page. */
-  .founder-sheet, .mock-panel { grid-template-columns: minmax(0, 1fr); }
-  .founder-sheet > *, .mock-panel > *, .contact-card > *, .artifact-viewer__body { min-width: 0; max-width: 100%; }
+  .contact-card > *, .artifact-viewer__body { min-width: 0; max-width: 100%; }
   .section-head__title, .mock-panel__head, .mock-box__row, .confidence, .mock-tasks li { flex-wrap: wrap; }
   .artifact-viewer__thumb, .founder-hero__portrait { max-width: 100%; }
   .home-hero, .page-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-block: 0.5rem; }
@@ -306,11 +299,10 @@
   .arm-tabs__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .arm-tabs__tab { border-radius: var(--radius-control); }
   .artifact-viewer { flex-direction: column; align-items: flex-start; }
-  .founder-sheet { padding: 1.375rem 1.25rem; }
   .founder-hero { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; justify-items: start; }
   .founder-hero__portrait { width: 8rem; height: 8rem; }
   .founder-hero__portrait .icon { width: 4rem; height: 4rem; }
-  .founder-indent, .credibility .bullet-list { padding-left: 1.25rem; }
+  .credibility .bullet-list { padding-left: 1.25rem; }
   .record-fields div, .record-fields--digest div { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
 @media (max-width: 30rem) {

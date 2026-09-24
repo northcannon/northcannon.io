@@ -45,13 +45,11 @@ const contactHref = href('/contact/');
     </div>
 
     {t('home-capabilities-title') && (
-      <section class="panel" aria-labelledby="capabilities-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="capabilities-title">{t('home-capabilities-title')}</h2>
-            {t('home-capabilities-intro') && <p class="section-intro">{t('home-capabilities-intro')}</p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="capabilities-title">
+<h2 class="module__head" id="capabilities-title">{t('home-capabilities-title')}</h2>
+<div class="module__body">
+{t('home-capabilities-intro') && <p class="section-intro">{t('home-capabilities-intro')}</p>}
+
         <ul class="capability-grid">
           {capabilities.map(card => (
             <li class="card capability-card">
@@ -61,12 +59,16 @@ const contactHref = href('/contact/');
             </li>
           ))}
         </ul>
-      </section>
+      </div>
+</section>
     )}
 
     {t('home-is-title') && (
-      <section class="panel" aria-labelledby="truth-title">
-        <h2 class="section-title section-title--spaced" id="truth-title">{t('home-is-title')}</h2>
+      <section class="module module--numbered panel" aria-labelledby="truth-title">
+<h2 class="module__head" id="truth-title">{t('home-is-title')}</h2>
+<div class="module__body">
+
+        
         <div class="truth-grid">
           <div class="truth truth--is">
             <h3 class="truth__title"><span class="truth__badge" aria-hidden="true"><Icon name="check" /></span>{t('home-is')}</h3>
@@ -77,17 +79,16 @@ const contactHref = href('/contact/');
             <ul class="truth__list">{isNot.map(item => <li><Icon name="x" />{item}</li>)}</ul>
           </div>
         </div>
-      </section>
+      </div>
+</section>
     )}
 
     {t('home-interop-title') && (
-      <section class="panel" aria-labelledby="interop-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="interop-title">{t('home-interop-title')}</h2>
-            {t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="interop-title">
+<h2 class="module__head" id="interop-title">{t('home-interop-title')}</h2>
+<div class="module__body">
+{t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
+
         <div class="interop">
           <div class="interop__node">
             <h3 class="card-title">{t('interop-sources')}</h3>
@@ -104,7 +105,8 @@ const contactHref = href('/contact/');
             <p class="card-text">{t('interop-outputs-body')}</p>
           </div>
         </div>
-      </section>
+      </div>
+</section>
     )}
 
     {t('cta-get-in-touch') && (
