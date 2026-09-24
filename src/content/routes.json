@@ -140,7 +140,10 @@
       "interop-flow-firmware-body",
       "interop-flow-docket-title",
       "interop-flow-docket-body",
-      "interop-agnostic-label"
+      "interop-agnostic-label",
+      "about-why-detail-1",
+      "about-why-detail-2",
+      "about-why-detail-3"
     ],
     "nav": true,
     "publish": true,
@@ -284,7 +287,10 @@
       "label-features",
       "label-about-sections",
       "founder-photo-alt",
-      "founder-why-body"
+      "founder-why-body",
+      "founder-origin-quote",
+      "founder-origin-note",
+      "founder-origin-attribution"
     ],
     "nav": true,
     "publish": true,
@@ -505,14 +511,17 @@
       "brand-mission",
       "label-provenance",
       "label-evidence",
-      "label-change-intelligence"
+      "label-change-intelligence",
+      "arm-treatment-sub"
     ],
     "nav": true,
     "publish": true,
     "review_claim_ids": [
       "demo-lede",
       "demo-graphic-alt",
-      "demo-graphic-note"
+      "demo-graphic-note",
+      "demo-change-label",
+      "demo-blast-label"
     ]
   },
   {

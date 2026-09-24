@@ -1,5 +1,5 @@
 ---
-// Landing hero: principle, motto, mission and calls to action. Company content lives at /about/company/.
+// Landing hero: principle, motto, mission and calls to action (About is reached from the navigation). Company content lives at /about/company/.
 import Icon from '../Icon.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; [key: string]: unknown }
@@ -7,7 +7,6 @@ const { copy } = Astro.props;
 const { t, href } = copy;
 const gateHref = href('/gate-1/');
 const evidenceHref = href('/evidence/');
-const aboutHref = href('/about/company/');
 ---
 <main id="main" tabindex="-1" class="page-main page-main--home">
   <div class="site-container page-stack">
@@ -19,7 +18,6 @@ const aboutHref = href('/about/company/');
         <div class="action-group">
           {gateHref && t('cta-view-gate-1') && <a class="action-link action-link--primary" href={gateHref}>{t('cta-view-gate-1')}<Icon name="arrow-right" /></a>}
           {evidenceHref && t('cta-explore-evidence') && <a class="action-link action-link--secondary" href={evidenceHref}>{t('cta-explore-evidence')}</a>}
-          {aboutHref && t('label-about') && <a class="action-link action-link--quiet" href={aboutHref}>{t('label-about')}</a>}
         </div>
       </div>
       <div class="home-hero__visual" aria-hidden="true">

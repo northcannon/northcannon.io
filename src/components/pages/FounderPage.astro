@@ -36,6 +36,13 @@ const gateHref = href('/gate-1/');
           {headline && <p class="eyebrow">{t('label-founder')}</p>}
           <h1 class="page-title" id="founder-title">{headline ?? title}</h1>
           {t('about-founder-card') && <p class="lede">{t('about-founder-card')}</p>}
+          {t('founder-origin-quote') && (
+            <figure class="founder-quote">
+              <blockquote><p>{t('founder-origin-quote')}</p></blockquote>
+              {t('founder-origin-note') && <p class="founder-quote__note">{t('founder-origin-note')}</p>}
+              {t('founder-origin-attribution') && <figcaption class="founder-quote__by">{t('founder-origin-attribution')}</figcaption>}
+            </figure>
+          )}
         </div>
       </section>
     </Module>

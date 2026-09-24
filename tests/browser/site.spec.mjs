@@ -101,7 +101,7 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('h1')).toHaveText('Designed to be falsified. Built for trust.');
     await expect(page.getByRole('link', { name: 'View Gate 1' })).toHaveAttribute('href', '/gate-1/');
     await expect(page.getByRole('link', { name: 'Explore Evidence' })).toHaveAttribute('href', '/evidence/');
-    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveAttribute('href', '/about/company/');
+    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveCount(0);
     await expect(page.locator('.home-hero__visual')).toHaveAttribute('aria-hidden', 'true');
     await expect(page.locator('.verify-module .support-cell')).toHaveCount(5);
     // Company content moved to /about/company/.
@@ -341,7 +341,7 @@ test.describe('approved design acceptance (review build)', () => {
             const box = el.closest('.box'), s = getComputedStyle(box), inner = box.clientWidth - parseFloat(s.paddingLeft) - parseFloat(s.paddingRight);
             const module = el.closest('.module__body'), m = getComputedStyle(module);
             const style = getComputedStyle(el);
-            return { text: el.textContent.slice(0, 40), width: el.getBoundingClientRect().width, inner, boxWidth: box.getBoundingClientRect().width, moduleInner: module.clientWidth - parseFloat(m.paddingLeft) - parseFloat(m.paddingRight), maxWidth: style.maxWidth, boxMax: s.maxWidth, font: parseFloat(style.fontSize), line: parseFloat(style.lineHeight) };
+            return { vision: el.matches('.vision-box__p'), text: el.textContent.slice(0, 40), width: el.getBoundingClientRect().width, inner, boxWidth: box.getBoundingClientRect().width, moduleInner: module.clientWidth - parseFloat(m.paddingLeft) - parseFloat(m.paddingRight), maxWidth: style.maxWidth, boxMax: s.maxWidth, font: parseFloat(style.fontSize), line: parseFloat(style.lineHeight) };
           }));
           expect(prose.length, path).toBeGreaterThan(0);
           for (const p of prose) {
@@ -349,7 +349,8 @@ test.describe('approved design acceptance (review build)', () => {
             expect(p.boxMax, p.text).toBe('none');
             expect(Math.abs(p.width - p.inner), p.text).toBeLessThan(2);
             expect(Math.abs(p.boxWidth - p.moduleInner), p.text).toBeLessThan(2);
-            if (width >= 1600) { expect(p.font, p.text).toBeGreaterThanOrEqual(18); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5); }
+            // The vision box is set slightly smaller than other About prose (founder direction).
+            if (width >= 1600) { expect(p.font, p.text).toBeGreaterThanOrEqual(p.vision ? 17 : 18); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5); }
           }
           await page.screenshot({ path: `test-results/g3-${base === REVIEW ? 'review' : 'production'}${path.replaceAll('/', '-').replace(/-$/, '')}-${width}.png`, fullPage: true });
         }
@@ -691,4 +692,17 @@ test('changelog records the redesign in review builds; production keeps the appr
   await page.goto(PRODUCTION + '/trust/changelog/');
   await expect(page.locator('main')).toContainText('No changelog entries are listed.');
   await expect(page.locator('main')).not.toContainText('New visual system');
+});
+
+test('founder origin quote and detailed Why now render in review and stay out of production until attested', async ({ page }) => {
+  await page.goto(REVIEW + '/about/founder/');
+  const quote = page.locator('.founder-hero .founder-quote');
+  await expect(quote.locator('blockquote p')).toHaveText('Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated?');
+  await expect(quote.locator('.founder-quote__note')).toHaveCSS('font-style', 'italic');
+  await expect(quote.locator('figcaption')).toHaveText('Max Brooks, Founder, NorthCannon');
+  await page.goto(REVIEW + '/about/company/');
+  await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(3);
+  await page.goto(PRODUCTION + '/about/company/');
+  await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(1);
+  await expect(page.locator('main')).not.toContainText('evidence packet showing');
 });

@@ -405,7 +405,13 @@ paragraph renders as a pull-quote. Until it is attested, production keeps the se
 | Claim ID | Statement |
 | --- | --- |
 | `contact-intro-email` | For partnerships, design-partner conversations, research, or general inquiries, email hello@northcannon.io. |
+| `about-why-detail-1` | AI models are becoming more accurate and less expensive to run, and they are moving from recommendation toward consequential action. But a model can still produce an answer that sounds right and is wrong, and once that output enters a workflow it is often treated as fact. |
+| `about-why-detail-2` | In regulated work, decisions have consequences: a missed deadline, an action taken without authority, an obligation no one tracked. The question is not only what a model produced, but whether the decision was supportable, and whether it stays supportable when facts, rules, evidence, or conditions change. |
+| `about-why-detail-3` | NorthCannon is designed to answer that question before a decision acts. When the facts do not support a decision, it is designed to abstain and state why. When they do, it is designed to produce an evidence packet showing what the decision relied on: the evidence, the rule, the timing, and the authority. |
 | `founder-why-body` | Consider an AI agent working through a loan-servicing queue. It searches its context — policy documents, account history, prior correspondence — and concludes that a borrower should receive a particular notice on a particular date. The reasoning looks sound, and the agent is confident.<br><br>What the agent does not know is that a state regulation changed the required notice period, effective the week before. Nothing in its context says so. The decision is carried out, the letter is mailed, and the company is now exposed to legal risk and financial consequences it never chose to take on.<br><br>The model did not malfunction. It reasoned well over what it could see. The failure is that nothing verified the decision itself — against the rule actually in force, the evidence on record, the authority to act, and the moment it was made — before it became an action. And nothing would have noticed later that a change had quietly undermined it.<br><br>That is the gap NorthCannon is designed to close. Data and models have their own controls. The decision — the unit that actually carries consequences — deserves its own standard of proof: verified before action, preserved with the evidence behind it, and re-evaluated when the facts or rules beneath it change. |
+| `founder-origin-quote` | Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated? |
+| `founder-origin-note` | The question behind the idea for NorthCannon. |
+| `founder-origin-attribution` | Max Brooks, Founder, NorthCannon |
 
 ### Changelog (`/trust/changelog/`)
 
@@ -419,6 +425,8 @@ paragraph renders as a pull-quote. Until it is attested, production keeps the se
 | --- | --- |
 | `demo-lede` | A guided walkthrough of verification and change intelligence, on fictional cases, is in preparation. |
 | `demo-graphic-alt` | Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched. |
+| `demo-change-label` | Regulation change is now effective |
+| `demo-blast-label` | Calculating blast radius |
 | `demo-graphic-note` | Illustrative animation · not a live system |
 
 ### Retired

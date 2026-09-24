@@ -10,7 +10,7 @@
   .page-hero--text .lede { max-width: var(--text-width); }
 
   /* Home hero: ≈ 560px, copy ≈ 600px, four-layer visual. */
-  .home-hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: center; min-height: 35rem; padding-block: 2rem; }
+  .home-hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: center; min-height: 27rem; padding-block: 1.25rem; }
   .home-hero__copy { grid-column: 1 / span 7; max-width: 37.5rem; }
   .home-hero__title { max-width: 13em; margin: 0; font-size: 2.875rem; line-height: 1.12; letter-spacing: -0.025em; }
   .home-hero__copy .lede { font-size: 1.0625rem; color: #cbd5e1; }
@@ -53,7 +53,7 @@
   .is-current .lifecycle__marker { border-color: var(--color-violet); background: var(--color-violet-fill); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-violet) 22%, transparent); }
   .is-current .lifecycle__label { color: var(--color-violet-text); font-weight: 600; }
   .is-complete .lifecycle__marker { border-color: var(--color-verified); color: var(--color-verified); }
-  .gate-what { max-width: 45rem; font-size: 0.9375rem; }
+  .gate-what { max-width: none; font-size: 1rem; line-height: 1.65; }
 
   .arm-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gutter); }
   .arm-card { padding: 1.25rem; }
@@ -150,6 +150,16 @@
   .founder-hero__portrait { display: block; width: 15rem; height: 15rem; overflow: hidden; border-radius: 50%; background: #000; }
   .founder-hero__portrait picture, .founder-hero__portrait img { display: block; width: 100%; height: 100%; }
   .founder-hero .page-title { max-width: 36rem; }
+  .box--intro .prose-lead + .prose-lead { margin-top: 1rem; }
+  .founder-hero .eyebrow { font-size: 0.9375rem; letter-spacing: 0.2em; }
+  .founder-quote { margin: 1.5rem 0 0; padding-left: 1.25rem; border-left: 3px solid var(--color-violet); }
+  .founder-quote blockquote { margin: 0; }
+  .founder-quote blockquote p { margin: 0; color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
+  .founder-quote blockquote p::before { content: '\201C'; }
+  .founder-quote blockquote p::after { content: '\201D'; }
+  .founder-quote__note { margin: 0.625rem 0 0; color: var(--color-muted); font-size: 0.9375rem; font-style: italic; }
+  .founder-quote__by { margin-top: 0.5rem; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .founder-quote__by::before { content: '\2014\00a0'; }
   .background-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
   .background-card { padding: 1.25rem 1.5rem; }
   .credibility__title { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 0.75rem; font-size: 1.0625rem; }
@@ -159,8 +169,8 @@
 
   /* Home hero visual: decorative verification module (no copy). */
   .home-hero__visual { grid-column: 8 / span 5; display: grid; place-items: center; }
-  .verify-module { position: relative; display: grid; gap: 1.25rem; width: 100%; padding: 0 1.5rem 1.75rem; overflow: hidden; border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: linear-gradient(180deg, var(--color-panel), var(--color-panel-end)); box-shadow: var(--shadow-module); }
-  .verify-module__band { display: block; height: 2.25rem; margin: 0 -1.5rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); }
+  .verify-module { position: relative; display: grid; gap: 0.875rem; width: 100%; padding: 0 1.5rem 1.125rem; overflow: hidden; border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: linear-gradient(180deg, var(--color-panel), var(--color-panel-end)); box-shadow: var(--shadow-module); }
+  .verify-module__band { display: block; height: 1.75rem; margin: 0 -1.5rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); }
   .verify-module__bar { display: block; height: 0.5rem; border-radius: 4px; background: var(--color-plate-border); }
   .verify-module__bar--short { width: 55%; }
   .verify-module__beacon { display: block; width: 0.875rem; height: 0.875rem; border-radius: 50%; background: var(--color-supported); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-supported) 22%, transparent), 0 0 14px var(--color-supported); }
@@ -174,6 +184,8 @@
   .vision-box__p { margin: 0 0 1rem; color: var(--color-muted); line-height: 1.7; }
   .vision-box__p:last-child { margin-bottom: 0; }
   .vision-box .pull-quote, .prose .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
+  .vision-box__p { font-size: 0.9375rem; }
+  .vision-box .pull-quote { font-size: 1.125rem; }
   /* NorthCannon banner: above the page text, directly on the page background (no box, border or band). */
   .prose p.pull-quote { margin-block: 1.25rem 0; }
   .about-banner { display: flex; align-items: center; gap: 2.5rem; padding: 1rem 0 0.5rem; }
@@ -245,6 +257,28 @@
   .ci-beacon { transform-box: fill-box; transform-origin: center; }
   .ci-beacon--live { fill: var(--color-unsupported); }
   .ci-beacon--steady { fill: var(--color-supported); }
+  /* Stage above the graph: the incoming change (amber), the persistent state (green), and the
+     amber blast-radius line that hands the change to the lineage graph. */
+  .ci-stage { position: relative; container-type: inline-size; }
+  .ci-edge--stage { stroke-dasharray: 4 6; }
+  .ci-in, .ci-calc { stroke: var(--color-pending); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 1 1; stroke-dashoffset: 0; will-change: stroke-dashoffset; }
+  .ci-head { fill: var(--color-pending); opacity: 1; }
+  .ci-change { fill: var(--color-card); stroke: var(--color-pending); stroke-width: 2; }
+  .ci-change-dot { fill: var(--color-pending); }
+  .ci-change-ring { stroke: var(--color-pending); stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .ci-state { fill: var(--color-card); stroke: var(--color-supported); stroke-width: 2; }
+  .ci-state-glow { stroke: var(--color-supported); stroke-width: 2; opacity: 0.45; }
+  .ci-db ellipse, .ci-db path { fill: none; stroke: var(--color-supported); stroke-width: 2; }
+  .ci-plate--source { stroke: var(--color-pending); }
+  .ci-label { position: absolute; margin: 0; transform: translateY(-50%); color: var(--color-text); font-family: var(--font-mono); font-size: clamp(0.6875rem, 1.2cqi, 0.9375rem); letter-spacing: 0.06em; line-height: 1.25; text-transform: uppercase; }
+  .ci-label--change { left: 10.5%; top: 10.5%; width: 18.5%; }
+  .ci-label--state { left: 44.5%; top: 10.5%; width: 20.5%; }
+  .ci-label--blast { left: 49%; top: 25%; color: var(--color-pending); }
+  .ci-steps { display: none; margin: 0; padding-left: 1.5rem; color: var(--color-text); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; line-height: 1.5; text-transform: uppercase; }
+  @media (max-width: 640px) {
+    .ci-label { display: none; }
+    .ci-steps { display: grid; gap: 0.25rem; }
+  }
 
 
   /* Contact and supporting pages. */
@@ -410,8 +444,10 @@
 
 /* Wide screens: About prose stays full width; larger type and leading keep long lines readable. */
 @media (min-width: 100rem) {
-  .prose p, .prose .bullet-list, .prose-lead, .vision-box__p { font-size: 1.1875rem; line-height: 1.75; }
-  .vision-box .pull-quote, .prose .pull-quote { font-size: 1.5rem; line-height: 1.55; }
+  .prose p, .prose .bullet-list, .prose-lead { font-size: 1.1875rem; line-height: 1.75; }
+  .prose .pull-quote { font-size: 1.5rem; line-height: 1.55; }
+  .vision-box__p { font-size: 1.0625rem; line-height: 1.75; }
+  .vision-box .pull-quote { font-size: 1.3125rem; line-height: 1.55; }
 }
 @media (min-width: 64rem) and (max-width: 79.99rem) {
   .home-hero__title { font-size: 2rem; }
@@ -480,10 +516,20 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* One 8s loop; percentages are the timeline. Only opacity, transform, dashoffset and colours animate. */
-  .ci-plate--source, .ci-ring, .ci-pulse, .ci-plate--h1, .ci-plate--h2, .ci-plate--h3, .ci-fold, .ci-beacon--live, .ci-beacon-ring { animation-duration: 8s; animation-iteration-count: infinite; animation-timing-function: linear; }
+  /* One 10s loop; percentages are the timeline. The change lights (0-8), travels to the persistent
+     state (8-18), the state takes it in (18-26), the blast-radius line reaches the source (26-40),
+     and only then does red propagate hop by hop (40-74) to the decision beacon (74-78). Hold to 90,
+     then reset. Only opacity, transform, dashoffset and colours animate. */
+  .ci-change, .ci-change-ring, .ci-in, .ci-head, .ci-state, .ci-state-glow, .ci-calc, .ci-plate--source, .ci-pulse, .ci-plate--h1, .ci-plate--h2, .ci-plate--h3, .ci-fold, .ci-beacon--live, .ci-beacon-ring { animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: linear; }
+  .ci-change { animation-name: ci-change; }
+  .ci-change-ring { animation-name: ci-change-ring; }
+  .ci-in { animation-name: ci-in; }
+  .ci-head--in { animation-name: ci-head-in; }
+  .ci-state { animation-name: ci-state; }
+  .ci-state-glow { animation-name: ci-state-glow; }
+  .ci-calc { animation-name: ci-calc; }
+  .ci-head--calc { animation-name: ci-head-calc; }
   .ci-plate--source { animation-name: ci-source; }
-  .ci-ring { animation-name: ci-ring; }
   .ci-pulse--h1 { animation-name: ci-pulse-h1; }
   .ci-pulse--h2 { animation-name: ci-pulse-h2; }
   .ci-pulse--h3 { animation-name: ci-pulse-h3; }
@@ -496,20 +542,27 @@
   .ci-beacon--live { animation-name: ci-beacon; }
   .ci-beacon-ring { animation-name: ci-beacon-ring; }
 }
-@keyframes ci-source { 0% { stroke: #9a86b8; } 5% { stroke: #e6d8f5; } 10%, 85% { stroke: #c5addd; } 100% { stroke: #c5addd; } }
-@keyframes ci-ring { 0% { opacity: 0.9; transform: scale(1); } 10% { opacity: 0; transform: scale(1.6); } 85% { opacity: 0; transform: scale(1.6); } 100% { opacity: 0; transform: scale(1); } }
-@keyframes ci-pulse-h1 { 0%, 10% { stroke-dashoffset: 1; opacity: 1; } 22%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
-@keyframes ci-pulse-h2 { 0%, 22% { stroke-dashoffset: 1; opacity: 1; } 34%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
-@keyframes ci-pulse-h3 { 0%, 34% { stroke-dashoffset: 1; opacity: 1; } 45%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
-@keyframes ci-plate-h1 { 0%, 20% { stroke: #716786; } 22%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
-@keyframes ci-plate-h2 { 0%, 32% { stroke: #716786; } 34%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
-@keyframes ci-plate-h3 { 0%, 43% { stroke: #716786; } 45%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
-@keyframes ci-fold-h1 { 0%, 20% { opacity: 0; } 22%, 85% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes ci-fold-h2 { 0%, 32% { opacity: 0; } 34%, 85% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes ci-fold-h3 { 0%, 43% { opacity: 0; } 45%, 85% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes ci-beacon { 0%, 45% { fill: #5ec48b; } 50%, 85% { fill: #e57a74; } 100% { fill: #5ec48b; } }
-@keyframes ci-beacon-ring { 0%, 45% { opacity: 0; transform: scale(1); stroke: #e57a74; } 46% { opacity: 0.9; transform: scale(1); stroke: #e57a74; } 55%, 100% { opacity: 0; transform: scale(2.2); stroke: #e57a74; } }
+@keyframes ci-change { 0% { stroke: #716786; } 4%, 90% { stroke: #f59e0b; } 100% { stroke: #716786; } }
+@keyframes ci-change-ring { 0% { opacity: 0.9; transform: scale(1); } 8%, 100% { opacity: 0; transform: scale(2); } }
+@keyframes ci-in { 0%, 8% { stroke-dashoffset: 1; opacity: 1; } 18%, 90% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-head-in { 0%, 17% { opacity: 0; } 18%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-state { 0%, 18% { stroke: #716786; } 22%, 90% { stroke: #5ec48b; } 100% { stroke: #716786; } }
+@keyframes ci-state-glow { 0%, 18% { opacity: 0; } 22% { opacity: 0.9; } 26%, 90% { opacity: 0.45; } 100% { opacity: 0; } }
+@keyframes ci-calc { 0%, 26% { stroke-dashoffset: 1; opacity: 1; } 40%, 90% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-head-calc { 0%, 39% { opacity: 0; } 40%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-source { 0%, 39% { stroke: #716786; } 40%, 90% { stroke: #f59e0b; } 100% { stroke: #716786; } }
+@keyframes ci-pulse-h1 { 0%, 40% { stroke-dashoffset: 1; opacity: 1; } 52%, 90% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-pulse-h2 { 0%, 52% { stroke-dashoffset: 1; opacity: 1; } 64%, 90% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-pulse-h3 { 0%, 64% { stroke-dashoffset: 1; opacity: 1; } 74%, 90% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-plate-h1 { 0%, 51% { stroke: #716786; } 52%, 90% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-plate-h2 { 0%, 63% { stroke: #716786; } 64%, 90% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-plate-h3 { 0%, 73% { stroke: #716786; } 74%, 90% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-fold-h1 { 0%, 51% { opacity: 0; } 52%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-fold-h2 { 0%, 63% { opacity: 0; } 64%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-fold-h3 { 0%, 73% { opacity: 0; } 74%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-beacon { 0%, 74% { fill: #5ec48b; } 78%, 90% { fill: #e57a74; } 100% { fill: #5ec48b; } }
+@keyframes ci-beacon-ring { 0%, 74% { opacity: 0; transform: scale(1); stroke: #e57a74; } 75% { opacity: 0.9; transform: scale(1); stroke: #e57a74; } 82%, 100% { opacity: 0; transform: scale(2.2); stroke: #e57a74; } }
 @media (forced-colors: active) {
-  .ci-plate, .ci-edge, .ci-pulse, .ci-ring { stroke: CanvasText; }
-  .ci-fold, .ci-bar, .ci-beacon { forced-color-adjust: none; fill: CanvasText; }
+  .ci-plate, .ci-edge, .ci-pulse, .ci-ring, .ci-change, .ci-change-ring, .ci-state, .ci-state-glow, .ci-in, .ci-calc, .ci-db ellipse, .ci-db path { stroke: CanvasText; }
+  .ci-fold, .ci-bar, .ci-beacon, .ci-head, .ci-change-dot { forced-color-adjust: none; fill: CanvasText; }
 }

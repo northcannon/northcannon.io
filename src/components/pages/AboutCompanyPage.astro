@@ -18,6 +18,9 @@ const capabilities = [
 const is = ['home-is-1', 'home-is-2', 'home-is-3', 'home-is-4'].map(t).filter(Boolean);
 const isNot = ['home-not-1', 'home-not-2', 'home-not-3', 'home-not-4'].map(t).filter(Boolean);
 const contactHref = href('/contact/');
+// The detailed Why now replaces the one-paragraph body only once all three paragraphs render.
+const whyDetail = [t('about-why-detail-1'), t('about-why-detail-2'), t('about-why-detail-3')];
+const whyNow = whyDetail.every(Boolean) ? whyDetail as string[] : [t('about-why-body')].filter(Boolean) as string[];
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
@@ -35,11 +38,11 @@ const contactHref = href('/contact/');
       <p class="lede">{t('brand-mission')}</p>
     </section>
 
-    {t('about-why-title') && t('about-why-body') && (
+    {t('about-why-title') && whyNow.length > 0 && (
       <Module id="about-why" title={t('about-why-title')!}>
         <div class="box box--intro">
           <Icon name="clock" size={40} />
-          <p class="prose-lead">{t('about-why-body')}</p>
+          {whyNow.map(paragraph => <p class="prose-lead">{paragraph}</p>)}
         </div>
       </Module>
     )}

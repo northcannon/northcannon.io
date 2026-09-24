@@ -3482,6 +3482,26 @@
     "approval_record": "none"
   },
   {
+    "claim_id": "demo-change-label",
+    "statement": "Regulation change is now effective",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "demo-blast-label",
+    "statement": "Calculating blast radius",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
     "claim_id": "interop-auth-title",
     "statement": "Authoritative sources",
     "category": "other",
@@ -4305,6 +4325,66 @@
     "claim_id": "changelog-2026-09-site-redesign",
     "statement": "2026-09-24: New visual system across the site. About, Company and Founder are combined into one About section with Company, Features and Founder pages. The Demo page is added to the navigation.",
     "category": "changelog",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-why-detail-1",
+    "statement": "AI models are becoming more accurate and less expensive to run, and they are moving from recommendation toward consequential action. But a model can still produce an answer that sounds right and is wrong, and once that output enters a workflow it is often treated as fact.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-why-detail-2",
+    "statement": "In regulated work, decisions have consequences: a missed deadline, an action taken without authority, an obligation no one tracked. The question is not only what a model produced, but whether the decision was supportable, and whether it stays supportable when facts, rules, evidence, or conditions change.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-why-detail-3",
+    "statement": "NorthCannon is designed to answer that question before a decision acts. When the facts do not support a decision, it is designed to abstain and state why. When they do, it is designed to produce an evidence packet showing what the decision relied on: the evidence, the rule, the timing, and the authority.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-origin-quote",
+    "statement": "Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated?",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-origin-note",
+    "statement": "The question behind the idea for NorthCannon.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "founder-origin-attribution",
+    "statement": "Max Brooks, Founder, NorthCannon",
+    "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
     "lifecycle_state": "review",
