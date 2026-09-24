@@ -5,7 +5,8 @@ import { mkdir } from 'node:fs/promises';
 const REVIEW = 'http://127.0.0.1:4323';
 const PRODUCTION = 'http://127.0.0.1:4321';
 const alt = 'Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched.';
-const shots = 'test-results/redesign-review';
+// Review screenshots go to a gitignored directory that Playwright never wipes.
+const shots = '.review-shots';
 test.use({ bypassCSP: true });
 
 test.describe('demo page (review build)', () => {
