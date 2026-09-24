@@ -2,6 +2,7 @@
 // About / Company: capabilities, what NorthCannon is and is not, interoperability (moved from the old homepage).
 import Icon from '../Icon.astro';
 import ContactCTA from '../ContactCTA.astro';
+import Module from '../Module.astro';
 import AboutSubnav from '../AboutSubnav.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
@@ -21,8 +22,27 @@ const contactHref = href('/contact/');
   <div class="site-container page-stack">
     <AboutSubnav copy={copy} currentPath={route.path} />
     <section class="page-hero page-hero--text" aria-labelledby="company-title">
-      <h1 class="page-title" id="company-title">{title}</h1>
+      {t('about-eyebrow') && <p class="eyebrow">{t('about-eyebrow')}</p>}
+      <h1 class="page-title" id="company-title">{t('about-headline') ?? title}</h1>
+      <p class="lede">{t('brand-mission')}</p>
     </section>
+
+    <div class="about-modules">
+      <Module id="about-company" title={t('brand-company')!} numbered>
+        <div class="box box--intro">
+          <img class="box__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
+          <p class="prose-lead">{t('brand-company-motto')}</p>
+        </div>
+      </Module>
+      {t('about-why-title') && t('about-why-body') && (
+        <Module id="about-why" title={t('about-why-title')!} numbered>
+          <div class="box box--intro">
+            <Icon name="clock" size={40} />
+            <p class="prose-lead">{t('about-why-body')}</p>
+          </div>
+        </Module>
+      )}
+    </div>
 
     {t('home-capabilities-title') && (
       <section class="panel" aria-labelledby="capabilities-title">

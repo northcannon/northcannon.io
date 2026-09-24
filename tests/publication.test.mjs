@@ -17,14 +17,15 @@ const attest = (claims, ids) => claims.map(c => ids.includes(c.claim_id) ? { ...
 
 test('manifest follows the approved information architecture and rejects published pending copy', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
-  assert.deepEqual(routes.filter(r => r.nav).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/demo/', '/contact/']);
-  assert.deepEqual(routes.filter(r => r.nav).map(r => claims.find(c => c.claim_id === navigationClaimId(r)).statement), ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Demo', 'Contact']);
-  assert.deepEqual(routes.filter(r => r.parent).map(r => [r.path, r.parent]), [['/about/company/', '/about/'], ['/about/features/', '/about/'], ['/about/founder/', '/about/']]);
-  assert.equal(routes.length, 19);
+  assert.deepEqual(routes.filter(r => r.nav).map(r => r.path), ['/about/company/', '/about/features/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  assert.deepEqual(routes.filter(r => r.nav).map(r => claims.find(c => c.claim_id === navigationClaimId(r)).statement), ['Company', 'Features', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact']);
+  assert.deepEqual(routes.filter(r => r.nav_group).map(r => [r.path, r.nav_group]), [['/about/company/', 'about'], ['/about/features/', 'about'], ['/about/founder/', 'about']]);
+  assert.ok(!routes.some(r => r.path === '/about/'), 'the About overview route is removed; /about/ redirects to Company');
+  assert.equal(routes.length, 18);
   assert.equal(routes.find(r => r.path === '/demo/').publish, true, 'the demo stays published with its approved title');
-  assert.equal(routes.filter(r => r.publish).length, 18);
+  assert.equal(routes.filter(r => r.publish).length, 17);
   assert.ok(!routes.some(r => r.path === '/founder/'), 'the standalone founder route is removed');
-  assert.deepEqual(routes.filter(r => r.parent && r.publish).map(r => r.path), ['/about/company/', '/about/founder/'], 'Company and Founder are published (approved copy); Features waits for approval');
+  assert.deepEqual(routes.filter(r => r.nav_group && r.publish).map(r => r.path), ['/about/company/', '/about/founder/'], 'Company and Founder are published (approved copy); Features waits for approval');
   assert.ok(!routes.some(r => r.path === '/early-access/'));
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
@@ -47,10 +48,17 @@ test('optional copy renders in review, is omitted from production, and appears t
   const attested = attest(claims, ['cta-view-gate-1', 'label-company']);
   assert.equal(routeCopy(attested, home, routes, 'cta-view-gate-1', { review: false }), 'View Gate 1');
   // Production navigation lists only published, attested destinations; the unpublished Features page never appears.
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/founder/', '/demo/', '/contact/']);
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims: attested }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/founder/', '/demo/', '/contact/']);
-  assert.deepEqual(navigationTree(routes, { review: false, claims }).find(item => item.route.path === '/about/').children.map(r => r.path), ['/about/company/', '/about/founder/']);
-  assert.deepEqual(navigationTree(routes, { review: true, claims }).find(item => item.route.path === '/about/').children.map(r => r.path), ['/about/company/', '/about/features/', '/about/founder/']);
+  const paths = options => navigationRoutes(routes, options).map(r => r.path);
+  assert.deepEqual(paths({ review: false, claims }), ['/about/company/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  assert.deepEqual(paths({ review: false, claims: attested }), ['/about/company/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  // About is first, links to Company, and lists its published members.
+  const tree = options => navigationTree(routes, options).map(item => [item.claimId, item.href, item.children.map(child => child.href)]);
+  assert.deepEqual(tree({ review: false, claims })[0], ['label-about', '/about/company/', ['/about/company/', '/about/founder/']]);
+  assert.deepEqual(tree({ review: true, claims })[0], ['label-about', '/about/company/', ['/about/company/', '/about/features/', '/about/founder/']]);
+  assert.deepEqual(tree({ review: true, claims }).slice(1).map(item => item[1]), ['/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  // The group vanishes with its label: no orphaned dropdown members.
+  const unlabeled = claims.map(c => c.claim_id === 'label-about' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
+  assert.deepEqual(tree({ review: false, claims: unlabeled }).map(item => item[1]), ['/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
   const company = routes.find(r => r.path === '/about/company/');
   assert.equal(routeCopy(claims, company, routes, 'interop-sources-body', { review: false }), undefined);
   assert.equal(routeCopy(claims, company, routes, 'interop-sources-body', { review: true }), 'APIs, docs, web, internal');
@@ -122,7 +130,7 @@ test('standalone review build rebuilds current provenance from source only and r
     // Explicit public build inputs only. Never enumerate or copy local config,
     // credentials, ignored output, or the entire checkout.
     const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer', 'ChangeIntelligenceGraphic'].map(name => `src/components/${name}.astro`);
-    const pages = ['AboutPage', 'AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
+    const pages = ['AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
       'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md',
@@ -190,7 +198,7 @@ test('standalone review build rebuilds current provenance from source only and r
     for (const [route, id, list] of [
       ['/trust/status/', 'stage-frozen', 'claim_ids'], ['/trust/claims/', 'brand-company-motto', 'claim_ids'],
       ['/results/', 'label-p95-latency', 'claim_ids'], ['/trust/', 'label-disclosure', 'claim_ids'],
-      ['/gate-1/', 'falsification-title', 'review_claim_ids'], ['/about/', 'mock-disclaimer-bar', 'review_claim_ids'],
+      ['/gate-1/', 'falsification-title', 'review_claim_ids'], ['/about/company/', 'about-headline', 'review_claim_ids'],
     ]) {
       const changed = structuredClone(manifest);
       const entry = changed.find(r => r.path === route);

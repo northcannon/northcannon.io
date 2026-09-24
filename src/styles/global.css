@@ -92,6 +92,7 @@
   .navigation a[aria-current="page"] { color: var(--color-violet-text); }
   .desktop-navigation a[aria-current="page"]::after { content: ""; position: absolute; left: 1.125rem; right: 1.125rem; bottom: 0.45rem; height: 2px; border-radius: 1px; background: var(--color-violet); }
   .desktop-navigation > li:last-child > a { padding-right: 0; }
+  .has-submenu.is-section > a { color: var(--color-violet-text); }
   .desktop-navigation > li:last-child > a[aria-current="page"]::after { right: 0; }
   /* About dropdown: no JavaScript; opens on hover and keyboard focus, and every entry is a real link. */
   .has-submenu { position: relative; }

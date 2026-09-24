@@ -4,7 +4,7 @@ import type { Copy } from './copy';
 interface Props { copy: Copy; currentPath: string }
 const { copy, currentPath } = Astro.props;
 const { t, href } = copy;
-const entries = [['/about/', 'label-overview'], ['/about/company/', 'label-company'], ['/about/features/', 'label-features'], ['/about/founder/', 'label-founder']]
+const entries = [['/about/company/', 'label-company'], ['/about/features/', 'label-features'], ['/about/founder/', 'label-founder']]
   .flatMap(([path, id]) => (href(path!) && t(id!) ? [{ href: path!, label: t(id!)! }] : []));
 const label = t('label-about-sections');
 ---

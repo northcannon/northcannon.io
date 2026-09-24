@@ -68,11 +68,11 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
 }
 
 test.describe('approved design acceptance (review build)', () => {
-  const navigation = ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Demo', 'Contact'];
-  const hrefs = ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/demo/', '/contact/'];
+  const navigation = ['About', 'Company', 'Features', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact'];
+  const hrefs = ['/about/company/', '/about/company/', '/about/features/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/'];
 
   test('primary navigation, header and footer', async ({ page }, testInfo) => {
-    for (const [index, path] of hrefs.entries()) {
+    for (const path of [...new Set(hrefs)]) {
       await page.goto(REVIEW + path);
       const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
       if (!desktop(testInfo)) {
@@ -88,7 +88,9 @@ test.describe('approved design acceptance (review build)', () => {
       }
       await expect(links).toHaveText(navigation);
       expect(await links.evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(hrefs);
-      await expect(links.nth(index)).toHaveAttribute('aria-current', 'page');
+      // The About link marks the section; the page's own link carries aria-current.
+      await expect(links.locator('xpath=self::*[@aria-current="page"]')).toHaveCount(1);
+      await expect(links.and(page.locator('[aria-current="page"]'))).toHaveAttribute('href', path);
       await expect(page.locator('.site-footer__links a')).toHaveText(['Trust Center', 'Disclosure', 'Contact']);
     }
   });
@@ -99,7 +101,7 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('h1')).toHaveText('Designed to be falsified. Built for trust.');
     await expect(page.getByRole('link', { name: 'View Gate 1' })).toHaveAttribute('href', '/gate-1/');
     await expect(page.getByRole('link', { name: 'Explore Evidence' })).toHaveAttribute('href', '/evidence/');
-    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveAttribute('href', '/about/');
+    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveAttribute('href', '/about/company/');
     await expect(page.locator('.home-hero__visual')).toHaveAttribute('aria-hidden', 'true');
     await expect(page.locator('.verify-module .support-cell')).toHaveCount(5);
     // Company content moved to /about/company/.
@@ -112,7 +114,6 @@ test.describe('approved design acceptance (review build)', () => {
 
   test('about company: capabilities, is / is not, interoperability and contact moved from the homepage', async ({ page }) => {
     await page.goto(REVIEW + '/about/company/');
-    await expect(page.locator('h1')).toHaveText('Company');
     await expect(page.locator('.capability-card h3')).toHaveText(['Verification', 'Provenance', 'Change Intelligence']);
     await expect(page.locator('.truth--is li')).toHaveCount(4);
     await expect(page.locator('.truth--not li')).toHaveCount(4);
@@ -170,13 +171,14 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.updated-strip a')).toHaveAttribute('href', '/trust/changelog/');
   });
 
-  test('about overview: founder text first, company and why-now modules, links to the subpages', async ({ page }) => {
-    await page.goto(REVIEW + '/about/');
-    await expect(page.locator('main .eyebrow')).toHaveText('About NorthCannon');
+  test('about company opens with the overview: eyebrow, headline, mission and two intro cards', async ({ page }) => {
+    await page.goto(REVIEW + '/about/company/');
+    await expect(page.locator('main .eyebrow').first()).toHaveText('About NorthCannon');
     await expect(page.locator('h1')).toHaveText('Verification, evidence, and change intelligence for consequential machine decisions.');
     await expect(page.locator('.about-modules .module__head')).toHaveText(['NorthCannon', 'Why now']);
-    expect(await page.locator('.link-cards a').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/about/features/', '/about/founder/']);
-    await expect(page.locator('.mock-panel, .mock-grid')).toHaveCount(0);
+    await expect(page.locator('.about-modules .box--intro img[src="/northcannon-mark.svg"]')).toHaveCount(1);
+    await expect(page.locator('.about-modules .box--intro .icon')).toHaveCount(1);
+    expect(await page.locator('main .site-container > *').first().evaluate(el => el.className)).toContain('about-subnav');
   });
 
   test('features: labelled illustrative mocks with no scores, dollars, penalties or Gate 1 language', async ({ page }) => {
@@ -209,13 +211,14 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
-    for (const [index, path] of ['/about/', '/about/company/', '/about/features/', '/about/founder/'].entries()) {
+    for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);
       const subnav = page.getByRole('navigation', { name: 'About sections' });
-      await expect(subnav.getByRole('link')).toHaveText(['Overview', 'Company', 'Features', 'Founder']);
+      await expect(subnav.getByRole('link')).toHaveText(['Company', 'Features', 'Founder']);
       await expect(subnav.locator('[aria-current="page"]')).toHaveCount(1);
       await expect(subnav.getByRole('link').nth(index)).toHaveAttribute('aria-current', 'page');
       if (desktop(testInfo)) await expect(page.locator('.desktop-navigation [aria-current="page"]')).toHaveAttribute('href', path);
+      await expect(page.getByRole('navigation', { name: 'About sections' }).getByRole('link')).toHaveCount(3);
     }
   });
 
@@ -225,20 +228,23 @@ test.describe('approved design acceptance (review build)', () => {
       const page = await context.newPage();
       await page.goto(REVIEW + '/');
       const submenu = page.locator('.desktop-navigation .submenu');
+      const about = page.locator('.desktop-navigation > li > a').first();
+      await expect(about).toHaveText('About');
+      await expect(about).toHaveAttribute('href', '/about/company/');
       await expect(submenu).toBeHidden();
-      await page.locator('.desktop-navigation > li > a', { hasText: 'About' }).hover();
+      await about.hover();
       await expect(submenu).toBeVisible();
       await expect(submenu.getByRole('link')).toHaveText(['Company', 'Features', 'Founder']);
       await page.mouse.move(700, 600);
       await expect(submenu).toBeHidden();
-      await page.locator('.desktop-navigation > li > a', { hasText: 'About' }).focus();
+      await about.focus();
       await expect(submenu).toBeVisible();
       for (const name of ['Company', 'Features', 'Founder']) {
         await page.keyboard.press('Tab');
         await expect(page.locator('.submenu a', { hasText: name })).toBeFocused();
       }
       await page.keyboard.press('Tab');
-      await expect(page.locator('.desktop-navigation a', { hasText: 'Demo' })).toBeFocused();
+      await expect(page.locator('.desktop-navigation a', { hasText: 'Gate 1' })).toBeFocused();
       await expect(submenu).toBeHidden();
     } finally { await context.close(); }
   });
@@ -259,7 +265,7 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.credibility li')).toHaveCount(5);
     await expect(page.locator('.founder-section .prose .bullet-list li')).toHaveCount(4);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
-    expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/', '/gate-1/']);
+    expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/gate-1/']);
   });
 
   test('contact: general and security destinations', async ({ page }) => {
@@ -274,7 +280,7 @@ test('production renders only attested navigation and publishes all approved pri
   if (!desktop(testInfo)) await page.locator('.mobile-navigation summary').click();
   const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
   // Unpublished routes (Features) never appear in production navigation.
-  await expect(links).toHaveText(['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Founder', 'Demo', 'Contact']);
+  await expect(links).toHaveText(['About', 'Company', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact']);
   await expect(page.locator('a[href="/about/features/"]')).toHaveCount(0);
   for (const path of ['/gate-1/', '/about/company/', '/about/founder/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
   expect((await page.goto(PRODUCTION + '/about/features/')).status()).toBe(404);
@@ -319,6 +325,6 @@ test('production links only target published pages', async ({ page }) => {
     if (path === '/404.html') continue;
     await page.goto(PRODUCTION + path);
     const hrefs = await page.locator('a[href^="/"]').evaluateAll(els => els.map(el => el.getAttribute('href').split('#')[0]));
-    for (const href of hrefs) expect(published.has(href) || /\.(svg|txt|xml)$/.test(href), `${path} links to ${href}`).toBe(true);
+    for (const href of hrefs) expect(published.has(href) || /\.(svg|txt|xml|json)$/.test(href), `${path} links to ${href}`).toBe(true);
   }
 });

@@ -102,8 +102,8 @@ test('migration preserves each baseline ID and approval state once, with a singl
   await assert.rejects(access('public_claims/public_claim_registry.yaml'));
   await assert.rejects(access('src/content/foundation.json'));
   assert.ok(current.claims.length >= 13);
-  // Nine baseline retirements plus the 21 pending mock-* claims retired by the About/Features redesign.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 30);
+  // Nine baseline retirements, 21 pending mock-* claims, and 4 pending About-overview claims retired by the redesign.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 34);
 });
 
 test('both founder events match exactly and single-character mutations fail on either side', async () => {

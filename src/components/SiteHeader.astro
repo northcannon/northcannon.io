@@ -19,6 +19,9 @@ for (const text of [company, ...items.flatMap(item => [item.label, ...(item.chil
   if (review) draftClaim(claims, registered.claim_id); else eligibleClaim(registered, registered.claim_id);
 }
 const current = (href: string) => (href === currentPath ? 'page' : undefined);
+// A group's own link marks the section, not the page: the matching child carries aria-current.
+const inSection = (item: { children?: ReadonlyArray<{ href: string }> }) => Boolean(item.children?.some(child => child.href === currentPath));
+const groupCurrent = (item: { href: string; children?: ReadonlyArray<{ href: string }> }) => (item.children?.length ? undefined : current(item.href));
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
@@ -36,8 +39,8 @@ const current = (href: string) => (href === currentPath ? 'page' : undefined);
       <nav aria-label="Primary" class="primary-nav">
         <ul class="navigation desktop-navigation">
           {items.map(item => (
-            <li class:list={{ 'has-submenu': item.children?.length }}>
-              <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+            <li class:list={{ 'has-submenu': item.children?.length, 'is-section': inSection(item) }}>
+              <a href={item.href} aria-current={groupCurrent(item)}>{item.label}</a>
               {item.children?.length ? (
                 <ul class="submenu">
                   {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
@@ -51,7 +54,7 @@ const current = (href: string) => (href === currentPath ? 'page' : undefined);
           <ul class="navigation">
             {items.map(item => (
               <li>
-                <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+                <a href={item.href} aria-current={groupCurrent(item)}>{item.label}</a>
                 {item.children?.length ? (
                   <ul class="submenu-mobile">
                     {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
