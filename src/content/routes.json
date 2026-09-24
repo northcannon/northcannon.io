@@ -227,7 +227,7 @@
       "label-status"
     ],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "nav_group": "about"
   },
   {

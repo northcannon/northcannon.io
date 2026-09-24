@@ -291,7 +291,6 @@ test.describe('approved design acceptance (review build)', () => {
   test('About pages carry no module numbering; other pages keep it', async ({ page }) => {
     const numbers = () => page.locator('main .module__head').evaluateAll(els => els.map(el => getComputedStyle(el, '::before').content));
     for (const base of [REVIEW, PRODUCTION]) for (const path of ['/about/company/', '/about/features/', '/about/founder/']) {
-      if (base === PRODUCTION && path === '/about/features/') continue;
       await page.goto(base + path);
       const heads = await numbers();
       expect(heads.length, path).toBeGreaterThan(0);
@@ -632,11 +631,9 @@ test('production renders only attested navigation and publishes all approved pri
   await page.goto(PRODUCTION + '/');
   if (!desktop(testInfo)) await page.locator('.mobile-navigation summary').click();
   const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
-  // Unpublished routes (Features) never appear in production navigation.
-  await expect(links).toHaveText(['About', 'Company', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact']);
-  await expect(page.locator('a[href="/about/features/"]')).toHaveCount(0);
-  for (const path of ['/gate-1/', '/about/company/', '/about/founder/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
-  expect((await page.goto(PRODUCTION + '/about/features/')).status()).toBe(404);
+  // Features is published (founder direction after approval 006).
+  await expect(links).toHaveText(['About', 'Company', 'Features', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact']);
+  for (const path of ['/gate-1/', '/about/company/', '/about/features/', '/about/founder/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
   await page.goto(PRODUCTION + '/results/');
   await expect(page.locator('h1')).toHaveText('Pre-execution');
   await expect(page.locator('.status-banner')).toContainText(status);

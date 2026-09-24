@@ -23,9 +23,9 @@ test('manifest follows the approved information architecture and rejects publish
   assert.ok(!routes.some(r => r.path === '/about/'), 'the About overview route is removed; /about/ redirects to Company');
   assert.equal(routes.length, 18);
   assert.equal(routes.find(r => r.path === '/demo/').publish, true, 'the demo stays published with its approved title');
-  assert.equal(routes.filter(r => r.publish).length, 17);
+  assert.equal(routes.filter(r => r.publish).length, 18);
   assert.ok(!routes.some(r => r.path === '/founder/'), 'the standalone founder route is removed');
-  assert.deepEqual(routes.filter(r => r.nav_group && r.publish).map(r => r.path), ['/about/company/', '/about/founder/'], 'Company and Founder are published (approved copy); Features waits for approval');
+  assert.deepEqual(routes.filter(r => r.nav_group && r.publish).map(r => r.path), ['/about/company/', '/about/features/', '/about/founder/'], 'every About page is published (Features by founder direction after approval 006)');
   assert.ok(!routes.some(r => r.path === '/early-access/'));
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
@@ -47,13 +47,13 @@ test('optional copy renders in review, is omitted from production, and appears t
   assert.throws(() => routeCopy(claims, home, routes, 'evidence-headline', { review: true }), /Undeclared route claim/);
   const attested = attest(claims, ['cta-view-gate-1', 'label-company']);
   assert.equal(routeCopy(attested, home, routes, 'cta-view-gate-1', { review: false }), 'View Gate 1');
-  // Production navigation lists only published, attested destinations; the unpublished Features page never appears.
+  // Production navigation lists only published, attested destinations.
   const paths = options => navigationRoutes(routes, options).map(r => r.path);
-  assert.deepEqual(paths({ review: false, claims }), ['/about/company/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
-  assert.deepEqual(paths({ review: false, claims: attested }), ['/about/company/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  assert.deepEqual(paths({ review: false, claims }), ['/about/company/', '/about/features/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
+  assert.deepEqual(paths({ review: false, claims: attested }), ['/about/company/', '/about/features/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
   // About is first, links to Company, and lists its published members.
   const tree = options => navigationTree(routes, options).map(item => [item.claimId, item.href, item.children.map(child => child.href)]);
-  assert.deepEqual(tree({ review: false, claims })[0], ['label-about', '/about/company/', ['/about/company/', '/about/founder/']]);
+  assert.deepEqual(tree({ review: false, claims })[0], ['label-about', '/about/company/', ['/about/company/', '/about/features/', '/about/founder/']]);
   assert.deepEqual(tree({ review: true, claims })[0], ['label-about', '/about/company/', ['/about/company/', '/about/features/', '/about/founder/']]);
   assert.deepEqual(tree({ review: true, claims }).slice(1).map(item => item[1]), ['/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/']);
   // The group vanishes with its label: no orphaned dropdown members.
