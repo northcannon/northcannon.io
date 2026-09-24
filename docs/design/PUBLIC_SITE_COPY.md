@@ -332,6 +332,42 @@ cloud-agnostic, the layer that sits between everything). Design intent, not a st
 | `interop-agnostic-agent` | Agent-agnostic |
 | `interop-agnostic-cloud` | Cloud-agnostic |
 
+Systems of record, broadened to be industry-agnostic (founder direction 2026-09-24: regulated industries, supply chain,
+data platforms such as warehouses and lakehouses, and any domain where decisions carry consequences), grouped by kind;
+the six systems listed above stay in their groups. Persistent verified state (founder direction 2026-09-24) reuses the
+approved `arm-treatment-sub` ("Persistent verified state") rather than duplicating it; `interop-state-caption` is the
+legend for the two-way links. Two-way: reasoning ↔ NorthCannon, NorthCannon ↔ systems of record, NorthCannon ↔
+persistent verified state. One-way: authoritative sources → NorthCannon (the change loop), NorthCannon → outputs →
+systems of record. No vendor or product names.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-records-group-data` | Data platforms |
+| `interop-records-group-enterprise` | Enterprise systems |
+| `interop-records-group-industry` | Industry systems |
+| `interop-records-group-actions` | Actions and outcomes |
+| `interop-records-dwh` | Data warehouses and lakehouses |
+| `interop-records-streams` | Data lakes and event streams |
+| `interop-records-databases` | Operational databases |
+| `interop-records-hr` | HR and payroll |
+| `interop-records-procurement` | Procurement and supplier management |
+| `interop-records-identity` | Identity and access management |
+| `interop-records-itsm` | IT service management |
+| `interop-records-documents` | Document and records management |
+| `interop-records-banking` | Core banking and payments |
+| `interop-records-insurance` | Claims and policy administration |
+| `interop-records-trading` | Trading and risk systems |
+| `interop-records-health` | Electronic health records |
+| `interop-records-clinical` | Clinical trial and safety systems |
+| `interop-records-supply` | Supply chain and logistics |
+| `interop-records-inventory` | Warehouse and inventory management |
+| `interop-records-manufacturing` | Manufacturing execution and quality |
+| `interop-records-fleet` | Fleet and transportation management |
+| `interop-records-energy` | Energy and utility operations |
+| `interop-records-telecom` | Network and telecom operations |
+| `interop-records-public` | Public-sector benefits and case management |
+| `interop-state-caption` | Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it. |
+
 ### Founder photo (`/about/founder/`)
 
 | Claim ID | Statement |

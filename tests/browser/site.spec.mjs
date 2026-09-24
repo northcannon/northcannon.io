@@ -397,7 +397,14 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(map.locator('.lmap__band--nc .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
     await expect(map.locator('.lmap__band--nc .lmap__agnostic li')).toHaveText(['Model-agnostic', 'Agent-agnostic', 'Cloud-agnostic']);
     for (const id of ['interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
-    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveText(['CRM', 'ERP', 'Loan-servicing and case systems', 'Decisions and approvals', 'Customer and borrower communications', 'Regulatory filings']);
+    // Systems of record are industry-agnostic, grouped by kind.
+    await expect(map.locator('.lmap__band--records .lmap__group-label')).toHaveText(['Data platforms', 'Enterprise systems', 'Industry systems', 'Actions and outcomes']);
+    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(26);
+    for (const chip of ['Data warehouses and lakehouses', 'CRM', 'ERP', 'Core banking and payments', 'Electronic health records', 'Supply chain and logistics', 'Manufacturing execution and quality', 'Energy and utility operations', 'Public-sector benefits and case management', 'Loan-servicing and case systems', 'Decisions and approvals', 'Customer and borrower communications', 'Regulatory filings']) await expect(map.locator('.lmap__band--records .lmap__chips li', { hasText: chip }).first()).toBeVisible();
+    // Persistent verified state reuses the approved arm-treatment-sub claim; the legend explains the two-way links.
+    await expect(map.locator('.lmap__band--nc .lmap__state-label')).toHaveText(text('arm-treatment-sub'));
+    expect(claims.filter(c => c.statement === 'Persistent verified state' && c.lifecycle_state !== 'retired').map(c => c.claim_id)).toEqual(['arm-treatment-sub']);
+    await expect(map.locator('.lmap__legend .card-text')).toHaveText(text('interop-state-caption'));
     await expect(map.locator('.lmap__flow-title')).toHaveText(['AI agent → decision', 'Model → CRM record', 'CRM → borrower letter']);
     await expect(map.locator('.lmap__flow .card-text')).toHaveText(['interop-flow-agent-body', 'interop-flow-model-body', 'interop-flow-letter-body'].map(text));
     await expect(map.locator('.lmap__loop-caption')).toHaveText(text('interop-change-loop'));
@@ -412,8 +419,9 @@ test.describe('approved design acceptance (review build)', () => {
     // Hidden description: layers, then the three flows and the loop, in order.
     const description = page.locator('#lmap-desc');
     await expect(map).toHaveAttribute('aria-describedby', 'lmap-desc');
-    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', /^NorthCannon Verification \+ Change Intelligence Layer\s+Model-agnostic\s+Agent-agnostic\s+Cloud-agnostic$/, 'Systems of record and actions']);
-    await expect(description.locator('ol').last().locator('li')).toHaveCount(4);
+    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', /^NorthCannon Verification \+ Change Intelligence Layer\s+Model-agnostic\s+Agent-agnostic\s+Cloud-agnostic\s+Persistent verified state$/, 'Systems of record and actions']);
+    await expect(description.locator('ol').last().locator('li')).toHaveCount(5);
+    await expect(description.locator('ol').last().locator('li').last()).toHaveText(text('interop-state-caption'));
     await expect(description.locator('ol').last().locator('li').first()).toContainText('AI agent → decision');
     await expect(map.locator('svg text')).toHaveCount(0);
     expect(await map.innerText()).not.toMatch(/salesforce|\bsap\b|oracle|openai|anthropic|microsoft|workday|servicenow/i);
@@ -425,10 +433,39 @@ test.describe('approved design acceptance (review build)', () => {
       // Each path has an arrow into the band and one out of it; the loop runs from sources to the band.
       await expect(map.locator('.lmap__conn--in')).toHaveCount(2);
       await expect(map.locator('.lmap__conn--out')).toHaveCount(3);
-      await expect(map.locator('.lmap__conn--out .lmap__arrow--up')).toHaveCount(1);
+      // Two-way: reasoning <-> NorthCannon and NorthCannon <-> systems of record for the agent and model paths.
+      // One-way: the system-of-record U-turn (in, then out) and NorthCannon -> outputs -> systems.
+      await expect(map.locator('.lmap__conn--in .lmap__wire--both')).toHaveCount(2);
+      await expect(map.locator('.lmap__conn--out .lmap__wire--both')).toHaveCount(2);
+      await expect(map.locator('.lmap__conn--out .lmap__wire--up')).toHaveCount(1);
+      await expect(map.locator('.lmap__conn--out .lmap__wire--down')).toHaveCount(1);
+      await expect(map.locator('.lmap__outputs .lmap__wire--down')).toHaveCount(2);
       await expect(map.locator('.lmap__check')).toHaveCount(3);
-      for (const arrow of await map.locator('.lmap__conn--in .lmap__arrow').all()) expect(Math.abs((await arrow.boundingBox()).y + (await arrow.boundingBox()).height - nc.y)).toBeLessThan(3);
-      for (const arrow of await map.locator('.lmap__conn--out .lmap__arrow').all()) expect(Math.abs((await arrow.boundingBox()).y - (nc.y + nc.height))).toBeLessThan(3);
+      // Every wire meets both bands it joins.
+      const reasoning = await box('.lmap__band--reasoning'), records = await box('.lmap__band--records');
+      for (const wire of await map.locator('.lmap__conn--in .lmap__wire').all()) {
+        const w = await wire.boundingBox();
+        expect(Math.abs(w.y - (reasoning.y + reasoning.height))).toBeLessThan(2);
+        expect(Math.abs(w.y + w.height - nc.y)).toBeLessThan(2);
+      }
+      for (const wire of await map.locator('.lmap__conn--out .lmap__wire').all()) {
+        const w = await wire.boundingBox();
+        expect(Math.abs(w.y - (nc.y + nc.height))).toBeLessThan(2);
+        expect(Math.abs(w.y + w.height - records.y)).toBeLessThan(2);
+      }
+      // Wires line up with their gates inside the band; the state store sits on the gates' bus.
+      const gates = await map.locator('.lmap__check-ring').all();
+      for (const [index, sel] of ['.lmap__conn--in.lmap__col-1 .lmap__wire', '.lmap__conn--in.lmap__col-2 .lmap__wire'].entries()) {
+        const w = await box(sel), g = await gates[index].boundingBox();
+        expect(Math.abs(w.x + w.width / 2 - (g.x + g.width / 2))).toBeLessThan(2);
+      }
+      const state = await box('.lmap__state'), gate = await gates[0].boundingBox();
+      expect(Math.abs(state.y + state.height / 2 - (gate.y + gate.height / 2))).toBeLessThan(3);
+      for (const wire of await map.locator('.lmap__outputs .lmap__wire').all()) {
+        const w = await wire.boundingBox();
+        expect(w.y + w.height).toBeGreaterThan(nc.y + nc.height - 1);
+        expect(w.y).toBeLessThan(records.y + 1);
+      }
       const loop = await box('.lmap__loop'), sources = await box('.lmap__band--sources');
       expect(loop.y).toBeGreaterThan(sources.y);
       expect(loop.y).toBeLessThan(sources.y + sources.height);
@@ -439,18 +476,19 @@ test.describe('approved design acceptance (review build)', () => {
         expect(nc.x).toBeLessThan(other.x); expect(nc.x + nc.width).toBeGreaterThan(other.x + other.width);
       }
       expect(await map.locator('.lmap__loop').evaluate(el => getComputedStyle(el).borderTopStyle)).toBe('dashed');
-      const outputs = await box('.lmap__outputs'), records = await box('.lmap__band--records');
+      const outputs = await box('.lmap__outputs');
       expect(outputs.y).toBeGreaterThan(nc.y + nc.height);
       expect(outputs.y + outputs.height).toBeLessThan(records.y);
     } else {
       // Narrow: stacked layers, each path a vertical source -> NorthCannon -> destination sequence.
       await expect(map.locator('.lmap__conn').first()).toBeHidden();
       for (const flow of await map.locator('.lmap__flow').all()) {
-        await expect(flow.locator('.lmap__steps li')).toHaveCount(3);
-        await expect(flow.locator('.lmap__steps li').nth(1)).toHaveText('NorthCannon');
-        const steps = await flow.locator('.lmap__steps li').evaluateAll(els => els.map(el => el.getBoundingClientRect().y));
+        await expect(flow.locator('.lmap__steps-node')).toHaveCount(3);
+        await expect(flow.locator('.lmap__steps-node').nth(1)).toHaveText('NorthCannon');
+        await expect(flow.locator('.lmap__steps-link')).toHaveCount(2);
+        const steps = await flow.locator('.lmap__steps-node').evaluateAll(els => els.map(el => el.getBoundingClientRect().y));
         expect(steps[0]).toBeLessThan(steps[1]); expect(steps[1]).toBeLessThan(steps[2]);
-        expect(await flow.locator('.lmap__steps li').nth(1).evaluate(el => getComputedStyle(el, '::after').borderTopStyle)).toBe('solid');
+        expect(await flow.locator('.lmap__steps-link').first().evaluate(el => getComputedStyle(el, '::after').borderTopStyle)).toBe('solid');
       }
       const order = await Promise.all(['.lmap__band--sources', '.lmap__band--reasoning', '.lmap__band--nc', '.lmap__band--records'].map(sel => box(sel).then(b => b.y)));
       expect([...order].sort((a, b) => a - b)).toEqual(order);
@@ -460,7 +498,7 @@ test.describe('approved design acceptance (review build)', () => {
     await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('.lmap__grid')).toHaveCount(0);
     await expect(page.locator('.lmap--basic')).toHaveCount(1);
-    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower|agnostic/);
+    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower|agnostic|Persistent verified state|lakehouse/);
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {
