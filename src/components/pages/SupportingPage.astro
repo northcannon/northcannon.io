@@ -3,7 +3,9 @@
 // vision and the not-found page, in the shared design system.
 import Icon from '../Icon.astro';
 import LinkCard from '../LinkCard.astro';
+import Module from '../Module.astro';
 import { readProductionProvenance } from '../../governance/wp4-output.mjs';
+import { loadGovernance } from '../../governance/registry.mjs';
 import type { Copy } from '../copy';
 interface Route { path: string; title_claim_or_label: string; claim_ids: string[]; publish: boolean }
 interface Claim { claim_id: string; category: string; basis: string; review_date: string | null; approval_state: string }
@@ -18,8 +20,11 @@ const body: Record<string, string[]> = {
   '/trust/status/': ['status-gate1-frozen-stress'],
   '/trust/disclosure/': ['disclosure-report'],
   '/trust/site-security/': ['site-static', 'site-csp'],
-  '/trust/changelog/': ['changelog-empty'],
+  '/trust/changelog/': [],
 };
+// Changelog records are governed claims: an entry shows only when its statements may render in this build.
+const entries = route.path === '/trust/changelog/' ? (loadGovernance().changelog as Array<{ claim_ids: string[] }>).filter(entry => entry.claim_ids.every((id: string) => t(id) !== undefined)) : [];
+if (route.path === '/trust/changelog/' && entries.length === 0) body['/trust/changelog/'] = ['changelog-empty'];
 const paragraphs = (body[route.path] ?? []).flatMap(id => copy.paragraphs(id));
 const trustLinks = route.path === '/trust/' ? routes.filter(r => r.path.startsWith('/trust/') && r.path !== '/trust/' && (review || r.publish)) : [];
 const approved = route.path === '/trust/claims/' ? claims.filter(c => c.approval_state === 'approved' && route.claim_ids.includes(c.claim_id)) : [];
@@ -31,6 +36,11 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
     <h1 class="page-title">{title}</h1>
     {route.path === '/trust/status/' && <p class="status-inline"><span class="status-dot status-dot--pending" aria-hidden="true"></span><span>{t('stage-frozen')}</span></p>}
     {paragraphs.length > 0 && <div class="panel prose">{paragraphs.map(paragraph => <p>{paragraph}</p>)}</div>}
+    {entries.length > 0 && (
+      <ul class="claim-list">
+        {entries.flatMap((entry: { claim_ids: string[] }) => entry.claim_ids).map((id: string) => <li class="panel prose"><p>{t(id)}</p></li>)}
+      </ul>
+    )}
     {email && <div class="action-group"><a class="action-link action-link--primary" href={`mailto:${email}`}><Icon name="mail" />{email}</a></div>}
     {route.path === '/404.html' && <div class="action-group"><a class="action-link action-link--primary" href="/">Return home</a></div>}
     {trustLinks.length > 0 && <div class="link-cards">{trustLinks.map(r => <LinkCard href={r.path} icon="shield-check" title={t(r.title_claim_or_label)!} />)}</div>}
@@ -54,10 +64,9 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
           <div><dt>{t('label-astro-version')}</dt><dd>{provenance.astro_version}</dd></div>
         </dl>
         {(['sources', 'files', 'approval_events'] as const).map((group, index) => (
-          <section class="panel">
-            <h2 class="section-title section-title--spaced">{t(['label-source-files', 'label-output-files', 'label-approval-events'][index]!)}</h2>
+          <Module id={`provenance-${group}`} title={t(['label-source-files', 'label-output-files', 'label-approval-events'][index]!)!} numbered>
             <dl class="record-fields record-fields--digest">{Object.entries(provenance[group]).map(([name, digest]) => <div><dt>{name}</dt><dd>{String(digest)}</dd></div>)}</dl>
-          </section>
+          </Module>
         ))}
       </div>
     )}

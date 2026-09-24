@@ -55,3 +55,19 @@ their pending copy until founder attestation (see [copy awaiting approval](PUBLI
 | Brief 03 | Contact | Contact destination | NOT APPLICABLE | `ContactPage.astro` | No wireframe; composed from the design system with approved contacts |
 | Brief 06 | — | JSON status endpoint | NOT APPLICABLE | — | No approved machine-readable status contract |
 | All | All | 390px layouts | RESPONSIVE ADAPTATION | ≤ 1024px rules | One column, 24px margins, stacked cards |
+
+## Redesign addendum (About section and instrument visual system)
+
+Supersedes the Home, About and Founder rows above where they differ. Status for all rows
+below is CONTENT-APPROVAL BLOCKED: new copy is pending and rendering parity fixtures are
+regenerated only after founder visual approval.
+
+| Area | Page | Element | Implementation | Note |
+| --- | --- | --- | --- | --- |
+| Shell | All | Header: wordmark, Gate 1, Results, Evidence, About dropdown, Demo, Contact | `SiteHeader.astro` | JS-free dropdown and `<details>` mobile menu |
+| Shell | All | Instrument modules, readouts, verdicts, support cells | `Module`, `Readout`, `Verdict`, `SupportCells` | Tokens in `global.css` |
+| Home | `/` | Slim hero and decorative verification module | `HomePage.astro` | Replaces the four-layer stack; company sections moved |
+| About | `/about/` | Overview: founder text, NorthCannon and Why now modules, subpage links | `AboutPage.astro` | Replaces the mock evidence packet and console |
+| About | `/about/company/` | Capabilities, is / is not, interoperability, contact | `AboutCompanyPage.astro` | Moved from the landing page |
+| About | `/about/features/` | Illustrative Change Intelligence, lineage and Evidence views | `AboutFeaturesPage.astro` | Fictional data; pending claims only |
+| About | `/about/founder/` | Founder page | `FounderPage.astro` | Moved from `/founder/`; unpublished |

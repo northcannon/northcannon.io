@@ -204,3 +204,247 @@ The founder's finalization instruction approves revised claims, structural/inter
 | `founder-gate-title` | approved | See Gate 1 |
 | `founder-gate-body` | pending | Current focus and status. |
 | `contact-intro` | approved | For partnerships, design-partner conversations, research, or general inquiries: <hello@northcannon.io>. |
+
+<!-- redesign-copy:start -->
+
+## Redesign copy awaiting founder approval
+
+These statements were added for the About section, Features page and Demo page. Every one is a
+**pending** claim in `public_claims/claims.json`: it renders in review builds and is omitted from
+production until the founder attests it in `docs/FOUNDER_APPROVALS.md`. The Features copy describes
+designed behavior on fictional data only; it contains no penalty or dollar figures, no Gate 1
+language, no confidence score, and no statute or regulation citations. "Harbor National Bank"
+always appears with "FICTIONAL DEMO INSTITUTION".
+
+### About section (`/about/`, subnav and link blurbs)
+
+| Claim ID | Statement |
+| --- | --- |
+| `label-features` | Features |
+| `label-about-sections` | About sections |
+
+### Features (`/about/features/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `feat-headline` | Change Intelligence and Evidence, illustrated |
+| `feat-lede` | Two illustrative views of how NorthCannon is designed to work. Every case, name, date and record shown is fictional. |
+| `feat-disclosure` | Illustrative · fictional data · designed behavior, not yet implemented |
+| `feat-ci-title` | Mock Change Intelligence |
+| `feat-ci-event-label` | Change event |
+| `feat-ci-event` | Amended return of service recorded |
+| `feat-ci-affected` | 1 of 4 prior decisions affected · 3 unaffected — not re-run |
+| `feat-ci-date-prior-label` | Earliest permitted date (before the change) |
+| `feat-ci-date-prior` | SEP 18 |
+| `feat-ci-date-new-label` | Earliest permitted date (after the change) |
+| `feat-ci-date-new` | SEP 28 |
+| `feat-ci-date-proposed-label` | Proposed date |
+| `feat-ci-date-proposed` | SEP 24 |
+| `feat-ci-verdict-prior-label` | Prior decision |
+| `feat-ci-verdict-new-label` | Re-evaluated decision |
+| `feat-verdict-proceed` | Proceed |
+| `feat-verdict-refuse` | Refuse |
+| `feat-wl-caption` | Open action for the affected decision |
+| `feat-wl-id` | ID |
+| `feat-wl-action` | Action |
+| `feat-wl-assigned` | Assigned to |
+| `feat-wl-source` | Source |
+| `feat-wl-closes` | Closes when |
+| `feat-wl-row-status` | Open |
+| `feat-wl-row-id` | ACT-0003 |
+| `feat-wl-row-action` | Propose a date on or after SEP 28 |
+| `feat-wl-row-assigned` | Proposing agent (fictional) |
+| `feat-wl-row-closes` | A revised date verifies on or after SEP 28 |
+| `feat-lineage-title` | Mock downstream lineage |
+| `feat-lineage-institution` | Harbor National Bank · FICTIONAL DEMO INSTITUTION |
+| `feat-lineage-summary` | 5 of 10 downstream assets affected |
+| `feat-lineage-col-source` | Changed source |
+| `feat-lineage-col-derived` | Derived assets |
+| `feat-lineage-col-decision` | Reports and decisions |
+| `feat-lineage-alt` | Lineage graph: one changed source feeds five derived assets, three of them affected; those feed five reports and decisions, two of them affected. Five of the ten downstream assets are affected in total. |
+| `feat-ev-title` | Mock Evidence |
+| `feat-ev-drawer-title` | Decision provenance |
+| `feat-decision-label` | Decision |
+| `feat-cell-rule` | Rule |
+| `feat-cell-time` | Time |
+| `feat-cell-authority` | Authority |
+| `feat-cell-state` | State |
+| `feat-cells-label` | Support checks for the re-evaluated decision |
+| `feat-cell-supported` | Support confirmed |
+| `feat-cell-unsupported` | Support not confirmed |
+| `feat-ev-evidence-value` | Amended return of service, recorded (fictional) |
+| `feat-ev-rule-value` | Notice-period rule, version 3 (fictional) |
+| `feat-ev-time-value` | SEP 24 is before the earliest permitted date, SEP 28 |
+| `feat-ev-authority-value` | Agent may propose scheduling (fictional delegation) |
+| `feat-ev-state-value` | Re-evaluated after the amended record |
+| `feat-ev-hash-label` | Record hash |
+| `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
+| `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
+
+### Company (`/about/company/`): layered interoperability diagram
+
+Four layers top to bottom (authoritative sources, reasoning, the NorthCannon band, systems of record and
+actions), three checkpoint paths through the NorthCannon band, and the change-intelligence loop. Reused, not
+duplicated: `interop-auth-title` labels the sources layer, `interop-auth-body` is its intro line, the approved
+`interop-layer` names the NorthCannon band (with the approved `interop-adapters`, `label-evaluation`,
+`label-provenance`, `label-evidence` and `label-change-intelligence` chips), the approved `interop-outputs` and
+`interop-outputs-body` are what the band returns, and the pending `interop-origin-models` ("Models") and
+`interop-origin-agents` ("AI agents") are the reasoning chips. No vendor or product names. Until every claim
+below is attested, production renders the approved Data Sources → layer → Outputs stack.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-auth-title` | Authoritative sources |
+| `interop-auth-body` | State and federal statutes and regulations, official agency rules and guidance, court filings and public records, contracts and internal policies, and system-of-record data, APIs and documents. |
+| `interop-src-statutes` | State and federal statutes |
+| `interop-src-regulations` | Regulations and agency rules |
+| `interop-src-guidance` | Official agency guidance and notices |
+| `interop-src-court` | Court filings and public records |
+| `interop-src-contracts` | Contracts and internal policies |
+| `interop-src-records` | System-of-record data |
+| `interop-src-apis` | APIs and documents |
+| `interop-reasoning-title` | Reasoning |
+| `interop-origin-models` | Models |
+| `interop-origin-agents` | AI agents |
+| `interop-reasoning-workflow` | Workflow automation |
+| `interop-records-title` | Systems of record and actions |
+| `interop-records-crm` | CRM |
+| `interop-records-erp` | ERP |
+| `interop-records-servicing` | Loan-servicing and case systems |
+| `interop-records-decisions` | Decisions and approvals |
+| `interop-records-filings` | Regulatory filings |
+| `interop-flow-agent-title` | AI agent → decision |
+| `interop-flow-agent-body` | An agent proposes a decision; NorthCannon verifies it against the rule in force and the evidence before it is acted on. |
+| `interop-change-loop` | When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation. |
+| `interop-footnote` | Integration categories are illustrative design targets, not current integrations. |
+
+Badges on the NorthCannon band (founder direction 2026-09-24: show that NorthCannon is model-, agent- and
+cloud-agnostic, the layer that sits between everything). Design intent, not a statement of current integrations.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-agnostic-model` | Model-agnostic |
+| `interop-agnostic-agent` | Agent-agnostic |
+| `interop-agnostic-cloud` | Cloud-agnostic |
+
+Systems of record, broadened to be industry-agnostic (founder direction 2026-09-24: regulated industries, supply chain,
+data platforms such as warehouses and lakehouses, and any domain where decisions carry consequences), grouped by kind;
+the six systems listed above stay in their groups. Persistent verified state (founder direction 2026-09-24) reuses the
+approved `arm-treatment-sub` ("Persistent verified state") rather than duplicating it; `interop-state-caption` is the
+legend for the two-way links. Two-way: reasoning ↔ NorthCannon, NorthCannon ↔ systems of record, NorthCannon ↔
+persistent verified state. One-way: authoritative sources → NorthCannon (the change loop), NorthCannon → outputs →
+systems of record. No vendor or product names.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-records-group-data` | Data platforms |
+| `interop-records-group-enterprise` | Enterprise systems |
+| `interop-records-group-industry` | Industry systems |
+| `interop-records-group-actions` | Actions and outcomes |
+| `interop-records-dwh` | Data warehouses and lakehouses |
+| `interop-records-streams` | Data lakes and event streams |
+| `interop-records-databases` | Operational databases |
+| `interop-records-hr` | HR and payroll |
+| `interop-records-procurement` | Procurement and supplier management |
+| `interop-records-identity` | Identity and access management |
+| `interop-records-itsm` | IT service management |
+| `interop-records-documents` | Document and records management |
+| `interop-records-banking` | Core banking and payments |
+| `interop-records-insurance` | Claims and policy administration |
+| `interop-records-trading` | Trading and risk systems |
+| `interop-records-health` | Electronic health records |
+| `interop-records-clinical` | Clinical trial and safety systems |
+| `interop-records-supply` | Supply chain and logistics |
+| `interop-records-inventory` | Warehouse and inventory management |
+| `interop-records-manufacturing` | Manufacturing execution and quality |
+| `interop-records-fleet` | Fleet and transportation management |
+| `interop-records-energy` | Energy and utility operations |
+| `interop-records-telecom` | Network and telecom operations |
+| `interop-records-public` | Public-sector benefits and case management |
+| `interop-state-caption` | Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it. |
+
+Industry-agnostic scope (founder direction 2026-09-24: the diagram is not limited to the Features demo; it shows
+NorthCannon wherever consequential machine decisions are made, and CRM is one target among many — email, ERP,
+proprietary firmware, client web apps, court sites and government sites). Court systems are named generically
+("Court e-filing and docket systems") rather than by a specific system's name, keeping the no-product-names rule.
+The worked paths now span a general decision, a device firmware update and a court docket → client email.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-anywhere` | Industry-agnostic by design: NorthCannon is designed to sit wherever consequential machine decisions are made — finance, insurance, healthcare, legal, government, supply chain, manufacturing, energy and beyond. |
+| `interop-agnostic-label` | Designed to be: |
+| `interop-agnostic-industry` | Industry-agnostic |
+| `interop-reasoning-rules` | Rules and decision engines |
+| `interop-reasoning-rpa` | Robotic process automation |
+| `interop-records-group-channels` | Channels and endpoints |
+| `interop-records-email` | Email and messaging |
+| `interop-records-webapps` | Client-facing web applications |
+| `interop-records-court` | Court e-filing and docket systems |
+| `interop-records-government` | Government portals and agency websites |
+| `interop-records-firmware` | Proprietary firmware and embedded devices |
+| `interop-records-customer` | Customer communications |
+| `interop-records-payments` | Payments and transfers |
+| `interop-records-orders` | Orders and shipments |
+| `interop-flow-firmware-title` | Model → firmware update |
+| `interop-flow-firmware-body` | A model recommends a device configuration change; NorthCannon verifies the approved configuration and the authority to act before the firmware update is released. |
+| `interop-flow-docket-title` | Court docket → client email |
+| `interop-flow-docket-body` | A court docket changes a filing deadline; NorthCannon identifies the affected matters and verifies the new date before a client email goes out. |
+
+### Founder photo (`/about/founder/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `founder-photo-alt` | Max Brooks, founder of NorthCannon |
+
+### Founder: Why NorthCannon exists (`/about/founder/`)
+
+Basis: Founder-authored narrative; illustrative hypothetical, no real parties; founder direction 2026-09-24.
+It names no real regulation, state, company or product. Paragraphs are separated by blank lines; the fourth
+paragraph renders as a pull-quote. Until it is attested, production keeps the section's current approved content.
+
+| Claim ID | Statement |
+| --- | --- |
+| `contact-intro-email` | For partnerships, design-partner conversations, research, or general inquiries, email hello@northcannon.io. |
+| `about-why-detail-1` | AI models are becoming more accurate and less expensive to run, and they are moving from recommendation toward consequential action. But a model can still produce an answer that sounds right and is wrong, and once that output enters a workflow it is often treated as fact. |
+| `about-why-detail-2` | In regulated work, decisions have consequences: a missed deadline, an action taken without authority, an obligation no one tracked. The question is not only what a model produced, but whether the decision was supportable, and whether it stays supportable when facts, rules, evidence, or conditions change. |
+| `about-why-detail-3` | NorthCannon is designed to answer that question before a decision acts. When the facts do not support a decision, it is designed to abstain and state why. When they do, it is designed to produce an evidence packet showing what the decision relied on: the evidence, the rule, the timing, and the authority. |
+| `founder-why-body` | Consider an AI agent working through a loan-servicing queue. It searches its context — policy documents, account history, prior correspondence — and concludes that a borrower should receive a particular notice on a particular date. The reasoning looks sound, and the agent is confident.<br><br>What the agent does not know is that a state regulation changed the required notice period, effective the week before. Nothing in its context says so. The decision is carried out, the letter is mailed, and the company is now exposed to legal risk and financial consequences it never chose to take on.<br><br>The model did not malfunction. It reasoned well over what it could see. The failure is that nothing verified the decision itself — against the rule actually in force, the evidence on record, the authority to act, and the moment it was made — before it became an action. And nothing would have noticed later that a change had quietly undermined it.<br><br>That is the gap NorthCannon is designed to close. Data and models have their own controls. The decision — the unit that actually carries consequences — deserves its own standard of proof: verified before action, preserved with the evidence behind it, and re-evaluated when the facts or rules beneath it change. |
+| `founder-origin-quote` | Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated? |
+| `founder-origin-note` | The question that sparked the idea for NorthCannon. |
+| `founder-origin-attribution` | Max Brooks, Founder, NorthCannon |
+
+### Changelog (`/trust/changelog/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `changelog-2026-09-site-redesign` | 2026-09-24: New visual system across the site. About, Company and Founder are combined into one About section with Company, Features and Founder pages. The Demo page is added to the navigation. |
+
+### Demo (`/demo/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `demo-lede` | A guided walkthrough of verification and change intelligence, on fictional cases, is in preparation. |
+| `demo-graphic-alt` | Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched. |
+| `demo-change-label` | Regulation change is now effective |
+| `demo-blast-label` | Calculating blast radius |
+| `demo-graphic-note` | Illustrative animation · not a live system |
+
+### Retired
+
+The pending `label-overview`, `about-link-company-body`, `about-link-features-body` and `about-link-founder-body` claims are retired (IDs kept): there is no About overview page; `/about/` redirects to `/about/company/`.
+
+The pending `feat-wl-row-source` ("Re-evaluated decision") is retired (ID kept) because it duplicated `feat-ci-verdict-new-label`; the workload table's Source cell reuses that claim.
+
+The badges are prefixed by `interop-agnostic-label` ("Designed to be:") so they read as design intent. The full systems-of-record list is the founder's direction and is kept.
+
+The pending `interop-flow-model-title`, `interop-flow-model-body`, `interop-flow-letter-title`, `interop-flow-letter-body` and `interop-records-communications` (lending-only CRM/borrower paths) are retired (IDs kept), replaced by the industry-agnostic paths and `interop-records-customer`.
+
+The pending `interop-origin-title`, `interop-origin-enterprise`, `interop-origin-devices`, `interop-origin-workflow`,
+`interop-arrow-out` and `interop-arrow-back` claims of the earlier two-way diagram are retired (IDs kept). `interop-origin-models`
+and `interop-origin-agents` stay pending: their text is reused by the reasoning layer rather than duplicated.
+
+The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs kept). The approved
+`mock-*` claims remain in the registry with their founder attestations intact but are no longer
+referenced by any route, so they render nowhere; retiring them formally needs a founder attestation change.
+
+<!-- redesign-copy:end -->

@@ -1,0 +1,15 @@
+---
+// A real table with a caption: one row per open action. All strings come from registered copy.
+// At narrow widths CSS stacks each row as a label/value list (roles keep the table semantics).
+interface Props { caption: string; columns: string[]; rows: string[][] }
+const { caption, columns, rows } = Astro.props;
+---
+<div class="table-scroll" role="region" aria-label={caption} tabindex="0">
+  <table class="workload" role="table">
+    <caption class="workload__caption">{caption}</caption>
+    <thead><tr role="row">{columns.map(column => <th scope="col" role="columnheader">{column}</th>)}</tr></thead>
+    <tbody>
+      {rows.map(row => <tr role="row">{row.map((cell, index) => index === 0 ? <th scope="row" role="rowheader" data-label={columns[index]}><span class="workload__status">{cell}</span></th> : <td role="cell" data-label={columns[index]}>{cell}</td>)}</tr>)}
+    </tbody>
+  </table>
+</div>

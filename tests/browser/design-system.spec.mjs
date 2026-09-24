@@ -22,8 +22,8 @@ test('design tokens and layout system match the implementation brief', async ({ 
     const s = getComputedStyle(document.documentElement);
     return Object.fromEntries(['--color-bg', '--color-panel', '--color-elevated', '--color-text', '--color-muted', '--color-border', '--color-violet', '--color-indigo', '--color-verified', '--color-pending', '--color-failed', '--margin', '--gutter', '--section-space', '--radius-card', '--nav-height', '--text-width', '--canvas'].map(k => [k, s.getPropertyValue(k).trim()]));
   });
-  expect(tokens).toEqual({ '--color-bg': '#0a0a0d', '--color-panel': '#121216', '--color-elevated': '#1c1c22', '--color-text': '#f5f7fb', '--color-muted': '#a7b1c2', '--color-border': '#2e2e3b', '--color-violet': '#8b5cf6', '--color-indigo': '#6366f1', '--color-verified': '#22c55e', '--color-pending': '#f59e0b', '--color-failed': '#ef4444', '--margin': '72px', '--gutter': '24px', '--section-space': '96px', '--radius-card': '16px', '--nav-height': '80px', '--text-width': '760px', '--canvas': '1440px' });
-  expect(await page.locator('.panel').first().evaluate(el => getComputedStyle(el).borderRadius)).toBe('16px');
+  expect(tokens).toEqual({ '--color-bg': '#0e0b14', '--color-panel': '#1a1128', '--color-elevated': '#261a3a', '--color-text': '#f5f7fb', '--color-muted': '#b4aec4', '--color-border': '#3f3358', '--color-violet': '#8b5cf6', '--color-indigo': '#6366f1', '--color-verified': '#5ec48b', '--color-pending': '#f59e0b', '--color-failed': '#e57a74', '--margin': '72px', '--gutter': '24px', '--section-space': '96px', '--radius-card': '16px', '--nav-height': '80px', '--text-width': '760px', '--canvas': '1440px' });
+  expect(await page.locator('.verify-module').first().evaluate(el => getComputedStyle(el).borderRadius)).toBe('16px');
   expect(await page.locator('.home-hero').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(12);
   expect(await page.locator('.home-hero').evaluate(el => getComputedStyle(el).columnGap)).toBe('24px');
   await page.setViewportSize({ width: 390, height: 844 });

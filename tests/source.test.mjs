@@ -99,3 +99,15 @@ test('public documentation markdown links resolve after conceptual rename', asyn
     }
   }
 });
+
+test('font provenance document matches the shipped font and license files', async () => {
+  const { createHash } = await import('node:crypto');
+  const doc = await readFile('docs/design/FONTS.md', 'utf8');
+  const { readdir } = await import('node:fs/promises');
+  const files = (await readdir('public/fonts')).sort();
+  assert.equal(files.length, 7);
+  for (const file of files) {
+    const digest = createHash('sha256').update(await readFile(`public/fonts/${file}`)).digest('hex');
+    assert.ok(doc.includes(file) && doc.includes(digest), `docs/design/FONTS.md must list ${file} with its sha256`);
+  }
+});

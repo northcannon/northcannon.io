@@ -45,6 +45,7 @@ next-env.d.ts
 /dist/
 /.astro/
 /test-results/
+/.review-shots/
 /playwright-report/
 /.review-dist/
 /tests/fixtures/design-system/.astro/

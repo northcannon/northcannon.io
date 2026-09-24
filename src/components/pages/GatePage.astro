@@ -29,13 +29,11 @@ const gate = t('label-gate-1');
     </StatusBanner>
 
     {t('gate-lifecycle-title') && (
-      <section class="panel" aria-labelledby="lifecycle-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="lifecycle-title">{t('gate-lifecycle-title')}</h2>
-            {t('label-current-status') && <p class="section-intro"><span class="label-colon">{t('label-current-status')}</span> <span class="tone-pending">{t('stage-frozen')}</span></p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="lifecycle-title">
+<h2 class="module__head" id="lifecycle-title">{t('gate-lifecycle-title')}</h2>
+<div class="module__body">
+{t('label-current-status') && <p class="section-intro"><span class="label-colon">{t('label-current-status')}</span> <span class="tone-pending">{t('stage-frozen')}</span></p>}
+
         <ol class="lifecycle">
           {stages.map((id, index) => (
             <li class:list={['lifecycle__step', { 'is-current': index === stageIndex }]} aria-current={index === stageIndex ? 'step' : undefined}>
@@ -44,24 +42,27 @@ const gate = t('label-gate-1');
             </li>
           ))}
         </ol>
-      </section>
+      </div>
+</section>
     )}
 
     {t('gate-what-title') && (
-      <section class="panel" aria-labelledby="what-title">
-        <h2 class="section-title" id="what-title">{t('gate-what-title')}</h2>
+      <section class="module module--numbered panel" aria-labelledby="what-title">
+<h2 class="module__head" id="what-title">{t('gate-what-title')}</h2>
+<div class="module__body">
+
+        
         {t('gate-what-body') && <p class="card-text gate-what">{t('gate-what-body')}</p>}
-      </section>
+      </div>
+</section>
     )}
 
     {t('arms-title') && (
-      <section class="panel" aria-labelledby="arms-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="arms-title">{t('arms-title')}</h2>
-            {t('arms-intro') && <p class="section-intro">{t('arms-intro')}</p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="arms-title">
+<h2 class="module__head" id="arms-title">{t('arms-title')}</h2>
+<div class="module__body">
+{t('arms-intro') && <p class="section-intro">{t('arms-intro')}</p>}
+
         <ul class="arm-grid">
           {arms.map(arm => (
             <li class:list={['card arm-card', { 'arm-card--accent': arm.selected, 'arm-card--named': arm.named }]}>
@@ -73,32 +74,27 @@ const gate = t('label-gate-1');
             </li>
           ))}
         </ul>
-      </section>
+      </div>
+</section>
     )}
 
     {t('falsification-title') && (
-      <section class="panel falsification" aria-labelledby="falsification-title">
-        <div class="section-head">
-          <div class="section-head__title">
-            <Icon name="alert" class="falsification__icon" size={40} />
-            <div>
-              <h2 class="section-title" id="falsification-title">{t('falsification-title')}</h2>
-              {t('falsification-intro') && <p class="section-intro">{t('falsification-intro')}</p>}
-            </div>
-          </div>
-        </div>
+      <section class="module module--numbered panel falsification" aria-labelledby="falsification-title">
+<h2 class="module__head" id="falsification-title">{t('falsification-title')}</h2>
+<div class="module__body">
+{t('falsification-intro') && <p class="section-intro">{t('falsification-intro')}</p>}
+
         <ul class="criteria">{criteria.map(item => <li>{item}</li>)}</ul>
-      </section>
+      </div>
+</section>
     )}
 
     {t('readiness-checklist-title') && (
-      <section class="panel" aria-labelledby="checklist-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="checklist-title">{t('readiness-checklist-title')}</h2>
-            {t('readiness-checklist-intro') && <p class="section-intro">{t('readiness-checklist-intro')}</p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="checklist-title">
+<h2 class="module__head" id="checklist-title">{t('readiness-checklist-title')}</h2>
+<div class="module__body">
+{t('readiness-checklist-intro') && <p class="section-intro">{t('readiness-checklist-intro')}</p>}
+
         <ul class="checklist">
           {checklist.map(item => (
             <li class="checklist__item">
@@ -108,7 +104,8 @@ const gate = t('label-gate-1');
             </li>
           ))}
         </ul>
-      </section>
+      </div>
+</section>
     )}
 
     <div class="link-cards">

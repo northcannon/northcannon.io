@@ -1,0 +1,17 @@
+---
+// Five hex check cells (Evidence, Rule, Time, Authority, State). Each shows a text label and a
+// glyph, and exposes its state to assistive tech, so colour is never the only signal.
+import Icon from './Icon.astro';
+interface Cell { label: string; state: 'supported' | 'unsupported'; stateLabel: string }
+interface Props { cells: Cell[]; label: string }
+const { cells, label } = Astro.props;
+---
+<ul class="support-cells" aria-label={label}>
+  {cells.map(cell => (
+    <li class:list={['support-cell', `support-cell--${cell.state}`]}>
+      <span class="support-cell__hex" aria-hidden="true"><Icon name={cell.state === 'supported' ? 'check' : 'x'} /></span>
+      <span class="support-cell__label">{cell.label}</span>
+      <span class="visually-hidden">{cell.stateLabel}</span>
+    </li>
+  ))}
+</ul>

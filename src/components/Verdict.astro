@@ -1,0 +1,6 @@
+---
+// Status beacon plus a large word. The word carries the meaning; colour only reinforces it.
+interface Props { tone: 'supported' | 'unsupported' | 'reeval' }
+const { tone } = Astro.props;
+---
+<p class:list={['verdict', `verdict--${tone}`]}><span class="verdict__beacon" aria-hidden="true"></span><span class="verdict__word"><slot /></span></p>

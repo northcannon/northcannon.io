@@ -988,6 +988,646 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Founder confirmed the exact proposed public statement: “Gate 1 is frozen, pending independent stress testing.” This separately supersedes the current preparation status. It does not authorize execution, attest individual readiness items, or supply experiment identities, dates, or results. Timestamp records this transcription, not the time of experiment freeze."
+  },
+  {
+    "event_id": "founder-approval-006",
+    "timestamp": "2026-09-24T22:23:53.000Z",
+    "founder_words": "text is approved | remove \"Max Brooks is the founder of NorthCannon\", it's redundant. change \"the question behind..\" to \"the question that sparked the idea for NorthCannon\" .. record the approval for everything, including these changes. Push and open PR",
+    "claims": [
+      {
+        "claim_id": "label-features",
+        "statement": "Features"
+      },
+      {
+        "claim_id": "label-about-sections",
+        "statement": "About sections"
+      },
+      {
+        "claim_id": "interop-auth-title",
+        "statement": "Authoritative sources"
+      },
+      {
+        "claim_id": "interop-auth-body",
+        "statement": "State and federal statutes and regulations, official agency rules and guidance, court filings and public records, contracts and internal policies, and system-of-record data, APIs and documents."
+      },
+      {
+        "claim_id": "interop-origin-models",
+        "statement": "Models"
+      },
+      {
+        "claim_id": "interop-origin-agents",
+        "statement": "AI agents"
+      },
+      {
+        "claim_id": "interop-footnote",
+        "statement": "Integration categories are illustrative design targets, not current integrations."
+      },
+      {
+        "claim_id": "interop-src-statutes",
+        "statement": "State and federal statutes"
+      },
+      {
+        "claim_id": "interop-src-regulations",
+        "statement": "Regulations and agency rules"
+      },
+      {
+        "claim_id": "interop-src-guidance",
+        "statement": "Official agency guidance and notices"
+      },
+      {
+        "claim_id": "interop-src-court",
+        "statement": "Court filings and public records"
+      },
+      {
+        "claim_id": "interop-src-contracts",
+        "statement": "Contracts and internal policies"
+      },
+      {
+        "claim_id": "interop-src-records",
+        "statement": "System-of-record data"
+      },
+      {
+        "claim_id": "interop-src-apis",
+        "statement": "APIs and documents"
+      },
+      {
+        "claim_id": "interop-reasoning-title",
+        "statement": "Reasoning"
+      },
+      {
+        "claim_id": "interop-reasoning-workflow",
+        "statement": "Workflow automation"
+      },
+      {
+        "claim_id": "interop-records-title",
+        "statement": "Systems of record and actions"
+      },
+      {
+        "claim_id": "interop-records-crm",
+        "statement": "CRM"
+      },
+      {
+        "claim_id": "interop-records-erp",
+        "statement": "ERP"
+      },
+      {
+        "claim_id": "interop-records-servicing",
+        "statement": "Loan-servicing and case systems"
+      },
+      {
+        "claim_id": "interop-records-decisions",
+        "statement": "Decisions and approvals"
+      },
+      {
+        "claim_id": "interop-records-filings",
+        "statement": "Regulatory filings"
+      },
+      {
+        "claim_id": "interop-flow-agent-title",
+        "statement": "AI agent → decision"
+      },
+      {
+        "claim_id": "interop-flow-agent-body",
+        "statement": "An agent proposes a decision; NorthCannon verifies it against the rule in force and the evidence before it is acted on."
+      },
+      {
+        "claim_id": "interop-change-loop",
+        "statement": "When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation."
+      },
+      {
+        "claim_id": "interop-agnostic-model",
+        "statement": "Model-agnostic"
+      },
+      {
+        "claim_id": "interop-agnostic-agent",
+        "statement": "Agent-agnostic"
+      },
+      {
+        "claim_id": "interop-agnostic-cloud",
+        "statement": "Cloud-agnostic"
+      },
+      {
+        "claim_id": "interop-records-group-data",
+        "statement": "Data platforms"
+      },
+      {
+        "claim_id": "interop-records-group-enterprise",
+        "statement": "Enterprise systems"
+      },
+      {
+        "claim_id": "interop-records-group-industry",
+        "statement": "Industry systems"
+      },
+      {
+        "claim_id": "interop-records-group-actions",
+        "statement": "Actions and outcomes"
+      },
+      {
+        "claim_id": "interop-records-dwh",
+        "statement": "Data warehouses and lakehouses"
+      },
+      {
+        "claim_id": "interop-records-streams",
+        "statement": "Data lakes and event streams"
+      },
+      {
+        "claim_id": "interop-records-databases",
+        "statement": "Operational databases"
+      },
+      {
+        "claim_id": "interop-records-hr",
+        "statement": "HR and payroll"
+      },
+      {
+        "claim_id": "interop-records-procurement",
+        "statement": "Procurement and supplier management"
+      },
+      {
+        "claim_id": "interop-records-identity",
+        "statement": "Identity and access management"
+      },
+      {
+        "claim_id": "interop-records-itsm",
+        "statement": "IT service management"
+      },
+      {
+        "claim_id": "interop-records-documents",
+        "statement": "Document and records management"
+      },
+      {
+        "claim_id": "interop-records-banking",
+        "statement": "Core banking and payments"
+      },
+      {
+        "claim_id": "interop-records-insurance",
+        "statement": "Claims and policy administration"
+      },
+      {
+        "claim_id": "interop-records-trading",
+        "statement": "Trading and risk systems"
+      },
+      {
+        "claim_id": "interop-records-health",
+        "statement": "Electronic health records"
+      },
+      {
+        "claim_id": "interop-records-clinical",
+        "statement": "Clinical trial and safety systems"
+      },
+      {
+        "claim_id": "interop-records-supply",
+        "statement": "Supply chain and logistics"
+      },
+      {
+        "claim_id": "interop-records-inventory",
+        "statement": "Warehouse and inventory management"
+      },
+      {
+        "claim_id": "interop-records-manufacturing",
+        "statement": "Manufacturing execution and quality"
+      },
+      {
+        "claim_id": "interop-records-fleet",
+        "statement": "Fleet and transportation management"
+      },
+      {
+        "claim_id": "interop-records-energy",
+        "statement": "Energy and utility operations"
+      },
+      {
+        "claim_id": "interop-records-telecom",
+        "statement": "Network and telecom operations"
+      },
+      {
+        "claim_id": "interop-records-public",
+        "statement": "Public-sector benefits and case management"
+      },
+      {
+        "claim_id": "interop-state-caption",
+        "statement": "Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it."
+      },
+      {
+        "claim_id": "interop-anywhere",
+        "statement": "Industry-agnostic by design: NorthCannon is designed to sit wherever consequential machine decisions are made — finance, insurance, healthcare, legal, government, supply chain, manufacturing, energy and beyond."
+      },
+      {
+        "claim_id": "interop-agnostic-industry",
+        "statement": "Industry-agnostic"
+      },
+      {
+        "claim_id": "interop-reasoning-rules",
+        "statement": "Rules and decision engines"
+      },
+      {
+        "claim_id": "interop-reasoning-rpa",
+        "statement": "Robotic process automation"
+      },
+      {
+        "claim_id": "interop-records-group-channels",
+        "statement": "Channels and endpoints"
+      },
+      {
+        "claim_id": "interop-records-email",
+        "statement": "Email and messaging"
+      },
+      {
+        "claim_id": "interop-records-webapps",
+        "statement": "Client-facing web applications"
+      },
+      {
+        "claim_id": "interop-records-firmware",
+        "statement": "Proprietary firmware and embedded devices"
+      },
+      {
+        "claim_id": "interop-records-court",
+        "statement": "Court e-filing and docket systems"
+      },
+      {
+        "claim_id": "interop-records-government",
+        "statement": "Government portals and agency websites"
+      },
+      {
+        "claim_id": "interop-records-customer",
+        "statement": "Customer communications"
+      },
+      {
+        "claim_id": "interop-records-payments",
+        "statement": "Payments and transfers"
+      },
+      {
+        "claim_id": "interop-records-orders",
+        "statement": "Orders and shipments"
+      },
+      {
+        "claim_id": "interop-flow-firmware-title",
+        "statement": "Model → firmware update"
+      },
+      {
+        "claim_id": "interop-flow-firmware-body",
+        "statement": "A model recommends a device configuration change; NorthCannon verifies the approved configuration and the authority to act before the firmware update is released."
+      },
+      {
+        "claim_id": "interop-flow-docket-title",
+        "statement": "Court docket → client email"
+      },
+      {
+        "claim_id": "interop-flow-docket-body",
+        "statement": "A court docket changes a filing deadline; NorthCannon identifies the affected matters and verifies the new date before a client email goes out."
+      },
+      {
+        "claim_id": "interop-agnostic-label",
+        "statement": "Designed to be:"
+      },
+      {
+        "claim_id": "feat-headline",
+        "statement": "Change Intelligence and Evidence, illustrated"
+      },
+      {
+        "claim_id": "feat-lede",
+        "statement": "Two illustrative views of how NorthCannon is designed to work. Every case, name, date and record shown is fictional."
+      },
+      {
+        "claim_id": "feat-disclosure",
+        "statement": "Illustrative · fictional data · designed behavior, not yet implemented"
+      },
+      {
+        "claim_id": "feat-ci-title",
+        "statement": "Mock Change Intelligence"
+      },
+      {
+        "claim_id": "feat-ci-event-label",
+        "statement": "Change event"
+      },
+      {
+        "claim_id": "feat-ci-event",
+        "statement": "Amended return of service recorded"
+      },
+      {
+        "claim_id": "feat-ci-affected",
+        "statement": "1 of 4 prior decisions affected · 3 unaffected — not re-run"
+      },
+      {
+        "claim_id": "feat-ci-date-prior-label",
+        "statement": "Earliest permitted date (before the change)"
+      },
+      {
+        "claim_id": "feat-ci-date-prior",
+        "statement": "SEP 18"
+      },
+      {
+        "claim_id": "feat-ci-date-new-label",
+        "statement": "Earliest permitted date (after the change)"
+      },
+      {
+        "claim_id": "feat-ci-date-new",
+        "statement": "SEP 28"
+      },
+      {
+        "claim_id": "feat-ci-date-proposed-label",
+        "statement": "Proposed date"
+      },
+      {
+        "claim_id": "feat-ci-date-proposed",
+        "statement": "SEP 24"
+      },
+      {
+        "claim_id": "feat-ci-verdict-prior-label",
+        "statement": "Prior decision"
+      },
+      {
+        "claim_id": "feat-ci-verdict-new-label",
+        "statement": "Re-evaluated decision"
+      },
+      {
+        "claim_id": "feat-verdict-proceed",
+        "statement": "Proceed"
+      },
+      {
+        "claim_id": "feat-verdict-refuse",
+        "statement": "Refuse"
+      },
+      {
+        "claim_id": "feat-wl-caption",
+        "statement": "Open action for the affected decision"
+      },
+      {
+        "claim_id": "feat-wl-id",
+        "statement": "ID"
+      },
+      {
+        "claim_id": "feat-wl-action",
+        "statement": "Action"
+      },
+      {
+        "claim_id": "feat-wl-assigned",
+        "statement": "Assigned to"
+      },
+      {
+        "claim_id": "feat-wl-source",
+        "statement": "Source"
+      },
+      {
+        "claim_id": "feat-wl-closes",
+        "statement": "Closes when"
+      },
+      {
+        "claim_id": "feat-wl-row-status",
+        "statement": "Open"
+      },
+      {
+        "claim_id": "feat-wl-row-id",
+        "statement": "ACT-0003"
+      },
+      {
+        "claim_id": "feat-wl-row-action",
+        "statement": "Propose a date on or after SEP 28"
+      },
+      {
+        "claim_id": "feat-wl-row-assigned",
+        "statement": "Proposing agent (fictional)"
+      },
+      {
+        "claim_id": "feat-wl-row-closes",
+        "statement": "A revised date verifies on or after SEP 28"
+      },
+      {
+        "claim_id": "feat-lineage-title",
+        "statement": "Mock downstream lineage"
+      },
+      {
+        "claim_id": "feat-lineage-institution",
+        "statement": "Harbor National Bank · FICTIONAL DEMO INSTITUTION"
+      },
+      {
+        "claim_id": "feat-lineage-summary",
+        "statement": "5 of 10 downstream assets affected"
+      },
+      {
+        "claim_id": "feat-lineage-col-source",
+        "statement": "Changed source"
+      },
+      {
+        "claim_id": "feat-lineage-col-derived",
+        "statement": "Derived assets"
+      },
+      {
+        "claim_id": "feat-lineage-col-decision",
+        "statement": "Reports and decisions"
+      },
+      {
+        "claim_id": "feat-lineage-alt",
+        "statement": "Lineage graph: one changed source feeds five derived assets, three of them affected; those feed five reports and decisions, two of them affected. Five of the ten downstream assets are affected in total."
+      },
+      {
+        "claim_id": "feat-ev-title",
+        "statement": "Mock Evidence"
+      },
+      {
+        "claim_id": "feat-ev-drawer-title",
+        "statement": "Decision provenance"
+      },
+      {
+        "claim_id": "feat-decision-label",
+        "statement": "Decision"
+      },
+      {
+        "claim_id": "feat-cell-rule",
+        "statement": "Rule"
+      },
+      {
+        "claim_id": "feat-cell-time",
+        "statement": "Time"
+      },
+      {
+        "claim_id": "feat-cell-authority",
+        "statement": "Authority"
+      },
+      {
+        "claim_id": "feat-cell-state",
+        "statement": "State"
+      },
+      {
+        "claim_id": "feat-cells-label",
+        "statement": "Support checks for the re-evaluated decision"
+      },
+      {
+        "claim_id": "feat-cell-supported",
+        "statement": "Support confirmed"
+      },
+      {
+        "claim_id": "feat-cell-unsupported",
+        "statement": "Support not confirmed"
+      },
+      {
+        "claim_id": "feat-ev-evidence-value",
+        "statement": "Amended return of service, recorded (fictional)"
+      },
+      {
+        "claim_id": "feat-ev-rule-value",
+        "statement": "Notice-period rule, version 3 (fictional)"
+      },
+      {
+        "claim_id": "feat-ev-time-value",
+        "statement": "SEP 24 is before the earliest permitted date, SEP 28"
+      },
+      {
+        "claim_id": "feat-ev-authority-value",
+        "statement": "Agent may propose scheduling (fictional delegation)"
+      },
+      {
+        "claim_id": "feat-ev-state-value",
+        "statement": "Re-evaluated after the amended record"
+      },
+      {
+        "claim_id": "feat-ev-hash-label",
+        "statement": "Record hash"
+      },
+      {
+        "claim_id": "feat-ev-hash",
+        "statement": "SHA-256: 0000…0000 (illustrative)"
+      },
+      {
+        "claim_id": "feat-ev-hash-scope",
+        "statement": "The hash identifies this record's fields as shown. It is not a verdict, score or confidence value."
+      },
+      {
+        "claim_id": "founder-background-card",
+        "statement": "Data and analytics engineering"
+      },
+      {
+        "claim_id": "founder-cred-methods",
+        "statement": "Transparent methods"
+      },
+      {
+        "claim_id": "founder-cred-public",
+        "statement": "Builds in public"
+      },
+      {
+        "claim_id": "founder-cred-commitment",
+        "statement": "Long-term commitment"
+      },
+      {
+        "claim_id": "founder-contact-body",
+        "statement": "I’d love to hear from you — ideas, feedback, or collaboration opportunities."
+      },
+      {
+        "claim_id": "founder-learn-body",
+        "statement": "Our mission, approach and principles."
+      },
+      {
+        "claim_id": "founder-gate-body",
+        "statement": "Current focus and status."
+      },
+      {
+        "claim_id": "about-founder-card",
+        "statement": "Max Brooks is the founder of NorthCannon."
+      },
+      {
+        "claim_id": "founder-photo-alt",
+        "statement": "Max Brooks, founder of NorthCannon"
+      },
+      {
+        "claim_id": "founder-why-body",
+        "statement": "Consider an AI agent working through a loan-servicing queue. It searches its context — policy documents, account history, prior correspondence — and concludes that a borrower should receive a particular notice on a particular date. The reasoning looks sound, and the agent is confident.\n\nWhat the agent does not know is that a state regulation changed the required notice period, effective the week before. Nothing in its context says so. The decision is carried out, the letter is mailed, and the company is now exposed to legal risk and financial consequences it never chose to take on.\n\nThe model did not malfunction. It reasoned well over what it could see. The failure is that nothing verified the decision itself — against the rule actually in force, the evidence on record, the authority to act, and the moment it was made — before it became an action. And nothing would have noticed later that a change had quietly undermined it.\n\nThat is the gap NorthCannon is designed to close. Data and models have their own controls. The decision — the unit that actually carries consequences — deserves its own standard of proof: verified before action, preserved with the evidence behind it, and re-evaluated when the facts or rules beneath it change."
+      },
+      {
+        "claim_id": "demo-lede",
+        "statement": "A guided walkthrough of verification and change intelligence, on fictional cases, is in preparation."
+      },
+      {
+        "claim_id": "demo-graphic-note",
+        "statement": "Illustrative animation · not a live system"
+      },
+      {
+        "claim_id": "changelog-2026-09-site-redesign",
+        "statement": "2026-09-24: New visual system across the site. About, Company and Founder are combined into one About section with Company, Features and Founder pages. The Demo page is added to the navigation."
+      },
+      {
+        "claim_id": "arms-intro",
+        "statement": "Models and configurations to be evaluated."
+      },
+      {
+        "claim_id": "falsification-intro",
+        "statement": "Conditions under which the experiment will be considered a failure or inconclusive."
+      },
+      {
+        "claim_id": "gate-results-cta-body",
+        "statement": "Results will be published after execution."
+      },
+      {
+        "claim_id": "gate-evidence-cta-body",
+        "statement": "Datasets, methods and configurations."
+      },
+      {
+        "claim_id": "results-banner-body",
+        "statement": "Results will be published after the experiment executes."
+      },
+      {
+        "claim_id": "readiness-summary",
+        "statement": "Preparation is in progress. Results are not yet available."
+      },
+      {
+        "claim_id": "metadata-intro",
+        "statement": "Dates, versions, environment, sample sizes and other context."
+      },
+      {
+        "claim_id": "results-placeholder-body",
+        "statement": "Chart will show metric comparison across arms once the experiment has executed."
+      },
+      {
+        "claim_id": "ledger-empty",
+        "statement": "No evidence records yet. Evidence will appear after execution."
+      },
+      {
+        "claim_id": "hash-empty",
+        "statement": "No public artifact hash yet."
+      },
+      {
+        "claim_id": "viewer-empty",
+        "statement": "No public artifact available yet."
+      },
+      {
+        "claim_id": "demo-graphic-alt",
+        "statement": "Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched."
+      },
+      {
+        "claim_id": "contact-intro-email",
+        "statement": "For partnerships, design-partner conversations, research, or general inquiries, email hello@northcannon.io."
+      },
+      {
+        "claim_id": "demo-change-label",
+        "statement": "Regulation change is now effective"
+      },
+      {
+        "claim_id": "demo-blast-label",
+        "statement": "Calculating blast radius"
+      },
+      {
+        "claim_id": "about-why-detail-1",
+        "statement": "AI models are becoming more accurate and less expensive to run, and they are moving from recommendation toward consequential action. But a model can still produce an answer that sounds right and is wrong, and once that output enters a workflow it is often treated as fact."
+      },
+      {
+        "claim_id": "about-why-detail-2",
+        "statement": "In regulated work, decisions have consequences: a missed deadline, an action taken without authority, an obligation no one tracked. The question is not only what a model produced, but whether the decision was supportable, and whether it stays supportable when facts, rules, evidence, or conditions change."
+      },
+      {
+        "claim_id": "about-why-detail-3",
+        "statement": "NorthCannon is designed to answer that question before a decision acts. When the facts do not support a decision, it is designed to abstain and state why. When they do, it is designed to produce an evidence packet showing what the decision relied on: the evidence, the rule, the timing, and the authority."
+      },
+      {
+        "claim_id": "founder-origin-quote",
+        "statement": "Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated?"
+      },
+      {
+        "claim_id": "founder-origin-note",
+        "statement": "The question that sparked the idea for NorthCannon."
+      },
+      {
+        "claim_id": "founder-origin-attribution",
+        "statement": "Max Brooks, Founder, NorthCannon"
+      }
+    ],
+    "relay": "Transcribed by Opus in the founder's Claude Code session on 2026-09-24 from two founder messages, separated by | in founder_words. The first answered the founder approval checklist in the Claude Cloud report for branch feat/about-section-demo-style at 589d920; the second extended the approval to every pending statement shown to the founder in that session (contact intro, demo stage labels, detailed Why now, founder origin quote, note and attribution), with the requested note wording applied before recording. Each statement is recorded exactly as rendered. interop-sources-body is excluded because the checklist marked it DO NOT APPROVE (fallback only); it remains pending."
   }
 ]
 ```

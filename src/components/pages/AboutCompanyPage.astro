@@ -1,0 +1,112 @@
+---
+// About / Company: capabilities, what NorthCannon is and is not, interoperability (moved from the old homepage).
+import Icon from '../Icon.astro';
+import ContactCTA from '../ContactCTA.astro';
+import Module from '../Module.astro';
+import AboutSubnav from '../AboutSubnav.astro';
+import InteropDiagram from '../InteropDiagram.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
+const { copy, route, title } = Astro.props;
+const { t, href, paragraphs } = copy;
+const vision = paragraphs('vision-statement');
+const capabilities = [
+  { title: 'cap-verification', body: 'cap-verification-body', icon: 'flask' },
+  { title: 'label-provenance', body: 'cap-provenance-body', icon: 'database' },
+  { title: 'label-change-intelligence', body: 'cap-change-body', icon: 'chart' },
+].filter(card => t(card.title));
+const is = ['home-is-1', 'home-is-2', 'home-is-3', 'home-is-4'].map(t).filter(Boolean);
+const isNot = ['home-not-1', 'home-not-2', 'home-not-3', 'home-not-4'].map(t).filter(Boolean);
+const contactHref = href('/contact/');
+// The detailed Why now replaces the one-paragraph body only once all three paragraphs render.
+const whyDetail = [t('about-why-detail-1'), t('about-why-detail-2'), t('about-why-detail-3')];
+const whyNow = whyDetail.every(Boolean) ? whyDetail as string[] : [t('about-why-body')].filter(Boolean) as string[];
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <AboutSubnav copy={copy} currentPath={route.path} />
+    <div class="about-banner on-lattice">
+      <img class="about-banner__mark" src="/northcannon-mark.svg" width="54" height="36" alt="" />
+      <div class="about-banner__copy">
+        <p class="about-banner__name">{t('brand-company')}</p>
+        <p class="about-banner__motto">{t('brand-company-motto')}</p>
+      </div>
+    </div>
+    <section class="page-hero page-hero--text" aria-labelledby="company-title">
+      {t('about-eyebrow') && <p class="eyebrow">{t('about-eyebrow')}</p>}
+      <h1 class="page-title" id="company-title">{t('about-headline') ?? title}</h1>
+      <p class="lede">{t('brand-mission')}</p>
+    </section>
+
+    {t('about-why-title') && whyNow.length > 0 && (
+      <Module id="about-why" title={t('about-why-title')!}>
+        <div class="box box--intro">
+          <Icon name="clock" size={40} />
+          {whyNow.map(paragraph => <p class="prose-lead">{paragraph}</p>)}
+        </div>
+      </Module>
+    )}
+
+    {t('label-vision') && vision.length > 0 && (
+      <Module id="vision" title={t('label-vision')!}>
+        <div class="box vision-box">
+          {vision.map((paragraph, index) => <p class:list={['vision-box__p', { 'pull-quote': index === 0 || index === vision.length - 1 }]}>{paragraph}</p>)}
+        </div>
+      </Module>
+    )}
+
+    {t('home-capabilities-title') && (
+      <section class="module panel" aria-labelledby="capabilities-title">
+<h2 class="module__head" id="capabilities-title">{t('home-capabilities-title')}</h2>
+<div class="module__body">
+{t('home-capabilities-intro') && <p class="section-intro">{t('home-capabilities-intro')}</p>}
+
+        <ul class="capability-grid">
+          {capabilities.map(card => (
+            <li class="box capability-card">
+              <Icon name={card.icon} />
+              <h3 class="card-title">{t(card.title)}</h3>
+              {t(card.body) && <p class="card-text">{t(card.body)}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+</section>
+    )}
+
+    {t('home-is-title') && (
+      <section class="module panel" aria-labelledby="truth-title">
+<h2 class="module__head" id="truth-title">{t('home-is-title')}</h2>
+<div class="module__body">
+
+        
+        <div class="truth-grid">
+          <div class="truth truth--is">
+            <h3 class="truth__title"><span class="truth__badge" aria-hidden="true"><Icon name="check" /></span>{t('home-is')}</h3>
+            <ul class="truth__list">{is.map(item => <li><Icon name="check" />{item}</li>)}</ul>
+          </div>
+          <div class="truth truth--not">
+            <h3 class="truth__title"><span class="truth__badge" aria-hidden="true"><Icon name="x" /></span>{t('home-is-not')}</h3>
+            <ul class="truth__list">{isNot.map(item => <li><Icon name="x" />{item}</li>)}</ul>
+          </div>
+        </div>
+      </div>
+</section>
+    )}
+
+    {t('home-interop-title') && (
+      <section class="module panel" aria-labelledby="interop-title">
+<h2 class="module__head" id="interop-title">{t('home-interop-title')}</h2>
+<div class="module__body">
+{t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
+
+        <InteropDiagram copy={copy} />
+      </div>
+</section>
+    )}
+
+    {t('cta-get-in-touch') && (
+      <ContactCTA id="home-contact" title={t('cta-get-in-touch')!} text={t('home-contact-body')} action={contactHref && t('cta-contact-us') ? { href: contactHref, label: t('cta-contact-us')! } : undefined} />
+    )}
+  </div>
+</main>

@@ -1,0 +1,42 @@
+---
+// Static left-to-right plate graph drawn from precomputed positions. Affected plates carry a corner
+// fold and solid heavy edges, so colour is never the only signal; the text alternative is HTML.
+interface Node { id: string; col: 0 | 1 | 2; row: number; affected: boolean }
+interface Props { id: string; alt: string; columns: [string, string, string] }
+const { id, alt, columns } = Astro.props;
+const W = 160, H = 44, X = [20, 350, 680], ROW = 68, TOP = 20;
+const nodes: Node[] = [
+  { id: 's', col: 0, row: 2, affected: true },
+  { id: 'a', col: 1, row: 0, affected: true }, { id: 'b', col: 1, row: 1, affected: true }, { id: 'c', col: 1, row: 2, affected: true },
+  { id: 'd', col: 1, row: 3, affected: false }, { id: 'e', col: 1, row: 4, affected: false },
+  { id: 'p', col: 2, row: 0, affected: true }, { id: 'q', col: 2, row: 1, affected: true },
+  { id: 'r', col: 2, row: 2, affected: false }, { id: 's2', col: 2, row: 3, affected: false }, { id: 't', col: 2, row: 4, affected: false },
+];
+const edges: Array<[string, string]> = [['s', 'a'], ['s', 'b'], ['s', 'c'], ['a', 'p'], ['b', 'p'], ['c', 'q'], ['d', 'r'], ['d', 's2'], ['e', 't']];
+const at = (node: Node) => ({ x: X[node.col]!, y: TOP + node.row * ROW });
+const byId = new Map(nodes.map(node => [node.id, node]));
+const path = ([from, to]: [string, string]) => {
+  const a = at(byId.get(from)!), b = at(byId.get(to)!);
+  const x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x, y2 = b.y + H / 2, mid = (x1 + x2) / 2;
+  return { d: `M${x1} ${y1} C${mid} ${y1} ${mid} ${y2} ${x2} ${y2}`, affected: byId.get(from)!.affected && byId.get(to)!.affected };
+};
+---
+<figure class="lineage">
+  <div class="lineage__scroll" role="region" aria-labelledby={id} tabindex="0">
+  <div class="lineage__plane">
+  <ul class="lineage__cols" aria-hidden="true">{columns.map(column => <li>{column}</li>)}</ul>
+  <svg class="lineage__svg" viewBox="0 0 860 340" role="img" aria-labelledby={id} preserveAspectRatio="xMidYMid meet" focusable="false">
+    {edges.map(edge => { const p = path(edge); return <path class:list={['lineage__edge', { 'lineage__edge--affected': p.affected }]} d={p.d} fill="none" />; })}
+    {nodes.map(node => { const p = at(node); return (
+      <g class:list={['lineage__plate', node.affected ? 'lineage__plate--affected' : 'lineage__plate--neutral']}>
+        <rect x={p.x} y={p.y} width={W} height={H} rx="8" />
+        <rect class="lineage__bar" x={p.x + 14} y={p.y + 12} width="90" height="6" rx="3" />
+        <rect class="lineage__bar" x={p.x + 14} y={p.y + 26} width="56" height="6" rx="3" />
+        {node.affected && <polygon class="lineage__fold" points={`${p.x + W - 22},${p.y} ${p.x + W},${p.y} ${p.x + W},${p.y + 22}`} />}
+      </g>
+    ); })}
+  </svg>
+  </div>
+  </div>
+  <figcaption class="lineage__alt" id={id}>{alt}</figcaption>
+</figure>

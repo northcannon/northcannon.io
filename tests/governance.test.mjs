@@ -102,13 +102,27 @@ test('migration preserves each baseline ID and approval state once, with a singl
   await assert.rejects(access('public_claims/public_claim_registry.yaml'));
   await assert.rejects(access('src/content/foundation.json'));
   assert.ok(current.claims.length >= 13);
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 9);
+  // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
+  // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
+  // and 5 pending lending-only diagram claims replaced by industry-agnostic ones.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 46);
+  for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
+    const claim = current.claims.find(c => c.claim_id === id);
+    assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');
+  }
+});
+
+test('no two active claims share a statement, except one founder-attested pair awaiting a founder decision', () => {
+  const byText = new Map();
+  for (const claim of current.claims.filter(c => c.lifecycle_state !== 'retired')) byText.set(claim.statement, [...(byText.get(claim.statement) ?? []), claim.claim_id]);
+  const duplicates = [...byText.values()].filter(ids => ids.length > 1);
+  assert.deepEqual(duplicates, [['ledger-hash', 'mock-hash-title']]);
 });
 
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 234);
+  assert.equal(attested.length, 392);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));
@@ -141,7 +155,9 @@ test('built HTML rejects pending, rejected and retired statements, including spl
       assert.ok(inspectClaimOutput(`<p>Synthetic pending <span>status</span> fixture.</p>`, [claim]).length);
     }
     // Exercise the actual validator against real ineligible registry entries.
-    for (const claim of current.claims.filter(c => c.approval_state !== 'approved')) {
+    // A retired statement that is word-for-word an active approved statement is legitimately renderable.
+    const approvedText = new Set(current.claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state !== 'retired').map(c => c.statement));
+    for (const claim of current.claims.filter(c => c.approval_state !== 'approved' && !approvedText.has(c.statement))) {
       const html = `<html lang="en"><head><title>Fixture</title></head><body><p>${claim.statement}</p></body></html>`;
       await writeFile(`${dir}/index.html`, html); await writeFile(`${dir}/404.html`, html);
       const result = spawnSync(process.execPath, ['scripts/validate.mjs', dir], { encoding: 'utf8' });

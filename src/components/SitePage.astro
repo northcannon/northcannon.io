@@ -6,12 +6,14 @@ import HomePage from './pages/HomePage.astro';
 import GatePage from './pages/GatePage.astro';
 import ResultsPage from './pages/ResultsPage.astro';
 import EvidencePage from './pages/EvidencePage.astro';
-import AboutPage from './pages/AboutPage.astro';
 import FounderPage from './pages/FounderPage.astro';
+import AboutCompanyPage from './pages/AboutCompanyPage.astro';
+import AboutFeaturesPage from './pages/AboutFeaturesPage.astro';
 import ContactPage from './pages/ContactPage.astro';
+import DemoPage from './pages/DemoPage.astro';
 import SupportingPage from './pages/SupportingPage.astro';
 import { loadGovernance } from '../governance/registry.mjs';
-import { readRoutes, routeCopy, navigationRoutes, navigationClaimId, draftBanner } from '../governance/routes.mjs';
+import { readRoutes, routeCopy, navigationTree, draftBanner } from '../governance/routes.mjs';
 import type { Copy } from './copy';
 interface Props { route: ReturnType<typeof readRoutes>[number]; review?: boolean }
 const { route, review = true } = Astro.props;
@@ -31,31 +33,24 @@ const copy: Copy = {
   statusDate: statusClaim.review_date ?? '',
   stageIndex: stages[status.stage] ?? 0,
 };
-const demo = route.path === '/demo/';
-// The demo route renders only its approved statement: no shell, navigation or footer.
-const company = demo ? '' : t('brand-company')!;
-const title = demo ? t('demo-coming-soon')! : route.path === '/404.html' ? 'Page not found' : (t(route.title_claim_or_label) ?? company);
-const items = demo ? [] : navigationRoutes(routes, { review, claims: data.claims }).map((r: { path: string }) => ({ href: r.path, label: t(navigationClaimId(r))! }));
+const company = t('brand-company')!;
+const title = route.path === '/404.html' ? 'Page not found' : (t(route.title_claim_or_label) ?? company);
+type Item = { claimId: string; href: string; children?: Item[] };
+type Nav = { href: string; label: string; children: Nav[] };
+const link = (item: Item): Nav => ({ href: item.href, label: t(item.claimId)!, children: (item.children ?? []).map(link) });
+const items = navigationTree(routes, { review, claims: data.claims }).map(link);
 // Preserve route dependency checks; the footer independently attests its fixed copy.
-if (!demo) for (const id of ['brand-core-principle', 'label-trust', 'label-disclosure', 'label-contact']) t(id);
+for (const id of ['brand-core-principle', 'label-trust', 'label-disclosure', 'label-contact']) t(id);
 // Every page composition accepts the same shell props.
 const pages = {
   '/': HomePage, '/gate-1/': GatePage, '/results/': ResultsPage, '/evidence/': EvidencePage,
-  '/about/': AboutPage, '/founder/': FounderPage, '/contact/': ContactPage,
+  '/about/company/': AboutCompanyPage, '/about/features/': AboutFeaturesPage, '/about/founder/': FounderPage, '/contact/': ContactPage, '/demo/': DemoPage,
 } as unknown as Record<string, typeof SupportingPage>;
 const Page = pages[route.path] ?? SupportingPage;
 ---
 <Document title={title}>
-  {demo ? (
-    <main id="main" tabindex="-1" class="demo-main">
-      <h1 class="demo-title">{t('demo-coming-soon')}</h1>
-    </main>
-  ) : (
-    <>
-      {review && <p class="draft-bar">{draftBanner}</p>}
-      <SiteHeader company={company} items={items} currentPath={route.path} status={{ label: t('stage-frozen')!, gate: t('label-gate-1'), description: t('status-gate1-frozen-stress')!, href: copy.href('/gate-1/') ?? '/trust/status/' }} />
-      <Page copy={copy} route={route} routes={routes} claims={data.claims} title={title} />
-      <SiteFooter />
-    </>
-  )}
+  {review && <p class="draft-bar">{draftBanner}</p>}
+  <SiteHeader review={review} company={company} items={items} currentPath={route.path} status={{ label: t('stage-frozen')!, gate: t('label-gate-1'), description: t('status-gate1-frozen-stress')!, href: copy.href('/gate-1/') ?? '/trust/status/' }} />
+  <Page copy={copy} route={route} routes={routes} claims={data.claims} title={title} />
+  <SiteFooter />
 </Document>

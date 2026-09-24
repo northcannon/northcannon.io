@@ -1,0 +1,148 @@
+---
+// Built to interoperate, in any industry: four stacked layers with NorthCannon between them, three checkpoint paths through the
+// NorthCannon band, its persistent verified state, and the change-intelligence loop. Static HTML/CSS; every word is
+// a governed claim; wires, arrowheads and gates are decorative. Two-way wires: reasoning <-> NorthCannon,
+// NorthCannon <-> systems of record, NorthCannon <-> persistent state. One-way: sources -> NorthCannon (the change
+// loop), court docket -> NorthCannon -> email (flow c), NorthCannon -> outputs -> systems of record.
+// Production shows the approved Data Sources -> layer -> Outputs stack until every new claim is attested.
+import Icon from './Icon.astro';
+import type { Copy } from './copy';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const { t } = copy;
+const sourceIds = ['interop-src-statutes', 'interop-src-regulations', 'interop-src-guidance', 'interop-src-court', 'interop-src-contracts', 'interop-src-records', 'interop-src-apis'];
+const reasoningIds = ['interop-origin-models', 'interop-origin-agents', 'interop-reasoning-workflow', 'interop-reasoning-rules', 'interop-reasoning-rpa'];
+const recordGroups = [
+  { label: 'interop-records-group-data', ids: ['interop-records-dwh', 'interop-records-streams', 'interop-records-databases'] },
+  { label: 'interop-records-group-enterprise', ids: ['interop-records-crm', 'interop-records-erp', 'interop-records-hr', 'interop-records-procurement', 'interop-records-identity', 'interop-records-itsm', 'interop-records-documents'] },
+  { label: 'interop-records-group-channels', ids: ['interop-records-email', 'interop-records-webapps', 'interop-records-court', 'interop-records-government', 'interop-records-firmware'] },
+  { label: 'interop-records-group-industry', ids: ['interop-records-banking', 'interop-records-servicing', 'interop-records-insurance', 'interop-records-trading', 'interop-records-health', 'interop-records-clinical', 'interop-records-supply', 'interop-records-inventory', 'interop-records-manufacturing', 'interop-records-fleet', 'interop-records-energy', 'interop-records-telecom', 'interop-records-public'] },
+  { label: 'interop-records-group-actions', ids: ['interop-records-decisions', 'interop-records-customer', 'interop-records-payments', 'interop-records-orders', 'interop-records-filings'] },
+];
+const agnosticIds = ['interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud'];
+const flows = [
+  { title: 'interop-flow-agent-title', body: 'interop-flow-agent-body', from: 'interop-origin-agents', to: 'interop-records-decisions', oneWay: false },
+  { title: 'interop-flow-firmware-title', body: 'interop-flow-firmware-body', from: 'interop-origin-models', to: 'interop-records-firmware', oneWay: false },
+  { title: 'interop-flow-docket-title', body: 'interop-flow-docket-body', from: 'interop-records-court', to: 'interop-records-email', oneWay: true },
+];
+const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company', 'arm-treatment-sub', 'interop-state-caption', 'interop-anywhere', 'interop-agnostic-label',
+  ...agnosticIds, ...sourceIds, ...reasoningIds, ...recordGroups.flatMap(group => [group.label, ...group.ids]), ...flows.flatMap(flow => [flow.title, flow.body]));
+const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
+const chips = (ids: string[]) => ids.map(id => t(id)!);
+const company = t('brand-company');
+const link = (oneWay: boolean) => ['lmap__steps-link', oneWay ? 'lmap__steps-link--down' : 'lmap__steps-link--both'];
+const wire = (oneWay: boolean) => ['lmap__wire', oneWay ? 'lmap__wire--down' : 'lmap__wire--both'];
+---
+{full ? (
+  <figure class="lmap" aria-describedby="lmap-desc">
+    <p class="lmap__scope">{t('interop-anywhere')}</p>
+    <div class="lmap__grid">
+      <div class="box lmap__band lmap__band--sources">
+        <h3 class="lmap__label">{t('interop-auth-title')}</h3>
+        <p class="lmap__intro">{t('interop-auth-body')}</p>
+        <ul class="lmap__chips">{chips(sourceIds).map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      <div class="box lmap__band lmap__band--reasoning">
+        <h3 class="lmap__label">{t('interop-reasoning-title')}</h3>
+        <ul class="lmap__chips">{chips(reasoningIds).map(chip => <li>{chip}</li>)}</ul>
+      </div>
+      {flows.map((flow, index) => (
+        <div class:list={['lmap__conn', 'lmap__conn--in', `lmap__col-${index + 1}`]} aria-hidden="true">
+          <span class="lmap__lane"><span class:list={wire(flow.oneWay)}></span><span class="lmap__step">{t(flow.from)}</span></span>
+        </div>
+      ))}
+      <div class="lmap__loop" aria-hidden="true"></div>
+      <p class="lmap__loop-caption"><span class="lmap__loop-mark" aria-hidden="true"></span><span>{t('interop-change-loop')}</span></p>
+      <div class="lmap__band lmap__band--nc">
+        <div class="lmap__nc-head">
+          <h3 class="lmap__nc-title">{t('interop-layer')}</h3>
+          <div class="lmap__agnostic-row">
+            <p class="lmap__agnostic-label">{t('interop-agnostic-label')}</p>
+            <ul class="lmap__agnostic">{chips(agnosticIds).map(chip => <li>{chip}</li>)}</ul>
+          </div>
+        </div>
+        {flows.map((flow, index) => <span class:list={['lmap__pass', `lmap__col-${index + 1}`, { 'lmap__pass--one': flow.oneWay }]} aria-hidden="true"></span>)}
+        <ul class="interop__modules lmap__nc-chips">{layerChips.map(chip => <li>{chip}</li>)}</ul>
+        {flows.map((flow, index) => (
+          <span class:list={['lmap__check', `lmap__col-${index + 1}`, { 'lmap__check--one': flow.oneWay }]} aria-hidden="true"><span class="lmap__check-ring"><Icon name="check" size={18} /></span></span>
+        ))}
+        <div class="lmap__state">
+          <Icon name="database" size={28} />
+          <p class="lmap__state-label">{t('arm-treatment-sub')}</p>
+        </div>
+      </div>
+      {flows.map((flow, index) => (
+        <div class:list={['lmap__conn', 'lmap__conn--out', `lmap__col-${index + 1}`]} aria-hidden="true">
+          <span class="lmap__lane"><span class:list={wire(flow.oneWay)}></span><span class="lmap__step">{t(flow.to)}</span></span>
+        </div>
+      ))}
+      <div class="box lmap__outputs">
+        <span class="lmap__wire lmap__wire--down lmap__wire--above" aria-hidden="true"></span>
+        <h3 class="card-title">{t('interop-outputs')}</h3>
+        <p class="card-text">{t('interop-outputs-body')}</p>
+        <span class="lmap__wire lmap__wire--down lmap__wire--below" aria-hidden="true"></span>
+      </div>
+      <div class="box lmap__band lmap__band--records">
+        <h3 class="lmap__label">{t('interop-records-title')}</h3>
+        <div class="lmap__groups">
+          {recordGroups.map(group => (
+            <div class="lmap__group">
+              <h4 class="lmap__group-label">{t(group.label)}</h4>
+              <ul class="lmap__chips">{chips(group.ids).map(chip => <li>{chip}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </div>
+      <ul class="lmap__flows">
+        {flows.map(flow => (
+          <li class="box lmap__flow">
+            <h4 class="lmap__flow-title">{t(flow.title)}</h4>
+            <ol class="lmap__steps">
+              <li class="lmap__steps-node">{t(flow.from)}</li>
+              <li class:list={link(flow.oneWay)} aria-hidden="true"></li>
+              <li class="lmap__steps-node lmap__steps-nc">{company}</li>
+              <li class:list={link(flow.oneWay)} aria-hidden="true"></li>
+              <li class="lmap__steps-node">{t(flow.to)}</li>
+            </ol>
+            <p class="card-text">{t(flow.body)}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="box lmap__legend">
+        <span class="lmap__legend-mark" aria-hidden="true"><span class="lmap__wire lmap__wire--both"></span></span>
+        <p class="card-text">{t('interop-state-caption')}</p>
+      </div>
+    </div>
+    <figcaption class="lmap__note">{t('interop-footnote')}</figcaption>
+    <div class="visually-hidden" id="lmap-desc">
+      <ol>
+        <li>{t('interop-auth-title')}</li>
+        <li>{t('interop-reasoning-title')}</li>
+        <li><span>{t('interop-layer')}</span> <span>{t('interop-agnostic-label')}</span> {chips(agnosticIds).map(chip => <span> {chip}</span>)} <span>{t('arm-treatment-sub')}</span></li>
+        <li>{t('interop-records-title')}</li>
+      </ol>
+      <ol>
+        {flows.map(flow => <li><span>{t(flow.title)}</span> <span>{t(flow.body)}</span></li>)}
+        <li>{t('interop-change-loop')}</li>
+        <li>{t('interop-state-caption')}</li>
+      </ol>
+    </div>
+  </figure>
+) : (
+  <div class="lmap lmap--basic">
+    <div class="box lmap__band">
+      <h3 class="lmap__label">{t('interop-sources')}</h3>
+      {t('interop-sources-body') && <p class="lmap__intro">{t('interop-sources-body')}</p>}
+    </div>
+    <span class="lmap__join" aria-hidden="true"><span class="lmap__wire lmap__wire--down"></span></span>
+    <div class="lmap__band lmap__band--nc">
+      <h3 class="lmap__nc-head">{t('interop-layer')}</h3>
+      <ul class="interop__modules lmap__nc-chips">{layerChips.map(chip => <li>{chip}</li>)}</ul>
+    </div>
+    <span class="lmap__join" aria-hidden="true"><span class="lmap__wire lmap__wire--down"></span></span>
+    <div class="box lmap__band">
+      <h3 class="lmap__label">{t('interop-outputs')}</h3>
+      <p class="lmap__intro">{t('interop-outputs-body')}</p>
+    </div>
+  </div>
+)}

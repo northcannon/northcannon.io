@@ -1,0 +1,9 @@
+---
+// A large value under a yellow key label (dates, thresholds). Both strings come from registered copy.
+interface Props { label: string; value: string }
+const { label, value } = Astro.props;
+---
+<div class="readout">
+  <p class="readout__label">{label}</p>
+  <p class="readout__value">{value}</p>
+</div>

@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, disclosureErrors } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -22,7 +22,17 @@ async function collect(dir) {
     if (item.isDirectory()) await collect(full);
     else {
       const name = path.relative(root, full).split(path.sep).join('/');
-      if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers') {
+      if (/^fonts\/[\w.-]+\.woff2$/.test(name)) {
+        // Self-hosted fonts are the only binary output; check the WOFF2 signature and keep them out of text scans.
+        if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
+        continue;
+      }
+      if ('/' + name in allowedImages) {
+        errors.push(...inspectImage(await readFile(full), allowedImages['/' + name], name));
+        files.set(name, '');
+        continue;
+      }
+      if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers' && name !== '_redirects') {
         errors.push(`${name}: unexpected output type`);
         continue;
       }
@@ -32,6 +42,10 @@ async function collect(dir) {
 }
 await collect(root);
 readHeaders(files.get('_headers') ?? '');
+// Production carries the reviewed redirects; each must land on a page that exists in this output.
+if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {
+  for (const { to } of readRedirects(files.get('_redirects') ?? '')) if (!files.has(to.slice(1) + 'index.html')) errors.push(`_redirects: target is not a published page: ${to}`);
+}
 const expectedRoutes = fixture ? ['index.html'] : routes.filter(r => wp4 || r.publish).map(routeFile);
 if (wp4 && root === path.resolve('dist')) throw new Error('Review output may never be dist');
 const actualRoutes = [...files.keys()].filter(name => name.endsWith('.html')).sort();
@@ -42,10 +56,11 @@ for (const [name, text] of files) {
   if (name.endsWith('.html')) {
     errors.push(...(wp4 ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture })));
     if (!wp4 && text.includes(draftBanner)) errors.push('Review banner in production');
-    if (wp4 && name !== 'demo/index.html' && !text.includes(draftBanner)) errors.push('Missing review banner');
+    if (wp4 && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
   // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.
-  if (!wp4 && !fixture && name.endsWith('.txt')) { const values = text.replace(/^[A-Za-z-]+:/gm, ''); for (const claim of claims.filter(c => c.approval_state !== 'approved')) if (values.includes(claim.statement)) errors.push(`Pending claim in production text artifact: ${claim.claim_id}`); }
+  // Font license texts are third-party legal text, not site copy, so short claim words appear in them by chance.
+  if (!wp4 && !fixture && name.endsWith('.txt') && !/^fonts\/OFL-[\w.-]+\.txt$/.test(name)) { const values = text.replace(/^[A-Za-z-]+:/gm, ''); for (const claim of claims.filter(c => c.approval_state !== 'approved')) if (values.includes(claim.statement)) errors.push(`Pending claim in production text artifact: ${claim.claim_id}`); }
   if (/\.(html|svg)$/.test(name)) {
     const document = inspectMarkup(text, name);
     errors.push(...document.errors);
@@ -55,7 +70,19 @@ for (const [name, text] of files) {
     // At-rule conditions can use newer CSS syntax than the parser understands.
     // Parse every declaration value, including custom properties, for resources.
     const ast = parse(text, { parseAtrulePrelude: false, parseCustomProperty: true, onParseError: (error) => { throw error; } });
+    // Self-hosted fonts are the only permitted CSS resource: @font-face whose every url() is a local /fonts/*.woff2 path.
+    const localFont = /^\/fonts\/[\w.-]+\.woff2$/;
+    const allowed = new Set();
     walk(ast, node => {
+      if (node.type !== 'Atrule' || node.name.toLowerCase() !== 'font-face' || !node.block) return;
+      allowed.add(node);
+      const urls = [];
+      walk(node.block, inner => { if (inner.type === 'Url' || (inner.type === 'Function' && inner.name.toLowerCase() === 'url') || (inner.type === 'Function' && ['image-set', '-webkit-image-set'].includes(inner.name.toLowerCase()))) urls.push(inner); });
+      const ok = urls.every(inner => inner.type === 'Url' && localFont.test(inner.value));
+      if (ok) { for (const inner of urls) allowed.add(inner); } else allowed.delete(node);
+    });
+    walk(ast, node => {
+      if (allowed.has(node)) return;
       const decoded = (typeof node.name === 'string' ? node.name : '').replace(/\\([0-9a-f]{1,6})\s?|\\(.)/gi, (_, hex, char) => hex ? String.fromCodePoint(parseInt(hex, 16)) : char).toLowerCase();
       if (node.type === 'Url' || (node.type === 'Atrule' && ['import', 'font-face'].includes(decoded)) || (node.type === 'Function' && ['url', 'image-set', '-webkit-image-set'].includes(decoded))) {
         errors.push(`${name}: CSS resource loading is prohibited in WP1`);

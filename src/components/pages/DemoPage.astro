@@ -1,0 +1,22 @@
+---
+// Demo: coming-soon page with an illustrative animation of change propagating through dependent decisions.
+import Module from '../Module.astro';
+import ChangeIntelligenceGraphic from '../ChangeIntelligenceGraphic.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; title: string; [key: string]: unknown }
+const { copy } = Astro.props;
+const { t } = copy;
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <section class="page-hero page-hero--text" aria-labelledby="demo-title">
+      <h1 class="page-title" id="demo-title">{t('demo-coming-soon')}</h1>
+      {t('demo-lede') && <p class="lede">{t('demo-lede')}</p>}
+    </section>
+    {t('label-change-intelligence') && (
+      <Module id="demo-graphic-module" title={t('label-change-intelligence')!}>
+        <ChangeIntelligenceGraphic alt={t('demo-graphic-alt')} note={t('demo-graphic-note')} changeLabel={t('demo-change-label')} stateLabel={t('arm-treatment-sub')} blastLabel={t('demo-blast-label')} />
+      </Module>
+    )}
+  </div>
+</main>

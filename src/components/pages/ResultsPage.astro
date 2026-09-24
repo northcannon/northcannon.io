@@ -40,11 +40,14 @@ const arms = [
     </StatusBanner>
 
     {t('readiness-title') && (
-      <section class="panel readiness" aria-labelledby="readiness-title">
+      <section class="module module--numbered panel readiness" aria-labelledby="readiness-title">
+<h2 class="module__head" id="readiness-title">{t('readiness-title')}</h2>
+<div class="module__body">
+
         <div class="readiness__head">
           <span class="readiness__signal"><Icon name="pending-circle" size={36} /></span>
           <div>
-            <h2 class="section-title" id="readiness-title">{t('readiness-title')}</h2>
+            
             {t('readiness-summary') && <p class="section-intro">{t('readiness-summary')}</p>}
           </div>
         </div>
@@ -59,17 +62,16 @@ const arms = [
             </li>
           ))}
         </ol>
-      </section>
+      </div>
+</section>
     )}
 
     {t('metrics-title') && (
-      <section class="panel" aria-labelledby="metrics-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="metrics-title">{t('metrics-title')}</h2>
-            {t('metrics-intro') && <p class="section-intro">{t('metrics-intro')}</p>}
-          </div>
-        </div>
+      <section class="module module--numbered panel" aria-labelledby="metrics-title">
+<h2 class="module__head" id="metrics-title">{t('metrics-title')}</h2>
+<div class="module__body">
+{t('metrics-intro') && <p class="section-intro">{t('metrics-intro')}</p>}
+
         <ul class="metric-grid">
           {metrics.map(metric => (
             <li class="card metric-card">
@@ -98,12 +100,16 @@ const arms = [
             </div>
           </div>
         )}
-      </section>
+      </div>
+</section>
     )}
 
     {t('arms-title') && (
-      <section class="panel" aria-labelledby="result-arms-title">
-        <h2 class="section-title section-title--spaced" id="result-arms-title">{t('arms-title')}</h2>
+      <section class="module module--numbered panel" aria-labelledby="result-arms-title">
+<h2 class="module__head" id="result-arms-title">{t('arms-title')}</h2>
+<div class="module__body">
+
+        
         <div class="arm-tabs">
           <ul class="arm-tabs__list">
             {arms.map(arm => <li><a class:list={['arm-tabs__tab', `arm-tabs__tab--${arm.anchor}`]} href={`#${arm.anchor}`}>{t(arm.tab)}</a></li>)}
@@ -120,7 +126,8 @@ const arms = [
             ))}
           </div>
         </div>
-      </section>
+      </div>
+</section>
     )}
 
     {t('cta-explore-evidence') && <LinkCard href="/evidence/" icon="document" title={t('cta-explore-evidence')!} text={t('results-evidence-body')} />}

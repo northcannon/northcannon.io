@@ -1,0 +1,11 @@
+---
+// Instrument module: header band over a purple-outlined body. Static markup only.
+// `numbered` prefixes the band with a CSS-counter module number (never copy).
+interface Props { id: string; title: string; numbered?: boolean; drawer?: boolean; class?: string; plainBand?: boolean }
+const { id, title, numbered = false, drawer = false, class: className } = Astro.props;
+const plain = Astro.props.plainBand ?? false;
+---
+<section class:list={['module', { 'module--numbered': numbered, 'module--drawer': drawer }, className]} aria-labelledby={id}>
+  {plain ? <p class="module__head" id={id}>{title}</p> : <h2 class="module__head" id={id}>{title}</h2>}
+  <div class="module__body"><slot /></div>
+</section>

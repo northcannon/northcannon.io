@@ -3,75 +3,93 @@
 import Icon from '../Icon.astro';
 import ContactCTA from '../ContactCTA.astro';
 import LinkCard from '../LinkCard.astro';
+import AboutSubnav from '../AboutSubnav.astro';
+import Module from '../Module.astro';
 import type { Copy } from '../copy';
-interface Props { copy: Copy; title: string; [key: string]: unknown }
-const { copy, title } = Astro.props;
+interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
+const { copy, route, title } = Astro.props;
 const { t, href, paragraphs } = copy;
 const headline = t('founder-headline');
 const vision = paragraphs('vision-statement');
+// The founder's narrative renders once attested (review builds show it now). The Vision lives on
+// /about/company/, so this section no longer repeats or links it (founder direction 2026-09-24).
+const why = paragraphs('founder-why-body');
 const credibility = ['brand-core-principle', 'brand-company-motto', 'founder-cred-methods', 'founder-cred-public', 'founder-cred-commitment'].map(t).filter(Boolean);
 const focus = ['founder-focus-1', 'founder-focus-2', 'founder-focus-3', 'founder-focus-4'].map(t).filter(Boolean);
+// Review builds use the new alt claim; production uses the short approved label until it is attested.
+const photoAlt = t('founder-photo-alt') ?? t('label-founder') ?? '';
 const contactHref = href('/contact/');
 const gateHref = href('/gate-1/');
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
-    <div class="panel founder-sheet">
+    <AboutSubnav copy={copy} currentPath={route.path} />
+    <Module id="founder-module" title={t('label-founder')!} plainBand>
       <section class="founder-hero" aria-labelledby="founder-title">
-        <span class="founder-hero__portrait" aria-hidden="true"><Icon name="user" size={120} /></span>
+        <span class="founder-hero__portrait">
+          <picture>
+            <source type="image/webp" srcset="/founder/max-brooks-480.webp 480w, /founder/max-brooks-960.webp 960w" sizes="(min-width: 64rem) 15rem, 8rem" />
+            <img src="/founder/max-brooks-480.png" width="480" height="480" alt={photoAlt} loading="eager" decoding="async" />
+          </picture>
+        </span>
         <div class="founder-hero__copy">
           {headline && <p class="eyebrow">{t('label-founder')}</p>}
           <h1 class="page-title" id="founder-title">{headline ?? title}</h1>
-          {t('about-founder-card') && <p class="lede">{t('about-founder-card')}</p>}
+          {t('founder-origin-quote') && (
+            <figure class="founder-quote">
+              <blockquote><p>{t('founder-origin-quote')}</p></blockquote>
+              {t('founder-origin-note') && <p class="founder-quote__note">{t('founder-origin-note')}</p>}
+              {t('founder-origin-attribution') && <figcaption class="founder-quote__by">{t('founder-origin-attribution')}</figcaption>}
+            </figure>
+          )}
         </div>
       </section>
+    </Module>
 
-      {t('founder-why-title') && (
-        <section class="founder-section" aria-labelledby="why-title">
-          <div class="section-head section-head--center">
-            <div class="section-head__title"><Icon name="heart" size={32} /><h2 class="section-title" id="why-title">{t('founder-why-title')}</h2></div>
-            <a class="inline-link" href="/vision/">{t('label-vision')}<Icon name="arrow-right" /></a>
+    {t('founder-why-title') && why.length > 0 && (
+      <Module id="why-title" title={t('founder-why-title')!}>
+        <div class="box">
+          <div class="prose founder-why">{why.map((paragraph, index) => <p class:list={{ 'pull-quote': index === 3 }}>{paragraph}</p>)}</div>
+        </div>
+      </Module>
+    )}
+
+    {t('founder-background-title') && (
+      <Module id="background-title" title={t('founder-background-title')!}>
+        <div class="background-grid">
+          <div class="box background-card">
+            <Icon name="book" size={32} />
+            {t('founder-background-card') && <h3 class="card-title">{t('founder-background-card')}</h3>}
+            <p class="card-text">{t('about-founder-bio')}</p>
           </div>
-          <div class="prose founder-indent">{vision.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
-        </section>
-      )}
-
-      {t('founder-background-title') && (
-        <section class="founder-section" aria-labelledby="background-title">
-          <div class="section-head__title section-head--compact"><Icon name="book" size={32} /><h2 class="section-title" id="background-title">{t('founder-background-title')}</h2></div>
-          <div class="background-grid">
-            <div class="card background-card">
-              {t('founder-background-card') && <h3 class="card-title">{t('founder-background-card')}</h3>}
-              <p class="card-text">{t('about-founder-bio')}</p>
+          {t('founder-credibility') && (
+            <div class="box credibility">
+              <h3 class="credibility__title"><Icon name="shield-check" size={32} />{t('founder-credibility')}</h3>
+              <ul class="bullet-list">{credibility.map(item => <li>{item}</li>)}</ul>
             </div>
-            {t('founder-credibility') && (
-              <div class="credibility">
-                <h3 class="credibility__title"><Icon name="shield-check" size={32} />{t('founder-credibility')}</h3>
-                <ul class="bullet-list">{credibility.map(item => <li>{item}</li>)}</ul>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </Module>
+    )}
 
-      {t('founder-building-title') && (
-        <section class="founder-section" aria-labelledby="building-title">
-          <div class="section-head__title section-head--compact"><Icon name="wrench" size={32} /><h2 class="section-title" id="building-title">{t('founder-building-title')}</h2></div>
-          <div class="prose founder-indent">
+    {t('founder-building-title') && (
+      <Module id="building-title" title={t('founder-building-title')!}>
+        <div class="box">
+          <div class="prose">
             {vision[4] && <p>{vision[4]}</p>}
             <ul class="bullet-list">{focus.map(item => <li>{item}</li>)}</ul>
           </div>
-        </section>
-      )}
+        </div>
+      </Module>
+    )}
 
-      {t('cta-get-in-touch') && (
-        <ContactCTA id="founder-contact" variant="primary" title={t('cta-get-in-touch')!} text={t('founder-contact-body')} action={contactHref && t('label-contact') ? { href: contactHref, label: t('label-contact')! } : undefined} />
-      )}
+    {t('cta-get-in-touch') && (
+      <ContactCTA id="founder-contact" variant="primary" title={t('cta-get-in-touch')!} text={t('founder-contact-body')} action={contactHref && t('label-contact') ? { href: contactHref, label: t('label-contact')! } : undefined} />
+    )}
 
-      <div class="link-cards">
-        {t('founder-learn-title') && <LinkCard href="/about/" icon="home" title={t('founder-learn-title')!} text={t('founder-learn-body')} />}
-        {t('founder-gate-title') && gateHref && <LinkCard href={gateHref} icon="sitemap" title={t('founder-gate-title')!} text={t('founder-gate-body')} />}
-      </div>
+    <div class="link-cards">
+      {t('founder-learn-title') && <LinkCard href="/about/company/" icon="home" title={t('founder-learn-title')!} text={t('founder-learn-body')} />}
+      {t('founder-gate-title') && gateHref && <LinkCard href={gateHref} icon="sitemap" title={t('founder-gate-title')!} text={t('founder-gate-body')} />}
     </div>
   </div>
 </main>

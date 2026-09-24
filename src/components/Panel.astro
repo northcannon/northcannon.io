@@ -1,8 +1,7 @@
 ---
+// Thin alias over Module so existing pages pick up the module look.
+import Module from './Module.astro';
 interface Props { title: string; id: string }
 const { title, id } = Astro.props;
 ---
-<section class="panel" aria-labelledby={id}>
-  <h2 class="panel__title" id={id}>{title}</h2>
-  <div class="panel__body"><slot /></div>
-</section>
+<Module id={id} title={title} class="panel"><slot /></Module>

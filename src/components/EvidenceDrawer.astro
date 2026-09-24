@@ -1,0 +1,18 @@
+---
+// Static, always-open charcoal drawer of provenance rows (the site has no JavaScript to toggle it).
+import Module from './Module.astro';
+interface Row { label: string; value: string; mono?: boolean }
+interface Props { id: string; title: string; rows: Row[]; note?: string | undefined }
+const { id, title, rows, note } = Astro.props;
+---
+<Module id={id} title={title} drawer>
+  <dl class="drawer">
+    {rows.map(row => (
+      <div class="drawer__row">
+        <dt>{row.label}</dt>
+        <dd class:list={{ 'drawer__mono': row.mono }}>{row.value}</dd>
+      </div>
+    ))}
+  </dl>
+  {note && <p class="drawer__note">{note}</p>}
+</Module>

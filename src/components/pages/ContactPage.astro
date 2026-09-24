@@ -5,26 +5,38 @@ import type { Copy } from '../copy';
 interface Props { copy: Copy; title: string; [key: string]: unknown }
 const { copy, title } = Astro.props;
 const { t } = copy;
+// Review builds show the plain-email intro; production keeps the approved intro until it is attested.
+const intro = t('contact-intro-email') ?? t('contact-intro');
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <section class="page-hero page-hero--text" aria-labelledby="contact-title">
       <h1 class="page-title" id="contact-title">{title}</h1>
-      {t('contact-intro') && <p class="lede">{t('contact-intro')}</p>}
+      {intro && <p class="lede">{intro}</p>}
     </section>
     <div class="contact-grid">
-      <section class="panel contact-card" aria-labelledby="contact-hello">
+      <section class="module module--numbered contact-card" aria-labelledby="contact-hello">
+<h2 class="module__head" id="contact-hello">{t('label-early-access')}</h2>
+<div class="module__body">
+
         <Icon name="mail" size={36} />
-        <h2 class="section-title" id="contact-hello">{t('label-early-access')}</h2>
+        
         <a class="action-link action-link--primary" href={`mailto:${t('contact-hello')}`}>{t('contact-hello')}</a>
-      </section>
-      <section class="panel contact-card" aria-labelledby="contact-security">
+      </div>
+</section>
+      <section class="module module--numbered contact-card" aria-labelledby="contact-security">
+<h2 class="module__head" id="contact-security">{t('label-disclosure')}</h2>
+<div class="module__body">
+
         <Icon name="shield-check" size={36} />
-        <h2 class="section-title" id="contact-security">{t('label-disclosure')}</h2>
+        
         <p class="card-text">{t('disclosure-report')}</p>
-        <a class="action-link action-link--quiet" href={`mailto:${t('contact-security')}`}>{t('contact-security')}</a>
-        <a class="inline-link" href="/trust/site-security/">{t('label-site-security')}<Icon name="arrow-right" /></a>
-      </section>
+        <div class="contact-actions">
+          <a class="action-link action-link--quiet" href={`mailto:${t('contact-security')}`}>{t('contact-security')}</a>
+          <a class="inline-link" href="/trust/site-security/">{t('label-site-security')}<Icon name="arrow-right" /></a>
+        </div>
+      </div>
+</section>
     </div>
   </div>
 </main>
