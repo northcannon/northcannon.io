@@ -282,6 +282,13 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
 | `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
 
+### Company (`/about/company/`): data sources and interoperability diagram
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-auth-title` | Authoritative sources |
+| `interop-auth-body` | State and federal statutes and regulations, official agency rules and guidance, court filings and public records, contracts and internal policies, and system-of-record data, APIs and documents. |
+
 ### Demo (`/demo/`)
 
 | Claim ID | Statement |

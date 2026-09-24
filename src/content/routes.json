@@ -70,7 +70,9 @@
       "about-eyebrow",
       "about-headline",
       "about-why-title",
-      "about-why-body"
+      "about-why-body",
+      "interop-auth-title",
+      "interop-auth-body"
     ],
     "nav": true,
     "publish": true,

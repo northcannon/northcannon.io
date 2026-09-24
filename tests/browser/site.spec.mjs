@@ -117,7 +117,15 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.capability-card h3')).toHaveText(['Verification', 'Provenance', 'Change Intelligence']);
     await expect(page.locator('.truth--is li')).toHaveCount(4);
     await expect(page.locator('.truth--not li')).toHaveCount(4);
-    await expect(page.locator('.interop__node h3')).toHaveText(['Data Sources', 'Outputs']);
+    await expect(page.locator('.interop__node h3').first()).toHaveText('Authoritative sources');
+    await expect(page.locator('.interop__node .card-text').first()).toContainText('State and federal statutes and regulations');
+    // Production keeps the approved pair until the new one is attested.
+    await page.goto(PRODUCTION + '/about/company/');
+    await expect(page.locator('.interop__node h3').first()).toHaveText('Data Sources');
+    await expect(page.locator('.interop__node .card-text').first()).toHaveText('');
+    await expect(page.locator('main')).not.toContainText('Authoritative sources');
+    await page.goto(REVIEW + '/about/company/');
+    await expect(page.locator('.interop__node h3')).toHaveText(['Authoritative sources', 'Outputs']);
     await expect(page.locator('.interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence']);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });

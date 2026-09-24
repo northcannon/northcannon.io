@@ -9,6 +9,9 @@ interface Props { copy: Copy; route: { path: string }; title: string; [key: stri
 const { copy, route, title } = Astro.props;
 const { t, href, paragraphs } = copy;
 const vision = paragraphs('vision-statement');
+// Widened data sources: review builds show the new pair; production keeps the approved pair until it is attested.
+const sourcesTitle = t('interop-auth-title') && t('interop-auth-body') ? t('interop-auth-title') : t('interop-sources');
+const sourcesBody = t('interop-auth-title') && t('interop-auth-body') ? t('interop-auth-body') : t('interop-sources-body');
 const capabilities = [
   { title: 'cap-verification', body: 'cap-verification-body', icon: 'flask' },
   { title: 'label-provenance', body: 'cap-provenance-body', icon: 'database' },
@@ -100,8 +103,8 @@ const contactHref = href('/contact/');
 
         <div class="interop">
           <div class="interop__node">
-            <h3 class="card-title">{t('interop-sources')}</h3>
-            <p class="card-text">{t('interop-sources-body')}</p>
+            <h3 class="card-title">{sourcesTitle}</h3>
+            <p class="card-text">{sourcesBody}</p>
           </div>
           <span class="interop__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
           <div class="interop__layer">
