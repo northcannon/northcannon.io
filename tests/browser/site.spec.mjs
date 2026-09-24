@@ -305,6 +305,34 @@ test.describe('approved design acceptance (review build)', () => {
     expect((await numbers()).some(content => /counter|0\d/.test(content) || content.includes('·'))).toBe(true);
   });
 
+  test('About prose uses the full inner width of its box at 1440 and 1920, with larger type on wide screens', async ({ browser }, testInfo) => {
+    test.skip(!desktop(testInfo), 'desktop widths only');
+    for (const width of [1440, 1920]) {
+      const context = await browser.newContext({ viewport: { width, height: 1000 } });
+      try {
+        const page = await context.newPage();
+        for (const base of [REVIEW, PRODUCTION]) for (const path of ['/about/company/', '/about/founder/']) {
+          await page.goto(base + path);
+          const prose = await page.locator('main .module .prose p, main .module .prose-lead, main .module .vision-box__p').evaluateAll(els => els.map(el => {
+            const box = el.closest('.box'), s = getComputedStyle(box), inner = box.clientWidth - parseFloat(s.paddingLeft) - parseFloat(s.paddingRight);
+            const module = el.closest('.module__body'), m = getComputedStyle(module);
+            const style = getComputedStyle(el);
+            return { text: el.textContent.slice(0, 40), width: el.getBoundingClientRect().width, inner, boxWidth: box.getBoundingClientRect().width, moduleInner: module.clientWidth - parseFloat(m.paddingLeft) - parseFloat(m.paddingRight), maxWidth: style.maxWidth, boxMax: s.maxWidth, font: parseFloat(style.fontSize), line: parseFloat(style.lineHeight) };
+          }));
+          expect(prose.length, path).toBeGreaterThan(0);
+          for (const p of prose) {
+            expect(p.maxWidth, p.text).toBe('none');
+            expect(p.boxMax, p.text).toBe('none');
+            expect(Math.abs(p.width - p.inner), p.text).toBeLessThan(2);
+            expect(Math.abs(p.boxWidth - p.moduleInner), p.text).toBeLessThan(2);
+            if (width >= 1600) { expect(p.font, p.text).toBeGreaterThanOrEqual(18); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5); }
+          }
+          await page.screenshot({ path: `test-results/g3-${base === REVIEW ? 'review' : 'production'}${path.replaceAll('/', '-').replace(/-$/, '')}-${width}.png`, fullPage: true });
+        }
+      } finally { await context.close(); }
+    }
+  });
+
   test('company vision section: verbatim approved statement in one charcoal box, anchored at #vision', async ({ page }) => {
     const statement = loadGovernance().claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
     expect(statement).toHaveLength(6);
@@ -320,7 +348,7 @@ test.describe('approved design acceptance (review build)', () => {
       const heads = await page.locator('main .module__head').allTextContents();
       expect(heads.slice(0, 3)).toEqual(['Why now', 'Vision', 'Core Capabilities']);
       await expect(page.locator('main h2').first()).toHaveText('NorthCannon');
-      expect(await page.locator('.vision-box').evaluate(el => parseFloat(getComputedStyle(el).maxWidth) > 0)).toBe(true);
+      expect(await page.locator('.vision-box').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
     }
     // The Founder page's Vision link lands on that anchor; /vision/ stays published.
     await page.goto(REVIEW + '/about/founder/');

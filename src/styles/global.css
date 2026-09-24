@@ -143,7 +143,7 @@
   .eyebrow { margin: 0 0 0.75rem; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
   .page-title { margin: 0; font-size: 2.25rem; line-height: 1.15; letter-spacing: -0.02em; }
   .lede { max-width: var(--text-width); margin: 0.875rem 0 0; color: var(--color-muted); font-size: 1rem; line-height: 1.6; }
-  .prose p { max-width: var(--text-width); margin: 0; color: var(--color-muted); line-height: 1.65; }
+  .prose p { margin: 0; color: var(--color-muted); line-height: 1.65; }
   .prose p + p { margin-top: 0.875rem; }
 
   /* Panels and cards (card radius 16px). */

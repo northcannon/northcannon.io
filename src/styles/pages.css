@@ -176,7 +176,6 @@
   .about-subnav a:hover { border-color: var(--color-outline); color: var(--color-text); }
   .about-subnav a[aria-current="page"] { border-color: var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: var(--color-text); }
   .module .module__head[id="vision"] { scroll-margin-top: 6rem; }
-  .vision-box { max-width: 72ch; }
   .vision-box__p { margin: 0 0 1rem; color: var(--color-muted); line-height: 1.7; }
   .vision-box__p:last-child { margin-bottom: 0; }
   .vision-box .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
@@ -186,7 +185,7 @@
   .about-banner__copy { min-width: 0; }
   .about-banner__name { margin: 0; font-size: 3rem; line-height: 1.1; letter-spacing: -0.02em; }
   .about-banner__motto { margin: 0.75rem 0 0; color: var(--color-violet-text); font-size: 1.75rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; }
-  .prose-lead { max-width: var(--text-width); margin: 0; color: var(--color-text); font-size: 1.0625rem; line-height: 1.6; }
+  .prose-lead { margin: 0; color: var(--color-text); font-size: 1.0625rem; line-height: 1.6; }
   .link-cards--triple { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .link-cards--triple > li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
   .link-card { min-width: 0; }
@@ -212,7 +211,8 @@
   .workload td, .workload tbody th { padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); vertical-align: top; font-weight: 400; }
   .workload td, .workload th { overflow-wrap: normal; word-break: normal; hyphens: none; }
   .workload__status { display: inline-flex; justify-self: start; white-space: nowrap; align-items: center; gap: 0.5rem; padding: 0.125rem 0.625rem; border: 1px solid var(--color-reeval); border-radius: 999px; color: var(--color-reeval); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
-  .lineage { display: grid; gap: 0.75rem; max-width: 860px; margin: 0; }
+  .lineage { display: grid; gap: 0.75rem; margin: 0; }
+  .lineage__plane { max-width: 860px; margin-inline: auto; }
   .lineage__cols { display: grid; grid-template-columns: 38.4% 38.4% 1fr; padding-left: 2.33%; margin: 0; color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; }
   .lineage__scroll { overflow-x: auto; }
   .lineage__svg { display: block; width: 100%; max-width: 860px; height: auto; }
@@ -222,7 +222,7 @@
   .lineage__plate--affected rect:first-child { stroke: var(--color-unsupported); stroke-width: 2.5; }
   .lineage__bar { fill: var(--color-plate-border); }
   .lineage__fold { fill: var(--color-unsupported); }
-  .lineage__alt { max-width: var(--text-width); color: var(--color-muted); font-size: 0.8125rem; line-height: 1.5; }
+  .lineage__alt { color: var(--color-muted); font-size: 0.8125rem; line-height: 1.5; }
   .drawer { display: grid; margin: 0; padding-block: 0.5rem; }
   .drawer__row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--color-plate-border); }
   .drawer__row:last-child { border-bottom: 0; }
@@ -278,6 +278,11 @@
   .record-fields--digest div { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
 }
 
+/* Wide screens: About prose stays full width; larger type and leading keep long lines readable. */
+@media (min-width: 100rem) {
+  .prose p, .prose .bullet-list, .prose-lead, .vision-box__p { font-size: 1.1875rem; line-height: 1.75; }
+  .vision-box .pull-quote, .prose .pull-quote { font-size: 1.5rem; line-height: 1.55; }
+}
 @media (min-width: 64rem) and (max-width: 79.99rem) {
   .home-hero__title { font-size: 2rem; }
 }
