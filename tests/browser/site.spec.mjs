@@ -457,3 +457,13 @@ test('production links only target published pages', async ({ page }) => {
     for (const href of hrefs) expect(published.has(href) || /\.(svg|txt|xml|json)$/.test(href), `${path} links to ${href}`).toBe(true);
   }
 });
+
+test('changelog records the redesign in review builds; production keeps the approved empty statement until it is attested', async ({ page }) => {
+  await page.goto(REVIEW + '/trust/changelog/');
+  await expect(page.locator('.claim-list li')).toHaveCount(1);
+  await expect(page.locator('.claim-list li')).toContainText('New visual system across the site');
+  await expect(page.locator('main')).not.toContainText('No changelog entries are listed.');
+  await page.goto(PRODUCTION + '/trust/changelog/');
+  await expect(page.locator('main')).toContainText('No changelog entries are listed.');
+  await expect(page.locator('main')).not.toContainText('New visual system');
+});

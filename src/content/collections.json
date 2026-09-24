@@ -15,5 +15,12 @@
       ]
     }
   ],
-  "changelog": []
+  "changelog": [
+    {
+      "entry_id": "site-redesign-2026-09",
+      "claim_ids": [
+        "changelog-2026-09-site-redesign"
+      ]
+    }
+  ]
 }

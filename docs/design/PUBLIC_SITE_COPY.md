@@ -288,6 +288,27 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | --- | --- |
 | `interop-auth-title` | Authoritative sources |
 | `interop-auth-body` | State and federal statutes and regulations, official agency rules and guidance, court filings and public records, contracts and internal policies, and system-of-record data, APIs and documents. |
+| `interop-origin-title` | Where decisions originate |
+| `interop-origin-models` | Models |
+| `interop-origin-agents` | AI agents |
+| `interop-origin-enterprise` | Enterprise systems (CRM, ERP) |
+| `interop-origin-devices` | Devices and firmware |
+| `interop-origin-workflow` | Workflow and case systems |
+| `interop-arrow-out` | Proposed decisions and context → |
+| `interop-arrow-back` | ← Verified decision state and change-impact signals |
+| `interop-footnote` | Integration categories are illustrative design targets, not current integrations. |
+
+### Founder photo (`/about/founder/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `founder-photo-alt` | Max Brooks, founder of NorthCannon |
+
+### Changelog (`/trust/changelog/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `changelog-2026-09-site-redesign` | 2026-09-24: New visual system across the site. About, Company and Founder are combined into one About section with Company, Features and Founder pages. The Demo page is added to the navigation. |
 
 ### Demo (`/demo/`)
 

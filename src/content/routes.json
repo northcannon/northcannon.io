@@ -811,7 +811,8 @@
       "arm-baseline-a",
       "arm-baseline-b",
       "arm-r-plus",
-      "arms-title"
+      "arms-title",
+      "changelog-2026-09-site-redesign"
     ],
     "nav": false,
     "publish": true
