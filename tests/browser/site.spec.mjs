@@ -432,10 +432,11 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {
-    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, /^Max Brooks is the founder of NorthCannon\./]]) {
+    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, 'Founder']]) {
       await page.goto(base + '/about/founder/');
       const img = page.locator('.founder-hero__portrait img');
       await expect(img).toHaveAttribute('alt', alt);
+      expect((await img.getAttribute('alt')).length).toBeLessThanOrEqual(80);
       await expect(img).toHaveAttribute('loading', 'eager');
       await expect(img).toHaveAttribute('width', '480');
       await expect(img).toHaveAttribute('height', '480');
