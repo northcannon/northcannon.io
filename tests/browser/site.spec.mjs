@@ -374,10 +374,9 @@ test.describe('approved design acceptance (review build)', () => {
       await expect(page.locator('main .about-banner__name')).toHaveText('NorthCannon');
       expect(await page.locator('.vision-box').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
     }
-    // The Founder page's Vision link lands on that anchor; /vision/ stays published.
+    // The Vision lives on Company only; the Founder page no longer repeats or links it. /vision/ stays published.
     await page.goto(REVIEW + '/about/founder/');
-    await page.getByRole('link', { name: 'Vision' }).click();
-    await expect(page).toHaveURL(/\/about\/company\/#vision$/);
+    await expect(page.locator('main')).not.toContainText('AI should be able to reason');
     expect((await page.goto(PRODUCTION + '/vision/')).status()).toBe(200);
   });
 
@@ -600,10 +599,10 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.prose .bullet-list li')).toHaveCount(4);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
     expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/gate-1/']);
-    await expect(page.getByRole('link', { name: 'Vision' })).toHaveAttribute('href', '/about/company/#vision');
+    await expect(page.getByRole('link', { name: 'Vision' })).toHaveCount(0);
   });
 
-  test('founder: Why NorthCannon exists renders the pending narrative in review and the approved excerpt in production', async ({ page }) => {
+  test('founder: Why NorthCannon exists renders the pending narrative in review and is omitted in production until attested', async ({ page }) => {
     const claims = loadGovernance().claims;
     const body = claims.find(c => c.claim_id === 'founder-why-body');
     expect(body.approval_state).toBe('pending');
@@ -614,13 +613,13 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(section.locator('.module__head')).toHaveText('Why NorthCannon exists');
     await expect(section.locator('.box .prose p')).toHaveText(why);
     await expect(section.locator('.box .prose .pull-quote')).toHaveText(why[3]);
-    await expect(section.getByRole('link', { name: 'Vision' })).toHaveAttribute('href', '/about/company/#vision');
+    await expect(section.getByRole('link', { name: 'Vision' })).toHaveCount(0);
     expect(await section.innerText()).not.toMatch(/§|U\.S\.C|C\.F\.R|\b(?:Alabama|Alaska|Arizona|California|Colorado|Florida|Georgia|Illinois|New York|Texas|Washington)\b/);
+    // Production: until founder-why-body is attested the section is omitted entirely (no vision fallback).
     await page.goto(PRODUCTION + '/about/founder/');
-    const vision = claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
-    await expect(section.locator('.box .prose p')).toHaveText(vision.slice(0, 2));
+    await expect(section).toHaveCount(0);
     await expect(page.locator('main')).not.toContainText('loan-servicing queue');
-    await expect(section.locator('.pull-quote')).toHaveCount(0);
+    await expect(page.locator('main')).not.toContainText('AI should be able to reason');
   });
 
   test('contact: general and security destinations', async ({ page }) => {
