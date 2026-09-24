@@ -12,14 +12,14 @@
   /* Home hero: ≈ 560px, copy ≈ 600px, four-layer visual. */
   .home-hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: center; min-height: 27rem; padding-block: 1.25rem; }
   .home-hero__copy { grid-column: 1 / span 7; max-width: 37.5rem; }
-  .home-hero__title { max-width: 13em; margin: 0; font-size: 2.875rem; line-height: 1.12; letter-spacing: -0.025em; }
-  .home-hero__copy .lede { font-size: 1.0625rem; color: #cbd5e1; }
+  .home-hero__title { max-width: 13em; margin: 0; font-size: var(--fs-display); line-height: 1.12; letter-spacing: -0.025em; }
+  .home-hero__copy .lede { font-size: var(--fs-lede); color: #cbd5e1; }
 
   .capability-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
   .capability-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 15rem; justify-content: flex-start; padding: 1.75rem 1.5rem; text-align: left; }
   .capability-card > .icon { width: 2.75rem; height: 2.75rem; margin-bottom: 1rem; color: var(--color-violet-text); }
-  .capability-card .card-title { font-size: 1.1875rem; }
-  .capability-card .card-text { max-width: 24rem; font-size: 0.9375rem; }
+  .capability-card .card-title { font-size: 1rem; }
+  .capability-card .card-text { max-width: 24rem; font-size: var(--fs-small); }
 
   .truth-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
   .truth { padding: 1.5rem 1.75rem; }
@@ -53,7 +53,7 @@
   .is-current .lifecycle__marker { border-color: var(--color-violet); background: var(--color-violet-fill); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-violet) 22%, transparent); }
   .is-current .lifecycle__label { color: var(--color-violet-text); font-weight: 600; }
   .is-complete .lifecycle__marker { border-color: var(--color-verified); color: var(--color-verified); }
-  .gate-what { max-width: none; font-size: 1rem; line-height: 1.65; }
+  .gate-what { max-width: none; font-size: var(--fs-body); line-height: 1.65; }
 
   .arm-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gutter); }
   .arm-card { padding: 1.25rem; }
@@ -145,19 +145,19 @@
   /* About. */
 
   /* Founder. */
-  .founder-hero { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; align-items: center; padding-bottom: 2rem; }
+  .founder-hero { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 2.25rem; align-items: center; padding-bottom: 1rem; }
   /* The image is already ringed and circle-cropped on black corners; the mask removes the corners. */
-  .founder-hero__portrait { display: block; width: 15rem; height: 15rem; overflow: hidden; border-radius: 50%; background: #000; }
+  .founder-hero__portrait { display: block; width: 11rem; height: 11rem; overflow: hidden; border-radius: 50%; background: #000; }
   .founder-hero__portrait picture, .founder-hero__portrait img { display: block; width: 100%; height: 100%; }
   .founder-hero .page-title { max-width: 36rem; }
   .box--intro .prose-lead + .prose-lead { margin-top: 1rem; }
   .founder-hero .eyebrow { font-size: 0.9375rem; letter-spacing: 0.2em; }
   .founder-quote { margin: 1.5rem 0 0; padding-left: 1.25rem; border-left: 3px solid var(--color-violet); }
   .founder-quote blockquote { margin: 0; }
-  .founder-quote blockquote p { margin: 0; color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
+  .founder-quote blockquote p { margin: 0; color: var(--color-text); font-size: var(--fs-quote); line-height: 1.5; }
   .founder-quote blockquote p::before { content: '\201C'; }
   .founder-quote blockquote p::after { content: '\201D'; }
-  .founder-quote__note { margin: 0.625rem 0 0; color: var(--color-muted); font-size: 0.9375rem; font-style: italic; }
+  .founder-quote__note { margin: 0.625rem 0 0; color: var(--color-muted); font-size: var(--fs-small); font-style: italic; }
   .founder-quote__by { margin-top: 0.5rem; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
   .founder-quote__by::before { content: '\2014\00a0'; }
   .background-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
@@ -183,17 +183,16 @@
   .module .module__head[id="vision"] { scroll-margin-top: 6rem; }
   .vision-box__p { margin: 0 0 1rem; color: var(--color-muted); line-height: 1.7; }
   .vision-box__p:last-child { margin-bottom: 0; }
-  .vision-box .pull-quote, .prose .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
-  .vision-box__p { font-size: 0.9375rem; }
-  .vision-box .pull-quote { font-size: 1.125rem; }
+  .vision-box .pull-quote, .prose .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: var(--fs-quote); line-height: 1.5; }
+  .vision-box__p { font-size: var(--fs-body); }
   /* NorthCannon banner: above the page text, directly on the page background (no box, border or band). */
   .prose p.pull-quote { margin-block: 1.25rem 0; }
   .about-banner { display: flex; align-items: center; gap: 2.5rem; padding: 1rem 0 0.5rem; }
   .about-banner__mark { flex: none; width: 7.5rem; height: auto; }
   .about-banner__copy { min-width: 0; }
-  .about-banner__name { margin: 0; color: var(--color-text); font-size: 3rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-  .about-banner__motto { margin: 0.75rem 0 0; color: var(--color-violet-text); font-size: 1.75rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; }
-  .prose-lead { margin: 0; color: var(--color-text); font-size: 1.0625rem; line-height: 1.6; }
+  .about-banner__name { margin: 0; color: var(--color-text); font-size: var(--fs-title); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+  .about-banner__motto { margin: 0.375rem 0 0; color: var(--color-violet-text); font-size: 1.125rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; }
+  .prose-lead { margin: 0; color: var(--color-text); font-size: var(--fs-body); line-height: 1.65; }
   .link-cards--triple { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .link-cards--triple > li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
   .link-card { min-width: 0; }
@@ -288,6 +287,9 @@
   .contact-card .module__body > .icon { color: var(--color-violet-text); }
   .status-inline { display: inline-flex; align-items: center; gap: 0.625rem; margin: 0; color: var(--color-pending); font-weight: 600; }
   .claim-list { display: grid; gap: 0.75rem; }
+  /* The claims register is long: compact records in a two-up grid so it scans instead of scrolls. */
+  .claim-list:has(.claim-record) { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 0.625rem; }
+  .panel.claim-record { padding: 1rem 1.25rem; }
   .record-fields { display: grid; gap: 0.375rem; margin: 0.75rem 0 0; font-size: 0.8125rem; }
   .record-fields div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; }
   .record-fields dt { color: var(--color-muted); }
@@ -302,7 +304,7 @@
 .lmap__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 0.75rem; border: 1px solid color-mix(in srgb, var(--color-violet) 30%, var(--box-charcoal-border)); border-radius: var(--radius-card); background-color: #0a0810;
   background-image: linear-gradient(rgb(139 92 246 / 0.08) 1px, transparent 1px), linear-gradient(90deg, rgb(139 92 246 / 0.08) 1px, transparent 1px), linear-gradient(rgb(139 92 246 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(139 92 246 / 0.035) 1px, transparent 1px);
   background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; }
-.lmap__scope { display: flex; align-items: flex-start; gap: 0.875rem; margin: 0; padding: 1rem 1.25rem; border: 1px solid var(--color-outline); border-left: 3px solid var(--color-violet); border-radius: var(--radius-control); background: linear-gradient(90deg, rgb(139 92 246 / 0.16), rgb(139 92 246 / 0.03)); color: var(--color-text); font-size: 1.0625rem; line-height: 1.55; }
+.lmap__scope { display: flex; align-items: flex-start; gap: 0.875rem; margin: 0; padding: 1rem 1.25rem; border: 1px solid var(--color-outline); border-left: 3px solid var(--color-violet); border-radius: var(--radius-control); background: linear-gradient(90deg, rgb(139 92 246 / 0.16), rgb(139 92 246 / 0.03)); color: var(--color-text); font-size: var(--fs-body); line-height: 1.55; }
 .lmap__scope::before { content: ""; flex: none; width: 0.625rem; height: 0.625rem; margin-top: 0.5rem; border-radius: 50%; background: var(--color-violet-text); box-shadow: 0 0 10px var(--color-violet); }
 .lmap__band { display: grid; gap: 0.625rem; }
 .lmap__band--sources { --lane: var(--color-key); }
@@ -379,19 +381,20 @@
 
 /* Desktop: bands span four columns; wires, gates and the loop occupy their own tracks. */
 @media (min-width: 64rem) {
-  .lmap__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.15fr) 2.5rem; gap: 0 1rem; padding: 1.5rem; }
+  .lmap__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 3.2fr) 2.5rem; gap: 0 1rem; padding: 1.5rem; }
   .lmap__grid .lmap__band--sources { grid-area: 1 / 1 / 2 / 5; }
   .lmap__grid .lmap__band--reasoning { grid-area: 2 / 1 / 3 / 5; margin-top: 1rem; }
   .lmap__grid .lmap__band--records { grid-area: 6 / 1 / 7 / 5; }
   .lmap__grid .lmap__group { grid-template-columns: 12rem minmax(0, 1fr); align-items: start; gap: 1rem; }
   .lmap__grid .lmap__group-label { padding-top: 0.45rem; }
-  .lmap__grid .lmap__flows { grid-area: 7 / 1 / 8 / 4; grid-template-columns: subgrid; margin-top: 1rem; }
-  .lmap__grid .lmap__legend { grid-area: 7 / 4 / 8 / 5; align-self: start; margin-top: 1rem; }
+  /* Flow cards share the full width in three equal columns; the two-way legend is one line beneath. */
+  .lmap__grid .lmap__flows { grid-area: 7 / 1 / 8 / 5; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
+  .lmap__grid .lmap__legend { grid-area: 8 / 1 / 9 / 5; align-self: start; margin-top: 0.75rem; }
   .lmap__grid .lmap__steps { display: none; }
   .lmap__grid .lmap__col-1 { grid-column: 1; } .lmap__grid .lmap__col-2 { grid-column: 2; } .lmap__grid .lmap__col-3 { grid-column: 3; }
 
   /* Connectors fill their row, so every wire meets both bands. */
-  .lmap__grid .lmap__conn { display: flex; min-height: 5.5rem; }
+  .lmap__grid .lmap__conn { display: flex; min-height: 4.5rem; }
   .lmap__grid .lmap__conn--in { grid-row: 3; }
   .lmap__grid .lmap__conn--out { grid-row: 5; }
   .lmap__grid .lmap__lane { position: relative; display: flex; flex: 1 1 0; align-items: center; justify-content: center; min-width: 0; padding-block: 0.875rem; }
@@ -405,8 +408,13 @@
   .lmap__grid .lmap__nc-title, .lmap__grid .lmap__agnostic-row { grid-column: 4 / -1; padding-right: 1.25rem; }
   /* Paths pass straight through the header band and the module row. */
   .lmap__grid .lmap__pass { display: block; position: relative; z-index: 1; grid-row: 1 / 3; background: linear-gradient(var(--color-violet), var(--color-violet)) calc(50% - 3px) 0 / 2px 100% no-repeat, linear-gradient(var(--color-violet), var(--color-violet)) calc(50% + 3px) 0 / 2px 100% no-repeat; }
-  .lmap__grid .lmap__nc-chips { grid-column: 4; grid-row: 2; padding: 1rem 0 0.5rem; }
-  .lmap__grid .lmap__check { display: grid; position: relative; grid-row: 3; place-items: center; min-height: 7rem; background: linear-gradient(var(--color-violet), var(--color-violet)) calc(50% - 3px) 0 / 2px 100% no-repeat, linear-gradient(var(--color-violet), var(--color-violet)) calc(50% + 3px) 0 / 2px 100% no-repeat; filter: drop-shadow(0 0 6px rgb(139 92 246 / 0.55)); }
+  /* A wider right column keeps the layer compact: three module columns, shorter rows. */
+  .lmap__grid .lmap__nc-chips { grid-column: 4; grid-row: 2; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; padding: 0.75rem 0 0.25rem; }
+  .lmap__grid .lmap__nc-chips li { min-height: 2.5rem; padding: 0.375rem; font-size: 0.6875rem; }
+  .lmap__grid .lmap__agnostic { gap: 0.375rem; }
+  .lmap__grid .lmap__agnostic li { padding: 0.2rem 0.5rem; font-size: 0.625rem; letter-spacing: 0.05em; white-space: nowrap; }
+  .lmap__grid .lmap__nc-head { font-size: 0.8125rem; padding-block: 0.75rem; }
+  .lmap__grid .lmap__check { display: grid; position: relative; grid-row: 3; place-items: center; min-height: 5rem; background: linear-gradient(var(--color-violet), var(--color-violet)) calc(50% - 3px) 0 / 2px 100% no-repeat, linear-gradient(var(--color-violet), var(--color-violet)) calc(50% + 3px) 0 / 2px 100% no-repeat; filter: drop-shadow(0 0 6px rgb(139 92 246 / 0.55)); }
   .lmap__grid .lmap__check-ring { position: relative; z-index: 1; display: grid; place-items: center; width: 2.75rem; height: 3.1rem; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: linear-gradient(180deg, var(--color-violet), var(--color-violet-fill)); color: #fff; }
   .lmap__grid .lmap__check-ring .icon { stroke-width: 2.6; }
   /* Read/write bus: two rails from the first gate to persistent verified state. */
@@ -442,12 +450,9 @@
   .lmap__band--nc, .lmap__loop-caption, .lmap__grid, .lmap__state { border-color: CanvasText; }
 }
 
-/* Wide screens: About prose stays full width; larger type and leading keep long lines readable. */
-@media (min-width: 100rem) {
-  .prose p, .prose .bullet-list, .prose-lead { font-size: 1.1875rem; line-height: 1.75; }
-  .prose .pull-quote { font-size: 1.5rem; line-height: 1.55; }
-  .vision-box__p { font-size: 1.0625rem; line-height: 1.75; }
-  .vision-box .pull-quote { font-size: 1.3125rem; line-height: 1.55; }
+/* Wide desktops: the four design badges sit on one line under their label. */
+@media (min-width: 80rem) {
+  .lmap__grid .lmap__agnostic { flex-wrap: nowrap; }
 }
 @media (min-width: 64rem) and (max-width: 79.99rem) {
   .home-hero__title { font-size: 2rem; }
@@ -478,8 +483,8 @@
   .link-cards--triple { grid-template-columns: minmax(0, 1fr); }
   .about-banner { gap: 1.25rem; padding: 0.5rem 0 0; }
   .about-banner__mark { width: 4.5rem; }
-  .about-banner__name { font-size: 2rem; }
-  .about-banner__motto { font-size: 1.25rem; }
+  .about-banner__name { font-size: 1.625rem; }
+  .about-banner__motto { font-size: 1rem; }
   .drawer__row { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
   .capability-grid, .truth-grid, .explainer-grid, .artifact-grid, .contact-grid, .background-grid { grid-template-columns: minmax(0, 1fr); }
   .capability-card { min-height: 0; }
@@ -499,7 +504,7 @@
   .arm-tabs__tab { border-radius: var(--radius-control); }
   .artifact-viewer { flex-direction: column; align-items: flex-start; }
   .founder-hero { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; justify-items: start; }
-  .founder-hero__portrait { width: 8rem; height: 8rem; }
+  .founder-hero__portrait { width: 7rem; height: 7rem; }
   .credibility .bullet-list { padding-left: 1.25rem; }
   .record-fields div, .record-fields--digest div { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }

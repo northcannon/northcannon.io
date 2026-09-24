@@ -327,7 +327,7 @@ test.describe('approved design acceptance (review build)', () => {
     }
   });
 
-  test('About prose uses the full inner width of its box at 1440 and 1920, with larger type on wide screens', async ({ browser }, testInfo) => {
+  test('About prose uses the full inner width of its box at 1440 and 1920, at the same body size', async ({ browser }, testInfo) => {
     test.skip(!desktop(testInfo), 'desktop widths only');
     for (const width of [1440, 1920]) {
       const context = await browser.newContext({ viewport: { width, height: 1000 } });
@@ -347,8 +347,8 @@ test.describe('approved design acceptance (review build)', () => {
             expect(p.boxMax, p.text).toBe('none');
             expect(Math.abs(p.width - p.inner), p.text).toBeLessThan(2);
             expect(Math.abs(p.boxWidth - p.moduleInner), p.text).toBeLessThan(2);
-            // The vision box is set slightly smaller than other About prose (founder direction).
-            if (width >= 1600) { expect(p.font, p.text).toBeGreaterThanOrEqual(p.vision ? 17 : 18); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5); }
+            // One type scale on every page and at every width (founder direction): body prose is 15px.
+            expect(p.font, p.text).toBe(15); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5);
           }
           await page.screenshot({ path: `test-results/g3-${base === REVIEW ? 'review' : 'production'}${path.replaceAll('/', '-').replace(/-$/, '')}-${width}.png`, fullPage: true });
         }
