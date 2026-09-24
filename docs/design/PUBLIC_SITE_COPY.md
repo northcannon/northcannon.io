@@ -342,11 +342,25 @@ systems of record. No vendor or product names.
 | `interop-records-group-industry` | Industry systems |
 | `interop-records-group-actions` | Actions and outcomes |
 | `interop-records-dwh` | Data warehouses and lakehouses |
+| `interop-records-streams` | Data lakes and event streams |
+| `interop-records-databases` | Operational databases |
+| `interop-records-hr` | HR and payroll |
+| `interop-records-procurement` | Procurement and supplier management |
+| `interop-records-identity` | Identity and access management |
+| `interop-records-itsm` | IT service management |
 | `interop-records-documents` | Document and records management |
 | `interop-records-banking` | Core banking and payments |
 | `interop-records-insurance` | Claims and policy administration |
+| `interop-records-trading` | Trading and risk systems |
 | `interop-records-health` | Electronic health records |
+| `interop-records-clinical` | Clinical trial and safety systems |
 | `interop-records-supply` | Supply chain and logistics |
+| `interop-records-inventory` | Warehouse and inventory management |
+| `interop-records-manufacturing` | Manufacturing execution and quality |
+| `interop-records-fleet` | Fleet and transportation management |
+| `interop-records-energy` | Energy and utility operations |
+| `interop-records-telecom` | Network and telecom operations |
+| `interop-records-public` | Public-sector benefits and case management |
 | `interop-state-caption` | Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it. |
 
 Industry-agnostic scope (founder direction 2026-09-24: the diagram is not limited to the Features demo; it shows
@@ -364,11 +378,13 @@ The worked paths now span a general decision, a device firmware update and a cou
 | `interop-reasoning-rpa` | Robotic process automation |
 | `interop-records-group-channels` | Channels and endpoints |
 | `interop-records-email` | Email and messaging |
+| `interop-records-webapps` | Client-facing web applications |
 | `interop-records-court` | Court e-filing and docket systems |
 | `interop-records-government` | Government portals and agency websites |
 | `interop-records-firmware` | Proprietary firmware and embedded devices |
 | `interop-records-customer` | Customer communications |
 | `interop-records-payments` | Payments and transfers |
+| `interop-records-orders` | Orders and shipments |
 | `interop-flow-firmware-title` | Model → firmware update |
 | `interop-flow-firmware-body` | A model recommends a device configuration change; NorthCannon verifies the approved configuration and the authority to act before the firmware update is released. |
 | `interop-flow-docket-title` | Court docket → client email |
@@ -410,7 +426,7 @@ The pending `label-overview`, `about-link-company-body`, `about-link-features-bo
 
 The pending `feat-wl-row-source` ("Re-evaluated decision") is retired (ID kept) because it duplicated `feat-ci-verdict-new-label`; the workload table's Source cell reuses that claim.
 
-The pending `interop-records-streams`, `interop-records-databases`, `interop-records-hr`, `interop-records-procurement`, `interop-records-identity`, `interop-records-itsm`, `interop-records-webapps`, `interop-records-trading`, `interop-records-clinical`, `interop-records-inventory`, `interop-records-manufacturing`, `interop-records-fleet`, `interop-records-energy`, `interop-records-telecom`, `interop-records-public`, `interop-records-orders` are retired (IDs kept): an independent review trimmed the systems-of-record list to a representative set per group. The agnostic badges are prefixed by `interop-agnostic-label` ("Designed to be:") so they read as design intent.
+The badges are prefixed by `interop-agnostic-label` ("Designed to be:") so they read as design intent. The full systems-of-record list is the founder's direction and is kept.
 
 The pending `interop-flow-model-title`, `interop-flow-model-body`, `interop-flow-letter-title`, `interop-flow-letter-body` and `interop-records-communications` (lending-only CRM/borrower paths) are retired (IDs kept), replaced by the industry-agnostic paths and `interop-records-customer`.
 

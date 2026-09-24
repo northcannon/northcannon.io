@@ -402,14 +402,15 @@ test.describe('approved design acceptance (review build)', () => {
     for (const id of ['interop-agnostic-label', 'interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
     // Systems of record are industry-agnostic, grouped by kind.
     await expect(map.locator('.lmap__band--records .lmap__group-label')).toHaveText(['Data platforms', 'Enterprise systems', 'Channels and endpoints', 'Industry systems', 'Actions and outcomes']);
-    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(17);
+    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(33);
     const groups = await map.locator('.lmap__band--records .lmap__group').evaluateAll(els => els.map(el => [...el.querySelectorAll('.lmap__chips li')].map(li => li.textContent.trim())));
+    // The founder's full systems-of-record list, grouped as directed.
     expect(groups).toEqual([
-      ['Data warehouses and lakehouses'],
-      ['CRM', 'ERP', 'Document and records management'],
-      ['Email and messaging', 'Government portals and agency websites', 'Proprietary firmware and embedded devices', 'Court e-filing and docket systems'],
-      ['Core banking and payments', 'Claims and policy administration', 'Electronic health records', 'Supply chain and logistics', 'Loan-servicing and case systems'],
-      ['Decisions and approvals', 'Customer communications', 'Payments and transfers', 'Regulatory filings'],
+      ['Data warehouses and lakehouses', 'Data lakes and event streams', 'Operational databases'],
+      ['CRM', 'ERP', 'HR and payroll', 'Procurement and supplier management', 'Identity and access management', 'IT service management', 'Document and records management'],
+      ['Email and messaging', 'Client-facing web applications', 'Court e-filing and docket systems', 'Government portals and agency websites', 'Proprietary firmware and embedded devices'],
+      ['Core banking and payments', 'Loan-servicing and case systems', 'Claims and policy administration', 'Trading and risk systems', 'Electronic health records', 'Clinical trial and safety systems', 'Supply chain and logistics', 'Warehouse and inventory management', 'Manufacturing execution and quality', 'Fleet and transportation management', 'Energy and utility operations', 'Network and telecom operations', 'Public-sector benefits and case management'],
+      ['Decisions and approvals', 'Customer communications', 'Payments and transfers', 'Orders and shipments', 'Regulatory filings'],
     ]);
     // Worked-flow endpoints are chips that remain in the list.
     const chipTexts = groups.flat();
