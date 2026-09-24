@@ -122,7 +122,7 @@ test('no two active claims share a statement, except one founder-attested pair a
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 234);
+  assert.equal(attested.length, 392);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));
@@ -155,7 +155,9 @@ test('built HTML rejects pending, rejected and retired statements, including spl
       assert.ok(inspectClaimOutput(`<p>Synthetic pending <span>status</span> fixture.</p>`, [claim]).length);
     }
     // Exercise the actual validator against real ineligible registry entries.
-    for (const claim of current.claims.filter(c => c.approval_state !== 'approved')) {
+    // A retired statement that is word-for-word an active approved statement is legitimately renderable.
+    const approvedText = new Set(current.claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state !== 'retired').map(c => c.statement));
+    for (const claim of current.claims.filter(c => c.approval_state !== 'approved' && !approvedText.has(c.statement))) {
       const html = `<html lang="en"><head><title>Fixture</title></head><body><p>${claim.statement}</p></body></html>`;
       await writeFile(`${dir}/index.html`, html); await writeFile(`${dir}/404.html`, html);
       const result = spawnSync(process.execPath, ['scripts/validate.mjs', dir], { encoding: 'utf8' });

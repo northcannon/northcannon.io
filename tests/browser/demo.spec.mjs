@@ -104,16 +104,13 @@ test.describe('demo page (review build)', () => {
   });
 });
 
-test('production omits pending demo copy and hides the unlabeled graphic from assistive technology', async ({ page }) => {
+test('production renders the attested demo copy and labels the graphic', async ({ page }) => {
   await page.goto(PRODUCTION + '/demo/');
   await expect(page.locator('h1')).toHaveText('Demo — Coming Soon');
   await expect(page.locator('.site-header')).toBeVisible();
   const svg = page.locator('svg.ci-svg');
-  await expect(svg).toHaveAttribute('aria-hidden', 'true');
-  await expect(svg).not.toHaveAttribute('role', /./);
-  await expect(page.locator('.ci-caption, .lede, .disclosure-line')).toHaveCount(0);
-  await expect(page.locator('main')).not.toContainText('walkthrough');
-  await expect(page.locator('main')).not.toContainText('Illustration');
-  await expect(page.locator('main')).not.toContainText('Illustrative animation');
-  await expect(page.locator('.ci-label, .ci-steps')).toHaveCount(0);
+  await expect(svg).toHaveAttribute('role', 'img');
+  await expect(page.getByRole('img', { name: alt })).toBeVisible();
+  await expect(page.locator('.ci-figure .disclosure-line')).toHaveText('Illustrative animation · not a live system');
+  await expect(page.locator('.ci-label')).toHaveText(['Regulation change is now effective', 'Persistent verified state', 'Calculating blast radius']);
 });

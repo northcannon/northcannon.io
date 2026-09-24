@@ -120,11 +120,10 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.lmap__band--sources h3')).toHaveText('Authoritative sources');
     await expect(page.locator('.lmap__band--sources .lmap__intro')).toContainText('State and federal statutes and regulations');
     await expect(page.locator('.lmap__outputs h3')).toHaveText('Outputs');
-    // Production keeps the approved Data Sources -> layer -> Outputs content until the new claims are attested.
+    // Attested in founder-approval-006: production shows the same interoperability diagram, not the basic fallback.
     await page.goto(PRODUCTION + '/about/company/');
-    await expect(page.locator('.lmap--basic .lmap__label')).toHaveText(['Data Sources', 'Outputs']);
-    await expect(page.locator('main')).not.toContainText('Authoritative sources');
-    await expect(page.locator('.lmap--basic .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
+    await expect(page.locator('.lmap__band--sources h3')).toHaveText('Authoritative sources');
+    await expect(page.locator('.lmap--basic')).toHaveCount(0);
     await page.goto(REVIEW + '/about/company/');
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });
@@ -313,8 +312,8 @@ test.describe('approved design acceptance (review build)', () => {
         if (el.matches('.contact-cta')) return 'contact';
         return el.querySelector(':scope > .module__head')?.textContent.trim() ?? el.className;
       }));
-      // The subnav needs its pending label (label-about-sections), so production omits it until attested.
-      expect(order, base).toEqual([...(base === REVIEW ? ['subnav'] : []), 'banner', 'eyebrow>h1>mission', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
+      // label-about-sections is attested (founder-approval-006), so both builds carry the subnav.
+      expect(order, base).toEqual(['subnav', 'banner', 'eyebrow>h1>mission', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
       await expect(page.locator('main .page-hero .lede')).toHaveText(loadGovernance().claims.find(c => c.claim_id === 'brand-mission').statement);
       await expect(page.locator('main .contact-cta')).toContainText('Get in touch');
     }
@@ -399,7 +398,7 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(map.locator('.lmap__band--nc .lmap__agnostic li')).toHaveText(['Industry-agnostic', 'Model-agnostic', 'Agent-agnostic', 'Cloud-agnostic']);
     expect(text('interop-anywhere')).toContain('is designed to sit wherever');
     expect(text('interop-anywhere')).not.toContain('built to');
-    for (const id of ['interop-agnostic-label', 'interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
+    for (const id of ['interop-agnostic-label', 'interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('approved');
     // Systems of record are industry-agnostic, grouped by kind.
     await expect(map.locator('.lmap__band--records .lmap__group-label')).toHaveText(['Data platforms', 'Enterprise systems', 'Channels and endpoints', 'Industry systems', 'Actions and outcomes']);
     await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(33);
@@ -517,15 +516,15 @@ test.describe('approved design acceptance (review build)', () => {
       expect([...order].sort((a, b) => a - b)).toEqual(order);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    // Production keeps the approved layout until every new claim is attested.
+    // Attested in founder-approval-006: production shows the same four-layer diagram.
     await page.goto(PRODUCTION + '/about/company/');
-    await expect(page.locator('.lmap__grid')).toHaveCount(0);
-    await expect(page.locator('.lmap--basic')).toHaveCount(1);
-    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower|agnostic|Persistent verified state|lakehouse|firmware|docket/);
+    await expect(page.locator('.lmap__grid')).toHaveCount(1);
+    await expect(page.locator('.lmap--basic')).toHaveCount(0);
+    await expect(page.locator('.lmap__band--records .lmap__chips li')).toHaveCount(33);
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {
-    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, 'Founder']]) {
+    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, 'Max Brooks, founder of NorthCannon']]) {
       await page.goto(base + '/about/founder/');
       const img = page.locator('.founder-hero__portrait img');
       await expect(img).toHaveAttribute('alt', alt);
@@ -603,10 +602,10 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.getByRole('link', { name: 'Vision' })).toHaveCount(0);
   });
 
-  test('founder: Why NorthCannon exists renders the pending narrative in review and is omitted in production until attested', async ({ page }) => {
+  test('founder: Why NorthCannon exists renders the attested narrative in both builds', async ({ page }) => {
     const claims = loadGovernance().claims;
     const body = claims.find(c => c.claim_id === 'founder-why-body');
-    expect(body.approval_state).toBe('pending');
+    expect(body.approval_state).toBe('approved');
     const why = body.statement.split('\n\n');
     expect(why).toHaveLength(4);
     const section = page.locator('section:has(> #why-title)');
@@ -616,10 +615,9 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(section.locator('.box .prose .pull-quote')).toHaveText(why[3]);
     await expect(section.getByRole('link', { name: 'Vision' })).toHaveCount(0);
     expect(await section.innerText()).not.toMatch(/§|U\.S\.C|C\.F\.R|\b(?:Alabama|Alaska|Arizona|California|Colorado|Florida|Georgia|Illinois|New York|Texas|Washington)\b/);
-    // Production: until founder-why-body is attested the section is omitted entirely (no vision fallback).
+    // Attested in founder-approval-006: production renders the same narrative, still with no vision fallback.
     await page.goto(PRODUCTION + '/about/founder/');
-    await expect(section).toHaveCount(0);
-    await expect(page.locator('main')).not.toContainText('loan-servicing queue');
+    await expect(section.locator('.box .prose p')).toHaveText(why);
     await expect(page.locator('main')).not.toContainText('AI should be able to reason');
   });
 
@@ -684,17 +682,16 @@ test('production links only target published pages', async ({ page }) => {
   }
 });
 
-test('changelog records the redesign in review builds; production keeps the approved empty statement until it is attested', async ({ page }) => {
-  await page.goto(REVIEW + '/trust/changelog/');
-  await expect(page.locator('.claim-list li')).toHaveCount(1);
-  await expect(page.locator('.claim-list li')).toContainText('New visual system across the site');
-  await expect(page.locator('main')).not.toContainText('No changelog entries are listed.');
-  await page.goto(PRODUCTION + '/trust/changelog/');
-  await expect(page.locator('main')).toContainText('No changelog entries are listed.');
-  await expect(page.locator('main')).not.toContainText('New visual system');
+test('changelog records the redesign in both builds once attested', async ({ page }) => {
+  for (const base of [REVIEW, PRODUCTION]) {
+    await page.goto(base + '/trust/changelog/');
+    await expect(page.locator('.claim-list li')).toHaveCount(1);
+    await expect(page.locator('.claim-list li')).toContainText('New visual system across the site');
+    await expect(page.locator('main')).not.toContainText('No changelog entries are listed.');
+  }
 });
 
-test('founder origin quote and detailed Why now render in review and stay out of production until attested', async ({ page }) => {
+test('founder origin quote and detailed Why now render in both builds once attested', async ({ page }) => {
   await page.goto(REVIEW + '/about/founder/');
   const quote = page.locator('.founder-hero .founder-quote');
   await expect(quote.locator('blockquote p')).toHaveText('Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated?');
@@ -703,6 +700,9 @@ test('founder origin quote and detailed Why now render in review and stay out of
   await page.goto(REVIEW + '/about/company/');
   await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(3);
   await page.goto(PRODUCTION + '/about/company/');
-  await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(1);
-  await expect(page.locator('main')).not.toContainText('evidence packet showing');
+  await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(3);
+  await page.goto(PRODUCTION + '/about/founder/');
+  await expect(page.locator('.founder-quote__note')).toHaveText('The question that sparked the idea for NorthCannon.');
+  // The redundant hero line was removed (founder direction); the biography keeps its sentence.
+  await expect(page.locator('.founder-hero')).not.toContainText('Max Brooks is the founder of NorthCannon.');
 });
