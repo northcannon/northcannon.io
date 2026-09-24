@@ -1,5 +1,5 @@
 ---
-// Built to interoperate: four stacked layers with NorthCannon between them, three checkpoint paths through the
+// Built to interoperate, in any industry: four stacked layers with NorthCannon between them, three checkpoint paths through the
 // NorthCannon band, its persistent verified state, and the change-intelligence loop. Static HTML/CSS; every word is
 // a governed claim; wires, arrowheads and gates are decorative. Two-way wires: reasoning <-> NorthCannon,
 // NorthCannon <-> systems of record, NorthCannon <-> persistent state. One-way: sources -> NorthCannon (the change
@@ -11,20 +11,21 @@ interface Props { copy: Copy }
 const { copy } = Astro.props;
 const { t } = copy;
 const sourceIds = ['interop-src-statutes', 'interop-src-regulations', 'interop-src-guidance', 'interop-src-court', 'interop-src-contracts', 'interop-src-records', 'interop-src-apis'];
-const reasoningIds = ['interop-origin-models', 'interop-origin-agents', 'interop-reasoning-workflow'];
+const reasoningIds = ['interop-origin-models', 'interop-origin-agents', 'interop-reasoning-workflow', 'interop-reasoning-rules', 'interop-reasoning-rpa'];
 const recordGroups = [
   { label: 'interop-records-group-data', ids: ['interop-records-dwh', 'interop-records-streams', 'interop-records-databases'] },
   { label: 'interop-records-group-enterprise', ids: ['interop-records-crm', 'interop-records-erp', 'interop-records-hr', 'interop-records-procurement', 'interop-records-identity', 'interop-records-itsm', 'interop-records-documents'] },
+  { label: 'interop-records-group-channels', ids: ['interop-records-email', 'interop-records-webapps', 'interop-records-court', 'interop-records-government', 'interop-records-firmware'] },
   { label: 'interop-records-group-industry', ids: ['interop-records-banking', 'interop-records-servicing', 'interop-records-insurance', 'interop-records-trading', 'interop-records-health', 'interop-records-clinical', 'interop-records-supply', 'interop-records-inventory', 'interop-records-manufacturing', 'interop-records-fleet', 'interop-records-energy', 'interop-records-telecom', 'interop-records-public'] },
-  { label: 'interop-records-group-actions', ids: ['interop-records-decisions', 'interop-records-communications', 'interop-records-filings'] },
+  { label: 'interop-records-group-actions', ids: ['interop-records-decisions', 'interop-records-customer', 'interop-records-payments', 'interop-records-orders', 'interop-records-filings'] },
 ];
-const agnosticIds = ['interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud'];
+const agnosticIds = ['interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud'];
 const flows = [
   { title: 'interop-flow-agent-title', body: 'interop-flow-agent-body', from: 'interop-origin-agents', to: 'interop-records-decisions', fromBelow: false },
-  { title: 'interop-flow-model-title', body: 'interop-flow-model-body', from: 'interop-origin-models', to: 'interop-records-crm', fromBelow: false },
-  { title: 'interop-flow-letter-title', body: 'interop-flow-letter-body', from: 'interop-records-crm', to: 'interop-records-communications', fromBelow: true },
+  { title: 'interop-flow-firmware-title', body: 'interop-flow-firmware-body', from: 'interop-origin-models', to: 'interop-records-firmware', fromBelow: false },
+  { title: 'interop-flow-docket-title', body: 'interop-flow-docket-body', from: 'interop-records-court', to: 'interop-records-email', fromBelow: true },
 ];
-const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company', 'arm-treatment-sub', 'interop-state-caption',
+const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company', 'arm-treatment-sub', 'interop-state-caption', 'interop-anywhere',
   ...agnosticIds, ...sourceIds, ...reasoningIds, ...recordGroups.flatMap(group => [group.label, ...group.ids]), ...flows.flatMap(flow => [flow.title, flow.body]));
 const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
 const chips = (ids: string[]) => ids.map(id => t(id)!);
@@ -33,6 +34,7 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
 ---
 {full ? (
   <figure class="lmap" aria-describedby="lmap-desc">
+    <p class="lmap__scope">{t('interop-anywhere')}</p>
     <div class="lmap__grid">
       <div class="box lmap__band lmap__band--sources">
         <h3 class="lmap__label">{t('interop-auth-title')}</h3>

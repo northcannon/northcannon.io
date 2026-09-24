@@ -312,14 +312,9 @@ below is attested, production renders the approved Data Sources → layer → Ou
 | `interop-records-erp` | ERP |
 | `interop-records-servicing` | Loan-servicing and case systems |
 | `interop-records-decisions` | Decisions and approvals |
-| `interop-records-communications` | Customer and borrower communications |
 | `interop-records-filings` | Regulatory filings |
 | `interop-flow-agent-title` | AI agent → decision |
 | `interop-flow-agent-body` | An agent proposes a decision; NorthCannon verifies it against the rule in force and the evidence before it is acted on. |
-| `interop-flow-model-title` | Model → CRM record |
-| `interop-flow-model-body` | A model updates a customer record; NorthCannon checks the change against policy and provenance before the write is accepted. |
-| `interop-flow-letter-title` | CRM → borrower letter |
-| `interop-flow-letter-body` | A system of record triggers a borrower letter; NorthCannon confirms the notice rule in force on the mailing date before it goes out. |
 | `interop-change-loop` | When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation. |
 | `interop-footnote` | Integration categories are illustrative design targets, not current integrations. |
 
@@ -368,6 +363,32 @@ systems of record. No vendor or product names.
 | `interop-records-public` | Public-sector benefits and case management |
 | `interop-state-caption` | Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it. |
 
+Industry-agnostic scope (founder direction 2026-09-24: the diagram is not limited to the Features demo; it shows
+NorthCannon wherever consequential machine decisions are made, and CRM is one target among many — email, ERP,
+proprietary firmware, client web apps, court sites and government sites). Court systems are named generically
+("Court e-filing and docket systems") rather than by a specific system's name, keeping the no-product-names rule.
+The worked paths now span a general decision, a device firmware update and a court docket → client email.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-anywhere` | Industry-agnostic by design: NorthCannon is built to sit wherever consequential machine decisions are made — finance, insurance, healthcare, legal, government, supply chain, manufacturing, energy and beyond. |
+| `interop-agnostic-industry` | Industry-agnostic |
+| `interop-reasoning-rules` | Rules and decision engines |
+| `interop-reasoning-rpa` | Robotic process automation |
+| `interop-records-group-channels` | Channels and endpoints |
+| `interop-records-email` | Email and messaging |
+| `interop-records-webapps` | Client-facing web applications |
+| `interop-records-court` | Court e-filing and docket systems |
+| `interop-records-government` | Government portals and agency websites |
+| `interop-records-firmware` | Proprietary firmware and embedded devices |
+| `interop-records-customer` | Customer communications |
+| `interop-records-payments` | Payments and transfers |
+| `interop-records-orders` | Orders and shipments |
+| `interop-flow-firmware-title` | Model → firmware update |
+| `interop-flow-firmware-body` | A model recommends a device configuration change; NorthCannon verifies the approved configuration and the authority to act before the firmware update is released. |
+| `interop-flow-docket-title` | Court docket → client email |
+| `interop-flow-docket-body` | A court docket changes a filing deadline; NorthCannon identifies the affected matters and verifies the new date before a client email goes out. |
+
 ### Founder photo (`/about/founder/`)
 
 | Claim ID | Statement |
@@ -403,6 +424,8 @@ paragraph renders as a pull-quote. Until it is attested, production keeps the se
 The pending `label-overview`, `about-link-company-body`, `about-link-features-body` and `about-link-founder-body` claims are retired (IDs kept): there is no About overview page; `/about/` redirects to `/about/company/`.
 
 The pending `feat-wl-row-source` ("Re-evaluated decision") is retired (ID kept) because it duplicated `feat-ci-verdict-new-label`; the workload table's Source cell reuses that claim.
+
+The pending `interop-flow-model-title`, `interop-flow-model-body`, `interop-flow-letter-title`, `interop-flow-letter-body` and `interop-records-communications` (lending-only CRM/borrower paths) are retired (IDs kept), replaced by the industry-agnostic paths and `interop-records-customer`.
 
 The pending `interop-origin-title`, `interop-origin-enterprise`, `interop-origin-devices`, `interop-origin-workflow`,
 `interop-arrow-out` and `interop-arrow-back` claims of the earlier two-way diagram are retired (IDs kept). `interop-origin-models`

@@ -103,8 +103,9 @@ test('migration preserves each baseline ID and approval state once, with a singl
   await assert.rejects(access('src/content/foundation.json'));
   assert.ok(current.claims.length >= 13);
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
-  // 6 pending claims of the earlier two-way interoperability diagram, and 1 pending duplicate (feat-wl-row-source).
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 41);
+  // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
+  // and 5 pending lending-only diagram claims replaced by industry-agnostic ones.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 46);
   for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
     const claim = current.claims.find(c => c.claim_id === id);
     assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');

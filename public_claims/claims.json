@@ -3727,7 +3727,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3767,7 +3767,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3777,7 +3777,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3787,7 +3787,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -3797,7 +3797,7 @@
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -4084,6 +4084,176 @@
   {
     "claim_id": "interop-state-caption",
     "statement": "Two-way links: NorthCannon keeps persistent verified state, so models, agents and systems of record read verified state from it and report changes back to it.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-anywhere",
+    "statement": "Industry-agnostic by design: NorthCannon is built to sit wherever consequential machine decisions are made — finance, insurance, healthcare, legal, government, supply chain, manufacturing, energy and beyond.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-agnostic-industry",
+    "statement": "Industry-agnostic",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-reasoning-rules",
+    "statement": "Rules and decision engines",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-reasoning-rpa",
+    "statement": "Robotic process automation",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-group-channels",
+    "statement": "Channels and endpoints",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-email",
+    "statement": "Email and messaging",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-webapps",
+    "statement": "Client-facing web applications",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-firmware",
+    "statement": "Proprietary firmware and embedded devices",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-court",
+    "statement": "Court e-filing and docket systems",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-government",
+    "statement": "Government portals and agency websites",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-customer",
+    "statement": "Customer communications",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-payments",
+    "statement": "Payments and transfers",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-records-orders",
+    "statement": "Orders and shipments",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-firmware-title",
+    "statement": "Model → firmware update",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-firmware-body",
+    "statement": "A model recommends a device configuration change; NorthCannon verifies the approved configuration and the authority to act before the firmware update is released.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-docket-title",
+    "statement": "Court docket → client email",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-flow-docket-body",
+    "statement": "A court docket changes a filing deadline; NorthCannon identifies the affected matters and verifies the new date before a client email goes out.",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",

@@ -267,6 +267,8 @@
 .lmap__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 0.75rem; border: 1px solid color-mix(in srgb, var(--color-violet) 30%, var(--box-charcoal-border)); border-radius: var(--radius-card); background-color: #0a0810;
   background-image: linear-gradient(rgb(139 92 246 / 0.08) 1px, transparent 1px), linear-gradient(90deg, rgb(139 92 246 / 0.08) 1px, transparent 1px), linear-gradient(rgb(139 92 246 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(139 92 246 / 0.035) 1px, transparent 1px);
   background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; }
+.lmap__scope { display: flex; align-items: flex-start; gap: 0.875rem; margin: 0; padding: 1rem 1.25rem; border: 1px solid var(--color-outline); border-left: 3px solid var(--color-violet); border-radius: var(--radius-control); background: linear-gradient(90deg, rgb(139 92 246 / 0.16), rgb(139 92 246 / 0.03)); color: var(--color-text); font-size: 1.0625rem; line-height: 1.55; }
+.lmap__scope::before { content: ""; flex: none; width: 0.625rem; height: 0.625rem; margin-top: 0.5rem; border-radius: 50%; background: var(--color-violet-text); box-shadow: 0 0 10px var(--color-violet); }
 .lmap__band { display: grid; gap: 0.625rem; }
 .lmap__band--sources { --lane: var(--color-key); }
 .lmap__band--reasoning { --lane: #818cf8; }
@@ -357,6 +359,7 @@
   .lmap__grid .lmap__conn--out { grid-row: 5; }
   .lmap__grid .lmap__lane { position: relative; display: flex; flex: 1 1 0; align-items: center; justify-content: center; min-width: 0; padding-block: 0.875rem; }
   .lmap__grid .lmap__conn .lmap__step { max-width: 11rem; }
+  .lmap__grid .lmap__conn--out .lmap__lane { padding-inline: 0.25rem; }
 
   /* The NorthCannon band spans the whole canvas, wider than every other layer: all traffic crosses it. */
   .lmap__grid .lmap__band--nc { grid-area: 4 / 1 / 5 / 6; display: grid; grid-template-columns: subgrid; grid-template-rows: auto auto auto; margin-inline: -0.75rem; }
