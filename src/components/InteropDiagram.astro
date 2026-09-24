@@ -3,7 +3,7 @@
 // NorthCannon band, its persistent verified state, and the change-intelligence loop. Static HTML/CSS; every word is
 // a governed claim; wires, arrowheads and gates are decorative. Two-way wires: reasoning <-> NorthCannon,
 // NorthCannon <-> systems of record, NorthCannon <-> persistent state. One-way: sources -> NorthCannon (the change
-// loop), NorthCannon -> outputs -> systems of record.
+// loop), court docket -> NorthCannon -> email (flow c), NorthCannon -> outputs -> systems of record.
 // Production shows the approved Data Sources -> layer -> Outputs stack until every new claim is attested.
 import Icon from './Icon.astro';
 import type { Copy } from './copy';
@@ -13,24 +13,25 @@ const { t } = copy;
 const sourceIds = ['interop-src-statutes', 'interop-src-regulations', 'interop-src-guidance', 'interop-src-court', 'interop-src-contracts', 'interop-src-records', 'interop-src-apis'];
 const reasoningIds = ['interop-origin-models', 'interop-origin-agents', 'interop-reasoning-workflow', 'interop-reasoning-rules', 'interop-reasoning-rpa'];
 const recordGroups = [
-  { label: 'interop-records-group-data', ids: ['interop-records-dwh', 'interop-records-streams', 'interop-records-databases'] },
-  { label: 'interop-records-group-enterprise', ids: ['interop-records-crm', 'interop-records-erp', 'interop-records-hr', 'interop-records-procurement', 'interop-records-identity', 'interop-records-itsm', 'interop-records-documents'] },
-  { label: 'interop-records-group-channels', ids: ['interop-records-email', 'interop-records-webapps', 'interop-records-court', 'interop-records-government', 'interop-records-firmware'] },
-  { label: 'interop-records-group-industry', ids: ['interop-records-banking', 'interop-records-servicing', 'interop-records-insurance', 'interop-records-trading', 'interop-records-health', 'interop-records-clinical', 'interop-records-supply', 'interop-records-inventory', 'interop-records-manufacturing', 'interop-records-fleet', 'interop-records-energy', 'interop-records-telecom', 'interop-records-public'] },
-  { label: 'interop-records-group-actions', ids: ['interop-records-decisions', 'interop-records-customer', 'interop-records-payments', 'interop-records-orders', 'interop-records-filings'] },
+  { label: 'interop-records-group-data', ids: ['interop-records-dwh'] },
+  { label: 'interop-records-group-enterprise', ids: ['interop-records-crm', 'interop-records-erp', 'interop-records-documents'] },
+  { label: 'interop-records-group-channels', ids: ['interop-records-email', 'interop-records-government', 'interop-records-firmware', 'interop-records-court'] },
+  { label: 'interop-records-group-industry', ids: ['interop-records-banking', 'interop-records-insurance', 'interop-records-health', 'interop-records-supply', 'interop-records-servicing'] },
+  { label: 'interop-records-group-actions', ids: ['interop-records-decisions', 'interop-records-customer', 'interop-records-payments', 'interop-records-filings'] },
 ];
 const agnosticIds = ['interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud'];
 const flows = [
-  { title: 'interop-flow-agent-title', body: 'interop-flow-agent-body', from: 'interop-origin-agents', to: 'interop-records-decisions', fromBelow: false },
-  { title: 'interop-flow-firmware-title', body: 'interop-flow-firmware-body', from: 'interop-origin-models', to: 'interop-records-firmware', fromBelow: false },
-  { title: 'interop-flow-docket-title', body: 'interop-flow-docket-body', from: 'interop-records-court', to: 'interop-records-email', fromBelow: true },
+  { title: 'interop-flow-agent-title', body: 'interop-flow-agent-body', from: 'interop-origin-agents', to: 'interop-records-decisions', oneWay: false },
+  { title: 'interop-flow-firmware-title', body: 'interop-flow-firmware-body', from: 'interop-origin-models', to: 'interop-records-firmware', oneWay: false },
+  { title: 'interop-flow-docket-title', body: 'interop-flow-docket-body', from: 'interop-records-court', to: 'interop-records-email', oneWay: true },
 ];
-const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company', 'arm-treatment-sub', 'interop-state-caption', 'interop-anywhere',
+const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company', 'arm-treatment-sub', 'interop-state-caption', 'interop-anywhere', 'interop-agnostic-label',
   ...agnosticIds, ...sourceIds, ...reasoningIds, ...recordGroups.flatMap(group => [group.label, ...group.ids]), ...flows.flatMap(flow => [flow.title, flow.body]));
 const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
 const chips = (ids: string[]) => ids.map(id => t(id)!);
 const company = t('brand-company');
-const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__steps-link--down' : 'lmap__steps-link--both'];
+const link = (oneWay: boolean) => ['lmap__steps-link', oneWay ? 'lmap__steps-link--down' : 'lmap__steps-link--both'];
+const wire = (oneWay: boolean) => ['lmap__wire', oneWay ? 'lmap__wire--down' : 'lmap__wire--both'];
 ---
 {full ? (
   <figure class="lmap" aria-describedby="lmap-desc">
@@ -45,9 +46,9 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
         <h3 class="lmap__label">{t('interop-reasoning-title')}</h3>
         <ul class="lmap__chips">{chips(reasoningIds).map(chip => <li>{chip}</li>)}</ul>
       </div>
-      {flows.filter(flow => !flow.fromBelow).map((flow, index) => (
+      {flows.map((flow, index) => (
         <div class:list={['lmap__conn', 'lmap__conn--in', `lmap__col-${index + 1}`]} aria-hidden="true">
-          <span class="lmap__lane"><span class="lmap__wire lmap__wire--both"></span><span class="lmap__step">{t(flow.from)}</span></span>
+          <span class="lmap__lane"><span class:list={wire(flow.oneWay)}></span><span class="lmap__step">{t(flow.from)}</span></span>
         </div>
       ))}
       <div class="lmap__loop" aria-hidden="true"></div>
@@ -55,12 +56,15 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
       <div class="lmap__band lmap__band--nc">
         <div class="lmap__nc-head">
           <h3 class="lmap__nc-title">{t('interop-layer')}</h3>
-          <ul class="lmap__agnostic">{chips(agnosticIds).map(chip => <li>{chip}</li>)}</ul>
+          <div class="lmap__agnostic-row">
+            <p class="lmap__agnostic-label">{t('interop-agnostic-label')}</p>
+            <ul class="lmap__agnostic">{chips(agnosticIds).map(chip => <li>{chip}</li>)}</ul>
+          </div>
         </div>
-        {flows.filter(flow => !flow.fromBelow).map((_, index) => <span class:list={['lmap__pass', `lmap__col-${index + 1}`]} aria-hidden="true"></span>)}
+        {flows.map((flow, index) => <span class:list={['lmap__pass', `lmap__col-${index + 1}`, { 'lmap__pass--one': flow.oneWay }]} aria-hidden="true"></span>)}
         <ul class="interop__modules lmap__nc-chips">{layerChips.map(chip => <li>{chip}</li>)}</ul>
         {flows.map((flow, index) => (
-          <span class:list={['lmap__check', `lmap__col-${index + 1}`, { 'lmap__check--turn': flow.fromBelow }]} aria-hidden="true"><span class="lmap__check-ring"><Icon name="check" size={18} /></span></span>
+          <span class:list={['lmap__check', `lmap__col-${index + 1}`, { 'lmap__check--one': flow.oneWay }]} aria-hidden="true"><span class="lmap__check-ring"><Icon name="check" size={18} /></span></span>
         ))}
         <div class="lmap__state">
           <Icon name="database" size={28} />
@@ -68,9 +72,8 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
         </div>
       </div>
       {flows.map((flow, index) => (
-        <div class:list={['lmap__conn', 'lmap__conn--out', `lmap__col-${index + 1}`, { 'lmap__conn--turn': flow.fromBelow }]} aria-hidden="true">
-          {flow.fromBelow && <span class="lmap__lane"><span class="lmap__wire lmap__wire--up"></span><span class="lmap__step">{t(flow.from)}</span></span>}
-          <span class="lmap__lane"><span class:list={['lmap__wire', flow.fromBelow ? 'lmap__wire--down' : 'lmap__wire--both']}></span><span class="lmap__step">{t(flow.to)}</span></span>
+        <div class:list={['lmap__conn', 'lmap__conn--out', `lmap__col-${index + 1}`]} aria-hidden="true">
+          <span class="lmap__lane"><span class:list={wire(flow.oneWay)}></span><span class="lmap__step">{t(flow.to)}</span></span>
         </div>
       ))}
       <div class="box lmap__outputs">
@@ -96,9 +99,9 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
             <h4 class="lmap__flow-title">{t(flow.title)}</h4>
             <ol class="lmap__steps">
               <li class="lmap__steps-node">{t(flow.from)}</li>
-              <li class:list={link(flow.fromBelow)} aria-hidden="true"></li>
+              <li class:list={link(flow.oneWay)} aria-hidden="true"></li>
               <li class="lmap__steps-node lmap__steps-nc">{company}</li>
-              <li class:list={link(flow.fromBelow)} aria-hidden="true"></li>
+              <li class:list={link(flow.oneWay)} aria-hidden="true"></li>
               <li class="lmap__steps-node">{t(flow.to)}</li>
             </ol>
             <p class="card-text">{t(flow.body)}</p>
@@ -115,7 +118,7 @@ const link = (fromBelow: boolean) => ['lmap__steps-link', fromBelow ? 'lmap__ste
       <ol>
         <li>{t('interop-auth-title')}</li>
         <li>{t('interop-reasoning-title')}</li>
-        <li><span>{t('interop-layer')}</span> {chips(agnosticIds).map(chip => <span> {chip}</span>)} <span>{t('arm-treatment-sub')}</span></li>
+        <li><span>{t('interop-layer')}</span> <span>{t('interop-agnostic-label')}</span> {chips(agnosticIds).map(chip => <span> {chip}</span>)} <span>{t('arm-treatment-sub')}</span></li>
         <li>{t('interop-records-title')}</li>
       </ol>
       <ol>

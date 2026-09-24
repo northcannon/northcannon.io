@@ -395,12 +395,26 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(map.locator('.lmap__band--sources .lmap__chips li')).toHaveText(['State and federal statutes', 'Regulations and agency rules', 'Official agency guidance and notices', 'Court filings and public records', 'Contracts and internal policies', 'System-of-record data', 'APIs and documents']);
     await expect(map.locator('.lmap__band--reasoning .lmap__chips li')).toHaveText(['Models', 'AI agents', 'Workflow automation', 'Rules and decision engines', 'Robotic process automation']);
     await expect(map.locator('.lmap__band--nc .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
+    // The badges read as design intent: a "Designed to be:" label precedes them.
+    await expect(map.locator('.lmap__band--nc .lmap__agnostic-row > :first-child')).toHaveText('Designed to be:');
     await expect(map.locator('.lmap__band--nc .lmap__agnostic li')).toHaveText(['Industry-agnostic', 'Model-agnostic', 'Agent-agnostic', 'Cloud-agnostic']);
-    for (const id of ['interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
+    expect(text('interop-anywhere')).toContain('is designed to sit wherever');
+    expect(text('interop-anywhere')).not.toContain('built to');
+    for (const id of ['interop-agnostic-label', 'interop-agnostic-industry', 'interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
     // Systems of record are industry-agnostic, grouped by kind.
     await expect(map.locator('.lmap__band--records .lmap__group-label')).toHaveText(['Data platforms', 'Enterprise systems', 'Channels and endpoints', 'Industry systems', 'Actions and outcomes']);
-    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(33);
-    for (const chip of ['Data warehouses and lakehouses', 'CRM', 'ERP', 'Core banking and payments', 'Electronic health records', 'Supply chain and logistics', 'Manufacturing execution and quality', 'Energy and utility operations', 'Public-sector benefits and case management', 'Loan-servicing and case systems', 'Email and messaging', 'Client-facing web applications', 'Court e-filing and docket systems', 'Government portals and agency websites', 'Proprietary firmware and embedded devices', 'Decisions and approvals', 'Customer communications', 'Payments and transfers', 'Orders and shipments', 'Regulatory filings']) await expect(map.locator('.lmap__band--records .lmap__chips li', { hasText: chip }).first()).toBeVisible();
+    await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveCount(17);
+    const groups = await map.locator('.lmap__band--records .lmap__group').evaluateAll(els => els.map(el => [...el.querySelectorAll('.lmap__chips li')].map(li => li.textContent.trim())));
+    expect(groups).toEqual([
+      ['Data warehouses and lakehouses'],
+      ['CRM', 'ERP', 'Document and records management'],
+      ['Email and messaging', 'Government portals and agency websites', 'Proprietary firmware and embedded devices', 'Court e-filing and docket systems'],
+      ['Core banking and payments', 'Claims and policy administration', 'Electronic health records', 'Supply chain and logistics', 'Loan-servicing and case systems'],
+      ['Decisions and approvals', 'Customer communications', 'Payments and transfers', 'Regulatory filings'],
+    ]);
+    // Worked-flow endpoints are chips that remain in the list.
+    const chipTexts = groups.flat();
+    for (const endpoint of ['Decisions and approvals', 'Proprietary firmware and embedded devices', 'Court e-filing and docket systems', 'Email and messaging']) expect(chipTexts).toContain(endpoint);
     // Persistent verified state reuses the approved arm-treatment-sub claim; the legend explains the two-way links.
     await expect(map.locator('.lmap__band--nc .lmap__state-label')).toHaveText(text('arm-treatment-sub'));
     expect(claims.filter(c => c.statement === 'Persistent verified state' && c.lifecycle_state !== 'retired').map(c => c.claim_id)).toEqual(['arm-treatment-sub']);
@@ -423,7 +437,7 @@ test.describe('approved design acceptance (review build)', () => {
     // Hidden description: layers, then the three flows and the loop, in order.
     const description = page.locator('#lmap-desc');
     await expect(map).toHaveAttribute('aria-describedby', 'lmap-desc');
-    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', /^NorthCannon Verification \+ Change Intelligence Layer\s+Industry-agnostic\s+Model-agnostic\s+Agent-agnostic\s+Cloud-agnostic\s+Persistent verified state$/, 'Systems of record and actions']);
+    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', /^NorthCannon Verification \+ Change Intelligence Layer\s+Designed to be:\s+Industry-agnostic\s+Model-agnostic\s+Agent-agnostic\s+Cloud-agnostic\s+Persistent verified state$/, 'Systems of record and actions']);
     await expect(description.locator('ol').last().locator('li')).toHaveCount(5);
     await expect(description.locator('ol').last().locator('li').last()).toHaveText(text('interop-state-caption'));
     await expect(description.locator('ol').last().locator('li').first()).toContainText('AI agent → decision');
@@ -435,14 +449,18 @@ test.describe('approved design acceptance (review build)', () => {
     const nc = await box('.lmap__band--nc');
     if (width >= 1024) {
       // Each path has an arrow into the band and one out of it; the loop runs from sources to the band.
-      await expect(map.locator('.lmap__conn--in')).toHaveCount(2);
+      await expect(map.locator('.lmap__conn--in')).toHaveCount(3);
       await expect(map.locator('.lmap__conn--out')).toHaveCount(3);
       // Two-way: reasoning <-> NorthCannon and NorthCannon <-> systems of record for the agent and model paths.
-      // One-way: the system-of-record U-turn (in, then out) and NorthCannon -> outputs -> systems.
+      // One-way: court docket -> NorthCannon -> email (flow c) and NorthCannon -> outputs -> systems.
       await expect(map.locator('.lmap__conn--in .lmap__wire--both')).toHaveCount(2);
       await expect(map.locator('.lmap__conn--out .lmap__wire--both')).toHaveCount(2);
-      await expect(map.locator('.lmap__conn--out .lmap__wire--up')).toHaveCount(1);
-      await expect(map.locator('.lmap__conn--out .lmap__wire--down')).toHaveCount(1);
+      // Flow c is one straight one-way path: court docket -> gate -> email, no U-turn.
+      await expect(map.locator('.lmap__conn--in.lmap__col-3 .lmap__wire--down')).toHaveCount(1);
+      await expect(map.locator('.lmap__conn--in.lmap__col-3 .lmap__step')).toHaveText('Court e-filing and docket systems');
+      await expect(map.locator('.lmap__conn--out.lmap__col-3 .lmap__wire--down')).toHaveCount(1);
+      await expect(map.locator('.lmap__conn--out.lmap__col-3 .lmap__step')).toHaveText('Email and messaging');
+      await expect(map.locator('.lmap__wire--up, .lmap__check--turn, .lmap__conn--turn')).toHaveCount(0);
       await expect(map.locator('.lmap__outputs .lmap__wire--down')).toHaveCount(2);
       await expect(map.locator('.lmap__check')).toHaveCount(3);
       // Every wire meets both bands it joins.
@@ -459,8 +477,9 @@ test.describe('approved design acceptance (review build)', () => {
       }
       // Wires line up with their gates inside the band; the state store sits on the gates' bus.
       const gates = await map.locator('.lmap__check-ring').all();
-      for (const [index, sel] of ['.lmap__conn--in.lmap__col-1 .lmap__wire', '.lmap__conn--in.lmap__col-2 .lmap__wire'].entries()) {
-        const w = await box(sel), g = await gates[index].boundingBox();
+      // Each path's in-wire and out-wire share its gate's centre line (flow c included).
+      for (const [index, gate] of gates.entries()) for (const side of ['in', 'out']) {
+        const w = await box(`.lmap__conn--${side}.lmap__col-${index + 1} .lmap__wire`), g = await gate.boundingBox();
         expect(Math.abs(w.x + w.width / 2 - (g.x + g.width / 2))).toBeLessThan(2);
       }
       const state = await box('.lmap__state'), gate = await gates[0].boundingBox();
