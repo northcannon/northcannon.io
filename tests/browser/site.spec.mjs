@@ -339,7 +339,7 @@ test.describe('approved design acceptance (review build)', () => {
             const box = el.closest('.box'), s = getComputedStyle(box), inner = box.clientWidth - parseFloat(s.paddingLeft) - parseFloat(s.paddingRight);
             const module = el.closest('.module__body'), m = getComputedStyle(module);
             const style = getComputedStyle(el);
-            return { vision: el.matches('.vision-box__p'), text: el.textContent.slice(0, 40), width: el.getBoundingClientRect().width, inner, boxWidth: box.getBoundingClientRect().width, moduleInner: module.clientWidth - parseFloat(m.paddingLeft) - parseFloat(m.paddingRight), maxWidth: style.maxWidth, boxMax: s.maxWidth, font: parseFloat(style.fontSize), line: parseFloat(style.lineHeight) };
+            return { vision: el.matches('.vision-box__p'), quote: el.matches('.pull-quote'), text: el.textContent.slice(0, 40), width: el.getBoundingClientRect().width, inner, boxWidth: box.getBoundingClientRect().width, moduleInner: module.clientWidth - parseFloat(m.paddingLeft) - parseFloat(m.paddingRight), maxWidth: style.maxWidth, boxMax: s.maxWidth, font: parseFloat(style.fontSize), line: parseFloat(style.lineHeight) };
           }));
           expect(prose.length, path).toBeGreaterThan(0);
           for (const p of prose) {
@@ -347,8 +347,8 @@ test.describe('approved design acceptance (review build)', () => {
             expect(p.boxMax, p.text).toBe('none');
             expect(Math.abs(p.width - p.inner), p.text).toBeLessThan(2);
             expect(Math.abs(p.boxWidth - p.moduleInner), p.text).toBeLessThan(2);
-            // One type scale on every page and at every width (founder direction): body prose is 15px.
-            expect(p.font, p.text).toBe(15); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5);
+            // One type scale on every page and at every width (founder direction): body prose 15px, pull-quotes 17px.
+            expect(p.font, p.text).toBe(p.quote ? 17 : 15); expect(p.line / p.font, p.text).toBeGreaterThanOrEqual(1.5);
           }
           await page.screenshot({ path: `test-results/g3-${base === REVIEW ? 'review' : 'production'}${path.replaceAll('/', '-').replace(/-$/, '')}-${width}.png`, fullPage: true });
         }
