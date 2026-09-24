@@ -3812,6 +3812,36 @@
     "approval_record": "none"
   },
   {
+    "claim_id": "interop-agnostic-model",
+    "statement": "Model-agnostic",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-agnostic-agent",
+    "statement": "Agent-agnostic",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-agnostic-cloud",
+    "statement": "Cloud-agnostic",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
     "claim_id": "founder-photo-alt",
     "statement": "Max Brooks, founder of NorthCannon",
     "category": "other",

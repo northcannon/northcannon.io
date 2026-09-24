@@ -15,8 +15,9 @@ const flows = [
   { title: 'interop-flow-model-title', body: 'interop-flow-model-body', from: 'interop-origin-models', to: 'interop-records-crm', fromBelow: false },
   { title: 'interop-flow-letter-title', body: 'interop-flow-letter-body', from: 'interop-records-crm', to: 'interop-records-communications', fromBelow: true },
 ];
+const agnosticIds = ['interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud'];
 const full = copy.all('interop-auth-title', 'interop-auth-body', 'interop-reasoning-title', 'interop-records-title', 'interop-change-loop', 'interop-footnote', 'interop-layer', 'interop-outputs', 'interop-outputs-body', 'brand-company',
-  ...sourceIds, ...reasoningIds, ...recordIds, ...flows.flatMap(flow => [flow.title, flow.body]));
+  ...agnosticIds, ...sourceIds, ...reasoningIds, ...recordIds, ...flows.flatMap(flow => [flow.title, flow.body]));
 const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
 const chips = (ids: string[]) => ids.map(id => t(id)!);
 const company = t('brand-company');
@@ -42,7 +43,10 @@ const company = t('brand-company');
       <div class="lmap__loop" aria-hidden="true"></div>
       <p class="lmap__loop-caption"><span class="lmap__loop-mark" aria-hidden="true"></span><span>{t('interop-change-loop')}</span></p>
       <div class="lmap__band lmap__band--nc">
-        <h3 class="lmap__nc-head">{t('interop-layer')}</h3>
+        <div class="lmap__nc-head">
+          <h3 class="lmap__nc-title">{t('interop-layer')}</h3>
+          <ul class="lmap__agnostic">{chips(agnosticIds).map(chip => <li>{chip}</li>)}</ul>
+        </div>
         <div class="lmap__checks" aria-hidden="true">
           {flows.map((flow, index) => <span class:list={['lmap__check', `lmap__col-${index + 1}`, { 'lmap__check--turn': flow.fromBelow }]}><span class="lmap__check-ring"><Icon name="check" size={18} /></span></span>)}
         </div>
@@ -83,7 +87,7 @@ const company = t('brand-company');
       <ol>
         <li>{t('interop-auth-title')}</li>
         <li>{t('interop-reasoning-title')}</li>
-        <li>{t('interop-layer')}</li>
+        <li><span>{t('interop-layer')}</span> {chips(agnosticIds).map(chip => <span> {chip}</span>)}</li>
         <li>{t('interop-records-title')}</li>
       </ol>
       <ol>

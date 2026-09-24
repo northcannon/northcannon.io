@@ -395,6 +395,8 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(map.locator('.lmap__band--sources .lmap__chips li')).toHaveText(['State and federal statutes', 'Regulations and agency rules', 'Official agency guidance and notices', 'Court filings and public records', 'Contracts and internal policies', 'System-of-record data', 'APIs and documents']);
     await expect(map.locator('.lmap__band--reasoning .lmap__chips li')).toHaveText(['Models', 'AI agents', 'Workflow automation']);
     await expect(map.locator('.lmap__band--nc .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
+    await expect(map.locator('.lmap__band--nc .lmap__agnostic li')).toHaveText(['Model-agnostic', 'Agent-agnostic', 'Cloud-agnostic']);
+    for (const id of ['interop-agnostic-model', 'interop-agnostic-agent', 'interop-agnostic-cloud']) expect(claims.find(c => c.claim_id === id).approval_state).toBe('pending');
     await expect(map.locator('.lmap__band--records .lmap__chips li')).toHaveText(['CRM', 'ERP', 'Loan-servicing and case systems', 'Decisions and approvals', 'Customer and borrower communications', 'Regulatory filings']);
     await expect(map.locator('.lmap__flow-title')).toHaveText(['AI agent → decision', 'Model → CRM record', 'CRM → borrower letter']);
     await expect(map.locator('.lmap__flow .card-text')).toHaveText(['interop-flow-agent-body', 'interop-flow-model-body', 'interop-flow-letter-body'].map(text));
@@ -410,7 +412,7 @@ test.describe('approved design acceptance (review build)', () => {
     // Hidden description: layers, then the three flows and the loop, in order.
     const description = page.locator('#lmap-desc');
     await expect(map).toHaveAttribute('aria-describedby', 'lmap-desc');
-    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', 'NorthCannon Verification + Change Intelligence Layer', 'Systems of record and actions']);
+    await expect(description.locator('ol').first().locator('li')).toHaveText(['Authoritative sources', 'Reasoning', /^NorthCannon Verification \+ Change Intelligence Layer\s+Model-agnostic\s+Agent-agnostic\s+Cloud-agnostic$/, 'Systems of record and actions']);
     await expect(description.locator('ol').last().locator('li')).toHaveCount(4);
     await expect(description.locator('ol').last().locator('li').first()).toContainText('AI agent → decision');
     await expect(map.locator('svg text')).toHaveCount(0);
@@ -430,8 +432,12 @@ test.describe('approved design acceptance (review build)', () => {
       const loop = await box('.lmap__loop'), sources = await box('.lmap__band--sources');
       expect(loop.y).toBeGreaterThan(sources.y);
       expect(loop.y).toBeLessThan(sources.y + sources.height);
-      expect(loop.y + loop.height).toBeGreaterThan(nc.y);
-      expect(loop.y + loop.height).toBeLessThan(nc.y + nc.height);
+      // The loop drops into the band from above; the band spans wider than every other layer.
+      expect(Math.abs(loop.y + loop.height - nc.y)).toBeLessThan(3);
+      for (const sel of ['.lmap__band--sources', '.lmap__band--reasoning', '.lmap__band--records']) {
+        const other = await box(sel);
+        expect(nc.x).toBeLessThan(other.x); expect(nc.x + nc.width).toBeGreaterThan(other.x + other.width);
+      }
       expect(await map.locator('.lmap__loop').evaluate(el => getComputedStyle(el).borderTopStyle)).toBe('dashed');
       const outputs = await box('.lmap__outputs'), records = await box('.lmap__band--records');
       expect(outputs.y).toBeGreaterThan(nc.y + nc.height);
@@ -454,7 +460,7 @@ test.describe('approved design acceptance (review build)', () => {
     await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('.lmap__grid')).toHaveCount(0);
     await expect(page.locator('.lmap--basic')).toHaveCount(1);
-    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower/);
+    await expect(page.locator('main')).not.toContainText(/Where decisions originate|Reasoning|Systems of record and actions|borrower|agnostic/);
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {

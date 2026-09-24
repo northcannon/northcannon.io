@@ -323,6 +323,15 @@ below is attested, production renders the approved Data Sources → layer → Ou
 | `interop-change-loop` | When a rule or fact changes, NorthCannon identifies which prior decisions depended on it and flags them for re-evaluation. |
 | `interop-footnote` | Integration categories are illustrative design targets, not current integrations. |
 
+Badges on the NorthCannon band (founder direction 2026-09-24: show that NorthCannon is model-, agent- and
+cloud-agnostic, the layer that sits between everything). Design intent, not a statement of current integrations.
+
+| Claim ID | Statement |
+| --- | --- |
+| `interop-agnostic-model` | Model-agnostic |
+| `interop-agnostic-agent` | Agent-agnostic |
+| `interop-agnostic-cloud` | Cloud-agnostic |
+
 ### Founder photo (`/about/founder/`)
 
 | Claim ID | Statement |

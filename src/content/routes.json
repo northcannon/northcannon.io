@@ -98,7 +98,10 @@
       "interop-flow-model-body",
       "interop-flow-letter-title",
       "interop-flow-letter-body",
-      "interop-change-loop"
+      "interop-change-loop",
+      "interop-agnostic-model",
+      "interop-agnostic-agent",
+      "interop-agnostic-cloud"
     ],
     "nav": true,
     "publish": true,
