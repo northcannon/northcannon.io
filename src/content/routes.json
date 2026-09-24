@@ -72,7 +72,16 @@
       "about-why-title",
       "about-why-body",
       "interop-auth-title",
-      "interop-auth-body"
+      "interop-auth-body",
+      "interop-origin-title",
+      "interop-origin-models",
+      "interop-origin-agents",
+      "interop-origin-enterprise",
+      "interop-origin-devices",
+      "interop-origin-workflow",
+      "interop-arrow-out",
+      "interop-arrow-back",
+      "interop-footnote"
     ],
     "nav": true,
     "publish": true,

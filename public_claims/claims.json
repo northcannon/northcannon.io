@@ -3490,5 +3490,95 @@
     "lifecycle_state": "review",
     "review_date": null,
     "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-title",
+    "statement": "Where decisions originate",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-models",
+    "statement": "Models",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-agents",
+    "statement": "AI agents",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-enterprise",
+    "statement": "Enterprise systems (CRM, ERP)",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-devices",
+    "statement": "Devices and firmware",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-origin-workflow",
+    "statement": "Workflow and case systems",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-arrow-out",
+    "statement": "Proposed decisions and context →",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-arrow-back",
+    "statement": "← Verified decision state and change-impact signals",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "interop-footnote",
+    "statement": "Integration categories are illustrative design targets, not current integrations.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
   }
 ]

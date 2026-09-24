@@ -244,6 +244,21 @@
   .ci-beacon--live { fill: var(--color-unsupported); }
   .ci-beacon--steady { fill: var(--color-supported); }
 
+  /* Interoperability diagram: origins <-> layer -> outputs, fed by authoritative sources. Static HTML, text never in SVG. */
+  .imap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 12rem) minmax(0, 2fr) 2rem minmax(0, 1fr); grid-template-areas: "origin flows layer arrow outputs" ". . up . ." "sources sources sources sources sources"; align-items: stretch; gap: 0.75rem; }
+  .imap__origin { grid-area: origin; } .imap__flows { grid-area: flows; } .imap__layer { grid-area: layer; } .imap__arrow { grid-area: arrow; } .imap__outputs { grid-area: outputs; } .imap__up { grid-area: up; } .imap__sources { grid-area: sources; }
+  .imap__chips { display: grid; gap: 0.5rem; margin-top: 0.75rem; }
+  .imap__chips li { padding: 0.5rem 0.75rem; border: 1px solid var(--box-charcoal-border); border-radius: var(--radius-control); background: linear-gradient(var(--box-charcoal-hi), var(--box-charcoal-lo)); color: var(--color-text); font-size: 0.875rem; }
+  .imap__flows { display: grid; align-content: center; gap: 1.25rem; }
+  .imap__flow { display: flex; align-items: center; gap: 0.5rem; margin: 0; color: var(--color-violet-text); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; line-height: 1.4; }
+  .imap__flow--out { justify-content: flex-end; text-align: right; }
+  .imap__flow .icon { flex: none; width: 1.5rem; height: 1.5rem; }
+  .imap__flow--back .icon { transform: rotate(180deg); }
+  .imap__arrow, .imap__up { display: grid; place-items: center; color: var(--color-violet-text); }
+  .imap__up { justify-self: center; transform: rotate(-90deg); }
+  .imap__layer .interop__modules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .imap__note { margin: 0.75rem 0 0; color: var(--color-muted); font-size: 0.8125rem; }
+
   /* Contact and supporting pages. */
   .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
   .contact-card { display: grid; justify-items: start; gap: 0.875rem; }
@@ -275,6 +290,15 @@
   .workload td::before, .workload tbody th::before { content: attr(data-label); color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; overflow-wrap: normal; }
 }
 @media (max-width: 63.99rem) {
+  /* Interoperability diagram stacks: sources, originate, layer, outputs, with direction labels. */
+  .imap { grid-template-columns: minmax(0, 1fr); grid-template-areas: "sources" "up" "origin" "flows" "layer" "arrow" "outputs"; }
+  .imap__flows { gap: 0.75rem; }
+  .imap__flow--out { justify-content: flex-start; text-align: left; flex-direction: row-reverse; }
+  .imap__flow .icon { transform: rotate(90deg); }
+  .imap__flow--back .icon { transform: rotate(-90deg); }
+  .imap__arrow { transform: rotate(90deg); }
+  .imap__up { transform: rotate(90deg); }
+  .imap__layer .interop__modules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   /* Let enlarged text size intrinsic grid/flex children without widening the page. */
   .contact-card > *, .artifact-viewer__body { min-width: 0; max-width: 100%; }
   .section-head__title, .mock-panel__head, .mock-box__row, .confidence, .mock-tasks li { flex-wrap: wrap; }

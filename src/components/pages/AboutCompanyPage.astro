@@ -20,6 +20,10 @@ const capabilities = [
 const is = ['home-is-1', 'home-is-2', 'home-is-3', 'home-is-4'].map(t).filter(Boolean);
 const isNot = ['home-not-1', 'home-not-2', 'home-not-3', 'home-not-4'].map(t).filter(Boolean);
 const modules = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence'].map(t).filter(Boolean);
+const originIds = ['interop-origin-models', 'interop-origin-agents', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow'];
+// The full diagram needs every new claim; until they are approved, production keeps the approved three-box layout.
+const diagram = copy.all('interop-origin-title', ...originIds, 'interop-arrow-out', 'interop-arrow-back', 'interop-footnote', 'interop-auth-title', 'interop-auth-body');
+const layerChips = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence', 'label-change-intelligence'].map(t).filter(Boolean);
 const contactHref = href('/contact/');
 ---
 <main id="main" tabindex="-1" class="page-main">
@@ -101,6 +105,33 @@ const contactHref = href('/contact/');
 <div class="module__body">
 {t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
 
+        {diagram ? (
+          <div class="imap">
+            <div class="box imap__sources">
+              <h3 class="card-title">{sourcesTitle}</h3>
+              <p class="card-text">{sourcesBody}</p>
+            </div>
+            <span class="imap__up" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <div class="box imap__origin">
+              <h3 class="card-title">{t('interop-origin-title')}</h3>
+              <ul class="imap__chips">{originIds.map(id => <li>{t(id)}</li>)}</ul>
+            </div>
+            <div class="imap__flows">
+              <p class="imap__flow imap__flow--out"><span>{t('interop-arrow-out')}</span><Icon name="arrow-right" /></p>
+              <p class="imap__flow imap__flow--back"><Icon name="arrow-right" /><span>{t('interop-arrow-back')}</span></p>
+            </div>
+            <div class="box imap__layer">
+              <h3 class="interop__layer-title">{t('interop-layer')}</h3>
+              <ul class="interop__modules">{layerChips.map(chip => <li>{chip}</li>)}</ul>
+            </div>
+            <span class="imap__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <div class="box imap__outputs">
+              <h3 class="card-title">{t('interop-outputs')}</h3>
+              <p class="card-text">{t('interop-outputs-body')}</p>
+            </div>
+          </div>
+          <p class="imap__note">{t('interop-footnote')}</p>
+        ) : (
         <div class="interop">
           <div class="interop__node">
             <h3 class="card-title">{sourcesTitle}</h3>
@@ -117,6 +148,7 @@ const contactHref = href('/contact/');
             <p class="card-text">{t('interop-outputs-body')}</p>
           </div>
         </div>
+        )}
       </div>
 </section>
     )}

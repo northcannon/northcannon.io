@@ -117,16 +117,16 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.capability-card h3')).toHaveText(['Verification', 'Provenance', 'Change Intelligence']);
     await expect(page.locator('.truth--is li')).toHaveCount(4);
     await expect(page.locator('.truth--not li')).toHaveCount(4);
-    await expect(page.locator('.interop__node h3').first()).toHaveText('Authoritative sources');
-    await expect(page.locator('.interop__node .card-text').first()).toContainText('State and federal statutes and regulations');
-    // Production keeps the approved pair until the new one is attested.
+    await expect(page.locator('.imap__sources h3')).toHaveText('Authoritative sources');
+    await expect(page.locator('.imap__sources .card-text')).toContainText('State and federal statutes and regulations');
+    await expect(page.locator('.imap__outputs h3')).toHaveText('Outputs');
+    // Production keeps the approved layout and title until the new pair is attested.
     await page.goto(PRODUCTION + '/about/company/');
-    await expect(page.locator('.interop__node h3').first()).toHaveText('Data Sources');
+    await expect(page.locator('.interop__node h3')).toHaveText(['Data Sources', 'Outputs']);
     await expect(page.locator('.interop__node .card-text').first()).toHaveText('');
     await expect(page.locator('main')).not.toContainText('Authoritative sources');
     await page.goto(REVIEW + '/about/company/');
-    await expect(page.locator('.interop__node h3')).toHaveText(['Authoritative sources', 'Outputs']);
-    await expect(page.locator('.interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence']);
+    await expect(page.locator('.interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });
 
@@ -294,6 +294,29 @@ test.describe('approved design acceptance (review build)', () => {
     await page.getByRole('link', { name: 'Vision' }).click();
     await expect(page).toHaveURL(/\/about\/company\/#vision$/);
     expect((await page.goto(PRODUCTION + '/vision/')).status()).toBe(200);
+  });
+
+  test('interoperability diagram: originating systems, two-way flows, layer, outputs and sources', async ({ page }) => {
+    await page.goto(REVIEW + '/about/company/');
+    await expect(page.locator('.imap__origin h3')).toHaveText('Where decisions originate');
+    await expect(page.locator('.imap__chips li')).toHaveText(['Models', 'AI agents', 'Enterprise systems (CRM, ERP)', 'Devices and firmware', 'Workflow and case systems']);
+    await expect(page.locator('.imap__flow')).toHaveText(['Proposed decisions and context →', '← Verified decision state and change-impact signals']);
+    await expect(page.locator('.imap__layer .interop__modules li')).toHaveText(['Adapters', 'Evaluation', 'Provenance', 'Evidence', 'Change Intelligence']);
+    await expect(page.locator('.imap__outputs h3')).toHaveText('Outputs');
+    await expect(page.locator('.imap__sources h3')).toHaveText('Authoritative sources');
+    await expect(page.locator('.imap__note')).toHaveText('Integration categories are illustrative design targets, not current integrations.');
+    await expect(page.locator('.imap svg text')).toHaveCount(0);
+    expect(await page.locator('.imap').innerText()).not.toMatch(/salesforce|sap|oracle|openai|anthropic|microsoft/i);
+    // Sources sit below at desktop width and first on mobile.
+    const sources = await page.locator('.imap__sources').boundingBox(), origin = await page.locator('.imap__origin').boundingBox();
+    if ((page.viewportSize()?.width ?? 0) >= 1024) expect(sources.y).toBeGreaterThan(origin.y);
+    else expect(sources.y).toBeLessThan(origin.y);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    // Production keeps the approved layout until every new claim is attested.
+    await page.goto(PRODUCTION + '/about/company/');
+    await expect(page.locator('.imap')).toHaveCount(0);
+    await expect(page.locator('.interop')).toHaveCount(1);
+    await expect(page.locator('main')).not.toContainText('Where decisions originate');
   });
 
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
