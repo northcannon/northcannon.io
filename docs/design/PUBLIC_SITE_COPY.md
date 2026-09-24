@@ -304,6 +304,16 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | --- | --- |
 | `founder-photo-alt` | Max Brooks, founder of NorthCannon |
 
+### Founder: Why NorthCannon exists (`/about/founder/`)
+
+Basis: Founder-authored narrative; illustrative hypothetical, no real parties; founder direction 2026-09-24.
+It names no real regulation, state, company or product. Paragraphs are separated by blank lines; the fourth
+paragraph renders as a pull-quote. Until it is attested, production keeps the section's current approved content.
+
+| Claim ID | Statement |
+| --- | --- |
+| `founder-why-body` | Consider an AI agent working through a loan-servicing queue. It searches its context — policy documents, account history, prior correspondence — and concludes that a borrower should receive a particular notice on a particular date. The reasoning looks sound, and the agent is confident.<br><br>What the agent does not know is that a state regulation changed the required notice period, effective the week before. Nothing in its context says so. The decision is carried out, the letter is mailed, and the company is now exposed to legal risk and financial consequences it never chose to take on.<br><br>The model did not malfunction. It reasoned well over what it could see. The failure is that nothing verified the decision itself — against the rule actually in force, the evidence on record, the authority to act, and the moment it was made — before it became an action. And nothing would have noticed later that a change had quietly undermined it.<br><br>That is the gap NorthCannon is designed to close. Data and models have their own controls. The decision — the unit that actually carries consequences — deserves its own standard of proof: verified before action, preserved with the evidence behind it, and re-evaluated when the facts or rules beneath it change. |
+
 ### Changelog (`/trust/changelog/`)
 
 | Claim ID | Statement |

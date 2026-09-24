@@ -11,6 +11,8 @@ const { copy, route, title } = Astro.props;
 const { t, href, paragraphs } = copy;
 const headline = t('founder-headline');
 const vision = paragraphs('vision-statement');
+// Review builds show the founder's narrative; production keeps the approved vision excerpt until it is attested.
+const why = paragraphs('founder-why-body');
 const credibility = ['brand-core-principle', 'brand-company-motto', 'founder-cred-methods', 'founder-cred-public', 'founder-cred-commitment'].map(t).filter(Boolean);
 const focus = ['founder-focus-1', 'founder-focus-2', 'founder-focus-3', 'founder-focus-4'].map(t).filter(Boolean);
 // Review builds use the new alt claim; production uses approved biography copy until it is attested.
@@ -40,7 +42,11 @@ const gateHref = href('/gate-1/');
     {t('founder-why-title') && (
       <Module id="why-title" title={t('founder-why-title')!}>
         <div class="box">
-          <div class="prose">{vision.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
+          {why.length > 0 ? (
+            <div class="prose founder-why">{why.map((paragraph, index) => <p class:list={{ 'pull-quote': index === 3 }}>{paragraph}</p>)}</div>
+          ) : (
+            <div class="prose">{vision.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
+          )}
         </div>
         <a class="inline-link" href="/about/company/#vision">{t('label-vision')}<Icon name="arrow-right" /></a>
       </Module>

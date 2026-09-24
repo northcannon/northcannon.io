@@ -178,8 +178,9 @@
   .module .module__head[id="vision"] { scroll-margin-top: 6rem; }
   .vision-box__p { margin: 0 0 1rem; color: var(--color-muted); line-height: 1.7; }
   .vision-box__p:last-child { margin-bottom: 0; }
-  .vision-box .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
+  .vision-box .pull-quote, .prose .pull-quote { padding-left: 1.25rem; border-left: 3px solid var(--color-violet); color: var(--color-text); font-size: 1.25rem; line-height: 1.5; }
   /* NorthCannon banner: a charcoal box only (no module frame or band), full content width. */
+  .prose p.pull-quote { margin-block: 1.25rem 0; }
   .about-banner { display: flex; align-items: center; gap: 2.5rem; padding: 3.5rem 3rem; }
   .about-banner__mark { flex: none; width: 7.5rem; height: auto; }
   .about-banner__copy { min-width: 0; }

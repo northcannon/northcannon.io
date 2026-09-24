@@ -458,6 +458,26 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.getByRole('link', { name: 'Vision' })).toHaveAttribute('href', '/about/company/#vision');
   });
 
+  test('founder: Why NorthCannon exists renders the pending narrative in review and the approved excerpt in production', async ({ page }) => {
+    const claims = loadGovernance().claims;
+    const body = claims.find(c => c.claim_id === 'founder-why-body');
+    expect(body.approval_state).toBe('pending');
+    const why = body.statement.split('\n\n');
+    expect(why).toHaveLength(4);
+    const section = page.locator('section:has(> #why-title)');
+    await page.goto(REVIEW + '/about/founder/');
+    await expect(section.locator('.module__head')).toHaveText('Why NorthCannon exists');
+    await expect(section.locator('.box .prose p')).toHaveText(why);
+    await expect(section.locator('.box .prose .pull-quote')).toHaveText(why[3]);
+    await expect(section.getByRole('link', { name: 'Vision' })).toHaveAttribute('href', '/about/company/#vision');
+    expect(await section.innerText()).not.toMatch(/§|U\.S\.C|C\.F\.R|\b(?:Alabama|Alaska|Arizona|California|Colorado|Florida|Georgia|Illinois|New York|Texas|Washington)\b/);
+    await page.goto(PRODUCTION + '/about/founder/');
+    const vision = claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
+    await expect(section.locator('.box .prose p')).toHaveText(vision.slice(0, 2));
+    await expect(page.locator('main')).not.toContainText('loan-servicing queue');
+    await expect(section.locator('.pull-quote')).toHaveCount(0);
+  });
+
   test('contact: general and security destinations', async ({ page }) => {
     await page.goto(REVIEW + '/contact/');
     await expect(page.locator('main a[href="mailto:hello@northcannon.io"]')).toBeVisible();

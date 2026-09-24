@@ -3592,6 +3592,16 @@
     "approval_record": "none"
   },
   {
+    "claim_id": "founder-why-body",
+    "statement": "Consider an AI agent working through a loan-servicing queue. It searches its context — policy documents, account history, prior correspondence — and concludes that a borrower should receive a particular notice on a particular date. The reasoning looks sound, and the agent is confident.\n\nWhat the agent does not know is that a state regulation changed the required notice period, effective the week before. Nothing in its context says so. The decision is carried out, the letter is mailed, and the company is now exposed to legal risk and financial consequences it never chose to take on.\n\nThe model did not malfunction. It reasoned well over what it could see. The failure is that nothing verified the decision itself — against the rule actually in force, the evidence on record, the authority to act, and the moment it was made — before it became an action. And nothing would have noticed later that a change had quietly undermined it.\n\nThat is the gap NorthCannon is designed to close. Data and models have their own controls. The decision — the unit that actually carries consequences — deserves its own standard of proof: verified before action, preserved with the evidence behind it, and re-evaluated when the facts or rules beneath it change.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
     "claim_id": "changelog-2026-09-site-redesign",
     "statement": "2026-09-24: New visual system across the site. About, Company and Founder are combined into one About section with Company, Features and Founder pages. The Demo page is added to the navigation.",
     "category": "changelog",

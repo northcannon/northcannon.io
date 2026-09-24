@@ -62,6 +62,10 @@ test('optional copy renders in review, is omitted from production, and appears t
   const company = routes.find(r => r.path === '/about/company/');
   assert.equal(routeCopy(claims, company, routes, 'interop-sources-body', { review: false }), undefined);
   assert.equal(routeCopy(claims, company, routes, 'interop-sources-body', { review: true }), 'APIs, docs, web, internal');
+  // The founder's narrative is a pending slot: review only until attested.
+  const founder = routes.find(r => r.path === '/about/founder/');
+  assert.equal(routeCopy(claims, founder, routes, 'founder-why-body', { review: false }), undefined);
+  assert.match(routeCopy(claims, founder, routes, 'founder-why-body', { review: true }), /^Consider an AI agent working through a loan-servicing queue\./);
   assert.deepEqual(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: false }), []);
   assert.deepEqual(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: true }), []);
 });
