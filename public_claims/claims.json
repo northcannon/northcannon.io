@@ -2973,7 +2973,7 @@
   },
   {
     "claim_id": "feat-ci-date-prior-label",
-    "statement": "Deadline before the change",
+    "statement": "Earliest permitted date (before the change)",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -2993,7 +2993,7 @@
   },
   {
     "claim_id": "feat-ci-date-new-label",
-    "statement": "Deadline after the change",
+    "statement": "Earliest permitted date (after the change)",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3143,7 +3143,7 @@
   },
   {
     "claim_id": "feat-wl-row-id",
-    "statement": "DEC-0003",
+    "statement": "ACT-0003",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3153,7 +3153,7 @@
   },
   {
     "claim_id": "feat-wl-row-action",
-    "statement": "Re-evaluate the affected decision",
+    "statement": "Propose a date on or after SEP 28",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3163,7 +3163,7 @@
   },
   {
     "claim_id": "feat-wl-row-assigned",
-    "statement": "Reviewer (fictional role)",
+    "statement": "Proposing agent (fictional)",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3173,7 +3173,7 @@
   },
   {
     "claim_id": "feat-wl-row-source",
-    "statement": "Amended return of service",
+    "statement": "Re-evaluated decision",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3183,7 +3183,7 @@
   },
   {
     "claim_id": "feat-wl-row-closes",
-    "statement": "A reviewer confirms the re-evaluated decision",
+    "statement": "A revised date verifies on or after SEP 28",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3373,7 +3373,7 @@
   },
   {
     "claim_id": "feat-ev-rule-value",
-    "statement": "Response-deadline rule, version 3 (fictional)",
+    "statement": "Notice-period rule, version 3 (fictional)",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3383,7 +3383,7 @@
   },
   {
     "claim_id": "feat-ev-time-value",
-    "statement": "Evaluated as of the recorded change",
+    "statement": "SEP 24 is before the earliest permitted date, SEP 28",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3393,7 +3393,7 @@
   },
   {
     "claim_id": "feat-ev-authority-value",
-    "statement": "Reviewer sign-off required (fictional role)",
+    "statement": "Agent may propose scheduling (fictional delegation)",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",
@@ -3403,7 +3403,7 @@
   },
   {
     "claim_id": "feat-ev-state-value",
-    "statement": "Open — awaiting reviewer confirmation",
+    "statement": "Re-evaluated after the amended record",
     "category": "other",
     "basis": "docs/design/PUBLIC_SITE_COPY.md",
     "approval_state": "pending",

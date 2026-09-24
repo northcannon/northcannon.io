@@ -74,7 +74,7 @@ const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: suppor
     {ready && evidence && (
       <Module id="feat-ev" title={t('feat-ev-title')!} numbered>
         <div class="feature-stack">
-          <SupportCells label={t('feat-cells-label')!} cells={[cell('label-evidence', true), cell('feat-cell-rule', true), cell('feat-cell-time', true), cell('feat-cell-authority', false), cell('feat-cell-state', true)]} />
+          <SupportCells label={t('feat-cells-label')!} cells={[cell('label-evidence', true), cell('feat-cell-rule', true), cell('feat-cell-time', false), cell('feat-cell-authority', true), cell('feat-cell-state', true)]} />
           <EvidenceDrawer
             id="feat-ev-drawer"
             title={t('feat-ev-drawer-title')!}

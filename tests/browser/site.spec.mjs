@@ -204,7 +204,12 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.lineage__plate--neutral')).toHaveCount(5);
     await expect(page.getByRole('img', { name: /Five of the ten downstream assets are affected/ })).toBeVisible();
     await expect(page.locator('.support-cell__label')).toHaveText(['Evidence', 'Rule', 'Time', 'Authority', 'State']);
-    await expect(page.locator('.support-cell--unsupported')).toHaveCount(1);
+    // The story fails on timing only: Time is unsupported; Evidence, Rule, Authority and State are supported.
+    await expect(page.locator('.support-cell--unsupported .support-cell__label')).toHaveText(['Time']);
+    await expect(page.locator('.support-cell--supported .support-cell__label')).toHaveText(['Evidence', 'Rule', 'Authority', 'State']);
+    await expect(page.locator('.readout__label')).toHaveText(['Change event', 'Earliest permitted date (before the change)', 'Earliest permitted date (after the change)', 'Proposed date', 'Prior decision', 'Re-evaluated decision']);
+    for (const cell of ['ACT-0003', 'Propose a date on or after SEP 28', 'Proposing agent (fictional)', 'Re-evaluated decision', 'A revised date verifies on or after SEP 28']) await expect(page.locator('table.workload tbody tr')).toContainText(cell);
+    expect(await page.locator('main').innerText()).not.toMatch(/deadline/i);
     await expect(page.locator('.drawer dt')).toHaveText(['Decision', 'Evidence', 'Rule', 'Time', 'Authority', 'State', 'Record hash']);
     await expect(page.locator('main')).not.toContainText(/confidence meter|\$\d|penalt|Gate 1|U\.S\.C|C\.F\.R|§/i);
     await expect(page.locator('.meter, [role="meter"], progress')).toHaveCount(0);

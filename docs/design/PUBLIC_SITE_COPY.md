@@ -221,11 +221,7 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | Claim ID | Statement |
 | --- | --- |
 | `label-features` | Features |
-| `label-overview` | Overview |
 | `label-about-sections` | About sections |
-| `about-link-company-body` | Capabilities, what NorthCannon is and is not, and how it fits alongside existing systems. |
-| `about-link-features-body` | Illustrative views of Change Intelligence and Evidence, drawn with fictional data. |
-| `about-link-founder-body` | Why the founder started NorthCannon, and what is being built. |
 
 ### Features (`/about/features/`)
 
@@ -238,9 +234,9 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-ci-event-label` | Change event |
 | `feat-ci-event` | Amended return of service recorded |
 | `feat-ci-affected` | 1 of 4 prior decisions affected · 3 unaffected — not re-run |
-| `feat-ci-date-prior-label` | Deadline before the change |
+| `feat-ci-date-prior-label` | Earliest permitted date (before the change) |
 | `feat-ci-date-prior` | SEP 18 |
-| `feat-ci-date-new-label` | Deadline after the change |
+| `feat-ci-date-new-label` | Earliest permitted date (after the change) |
 | `feat-ci-date-new` | SEP 28 |
 | `feat-ci-date-proposed-label` | Proposed date |
 | `feat-ci-date-proposed` | SEP 24 |
@@ -255,11 +251,11 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-wl-source` | Source |
 | `feat-wl-closes` | Closes when |
 | `feat-wl-row-status` | Open |
-| `feat-wl-row-id` | DEC-0003 |
-| `feat-wl-row-action` | Re-evaluate the affected decision |
-| `feat-wl-row-assigned` | Reviewer (fictional role) |
-| `feat-wl-row-source` | Amended return of service |
-| `feat-wl-row-closes` | A reviewer confirms the re-evaluated decision |
+| `feat-wl-row-id` | ACT-0003 |
+| `feat-wl-row-action` | Propose a date on or after SEP 28 |
+| `feat-wl-row-assigned` | Proposing agent (fictional) |
+| `feat-wl-row-source` | Re-evaluated decision |
+| `feat-wl-row-closes` | A revised date verifies on or after SEP 28 |
 | `feat-lineage-title` | Mock downstream lineage |
 | `feat-lineage-institution` | Harbor National Bank · FICTIONAL DEMO INSTITUTION |
 | `feat-lineage-summary` | 5 of 10 downstream assets affected |
@@ -278,10 +274,10 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-cell-supported` | Support confirmed |
 | `feat-cell-unsupported` | Support not confirmed |
 | `feat-ev-evidence-value` | Amended return of service, recorded (fictional) |
-| `feat-ev-rule-value` | Response-deadline rule, version 3 (fictional) |
-| `feat-ev-time-value` | Evaluated as of the recorded change |
-| `feat-ev-authority-value` | Reviewer sign-off required (fictional role) |
-| `feat-ev-state-value` | Open — awaiting reviewer confirmation |
+| `feat-ev-rule-value` | Notice-period rule, version 3 (fictional) |
+| `feat-ev-time-value` | SEP 24 is before the earliest permitted date, SEP 28 |
+| `feat-ev-authority-value` | Agent may propose scheduling (fictional delegation) |
+| `feat-ev-state-value` | Re-evaluated after the amended record |
 | `feat-ev-hash-label` | Record hash |
 | `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
 | `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
@@ -295,6 +291,8 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `demo-graphic-note` | Illustrative animation · not a live system |
 
 ### Retired
+
+The pending `label-overview`, `about-link-company-body`, `about-link-features-body` and `about-link-founder-body` claims are retired (IDs kept): there is no About overview page; `/about/` redirects to `/about/company/`.
 
 The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs kept). The approved
 `mock-*` claims remain in the registry with their founder attestations intact but are no longer
