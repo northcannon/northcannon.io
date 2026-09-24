@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, readRedirects, disclosureErrors } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -25,6 +25,11 @@ async function collect(dir) {
       if (/^fonts\/[\w.-]+\.woff2$/.test(name)) {
         // Self-hosted fonts are the only binary output; check the WOFF2 signature and keep them out of text scans.
         if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
+        continue;
+      }
+      if ('/' + name in allowedImages) {
+        errors.push(...inspectImage(await readFile(full), allowedImages['/' + name], name));
+        files.set(name, '');
         continue;
       }
       if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers' && name !== '_redirects') {

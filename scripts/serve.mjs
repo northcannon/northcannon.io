@@ -1,14 +1,14 @@
 import http from 'node:http';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
-import { readHeaders, readRedirects } from './policy.mjs';
+import { readHeaders, readRedirects, allowedImages } from './policy.mjs';
 
 // A loopback-only test server. Never serves repository files or executes code.
 const root = await realpath(process.argv[2] ?? 'dist');
 const port = Number(process.argv[3] ?? 4321);
 const headers = readHeaders(await readFile(path.join(root, '_headers'), 'utf8'));
 const redirects = await readFile(path.join(root, '_redirects'), 'utf8').then(readRedirects, () => []);
-const mime = { '.json': 'application/json', '.xml': 'application/xml', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8' };
+const mime = { '.json': 'application/json', '.xml': 'application/xml', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.png': 'image/png', '.webp': 'image/webp' };
 http.createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
@@ -16,7 +16,8 @@ http.createServer(async (request, response) => {
     if (moved) { response.writeHead(moved.status, { ...headers, location: moved.to }).end(); return; }
     let file = path.resolve(root, `.${pathname}`);
     if (pathname.endsWith('/')) file = path.join(file, 'index.html');
-    if (!file.startsWith(root + path.sep) || !mime[path.extname(file)]) {
+    // Images are served only for the reviewed portrait files.
+    if (!file.startsWith(root + path.sep) || !mime[path.extname(file)] || (/\.(png|webp)$/.test(file) && !(pathname in allowedImages))) {
       response.writeHead(404, headers).end();
       return;
     }

@@ -319,6 +319,25 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('main')).not.toContainText('Where decisions originate');
   });
 
+  test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {
+    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, /^Max Brooks is the founder of NorthCannon\./]]) {
+      await page.goto(base + '/about/founder/');
+      const img = page.locator('.founder-hero__portrait img');
+      await expect(img).toHaveAttribute('alt', alt);
+      await expect(img).toHaveAttribute('loading', 'eager');
+      await expect(img).toHaveAttribute('width', '480');
+      await expect(img).toHaveAttribute('height', '480');
+      await expect(page.locator('.founder-hero__portrait source')).toHaveAttribute('type', 'image/webp');
+      await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
+      const mask = await page.locator('.founder-hero__portrait').evaluate(el => { const s = getComputedStyle(el); return { radius: s.borderTopLeftRadius, overflow: s.overflow, width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }; });
+      expect(mask.overflow).toBe('hidden');
+      expect(Math.abs(mask.width - mask.height)).toBeLessThan(1);
+      expect(mask.radius === '50%' || parseFloat(mask.radius) >= mask.width / 2 - 1).toBe(true);
+      // No extra CSS ring: the image already carries one.
+      expect(await page.locator('.founder-hero__portrait').evaluate(el => getComputedStyle(el).borderTopWidth)).toBe('0px');
+    }
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);

@@ -151,8 +151,9 @@
 
   /* Founder. */
   .founder-hero { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; align-items: center; padding-bottom: 2rem; }
-  .founder-hero__portrait { display: grid; place-items: center; width: 15rem; height: 15rem; border: 2px solid var(--color-violet); border-radius: 50%; background: var(--color-elevated); color: #5b6680; }
-  .founder-hero__portrait .icon { stroke-width: 1.2; }
+  /* The image is already ringed and circle-cropped on black corners; the mask removes the corners. */
+  .founder-hero__portrait { display: block; width: 15rem; height: 15rem; overflow: hidden; border-radius: 50%; background: #000; }
+  .founder-hero__portrait picture, .founder-hero__portrait img { display: block; width: 100%; height: 100%; }
   .founder-hero .page-title { max-width: 36rem; }
   .background-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
   .background-card { padding: 1.25rem 1.5rem; }
@@ -330,7 +331,6 @@
   .artifact-viewer { flex-direction: column; align-items: flex-start; }
   .founder-hero { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; justify-items: start; }
   .founder-hero__portrait { width: 8rem; height: 8rem; }
-  .founder-hero__portrait .icon { width: 4rem; height: 4rem; }
   .credibility .bullet-list { padding-left: 1.25rem; }
   .record-fields div, .record-fields--digest div { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }

@@ -4,7 +4,7 @@ import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors } from '../scripts/policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage } from '../scripts/policy.mjs';
 
 for (const markup of [
   '<script src="/local.js"></script>', '<script>alert(1)</script>',
@@ -115,4 +115,19 @@ test('redirects file holds exactly the four reviewed permanent moves', async () 
   assert.equal(requiredRedirects.length, 4);
   assert.doesNotThrow(() => readRedirects(text));
   for (const invalid of [text + '/x /y 301\n', text.replace('301', '302'), text.replace('/about/company/', 'https://example.com/'), text.split('\n').slice(1).join('\n'), '']) assert.throws(() => readRedirects(invalid));
+});
+
+test('founder portrait files carry no metadata and only they are allowed as picture sources', async () => {
+  assert.deepEqual(Object.keys(allowedImages).sort(), ['/founder/max-brooks-480.png', '/founder/max-brooks-480.webp', '/founder/max-brooks-960.webp']);
+  for (const [url, kind] of Object.entries(allowedImages)) assert.deepEqual(inspectImage(await readFile('public' + url), kind, url), [], url);
+  // A PNG with a content-credentials chunk (like the original) and a WebP with EXIF are rejected.
+  const png = await readFile('public/founder/max-brooks-480.png');
+  const chunk = (type, data) => { const b = Buffer.alloc(12 + data.length); b.writeUInt32BE(data.length, 0); b.write(type, 4, 'latin1'); data.copy(b, 8); return b; };
+  const tainted = Buffer.concat([png.subarray(0, 33), chunk('caBX', Buffer.from('c2pa')), png.subarray(33)]);
+  assert.match(inspectImage(tainted, 'png', 'x')[0], /metadata chunk caBX/);
+  const picture = src => `<picture><source type="image/webp" srcset="${src}" sizes="15rem"><img src="/founder/max-brooks-480.png" width="480" height="480" alt="x"></picture>`;
+  assert.deepEqual(inspectMarkup(picture('/founder/max-brooks-480.webp 480w, /founder/max-brooks-960.webp 960w'), 'f').errors, []);
+  for (const bad of ['/other.webp 480w', 'https://example.com/a.webp 1x', '/founder/max-brooks-480.png 1x']) assert.ok(inspectMarkup(picture(bad), 'f').errors.length, bad);
+  assert.ok(inspectMarkup('<div><source type="image/webp" srcset="/founder/max-brooks-480.webp"></div>', 'f').errors.length, 'source outside picture');
+  assert.ok(inspectMarkup('<img src="/founder/max-brooks-480.png" srcset="/founder/max-brooks-480.webp 1x" alt="x">', 'f').errors.length, 'img srcset stays prohibited');
 });

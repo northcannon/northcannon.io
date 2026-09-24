@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { lstat, readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { disclosureErrors, isSecretLikeFile } from './policy.mjs';
+import { disclosureErrors, isSecretLikeFile, allowedImages, inspectImage } from './policy.mjs';
 
 const textExtensions = new Set(['.md', '.mdx', '.json', '.yaml', '.yml', '.ts', '.mjs', '.astro', '.css', '.svg', '.txt']);
 
@@ -34,6 +34,10 @@ export async function scanTracked(root, read = readFile) {
     // Self-hosted fonts are the only tracked binaries: verify the WOFF2 signature instead of scanning text.
     if (/^public\/fonts\/[\w.-]+\.woff2$/.test(name)) {
       if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
+      continue;
+    }
+    if (name.startsWith('public/') && name.slice(6) in allowedImages) {
+      errors.push(...inspectImage(await readFile(full), allowedImages[name.slice(6)], name));
       continue;
     }
     if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers', '_redirects'].includes(basename) && !name.endsWith('.example')) {
