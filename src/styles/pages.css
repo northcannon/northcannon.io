@@ -209,6 +209,7 @@
   .workload__status { display: inline-flex; justify-self: start; white-space: nowrap; align-items: center; gap: 0.5rem; padding: 0.125rem 0.625rem; border: 1px solid var(--color-reeval); border-radius: 999px; color: var(--color-reeval); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .lineage { display: grid; gap: 0.75rem; max-width: 860px; margin: 0; }
   .lineage__cols { display: grid; grid-template-columns: 38.4% 38.4% 1fr; padding-left: 2.33%; margin: 0; color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; }
+  .lineage__scroll { overflow-x: auto; }
   .lineage__svg { display: block; width: 100%; max-width: 860px; height: auto; }
   .lineage__edge { stroke: color-mix(in srgb, var(--color-plate-border) 60%, transparent); stroke-width: 1.25; }
   .lineage__edge--affected { stroke: var(--color-unsupported); stroke-width: 3; }
@@ -262,6 +263,9 @@
 }
 
 @media (max-width: 40rem) {
+  /* Lineage graph: keep a readable scale and scroll horizontally instead of shrinking. */
+  .lineage__plane { min-width: 720px; }
+  .lineage__cols { font-size: 0.6875rem; letter-spacing: 0.1em; }
   /* Workload table: stacked label/value rows on narrow screens; never clip or break words. */
   .table-scroll:has(.workload) { overflow: visible; border: 0; }
   .workload, .workload thead, .workload tbody, .workload tr, .workload td, .workload tbody th, .workload caption { display: block; min-width: 0; width: 100%; }
@@ -283,7 +287,6 @@
   .evidence-art { display: none; }
   .about-modules, .link-cards--triple { grid-template-columns: minmax(0, 1fr); }
   .drawer__row { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
-  .lineage__cols { font-size: 0.5625rem; letter-spacing: 0.06em; }
   .capability-grid, .truth-grid, .explainer-grid, .artifact-grid, .contact-grid, .background-grid { grid-template-columns: minmax(0, 1fr); }
   .capability-card { min-height: 0; }
   .interop { grid-template-columns: minmax(0, 1fr); }

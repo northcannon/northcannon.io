@@ -22,6 +22,8 @@ const path = ([from, to]: [string, string]) => {
 };
 ---
 <figure class="lineage">
+  <div class="lineage__scroll" role="region" aria-labelledby={id} tabindex="0">
+  <div class="lineage__plane">
   <ul class="lineage__cols" aria-hidden="true">{columns.map(column => <li>{column}</li>)}</ul>
   <svg class="lineage__svg" viewBox="0 0 860 340" role="img" aria-labelledby={id} preserveAspectRatio="xMidYMid meet" focusable="false">
     {edges.map(edge => { const p = path(edge); return <path class:list={['lineage__edge', { 'lineage__edge--affected': p.affected }]} d={p.d} fill="none" />; })}
@@ -34,5 +36,7 @@ const path = ([from, to]: [string, string]) => {
       </g>
     ); })}
   </svg>
+  </div>
+  </div>
   <figcaption class="lineage__alt" id={id}>{alt}</figcaption>
 </figure>

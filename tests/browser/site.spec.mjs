@@ -236,6 +236,19 @@ test.describe('approved design acceptance (review build)', () => {
     }
   });
 
+  test('lineage graph keeps a readable scale inside a labelled scroll region on narrow screens', async ({ page }, testInfo) => {
+    await page.goto(REVIEW + '/about/features/');
+    const region = page.getByRole('region', { name: /Lineage graph: one changed source/ });
+    await expect(region).toHaveAttribute('tabindex', '0');
+    const svg = await page.locator('.lineage__svg').boundingBox();
+    if (testInfo.project.use.viewport.width <= 640) {
+      // 860 units drawn at 720px: at least 0.83 scale, never the unreadable ~0.4 of a shrunken graph.
+      expect(svg.width).toBeGreaterThanOrEqual(720);
+      expect(await region.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);
