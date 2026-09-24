@@ -215,6 +215,27 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.meter, [role="meter"], progress')).toHaveCount(0);
   });
 
+  test('features workload table stacks on narrow screens without clipping or broken words', async ({ page }, testInfo) => {
+    await page.goto(REVIEW + '/about/features/');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const cells = await page.locator('.workload td, .workload tbody th').evaluateAll(els => els.map(el => ({ fits: el.scrollWidth <= el.clientWidth + 1, text: el.textContent.trim() })));
+    for (const cell of cells) expect(cell.fits, cell.text).toBe(true);
+    const caption = await page.locator('.workload__caption').evaluate(el => ({ fits: el.scrollWidth <= el.clientWidth + 1, clipped: el.getBoundingClientRect().right > innerWidth }));
+    expect(caption).toEqual({ fits: true, clipped: false });
+    // A short status word stays on one line: never "OP EN" or "STATU S".
+    const status = await page.locator('.workload__status').evaluate(el => ({ height: el.getBoundingClientRect().height, line: parseFloat(getComputedStyle(el).lineHeight) }));
+    expect(status.height).toBeLessThan(status.line * 2);
+    const width = testInfo.project.use.viewport.width;
+    if (width <= 640) {
+      // Stacked: every row is a block of label/value pairs, and headers stay in the DOM for assistive technology.
+      expect(await page.locator('.workload tbody tr').evaluate(el => getComputedStyle(el).display)).toBe('block');
+      await expect(page.locator('.workload thead th')).toHaveCount(6);
+      expect(await page.locator('.workload td').first().evaluate(el => getComputedStyle(el, '::before').content)).toContain('ID');
+    } else {
+      expect(await page.locator('.workload').evaluate(el => getComputedStyle(el).display)).toBe('table');
+    }
+  });
+
   test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
     for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
       await page.goto(REVIEW + path);

@@ -205,7 +205,8 @@
   .workload__caption { padding: 0.75rem 1rem; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-align: left; text-transform: uppercase; caption-side: top; }
   .workload thead th { padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-outline); background: linear-gradient(180deg, var(--color-band), var(--color-band-end)); color: #efe6f8; font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
   .workload td, .workload tbody th { padding: 0.875rem 1rem; border-bottom: 1px solid var(--color-border); vertical-align: top; font-weight: 400; }
-  .workload__status { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.125rem 0.625rem; border: 1px solid var(--color-reeval); border-radius: 999px; color: var(--color-reeval); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .workload td, .workload th { overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .workload__status { display: inline-flex; justify-self: start; white-space: nowrap; align-items: center; gap: 0.5rem; padding: 0.125rem 0.625rem; border: 1px solid var(--color-reeval); border-radius: 999px; color: var(--color-reeval); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .lineage { display: grid; gap: 0.75rem; max-width: 860px; margin: 0; }
   .lineage__cols { display: grid; grid-template-columns: 38.4% 38.4% 1fr; padding-left: 2.33%; margin: 0; color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; }
   .lineage__svg { display: block; width: 100%; max-width: 860px; height: auto; }
@@ -260,6 +261,16 @@
   .home-hero__title { font-size: 2rem; }
 }
 
+@media (max-width: 40rem) {
+  /* Workload table: stacked label/value rows on narrow screens; never clip or break words. */
+  .table-scroll:has(.workload) { overflow: visible; border: 0; }
+  .workload, .workload thead, .workload tbody, .workload tr, .workload td, .workload tbody th, .workload caption { display: block; min-width: 0; width: 100%; }
+  .workload thead { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); }
+  .workload__caption { padding-inline: 0; overflow-wrap: normal; }
+  .workload tbody tr { margin-bottom: 0.75rem; border: 1px solid var(--color-plate-border); border-radius: var(--radius-control); background: var(--color-card); }
+  .workload td, .workload tbody th { display: grid; grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr); gap: 0.75rem; padding: 0.625rem 0.875rem; }
+  .workload td::before, .workload tbody th::before { content: attr(data-label); color: var(--color-key); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; overflow-wrap: normal; }
+}
 @media (max-width: 63.99rem) {
   /* Let enlarged text size intrinsic grid/flex children without widening the page. */
   .founder-sheet, .mock-panel { grid-template-columns: minmax(0, 1fr); }
