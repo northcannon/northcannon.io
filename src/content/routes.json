@@ -474,6 +474,32 @@
     "parent": "/about/"
   },
   {
+    "path": "/demo/",
+    "title_claim_or_label": "demo-coming-soon",
+    "claim_ids": [
+      "demo-coming-soon",
+      "brand-company",
+      "brand-core-principle",
+      "status-gate1-frozen-stress",
+      "stage-frozen",
+      "label-trust",
+      "label-disclosure",
+      "contact-hello",
+      "brand-company-motto",
+      "brand-mission",
+      "label-provenance",
+      "label-evidence",
+      "label-change-intelligence"
+    ],
+    "nav": true,
+    "publish": true,
+    "review_claim_ids": [
+      "demo-lede",
+      "demo-graphic-alt",
+      "demo-graphic-note"
+    ]
+  },
+  {
     "path": "/contact/",
     "title_claim_or_label": "label-contact",
     "claim_ids": [
@@ -543,15 +569,6 @@
       "arm-baseline-b",
       "arm-r-plus",
       "arms-title"
-    ],
-    "nav": false,
-    "publish": true
-  },
-  {
-    "path": "/demo/",
-    "title_claim_or_label": "demo-coming-soon",
-    "claim_ids": [
-      "demo-coming-soon"
     ],
     "nav": false,
     "publish": true

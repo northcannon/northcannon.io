@@ -47,7 +47,7 @@ for (const [name, text] of files) {
   if (name.endsWith('.html')) {
     errors.push(...(wp4 ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture })));
     if (!wp4 && text.includes(draftBanner)) errors.push('Review banner in production');
-    if (wp4 && name !== 'demo/index.html' && !text.includes(draftBanner)) errors.push('Missing review banner');
+    if (wp4 && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
   // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.
   // Font license texts are third-party legal text, not site copy, so short claim words appear in them by chance.

@@ -3440,5 +3440,35 @@
     "lifecycle_state": "review",
     "review_date": null,
     "approval_record": "none"
+  },
+  {
+    "claim_id": "demo-lede",
+    "statement": "A guided walkthrough of verification and change intelligence, on fictional cases, is in preparation.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "demo-graphic-alt",
+    "statement": "Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "demo-graphic-note",
+    "statement": "Illustrative animation · not a live system",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
   }
 ]

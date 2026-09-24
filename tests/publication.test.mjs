@@ -17,10 +17,11 @@ const attest = (claims, ids) => claims.map(c => ids.includes(c.claim_id) ? { ...
 
 test('manifest follows the approved information architecture and rejects published pending copy', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
-  assert.deepEqual(routes.filter(r => r.nav).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/contact/']);
-  assert.deepEqual(routes.filter(r => r.nav).map(r => claims.find(c => c.claim_id === navigationClaimId(r)).statement), ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Contact']);
+  assert.deepEqual(routes.filter(r => r.nav).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/demo/', '/contact/']);
+  assert.deepEqual(routes.filter(r => r.nav).map(r => claims.find(c => c.claim_id === navigationClaimId(r)).statement), ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Demo', 'Contact']);
   assert.deepEqual(routes.filter(r => r.parent).map(r => [r.path, r.parent]), [['/about/company/', '/about/'], ['/about/features/', '/about/'], ['/about/founder/', '/about/']]);
   assert.equal(routes.length, 19);
+  assert.equal(routes.find(r => r.path === '/demo/').publish, true, 'the demo stays published with its approved title');
   assert.equal(routes.filter(r => r.publish).length, 16);
   assert.ok(!routes.some(r => r.path === '/founder/'), 'the standalone founder route is removed');
   assert.ok(routes.filter(r => r.parent).every(r => !r.publish), 'About subpages stay unpublished until the founder promotes them');
@@ -46,8 +47,8 @@ test('optional copy renders in review, is omitted from production, and appears t
   const attested = attest(claims, ['cta-view-gate-1', 'label-company']);
   assert.equal(routeCopy(attested, home, routes, 'cta-view-gate-1', { review: false }), 'View Gate 1');
   // Production navigation lists only published, attested destinations; unpublished About subpages never appear.
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/contact/']);
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims: attested }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/contact/']);
+  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/demo/', '/contact/']);
+  assert.deepEqual(navigationRoutes(routes, { review: false, claims: attested }).map(r => r.path), ['/gate-1/', '/results/', '/evidence/', '/about/', '/demo/', '/contact/']);
   assert.deepEqual(navigationTree(routes, { review: false, claims }).find(item => item.route.path === '/about/').children, []);
   assert.deepEqual(navigationTree(routes, { review: true, claims }).find(item => item.route.path === '/about/').children.map(r => r.path), ['/about/company/', '/about/features/', '/about/founder/']);
   const company = routes.find(r => r.path === '/about/company/');
@@ -120,8 +121,8 @@ test('standalone review build rebuilds current provenance from source only and r
   try {
     // Explicit public build inputs only. Never enumerate or copy local config,
     // credentials, ignored output, or the entire checkout.
-    const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer'].map(name => `src/components/${name}.astro`);
-    const pages = ['AboutPage', 'AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
+    const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer', 'ChangeIntelligenceGraphic'].map(name => `src/components/${name}.astro`);
+    const pages = ['AboutPage', 'AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
       'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md',

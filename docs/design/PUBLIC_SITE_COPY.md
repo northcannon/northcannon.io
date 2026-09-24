@@ -286,6 +286,14 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
 | `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
 
+### Demo (`/demo/`)
+
+| Claim ID | Statement |
+| --- | --- |
+| `demo-lede` | A guided walkthrough of verification and change intelligence, on fictional cases, is in preparation. |
+| `demo-graphic-alt` | Illustration: when a rule or fact changes, only the decisions that depended on it are flagged for re-evaluation; unrelated decisions are left untouched. |
+| `demo-graphic-note` | Illustrative animation · not a live system |
+
 ### Retired
 
 The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs kept). The approved

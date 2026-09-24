@@ -56,7 +56,7 @@ export function navigationTree(routes, options = {}) {
 export function reviewDependencies(route, routes, { review = true, claims = loadGovernance().claims } = {}) {
   const optional = review ? route.review_claim_ids : route.review_claim_ids.filter(id => isApproved(claims.find(c => c.claim_id === id)));
   return new Set([...route.claim_ids, ...optional,
-    ...(route.path === '/demo/' ? [] : navigationRoutes(routes, { review, claims }).map(navigationClaimId))]);
+    ...navigationRoutes(routes, { review, claims }).map(navigationClaimId)]);
 }
 export function routeClaim(claims, route, routes, id, { review = true } = {}) {
   if (!reviewDependencies(route, routes, { review, claims }).has(id)) throw new Error(`Undeclared route claim: ${route.path}: ${id}`);

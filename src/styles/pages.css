@@ -224,6 +224,25 @@
   .drawer__mono { font-family: var(--font-mono); font-size: 0.8125rem; }
   .drawer__note { margin: 0.75rem 0 0; color: var(--color-muted); font-size: 0.8125rem; }
 
+
+  /* Change-intelligence illustration. The base rules are the FINAL state, so reduced motion shows
+     the meaning without movement; the keyframes below restate the neutral start. */
+  .ci-figure { display: grid; gap: 0.75rem; margin: 0; }
+  .ci-svg { display: block; width: 100%; max-width: 1200px; height: auto; margin-inline: auto; }
+  .ci-caption { max-width: var(--text-width); margin-inline: auto; color: var(--color-muted); font-size: 0.8125rem; line-height: 1.5; text-align: center; }
+  .ci-figure .disclosure-line { justify-content: center; }
+  .ci-edge { stroke: var(--color-plate-border); stroke-width: 1.25; }
+  .ci-pulse { stroke: var(--color-unsupported); stroke-width: 3.5; stroke-dasharray: 1 1; stroke-dashoffset: 0; will-change: stroke-dashoffset; }
+  .ci-plate { fill: var(--color-card); stroke: var(--color-plate-border); stroke-width: 2; }
+  .ci-plate--source { stroke: var(--color-reeval); stroke-dasharray: 8 6; }
+  .ci-plate--h1, .ci-plate--h2, .ci-plate--h3 { stroke: var(--color-unsupported); }
+  .ci-bar { fill: var(--color-plate-border); }
+  .ci-fold { fill: var(--color-unsupported); opacity: 1; }
+  .ci-ring, .ci-beacon-ring { stroke: var(--color-reeval); stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .ci-beacon { transform-box: fill-box; transform-origin: center; }
+  .ci-beacon--live { fill: var(--color-unsupported); }
+  .ci-beacon--steady { fill: var(--color-supported); }
+
   /* Contact and supporting pages. */
   .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
   .contact-card { display: grid; justify-items: start; gap: 0.875rem; }
@@ -235,8 +254,6 @@
   .record-fields dt { color: var(--color-muted); }
   .record-fields dd { margin: 0; font-family: var(--font-mono); }
   .record-fields--digest div { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
-  .demo-main { flex: 1; display: grid; place-items: center; padding: var(--margin); }
-  .demo-title { margin: 0; font-size: 2.25rem; text-align: center; }
 }
 
 @media (min-width: 64rem) and (max-width: 79.99rem) {
@@ -291,4 +308,39 @@
   .disclosure-line { border-color: CanvasText; }
   .lifecycle__marker, .criteria li::before { border-color: CanvasText; }
   .is-current .lifecycle__marker { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* One 8s loop; percentages are the timeline. Only opacity, transform, dashoffset and colours animate. */
+  .ci-plate--source, .ci-ring, .ci-pulse, .ci-plate--h1, .ci-plate--h2, .ci-plate--h3, .ci-fold, .ci-beacon--live, .ci-beacon-ring { animation-duration: 8s; animation-iteration-count: infinite; animation-timing-function: linear; }
+  .ci-plate--source { animation-name: ci-source; }
+  .ci-ring { animation-name: ci-ring; }
+  .ci-pulse--h1 { animation-name: ci-pulse-h1; }
+  .ci-pulse--h2 { animation-name: ci-pulse-h2; }
+  .ci-pulse--h3 { animation-name: ci-pulse-h3; }
+  .ci-plate--h1 { animation-name: ci-plate-h1; }
+  .ci-plate--h2 { animation-name: ci-plate-h2; }
+  .ci-plate--h3 { animation-name: ci-plate-h3; }
+  .ci-fold--h1 { animation-name: ci-fold-h1; }
+  .ci-fold--h2 { animation-name: ci-fold-h2; }
+  .ci-fold--h3 { animation-name: ci-fold-h3; }
+  .ci-beacon--live { animation-name: ci-beacon; }
+  .ci-beacon-ring { animation-name: ci-beacon-ring; }
+}
+@keyframes ci-source { 0% { stroke: #9a86b8; } 5% { stroke: #e6d8f5; } 10%, 85% { stroke: #c5addd; } 100% { stroke: #c5addd; } }
+@keyframes ci-ring { 0% { opacity: 0.9; transform: scale(1); } 10% { opacity: 0; transform: scale(1.6); } 85% { opacity: 0; transform: scale(1.6); } 100% { opacity: 0; transform: scale(1); } }
+@keyframes ci-pulse-h1 { 0%, 10% { stroke-dashoffset: 1; opacity: 1; } 22%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-pulse-h2 { 0%, 22% { stroke-dashoffset: 1; opacity: 1; } 34%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-pulse-h3 { 0%, 34% { stroke-dashoffset: 1; opacity: 1; } 45%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes ci-plate-h1 { 0%, 20% { stroke: #716786; } 22%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-plate-h2 { 0%, 32% { stroke: #716786; } 34%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-plate-h3 { 0%, 43% { stroke: #716786; } 45%, 85% { stroke: #e57a74; } 100% { stroke: #716786; } }
+@keyframes ci-fold-h1 { 0%, 20% { opacity: 0; } 22%, 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-fold-h2 { 0%, 32% { opacity: 0; } 34%, 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-fold-h3 { 0%, 43% { opacity: 0; } 45%, 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ci-beacon { 0%, 45% { fill: #5ec48b; } 50%, 85% { fill: #e57a74; } 100% { fill: #5ec48b; } }
+@keyframes ci-beacon-ring { 0%, 45% { opacity: 0; transform: scale(1); stroke: #e57a74; } 46% { opacity: 0.9; transform: scale(1); stroke: #e57a74; } 55%, 100% { opacity: 0; transform: scale(2.2); stroke: #e57a74; } }
+@media (forced-colors: active) {
+  .ci-plate, .ci-edge, .ci-pulse, .ci-ring { stroke: CanvasText; }
+  .ci-fold, .ci-bar, .ci-beacon { forced-color-adjust: none; fill: CanvasText; }
 }

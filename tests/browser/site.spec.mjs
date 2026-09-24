@@ -27,25 +27,17 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     await expect(page.locator('h1')).toHaveCount(1);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    if (route.path === '/demo/') {
-      expect(await page.locator('body').innerText()).toBe('Demo — Coming Soon');
-      await expect(page.locator('a, details, nav')).toHaveCount(0);
-    } else {
-      if (review) await expect(page.getByText(draftBanner, { exact: true })).toBeVisible();
-      else await expect(page.getByText(draftBanner, { exact: true })).toHaveCount(0);
-      await expect(page.locator('.site-header')).toBeVisible();
-      await expect(page.locator('.status-chip')).toHaveAttribute('aria-label', status);
-      await page.keyboard.press('Tab');
-      await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
-      await page.keyboard.press('Enter');
-      await expect(page.locator('main')).toBeFocused();
-      if (!route.path.startsWith('/trust/')) {
-        const actual = await page.locator('main').evaluate(el => {
-          const copy = el.cloneNode(true);
-          return copy.textContent;
-        });
-        expect(actual).not.toMatch(fabricated);
-      }
+    if (review) await expect(page.getByText(draftBanner, { exact: true })).toBeVisible();
+    else await expect(page.getByText(draftBanner, { exact: true })).toHaveCount(0);
+    await expect(page.locator('.site-header')).toBeVisible();
+    await expect(page.locator('.status-chip')).toHaveAttribute('aria-label', status);
+    await page.keyboard.press('Tab');
+    await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('main')).toBeFocused();
+    if (!route.path.startsWith('/trust/')) {
+      const actual = await page.locator('main').evaluate(el => el.textContent);
+      expect(actual).not.toMatch(fabricated);
     }
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
     await mkdir(`test-results/site-${review ? 'review' : 'production'}`, { recursive: true });
@@ -76,8 +68,8 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
 }
 
 test.describe('approved design acceptance (review build)', () => {
-  const navigation = ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Contact'];
-  const hrefs = ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/contact/'];
+  const navigation = ['Gate 1', 'Results', 'Evidence', 'About', 'Company', 'Features', 'Founder', 'Demo', 'Contact'];
+  const hrefs = ['/gate-1/', '/results/', '/evidence/', '/about/', '/about/company/', '/about/features/', '/about/founder/', '/demo/', '/contact/'];
 
   test('primary navigation, header and footer', async ({ page }, testInfo) => {
     for (const [index, path] of hrefs.entries()) {
@@ -246,7 +238,7 @@ test.describe('approved design acceptance (review build)', () => {
         await expect(page.locator('.submenu a', { hasText: name })).toBeFocused();
       }
       await page.keyboard.press('Tab');
-      await expect(page.locator('.desktop-navigation a', { hasText: 'Contact' })).toBeFocused();
+      await expect(page.locator('.desktop-navigation a', { hasText: 'Demo' })).toBeFocused();
       await expect(submenu).toBeHidden();
     } finally { await context.close(); }
   });
@@ -282,7 +274,7 @@ test('production renders only attested navigation and publishes all approved pri
   if (!desktop(testInfo)) await page.locator('.mobile-navigation summary').click();
   const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
   // Unpublished About subpages never appear in production navigation, and the removed /founder/ route does not exist.
-  await expect(links).toHaveText(['Gate 1', 'Results', 'Evidence', 'About', 'Contact']);
+  await expect(links).toHaveText(['Gate 1', 'Results', 'Evidence', 'About', 'Demo', 'Contact']);
   await expect(page.locator('.submenu, .submenu-mobile, .about-subnav')).toHaveCount(0);
   for (const path of ['/gate-1/', '/about/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
   for (const path of ['/founder/', '/about/company/', '/about/features/', '/about/founder/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(404);
