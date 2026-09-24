@@ -1,0 +1,17 @@
+---
+// Local subnav shown on every About page, so the subpages are reachable without hover.
+import type { Copy } from './copy';
+interface Props { copy: Copy; currentPath: string }
+const { copy, currentPath } = Astro.props;
+const { t, href } = copy;
+const entries = [['/about/', 'label-overview'], ['/about/company/', 'label-company'], ['/about/features/', 'label-features'], ['/about/founder/', 'label-founder']]
+  .flatMap(([path, id]) => (href(path!) && t(id!) ? [{ href: path!, label: t(id!)! }] : []));
+const label = t('label-about-sections');
+---
+{label && entries.length > 1 && (
+  <nav class="about-subnav" aria-label={label}>
+    <ul>
+      {entries.map(entry => <li><a href={entry.href} aria-current={entry.href === currentPath ? 'page' : undefined}>{entry.label}</a></li>)}
+    </ul>
+  </nav>
+)}

@@ -3,9 +3,10 @@
 import Icon from '../Icon.astro';
 import ContactCTA from '../ContactCTA.astro';
 import LinkCard from '../LinkCard.astro';
+import AboutSubnav from '../AboutSubnav.astro';
 import type { Copy } from '../copy';
-interface Props { copy: Copy; title: string; [key: string]: unknown }
-const { copy, title } = Astro.props;
+interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
+const { copy, route, title } = Astro.props;
 const { t, href, paragraphs } = copy;
 const headline = t('founder-headline');
 const vision = paragraphs('vision-statement');
@@ -16,6 +17,7 @@ const gateHref = href('/gate-1/');
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
+    <AboutSubnav copy={copy} currentPath={route.path} />
     <div class="panel founder-sheet">
       <section class="founder-hero" aria-labelledby="founder-title">
         <span class="founder-hero__portrait" aria-hidden="true"><Icon name="user" size={120} /></span>

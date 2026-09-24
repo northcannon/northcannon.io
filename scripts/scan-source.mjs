@@ -31,6 +31,11 @@ export async function scanTracked(root, read = readFile) {
       errors.push(`${name}: linked or non-regular source is prohibited`);
       continue;
     }
+    // Self-hosted fonts are the only tracked binaries: verify the WOFF2 signature instead of scanning text.
+    if (/^public\/fonts\/[\w.-]+\.woff2$/.test(name)) {
+      if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
+      continue;
+    }
     if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers'].includes(basename) && !name.endsWith('.example')) {
       errors.push(`${name}: unsupported source format requires explicit review`);
       continue;

@@ -1,0 +1,15 @@
+---
+// About / Features: illustrative views of the designed behavior (content added in the Features phase).
+import AboutSubnav from '../AboutSubnav.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
+const { copy, route, title } = Astro.props;
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <AboutSubnav copy={copy} currentPath={route.path} />
+    <section class="page-hero page-hero--text" aria-labelledby="features-title">
+      <h1 class="page-title" id="features-title">{title}</h1>
+    </section>
+  </div>
+</main>

@@ -1,19 +1,22 @@
 ---
 import { loadGovernance } from '../governance/registry.mjs';
 import { eligibleClaim } from '../governance/schema.mjs';
+import { draftClaim } from '../governance/routes.mjs';
 import Icon from './Icon.astro';
 interface Props {
   company: string;
   items: ReadonlyArray<{ label: string; href: string; children?: ReadonlyArray<{ label: string; href: string }> }>;
   currentPath: string;
   status: { label: string; gate?: string | undefined; description: string; href: string };
+  /** Review builds may show pending draft labels; production and fixtures require approval. */
+  review?: boolean;
 }
-const { company, items, currentPath, status } = Astro.props;
+const { company, items, currentPath, status, review = false } = Astro.props;
 const { claims } = loadGovernance();
 for (const text of [company, ...items.flatMap(item => [item.label, ...(item.children ?? []).map(child => child.label)]), status.label, status.gate, status.description].filter(Boolean)) {
   const registered = claims.find(c => c.statement === text);
   if (!registered) throw new Error('Unregistered header copy');
-  eligibleClaim(registered, registered.claim_id);
+  if (review) draftClaim(claims, registered.claim_id); else eligibleClaim(registered, registered.claim_id);
 }
 const current = (href: string) => (href === currentPath ? 'page' : undefined);
 ---

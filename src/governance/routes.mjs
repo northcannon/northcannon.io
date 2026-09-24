@@ -5,7 +5,7 @@ import { loadGovernance } from './registry.mjs';
 
 export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
 export const draftBanner = 'DRAFT — pending founder approval';
-const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean() }).strict();
+const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean(), parent: z.string().optional() }).strict();
 const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecycle_state === 'approved' && claim.approval_record === 'founder_attestation';
 
 // claim_ids are required: a published route needs every one approved.
@@ -14,6 +14,11 @@ const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecy
 export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(readFileSync('src/content/routes.json', 'utf8'))) {
   const routes = z.array(routeSchema).parse(input);
   if (new Set(routes.map(r => r.path)).size !== routes.length) throw new Error('Duplicate route');
+  // A parent is a top-level route that prefixes its child's path; nesting is one level deep.
+  for (const route of routes.filter(r => r.parent !== undefined)) {
+    const parent = routes.find(r => r.path === route.parent);
+    if (!parent || parent.parent !== undefined || !route.path.startsWith(parent.path) || route.path === parent.path) throw new Error(`Invalid parent route: ${route.path}`);
+  }
   for (const route of routes) {
     for (const id of route.review_claim_ids) draftClaim(claims, id);
     for (const id of route.claim_ids) {
@@ -35,10 +40,18 @@ export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(
 }
 export const routeFile = route => route.path === '/404.html' ? '404.html' : route.path.slice(1) + 'index.html';
 // Navigation is a transitive dependency; production includes published destinations
-// whose navigation label is founder-attested.
-export const navigationClaimId = route => route.path === '/' ? 'label-company' : route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
+// whose navigation label is founder-attested, and a child only beside a visible parent.
+export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
+const navigationVisible = (route, routes, review, claims) => route.nav && (review || (route.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(route)))
+  && (route.parent === undefined || navigationVisible(routes.find(r => r.path === route.parent), routes, review, claims))));
+// Every route that appears in navigation, parents and children alike, in registry order.
 export function navigationRoutes(routes, { review = true, claims = loadGovernance().claims } = {}) {
-  return routes.filter(r => r.nav && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r))))));
+  return routes.filter(r => navigationVisible(r, routes, review, claims));
+}
+// The same routes as a tree: top-level items with their visible children.
+export function navigationTree(routes, options = {}) {
+  const visible = navigationRoutes(routes, options);
+  return visible.filter(r => r.parent === undefined).map(route => ({ route, children: visible.filter(r => r.parent === route.path) }));
 }
 export function reviewDependencies(route, routes, { review = true, claims = loadGovernance().claims } = {}) {
   const optional = review ? route.review_claim_ids : route.review_claim_ids.filter(id => isApproved(claims.find(c => c.claim_id === id)));

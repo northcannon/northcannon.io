@@ -1,0 +1,94 @@
+---
+// About / Company: capabilities, what NorthCannon is and is not, interoperability (moved from the old homepage).
+import Icon from '../Icon.astro';
+import ContactCTA from '../ContactCTA.astro';
+import AboutSubnav from '../AboutSubnav.astro';
+import type { Copy } from '../copy';
+interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
+const { copy, route, title } = Astro.props;
+const { t, href } = copy;
+const capabilities = [
+  { title: 'cap-verification', body: 'cap-verification-body', icon: 'flask' },
+  { title: 'label-provenance', body: 'cap-provenance-body', icon: 'database' },
+  { title: 'label-change-intelligence', body: 'cap-change-body', icon: 'chart' },
+].filter(card => t(card.title));
+const is = ['home-is-1', 'home-is-2', 'home-is-3', 'home-is-4'].map(t).filter(Boolean);
+const isNot = ['home-not-1', 'home-not-2', 'home-not-3', 'home-not-4'].map(t).filter(Boolean);
+const modules = ['interop-adapters', 'label-evaluation', 'label-provenance', 'label-evidence'].map(t).filter(Boolean);
+const contactHref = href('/contact/');
+---
+<main id="main" tabindex="-1" class="page-main">
+  <div class="site-container page-stack">
+    <AboutSubnav copy={copy} currentPath={route.path} />
+    <section class="page-hero page-hero--text" aria-labelledby="company-title">
+      <h1 class="page-title" id="company-title">{title}</h1>
+    </section>
+
+    {t('home-capabilities-title') && (
+      <section class="panel" aria-labelledby="capabilities-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="capabilities-title">{t('home-capabilities-title')}</h2>
+            {t('home-capabilities-intro') && <p class="section-intro">{t('home-capabilities-intro')}</p>}
+          </div>
+        </div>
+        <ul class="capability-grid">
+          {capabilities.map(card => (
+            <li class="card capability-card">
+              <Icon name={card.icon} />
+              <h3 class="card-title">{t(card.title)}</h3>
+              {t(card.body) && <p class="card-text">{t(card.body)}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {t('home-is-title') && (
+      <section class="panel" aria-labelledby="truth-title">
+        <h2 class="section-title section-title--spaced" id="truth-title">{t('home-is-title')}</h2>
+        <div class="truth-grid">
+          <div class="truth truth--is">
+            <h3 class="truth__title"><span class="truth__badge" aria-hidden="true"><Icon name="check" /></span>{t('home-is')}</h3>
+            <ul class="truth__list">{is.map(item => <li><Icon name="check" />{item}</li>)}</ul>
+          </div>
+          <div class="truth truth--not">
+            <h3 class="truth__title"><span class="truth__badge" aria-hidden="true"><Icon name="x" /></span>{t('home-is-not')}</h3>
+            <ul class="truth__list">{isNot.map(item => <li><Icon name="x" />{item}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {t('home-interop-title') && (
+      <section class="panel" aria-labelledby="interop-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="interop-title">{t('home-interop-title')}</h2>
+            {t('home-interop-intro') && <p class="section-intro">{t('home-interop-intro')}</p>}
+          </div>
+        </div>
+        <div class="interop">
+          <div class="interop__node">
+            <h3 class="card-title">{t('interop-sources')}</h3>
+            <p class="card-text">{t('interop-sources-body')}</p>
+          </div>
+          <span class="interop__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+          <div class="interop__layer">
+            <h3 class="interop__layer-title">{t('interop-layer')}</h3>
+            <ul class="interop__modules">{modules.map(module => <li>{module}</li>)}</ul>
+          </div>
+          <span class="interop__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+          <div class="interop__node">
+            <h3 class="card-title">{t('interop-outputs')}</h3>
+            <p class="card-text">{t('interop-outputs-body')}</p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {t('cta-get-in-touch') && (
+      <ContactCTA id="home-contact" title={t('cta-get-in-touch')!} text={t('home-contact-body')} action={contactHref && t('cta-contact-us') ? { href: contactHref, label: t('cta-contact-us')! } : undefined} />
+    )}
+  </div>
+</main>

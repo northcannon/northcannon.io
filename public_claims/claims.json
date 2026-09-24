@@ -2626,7 +2626,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2636,7 +2636,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2646,7 +2646,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2656,7 +2656,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2666,7 +2666,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2676,7 +2676,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2686,7 +2686,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2696,7 +2696,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2706,7 +2706,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2716,7 +2716,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2726,7 +2726,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2736,7 +2736,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2746,7 +2746,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2756,7 +2756,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2766,7 +2766,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2776,7 +2776,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2786,7 +2786,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2796,7 +2796,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2806,7 +2806,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2816,7 +2816,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2826,7 +2826,7 @@
     "category": "other",
     "basis": "docs/CONCEPT_PREVIEW.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -2840,5 +2840,65 @@
     "review_date": "2026-09-15",
     "approval_record": "founder_attestation",
     "status_stage": "frozen"
+  },
+  {
+    "claim_id": "label-features",
+    "statement": "Features",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "label-overview",
+    "statement": "Overview",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "label-about-sections",
+    "statement": "About sections",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-link-company-body",
+    "statement": "Capabilities, what NorthCannon is and is not, and how it fits alongside existing systems.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-link-features-body",
+    "statement": "Illustrative views of Change Intelligence and Evidence, drawn with fictional data.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "about-link-founder-body",
+    "statement": "Why the founder started NorthCannon, and what is being built.",
+    "category": "other",
+    "basis": "docs/design/PUBLIC_SITE_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
   }
 ]
