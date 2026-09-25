@@ -422,5 +422,33 @@ export const approvalEvents = {
       "founder-origin-note",
       "founder-origin-attribution"
     ]
+  },
+  "founder-approval-007": {
+    "sha256": "bd8ead6930fa686ee7da2a8f9e13a7fef3db3419532898d73b82b2f6674637df",
+    "claim_ids": [
+      "feat-letter-event",
+      "feat-letter-received-label",
+      "feat-letter-received",
+      "feat-letter-recommended-label",
+      "feat-letter-recommended",
+      "feat-letter-recorded-label",
+      "feat-letter-recorded",
+      "feat-letter-bitemporal",
+      "feat-letter-proposed",
+      "feat-letter-latest-label",
+      "feat-letter-latest",
+      "feat-letter-revised-label",
+      "feat-letter-revised",
+      "feat-letter-verdict-initial-label",
+      "feat-letter-wl-caption",
+      "feat-letter-wl-row-status",
+      "feat-letter-wl-row-action",
+      "feat-letter-wl-row-closes",
+      "feat-letter-cells-label",
+      "feat-letter-ev-evidence-value",
+      "feat-letter-ev-rule-value",
+      "feat-letter-ev-time-value",
+      "feat-letter-ev-state-value"
+    ]
   }
 };

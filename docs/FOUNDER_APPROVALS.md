@@ -1628,6 +1628,106 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Transcribed by Opus in the founder's Claude Code session on 2026-09-24 from two founder messages, separated by | in founder_words. The first answered the founder approval checklist in the Claude Cloud report for branch feat/about-section-demo-style at 589d920; the second extended the approval to every pending statement shown to the founder in that session (contact intro, demo stage labels, detailed Why now, founder origin quote, note and attribution), with the requested note wording applied before recording. Each statement is recorded exactly as rendered. interop-sources-body is excluded because the checklist marked it DO NOT APPROVE (fallback only); it remains pending."
+  },
+  {
+    "event_id": "founder-approval-007",
+    "timestamp": "2026-09-25T13:51:59.000Z",
+    "founder_words": "claims are approved as well as visuals. Ensure you record my approvals | For PR #11 you may record founder approval 007 in docs/FOUNDER_APPROVALS.md and approval-events.mjs, mark the claims approved, and regenerate tests/fixtures/rendering-parity.json. | Allow it here.",
+    "claims": [
+      {
+        "claim_id": "feat-letter-event",
+        "statement": "Borrower's notice of error recorded"
+      },
+      {
+        "claim_id": "feat-letter-received-label",
+        "statement": "Notice of error received"
+      },
+      {
+        "claim_id": "feat-letter-received",
+        "statement": "SEP 01"
+      },
+      {
+        "claim_id": "feat-letter-recommended-label",
+        "statement": "Mailing date recommended"
+      },
+      {
+        "claim_id": "feat-letter-recommended",
+        "statement": "SEP 10"
+      },
+      {
+        "claim_id": "feat-letter-recorded-label",
+        "statement": "Receipt recorded"
+      },
+      {
+        "claim_id": "feat-letter-recorded",
+        "statement": "SEP 14"
+      },
+      {
+        "claim_id": "feat-letter-bitemporal",
+        "statement": "The receipt was recorded after the recommendation was made. Evaluation uses the date the notice was received, not the date it was recorded."
+      },
+      {
+        "claim_id": "feat-letter-proposed",
+        "statement": "OCT 20"
+      },
+      {
+        "claim_id": "feat-letter-latest-label",
+        "statement": "Latest permitted date"
+      },
+      {
+        "claim_id": "feat-letter-latest",
+        "statement": "OCT 15"
+      },
+      {
+        "claim_id": "feat-letter-revised-label",
+        "statement": "Revised date"
+      },
+      {
+        "claim_id": "feat-letter-revised",
+        "statement": "OCT 09"
+      },
+      {
+        "claim_id": "feat-letter-verdict-initial-label",
+        "statement": "Initial decision"
+      },
+      {
+        "claim_id": "feat-letter-wl-caption",
+        "statement": "Action raised by the initial decision"
+      },
+      {
+        "claim_id": "feat-letter-wl-row-status",
+        "statement": "Closed"
+      },
+      {
+        "claim_id": "feat-letter-wl-row-action",
+        "statement": "Propose a mailing date on or before OCT 15"
+      },
+      {
+        "claim_id": "feat-letter-wl-row-closes",
+        "statement": "A revised date verifies on or before OCT 15"
+      },
+      {
+        "claim_id": "feat-letter-cells-label",
+        "statement": "Support checks for the initial decision"
+      },
+      {
+        "claim_id": "feat-letter-ev-evidence-value",
+        "statement": "Notice of error received SEP 01, recorded SEP 14 (fictional)"
+      },
+      {
+        "claim_id": "feat-letter-ev-rule-value",
+        "statement": "12 U.S.C. § 2605(e)(2) and 12 CFR 1024.35(e)(3)(i)(C): respond in writing within 30 days of receipt, excluding legal public holidays, Saturdays and Sundays"
+      },
+      {
+        "claim_id": "feat-letter-ev-time-value",
+        "statement": "OCT 20 is day 33 after receipt; day 30 is OCT 15. No extension notice is on record."
+      },
+      {
+        "claim_id": "feat-letter-ev-state-value",
+        "statement": "Evaluated against the date received, not the date recorded"
+      }
+    ],
+    "relay": "Transcribed by Claude Code in the founder's session on 2026-09-25 from three founder messages, separated by | in founder_words. The first approved the pending borrower-letter Features copy in PR #11 (branch feat/about-section-demo-style at dd9545a) and its visuals; the second and third authorized recording this event in this session, marking the claims approved and regenerating the rendering-parity fixture. It covers exactly the 23 pending feat-letter-* claims of that PR, each recorded exactly as rendered. interop-sources-body is not part of this event and remains pending."
   }
 ]
 ```

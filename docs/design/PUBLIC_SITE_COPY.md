@@ -213,7 +213,8 @@ These statements were added for the About section, Features page and Demo page. 
 **pending** claim in `public_claims/claims.json`: it renders in review builds and is omitted from
 production until the founder attests it in `docs/FOUNDER_APPROVALS.md`. The Features copy describes
 designed behavior on fictional data only; it contains no penalty or dollar figures, no Gate 1
-language, no confidence score, and no statute or regulation citations. "Harbor National Bank"
+language and no confidence score. Its only statute or regulation citation is the rule in the
+borrower-letter example below, quoted from the official text. "Harbor National Bank"
 always appears with "FICTIONAL DEMO INSTITUTION".
 
 ### About section (`/about/`, subnav and link blurbs)
@@ -280,6 +281,57 @@ always appears with "FICTIONAL DEMO INSTITUTION".
 | `feat-ev-hash-label` | Record hash |
 | `feat-ev-hash` | SHA-256: 0000…0000 (illustrative) |
 | `feat-ev-hash-scope` | The hash identifies this record's fields as shown. It is not a verdict, score or confidence value. |
+
+### Features: borrower-letter example (founder direction 2026-09-25)
+
+Replaces the amended-return-of-service example, which depends on a court recording a filing. The
+fictional case: a borrower's written notice of error is received on Tue SEP 01 but recorded only on
+Mon SEP 14, after a mailing date for the written response was recommended on Thu SEP 10 (a bitemporal
+record: the date received and the date recorded differ). The recommended mailing date, Tue OCT 20, is
+refused because it is day 33 after receipt; a revised date, Fri OCT 09 (day 27), proceeds.
+
+Rule basis, from the official text (retrieved 2026-09-25): 12 U.S.C. § 2605(e)(2), from the Office of the
+Law Revision Counsel's U.S. Code (uscode.house.gov) and Cornell LII (law.cornell.edu/uscode/text/12/2605),
+requires the servicer's written response "not later than 30 days (excluding legal public holidays,
+Saturdays, and Sundays) after the receipt" of a qualified written request; Pub. L. 111-203, § 1463(c)(2)
+substituted "30 days" for "60 days". § 2605(e)(4) allows one extension of not more than 15 days only if
+the borrower is notified before the 30-day period ends, so the example states that no extension notice is
+on record. 12 CFR 1024.35(e)(3)(i)(C) (eCFR, ecfr.gov, current as of 2026-09-23) sets the same 30-day
+period for a notice of error. Days are counted from the day after receipt, excluding Labor Day (SEP 07)
+and Columbus Day (OCT 12), both legal public holidays: day 30 is Thu OCT 15.
+
+The founder attested every claim below in `founder-approval-007` (2026-09-25), together with the visuals;
+both builds render this example. Reused approved claims: `feat-ci-title`,
+`feat-ci-event-label`, `feat-ci-affected`, `feat-ci-date-proposed-label`, `feat-ci-verdict-new-label`,
+`feat-verdict-proceed`, `feat-verdict-refuse`, the workload column labels, `feat-wl-row-id`,
+`feat-wl-row-assigned`, the support-cell and drawer labels, `feat-ev-authority-value`, `feat-ev-hash` and
+`feat-ev-hash-scope`.
+
+| Claim ID | Statement |
+| --- | --- |
+| `feat-letter-event` | Borrower's notice of error recorded |
+| `feat-letter-received-label` | Notice of error received |
+| `feat-letter-received` | SEP 01 |
+| `feat-letter-recommended-label` | Mailing date recommended |
+| `feat-letter-recommended` | SEP 10 |
+| `feat-letter-recorded-label` | Receipt recorded |
+| `feat-letter-recorded` | SEP 14 |
+| `feat-letter-bitemporal` | The receipt was recorded after the recommendation was made. Evaluation uses the date the notice was received, not the date it was recorded. |
+| `feat-letter-proposed` | OCT 20 |
+| `feat-letter-latest-label` | Latest permitted date |
+| `feat-letter-latest` | OCT 15 |
+| `feat-letter-revised-label` | Revised date |
+| `feat-letter-revised` | OCT 09 |
+| `feat-letter-verdict-initial-label` | Initial decision |
+| `feat-letter-wl-caption` | Action raised by the initial decision |
+| `feat-letter-wl-row-status` | Closed |
+| `feat-letter-wl-row-action` | Propose a mailing date on or before OCT 15 |
+| `feat-letter-wl-row-closes` | A revised date verifies on or before OCT 15 |
+| `feat-letter-cells-label` | Support checks for the initial decision |
+| `feat-letter-ev-evidence-value` | Notice of error received SEP 01, recorded SEP 14 (fictional) |
+| `feat-letter-ev-rule-value` | 12 U.S.C. § 2605(e)(2) and 12 CFR 1024.35(e)(3)(i)(C): respond in writing within 30 days of receipt, excluding legal public holidays, Saturdays and Sundays |
+| `feat-letter-ev-time-value` | OCT 20 is day 33 after receipt; day 30 is OCT 15. No extension notice is on record. |
+| `feat-letter-ev-state-value` | Evaluated against the date received, not the date recorded |
 
 ### Company (`/about/company/`): layered interoperability diagram
 
