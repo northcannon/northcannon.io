@@ -247,12 +247,13 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.meter, [role="meter"], progress')).toHaveCount(0);
   });
 
-  test('features: production keeps the attested example until the borrower-letter copy is attested', async ({ page }) => {
+  test('features: production renders the same attested borrower-letter example (founder-approval-007)', async ({ page }) => {
     await page.goto(PRODUCTION + '/about/features/');
-    await expect(page.locator('.readout__value')).toHaveText(['Amended return of service recorded', 'SEP 18', 'SEP 28', 'SEP 24']);
-    await expect(page.locator('.verdict__word')).toHaveText(['Proceed', 'Refuse']);
-    await expect(page.locator('.support-cells')).toHaveAttribute('aria-label', 'Support checks for the re-evaluated decision');
-    await expect(page.locator('main')).not.toContainText(/notice of error|OCT \d|U\.S\.C|CFR|§/i);
+    await expect(page.locator('.readout__value')).toHaveText(["Borrower's notice of error recorded", 'SEP 01', 'SEP 10', 'SEP 14', 'OCT 20', 'OCT 15', 'OCT 09']);
+    await expect(page.locator('.verdict__word')).toHaveText(['Refuse', 'Proceed']);
+    await expect(page.locator('.support-cells')).toHaveAttribute('aria-label', 'Support checks for the initial decision');
+    await expect(page.locator('.drawer dd').nth(2)).toHaveText('12 U.S.C. § 2605(e)(2) and 12 CFR 1024.35(e)(3)(i)(C): respond in writing within 30 days of receipt, excluding legal public holidays, Saturdays and Sundays');
+    await expect(page.locator('main')).not.toContainText(/Amended return of service|SEP 18|SEP 28/i);
   });
 
   test('features workload table stacks on narrow screens without clipping or broken words', async ({ page }, testInfo) => {

@@ -4395,230 +4395,230 @@
     "claim_id": "feat-letter-event",
     "statement": "Borrower's notice of error recorded",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-received-label",
     "statement": "Notice of error received",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-received",
     "statement": "SEP 01",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-recommended-label",
     "statement": "Mailing date recommended",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-recommended",
     "statement": "SEP 10",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-recorded-label",
     "statement": "Receipt recorded",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-recorded",
     "statement": "SEP 14",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-bitemporal",
     "statement": "The receipt was recorded after the recommendation was made. Evaluation uses the date the notice was received, not the date it was recorded.",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-proposed",
     "statement": "OCT 20",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-latest-label",
     "statement": "Latest permitted date",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-latest",
     "statement": "OCT 15",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-revised-label",
     "statement": "Revised date",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-revised",
     "statement": "OCT 09",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-verdict-initial-label",
     "statement": "Initial decision",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-wl-caption",
     "statement": "Action raised by the initial decision",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-wl-row-status",
     "statement": "Closed",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-wl-row-action",
     "statement": "Propose a mailing date on or before OCT 15",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-wl-row-closes",
     "statement": "A revised date verifies on or before OCT 15",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-cells-label",
     "statement": "Support checks for the initial decision",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-ev-evidence-value",
     "statement": "Notice of error received SEP 01, recorded SEP 14 (fictional)",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-ev-rule-value",
     "statement": "12 U.S.C. § 2605(e)(2) and 12 CFR 1024.35(e)(3)(i)(C): respond in writing within 30 days of receipt, excluding legal public holidays, Saturdays and Sundays",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-ev-time-value",
     "statement": "OCT 20 is day 33 after receipt; day 30 is OCT 15. No extension notice is on record.",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "feat-letter-ev-state-value",
     "statement": "Evaluated against the date received, not the date recorded",
     "category": "other",
-    "basis": "docs/design/PUBLIC_SITE_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-25",
+    "approval_record": "founder_attestation"
   }
 ]

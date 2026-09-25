@@ -1,12 +1,12 @@
 {
-  "base": "Site redesign (PR #8) with founder approval 006; founder approved the visuals 2026-09-24; implementation regression baseline, not independent acceptance",
+  "base": "Borrower-letter Features example (PR #11) with founder approval 007; founder approved the visuals 2026-09-25; implementation regression baseline, not independent acceptance",
   "excluded": {
     ".review-dist-wp4/trust/provenance/index.html": "Source-bound digests change with this baseline; independently validated by provenance tests."
   },
   "html": {
     ".review-dist-wp4/404.html": "77eea54a8b007e87e8a049407ad164d6b6295cdb21c9282595df7e859d8ce662",
     ".review-dist-wp4/about/company/index.html": "a24d48ef2217febbf9c4c7022466a71a94a3faf268f05d97ba48d68857c4222c",
-    ".review-dist-wp4/about/features/index.html": "1662a9c63a20c6f3983b87f1571a9db77c9159f1db9ac3bd732ab9efd023c5a3",
+    ".review-dist-wp4/about/features/index.html": "fca11a1cb60bb4a33335b677b6a46587946b985b3ef222902e1a9a0c42d24732",
     ".review-dist-wp4/about/founder/index.html": "a4b3cfe0bbb845ba1f36023b832e50fbacf569d37b2eaf26d043a31254012b1b",
     ".review-dist-wp4/contact/index.html": "cf1240beb101731fed2ba9bde5b527517634bdb335d22cd0dbd59d52e805820b",
     ".review-dist-wp4/demo/index.html": "8bf4aaaf4d653563ff0d86a6aaf28b4b561511632022754662269a9ce1947688",
@@ -23,7 +23,7 @@
     ".review-dist-wp4/vision/index.html": "8f8a185636a892f7fa9ea3ead68004b665ecbb0b5fffd1a5306268ef321dc8c4",
     "dist/404.html": "4f63905ee15b0eab814d830e1fb3cbfe512b9c8e14066610bf9b0c9af76e5a77",
     "dist/about/company/index.html": "44de0fbd0fbc99dc1943a693742a14322f816ffd0d7e2271a86731151e28a90a",
-    "dist/about/features/index.html": "81f0ee7f3229dbda3b930b2c9be5642ba2b2cc42183dc8dcb70cfb7baa52c273",
+    "dist/about/features/index.html": "4b67a91612beb9881c29297e1ae1025252f2a7c22ed7d324255ab8a3698fb049",
     "dist/about/founder/index.html": "14b2c97b1c3ddab5e19e6410db42fa275c1ed3e950dfbcf394b24404c7ee42b2",
     "dist/contact/index.html": "99e80770f2956a4ebae3ea95474a2e6e0fce782c49aca5e83be87c90471a5b31",
     "dist/demo/index.html": "814dab4f252e4addb9f8b07c5d15122c515b74a7f20afc218eac6b44f38a3ef5",

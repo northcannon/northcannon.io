@@ -122,7 +122,7 @@ test('no two active claims share a statement, except one founder-attested pair a
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 392);
+  assert.equal(attested.length, 415);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));

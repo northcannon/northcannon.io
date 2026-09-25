@@ -300,8 +300,8 @@ on record. 12 CFR 1024.35(e)(3)(i)(C) (eCFR, ecfr.gov, current as of 2026-09-23)
 period for a notice of error. Days are counted from the day after receipt, excluding Labor Day (SEP 07)
 and Columbus Day (OCT 12), both legal public holidays: day 30 is Thu OCT 15.
 
-Production keeps the attested amended-return-of-service example until every claim below is attested; the
-two Features modules switch stories together. Reused approved claims: `feat-ci-title`,
+The founder attested every claim below in `founder-approval-007` (2026-09-25), together with the visuals;
+both builds render this example. Reused approved claims: `feat-ci-title`,
 `feat-ci-event-label`, `feat-ci-affected`, `feat-ci-date-proposed-label`, `feat-ci-verdict-new-label`,
 `feat-verdict-proceed`, `feat-verdict-refuse`, the workload column labels, `feat-wl-row-id`,
 `feat-wl-row-assigned`, the support-cell and drawer labels, `feat-ev-authority-value`, `feat-ev-hash` and
