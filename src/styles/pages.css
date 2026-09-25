@@ -285,15 +285,15 @@
      blast-radius curve crosses the crop line (y = 234 of 760, x = 348 of 1200), so the two join. */
   @media (max-width: 640px) {
     .ci-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
-    .ci-label { position: relative; top: auto; left: auto; width: auto; transform: none; font-size: 0.75rem; }
-    .ci-label--change, .ci-label--state { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border: 2px solid; border-radius: 10px; background: var(--color-card); }
-    .ci-label--change { order: 1; margin-bottom: 1.75rem; border-color: var(--color-pending); }
-    .ci-label--change::before { content: ""; flex: none; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: var(--color-pending); }
+    .ci-label { position: relative; top: auto; left: auto; width: auto; transform: none; font-size: 0.6875rem; }
+    .ci-label--change, .ci-label--state { display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.875rem; border: 2px solid; border-radius: 8px; background: var(--color-card); }
+    .ci-label--change { order: 1; margin-bottom: 1.25rem; border-color: var(--color-pending); }
+    .ci-label--change::before { content: ""; flex: none; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-pending); }
     /* The change arrow runs from the amber box down into the state box. */
-    .ci-label--change::after { content: ""; position: absolute; top: calc(100% + 2px); left: 1.125rem; width: 14px; height: calc(1.75rem - 2px); background: var(--color-pending); clip-path: polygon(40% 0, 60% 0, 60% 62%, 100% 62%, 50% 100%, 0 62%, 40% 62%); transform-origin: top; }
-    .ci-label--state { order: 2; border-color: var(--color-supported); box-shadow: 0 0 0 4px rgb(94 196 139 / 0.18); }
+    .ci-label--change::after { content: ""; position: absolute; top: calc(100% + 2px); left: 0.9375rem; width: 12px; height: calc(1.25rem - 2px); background: var(--color-pending); clip-path: polygon(40% 0, 60% 0, 60% 62%, 100% 62%, 50% 100%, 0 62%, 40% 62%); transform-origin: top; }
+    .ci-label--state { order: 2; border-color: var(--color-supported); box-shadow: 0 0 0 3px rgb(94 196 139 / 0.18); }
     /* Database glyph drawn in CSS: a cylinder with two rims. */
-    .ci-label--state::before { content: ""; flex: none; width: 1rem; height: 1.25rem; border: 2px solid var(--color-supported); border-radius: 50% / 22%; box-shadow: inset 0 -0.45rem 0 -0.3rem var(--color-supported); }
+    .ci-label--state::before { content: ""; flex: none; width: 0.75rem; height: 0.9375rem; border: 2px solid var(--color-supported); border-radius: 50% / 22%; box-shadow: inset 0 -0.35rem 0 -0.24rem var(--color-supported); }
     .ci-label--blast { order: 3; width: fit-content; max-width: calc(71% - 0.625rem); margin-left: calc(29% + 0.625rem); padding-block: 0.625rem; white-space: normal; font-size: 0.6875rem; letter-spacing: 0.04em; }
     /* Connector from the state box to the SVG's blast-radius curve; it sits left of the text, inside the
        widened clip area so typing never hides it. */
@@ -605,7 +605,7 @@
 @keyframes ci-caret-blink { 50% { opacity: 0; } }
 @keyframes ci-box-change { 0% { border-color: #716786; } 4%, 90% { border-color: #f59e0b; } 100% { border-color: #716786; } }
 @keyframes ci-grow-in { 0%, 8% { transform: scaleY(0); } 18%, 90% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
-@keyframes ci-box-state { 0%, 18% { border-color: #716786; box-shadow: 0 0 0 4px transparent; } 22% { border-color: #5ec48b; box-shadow: 0 0 0 6px rgb(94 196 139 / 0.35); } 26%, 90% { border-color: #5ec48b; box-shadow: 0 0 0 4px rgb(94 196 139 / 0.18); } 100% { border-color: #716786; box-shadow: 0 0 0 4px transparent; } }
+@keyframes ci-box-state { 0%, 18% { border-color: #716786; box-shadow: 0 0 0 3px transparent; } 22% { border-color: #5ec48b; box-shadow: 0 0 0 5px rgb(94 196 139 / 0.35); } 26%, 90% { border-color: #5ec48b; box-shadow: 0 0 0 3px rgb(94 196 139 / 0.18); } 100% { border-color: #716786; box-shadow: 0 0 0 3px transparent; } }
 @keyframes ci-grow-calc { 0%, 26% { transform: scaleY(0); } 30%, 90% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
 @media (forced-colors: active) {
   .ci-plate, .ci-edge, .ci-pulse, .ci-ring, .ci-change, .ci-change-ring, .ci-state, .ci-state-glow, .ci-in, .ci-calc, .ci-db ellipse, .ci-db path { stroke: CanvasText; }
