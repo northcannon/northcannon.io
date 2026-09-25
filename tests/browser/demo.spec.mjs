@@ -52,9 +52,66 @@ test.describe('demo page (review build)', () => {
     expect(animated.length).toBe(26);
     for (const a of animated) expect(a).toMatchObject({ duration: '10s', count: 'infinite' });
     // Unaffected plates and the steady beacon never animate.
-    for (const selector of ['.ci-plate--still', '.ci-beacon--steady', '.ci-edge', '.ci-bar', '.ci-label']) {
+    for (const selector of ['.ci-plate--still', '.ci-beacon--steady', '.ci-edge', '.ci-bar']) {
       for (const name of await page.locator(selector).evaluateAll(els => els.map(el => getComputedStyle(el).animationName))) expect(name).toBe('none');
     }
+  });
+
+  test('"Calculating blast radius" types out as the red lines propagate and restarts each loop', async ({ page }, testInfo) => {
+    await page.goto(REVIEW + '/demo/');
+    const blast = page.locator('.ci-label--blast');
+    const text = (await blast.textContent()).trim();
+    // One step per character: the CSS steps(24) must match the governed label.
+    expect(text.length).toBe(24);
+    const style = await blast.evaluate(el => { const s = getComputedStyle(el); return { name: s.animationName, duration: s.animationDuration, timing: s.animationTimingFunction, count: s.animationIterationCount }; });
+    expect(style).toMatchObject({ duration: '10s', timing: 'steps(24)', count: 'infinite' });
+    const seek = ms => page.evaluate(v => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = v; } }, ms);
+    // Fraction of the label shown by its clip-path; inset() may compute to one to four values.
+    const revealed = () => blast.evaluate(el => { const inset = getComputedStyle(el).clipPath.match(/inset\(([^)]*)\)/); if (!inset) return 1; const values = inset[1].trim().split(/\s+/); const right = values[1] ?? values[0]; return right.endsWith('%') ? 1 - parseFloat(right) / 100 : 1 - parseFloat(right) / el.getBoundingClientRect().width; });
+    // Hidden while the change and state stages run, typing while red propagates, complete as the last red line lands.
+    await seek(1000); expect(await revealed()).toBe(0);
+    await seek(2500); expect(await revealed()).toBe(0);
+    await seek(5000); const mid = await revealed(); expect(mid).toBeGreaterThan(0.3); expect(mid).toBeLessThan(0.7);
+    await seek(7400); expect(await revealed()).toBe(1);
+    await seek(8500); expect(await revealed()).toBe(1);
+    // The next loop starts empty again.
+    await seek(10000 + 1000); expect(await revealed()).toBe(0);
+    // Wide screens keep the change and state labels still (the SVG boxes animate); narrow screens animate the boxes themselves.
+    const narrow = (testInfo.project.use.viewport?.width ?? 0) <= 640;
+    for (const [selector, name] of [['.ci-label--change', 'ci-box-change'], ['.ci-label--state', 'ci-box-state']]) expect(await page.locator(selector).evaluate(el => getComputedStyle(el).animationName), selector).toBe(narrow ? name : 'none');
+  });
+
+  test('narrow screens: the change and state labels are boxes that contain their text; the blast connector meets the curve', async ({ page }, testInfo) => {
+    test.skip((testInfo.project.use.viewport?.width ?? 0) > 640, 'narrow layout only');
+    await page.goto(REVIEW + '/demo/');
+    for (const selector of ['.ci-label--change', '.ci-label--state']) {
+      const box = page.locator(selector);
+      await expect(box).toBeVisible();
+      const m = await box.evaluate(el => { const s = getComputedStyle(el); const r = el.getBoundingClientRect(); const range = document.createRange(); range.selectNodeContents(el); const t = range.getBoundingClientRect(); return { width: s.borderTopWidth, fits: el.scrollWidth <= el.clientWidth + 1, inside: t.left >= r.left && t.right <= r.right && t.top >= r.top && t.bottom <= r.bottom }; });
+      expect(m.width, selector).toBe('2px');
+      expect(m.fits, selector).toBe(true);
+      expect(m.inside, selector).toBe(true);
+    }
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    expect(await page.locator('.ci-label--change').evaluate(el => getComputedStyle(el).borderTopColor)).toBe('rgb(245, 158, 11)');
+    expect(await page.locator('.ci-label--state').evaluate(el => getComputedStyle(el).borderTopColor)).toBe('rgb(94, 196, 139)');
+    // Order: change box, state box, blast label, then the cropped graph.
+    const layout = await page.evaluate(() => {
+      const r = s => document.querySelector(s).getBoundingClientRect();
+      const svg = r('.ci-svg');
+      // The SVG is cropped to the graph: its visible top is 234 of 760 units down its box.
+      return { change: r('.ci-label--change').top, state: r('.ci-label--state').top, blast: r('.ci-label--blast'), graph: svg.top + svg.height * 234 / 760 };
+    });
+    expect(layout.change).toBeLessThan(layout.state);
+    expect(layout.state).toBeLessThan(layout.blast.top);
+    expect(Math.abs(layout.graph - layout.blast.bottom)).toBeLessThan(2);
+    // The dashed connector sits at 29% of the graph width, where the SVG blast-radius curve crosses the crop line.
+    const join = await page.evaluate(() => { const svg = document.querySelector('.ci-svg').getBoundingClientRect(); const blast = document.querySelector('.ci-label--blast'); const before = getComputedStyle(blast, '::before'); const left = blast.getBoundingClientRect().left + parseFloat(before.left) + 1; return { ratio: (left - svg.left) / svg.width, state: document.querySelector('.ci-label--state').getBoundingClientRect().bottom, top: blast.getBoundingClientRect().top }; });
+    expect(join.ratio).toBeGreaterThan(0.28); expect(join.ratio).toBeLessThan(0.30);
+    expect(Math.abs(join.top - join.state)).toBeLessThan(1);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    // The step list stays available to assistive technology but is not shown twice.
+    await expect(page.locator('.ci-steps')).toHaveCSS('position', 'absolute');
   });
 
   test('reduced motion removes all animation and shows the final state', async ({ browser }) => {
