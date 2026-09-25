@@ -211,9 +211,14 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.disclosure-line--inline')).toHaveCount(3);
     await expect(page.locator('main .module > .module__head')).toHaveText(['Mock Change Intelligence', 'Mock downstream lineage', 'Mock Evidence', 'Decision provenance']);
     await expect(page.locator('.feature-summary').first()).toHaveText('1 of 4 prior decisions affected · 3 unaffected — not re-run');
-    await expect(page.locator('.readout__value')).toHaveText(['Amended return of service recorded', 'SEP 18', 'SEP 28', 'SEP 24']);
-    await expect(page.locator('.verdict__word')).toHaveText(['Proceed', 'Refuse']);
-    await expect(page.locator('table.workload caption')).toHaveText('Open action for the affected decision');
+    // Bitemporal: the notice was received SEP 01 but recorded SEP 14, after the SEP 10 recommendation.
+    await expect(page.locator('.readout__value')).toHaveText(["Borrower's notice of error recorded", 'SEP 01', 'SEP 10', 'SEP 14', 'OCT 20', 'OCT 15', 'OCT 09']);
+    await expect(page.locator('.feature-summary').nth(1)).toHaveText('The receipt was recorded after the recommendation was made. Evaluation uses the date the notice was received, not the date it was recorded.');
+    // The initial decision refuses the late mailing date; the re-evaluation of the revised date proceeds.
+    await expect(page.locator('.verdict__word')).toHaveText(['Refuse', 'Proceed']);
+    await expect(page.locator('.verdict-row .verdict--unsupported')).toHaveText('Refuse');
+    await expect(page.locator('.verdict-row .verdict--supported')).toHaveText('Proceed');
+    await expect(page.locator('table.workload caption')).toHaveText('Action raised by the initial decision');
     await expect(page.locator('table.workload thead th')).toHaveText(['Status', 'ID', 'Action', 'Assigned to', 'Source', 'Closes when']);
     // The fictional institution is never shown without its label.
     await expect(page.locator('.feature-institution')).toHaveText('Harbor National Bank · FICTIONAL DEMO INSTITUTION');
@@ -230,12 +235,24 @@ test.describe('approved design acceptance (review build)', () => {
     // The story fails on timing only: Time is unsupported; Evidence, Rule, Authority and State are supported.
     await expect(page.locator('.support-cell--unsupported .support-cell__label')).toHaveText(['Time']);
     await expect(page.locator('.support-cell--supported .support-cell__label')).toHaveText(['Evidence', 'Rule', 'Authority', 'State']);
-    await expect(page.locator('.readout__label')).toHaveText(['Change event', 'Earliest permitted date (before the change)', 'Earliest permitted date (after the change)', 'Proposed date', 'Prior decision', 'Re-evaluated decision']);
-    for (const cell of ['ACT-0003', 'Propose a date on or after SEP 28', 'Proposing agent (fictional)', 'Re-evaluated decision', 'A revised date verifies on or after SEP 28']) await expect(page.locator('table.workload tbody tr')).toContainText(cell);
-    expect(await page.locator('main').innerText()).not.toMatch(/deadline/i);
+    await expect(page.locator('.readout__label')).toHaveText(['Change event', 'Notice of error received', 'Mailing date recommended', 'Receipt recorded', 'Proposed date', 'Latest permitted date', 'Revised date', 'Initial decision', 'Re-evaluated decision']);
+    await expect(page.locator('.support-cells')).toHaveAttribute('aria-label', 'Support checks for the initial decision');
+    for (const cell of ['Closed', 'ACT-0003', 'Propose a mailing date on or before OCT 15', 'Proposing agent (fictional)', 'Initial decision', 'A revised date verifies on or before OCT 15']) await expect(page.locator('table.workload tbody tr')).toContainText(cell);
+    expect(await page.locator('main').innerText()).not.toMatch(/deadline|Amended return of service|SEP 18|SEP 28/i);
     await expect(page.locator('.drawer dt')).toHaveText(['Decision', 'Evidence', 'Rule', 'Time', 'Authority', 'State', 'Record hash']);
-    await expect(page.locator('main')).not.toContainText(/confidence meter|\$\d|penalt|Gate 1|U\.S\.C|C\.F\.R|§/i);
+    await expect(page.locator('.drawer dd')).toHaveText(['Refuse', 'Notice of error received SEP 01, recorded SEP 14 (fictional)', '12 U.S.C. § 2605(e)(2) and 12 CFR 1024.35(e)(3)(i)(C): respond in writing within 30 days of receipt, excluding legal public holidays, Saturdays and Sundays', 'OCT 20 is day 33 after receipt; day 30 is OCT 15. No extension notice is on record.', 'Agent may propose scheduling (fictional delegation)', 'Evaluated against the date received, not the date recorded', 'SHA-256: 0000…0000 (illustrative)']);
+    // The rule row is the page's only statute or regulation citation.
+    expect(await page.locator('main').innerText().then(text => text.match(/U\.S\.C|CFR|§/g))).toHaveLength(3);
+    await expect(page.locator('main')).not.toContainText(/confidence meter|\$\d|penalt|Gate 1|C\.F\.R/i);
     await expect(page.locator('.meter, [role="meter"], progress')).toHaveCount(0);
+  });
+
+  test('features: production keeps the attested example until the borrower-letter copy is attested', async ({ page }) => {
+    await page.goto(PRODUCTION + '/about/features/');
+    await expect(page.locator('.readout__value')).toHaveText(['Amended return of service recorded', 'SEP 18', 'SEP 28', 'SEP 24']);
+    await expect(page.locator('.verdict__word')).toHaveText(['Proceed', 'Refuse']);
+    await expect(page.locator('.support-cells')).toHaveAttribute('aria-label', 'Support checks for the re-evaluated decision');
+    await expect(page.locator('main')).not.toContainText(/notice of error|OCT \d|U\.S\.C|CFR|§/i);
   });
 
   test('features workload table stacks on narrow screens without clipping or broken words', async ({ page }, testInfo) => {

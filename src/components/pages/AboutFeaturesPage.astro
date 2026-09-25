@@ -20,6 +20,12 @@ const disclosure = t('feat-disclosure');
 const ci = need('feat-ci-title', 'feat-ci-event-label', 'feat-ci-event', 'feat-ci-affected', 'feat-ci-date-prior-label', 'feat-ci-date-prior', 'feat-ci-date-new-label', 'feat-ci-date-new', 'feat-ci-date-proposed-label', 'feat-ci-date-proposed', 'feat-ci-verdict-prior-label', 'feat-ci-verdict-new-label', 'feat-verdict-proceed', 'feat-verdict-refuse', 'feat-wl-caption', 'label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes', 'feat-wl-row-status', 'feat-wl-row-id', 'feat-wl-row-action', 'feat-wl-row-assigned', 'feat-wl-row-closes');
 const lineage = need('feat-lineage-title', 'feat-lineage-institution', 'feat-lineage-summary', 'feat-lineage-col-source', 'feat-lineage-col-derived', 'feat-lineage-col-decision', 'feat-lineage-alt');
 const evidence = need('feat-ev-title', 'feat-ev-drawer-title', 'feat-decision-label', 'feat-verdict-refuse', 'label-evidence', 'feat-cell-rule', 'feat-cell-time', 'feat-cell-authority', 'feat-cell-state', 'feat-cells-label', 'feat-cell-supported', 'feat-cell-unsupported', 'feat-ev-evidence-value', 'feat-ev-rule-value', 'feat-ev-time-value', 'feat-ev-authority-value', 'feat-ev-state-value', 'feat-ev-hash-label', 'feat-ev-hash');
+// Borrower-letter story (pending founder approval): a bitemporal record refuses a mailing date, then a revised date proceeds.
+// Until every one of its claims is attested, production keeps the attested story above.
+const letterCi = need('feat-ci-title', 'feat-ci-event-label', 'feat-letter-event', 'feat-ci-affected', 'feat-letter-received-label', 'feat-letter-received', 'feat-letter-recommended-label', 'feat-letter-recommended', 'feat-letter-recorded-label', 'feat-letter-recorded', 'feat-letter-bitemporal', 'feat-ci-date-proposed-label', 'feat-letter-proposed', 'feat-letter-latest-label', 'feat-letter-latest', 'feat-letter-revised-label', 'feat-letter-revised', 'feat-letter-verdict-initial-label', 'feat-ci-verdict-new-label', 'feat-verdict-proceed', 'feat-verdict-refuse', 'feat-letter-wl-caption', 'label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes', 'feat-letter-wl-row-status', 'feat-wl-row-id', 'feat-letter-wl-row-action', 'feat-wl-row-assigned', 'feat-letter-wl-row-closes');
+const letterEvidence = need('feat-ev-title', 'feat-ev-drawer-title', 'feat-decision-label', 'feat-verdict-refuse', 'label-evidence', 'feat-cell-rule', 'feat-cell-time', 'feat-cell-authority', 'feat-cell-state', 'feat-letter-cells-label', 'feat-cell-supported', 'feat-cell-unsupported', 'feat-letter-ev-evidence-value', 'feat-letter-ev-rule-value', 'feat-letter-ev-time-value', 'feat-ev-authority-value', 'feat-letter-ev-state-value', 'feat-ev-hash-label', 'feat-ev-hash');
+// Both modules switch stories together, so the page never mixes the two.
+const letter = letterCi && letterEvidence;
 const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: supported ? 'supported' as const : 'unsupported' as const, stateLabel: t(supported ? 'feat-cell-supported' : 'feat-cell-unsupported')! });
 ---
 <main id="main" tabindex="-1" class="page-main">
@@ -32,7 +38,43 @@ const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: suppor
     </section>
     {ready && <p class="disclosure-line"><Icon name="info" />{disclosure}</p>}
 
-    {ready && ci && (
+    {ready && letter && (
+      <Module id="feat-ci" title={t('feat-ci-title')!}>
+        <div class="feature-stack">
+          <div class="event-strip">
+            <Readout label={t('feat-ci-event-label')!} value={t('feat-letter-event')!} />
+          </div>
+          <p class="feature-summary">{t('feat-ci-affected')}</p>
+          <div class="readout-row">
+            <Readout label={t('feat-letter-received-label')!} value={t('feat-letter-received')!} />
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <Readout label={t('feat-letter-recommended-label')!} value={t('feat-letter-recommended')!} />
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <Readout label={t('feat-letter-recorded-label')!} value={t('feat-letter-recorded')!} />
+          </div>
+          <p class="feature-summary">{t('feat-letter-bitemporal')}</p>
+          <div class="readout-row">
+            <Readout label={t('feat-ci-date-proposed-label')!} value={t('feat-letter-proposed')!} />
+            <Readout label={t('feat-letter-latest-label')!} value={t('feat-letter-latest')!} />
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <Readout label={t('feat-letter-revised-label')!} value={t('feat-letter-revised')!} />
+          </div>
+          <div class="verdict-row">
+            <div class="verdict-row__item"><p class="readout__label">{t('feat-letter-verdict-initial-label')}</p><Verdict tone="unsupported">{t('feat-verdict-refuse')}</Verdict></div>
+            <span class="readout-row__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+            <div class="verdict-row__item"><p class="readout__label">{t('feat-ci-verdict-new-label')}</p><Verdict tone="supported">{t('feat-verdict-proceed')}</Verdict></div>
+          </div>
+          <WorkloadTable
+            caption={t('feat-letter-wl-caption')!}
+            columns={['label-status', 'feat-wl-id', 'feat-wl-action', 'feat-wl-assigned', 'feat-wl-source', 'feat-wl-closes'].map(id => t(id)!)}
+            rows={[['feat-letter-wl-row-status', 'feat-wl-row-id', 'feat-letter-wl-row-action', 'feat-wl-row-assigned', 'feat-letter-verdict-initial-label', 'feat-letter-wl-row-closes'].map(id => t(id)!)]}
+          />
+          <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
+        </div>
+      </Module>
+    )}
+
+    {ready && !letter && ci && (
       <Module id="feat-ci" title={t('feat-ci-title')!}>
         <div class="feature-stack">
           <div class="event-strip">
@@ -71,7 +113,30 @@ const cell = (id: string, supported: boolean) => ({ label: t(id)!, state: suppor
       </Module>
     )}
 
-    {ready && evidence && (
+    {ready && letter && (
+      <Module id="feat-ev" title={t('feat-ev-title')!}>
+        <div class="feature-stack">
+          <SupportCells label={t('feat-letter-cells-label')!} cells={[cell('label-evidence', true), cell('feat-cell-rule', true), cell('feat-cell-time', false), cell('feat-cell-authority', true), cell('feat-cell-state', true)]} />
+          <EvidenceDrawer
+            id="feat-ev-drawer"
+            title={t('feat-ev-drawer-title')!}
+            rows={[
+              { label: t('feat-decision-label')!, value: t('feat-verdict-refuse')! },
+              { label: t('label-evidence')!, value: t('feat-letter-ev-evidence-value')! },
+              { label: t('feat-cell-rule')!, value: t('feat-letter-ev-rule-value')! },
+              { label: t('feat-cell-time')!, value: t('feat-letter-ev-time-value')! },
+              { label: t('feat-cell-authority')!, value: t('feat-ev-authority-value')! },
+              { label: t('feat-cell-state')!, value: t('feat-letter-ev-state-value')! },
+              { label: t('feat-ev-hash-label')!, value: t('feat-ev-hash')!, mono: true },
+            ]}
+            note={t('feat-ev-hash-scope')}
+          />
+          <p class="disclosure-line disclosure-line--inline">{disclosure}</p>
+        </div>
+      </Module>
+    )}
+
+    {ready && !letter && evidence && (
       <Module id="feat-ev" title={t('feat-ev-title')!}>
         <div class="feature-stack">
           <SupportCells label={t('feat-cells-label')!} cells={[cell('label-evidence', true), cell('feat-cell-rule', true), cell('feat-cell-time', false), cell('feat-cell-authority', true), cell('feat-cell-state', true)]} />
