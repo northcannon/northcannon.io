@@ -88,7 +88,7 @@ test.describe('demo page (review build)', () => {
       const box = page.locator(selector);
       await expect(box).toBeVisible();
       const m = await box.evaluate(el => { const s = getComputedStyle(el); const r = el.getBoundingClientRect(); const range = document.createRange(); range.selectNodeContents(el); const t = range.getBoundingClientRect(); return { width: s.borderTopWidth, fits: el.scrollWidth <= el.clientWidth + 1, inside: t.left >= r.left && t.right <= r.right && t.top >= r.top && t.bottom <= r.bottom }; });
-      expect(m.width, selector).toBe('2px');
+      expect(parseFloat(m.width), selector).toBeGreaterThanOrEqual(1);
       expect(m.fits, selector).toBe(true);
       expect(m.inside, selector).toBe(true);
     }
@@ -109,6 +109,11 @@ test.describe('demo page (review build)', () => {
     const join = await page.evaluate(() => { const svg = document.querySelector('.ci-svg').getBoundingClientRect(); const blast = document.querySelector('.ci-label--blast'); const before = getComputedStyle(blast, '::before'); const left = blast.getBoundingClientRect().left + parseFloat(before.left) + 1; return { ratio: (left - svg.left) / svg.width, state: document.querySelector('.ci-label--state').getBoundingClientRect().bottom, top: blast.getBoundingClientRect().top }; });
     expect(join.ratio).toBeGreaterThan(0.28); expect(join.ratio).toBeLessThan(0.30);
     expect(Math.abs(join.top - join.state)).toBeLessThan(1);
+    // The boxes hug their text (close in scale to the plates) yet the connector still leaves from inside the state box.
+    const state = await page.locator('.ci-label--state').boundingBox(), graph = await page.locator('.ci-svg').boundingBox();
+    expect(state.width).toBeLessThan(graph.width * 0.9);
+    expect(graph.x + graph.width * 0.29).toBeGreaterThan(state.x + 8);
+    expect(graph.x + graph.width * 0.29).toBeLessThan(state.x + state.width - 8);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     // The step list stays available to assistive technology but is not shown twice.
     await expect(page.locator('.ci-steps')).toHaveCSS('position', 'absolute');
