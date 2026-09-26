@@ -194,15 +194,18 @@ test.describe('demo page (review build)', () => {
   });
 });
 
-test('production keeps the coming-soon page, with no video or media files, until the demo video copy is attested', async ({ page }) => {
+test('production shows the attested demo video (founder-approval-008) with its captions, poster, and transcript', async ({ page }) => {
   await page.goto(PRODUCTION + '/demo/');
-  await expect(page.locator('video')).toHaveCount(0);
-  for (const url of ['/demo/northcannon-demo.mp4', '/demo/northcannon-demo.en.vtt', '/demo/northcannon-demo-poster.webp']) expect((await page.request.get(PRODUCTION + url)).status()).toBe(404);
+  await expect(page).toHaveTitle(/Product demonstration/);
+  await expect(page.locator('video[controls]')).toHaveCount(1);
+  await expect(page.locator('#demo-video-disclosure')).toHaveText('Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration');
+  await expect(page.locator('details.demo-transcript p')).toHaveCount(14);
+  for (const url of ['/demo/northcannon-demo.mp4', '/demo/northcannon-demo.en.vtt', '/demo/northcannon-demo-poster.webp']) expect((await page.request.get(PRODUCTION + url)).status()).toBe(200);
 });
 
 test('production renders the attested demo copy and labels the graphic', async ({ page }) => {
   await page.goto(PRODUCTION + '/demo/');
-  await expect(page.locator('h1')).toHaveText('Demo — Coming Soon');
+  await expect(page.locator('h1')).toHaveText('Product demonstration');
   await expect(page.locator('.site-header')).toBeVisible();
   const svg = page.locator('svg.ci-svg');
   await expect(svg).toHaveAttribute('role', 'img');

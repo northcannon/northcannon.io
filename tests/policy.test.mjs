@@ -4,7 +4,7 @@ import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoTranscriptClaimIds } from '../scripts/policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoTranscriptClaimIds, demoMediaErrors } from '../scripts/policy.mjs';
 
 for (const markup of [
   '<script src="/local.js"></script>', '<script>alert(1)</script>',
@@ -173,21 +173,18 @@ test('the security policy allows media only from this site', async () => {
 });
 
 test('demo media never reach production output before every demo video claim is attested', async () => {
-  const dir = await mkdtemp(path.join(tmpdir(), 'northcannon-media-policy-'));
-  const run = review => spawnSync(process.execPath, ['scripts/validate.mjs', dir, ...(review ? ['--review'] : [])], { encoding: 'utf8' });
-  try {
-    await writeFile(path.join(dir, '_headers'), await readFile('public/_headers', 'utf8'));
-    await writeFile(path.join(dir, 'index.html'), '<!doctype html><html lang="en"><head><title>Review</title></head><body><h1>Review</h1></body></html>');
-    const { mkdir, copyFile } = await import('node:fs/promises');
-    await mkdir(path.join(dir, 'demo'));
-    for (const url of Object.keys(allowedMedia)) await copyFile('public' + url, path.join(dir, url));
-    assert.equal(run(true).status, 0, 'review builds may carry the pending demo video');
-    assert.match(run(false).stderr, /Demo video media in production without attested claims/);
-    await writeFile(path.join(dir, 'demo/northcannon-demo.en.vtt'), 'WEBVTT\n\n00:00.000 --> 00:01.000\nUnregistered words.\n');
-    assert.match(run(true).stderr, /Demo captions do not match the transcript claims/);
-    await rm(path.join(dir, 'demo/northcannon-demo.en.vtt'));
-    assert.match(run(true).stderr, /Demo video and captions must ship together/);
-  } finally {
-    await rm(dir, { recursive: true });
-  }
+  const media = new Map();
+  for (const url of Object.keys(allowedMedia)) media.set(url.slice(1), await readFile('public' + url));
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  // As attested (founder-approval-008): allowed in production and review.
+  assert.deepEqual(demoMediaErrors(media, claims, { production: true }), []);
+  // Any one claim withdrawn to pending: rejected in production, still allowed in review builds.
+  const pending = claims.map(c => c.claim_id === 'demo-transcript-07' ? { ...c, approval_state: 'pending' } : c);
+  assert.deepEqual(demoMediaErrors(media, pending, { production: true }), ['Demo video media in production without attested claims']);
+  assert.deepEqual(demoMediaErrors(media, pending, { production: false }), []);
+  // Captions that differ from the transcript claims, or a video without captions, are rejected in any build.
+  const altered = new Map(media).set('demo/northcannon-demo.en.vtt', Buffer.from('WEBVTT\n\n00:00.000 --> 00:01.000\nUnregistered words.\n'));
+  assert.deepEqual(demoMediaErrors(altered, claims, { production: false }), ['Demo captions do not match the transcript claims']);
+  const alone = new Map([...media].filter(([name]) => name.endsWith('.mp4')));
+  assert.deepEqual(demoMediaErrors(alone, claims, { production: false }), ['Demo video and captions must ship together']);
 });

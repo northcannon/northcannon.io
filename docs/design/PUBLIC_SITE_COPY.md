@@ -503,9 +503,10 @@ referenced by any route, so they render nowhere; retiring them formally needs a 
 
 ## Demo video copy awaiting founder approval
 
-The `/demo/` page carries the recorded product demonstration (fictional cases, synthetic narration). Every
-statement below is a **pending** claim: the video, its captions and poster, and this copy render in review builds
-only, and production keeps the approved "Demo — Coming Soon" page until the founder attests all of them. The
+The `/demo/` page carries the recorded product demonstration (fictional cases, synthetic narration). The founder
+attested every statement below in `founder-approval-008` (2026-09-26), so both builds render the video, its captions
+and poster, and this copy. If any of them is ever withdrawn, production falls back to "Demo — Coming Soon" and drops
+the media. The
 `demo-transcript-*` claims are the narration word for word, one per spoken paragraph; the build checks that the
 captions file speaks exactly these, in order. "Harbor National Bank" is always spoken with "a fictional demo
 institution"; the supply-chain paragraph states that it is illustrative, designed behavior, not yet implemented.

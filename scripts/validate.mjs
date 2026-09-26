@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoVideoClaimIds, demoTranscriptClaimIds } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, demoMediaErrors } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -51,17 +51,7 @@ async function collect(dir) {
 await collect(root);
 // The demo video ships to production only with every one of its claims founder-attested, and its captions must
 // speak exactly the attested transcript. Review builds may carry it with pending claims.
-if (media.size) {
-  const byId = new Map(claims.map(c => [c.claim_id, c]));
-  const production = !wp4 && !fixture;
-  if (production && !demoVideoClaimIds.every(id => byId.get(id)?.approval_state === 'approved')) errors.push('Demo video media in production without attested claims');
-  const vtt = media.get('demo/northcannon-demo.en.vtt');
-  if (!vtt || !media.has('demo/northcannon-demo.mp4')) errors.push('Demo video and captions must ship together');
-  else {
-    errors.push(...disclosureErrors(vtt.toString('utf8'), 'demo/northcannon-demo.en.vtt'));
-    if (captionText(vtt.toString('utf8')) !== demoTranscriptClaimIds.map(id => byId.get(id)?.statement).join(' ')) errors.push('Demo captions do not match the transcript claims');
-  }
-}
+errors.push(...demoMediaErrors(media, claims, { production: !wp4 && !fixture }));
 readHeaders(files.get('_headers') ?? '');
 // Production carries the reviewed redirects; each must land on a page that exists in this output.
 if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {

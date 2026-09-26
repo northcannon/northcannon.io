@@ -1,7 +1,8 @@
 {
   "base": "Borrower-letter Features example (PR #11) with founder approval 007; founder approved the visuals 2026-09-25; implementation regression baseline, not independent acceptance",
   "bases": {
-    ".review-dist-wp4/demo/index.html": "Demo video page (feat/demo-video): review build only, pending the founder's approval of the new visuals and copy; production dist/demo is unchanged."
+    ".review-dist-wp4/demo/index.html": "Demo video attested in founder-approval-008 (2026-09-26, PR #12): the founder approved the video page and its copy; implementation regression baseline, not independent acceptance.",
+    "dist/demo/index.html": "Demo video attested in founder-approval-008 (2026-09-26, PR #12): the founder approved the video page and its copy; implementation regression baseline, not independent acceptance."
   },
   "excluded": {
     ".review-dist-wp4/trust/provenance/index.html": "Source-bound digests change with this baseline; independently validated by provenance tests."
@@ -29,7 +30,7 @@
     "dist/about/features/index.html": "4b67a91612beb9881c29297e1ae1025252f2a7c22ed7d324255ab8a3698fb049",
     "dist/about/founder/index.html": "14b2c97b1c3ddab5e19e6410db42fa275c1ed3e950dfbcf394b24404c7ee42b2",
     "dist/contact/index.html": "99e80770f2956a4ebae3ea95474a2e6e0fce782c49aca5e83be87c90471a5b31",
-    "dist/demo/index.html": "814dab4f252e4addb9f8b07c5d15122c515b74a7f20afc218eac6b44f38a3ef5",
+    "dist/demo/index.html": "4354026c6dde7283ab0c8b029b6b656c458b3d213ab1f0a08ae7c703ff7927e1",
     "dist/evidence/index.html": "53a2c242f962d65e051d17721036069c2a1b981acefc6cc1114f45e7b82c2f4d",
     "dist/gate-1/index.html": "ff476f7a867d408e1b440146c7866cb307576a56a7ee44a2d731fcfac5f7fbff",
     "dist/index.html": "b3c6a41c102d8d7e68a79f0f633780826ced0f56a1929ee315675589ce9d7228",

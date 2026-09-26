@@ -215,8 +215,9 @@ narration), and a full transcript in a `<details>` element. There is no player s
 The change-propagation illustration stays below it.
 
 - **Claims.** The title, lede, labels, disclosure, and the transcript (one claim per spoken paragraph, word for
-  word) are pending claims (see [Public site copy](PUBLIC_SITE_COPY.md)). Until the founder attests all of them,
-  production keeps the approved "Demo — Coming Soon" page and removes the video, captions, and poster from `dist/`.
+  word) are founder-attested (`founder-approval-008`; see [Public site copy](PUBLIC_SITE_COPY.md)). If any is not
+  attested, production keeps the approved "Demo — Coming Soon" page and removes the video, captions, and poster
+  from `dist/`.
   The founder's direction to publish the demonstration is the documented exception to brief 07's "Do not make demo
   claims"; every spoken statement is a founder-attested claim, not a free-standing one.
 - **Security.** The header policy gains `media-src 'self'`. The markup and output checks allow exactly one video

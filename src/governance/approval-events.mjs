@@ -450,5 +450,30 @@ export const approvalEvents = {
       "feat-letter-ev-time-value",
       "feat-letter-ev-state-value"
     ]
+  },
+  "founder-approval-008": {
+    "sha256": "1835310860ff6b212f6480d6ab5c0db92bd15b0b85bac01de1a967fb32b21098",
+    "claim_ids": [
+      "demo-video-title",
+      "demo-video-lede",
+      "demo-video-label",
+      "demo-video-captions-label",
+      "demo-video-disclosure",
+      "demo-video-transcript-title",
+      "demo-transcript-01",
+      "demo-transcript-02",
+      "demo-transcript-03",
+      "demo-transcript-04",
+      "demo-transcript-05",
+      "demo-transcript-06",
+      "demo-transcript-07",
+      "demo-transcript-08",
+      "demo-transcript-09",
+      "demo-transcript-10",
+      "demo-transcript-11",
+      "demo-transcript-12",
+      "demo-transcript-13",
+      "demo-transcript-14"
+    ]
   }
 };

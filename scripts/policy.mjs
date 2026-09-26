@@ -43,6 +43,19 @@ export const allowedMedia = { '/demo/northcannon-demo.mp4': 'mp4', '/demo/northc
 // The video's page copy and its transcript, one claim per spoken paragraph; the captions must speak exactly these.
 export const demoTranscriptClaimIds = Array.from({ length: 14 }, (_, i) => `demo-transcript-${String(i + 1).padStart(2, '0')}`);
 export const demoVideoClaimIds = ['demo-video-title', 'demo-video-lede', 'demo-video-label', 'demo-video-captions-label', 'demo-video-disclosure', 'demo-video-transcript-title', ...demoTranscriptClaimIds];
+/** Output checks for the demo media: in production only with every demo video claim approved; captions must
+ * speak exactly the transcript claims; video and captions ship together. `media` maps output names to bytes. */
+export function demoMediaErrors(media, claims, { production }) {
+  if (!media.size) return [];
+  const errors = [];
+  const byId = new Map(claims.map(c => [c.claim_id, c]));
+  if (production && !demoVideoClaimIds.every(id => byId.get(id)?.approval_state === 'approved')) errors.push('Demo video media in production without attested claims');
+  const vtt = media.get('demo/northcannon-demo.en.vtt');
+  if (!vtt || !media.has('demo/northcannon-demo.mp4')) return [...errors, 'Demo video and captions must ship together'];
+  errors.push(...disclosureErrors(vtt.toString('utf8'), 'demo/northcannon-demo.en.vtt'));
+  if (captionText(vtt.toString('utf8')) !== demoTranscriptClaimIds.map(id => byId.get(id)?.statement).join(' ')) errors.push('Demo captions do not match the transcript claims');
+  return errors;
+}
 export const MAX_MEDIA_BYTES = 25 * 1024 * 1024; // Cloudflare Pages' per-file limit
 export function inspectMedia(buffer, kind, name) {
   if (buffer.length > MAX_MEDIA_BYTES) return [`${name}: larger than the 25 MiB per-file limit`];
