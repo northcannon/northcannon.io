@@ -133,7 +133,7 @@ test('standalone review build rebuilds current provenance from source only and r
   try {
     // Explicit public build inputs only. Never enumerate or copy local config,
     // credentials, ignored output, or the entire checkout.
-    const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer', 'ChangeIntelligenceGraphic', 'InteropDiagram'].map(name => `src/components/${name}.astro`);
+    const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer', 'InteropDiagram'].map(name => `src/components/${name}.astro`);
     const pages = ['AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',

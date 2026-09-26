@@ -337,7 +337,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('non-About pages keep the Module treatment', async ({ page }) => {
-    for (const path of ['/gate-1/', '/results/', '/evidence/', '/contact/', '/demo/']) {
+    for (const path of ['/gate-1/', '/results/', '/evidence/', '/contact/']) {
       await page.goto(REVIEW + path);
       const module = page.locator('main .module').first();
       expect(await module.evaluate(el => getComputedStyle(el).borderTopColor), path).toBe('rgba(197, 173, 221, 0.72)');
