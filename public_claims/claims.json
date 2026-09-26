@@ -4620,5 +4620,205 @@
     "lifecycle_state": "approved",
     "review_date": "2026-09-25",
     "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-title",
+    "statement": "Product demonstration",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-lede",
+    "statement": "A walkthrough on fictional cases: verifying an FHA mortgage-servicing decision before action, tracing a commercial-lending rule change to the decisions it affects, and an illustrative supply-chain change.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-label",
+    "statement": "NorthCannon product demonstration video, with captions",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-captions-label",
+    "statement": "English",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-disclosure",
+    "statement": "Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-video-transcript-title",
+    "statement": "Transcript",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-01",
+    "statement": "An AI servicing agent wants to take a consequential action: schedule a foreclosure hearing for September twenty-fourth. The model behind it may be confident. NorthCannon does not treat that confidence as evidence. It verifies the decision itself.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-02",
+    "statement": "It checks the evidence, the governing rule, time, authority, and the current case state. Earliest permitted date: September eighteenth. Proposed: the twenty-fourth. Supported. Proceed.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-03",
+    "statement": "Now let's see why this was allowed. Every decision keeps why it was trusted: the evidence, the rule, and the date arithmetic.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-04",
+    "statement": "Starting foreclosure creates an obligation of its own. Foreclosure was initiated September eighth, so a HUD foreclosure-initiation notice is due within thirty calendar days: October eighth.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-05",
+    "statement": "When that notice is missed, NorthCannon shows a concrete claim consequence, interest curtailment. Separately, it shows a regulatory exposure that stays conditional. The two are never treated as the same thing.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-06",
+    "statement": "The same architecture works in a different regulated domain. A commercial-credit application at Harbor National Bank, a fictional demo institution, is in scope for section ten seventy-one small-business reporting.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-07",
+    "statement": "Then the rule changes. Regulation B's small-business threshold drops, from five million dollars to one million. NorthCannon knows which determinations depended on it. One of four applications is affected. Three are unchanged, and are not re-run.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-08",
+    "statement": "And in the behavior we're building, the change reaches further. Five of ten downstream models, metrics, rules, and reports were built on the old rule version. Open one, and it shows exactly which parts are outdated, and which are still current.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-09",
+    "statement": "Re-evaluated: two point four million dollars is above the new threshold. Out of scope, under the selected rule version. That's a classification change, not a judgment about the applicant.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-10",
+    "statement": "It also opens an action: remove this application from the section ten seventy-one reporting stage. It stays in the commercial pipeline.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-11",
+    "statement": "When the pipeline is updated, NorthCannon verifies the result before it closes the action.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-12",
+    "statement": "The original determination is preserved, dated to the rule it was decided under. It was supported on what was known then. It is not rewritten.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-13",
+    "statement": "And it isn't limited to regulated industries. Here the same engine is pointed at a fictional demo company's supply chain. This is illustrative: designed behavior, not yet implemented. One rule change, and three of five dependent assets are affected. The same question every time: which prior decisions depended on what changed?",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "demo-transcript-14",
+    "statement": "Verified the decision before action. Preserved why it was trusted. Detected when its support changed. Re-evaluated only what was affected. Mortgage servicing, commercial lending, and supply chain are proving grounds. The layer sits between machine intelligence and any consequential action. NorthCannon: trust infrastructure for machine intelligence.",
+    "category": "other",
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-09-26",
+    "approval_record": "founder_attestation"
   }
 ]

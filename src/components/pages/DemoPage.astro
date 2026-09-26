@@ -1,18 +1,37 @@
 ---
-// Demo: coming-soon page with an illustrative animation of change propagating through dependent decisions.
+// Demo: the recorded product demonstration once its copy is attested (review builds show it pending); until then
+// the approved coming-soon page. The illustrative change-propagation animation follows in both.
 import Module from '../Module.astro';
 import ChangeIntelligenceGraphic from '../ChangeIntelligenceGraphic.astro';
+import { demoVideoClaimIds, demoTranscriptClaimIds } from '../../../scripts/policy.mjs';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; title: string; [key: string]: unknown }
 const { copy } = Astro.props;
 const { t } = copy;
+const video = copy.all(...demoVideoClaimIds);
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
     <section class="page-hero page-hero--text" aria-labelledby="demo-title">
-      <h1 class="page-title" id="demo-title">{t('demo-coming-soon')}</h1>
-      {t('demo-lede') && <p class="lede">{t('demo-lede')}</p>}
+      <h1 class="page-title" id="demo-title">{video ? t('demo-video-title') : t('demo-coming-soon')}</h1>
+      {video ? <p class="lede">{t('demo-video-lede')}</p> : t('demo-lede') && <p class="lede">{t('demo-lede')}</p>}
     </section>
+    {video && (
+      <figure class="demo-video">
+        <video class="demo-video__player" controls preload="metadata" playsinline width="1920" height="1080"
+          src="/demo/northcannon-demo.mp4" poster="/demo/northcannon-demo-poster.webp"
+          aria-label={t('demo-video-label')} aria-describedby="demo-video-disclosure">
+          <track kind="captions" src="/demo/northcannon-demo.en.vtt" srclang="en" label={t('demo-video-captions-label')} default />
+        </video>
+        <figcaption class="disclosure-line" id="demo-video-disclosure">{t('demo-video-disclosure')}</figcaption>
+      </figure>
+      <details class="demo-transcript">
+        <summary>{t('demo-video-transcript-title')}</summary>
+        <div class="demo-transcript__body">
+          {demoTranscriptClaimIds.map(id => <p>{t(id)}</p>)}
+        </div>
+      </details>
+    )}
     {t('label-change-intelligence') && (
       <Module id="demo-graphic-module" title={t('label-change-intelligence')!}>
         <ChangeIntelligenceGraphic alt={t('demo-graphic-alt')} note={t('demo-graphic-note')} changeLabel={t('demo-change-label')} stateLabel={t('arm-treatment-sub')} blastLabel={t('demo-blast-label')} />

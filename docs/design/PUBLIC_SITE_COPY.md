@@ -500,3 +500,36 @@ The 21 pending `mock-*` claims of the earlier About mock-ups are retired (IDs ke
 referenced by any route, so they render nowhere; retiring them formally needs a founder attestation change.
 
 <!-- redesign-copy:end -->
+
+## Demo video copy awaiting founder approval
+
+The `/demo/` page carries the recorded product demonstration (fictional cases, synthetic narration). The founder
+attested every statement below in `founder-approval-008` (2026-09-26), so both builds render the video, its captions
+and poster, and this copy. If any of them is ever withdrawn, production falls back to "Demo — Coming Soon" and drops
+the media. The
+`demo-transcript-*` claims are the narration word for word, one per spoken paragraph; the build checks that the
+captions file speaks exactly these, in order. "Harbor National Bank" is always spoken with "a fictional demo
+institution"; the supply-chain paragraph states that it is illustrative, designed behavior, not yet implemented.
+
+| Claim ID | Statement |
+| --- | --- |
+| `demo-video-title` | Product demonstration |
+| `demo-video-lede` | A walkthrough on fictional cases: verifying an FHA mortgage-servicing decision before action, tracing a commercial-lending rule change to the decisions it affects, and an illustrative supply-chain change. |
+| `demo-video-label` | NorthCannon product demonstration video, with captions |
+| `demo-video-captions-label` | English |
+| `demo-video-disclosure` | Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration |
+| `demo-video-transcript-title` | Transcript |
+| `demo-transcript-01` | An AI servicing agent wants to take a consequential action: schedule a foreclosure hearing for September twenty-fourth. The model behind it may be confident. NorthCannon does not treat that confidence as evidence. It verifies the decision itself. |
+| `demo-transcript-02` | It checks the evidence, the governing rule, time, authority, and the current case state. Earliest permitted date: September eighteenth. Proposed: the twenty-fourth. Supported. Proceed. |
+| `demo-transcript-03` | Now let's see why this was allowed. Every decision keeps why it was trusted: the evidence, the rule, and the date arithmetic. |
+| `demo-transcript-04` | Starting foreclosure creates an obligation of its own. Foreclosure was initiated September eighth, so a HUD foreclosure-initiation notice is due within thirty calendar days: October eighth. |
+| `demo-transcript-05` | When that notice is missed, NorthCannon shows a concrete claim consequence, interest curtailment. Separately, it shows a regulatory exposure that stays conditional. The two are never treated as the same thing. |
+| `demo-transcript-06` | The same architecture works in a different regulated domain. A commercial-credit application at Harbor National Bank, a fictional demo institution, is in scope for section ten seventy-one small-business reporting. |
+| `demo-transcript-07` | Then the rule changes. Regulation B's small-business threshold drops, from five million dollars to one million. NorthCannon knows which determinations depended on it. One of four applications is affected. Three are unchanged, and are not re-run. |
+| `demo-transcript-08` | And in the behavior we're building, the change reaches further. Five of ten downstream models, metrics, rules, and reports were built on the old rule version. Open one, and it shows exactly which parts are outdated, and which are still current. |
+| `demo-transcript-09` | Re-evaluated: two point four million dollars is above the new threshold. Out of scope, under the selected rule version. That's a classification change, not a judgment about the applicant. |
+| `demo-transcript-10` | It also opens an action: remove this application from the section ten seventy-one reporting stage. It stays in the commercial pipeline. |
+| `demo-transcript-11` | When the pipeline is updated, NorthCannon verifies the result before it closes the action. |
+| `demo-transcript-12` | The original determination is preserved, dated to the rule it was decided under. It was supported on what was known then. It is not rewritten. |
+| `demo-transcript-13` | And it isn't limited to regulated industries. Here the same engine is pointed at a fictional demo company's supply chain. This is illustrative: designed behavior, not yet implemented. One rule change, and three of five dependent assets are affected. The same question every time: which prior decisions depended on what changed? |
+| `demo-transcript-14` | Verified the decision before action. Preserved why it was trusted. Detected when its support changed. Re-evaluated only what was affected. Mortgage servicing, commercial lending, and supply chain are proving grounds. The layer sits between machine intelligence and any consequential action. NorthCannon: trust infrastructure for machine intelligence. |

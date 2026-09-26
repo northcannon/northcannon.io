@@ -15,7 +15,7 @@ test.describe('demo page (review build)', () => {
     await expect(page.locator('.site-header')).toBeVisible();
     await expect(page.locator('.site-footer')).toBeVisible();
     await expect(page.locator('.graphene')).toHaveCount(1);
-    await expect(page.locator('h1')).toHaveText('Demo — Coming Soon');
+    await expect(page.locator('h1')).toHaveText('Product demonstration');
     if (testInfo.project.name !== 'desktop') await page.locator('.mobile-navigation summary').click();
     const nav = testInfo.project.name === 'desktop' ? page.locator('.desktop-navigation') : page.locator('.mobile-navigation .navigation');
     await expect(nav.getByRole('link', { name: 'Demo', exact: true })).toHaveAttribute('aria-current', 'page');
@@ -23,6 +23,33 @@ test.describe('demo page (review build)', () => {
     // Order: ... About, Company, Features, Founder, Demo, Contact.
     const labels = await nav.getByRole('link').allTextContents();
     expect(labels.slice(-2)).toEqual(['Demo', 'Contact']);
+  });
+
+  test('the demo video is user-started, captioned, disclosed, and transcribed', async ({ page }) => {
+    await page.goto(REVIEW + '/demo/');
+    await expect(page).toHaveTitle(/Product demonstration/);
+    const video = page.locator('video');
+    await expect(video).toHaveCount(1);
+    await expect(video).toHaveAttribute('controls', '');
+    for (const attr of ['autoplay', 'loop', 'muted']) expect(await video.getAttribute(attr)).toBeNull();
+    await expect(video).toHaveAttribute('aria-label', 'NorthCannon product demonstration video, with captions');
+    await expect(page.locator('#demo-video-disclosure')).toHaveText('Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration');
+    await expect(page.locator('video track[kind="captions"]')).toHaveAttribute('srclang', 'en');
+    // Playwright's Chromium has no H.264 decoder, so check delivery rather than playback: each file is served with
+    // its media type, and the video answers byte-range requests as the production host does.
+    for (const [url, type] of [['/demo/northcannon-demo.mp4', 'video/mp4'], ['/demo/northcannon-demo.en.vtt', 'text/vtt'], ['/demo/northcannon-demo-poster.webp', 'image/webp']]) {
+      const response = await page.request.get(REVIEW + url);
+      expect(response.status()).toBe(200);
+      expect(response.headers()['content-type']).toContain(type);
+    }
+    const partial = await page.request.get(REVIEW + '/demo/northcannon-demo.mp4', { headers: { range: 'bytes=0-15' } });
+    expect(partial.status()).toBe(206);
+    expect((await partial.body()).toString('latin1', 4, 8)).toBe('ftyp');
+    const transcript = page.locator('details.demo-transcript');
+    await transcript.locator('summary').click();
+    await expect(transcript.locator('p')).toHaveCount(14);
+    await expect(transcript.locator('p').first()).toContainText('An AI servicing agent wants to take a consequential action');
+    expect((await new AxeBuilder({ page }).include('.demo-video').include('.demo-transcript').analyze()).violations).toEqual([]);
   });
 
   test('the graphic is static markup with a resolvable accessible name and no text elements', async ({ page }) => {
@@ -40,8 +67,9 @@ test.describe('demo page (review build)', () => {
     // Stage labels are HTML (never SVG text): the change, the persistent state, the blast radius.
     await expect(page.locator('.ci-label')).toHaveText(['Regulation change is now effective', 'Persistent verified state', 'Calculating blast radius']);
     await expect(page.locator('.ci-steps li')).toHaveText(['Regulation change is now effective', 'Persistent verified state', 'Calculating blast radius']);
-    // The disclosure note itself says "not a live system"; every other string avoids these words.
-    const copy = await page.locator('main').evaluate(el => { const clone = el.cloneNode(true); clone.querySelectorAll('.disclosure-line').forEach(node => node.remove()); return clone.textContent; });
+    // The disclosure note itself says "not a live system"; every other string avoids these words. The video's
+    // transcript is excluded: it is the attested narration ("does not treat that confidence as evidence").
+    const copy = await page.locator('main').evaluate(el => { const clone = el.cloneNode(true); clone.querySelectorAll('.disclosure-line, .demo-transcript').forEach(node => node.remove()); return clone.textContent; });
     expect(copy).not.toMatch(/\blive\b|real-time|production|customer|Gate 1|confidence|benchmark/i);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
   });
@@ -166,9 +194,18 @@ test.describe('demo page (review build)', () => {
   });
 });
 
+test('production shows the attested demo video (founder-approval-008) with its captions, poster, and transcript', async ({ page }) => {
+  await page.goto(PRODUCTION + '/demo/');
+  await expect(page).toHaveTitle(/Product demonstration/);
+  await expect(page.locator('video[controls]')).toHaveCount(1);
+  await expect(page.locator('#demo-video-disclosure')).toHaveText('Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration');
+  await expect(page.locator('details.demo-transcript p')).toHaveCount(14);
+  for (const url of ['/demo/northcannon-demo.mp4', '/demo/northcannon-demo.en.vtt', '/demo/northcannon-demo-poster.webp']) expect((await page.request.get(PRODUCTION + url)).status()).toBe(200);
+});
+
 test('production renders the attested demo copy and labels the graphic', async ({ page }) => {
   await page.goto(PRODUCTION + '/demo/');
-  await expect(page.locator('h1')).toHaveText('Demo — Coming Soon');
+  await expect(page.locator('h1')).toHaveText('Product demonstration');
   await expect(page.locator('.site-header')).toBeVisible();
   const svg = page.locator('svg.ci-svg');
   await expect(svg).toHaveAttribute('role', 'img');

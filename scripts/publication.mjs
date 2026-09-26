@@ -7,6 +7,7 @@ import { loadGovernance } from '../src/governance/registry.mjs';
 import { eligibleClaim } from '../src/governance/schema.mjs';
 import { readRoutes } from '../src/governance/routes.mjs';
 import { publicationIdentity } from './check-publication.mjs';
+import { allowedMedia, allowedImages, demoVideoClaimIds } from './policy.mjs';
 
 export const sourceFiles = ['public_claims/claims.json', 'src/content/collections.json', 'src/content/routes.json', 'docs/FOUNDER_APPROVALS.md', 'package-lock.json'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -28,6 +29,11 @@ export async function finalizeProduction(root) {
   else {
     eligibleClaim(security, 'contact-security');
     if (security.approval_record !== 'founder_attestation' || !(await readFile(path.join(root, '.well-known/security.txt'), 'utf8')).includes(`Contact: mailto:${security.statement}\n`)) throw new Error('Security contact must match its pinned approval');
+  }
+  // The demo video, captions, and poster stay out of production until every demo video claim is attested.
+  const claims = loadGovernance().claims;
+  if (!demoVideoClaimIds.every(id => claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
+    for (const file of [...Object.keys(allowedMedia), ...Object.keys(allowedImages).filter(f => f.startsWith('/demo/'))]) await rm(path.join(root, file), { force: true });
   }
   await writeFile(path.join(root, 'sitemap.xml'), sitemap(readRoutes()));
   await writeFile(path.join(root, 'provenance.json'), JSON.stringify(await provenance(root), null, 2) + '\n');

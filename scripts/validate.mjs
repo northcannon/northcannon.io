@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, demoMediaErrors } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -14,6 +14,7 @@ const fixture = process.argv[3] === '--review';
 
 const root = path.resolve(process.argv[2] ?? 'dist');
 const files = new Map();
+const media = new Map();
 const errors = [];
 async function collect(dir) {
   for (const item of await readdir(dir, { withFileTypes: true })) {
@@ -32,6 +33,13 @@ async function collect(dir) {
         files.set(name, '');
         continue;
       }
+      if ('/' + name in allowedMedia) {
+        const bytes = await readFile(full);
+        errors.push(...inspectMedia(bytes, allowedMedia['/' + name], name));
+        media.set(name, bytes);
+        files.set(name, '');
+        continue;
+      }
       if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers' && name !== '_redirects') {
         errors.push(`${name}: unexpected output type`);
         continue;
@@ -41,6 +49,9 @@ async function collect(dir) {
   }
 }
 await collect(root);
+// The demo video ships to production only with every one of its claims founder-attested, and its captions must
+// speak exactly the attested transcript. Review builds may carry it with pending claims.
+errors.push(...demoMediaErrors(media, claims, { production: !wp4 && !fixture }));
 readHeaders(files.get('_headers') ?? '');
 // Production carries the reviewed redirects; each must land on a page that exists in this output.
 if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {

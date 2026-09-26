@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { lstat, readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { disclosureErrors, isSecretLikeFile, allowedImages, inspectImage } from './policy.mjs';
+import { disclosureErrors, isSecretLikeFile, allowedImages, inspectImage, allowedMedia, inspectMedia } from './policy.mjs';
 
 const textExtensions = new Set(['.md', '.mdx', '.json', '.yaml', '.yml', '.ts', '.mjs', '.astro', '.css', '.svg', '.txt']);
 
@@ -38,6 +38,12 @@ export async function scanTracked(root, read = readFile) {
     }
     if (name.startsWith('public/') && name.slice(6) in allowedImages) {
       errors.push(...inspectImage(await readFile(full), allowedImages[name.slice(6)], name));
+      continue;
+    }
+    if (name.startsWith('public/') && name.slice(6) in allowedMedia) {
+      const bytes = await readFile(full);
+      errors.push(...inspectMedia(bytes, allowedMedia[name.slice(6)], name));
+      if (allowedMedia[name.slice(6)] === 'vtt') errors.push(...disclosureErrors(bytes.toString('utf8'), name));
       continue;
     }
     if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers', '_redirects'].includes(basename) && !name.endsWith('.example')) {

@@ -34,7 +34,8 @@ const copy: Copy = {
   stageIndex: stages[status.stage] ?? 0,
 };
 const company = t('brand-company')!;
-const title = route.path === '/404.html' ? 'Page not found' : (t(route.title_claim_or_label) ?? company);
+// The demo page takes the video's title once that copy renders in this build (review, or production after attestation).
+const title = route.path === '/404.html' ? 'Page not found' : ((route.path === '/demo/' ? t('demo-video-title') : undefined) ?? t(route.title_claim_or_label) ?? company);
 type Item = { claimId: string; href: string; children?: Item[] };
 type Nav = { href: string; label: string; children: Nav[] };
 const link = (item: Item): Nav => ({ href: item.href, label: t(item.claimId)!, children: (item.children ?? []).map(link) });

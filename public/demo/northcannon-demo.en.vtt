@@ -1,0 +1,192 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.850
+An AI servicing agent wants to take a
+consequential action: schedule a foreclosure
+
+00:00:04.850 --> 00:00:07.200
+hearing for September twenty-fourth.
+
+00:00:07.200 --> 00:00:09.533
+The model behind it may be confident.
+
+00:00:09.533 --> 00:00:12.747
+NorthCannon does not treat
+that confidence as evidence.
+
+00:00:12.747 --> 00:00:15.130
+It verifies the decision itself.
+
+00:00:16.253 --> 00:00:21.708
+It checks the evidence, the governing
+rule, time, authority, and the current case
+
+00:00:21.708 --> 00:00:25.516
+state. Earliest permitted
+date: September eighteenth.
+
+00:00:25.516 --> 00:00:28.264
+Proposed: the twenty-fourth.
+
+00:00:28.264 --> 00:00:30.504
+Supported. Proceed.
+
+00:00:31.620 --> 00:00:33.308
+Now let's see why this was allowed.
+
+00:00:33.308 --> 00:00:38.305
+Every decision keeps why it was trusted:
+the evidence, the rule, and the date
+
+00:00:38.305 --> 00:00:39.305
+arithmetic.
+
+00:00:40.226 --> 00:00:43.480
+Starting foreclosure creates
+an obligation of its own.
+
+00:00:43.480 --> 00:00:49.347
+Foreclosure was initiated September eighth,
+so a HUD foreclosure-initiation notice
+
+00:00:49.347 --> 00:00:53.330
+is due within thirty calendar
+days: October eighth.
+
+00:00:55.384 --> 00:01:00.547
+When that notice is missed, NorthCannon
+shows a concrete claim consequence,
+
+00:01:00.547 --> 00:01:06.427
+interest curtailment. Separately,
+it shows a regulatory exposure that
+
+00:01:06.427 --> 00:01:10.330
+stays conditional. The two are
+never treated as the same thing.
+
+00:01:13.300 --> 00:01:16.880
+The same architecture works in
+a different regulated domain.
+
+00:01:16.880 --> 00:01:21.500
+A commercial-credit application at
+Harbor National Bank, a fictional demo
+
+00:01:21.500 --> 00:01:27.130
+institution, is in scope for section ten
+seventy-one small-business reporting.
+
+00:01:28.088 --> 00:01:33.240
+Then the rule changes. Regulation
+B's small-business threshold
+
+00:01:33.240 --> 00:01:36.813
+drops, from five million
+dollars to one million.
+
+00:01:36.813 --> 00:01:40.540
+NorthCannon knows which
+determinations depended on it.
+
+00:01:40.540 --> 00:01:43.308
+One of four applications is affected.
+
+00:01:43.308 --> 00:01:46.932
+Three are unchanged, and are not re-run.
+
+00:01:47.522 --> 00:01:51.358
+And in the behavior we're building,
+the change reaches further.
+
+00:01:51.358 --> 00:01:57.422
+Five of ten downstream models, metrics,
+rules, and reports were built on the
+
+00:01:57.422 --> 00:02:03.302
+old rule version. Open one, and it shows
+exactly which parts are outdated, and which
+
+00:02:03.302 --> 00:02:04.472
+are still current.
+
+00:02:05.541 --> 00:02:10.681
+Re-evaluated: two point four million
+dollars is above the new threshold.
+
+00:02:10.681 --> 00:02:13.941
+Out of scope, under the
+selected rule version.
+
+00:02:13.941 --> 00:02:18.111
+That's a classification change,
+not a judgment about the applicant.
+
+00:02:20.128 --> 00:02:25.358
+It also opens an action: remove this
+application from the section ten seventy-one
+
+00:02:25.358 --> 00:02:29.352
+reporting stage. It stays
+in the commercial pipeline.
+
+00:02:30.349 --> 00:02:35.170
+When the pipeline is updated, NorthCannon
+verifies the result before it closes the
+
+00:02:35.170 --> 00:02:36.170
+action.
+
+00:02:36.881 --> 00:02:42.181
+The original determination is preserved,
+dated to the rule it was decided under.
+
+00:02:42.181 --> 00:02:44.901
+It was supported on what was known then.
+
+00:02:44.901 --> 00:02:46.631
+It is not rewritten.
+
+00:02:48.601 --> 00:02:51.557
+And it isn't limited to
+regulated industries.
+
+00:02:51.557 --> 00:02:55.845
+Here the same engine is pointed at a
+fictional demo company's supply chain.
+
+00:02:55.845 --> 00:03:00.601
+This is illustrative: designed
+behavior, not yet implemented.
+
+00:03:00.601 --> 00:03:05.441
+One rule change, and three of five
+dependent assets are affected.
+
+00:03:05.441 --> 00:03:10.832
+The same question every time: which
+prior decisions depended on what changed?
+
+00:03:12.858 --> 00:03:15.270
+Verified the decision before action.
+
+00:03:15.270 --> 00:03:17.489
+Preserved why it was trusted.
+
+00:03:17.489 --> 00:03:19.862
+Detected when its support changed.
+
+00:03:19.862 --> 00:03:22.760
+Re-evaluated only what was affected.
+
+00:03:22.760 --> 00:03:27.962
+Mortgage servicing, commercial lending,
+and supply chain are proving grounds.
+
+00:03:27.962 --> 00:03:32.648
+The layer sits between machine
+intelligence and any consequential action.
+
+00:03:32.648 --> 00:03:37.632
+NorthCannon: trust infrastructure
+for machine intelligence.

@@ -1728,6 +1728,94 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Transcribed by Claude Code in the founder's session on 2026-09-25 from three founder messages, separated by | in founder_words. The first approved the pending borrower-letter Features copy in PR #11 (branch feat/about-section-demo-style at dd9545a) and its visuals; the second and third authorized recording this event in this session, marking the claims approved and regenerating the rendering-parity fixture. It covers exactly the 23 pending feat-letter-* claims of that PR, each recorded exactly as rendered. interop-sources-body is not part of this event and remains pending."
+  },
+  {
+    "event_id": "founder-approval-008",
+    "timestamp": "2026-09-26T15:00:27.000Z",
+    "founder_words": "demo video is founder approved, record approval and re-push",
+    "claims": [
+      {
+        "claim_id": "demo-video-title",
+        "statement": "Product demonstration"
+      },
+      {
+        "claim_id": "demo-video-lede",
+        "statement": "A walkthrough on fictional cases: verifying an FHA mortgage-servicing decision before action, tracing a commercial-lending rule change to the decisions it affects, and an illustrative supply-chain change."
+      },
+      {
+        "claim_id": "demo-video-label",
+        "statement": "NorthCannon product demonstration video, with captions"
+      },
+      {
+        "claim_id": "demo-video-captions-label",
+        "statement": "English"
+      },
+      {
+        "claim_id": "demo-video-disclosure",
+        "statement": "Product demonstration · fictional cases · pre-production · not legal advice · synthetic narration"
+      },
+      {
+        "claim_id": "demo-video-transcript-title",
+        "statement": "Transcript"
+      },
+      {
+        "claim_id": "demo-transcript-01",
+        "statement": "An AI servicing agent wants to take a consequential action: schedule a foreclosure hearing for September twenty-fourth. The model behind it may be confident. NorthCannon does not treat that confidence as evidence. It verifies the decision itself."
+      },
+      {
+        "claim_id": "demo-transcript-02",
+        "statement": "It checks the evidence, the governing rule, time, authority, and the current case state. Earliest permitted date: September eighteenth. Proposed: the twenty-fourth. Supported. Proceed."
+      },
+      {
+        "claim_id": "demo-transcript-03",
+        "statement": "Now let's see why this was allowed. Every decision keeps why it was trusted: the evidence, the rule, and the date arithmetic."
+      },
+      {
+        "claim_id": "demo-transcript-04",
+        "statement": "Starting foreclosure creates an obligation of its own. Foreclosure was initiated September eighth, so a HUD foreclosure-initiation notice is due within thirty calendar days: October eighth."
+      },
+      {
+        "claim_id": "demo-transcript-05",
+        "statement": "When that notice is missed, NorthCannon shows a concrete claim consequence, interest curtailment. Separately, it shows a regulatory exposure that stays conditional. The two are never treated as the same thing."
+      },
+      {
+        "claim_id": "demo-transcript-06",
+        "statement": "The same architecture works in a different regulated domain. A commercial-credit application at Harbor National Bank, a fictional demo institution, is in scope for section ten seventy-one small-business reporting."
+      },
+      {
+        "claim_id": "demo-transcript-07",
+        "statement": "Then the rule changes. Regulation B's small-business threshold drops, from five million dollars to one million. NorthCannon knows which determinations depended on it. One of four applications is affected. Three are unchanged, and are not re-run."
+      },
+      {
+        "claim_id": "demo-transcript-08",
+        "statement": "And in the behavior we're building, the change reaches further. Five of ten downstream models, metrics, rules, and reports were built on the old rule version. Open one, and it shows exactly which parts are outdated, and which are still current."
+      },
+      {
+        "claim_id": "demo-transcript-09",
+        "statement": "Re-evaluated: two point four million dollars is above the new threshold. Out of scope, under the selected rule version. That's a classification change, not a judgment about the applicant."
+      },
+      {
+        "claim_id": "demo-transcript-10",
+        "statement": "It also opens an action: remove this application from the section ten seventy-one reporting stage. It stays in the commercial pipeline."
+      },
+      {
+        "claim_id": "demo-transcript-11",
+        "statement": "When the pipeline is updated, NorthCannon verifies the result before it closes the action."
+      },
+      {
+        "claim_id": "demo-transcript-12",
+        "statement": "The original determination is preserved, dated to the rule it was decided under. It was supported on what was known then. It is not rewritten."
+      },
+      {
+        "claim_id": "demo-transcript-13",
+        "statement": "And it isn't limited to regulated industries. Here the same engine is pointed at a fictional demo company's supply chain. This is illustrative: designed behavior, not yet implemented. One rule change, and three of five dependent assets are affected. The same question every time: which prior decisions depended on what changed?"
+      },
+      {
+        "claim_id": "demo-transcript-14",
+        "statement": "Verified the decision before action. Preserved why it was trusted. Detected when its support changed. Re-evaluated only what was affected. Mortgage servicing, commercial lending, and supply chain are proving grounds. The layer sits between machine intelligence and any consequential action. NorthCannon: trust infrastructure for machine intelligence."
+      }
+    ],
+    "relay": "Transcribed by Claude Code in the founder's session on 2026-09-26 from one founder message. It approves the product demonstration video on /demo/ in PR #12 (branch feat/demo-video at beaa8d0e) and authorizes recording this event and re-pushing. It covers exactly the 20 pending demo video claims of that PR (demo-video-title, demo-video-lede, demo-video-label, demo-video-captions-label, demo-video-disclosure, demo-video-transcript-title, and demo-transcript-01 to demo-transcript-14, the narration word for word), each recorded exactly as rendered. The video, captions, and poster ship to production only because all 20 are attested."
   }
 ]
 ```

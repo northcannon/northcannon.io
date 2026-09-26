@@ -4,7 +4,7 @@ import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage } from '../scripts/policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoTranscriptClaimIds, demoMediaErrors } from '../scripts/policy.mjs';
 
 for (const markup of [
   '<script src="/local.js"></script>', '<script>alert(1)</script>',
@@ -118,7 +118,7 @@ test('redirects file holds exactly the four reviewed permanent moves', async () 
 });
 
 test('founder portrait files carry no metadata and only they are allowed as picture sources', async () => {
-  assert.deepEqual(Object.keys(allowedImages).sort(), ['/founder/max-brooks-480.png', '/founder/max-brooks-480.webp', '/founder/max-brooks-960.webp']);
+  assert.deepEqual(Object.keys(allowedImages).sort(), ['/demo/northcannon-demo-poster.webp', '/founder/max-brooks-480.png', '/founder/max-brooks-480.webp', '/founder/max-brooks-960.webp']);
   for (const [url, kind] of Object.entries(allowedImages)) assert.deepEqual(inspectImage(await readFile('public' + url), kind, url), [], url);
   // A PNG with a content-credentials chunk (like the original) and a WebP with EXIF are rejected.
   const png = await readFile('public/founder/max-brooks-480.png');
@@ -130,4 +130,61 @@ test('founder portrait files carry no metadata and only they are allowed as pict
   for (const bad of ['/other.webp 480w', 'https://example.com/a.webp 1x', '/founder/max-brooks-480.png 1x']) assert.ok(inspectMarkup(picture(bad), 'f').errors.length, bad);
   assert.ok(inspectMarkup('<div><source type="image/webp" srcset="/founder/max-brooks-480.webp"></div>', 'f').errors.length, 'source outside picture');
   assert.ok(inspectMarkup('<img src="/founder/max-brooks-480.png" srcset="/founder/max-brooks-480.webp 1x" alt="x">', 'f').errors.length, 'img srcset stays prohibited');
+});
+
+test('only the reviewed demo video, user-started with captions, is allowed as media', async () => {
+  assert.deepEqual(Object.keys(allowedMedia).sort(), ['/demo/northcannon-demo.en.vtt', '/demo/northcannon-demo.mp4']);
+  for (const [url, kind] of Object.entries(allowedMedia)) assert.deepEqual(inspectMedia(await readFile('public' + url), kind, url), [], url);
+  const video = (attrs, inner = '<track kind="captions" src="/demo/northcannon-demo.en.vtt" srclang="en" label="English" default>') =>
+    `<video ${attrs}>${inner}</video>`;
+  const ok = 'controls preload="metadata" src="/demo/northcannon-demo.mp4" poster="/demo/northcannon-demo-poster.webp"';
+  assert.deepEqual(inspectMarkup(video(ok), 'f').errors, []);
+  for (const bad of [
+    ok + ' autoplay', ok + ' loop', ok + ' muted', ok.replace('controls ', ''), ok.replace('metadata', 'auto'),
+    ok.replace('/demo/northcannon-demo.mp4', '/other.mp4'), ok.replace('/demo/northcannon-demo.mp4', 'https://example.com/v.mp4'),
+    ok.replace('/demo/northcannon-demo-poster.webp', '/other.webp'), ok + ' crossorigin="anonymous"',
+  ]) assert.ok(inspectMarkup(video(bad), 'f').errors.length, bad);
+  for (const inner of ['<track kind="metadata" src="/demo/northcannon-demo.en.vtt">', '<track kind="captions" src="/other.vtt">', '<source src="/demo/northcannon-demo.mp4">'])
+    assert.ok(inspectMarkup(video(ok, inner), 'f').errors.length, inner);
+  assert.ok(inspectMarkup('<div><track kind="captions" src="/demo/northcannon-demo.en.vtt"></div>', 'f').errors.length, 'track outside video');
+  for (const tag of ['<audio src="/a.mp3"></audio>', '<embed src="/demo/northcannon-demo.mp4">']) assert.ok(inspectMarkup(tag, 'f').errors.length, tag);
+});
+
+test('demo media carry no container metadata or caption markup, and the captions speak the transcript claims', async () => {
+  const mp4 = await readFile('public/demo/northcannon-demo.mp4');
+  // A user-data box added to the movie header is rejected.
+  const moov = mp4.indexOf(Buffer.from('moov', 'latin1')) - 4;
+  const udta = Buffer.from('0000000c7564746100000000', 'hex');
+  const tainted = Buffer.concat([mp4.subarray(0, moov), Buffer.from((mp4.readUInt32BE(moov) + 12).toString(16).padStart(8, '0'), 'hex'), mp4.subarray(moov + 4, moov + mp4.readUInt32BE(moov)), udta, mp4.subarray(moov + mp4.readUInt32BE(moov))]);
+  assert.match(inspectMedia(tainted, 'mp4', 'x')[0], /container metadata/);
+  assert.match(inspectMedia(Buffer.from('not a video'), 'mp4', 'x')[0], /not an MP4/);
+  for (const bad of ['WEBVTT\n\n00:00.000 --> 00:01.000\n<b>bold</b>\n', 'WEBVTT\n\nSTYLE\n::cue { color: red }\n', 'no header\n'])
+    assert.ok(inspectMedia(Buffer.from(bad), 'vtt', 'x').length, bad);
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  const transcript = demoTranscriptClaimIds.map(id => claims.find(c => c.claim_id === id).statement).join(' ');
+  assert.equal(captionText(await readFile('public/demo/northcannon-demo.en.vtt', 'utf8')), transcript);
+});
+
+test('the security policy allows media only from this site', async () => {
+  const policy = await readFile('public/_headers', 'utf8');
+  assert.match(policy, /media-src 'self';/);
+  assert.throws(() => readHeaders(policy.replace("media-src 'self'", "media-src *")));
+  assert.throws(() => readHeaders(policy.replace("media-src 'self'; ", '')));
+});
+
+test('demo media never reach production output before every demo video claim is attested', async () => {
+  const media = new Map();
+  for (const url of Object.keys(allowedMedia)) media.set(url.slice(1), await readFile('public' + url));
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  // As attested (founder-approval-008): allowed in production and review.
+  assert.deepEqual(demoMediaErrors(media, claims, { production: true }), []);
+  // Any one claim withdrawn to pending: rejected in production, still allowed in review builds.
+  const pending = claims.map(c => c.claim_id === 'demo-transcript-07' ? { ...c, approval_state: 'pending' } : c);
+  assert.deepEqual(demoMediaErrors(media, pending, { production: true }), ['Demo video media in production without attested claims']);
+  assert.deepEqual(demoMediaErrors(media, pending, { production: false }), []);
+  // Captions that differ from the transcript claims, or a video without captions, are rejected in any build.
+  const altered = new Map(media).set('demo/northcannon-demo.en.vtt', Buffer.from('WEBVTT\n\n00:00.000 --> 00:01.000\nUnregistered words.\n'));
+  assert.deepEqual(demoMediaErrors(altered, claims, { production: false }), ['Demo captions do not match the transcript claims']);
+  const alone = new Map([...media].filter(([name]) => name.endsWith('.mp4')));
+  assert.deepEqual(demoMediaErrors(alone, claims, { production: false }), ['Demo video and captions must ship together']);
 });
