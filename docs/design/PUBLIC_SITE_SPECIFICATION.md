@@ -206,6 +206,24 @@ scores, confidence meters, penalty or dollar figures, or Gate 1 language.
 Founder hero, why NorthCannon exists, selected background and credibility, currently
 building, Get in touch, and two lower navigation cards.
 
+### Demo (`/demo/`)
+
+Founder direction, 2026-09-26: the recorded product demonstration is published here. It is a user-started
+`<video controls>` (no autoplay, loop, or muted start; `preload="metadata"`), a poster frame, English captions
+(`<track kind="captions">`), a disclosure line (fictional cases, pre-production, not legal advice, synthetic
+narration), and a full transcript in a `<details>` element. There is no player script and no third-party host.
+The change-propagation illustration stays below it.
+
+- **Claims.** The title, lede, labels, disclosure, and the transcript (one claim per spoken paragraph, word for
+  word) are pending claims (see [Public site copy](PUBLIC_SITE_COPY.md)). Until the founder attests all of them,
+  production keeps the approved "Demo — Coming Soon" page and removes the video, captions, and poster from `dist/`.
+  The founder's direction to publish the demonstration is the documented exception to brief 07's "Do not make demo
+  claims"; every spoken statement is a founder-attested claim, not a free-standing one.
+- **Security.** The header policy gains `media-src 'self'`. The markup and output checks allow exactly one video
+  file, one captions file, and one poster (`scripts/policy.mjs`): the MP4 must carry no container metadata, the
+  captions must be plain WebVTT whose words equal the transcript claims in order, and each file must fit
+  Cloudflare Pages' 25 MiB limit.
+
 ## Copy governance
 
 Wireframe text is checked string by string against `public_claims/claims.json` and

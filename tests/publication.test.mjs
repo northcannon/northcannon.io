@@ -141,6 +141,7 @@ test('standalone review build rebuilds current provenance from source only and r
       'public/_headers', 'public/_redirects', 'public/robots.txt', 'public/.well-known/security.txt',
       'public/graphene-lattice.svg', 'public/northcannon-mark.svg',
       'public/founder/max-brooks-480.webp', 'public/founder/max-brooks-960.webp', 'public/founder/max-brooks-480.png',
+      'public/demo/northcannon-demo.mp4', 'public/demo/northcannon-demo.en.vtt', 'public/demo/northcannon-demo-poster.webp',
       ...['ibm-plex-mono-latin-400-normal', 'ibm-plex-mono-latin-500-normal', 'inter-latin-400-normal', 'inter-latin-500-normal', 'inter-latin-600-normal'].map(name => `public/fonts/${name}.woff2`),
       'src/content.config.ts', 'src/content/collections.json', 'src/content/routes.json',
       'src/governance/approval-events.mjs', 'src/governance/claim.ts',

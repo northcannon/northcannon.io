@@ -1,7 +1,7 @@
 import { parse } from 'parse5';
 
 export const requiredHeaders = {
-  'content-security-policy': "default-src 'none'; script-src 'none'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'",
+  'content-security-policy': "default-src 'none'; script-src 'none'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'",
   'x-content-type-options': 'nosniff',
   'x-frame-options': 'DENY',
   'referrer-policy': 'no-referrer',
@@ -34,8 +34,45 @@ export function readHeaders(text) {
   return headers;
 }
 
-// The founder portrait is the only permitted image content: exactly these files, with no metadata chunks.
-export const allowedImages = { '/founder/max-brooks-480.webp': 'webp', '/founder/max-brooks-960.webp': 'webp', '/founder/max-brooks-480.png': 'png' };
+// The founder portrait and the demo video's poster are the only permitted image content: exactly these files, with no metadata chunks.
+export const allowedImages = { '/founder/max-brooks-480.webp': 'webp', '/founder/max-brooks-960.webp': 'webp', '/founder/max-brooks-480.png': 'png', '/demo/northcannon-demo-poster.webp': 'webp' };
+
+// The product demonstration video and its captions are the only permitted media: exactly these files.
+// They ship to production only once every demo video claim is founder-attested (see publication.mjs).
+export const allowedMedia = { '/demo/northcannon-demo.mp4': 'mp4', '/demo/northcannon-demo.en.vtt': 'vtt' };
+// The video's page copy and its transcript, one claim per spoken paragraph; the captions must speak exactly these.
+export const demoTranscriptClaimIds = Array.from({ length: 14 }, (_, i) => `demo-transcript-${String(i + 1).padStart(2, '0')}`);
+export const demoVideoClaimIds = ['demo-video-title', 'demo-video-lede', 'demo-video-label', 'demo-video-captions-label', 'demo-video-disclosure', 'demo-video-transcript-title', ...demoTranscriptClaimIds];
+export const MAX_MEDIA_BYTES = 25 * 1024 * 1024; // Cloudflare Pages' per-file limit
+export function inspectMedia(buffer, kind, name) {
+  if (buffer.length > MAX_MEDIA_BYTES) return [`${name}: larger than the 25 MiB per-file limit`];
+  if (kind === 'mp4') {
+    if (buffer.toString('latin1', 4, 8) !== 'ftyp') return [`${name}: not an MP4`];
+    // Walk the box tree (never the media data): no user-data or metadata boxes (titles, comments, encoder tags).
+    const containers = new Set(['moov', 'trak', 'mdia', 'minf', 'stbl', 'edts', 'dinf', 'mvex', 'moof', 'traf']);
+    const found = [];
+    const walkBoxes = (start, end) => {
+      for (let i = start; i + 8 <= end;) {
+        let size = buffer.readUInt32BE(i);
+        const type = buffer.toString('latin1', i + 4, i + 8);
+        let header = 8;
+        if (size === 1) { size = Number(buffer.readBigUInt64BE(i + 8)); header = 16; } else if (size === 0) size = end - i;
+        if (size < header || i + size > end) { found.push('malformed'); return; }
+        if (['udta', 'meta', 'ilst'].includes(type)) found.push(type);
+        if (containers.has(type)) walkBoxes(i + header, i + size);
+        i += size;
+      }
+    };
+    walkBoxes(0, buffer.length);
+    return found.length ? [`${name}: container metadata or malformed boxes (${found.join(', ')})`] : [];
+  }
+  const text = buffer.toString('utf8');
+  return /^WEBVTT\n\n/.test(text) && !/<|NOTE|STYLE|REGION|::cue/.test(text) ? [] : [`${name}: captions must be plain WebVTT cues`];
+}
+/** The spoken words of a WebVTT file, in order, as one space-joined string. */
+export function captionText(text) {
+  return text.split(/\n\n+/).slice(1).map(cue => cue.split('\n').slice(1).join(' ')).filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+}
 export function inspectImage(buffer, kind, name) {
   const errors = [];
   if (kind === 'png') {
@@ -58,7 +95,7 @@ export function inspectMarkup(text, name) {
   const errors = [];
   const references = [];
   const ids = new Set();
-  const prohibited = new Set(['script', 'style', 'form', 'input', 'textarea', 'select', 'button', 'iframe', 'frame', 'frameset', 'object', 'embed', 'base', 'audio', 'video', 'track', 'foreignObject', 'foreignobject', 'animate', 'set', 'animatetransform', 'animatemotion', 'template']);
+  const prohibited = new Set(['script', 'style', 'form', 'input', 'textarea', 'select', 'button', 'iframe', 'frame', 'frameset', 'object', 'embed', 'base', 'audio', 'foreignObject', 'foreignobject', 'animate', 'set', 'animatetransform', 'animatemotion', 'template']);
   const visit = (node, parent) => {
     const tag = node.tagName?.toLowerCase();
     if (prohibited.has(tag)) errors.push(`${name}: prohibited <${tag}>`);
@@ -68,6 +105,17 @@ export function inspectMarkup(text, name) {
       && Object.keys(attrs).every(key => ['type', 'srcset', 'sizes'].includes(key))
       && (attrs.srcset ?? '').split(',').map(entry => entry.trim().split(/\s+/)[0]).every(url => allowedImages[url] === 'webp');
     if (tag === 'source' && !portraitSource) errors.push(`${name}: prohibited <source>`);
+    // <video> only for the reviewed demo file: user-started (controls, no autoplay/loop/muted), its poster, and
+    // <track> children that are captions for it. No other media element or attribute.
+    if (tag === 'video') {
+      const allowed = ['src', 'poster', 'controls', 'preload', 'width', 'height', 'playsinline', 'class', 'id', 'aria-label', 'aria-describedby'];
+      if (!Object.keys(attrs).every(key => allowed.includes(key)) || !('controls' in attrs) || allowedMedia[attrs.src] !== 'mp4'
+        || (attrs.poster !== undefined && allowedImages[attrs.poster] !== 'webp') || !['none', 'metadata'].includes(attrs.preload)) errors.push(`${name}: prohibited <video>`);
+    }
+    if (tag === 'track') {
+      if (parent?.tagName?.toLowerCase() !== 'video' || attrs.kind !== 'captions' || allowedMedia[attrs.src] !== 'vtt'
+        || !Object.keys(attrs).every(key => ['kind', 'src', 'srclang', 'label', 'default'].includes(key))) errors.push(`${name}: prohibited <track>`);
+    }
     for (const [key, value] of Object.entries(attrs)) {
       if (key === 'style' || /^on/i.test(key) || ['srcdoc', 'ping', 'imagesrcset'].includes(key) || (key === 'srcset' && !portraitSource)) {
         errors.push(`${name}: prohibited ${key} attribute`);

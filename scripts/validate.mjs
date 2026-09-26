@@ -1,6 +1,6 @@
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoVideoClaimIds, demoTranscriptClaimIds } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
@@ -14,6 +14,7 @@ const fixture = process.argv[3] === '--review';
 
 const root = path.resolve(process.argv[2] ?? 'dist');
 const files = new Map();
+const media = new Map();
 const errors = [];
 async function collect(dir) {
   for (const item of await readdir(dir, { withFileTypes: true })) {
@@ -32,6 +33,13 @@ async function collect(dir) {
         files.set(name, '');
         continue;
       }
+      if ('/' + name in allowedMedia) {
+        const bytes = await readFile(full);
+        errors.push(...inspectMedia(bytes, allowedMedia['/' + name], name));
+        media.set(name, bytes);
+        files.set(name, '');
+        continue;
+      }
       if (!/\.(?:html|css|svg|txt|xml|json)$/.test(name) && name !== '_headers' && name !== '_redirects') {
         errors.push(`${name}: unexpected output type`);
         continue;
@@ -41,6 +49,19 @@ async function collect(dir) {
   }
 }
 await collect(root);
+// The demo video ships to production only with every one of its claims founder-attested, and its captions must
+// speak exactly the attested transcript. Review builds may carry it with pending claims.
+if (media.size) {
+  const byId = new Map(claims.map(c => [c.claim_id, c]));
+  const production = !wp4 && !fixture;
+  if (production && !demoVideoClaimIds.every(id => byId.get(id)?.approval_state === 'approved')) errors.push('Demo video media in production without attested claims');
+  const vtt = media.get('demo/northcannon-demo.en.vtt');
+  if (!vtt || !media.has('demo/northcannon-demo.mp4')) errors.push('Demo video and captions must ship together');
+  else {
+    errors.push(...disclosureErrors(vtt.toString('utf8'), 'demo/northcannon-demo.en.vtt'));
+    if (captionText(vtt.toString('utf8')) !== demoTranscriptClaimIds.map(id => byId.get(id)?.statement).join(' ')) errors.push('Demo captions do not match the transcript claims');
+  }
+}
 readHeaders(files.get('_headers') ?? '');
 // Production carries the reviewed redirects; each must land on a page that exists in this output.
 if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {

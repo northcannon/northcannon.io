@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(docs/FOUNDER_APPROVALS.md\\)\rEdit\\(src/governance/approval-events.mjs\\)\rEdit\\(public_claims/claims.json\\)\rEdit\\(tests/fixtures/rendering-parity.json)"
+    ]
+  }
+}

@@ -201,6 +201,14 @@
   .disclosure-line { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.75rem 1.25rem; border: 1px dashed var(--color-outline); border-radius: var(--radius-control); background: color-mix(in srgb, var(--color-band) 40%, transparent); color: var(--color-text); font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.04em; }
   .disclosure-line .icon { flex: none; color: var(--color-key); }
   .disclosure-line--inline { padding: 0; border: 0; background: none; color: var(--color-muted); font-size: 0.75rem; }
+
+  /* Demo: the recorded product demonstration, user-started, with captions and a transcript. */
+  .demo-video { display: grid; gap: 0.75rem; margin: 0; }
+  .demo-video__player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid var(--color-outline); border-radius: var(--radius-control); background: #000; }
+  .demo-transcript { border: 1px solid var(--color-outline); border-radius: var(--radius-control); padding: 0.875rem 1.25rem; }
+  .demo-transcript summary { cursor: pointer; color: var(--color-text); font-family: var(--font-mono); font-size: 0.875rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .demo-transcript__body { max-width: var(--text-width); padding-top: 0.5rem; }
+  .demo-transcript__body p { margin: 0.75rem 0 0; color: var(--color-text); line-height: 1.65; }
   .feature-stack { display: grid; gap: 1.5rem; }
   .event-strip { padding: 0.875rem 1.25rem; border-left: 4px solid var(--color-reeval); }
   .event-strip .readout__value { font-family: var(--font-sans); font-size: 1.25rem; }
