@@ -212,7 +212,9 @@ Founder direction, 2026-09-26: the recorded product demonstration is published h
 `<video controls>` (no autoplay, loop, or muted start; `preload="metadata"`), a poster frame, English captions
 (`<track kind="captions">`), a disclosure line (fictional cases, pre-production, not legal advice, synthetic
 narration), and a full transcript in a `<details>` element. There is no player script and no third-party host.
-The change-propagation illustration stays below it.
+Founder direction, 2026-09-26 (verbatim: "change intelligence section needs to be removed. record my approval and
+push/craete PR"): the change-intelligence illustration below the video is removed, with its component, styles,
+and tests. Its claims stay in the registry, attested but unreferenced.
 
 - **Claims.** The title, lede, labels, disclosure, and the transcript (one claim per spoken paragraph, word for
   word) are founder-attested (`founder-approval-008`; see [Public site copy](PUBLIC_SITE_COPY.md)). If any is not

@@ -533,18 +533,12 @@
       "brand-company-motto",
       "brand-mission",
       "label-provenance",
-      "label-evidence",
-      "label-change-intelligence",
-      "arm-treatment-sub"
+      "label-evidence"
     ],
     "nav": true,
     "publish": true,
     "review_claim_ids": [
       "demo-lede",
-      "demo-graphic-alt",
-      "demo-graphic-note",
-      "demo-change-label",
-      "demo-blast-label",
       "demo-video-title",
       "demo-video-lede",
       "demo-video-label",

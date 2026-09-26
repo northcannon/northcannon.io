@@ -1,8 +1,6 @@
 ---
 // Demo: the recorded product demonstration once its copy is attested (review builds show it pending); until then
-// the approved coming-soon page. The illustrative change-propagation animation follows in both.
-import Module from '../Module.astro';
-import ChangeIntelligenceGraphic from '../ChangeIntelligenceGraphic.astro';
+// the approved coming-soon page. The change-intelligence illustration was removed (founder direction, 2026-09-26).
 import { demoVideoClaimIds, demoTranscriptClaimIds } from '../../../scripts/policy.mjs';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; title: string; [key: string]: unknown }
@@ -31,11 +29,6 @@ const video = copy.all(...demoVideoClaimIds);
           {demoTranscriptClaimIds.map(id => <p>{t(id)}</p>)}
         </div>
       </details>
-    )}
-    {t('label-change-intelligence') && (
-      <Module id="demo-graphic-module" title={t('label-change-intelligence')!}>
-        <ChangeIntelligenceGraphic alt={t('demo-graphic-alt')} note={t('demo-graphic-note')} changeLabel={t('demo-change-label')} stateLabel={t('arm-treatment-sub')} blastLabel={t('demo-blast-label')} />
-      </Module>
     )}
   </div>
 </main>
