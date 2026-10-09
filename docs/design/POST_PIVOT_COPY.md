@@ -191,6 +191,66 @@ Artifact identity (SHA-256)
 ### redesign-label-link
 
 Link
+
+### redesign-label-build-version
+
+Site build version
+
+### redesign-meta-title-trust
+
+Trust Center · NorthCannon
+
+### redesign-meta-description-trust
+
+How this public site governs claims, disclosure, security and provenance.
+
+### redesign-meta-title-trust-claims
+
+Public claims · NorthCannon
+
+### redesign-meta-description-trust-claims
+
+The claims rendered on this public site, with their founder attestation metadata.
+
+### redesign-meta-title-trust-disclosure
+
+Disclosure · NorthCannon
+
+### redesign-meta-description-trust-disclosure
+
+Contact NorthCannon about a security disclosure.
+
+### redesign-meta-title-trust-site-security
+
+Site security · NorthCannon
+
+### redesign-meta-description-trust-site-security
+
+The static public site’s browser security posture and resource boundaries.
+
+### redesign-meta-title-trust-changelog
+
+Changelog · NorthCannon
+
+### redesign-meta-description-trust-changelog
+
+Governed changes to NorthCannon’s public site and its published claims.
+
+### redesign-meta-title-trust-provenance
+
+Provenance · NorthCannon
+
+### redesign-meta-description-trust-provenance
+
+Build identity and integrity of this website. Site provenance is not product validation.
+
+### redesign-meta-title-404
+
+Page not found · NorthCannon
+
+### redesign-meta-description-404
+
+Find the product, evidence and contact pages for NorthCannon.
 ## E-011
 
 ### redesign-explore
@@ -780,6 +840,10 @@ NorthCannon environment
 ### redesign-example-your-environment
 
 Your environment
+
+### interop-sources-body
+
+APIs, docs, web, internal
 ## E-012
 
 ### redesign-status-exists-1
@@ -1161,6 +1225,110 @@ September 2026 demonstration recording
 ### redesign-ledger-site
 
 Site build provenance manifest: integrity of this website only.
+
+### redesign-ledger-recording
+
+Demonstration recording
+
+### redesign-ledger-statement
+
+Discontinuation statement
+
+### redesign-ledger-manifest
+
+Build provenance manifest
+
+### redesign-ledger-site-only
+
+Website integrity only
+
+### redesign-ledger-no-results
+
+Discontinued before execution; no results
+
+### redesign-ledger-research-date
+
+2026-09-29
+
+### redesign-ledger-reached
+
+Reached
+
+### redesign-ledger-product-empty
+
+No public product or qualification artifact is claimed.
+
+### redesign-kpi-term-1
+
+Reference test outcome
+
+### redesign-kpi-term-2
+
+Separate-review record
+
+### redesign-kpi-term-3
+
+Selective revalidation fidelity
+
+### redesign-kpi-term-4
+
+Bounded-execution enforcement
+
+### redesign-kpi-term-5
+
+Execution reconciliation
+
+### redesign-kpi-term-6
+
+Evidence completeness
+
+### redesign-kpi-term-7
+
+Customer Zero
+
+### redesign-kpi-term-8
+
+Unknown-impact disclosure
+
+### redesign-kpi-term-9
+
+Decision latency
+
+### redesign-kpi-term-10
+
+Reproducibility
+
+### redesign-kpi-term-11
+
+Affected-surface recall
+
+### redesign-kpi-term-12
+
+Missed-impact rate
+
+### redesign-kpi-term-13
+
+Confirmed drift rate
+
+### redesign-kpi-term-14
+
+False-positive obligation rate
+
+### redesign-kpi-term-15
+
+Review-obligation completion
+
+### redesign-kpi-term-16
+
+Stale-document precision
+
+### redesign-kpi-term-17
+
+Code-consistency precision
+
+### redesign-kpi-term-18
+
+Review-surface reduction
 ## E-013
 
 ### redesign-about-founder-title
