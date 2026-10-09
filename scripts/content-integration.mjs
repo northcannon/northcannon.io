@@ -20,7 +20,7 @@ export default function contentGovernance() {
         for (const name of await readdir(root, { recursive: true })) {
           if (!name.endsWith('.html')) continue;
           const html = await readFile(path.join(root, name), 'utf8');
-          const errors = wp4 || (!review && name !== '404.html') ? inspectReviewOutput(html, claims, name, { review: wp4 }) : inspectClaimOutput(html, claims, { review, rejectUnregistered: true });
+          const errors = name === 'specimen/index.html' ? inspectClaimOutput(html, claims, { review: true, rejectUnregistered: true }) : inspectReviewOutput(html, claims, name, { review: wp4 || review });
           if (errors.length) throw new Error(`${name}: ${errors.join('; ')}`);
         }
         if (wp4) await verifyProvenance(path.resolve('dist'));

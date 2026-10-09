@@ -57,7 +57,7 @@ readHeaders(files.get('_headers') ?? '');
 if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {
   for (const { to } of readRedirects(files.get('_redirects') ?? '')) if (!files.has(to.slice(1) + 'index.html')) errors.push(`_redirects: target is not a published page: ${to}`);
 }
-const expectedRoutes = fixture ? ['index.html'] : routes.filter(r => wp4 || r.publish).map(routeFile);
+const expectedRoutes = [...routes.filter(r => wp4 || fixture || r.publish).map(routeFile), ...(fixture ? ['specimen/index.html'] : [])];
 if (wp4 && root === path.resolve('dist')) throw new Error('Review output may never be dist');
 const actualRoutes = [...files.keys()].filter(name => name.endsWith('.html')).sort();
 if (JSON.stringify(actualRoutes) !== JSON.stringify(expectedRoutes.sort())) errors.push('Route inventory mismatch');
@@ -65,8 +65,8 @@ const documents = new Map();
 for (const [name, text] of files) {
   errors.push(...disclosureErrors(text, name));
   if (name.endsWith('.html')) {
-    errors.push(...(wp4 ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture })));
-    if (!wp4 && text.includes(draftBanner)) errors.push('Review banner in production');
+    errors.push(...((wp4 || fixture) && name !== 'specimen/index.html' ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture })));
+    if (!wp4 && !fixture && text.includes(draftBanner)) errors.push('Review banner in production');
     if (wp4 && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
   // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.

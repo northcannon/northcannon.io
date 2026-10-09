@@ -11,7 +11,7 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   const dependencies = reviewDependencies(route, routes, { review, claims });
   const declared = claims.filter(c => dependencies.has(c.claim_id));
   const data = review && name === 'trust/provenance/index.html' ? readProductionProvenance() : null;
-  const allowed = new Set([...legacyLabels, ...(review ? [draftBanner] : []), ...declared.filter(c => c.lifecycle_state !== 'retired' && (review ? c.approval_state !== 'rejected' : c.approval_state === 'approved')).flatMap(c => [c.statement, ...c.statement.split('\n\n')]).map(s => s.replace(/\s+/gu, ' ').trim())]);
+  const allowed = new Set(['—', ...legacyLabels, ...(review ? [draftBanner] : []), ...declared.filter(c => c.lifecycle_state !== 'retired' && (review ? c.approval_state !== 'rejected' : c.approval_state === 'approved')).flatMap(c => [c.statement, ...c.statement.split('\n\n')]).map(s => s.replace(/\s+/gu, ' ').trim())]);
   const company = claims.find(c => c.claim_id === 'brand-company').statement;
   allowed.add(`${company} home`);
   // A declared status claim may show the date its current statement was attested.
@@ -25,6 +25,7 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   if (data && data.source_commit !== null) allowed.add(data.source_commit);
   const errors = [];
   const visit = node => {
+    if (node.nodeName === '#text' && ['≠','◇','✓','○','×'].includes(node.value.trim()) && node.parentNode?.attrs?.some(a => a.name === 'aria-hidden' && a.value === 'true')) return;
     if (node.nodeName === '#text' && node.value.trim() && !allowed.has(node.value.replace(/\s+/gu, ' ').trim())) errors.push(`${name}: visible text: ${node.value.trim()}`);
     for (const a of node.attrs ?? []) if (['aria-label', 'aria-description', 'alt', 'title'].includes(a.name) && a.value && !allowed.has(a.value)) errors.push(`${name}: accessibility ${a.name}: ${a.value}`);
     const attrs = Object.fromEntries((node.attrs ?? []).map(a => [a.name, a.value]));
