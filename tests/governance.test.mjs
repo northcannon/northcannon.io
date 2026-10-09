@@ -212,3 +212,22 @@ test('template parser rejects dormant prose but accepts governed expressions', a
   assert.equal((await templateCopyErrors('<p>Unregistered dormant prose</p>', 'fixture')).length, 1);
   assert.deepEqual(await templateCopyErrors('<p>{t("label-about")}</p>', 'fixture'), []);
 });
+
+test('rendered prose, SVG, accessibility and metadata have the same claim boundary', async () => {
+  const { inspectReviewOutput } = await import('../src/governance/wp4-output.mjs');
+  for (const html of ['<p>Unregistered sentence.</p>', '<svg><text>Unregistered sentence.</text></svg>', '<img alt="Unregistered sentence.">', '<div aria-description="Unregistered sentence."></div>', '<meta name="description" content="Unregistered sentence.">', '<meta property="og:description" content="Unregistered sentence.">']) {
+    assert.ok(inspectReviewOutput(html, current.claims, 'index.html', { review: true }).length, html);
+    assert.ok(inspectReviewOutput(html, current.claims, 'index.html', { review: false }).length, html);
+  }
+  const statement = current.claims.find(c => c.claim_id === 'redesign-home-title').statement;
+  assert.deepEqual(inspectReviewOutput(`<svg><text>${statement}</text></svg>`, current.claims, 'index.html', { review: true }), []);
+  assert.ok(inspectReviewOutput(`<meta name="description" content="${statement}">`, current.claims, 'index.html', { review: false }).length);
+});
+
+test('actual production claims must be present in the public register', async () => {
+  const { claimRegisterErrors } = await import('../src/governance/output.mjs');
+  const docs = new Map([['index.html','<h1>NorthCannon</h1>'],['trust/claims/index.html','<li data-claim-id="brand-company">NorthCannon</li>']]);
+  assert.deepEqual(claimRegisterErrors(docs,current.claims), []);
+  docs.set('trust/claims/index.html','');
+  assert.ok(claimRegisterErrors(docs,current.claims).length);
+});

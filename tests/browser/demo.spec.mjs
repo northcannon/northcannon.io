@@ -10,7 +10,7 @@ for (const [mode, base] of [['review', 'http://127.0.0.1:4323'], ['production', 
     await expect(page.locator('.primary-nav a[href="/demo/"]')).toHaveCount(0);
     await expect(page.locator('video, track, .demo-transcript, .ci-figure')).toHaveCount(0);
     await expect(page.locator('main .lede')).toHaveCount(1);
-    await expect(page.locator('main .lede')).toHaveText('A product demonstration will be published once an approved demonstration exists.');
+    await expect(page.locator('main .lede')).toHaveText(mode === 'production' ? 'A product demonstration will be published once an approved demonstration exists.' : 'An engineering-loop demonstration is a future deliverable. No current demo is claimed.');
     await expect(page.getByText('Change Intelligence', { exact: true })).toHaveCount(0);
     expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
     if (mode === 'production') for (const file of ['northcannon-demo.mp4', 'northcannon-demo.en.vtt', 'northcannon-demo-poster.webp']) {

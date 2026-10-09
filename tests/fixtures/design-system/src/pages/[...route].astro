@@ -1,8 +1,9 @@
 ---
 import SitePage from '../../../../../src/components/SitePage.astro';
+import { migratedReviewPaths } from '../../../../../scripts/redesign-policy.mjs';
 import { readRoutes } from '../../../../../src/governance/routes.mjs';
 export function getStaticPaths() {
-  return readRoutes().filter(r => !['/','/404.html'].includes(r.path)).map(route => ({ params: { route: route.path.slice(1,-1) }, props: { route } }));
+  return readRoutes().filter(r => !migratedReviewPaths.has(r.path)).filter(r => !['/','/404.html'].includes(r.path)).map(route => ({ params: { route: route.path.slice(1,-1) }, props: { route } }));
 }
 const { route } = Astro.props;
 ---
