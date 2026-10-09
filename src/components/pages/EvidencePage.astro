@@ -29,6 +29,8 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
     </section>
 
 
+    {t('evidence-status-current') && <p class="lede">{t('evidence-status-current')}</p>}
+
     {cards.length > 0 && (
       <ul class="explainer-grid">
         {cards.map(card => (
@@ -51,7 +53,7 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
           <table class="ledger">
             <thead><tr>{columns.map(id => <th scope="col">{t(id)}</th>)}<th scope="col" class="ledger__action"></th></tr></thead>
             <tbody>
-              <tr><td colspan="6"><div class="ledger__empty"><Icon name="ledger" size={28} /><span></span></div></td></tr>
+              <tr><td colspan="6"><div class="ledger__empty"><Icon name="ledger" size={28} /><span>{t('ledger-empty-current')}</span></div></td></tr>
             </tbody>
           </table>
         </div>

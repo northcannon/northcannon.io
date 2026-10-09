@@ -17,6 +17,12 @@
   ],
   "changelog": [
     {
+      "entry_id": "truth-correction-2026-10",
+      "claim_ids": [
+        "changelog-2026-10-truth-correction"
+      ]
+    },
+    {
       "entry_id": "site-redesign-2026-09",
       "claim_ids": [
         "changelog-2026-09-site-redesign"

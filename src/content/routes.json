@@ -317,7 +317,9 @@
       "label-disclosure",
       "label-contact"
     ],
-    "review_claim_ids": [],
+    "review_claim_ids": [
+      "gate1-historical-statement"
+    ],
     "nav": false,
     "publish": true
   },
@@ -371,7 +373,9 @@
       "viewer-title",
       "viewer-empty",
       "viewer-action",
-      "changelog-link"
+      "changelog-link",
+      "evidence-status-current",
+      "ledger-empty-current"
     ],
     "nav": true,
     "publish": true
@@ -392,7 +396,9 @@
     ],
     "nav": false,
     "publish": true,
-    "review_claim_ids": []
+    "review_claim_ids": [
+      "demo-coming-soon-lede"
+    ]
   },
   {
     "path": "/contact/",
@@ -551,7 +557,8 @@
       "arm-baseline-a",
       "arm-baseline-b",
       "arm-r-plus",
-      "arms-title"
+      "arms-title",
+      "status-gate1-discontinued"
     ],
     "nav": false,
     "publish": true
@@ -732,7 +739,8 @@
       "arm-baseline-b",
       "arm-r-plus",
       "arms-title",
-      "changelog-2026-09-site-redesign"
+      "changelog-2026-09-site-redesign",
+      "changelog-2026-10-truth-correction"
     ],
     "nav": false,
     "publish": true
