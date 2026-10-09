@@ -1,9 +1,9 @@
 {
   "status": [
     {
-      "entry_id": "gate1",
-      "stage": "frozen",
-      "claim_id": "status-gate1-frozen-stress"
+      "entry_id": "pi-gate1",
+      "stage": "discontinued",
+      "claim_id": "status-gate1-discontinued"
     }
   ],
   "gate1": [],

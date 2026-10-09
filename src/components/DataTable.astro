@@ -1,0 +1,5 @@
+---
+interface Props { caption: string; columns: string[]; rows: string[][] }
+const { caption, columns, rows } = Astro.props;
+---
+<table class="data-table"><caption>{caption}</caption><thead><tr>{columns.map(col => <th scope="col">{col}</th>)}</tr></thead><tbody>{rows.map(row => <tr>{row.map((value,index) => <td><span class="data-table__label" aria-hidden="true">{columns[index]}</span><span>{value}</span></td>)}</tr>)}</tbody></table>

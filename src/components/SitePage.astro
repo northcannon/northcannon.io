@@ -20,17 +20,13 @@ const data = loadGovernance();
 const routes = readRoutes(data.claims);
 const t = (id: string): string | undefined => routeCopy(data.claims, route, routes, id, { review });
 const available = new Set(routes.filter(r => review || r.publish).map(r => r.path));
-const status = data.status[0]!;
-const statusClaim = data.claims.find((c: { claim_id: string }) => c.claim_id === status.claim_id)!;
-const stages: Record<string, number> = { preparation: 0, frozen: 1, executing: 5, complete: 6 };
 const copy: Copy = {
   t,
   all: (...ids) => ids.every(id => t(id) !== undefined),
   paragraphs: id => t(id)?.split('\n\n') ?? [],
-  href: path => (available.has(path) ? path : undefined),
+  href: path => (available.has(path.split('#')[0]!) ? path : undefined),
   review,
-  statusDate: statusClaim.review_date ?? '',
-  stageIndex: stages[status.stage] ?? 0,
+  status: entryId => data.status.find(entry => entry.entry_id === entryId),
 };
 const company = t('brand-company')!;
 const title = route.path === '/404.html' ? 'Page not found' : (t(route.title_claim_or_label) ?? company);

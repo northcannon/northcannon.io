@@ -1,0 +1,8 @@
+---
+interface Props { title?: string; body?: string; status?: string; variant?: string }
+const { title, body, status, variant = 'standard' } = Astro.props;
+---
+<article class:list={['offering-card', `offering-card--${variant}`]}>
+  {status && <p class="state-label"><span aria-hidden="true">◇</span><span>{status}</span></p>}
+  {title && <h3>{title}</h3>}{body && <p>{body}</p>}<slot />
+</article>

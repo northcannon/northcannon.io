@@ -25,21 +25,21 @@
       "redesign-meta-title-home",
       "redesign-meta-description-home",
       "redesign-meta-title-products",
-      "redesign-meta-description-products",
+      "redesign-products-lede",
       "redesign-meta-title-solutions",
       "redesign-meta-description-solutions",
       "redesign-meta-title-about",
-      "redesign-meta-description-about",
+      "redesign-about-lede",
       "redesign-meta-title-evidence",
-      "redesign-meta-description-evidence",
+      "redesign-evidence-lede",
       "redesign-meta-title-experiments",
       "redesign-meta-description-experiments",
       "redesign-meta-title-demo",
-      "redesign-meta-description-demo",
+      "redesign-demo-lede",
       "redesign-meta-title-contact",
-      "redesign-meta-description-contact",
+      "redesign-contact-lede",
       "redesign-meta-title-status",
-      "redesign-meta-description-status"
+      "redesign-status-lede"
     ],
     "E-011": [
       "redesign-explore",
@@ -171,7 +171,6 @@
       "redesign-solutions-contact-title",
       "redesign-about-title",
       "redesign-about-lede",
-      "redesign-about-company-title",
       "redesign-about-company-1",
       "redesign-about-company-2",
       "redesign-about-company-3",
@@ -234,7 +233,6 @@
       "redesign-class-product",
       "redesign-class-research",
       "redesign-class-artifact",
-      "redesign-class-historical",
       "redesign-experiments-title",
       "redesign-experiments-lede",
       "redesign-experiments-persistent-intelligence-title",
@@ -256,13 +254,11 @@
       "redesign-experiments-research-to-product-body",
       "redesign-experiments-research-to-product-1",
       "redesign-experiments-research-to-product-2",
-      "redesign-experiments-research-to-product-3",
       "redesign-experiments-research-to-product-4",
       "redesign-experiments-research-to-product-5",
       "redesign-experiments-research-to-product-6",
       "redesign-experiments-results-title",
       "redesign-experiments-results-body",
-      "redesign-status-title",
       "redesign-status-lede",
       "redesign-status-status-title",
       "redesign-status-research-title",
@@ -273,7 +269,6 @@
     "E-013": [
       "redesign-about-founder-title",
       "redesign-founder-status",
-      "redesign-contact-title",
       "redesign-contact-lede",
       "redesign-contact-intents-title",
       "redesign-contact-intents-1",
@@ -396,7 +391,7 @@
     "product": "redesign-class-product",
     "research": "redesign-class-research",
     "artifact": "redesign-class-artifact",
-    "historical": "redesign-class-historical"
+    "historical": "redesign-evidence-historical-title"
   },
   "pages": {
     "/": {
@@ -533,7 +528,7 @@
         }
       ],
       "meta_title": "redesign-meta-title-products",
-      "meta_description": "redesign-meta-description-products"
+      "meta_description": "redesign-products-lede"
     },
     "/solutions/": {
       "key": "solutions",
@@ -633,7 +628,7 @@
       "sections": [
         {
           "id": "company",
-          "title": "redesign-about-company-title",
+          "title": "about-eyebrow",
           "items": [
             "redesign-about-company-1",
             "redesign-about-company-2",
@@ -650,7 +645,7 @@
         }
       ],
       "meta_title": "redesign-meta-title-about",
-      "meta_description": "redesign-meta-description-about"
+      "meta_description": "redesign-about-lede"
     },
     "/evidence/": {
       "key": "evidence",
@@ -730,7 +725,7 @@
         }
       ],
       "meta_title": "redesign-meta-title-evidence",
-      "meta_description": "redesign-meta-description-evidence"
+      "meta_description": "redesign-evidence-lede"
     },
     "/experiments/": {
       "key": "experiments",
@@ -776,7 +771,7 @@
           "items": [
             "redesign-experiments-research-to-product-1",
             "redesign-experiments-research-to-product-2",
-            "redesign-experiments-research-to-product-3",
+            "label-evidence",
             "redesign-experiments-research-to-product-4",
             "redesign-experiments-research-to-product-5",
             "redesign-experiments-research-to-product-6"
@@ -812,11 +807,11 @@
         }
       ],
       "meta_title": "redesign-meta-title-demo",
-      "meta_description": "redesign-meta-description-demo"
+      "meta_description": "redesign-demo-lede"
     },
     "/contact/": {
       "key": "contact",
-      "title": "redesign-contact-title",
+      "title": "label-contact",
       "lede": "redesign-contact-lede",
       "eyebrow": "label-contact",
       "sections": [
@@ -844,11 +839,11 @@
         }
       ],
       "meta_title": "redesign-meta-title-contact",
-      "meta_description": "redesign-meta-description-contact"
+      "meta_description": "redesign-contact-lede"
     },
     "/trust/status/": {
       "key": "status",
-      "title": "redesign-status-title",
+      "title": "label-status",
       "lede": "redesign-status-lede",
       "eyebrow": "label-status",
       "sections": [
@@ -868,7 +863,7 @@
         }
       ],
       "meta_title": "redesign-meta-title-status",
-      "meta_description": "redesign-meta-description-status"
+      "meta_description": "redesign-status-lede"
     }
   },
   "changelog": "redesign-changelog",

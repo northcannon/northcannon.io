@@ -1,0 +1,5 @@
+---
+interface Props { layers: string[] }
+const { layers } = Astro.props;
+---
+<ol class="control-stack">{layers.map((layer,index) => <li class:list={{ 'control-stack__control': index === 2 }}>{layer}</li>)}</ol>

@@ -1,0 +1,75 @@
+/* The review composition uses the existing palette, mark and locally hosted fonts. */
+.product-zone { font-size: 1rem; line-height: 1.6; }
+.redesign-main { padding-block: 4rem 6rem; }
+.product-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 3rem; padding-block: 2rem 4rem; }
+.product-hero:not(:has(> :nth-child(2))) { grid-template-columns: minmax(0, 1fr); }
+.product-hero h1 { max-width: 22ch; margin: 0; font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem); line-height: 1.12; letter-spacing: -.04em; }
+.product-hero .lede { max-width: 600px; }
+.product-hero--instrument h1 { font-size: clamp(1.875rem, 1.5rem + 1vw, 2.5rem); max-width: 32ch; }
+.product-section { margin-top: var(--section-space); scroll-margin-top: 7rem; }
+.product-section > h2 { margin: 0 0 1.5rem; max-width: 32ch; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.2; }
+.product-section > p, .editorial-list { max-width: 68ch; }
+.section-lede { color: var(--color-muted); margin: 0 0 1.75rem; line-height: 1.65; }
+.product-section--instrument { border: 1px solid var(--color-plate-border); border-radius: var(--radius-card); padding: 1.75rem; background: var(--color-panel); }
+.product-section--instrument > h2 { font-family: var(--font-mono); font-size: 1.125rem; letter-spacing: .01em; }
+.offering-grid, .status-triad { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.5rem; }
+.offering-card { border: 1px solid var(--color-plate-border); border-radius: var(--radius-card); background: var(--color-panel); padding: 1.75rem; min-width: 0; }
+.offering-card h3 { margin: .5rem 0 1rem; font-size: 1.25rem; }
+.offering-card p { color: var(--color-muted); }
+.offering-card--feature { border-top: 3px solid var(--color-violet); }
+.offering-card--muted { background: var(--color-bg); }
+.offering-card--future { border-style: dashed; background: var(--color-bg); }
+.state-label { display: flex; gap: .5rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: .75rem; color: var(--color-pending); line-height: 1.6; }
+.control-loop ol { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1px; counter-reset: stage; background: var(--color-plate-border); border: 1px solid var(--color-plate-border); border-radius: 1rem; overflow: hidden; }
+.control-loop li { padding: 1.5rem; background: var(--color-panel); counter-increment: stage; }
+.control-loop li::before { content: counter(stage, decimal-leading-zero); color: var(--color-violet-text); font-family: var(--font-mono); }
+.control-loop h3 { font-size: 1rem; margin: .75rem 0 .5rem; }
+.control-loop p { color: var(--color-muted); font-size: .875rem; }
+.control-loop--compact ol { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.control-loop--compact li { padding: 1rem; }
+.recovery-rail { padding: 1rem; border-left: 2px solid var(--color-violet); }
+.flow-steps { display: flex; gap: 1rem; counter-reset: flow; }
+.flow-steps li { flex: 1; min-width: 0; border-left: 2px solid var(--color-violet); padding: .75rem 1rem; counter-increment: flow; }
+.flow-steps li::before { content: counter(flow, decimal-leading-zero); display: block; color: var(--color-violet-text); font-family: var(--font-mono); font-size: .75rem; margin-bottom: .5rem; }
+.flow-steps--vertical { flex-direction: column; }
+.distinction { display: flex; gap: 1.5rem; align-items: center; }
+.distinction p { flex: 1; padding: 1.75rem; border: 1px solid var(--color-plate-border); font-size: 1.25rem; }
+.distinction__symbol { color: var(--color-violet-text); font-size: 2rem; }
+.status-triad__column { min-width: 0; border-top: 2px solid var(--color-muted); padding-top: 1rem; }
+.status-triad__column--0 { border-color: var(--color-verified); }
+.status-triad__column--1 { border-color: var(--color-pending); }
+.status-triad h3 { margin: 0 0 1.25rem; }
+.status-triad li { margin-block: 1rem; color: var(--color-muted); }
+.editorial-list li { padding-block: .875rem; }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; }
+.data-table caption { text-align: left; margin-block: 1rem; color: var(--color-muted); }
+.data-table th, .data-table td { padding: 1rem; border-bottom: 1px solid var(--color-plate-border); vertical-align: top; overflow-wrap: anywhere; }
+.data-table__label { display: none; }
+.control-stack { display: grid; gap: .75rem; }
+.control-stack li { padding: 1.25rem; border: 1px solid var(--color-plate-border); border-radius: .5rem; background: var(--color-bg); }
+.control-stack .control-stack__control { border-color: var(--color-violet); color: var(--color-violet-text); }
+.founder-profile { display: grid; grid-template-columns: 12rem minmax(0,1fr); gap: 3rem; max-width: 900px; }
+.founder-profile img { width: 12rem; height: 12rem; border-radius: 50%; object-fit: cover; }
+.founder-profile blockquote { border-left: 2px solid var(--color-violet); padding-left: 1.5rem; margin: 2rem 0 1rem; }
+.graphene--quiet { opacity: .25; }
+.graphene--none { display: none; }
+@media (max-width: 63.99rem) {
+ .product-hero { grid-template-columns: minmax(0,1fr); gap: 2rem; }
+ .redesign-main { padding-top: 1.5rem; }
+ .offering-grid, .status-triad { grid-template-columns: minmax(0,1fr); }
+ .product-hero h1 { font-size: clamp(2rem, 5.6vw, 3rem); }
+}
+@media (max-width: 47.99rem) {
+ .flow-steps { flex-direction: column; }
+ .control-loop ol { grid-template-columns: minmax(0,1fr); }
+ .distinction { flex-direction: column; align-items: stretch; gap: .25rem; }
+ .distinction p { margin: 0; }
+ .distinction__symbol { text-align: center; }
+ .founder-profile { grid-template-columns: minmax(0,1fr); gap: 1rem; }
+ .founder-profile img { width: 8rem; height: 8rem; }
+ .data-table thead { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+ .data-table tr { display: block; border: 1px solid var(--color-plate-border); margin-block: 1rem; }
+ .data-table td { display: grid; grid-template-columns: minmax(0,1fr); }
+ .data-table__label { display: block; color: var(--color-violet-text); font-size: .75rem; margin-bottom: .5rem; }
+ .product-section--instrument { padding: 1.25rem; }
+}

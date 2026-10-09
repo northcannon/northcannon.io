@@ -45,7 +45,7 @@
     "category": "status",
     "basis": "docs/FOUNDER_APPROVALS.md",
     "approval_state": "approved",
-    "lifecycle_state": "approved",
+    "lifecycle_state": "retired",
     "review_date": "2026-09-13",
     "approval_record": "founder_attestation",
     "status_stage": "preparation"
@@ -2846,7 +2846,7 @@
     "category": "status",
     "basis": "docs/FOUNDER_APPROVALS.md",
     "approval_state": "approved",
-    "lifecycle_state": "approved",
+    "lifecycle_state": "retired",
     "review_date": "2026-09-15",
     "approval_record": "founder_attestation",
     "status_stage": "frozen"
@@ -4824,12 +4824,13 @@
   {
     "claim_id": "status-gate1-discontinued",
     "statement": "Gate 1 was discontinued on 29 September 2026, before execution. No results were produced, and none are forthcoming.",
-    "category": "other",
+    "category": "status",
     "basis": "docs/FOUNDER_APPROVALS.md",
     "approval_state": "approved",
     "lifecycle_state": "approved",
     "review_date": "2026-10-09",
-    "approval_record": "founder_attestation"
+    "approval_record": "founder_attestation",
+    "status_stage": "discontinued"
   },
   {
     "claim_id": "gate1-historical-statement",
@@ -6472,16 +6473,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-about-company-title",
-    "statement": "About NorthCannon",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-about-company-1",
     "statement": "Why now: AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.",
     "category": "other",
@@ -6972,16 +6963,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-class-historical",
-    "statement": "Historical prototype",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-experiments-title",
     "statement": "Research, held to the same evidence standard.",
     "category": "other",
@@ -7192,16 +7173,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-experiments-research-to-product-3",
-    "statement": "Evidence",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-experiments-research-to-product-4",
     "statement": "Qualification",
     "category": "other",
@@ -7284,16 +7255,6 @@
   {
     "claim_id": "redesign-demo-contact-title",
     "statement": "Want a walkthrough when it is ready?",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
-    "claim_id": "redesign-contact-title",
-    "statement": "Contact",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -7402,16 +7363,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-status-title",
-    "statement": "Status",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-status-lede",
     "statement": "Product qualification and research program status are distinct.",
     "category": "other",
@@ -7512,16 +7463,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-meta-description-products",
-    "statement": "The intended deployment models share the same control design. Availability and broader capabilities remain planned.",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-meta-title-solutions",
     "statement": "Solutions · NorthCannon",
     "category": "other",
@@ -7552,28 +7493,8 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-meta-description-about",
-    "statement": "NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state.",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-meta-title-evidence",
     "statement": "Evidence · NorthCannon",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
-    "claim_id": "redesign-meta-description-evidence",
-    "statement": "Product status, research and site integrity are separate kinds of evidence.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -7612,16 +7533,6 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-meta-description-demo",
-    "statement": "An engineering-loop demonstration is a future deliverable. No current demo is claimed.",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-meta-title-contact",
     "statement": "Contact · NorthCannon",
     "category": "other",
@@ -7632,28 +7543,8 @@
     "approval_record": "none"
   },
   {
-    "claim_id": "redesign-meta-description-contact",
-    "statement": "For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below.",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
     "claim_id": "redesign-meta-title-status",
     "statement": "Status · NorthCannon",
-    "category": "other",
-    "basis": "docs/design/POST_PIVOT_COPY.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
-  },
-  {
-    "claim_id": "redesign-meta-description-status",
-    "statement": "Product qualification and research program status are distinct.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",

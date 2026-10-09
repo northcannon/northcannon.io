@@ -1,0 +1,6 @@
+---
+import FlowSteps from './FlowSteps.astro';
+interface Props { steps: string[]; current?: number }
+const { steps, current } = Astro.props;
+---
+<FlowSteps steps={steps} current={current} vertical />

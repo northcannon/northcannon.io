@@ -1,0 +1,5 @@
+---
+interface Props { name: string; alt: string; bio: string; quote: string; note: string }
+const { name, alt, bio, quote, note } = Astro.props;
+---
+<div class="founder-profile"><img src="/founder/max-brooks-480.webp" width="480" height="480" loading="lazy" alt={alt} /><div><p>{name}</p><p>{bio}</p><blockquote>{quote}</blockquote><p class="section-lede">{note}</p></div></div>

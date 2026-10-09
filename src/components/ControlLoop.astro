@@ -1,0 +1,8 @@
+---
+interface Props { stages: { label: string; question: string }[]; recovery: string; compact?: boolean }
+const { stages, recovery, compact = false } = Astro.props;
+---
+<div class:list={['control-loop', { 'control-loop--compact': compact }]}>
+  <ol>{stages.map(stage => <li><h3>{stage.label}</h3><p>{stage.question}</p></li>)}</ol>
+  <p class="recovery-rail">{recovery}</p>
+</div>
