@@ -1,6 +1,6 @@
 # Post-pivot copy awaiting founder approval
 
-All copy below is PENDING, for local founder review only. This document is a proposed public basis, not evidence of availability or approval. D3–D17 defaults are provisional. The mission remains neutralised. Product implementation is limited to the Phase A scope explicitly stated.
+All proposed copy is PENDING, for local founder review only. This public basis records draft wording, not approval or evidence of general availability. The mission remains neutralised. Every new route remains unpublished.
 
 ## E-010
 
@@ -100,7 +100,7 @@ Control consequential AI changes. Engineering first, with exact transition autho
 
 Products · NorthCannon
 
-### redesign-meta-description-products
+### redesign-products-lede
 
 The intended deployment models share the same control design. Availability and broader capabilities remain planned.
 
@@ -116,7 +116,7 @@ Proposed engineering workflows, planned knowledge blast radius and clearly label
 
 About · NorthCannon
 
-### redesign-meta-description-about
+### redesign-about-lede
 
 NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state.
 
@@ -124,7 +124,7 @@ NorthCannon AI Action Control governs consequential actions through exact transi
 
 Evidence · NorthCannon
 
-### redesign-meta-description-evidence
+### redesign-evidence-lede
 
 Product status, research and site integrity are separate kinds of evidence.
 
@@ -140,7 +140,7 @@ Parallel, non-gating research: Persistent Intelligence, Gate 1 history and Struc
 
 Demo — Coming Soon · NorthCannon
 
-### redesign-meta-description-demo
+### redesign-demo-lede
 
 An engineering-loop demonstration is a future deliverable. No current demo is claimed.
 
@@ -148,7 +148,7 @@ An engineering-loop demonstration is a future deliverable. No current demo is cl
 
 Contact · NorthCannon
 
-### redesign-meta-description-contact
+### redesign-contact-lede
 
 For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below.
 
@@ -156,9 +156,41 @@ For engineering design-partner, deployment, pricing and research conversations, 
 
 Status · NorthCannon
 
-### redesign-meta-description-status
+### redesign-status-lede
 
 Product qualification and research program status are distinct.
+
+### redesign-label-obligation
+
+Obligation
+
+### redesign-label-surface
+
+Surface
+
+### redesign-label-reason
+
+Why it is in scope
+
+### redesign-label-class
+
+Class
+
+### redesign-label-subject
+
+Subject
+
+### redesign-label-type
+
+Evidence type
+
+### redesign-label-hash
+
+Artifact identity (SHA-256)
+
+### redesign-label-link
+
+Link
 ## E-011
 
 ### redesign-explore
@@ -392,10 +424,6 @@ We welcome engineering design-partner and deployment conversations.
 ### redesign-products-title
 
 One control substrate. Three ways to deploy.
-
-### redesign-products-lede
-
-The intended deployment models share the same control design. Availability and broader capabilities remain planned.
 
 ### redesign-products-capabilities-title
 
@@ -673,14 +701,6 @@ Discuss the engineering changes you need to govern
 
 We build control for the moment AI starts changing things.
 
-### redesign-about-lede
-
-NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state.
-
-### redesign-about-company-title
-
-About NorthCannon
-
 ### redesign-about-company-1
 
 Why now: AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.
@@ -697,10 +717,6 @@ What we build on: persistent verified state provides continuity between evidence
 
 How we work: evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change.
 
-### redesign-demo-lede
-
-An engineering-loop demonstration is a future deliverable. No current demo is claimed.
-
 ### redesign-demo-planned-loop-title
 
 What it will show
@@ -712,6 +728,58 @@ The planned demonstration follows a proposed engineering change through control,
 ### redesign-demo-contact-title
 
 Want a walkthrough when it is ready?
+
+### redesign-example-dependency
+
+Dependency v1 → v2 · PROPOSED
+
+### redesign-example-intent
+
+Intent
+
+### redesign-example-scope
+
+Scope
+
+### redesign-example-observation
+
+Observation
+
+### redesign-example-verdict
+
+Authorization depends on the exact proposal and evidence.
+
+### redesign-example-record
+
+Illustrative execution record
+
+### redesign-example-record-body
+
+An execution receipt would be followed by observation of the resulting state. An uncertain outcome would require reconciliation before any retry.
+
+### redesign-example-design
+
+Product design · broader capabilities planned
+
+### redesign-example-runtime
+
+Runtime and code surfaces
+
+### redesign-example-knowledge
+
+Engineering knowledge
+
+### redesign-example-obligations
+
+Explicit review obligations
+
+### redesign-example-northcannon-environment
+
+NorthCannon environment
+
+### redesign-example-your-environment
+
+Your environment
 ## E-012
 
 ### redesign-status-exists-1
@@ -753,10 +821,6 @@ No experimental results or SPC performance advantage is claimed.
 ### redesign-evidence-title
 
 What NorthCannon can substantiate, and what it does not claim yet.
-
-### redesign-evidence-lede
-
-Product status, research and site integrity are separate kinds of evidence.
 
 ### redesign-evidence-status-title
 
@@ -922,10 +986,6 @@ Research & experiments
 
 Public artifact & provenance
 
-### redesign-class-historical
-
-Historical prototype
-
 ### redesign-experiments-title
 
 Research, held to the same evidence standard.
@@ -1010,10 +1070,6 @@ Research idea
 
 Recorded experiment
 
-### redesign-experiments-research-to-product-3
-
-Evidence
-
 ### redesign-experiments-research-to-product-4
 
 Qualification
@@ -1034,14 +1090,6 @@ Where results appear
 
 Results belong on Evidence only after an experiment has run under its recorded freeze.
 
-### redesign-status-title
-
-Status
-
-### redesign-status-lede
-
-Product qualification and research program status are distinct.
-
 ### redesign-status-status-title
 
 Product status
@@ -1061,6 +1109,58 @@ Gate 1: discontinued before execution on 29 September 2026.
 ### redesign-status-research-3
 
 SPC: pre-experiment research; no results claimed.
+
+### redesign-surface-architecture
+
+Architecture
+
+### redesign-reason-architecture
+
+A changed dependency could invalidate an accepted assertion.
+
+### redesign-surface-implementation
+
+Implementation
+
+### redesign-reason-implementation
+
+A downstream caller could depend on changed behavior.
+
+### redesign-surface-test
+
+Test
+
+### redesign-reason-test
+
+An existing assertion could no longer describe intended behavior.
+
+### redesign-surface-schema-consumer
+
+Schema consumer
+
+### redesign-reason-schema-consumer
+
+A changed contract could affect a consuming surface.
+
+### redesign-surface-documentation
+
+Documentation
+
+### redesign-reason-documentation
+
+An accepted description could become stale.
+
+### redesign-reason-evidence
+
+Earlier evidence may no longer apply to the changed state.
+
+### redesign-ledger-prototype
+
+September 2026 demonstration recording
+
+### redesign-ledger-site
+
+Site build provenance manifest: integrity of this website only.
 ## E-013
 
 ### redesign-about-founder-title
@@ -1070,14 +1170,6 @@ Built from the consequences backward.
 ### redesign-founder-status
 
 Max Brooks is NorthCannon’s solo technical founder, working full-time on the control foundation and its product development.
-
-### redesign-contact-title
-
-Contact
-
-### redesign-contact-lede
-
-For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below.
 
 ### redesign-contact-intents-title
 

@@ -5,9 +5,9 @@ import { draftClaim } from '../governance/routes.mjs';
 import Icon from './Icon.astro';
 interface Props {
   company: string;
-  items: ReadonlyArray<{ label: string; href: string; cta?: boolean; children?: ReadonlyArray<{ label: string; href: string }> }>;
+  items: ReadonlyArray<{ label: string; href: string; cta?: boolean | undefined; children?: ReadonlyArray<{ label: string; href: string }> }>;
   currentPath: string;
-  review?: boolean;
+  review?: boolean | undefined;
 }
 const { company, items, currentPath, review = false } = Astro.props;
 const { claims } = loadGovernance();

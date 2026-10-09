@@ -1,7 +1,9 @@
 ---
+import { loadGovernance } from '../governance/registry.mjs';
+import { draftClaim } from '../governance/routes.mjs';
 import { claim } from '../governance/claim';
-interface Props { fragmentFixture?: boolean }
-const { fragmentFixture = false } = Astro.props;
+interface Props { fragmentFixture?: boolean; review?: boolean }
+const { fragmentFixture = false, review = false } = Astro.props;
 const copy = {
   company: await claim('brand-company'),
   principle: await claim('brand-core-principle'),
@@ -12,16 +14,16 @@ const links = [
   { label: await claim('label-claims'), href: '/trust/claims/' },
   { label: await claim('label-provenance'), href: '/trust/provenance/' },
   { label: await claim('label-changelog'), href: '/trust/changelog/' },
-  { label: await claim('label-site-security'), href: '/trust/site-security/' },
   { label: await claim('label-disclosure'), href: '/trust/disclosure/' },
+  { label: await claim('label-site-security'), href: '/trust/site-security/' },
   { label: await claim('label-contact'), href: '/contact/' },
 ];
 ---
 <footer class="site-footer">
   <div class="site-container site-footer__inner">
     <p class="site-footer__brand"><span>{copy.company}</span><span class="rule-divider" aria-hidden="true"></span><span>{copy.principle}</span></p>
-    <ul class="site-footer__links">
-      {links.map(link => <li><a href={fragmentFixture ? '#review' : link.href}>{link.label}</a></li>)}
-    </ul>
+    <nav aria-label={review ? draftClaim(loadGovernance().claims, 'redesign-label-site') : await claim('label-trust')}>
+      {[links.slice(0,5),links.slice(5)].map(row => <ul class="site-footer__links">{row.map(link => <li><a href={fragmentFixture ? '#review' : link.href}>{link.label}</a></li>)}</ul>)}
+    </nav>
   </div>
 </footer>

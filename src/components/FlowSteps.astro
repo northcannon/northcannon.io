@@ -1,5 +1,5 @@
 ---
-interface Props { steps: string[]; vertical?: boolean; current?: number }
+interface Props { steps: string[]; vertical?: boolean | undefined; current?: number | undefined }
 const { steps, vertical = false, current } = Astro.props;
 ---
 <ol class:list={['flow-steps', { 'flow-steps--vertical': vertical }]}>{steps.map((step, index) => <li aria-current={current === index ? 'step' : undefined}><span>{step}</span></li>)}</ol>

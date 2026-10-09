@@ -18,12 +18,15 @@ export function inspectClaimOutput(html, claims, { review = false, rejectUnregis
   const errors = [];
   // Approved full statements may contain a shorter pending interface label.
   // Remove exact approved statements before checking remaining ineligible prose.
-  for (const claim of claims) {
-    let combined = texts.join(' ');
+  const combinedText = texts.join(' ');
+  const approvedStatements = claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state === 'approved').map(c => normalize(c.statement)).sort((a,b) => b.length-a.length);
+  for (const claim of claims.filter(c => c.approval_state !== 'approved' || c.lifecycle_state !== 'approved')) {
     const pending = normalize(claim.statement);
-    for (const approved of claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state === 'approved' && normalize(c.statement).includes(pending)).sort((a, b) => b.statement.length - a.statement.length)) combined = combined.split(normalize(approved.statement)).join(' ');
-    if (review) for (const label of [...reviewText].filter(label => label.includes(pending)).sort((a, b) => b.length - a.length)) combined = combined.split(label).join(' ');
-    if ((claim.approval_state !== 'approved' || claim.lifecycle_state !== 'approved') && combined.includes(normalize(claim.statement))) errors.push(`Ineligible rendered statement: ${claim.claim_id}`);
+    if (!combinedText.includes(pending)) continue;
+    let combined = combinedText;
+    for (const approved of approvedStatements) if (approved.includes(pending)) combined = combined.split(approved).join(' ');
+    if (review) for (const label of [...reviewText].filter(label => label.includes(pending)).sort((a,b) => b.length-a.length)) combined = combined.split(label).join(' ');
+    if (combined.includes(pending)) errors.push(`Ineligible rendered statement: ${claim.claim_id}`);
   }
   if (rejectUnregistered) {
     const approved = claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state === 'approved');
@@ -34,6 +37,33 @@ export function inspectClaimOutput(html, claims, { review = false, rejectUnregis
       allowed.add(`Page not found — ${company.statement}`);
     }
     for (const text of texts) if (!allowed.has(text)) errors.push('Unregistered rendered text (not a governed claim or reviewed interface label)');
+  }
+  return errors;
+}
+
+// Register completeness is checked against actual production text, not merely a
+// hand-maintained list of route dependencies. Exact paragraph matches count too.
+export function claimRegisterErrors(documents, claims) {
+  const register = documents.get('trust/claims/index.html') ?? '';
+  const registered = new Set([...register.matchAll(/data-claim-id="([a-z0-9-]+)"/g)].map(m => m[1]));
+  const approved = claims.filter(c => c.approval_state === 'approved' && c.lifecycle_state === 'approved');
+  const byText = new Map();
+  for (const c of approved) for (const text of [c.statement,...c.statement.split('\n\n')]) {
+    const key = normalize(text); byText.set(key,[...(byText.get(key) ?? []),c.claim_id]);
+  }
+  const errors = [];
+  for (const [name, html] of documents) {
+    if (!name.endsWith('.html') || name === 'trust/claims/index.html') continue;
+    const check = text => {
+      const ids = byText.get(normalize(text));
+      if (ids && !ids.some(id => registered.has(id))) errors.push(`${name}: rendered claim absent from public register: ${ids.join(', ')}`);
+    };
+    const visit = node => {
+      if (node.nodeName === '#text') check(node.value);
+      for (const a of node.attrs ?? []) if (['alt','aria-label','aria-description','title'].includes(a.name)) check(a.value);
+      for (const child of node.childNodes ?? []) visit(child);
+    };
+    visit(parse(html));
   }
   return errors;
 }

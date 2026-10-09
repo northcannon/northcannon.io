@@ -1,5 +1,6 @@
 ---
-interface Props { caption: string; columns: string[]; rows: string[][] }
+type Cell = string | { text: string; href?: string | undefined; hash?: string | undefined };
+interface Props { caption: string; columns: string[]; rows: Cell[][] }
 const { caption, columns, rows } = Astro.props;
 ---
-<table class="data-table"><caption>{caption}</caption><thead><tr>{columns.map(col => <th scope="col">{col}</th>)}</tr></thead><tbody>{rows.map(row => <tr>{row.map((value,index) => <td><span class="data-table__label" aria-hidden="true">{columns[index]}</span><span>{value}</span></td>)}</tr>)}</tbody></table>
+<table class="data-table"><caption>{caption}</caption><thead><tr>{columns.map(col => <th scope="col">{col}</th>)}</tr></thead><tbody>{rows.map(row => <tr>{row.map((value,index) => <td><span class="data-table__label" aria-hidden="true">{columns[index]}</span>{typeof value === 'string' ? <span>{value}</span> : value.href ? <a class="inline-link" href={value.href}>{value.text}</a> : value.hash ? <code data-evidence-hash={value.hash}>{value.text}</code> : <span>{value.text}</span>}</td>)}</tr>)}</tbody></table>

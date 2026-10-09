@@ -7,7 +7,7 @@ import { readHeaders, readRedirects, allowedImages, allowedMedia } from './polic
 const root = await realpath(process.argv[2] ?? 'dist');
 const port = Number(process.argv[3] ?? 4321);
 const headers = readHeaders(await readFile(path.join(root, '_headers'), 'utf8'));
-const redirects = await readFile(path.join(root, '_redirects'), 'utf8').then(readRedirects, () => []);
+const redirects = await readFile(path.join(root, '_redirects'), 'utf8').then(text => readRedirects(text, { review: path.basename(root).startsWith('.review-dist') }), () => []);
 const mime = { '.json': 'application/json', '.xml': 'application/xml', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.png': 'image/png', '.webp': 'image/webp', '.mp4': 'video/mp4', '.vtt': 'text/vtt; charset=utf-8' };
 http.createServer(async (request, response) => {
   try {

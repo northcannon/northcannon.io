@@ -16,6 +16,7 @@ export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(
   if (new Set(routes.map(r => r.path)).size !== routes.length) throw new Error('Duplicate route');
   const ctas = routes.filter(r => r.nav_cta);
   if (ctas.length > 1 || ctas.some(r => !r.nav || r !== routes.filter(r => r.nav).at(-1))) throw new Error('Navigation CTA must be unique and last');
+  if (ctas.some(r => !isApproved(claims.find(c => c.claim_id === r.title_claim_or_label)))) throw new Error('Navigation CTA requires an attested label');
   for (const r of routes) if (r.alias_of && (r.nav || r.path !== '/about/company/' || !routes.some(t => t.path === r.alias_of))) throw new Error('Invalid alias route');
   for (const route of routes) {
     for (const id of route.review_claim_ids) draftClaim(claims, id);
@@ -39,10 +40,10 @@ export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(
 export const routeFile = route => route.path === '/404.html' ? '404.html' : route.path.slice(1) + 'index.html';
 // Navigation is a transitive dependency; production includes published destinations
 // whose navigation label is founder-attested.
-export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.title_claim_or_label;
+export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.path === '/about/company/' ? 'label-about' : route.title_claim_or_label;
 // Every route that appears in navigation, in registry order.
 export function navigationRoutes(routes, { review = true, claims = loadGovernance().claims } = {}) {
-  return routes.filter(r => r.nav && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r))))));
+  return routes.filter(r => (r.nav || (!review && r.alias_of && !routes.find(target => target.path === r.alias_of)?.publish)) && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r)))))).sort((a,b) => a.alias_of ? -1 : b.alias_of ? 1 : 0);
 }
 // Navigation items in order: a plain route, or a group (own label and link) with its visible members as children.
 // A group needs its approved label and its target page; members never appear without it.

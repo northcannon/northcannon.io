@@ -1,5 +1,5 @@
 ---
-interface Props { id: string; title: string; intro?: string; instrument?: boolean }
+interface Props { id: string; title: string; intro?: string | undefined; instrument?: boolean | undefined }
 const { id, title, intro, instrument = false } = Astro.props;
 ---
 <section id={id} aria-labelledby={`${id}-heading`} class:list={['product-section', { 'product-section--instrument': instrument }]}>

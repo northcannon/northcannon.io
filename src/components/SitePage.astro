@@ -16,7 +16,7 @@ import SupportingPage from './pages/SupportingPage.astro';
 import { loadGovernance } from '../governance/registry.mjs';
 import { readRoutes, routeCopy, navigationTree, draftBanner } from '../governance/routes.mjs';
 import type { Copy } from './copy';
-interface Props { route: ReturnType<typeof readRoutes>[number]; review?: boolean }
+interface Props { route: ReturnType<typeof readRoutes>[number]; review?: boolean | undefined }
 const { route, review = true } = Astro.props;
 const data = loadGovernance();
 const routes = readRoutes(data.claims);
@@ -28,12 +28,12 @@ const copy: Copy = {
   paragraphs: id => t(id)?.split('\n\n') ?? [],
   href: path => (available.has(path.split('#')[0]!) ? path : undefined),
   review,
-  status: entryId => data.status.find(entry => entry.entry_id === entryId),
+  status: entryId => data.status.find((entry: { entry_id: string; stage: string; claim_id: string }) => entry.entry_id === entryId),
 };
 const company = t('brand-company')!;
 const title = route.path === '/404.html' ? 'Page not found' : (t(route.title_claim_or_label) ?? company);
-type Item = { claimId: string; href: string; cta?: boolean; children?: Item[] };
-type Nav = { href: string; label: string; cta?: boolean; children: Nav[] };
+type Item = { claimId: string; href: string; cta?: boolean | undefined; children?: Item[] };
+type Nav = { href: string; label: string; cta?: boolean | undefined; children: Nav[] };
 const link = (item: Item): Nav => ({ href: item.href, cta: item.cta, label: t(item.claimId)!, children: (item.children ?? []).map(link) });
 const items = navigationTree(routes, { review, claims: data.claims }).map(link);
 // Preserve route dependency checks; the footer independently attests its fixed copy.
@@ -45,9 +45,9 @@ const pages = {
 } as unknown as Record<string, typeof SupportingPage>;
 const Page = review && (route.alias_of ?? route.path) in draft.pages ? RedesignPage : (pages[route.path] ?? SupportingPage);
 ---
-<Document title={review && route.meta_title ? t(route.meta_title)! : title} description={review && route.meta_description ? t(route.meta_description) : undefined} canonical={review && route.path !== '/404.html' ? (route.alias_of ?? route.path) : undefined}>
+<Document ogAlt={review ? t(draft.og_alt) : undefined} title={review && route.meta_title ? t(route.meta_title)! : title} description={review && route.meta_description ? t(route.meta_description) : undefined} canonical={review && route.path !== '/404.html' ? (route.alias_of ?? route.path) : undefined}>
   {review && <p class="draft-bar">{draftBanner}</p>}
-  <SiteHeader review={review} company={company} items={items} currentPath={route.path} />
+  <SiteHeader review={review} company={company} items={items} currentPath={review ? (route.alias_of ?? route.path) : route.path} />
   <Page copy={copy} route={route} routes={routes} claims={data.claims} title={title} />
-  <SiteFooter />
+  <SiteFooter review={review} />
 </Document>

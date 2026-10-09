@@ -1,5 +1,5 @@
 ---
-interface Props { title?: string; body?: string; status?: string; variant?: string }
+interface Props { title?: string; body?: string | undefined; status?: string; variant?: string }
 const { title, body, status, variant = 'standard' } = Astro.props;
 ---
 <article class:list={['offering-card', `offering-card--${variant}`]}>

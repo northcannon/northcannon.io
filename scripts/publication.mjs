@@ -7,7 +7,7 @@ import { loadGovernance } from '../src/governance/registry.mjs';
 import { eligibleClaim } from '../src/governance/schema.mjs';
 import { readRoutes } from '../src/governance/routes.mjs';
 import { publicationIdentity } from './check-publication.mjs';
-import { allowedMedia, allowedImages, demoVideoClaimIds } from './policy.mjs';
+import { historicalMedia, historicalImages, demoVideoClaimIds } from './policy.mjs';
 
 export const sourceFiles = ['public_claims/claims.json', 'src/content/collections.json', 'src/content/routes.json', 'docs/FOUNDER_APPROVALS.md', 'package-lock.json'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -35,8 +35,10 @@ export async function finalizeProduction(root) {
   const demo = readRoutes(claims).find(route => route.path === '/demo/' && route.publish);
   const referenced = new Set(demo ? [...demo.claim_ids, ...demo.review_claim_ids] : []);
   if (!demoVideoClaimIds.every(id => referenced.has(id) && claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
-    for (const file of [...Object.keys(allowedMedia), ...Object.keys(allowedImages).filter(f => f.startsWith('/demo/'))]) await rm(path.join(root, file), { force: true });
+    for (const file of [...Object.keys(historicalMedia), ...Object.keys(historicalImages)]) await rm(path.join(root, file), { force: true });
   }
+  // The proposed raster has no founder image attestation; never publish it in this phase.
+  await rm(path.join(root, 'og/northcannon-default.png'), { force: true });
   await writeFile(path.join(root, 'sitemap.xml'), sitemap(readRoutes()));
   await writeFile(path.join(root, 'provenance.json'), JSON.stringify(await provenance(root), null, 2) + '\n');
 }

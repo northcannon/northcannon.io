@@ -1,6 +1,7 @@
 ---
 // Supporting routes outside the primary information architecture: Trust Center,
 // vision and the not-found page, in the shared design system.
+import draft from '../../content/redesign.json';
 import Icon from '../Icon.astro';
 import LinkCard from '../LinkCard.astro';
 import Module from '../Module.astro';
@@ -25,6 +26,7 @@ const body: Record<string, string[]> = {
 // Changelog records are governed claims: an entry shows only when its statements may render in this build.
 const entries = route.path === '/trust/changelog/' ? (loadGovernance().changelog as Array<{ claim_ids: string[] }>).filter(entry => entry.claim_ids.every((id: string) => t(id) !== undefined)) : [];
 if (route.path === '/trust/changelog/' && entries.length === 0) body['/trust/changelog/'] = ['changelog-empty'];
+if (review && route.path === '/trust/changelog/') entries.unshift({ claim_ids: [draft.changelog] });
 const paragraphs = (body[route.path] ?? []).flatMap(id => copy.paragraphs(id));
 const trustLinks = route.path === '/trust/' ? routes.filter(r => r.path.startsWith('/trust/') && r.path !== '/trust/' && (review || r.publish)) : [];
 const approved = route.path === '/trust/claims/' ? claims.filter(c => c.approval_state === 'approved' && route.claim_ids.includes(c.claim_id)) : [];
@@ -41,12 +43,12 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
       </ul>
     )}
     {email && <div class="action-group"><a class="action-link action-link--primary" href={`mailto:${email}`}><Icon name="mail" />{email}</a></div>}
-    {route.path === '/404.html' && <div class="action-group"><a class="action-link action-link--primary" href="/">Return home</a></div>}
+    {route.path === '/404.html' && <div class="action-group"><a class="action-link action-link--primary" href="/">Return home</a>{review && <a class="inline-link" href="/products/">{t(draft.labels.products)}</a>}<a class="inline-link" href="/evidence/">{t('label-evidence')}</a><a class="inline-link" href="/contact/">{t('label-contact')}</a></div>}
     {trustLinks.length > 0 && <div class="link-cards">{trustLinks.map(r => <LinkCard href={r.path} icon="shield-check" title={t(r.title_claim_or_label)!} />)}</div>}
     {approved.length > 0 && (
       <ul class="claim-list">
         {approved.map(c => (
-          <li class="panel claim-record">
+          <li class="panel claim-record" data-claim-id={c.claim_id}>
             <h2 class="card-title">{t(c.claim_id)?.split('\n\n')[0]}</h2>
             <dl class="record-fields">
               {[['label-claim-id', c.claim_id], ['label-category', c.category], ['label-basis', c.basis], ['label-review-date', c.review_date]].map(([label, value]) => <div><dt>{t(label!)}</dt><dd>{value}</dd></div>)}
@@ -60,7 +62,7 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
       <div class="page-stack">
         <dl class="panel record-fields">
           <div><dt>{t('label-source-commit')}</dt><dd>{provenance.source_commit ?? t('label-null')}</dd></div>
-          <div><dt>{t('label-astro-version')}</dt><dd>{provenance.astro_version}</dd></div>
+          <div><dt>{t('redesign-label-build-version')}</dt><dd>{provenance.astro_version}</dd></div>
         </dl>
         {(['sources', 'files', 'approval_events'] as const).map((group, index) => (
           <Module id={`provenance-${group}`} title={t(['label-source-files', 'label-output-files', 'label-approval-events'][index]!)!} numbered>

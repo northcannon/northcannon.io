@@ -3,8 +3,8 @@ import '../styles/global.css';
 import '../styles/pages.css';
 import '../styles/redesign.css';
 import Graphene from '../components/Graphene.astro';
-interface Props { title: string; description?: string; canonical?: string }
-const { title, description, canonical } = Astro.props;
+interface Props { title: string; description?: string | undefined; canonical?: string | undefined; ogAlt?: string | undefined }
+const { title, description, canonical, ogAlt } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -14,10 +14,11 @@ const { title, description, canonical } = Astro.props;
     <title>{title}</title>
     {description && <><meta name="description" content={description} /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /></>}
     {canonical && <><link rel="canonical" href={`https://northcannon.io${canonical}`} /><meta property="og:url" content={`https://northcannon.io${canonical}`} /></>}
+    {ogAlt && <><meta property="og:image" content="https://northcannon.io/og/northcannon-default.png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={ogAlt} /><meta name="twitter:card" content="summary_large_image" /></>}
     <link rel="icon" type="image/svg+xml" href="/northcannon-mark.svg" />
   </head>
   <body>
-    <Graphene />
+    <Graphene density={canonical?.startsWith('/trust/') || canonical === '/evidence/' ? 'none' : canonical && canonical !== '/' ? 'quiet' : 'hero'} />
     <slot />
   </body>
 </html>

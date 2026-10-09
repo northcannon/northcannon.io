@@ -1,4 +1,6 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { redesignRedirects } from './redesign-policy.mjs';
+import { readdir, readFile, writeFile, rm, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { loadGovernance } from '../src/governance/registry.mjs';
@@ -14,16 +16,23 @@ export default function contentGovernance() {
     name: 'public-content-governance',
     hooks: {
       'astro:config:done': ({ config }) => { wp4 = fileURLToPath(config.root).includes(`${path.sep}fixtures${path.sep}wp4${path.sep}`); readRoutes(); review = fileURLToPath(config.root).includes(`${path.sep}tests${path.sep}fixtures${path.sep}design-system${path.sep}`); },
+      'astro:build:start': () => { if (review) execFileSync('npm', ['run', 'build'], { cwd: process.cwd(), stdio: 'pipe' }); },
       'astro:build:done': async ({ dir }) => {
         const { claims } = loadGovernance();
         const root = fileURLToPath(dir);
+        if (review || wp4) {
+          await writeFile(path.join(root, '_redirects'), redesignRedirects.join('\n') + '\n');
+          // The Evidence ledger links the production manifest; review output carries a byte-identical copy so the link resolves.
+          await copyFile(path.resolve('dist/provenance.json'), path.join(root, 'provenance.json'));
+          for (const file of ['demo/northcannon-demo.mp4', 'demo/northcannon-demo.en.vtt', 'demo/northcannon-demo-poster.webp']) await rm(path.join(root, file), { force: true });
+        }
         for (const name of await readdir(root, { recursive: true })) {
           if (!name.endsWith('.html')) continue;
           const html = await readFile(path.join(root, name), 'utf8');
           const errors = name === 'specimen/index.html' ? inspectClaimOutput(html, claims, { review: true, rejectUnregistered: true }) : inspectReviewOutput(html, claims, name, { review: wp4 || review });
           if (errors.length) throw new Error(`${name}: ${errors.join('; ')}`);
         }
-        if (wp4) await verifyProvenance(path.resolve('dist'));
+        if (wp4 || review) await verifyProvenance(path.resolve('dist'));
         if (!review && !wp4) await finalizeProduction(root);
       },
     },
