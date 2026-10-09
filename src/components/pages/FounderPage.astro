@@ -9,7 +9,6 @@ import type { Copy } from '../copy';
 interface Props { copy: Copy; route: { path: string }; title: string; [key: string]: unknown }
 const { copy, route, title } = Astro.props;
 const { t, href, paragraphs } = copy;
-const headline = t('founder-headline');
 const vision = paragraphs('vision-statement');
 // The founder's narrative renders once attested (review builds show it now). The Vision lives on
 // /about/company/, so this section no longer repeats or links it (founder direction 2026-09-24).
@@ -19,7 +18,6 @@ const focus = ['founder-focus-1', 'founder-focus-2', 'founder-focus-3', 'founder
 // Review builds use the new alt claim; production uses the short approved label until it is attested.
 const photoAlt = t('founder-photo-alt') ?? t('label-founder') ?? '';
 const contactHref = href('/contact/');
-const gateHref = href('/gate-1/');
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
@@ -33,8 +31,7 @@ const gateHref = href('/gate-1/');
           </picture>
         </span>
         <div class="founder-hero__copy">
-          {headline && <p class="eyebrow">{t('label-founder')}</p>}
-          <h1 class="page-title" id="founder-title">{headline ?? title}</h1>
+          <h1 class="page-title" id="founder-title">{title}</h1>
           {t('founder-origin-quote') && (
             <figure class="founder-quote">
               <blockquote><p>{t('founder-origin-quote')}</p></blockquote>
@@ -89,7 +86,6 @@ const gateHref = href('/gate-1/');
 
     <div class="link-cards">
       {t('founder-learn-title') && <LinkCard href="/about/company/" icon="home" title={t('founder-learn-title')!} text={t('founder-learn-body')} />}
-      {t('founder-gate-title') && gateHref && <LinkCard href={gateHref} icon="sitemap" title={t('founder-gate-title')!} text={t('founder-gate-body')} />}
     </div>
   </div>
 </main>
