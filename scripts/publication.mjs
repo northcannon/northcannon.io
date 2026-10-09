@@ -30,9 +30,11 @@ export async function finalizeProduction(root) {
     eligibleClaim(security, 'contact-security');
     if (security.approval_record !== 'founder_attestation' || !(await readFile(path.join(root, '.well-known/security.txt'), 'utf8')).includes(`Contact: mailto:${security.statement}\n`)) throw new Error('Security contact must match its pinned approval');
   }
-  // The demo video, captions, and poster stay out of production until every demo video claim is attested.
+  // Approval history alone cannot publish withdrawn media: require a published route and its copy references.
   const claims = loadGovernance().claims;
-  if (!demoVideoClaimIds.every(id => claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
+  const demo = readRoutes(claims).find(route => route.path === '/demo/' && route.publish);
+  const referenced = new Set(demo ? [...demo.claim_ids, ...demo.review_claim_ids] : []);
+  if (!demoVideoClaimIds.every(id => referenced.has(id) && claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
     for (const file of [...Object.keys(allowedMedia), ...Object.keys(allowedImages).filter(f => f.startsWith('/demo/'))]) await rm(path.join(root, file), { force: true });
   }
   await writeFile(path.join(root, 'sitemap.xml'), sitemap(readRoutes()));
