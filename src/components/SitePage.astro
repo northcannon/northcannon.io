@@ -51,7 +51,7 @@ const Page = pages[route.path] ?? SupportingPage;
 ---
 <Document title={title}>
   {review && <p class="draft-bar">{draftBanner}</p>}
-  <SiteHeader review={review} company={company} items={items} currentPath={route.path} status={{ label: t('stage-frozen')!, gate: t('label-gate-1'), description: t('status-gate1-frozen-stress')!, href: copy.href('/gate-1/') ?? '/trust/status/' }} />
+  <SiteHeader review={review} company={company} items={items} currentPath={route.path} />
   <Page copy={copy} route={route} routes={routes} claims={data.claims} title={title} />
   <SiteFooter />
 </Document>
