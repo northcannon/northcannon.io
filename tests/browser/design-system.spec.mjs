@@ -88,7 +88,7 @@ test('native menu opens and closes by keyboard with JavaScript disabled', async 
   try {
     const page = await context.newPage();
     await page.goto('http://127.0.0.1:4322/');
-    for (let i = 0; i < 4; i++) await page.keyboard.press('Tab');
+    for (let i = 0; i < 3; i++) await page.keyboard.press('Tab');
     await expect(page.locator('summary')).toBeFocused();
     await page.keyboard.press('Enter');
     const links = page.locator('.mobile-navigation .navigation a');
