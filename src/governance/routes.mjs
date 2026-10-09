@@ -4,10 +4,8 @@ import { eligibleClaim } from './schema.mjs';
 import { loadGovernance } from './registry.mjs';
 
 export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
-// A navigation group is a top-level item whose own link goes to `href` and whose dropdown lists its member routes.
-export const navGroups = { about: { label_claim_id: 'label-about', href: '/about/company/' } };
 export const draftBanner = 'DRAFT — pending founder approval';
-const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean(), nav_group: z.enum(['about']).optional() }).strict();
+const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean(), nav_cta: z.boolean().optional(), alias_of: z.literal('/about/').optional(), meta_title: z.string().optional(), meta_description: z.string().optional() }).strict();
 const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecycle_state === 'approved' && claim.approval_record === 'founder_attestation';
 
 // claim_ids are required: a published route needs every one approved.
@@ -16,11 +14,9 @@ const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecy
 export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(readFileSync('src/content/routes.json', 'utf8'))) {
   const routes = z.array(routeSchema).parse(input);
   if (new Set(routes.map(r => r.path)).size !== routes.length) throw new Error('Duplicate route');
-  // A group member must be a navigation route; the group's link must land on one of its members.
-  for (const [name, group] of Object.entries(navGroups)) {
-    const members = routes.filter(r => r.nav_group === name);
-    if (members.some(r => !r.nav) || !members.some(r => r.path === group.href)) throw new Error(`Invalid navigation group: ${name}`);
-  }
+  const ctas = routes.filter(r => r.nav_cta);
+  if (ctas.length > 1 || ctas.some(r => !r.nav || r !== routes.filter(r => r.nav).at(-1))) throw new Error('Navigation CTA must be unique and last');
+  for (const r of routes) if (r.alias_of && (r.nav || r.path !== '/about/company/' || !routes.some(t => t.path === r.alias_of))) throw new Error('Invalid alias route');
   for (const route of routes) {
     for (const id of route.review_claim_ids) draftClaim(claims, id);
     for (const id of route.claim_ids) {
@@ -51,23 +47,7 @@ export function navigationRoutes(routes, { review = true, claims = loadGovernanc
 // Navigation items in order: a plain route, or a group (own label and link) with its visible members as children.
 // A group needs its approved label and its target page; members never appear without it.
 export function navigationTree(routes, options = {}) {
-  const { review = true, claims = loadGovernance().claims } = options;
-  const visible = navigationRoutes(routes, { review, claims });
-  const items = [];
-  for (const route of visible) {
-    const item = { claimId: navigationClaimId(route), href: route.path, path: route.path };
-    if (route.nav_group === undefined) { items.push({ ...item, children: [] }); continue; }
-    const group = navGroups[route.nav_group];
-    let entry = items.find(i => i.group === route.nav_group);
-    if (!entry) {
-      const shown = review || (isApproved(claims.find(c => c.claim_id === group.label_claim_id)) && visible.some(r => r.path === group.href));
-      if (!shown) continue;
-      entry = { claimId: group.label_claim_id, href: group.href, group: route.nav_group, children: [] };
-      items.push(entry);
-    }
-    entry.children.push(item);
-  }
-  return items;
+  return navigationRoutes(routes, options).map(route => ({ claimId: navigationClaimId(route), href: route.path, path: route.path, cta: Boolean(route.nav_cta), children: [] }));
 }
 export function reviewDependencies(route, routes, { review = true, claims = loadGovernance().claims } = {}) {
   const optional = review ? route.review_claim_ids : route.review_claim_ids.filter(id => isApproved(claims.find(c => c.claim_id === id)));

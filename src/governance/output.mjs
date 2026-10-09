@@ -9,7 +9,9 @@ export function inspectClaimOutput(html, claims, { review = false, rejectUnregis
   const texts = [];
   const visit = node => {
     if (node.nodeName === '#text' && normalize(node.value)) texts.push(normalize(node.value));
-    for (const attr of node.attrs ?? []) if (['aria-label', 'alt', 'title'].includes(attr.name) && attr.value) texts.push(normalize(attr.value));
+    for (const attr of node.attrs ?? []) if (['aria-label', 'aria-description', 'alt', 'title'].includes(attr.name) && attr.value) texts.push(normalize(attr.value));
+    const attrs = Object.fromEntries((node.attrs ?? []).map(a => [a.name, a.value]));
+    if (node.tagName === 'meta' && ['description', 'og:title', 'og:description', 'og:image:alt'].includes(attrs.name ?? attrs.property)) texts.push(normalize(attrs.content ?? ''));
     for (const child of node.childNodes ?? []) visit(child);
   };
   visit(document);

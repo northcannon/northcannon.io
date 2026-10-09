@@ -25,8 +25,10 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   if (data && data.source_commit !== null) allowed.add(data.source_commit);
   const errors = [];
   const visit = node => {
-    if (node.nodeName === '#text' && node.value.trim() && !allowed.has(node.value.replace(/\s+/gu, ' ').trim())) errors.push('Unregistered review text');
-    for (const a of node.attrs ?? []) if (['aria-label', 'alt', 'title'].includes(a.name) && a.value && !allowed.has(a.value)) errors.push('Unregistered review interface');
+    if (node.nodeName === '#text' && node.value.trim() && !allowed.has(node.value.replace(/\s+/gu, ' ').trim())) errors.push(`${name}: visible text: ${node.value.trim()}`);
+    for (const a of node.attrs ?? []) if (['aria-label', 'aria-description', 'alt', 'title'].includes(a.name) && a.value && !allowed.has(a.value)) errors.push(`${name}: accessibility ${a.name}: ${a.value}`);
+    const attrs = Object.fromEntries((node.attrs ?? []).map(a => [a.name, a.value]));
+    if (node.tagName === 'meta' && ['description', 'og:title', 'og:description', 'og:image:alt'].includes(attrs.name ?? attrs.property) && !allowed.has(attrs.content)) errors.push(`${name}: metadata: ${attrs.content}`);
     for (const child of node.childNodes ?? []) visit(child);
   };
   visit(parse(html));

@@ -69,9 +69,9 @@ test('status rejects result fields and requires replacement attestation on stage
   assert.ok(current.claims.find(c => c.claim_id === entry.claim_id).statement.includes('Gate 1'));
 });
 
-test('founder-approved frozen status replaces preparation without execution authorization', () => {
-  assert.deepEqual(current.status, [{ entry_id: 'gate1', stage: 'frozen', claim_id: 'status-gate1-frozen-stress' }]);
-  assert.equal(current.claims.find(c => c.claim_id === current.status[0].claim_id).statement, 'Gate 1 is frozen, pending independent stress testing.');
+test('discontinued status replaces retired frozen status without losing history', () => {
+  assert.deepEqual(current.status, [{ entry_id: 'pi-gate1', stage: 'discontinued', claim_id: 'status-gate1-discontinued' }]);
+  assert.match(current.claims.find(c => c.claim_id === current.status[0].claim_id).statement, /discontinued/);
   assert.deepEqual(current.gate1, []);
   assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('status-gate1-preparation'), 'historical approval remains intact');
 });
@@ -105,7 +105,7 @@ test('migration preserves each baseline ID and approval state once, with a singl
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
   // and 5 pending lending-only diagram claims replaced by industry-agnostic ones.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 46);
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 48);
   for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
     const claim = current.claims.find(c => c.claim_id === id);
     assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');
@@ -185,4 +185,30 @@ test('Astro builds fail at the accessor for pending, rejected, retired and unkno
       assert.match(result.stdout + result.stderr, /Claim gate: (unknown|ineligible) claim/, `${name}: ${result.stdout}${result.stderr}`);
     }
   } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('retirement preserves pinned history but is ineligible in every accessor', async () => {
+  const { eligibleClaim } = await import('../src/governance/schema.mjs');
+  const { draftClaim } = await import('../src/governance/routes.mjs');
+  for (const id of ['status-gate1-preparation', 'status-gate1-frozen-stress']) {
+    const retired = current.claims.find(c => c.claim_id === id);
+    assert.equal(retired.lifecycle_state, 'retired');
+    assert.equal(retired.approval_record, 'founder_attestation');
+    assert.throws(() => eligibleClaim(retired, id), /ineligible/);
+    assert.throws(() => draftClaim(current.claims, id), /Ineligible/);
+  }
+  verifyAttestations(current.claims, await readFile('docs/FOUNDER_APPROVALS.md', 'utf8'));
+});
+
+test('evidence classes and complete KPI payloads fail closed', async () => {
+  const { evidenceMetric, evidenceRecord, validateEvidencePlacement } = await import('../src/governance/evidence.mjs');
+  assert.equal(evidenceRecord.safeParse({ subject: 'fixture', status: 'fixture' }).success, false);
+  assert.throws(() => validateEvidencePlacement({ evidence_class: 'historical', subject: 'fixture', status: 'fixture' }, 'kpis'));
+  assert.equal(evidenceMetric.safeParse({ evidence_class: 'product', value: 1 }).success, false);
+});
+
+test('template parser rejects dormant prose but accepts governed expressions', async () => {
+  const { templateCopyErrors } = await import('../scripts/check-template-copy.mjs');
+  assert.equal((await templateCopyErrors('<p>Unregistered dormant prose</p>', 'fixture')).length, 1);
+  assert.deepEqual(await templateCopyErrors('<p>{t("label-about")}</p>', 'fixture'), []);
 });

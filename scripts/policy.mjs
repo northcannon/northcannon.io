@@ -138,6 +138,7 @@ export function inspectMarkup(text, name) {
         ids.add(value);
       }
       if (['src', 'href', 'action', 'data', 'poster', 'background'].includes(key)) {
+        if (tag === 'link' && attrs.rel === 'canonical' && key === 'href' && /^https:\/\/northcannon\.io\/(?:[a-z0-9-]+\/)*$/.test(value)) continue;
         // Only local references, same-document fragments, and approved mail links.
         if (/^mailto:(hello|contact|security)@northcannon\.io(?:\?|$)/.test(value) && tag === 'a') continue;
         if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(value) || /[\\\u0000-\u0020]/.test(value)) {
@@ -145,6 +146,7 @@ export function inspectMarkup(text, name) {
         } else references.push(value);
       }
     }
+    if (tag === 'meta' && ['og:url', 'og:image'].includes(attrs.property) && !/^https:\/\/northcannon\.io\/(?:[a-z0-9/-]+|og\/northcannon-default\.png)?$/.test(attrs.content ?? '')) errors.push(`${name}: invalid OG URL`);
     if (tag === 'meta' && attrs['http-equiv']) errors.push(`${name}: http-equiv is prohibited`);
     if (tag === 'link' && !['stylesheet', 'icon', 'canonical'].includes(attrs.rel)) errors.push(`${name}: prohibited link relation`);
     for (const child of node.childNodes ?? []) visit(child, node);

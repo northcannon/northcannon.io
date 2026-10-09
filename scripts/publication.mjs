@@ -14,7 +14,7 @@ export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 export async function fileInventory(root) {
   return (await readdir(root, { recursive: true, withFileTypes: true })).filter(e => e.isFile()).map(e => path.relative(root, path.join(e.parentPath, e.name))).sort();
 }
-export const sitemap = routes => '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + routes.filter(r => r.publish).map(r => `<url><loc>https://northcannon.io${r.path}</loc></url>`).join('') + '</urlset>\n';
+export const sitemap = routes => '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + routes.filter(r => r.publish && !r.alias_of).map(r => `<url><loc>https://northcannon.io${r.path}</loc></url>`).join('') + '</urlset>\n';
 export async function provenance(root) {
   const sources = {};
   for (const name of sourceFiles) sources[name] = sha256(await readFile(name));
