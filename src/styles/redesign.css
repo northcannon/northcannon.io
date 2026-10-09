@@ -73,3 +73,23 @@
  .data-table__label { display: block; color: var(--color-violet-text); font-size: .75rem; margin-bottom: .5rem; }
  .product-section--instrument { padding: 1.25rem; }
 }
+.navigation a { font-family: var(--font-sans); font-size: .875rem; font-weight: 500; letter-spacing: .01em; text-transform: none; padding-inline: .875rem; white-space: nowrap; }
+.desktop-navigation > li + li { border-left: 0; }
+.desktop-navigation > li:last-child > a { padding-right: .875rem; }
+.navigation .nav-cta { border: 1px solid var(--color-violet); border-radius: var(--radius-control); margin-left: .5rem; color: var(--color-violet-text); }
+.navigation .nav-cta:hover, .navigation .nav-cta[aria-current="page"] { background: color-mix(in srgb, var(--color-violet) 20%, transparent); }
+.navigation .nav-cta::after { display: none; }
+.site-footer__inner { padding-block: 1.5rem; align-items: flex-start; }
+.site-footer__links { max-width: 38rem; }
+@media (min-width:64rem) and (max-width:80rem) { :root { --margin: 40px; } .navigation a { padding-inline: .625rem; } }
+@media (max-width:63.99rem) {
+ :root { --nav-height: 60px; }
+ .site-header__inner { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: start; }
+ .wordmark { padding-block: .5rem; }
+ .primary-nav { display: contents; }
+ .mobile-navigation { display: contents; }
+ .mobile-navigation summary { display: flex; gap: .5rem; width: auto; padding: .5rem; grid-column: 2; }
+ .mobile-navigation[open] > .navigation { position: static; grid-column: 1 / -1; grid-template-columns: minmax(0,1fr); padding: .5rem 0; border-bottom: 0; }
+ .mobile-navigation .navigation a { width: 100%; white-space: normal; }
+ .mobile-navigation .navigation .nav-cta { margin: .5rem 0; padding-inline: 1rem; }
+}

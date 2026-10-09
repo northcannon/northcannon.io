@@ -3,8 +3,8 @@ import '../styles/global.css';
 import '../styles/pages.css';
 import '../styles/redesign.css';
 import Graphene from '../components/Graphene.astro';
-interface Props { title: string }
-const { title } = Astro.props;
+interface Props { title: string; description?: string; canonical?: string }
+const { title, description, canonical } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -12,6 +12,8 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {description && <><meta name="description" content={description} /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /></>}
+    {canonical && <><link rel="canonical" href={`https://northcannon.io${canonical}`} /><meta property="og:url" content={`https://northcannon.io${canonical}`} /></>}
     <link rel="icon" type="image/svg+xml" href="/northcannon-mark.svg" />
   </head>
   <body>

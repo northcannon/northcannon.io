@@ -12,7 +12,11 @@
       "label-provenance",
       "label-evidence",
       "label-about",
-      "label-contact"
+      "label-contact",
+      "label-status",
+      "label-claims",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "cta-explore-evidence",
@@ -1299,7 +1303,9 @@
       "label-changelog",
       "label-claims",
       "evidence-status-current",
-      "ledger-empty-current"
+      "ledger-empty-current",
+      "label-provenance",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -1973,7 +1979,11 @@
       "brand-company-motto",
       "label-provenance",
       "label-evidence",
-      "demo-coming-soon-lede"
+      "demo-coming-soon-lede",
+      "label-status",
+      "label-claims",
+      "label-changelog",
+      "label-site-security"
     ],
     "nav": false,
     "publish": true,
@@ -2291,7 +2301,11 @@
       "contact-security",
       "label-early-access",
       "disclosure-report",
-      "label-site-security"
+      "label-site-security",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog"
     ],
     "review_claim_ids": [
       "label-company",
@@ -2628,7 +2642,11 @@
       "label-provenance",
       "label-evidence",
       "label-vision",
-      "vision-statement"
+      "vision-statement",
+      "label-status",
+      "label-claims",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-gate-1",
@@ -3062,7 +3080,11 @@
       "contact-hello",
       "brand-company-motto",
       "label-provenance",
-      "label-evidence"
+      "label-evidence",
+      "label-status",
+      "label-claims",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -3458,7 +3480,12 @@
       "brand-company-motto",
       "about-founder-bio",
       "vision-statement",
-      "label-vision"
+      "label-vision",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -3805,7 +3832,12 @@
       "label-trust",
       "label-disclosure",
       "label-contact",
-      "gate1-historical-statement"
+      "gate1-historical-statement",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "redesign-label-products",
@@ -4118,7 +4150,12 @@
       "label-trust",
       "label-disclosure",
       "contact-hello",
-      "vision-statement"
+      "vision-statement",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -4778,7 +4815,11 @@
       "label-trust",
       "label-disclosure",
       "contact-hello",
-      "status-gate1-discontinued"
+      "status-gate1-discontinued",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -5494,7 +5535,12 @@
       "label-trust",
       "contact-hello",
       "disclosure-report",
-      "contact-security"
+      "contact-security",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -5823,7 +5869,11 @@
       "label-disclosure",
       "contact-hello",
       "site-static",
-      "site-csp"
+      "site-csp",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog"
     ],
     "review_claim_ids": [
       "label-company",
@@ -6152,7 +6202,11 @@
       "label-disclosure",
       "contact-hello",
       "changelog-empty",
-      "changelog-2026-10-truth-correction"
+      "changelog-2026-10-truth-correction",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -6486,7 +6540,11 @@
       "label-null",
       "label-source-files",
       "label-output-files",
-      "label-approval-events"
+      "label-approval-events",
+      "label-status",
+      "label-claims",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
@@ -6812,7 +6870,12 @@
       "brand-core-principle",
       "label-trust",
       "label-disclosure",
-      "contact-hello"
+      "contact-hello",
+      "label-status",
+      "label-claims",
+      "label-provenance",
+      "label-changelog",
+      "label-site-security"
     ],
     "review_claim_ids": [
       "label-company",
