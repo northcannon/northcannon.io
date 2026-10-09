@@ -4880,5 +4880,2795 @@
     "lifecycle_state": "approved",
     "review_date": "2026-10-09",
     "approval_record": "founder_attestation"
+  },
+  {
+    "claim_id": "redesign-label-products",
+    "statement": "Products",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-solutions",
+    "statement": "Solutions",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-experiments",
+    "statement": "Experiments",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-site",
+    "statement": "Site",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-planned",
+    "statement": "PLANNED",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-illustrative",
+    "statement": "Illustrative",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-concept",
+    "statement": "FUTURE ADD-ON · CONCEPT",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-beachhead",
+    "statement": "BEACHHEAD",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-expansion",
+    "statement": "EXPANSION AREA · NOT YET OFFERED",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-knowledge",
+    "statement": "PLANNED · ILLUSTRATIVE",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-target",
+    "statement": "QUALIFICATION TARGET",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-exists",
+    "statement": "Exists",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-next",
+    "statement": "Next",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-not-claimed",
+    "statement": "Not claimed",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-accepted",
+    "statement": "ACCEPTED",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-not-started",
+    "statement": "NOT STARTED",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-not-reached",
+    "statement": "Not reached",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-historical",
+    "statement": "Historical · withdrawn from the site",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-reconciled",
+    "statement": "Status reconciled 9 October 2026",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-category",
+    "statement": "AI Action Control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-is-not",
+    "statement": "is not",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-explore",
+    "statement": "Explore the product",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence",
+    "statement": "View the evidence",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pricing",
+    "statement": "Talk to us about deployment and pricing",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-partner",
+    "statement": "Discuss a design partnership",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-descriptor",
+    "statement": "Autonomous reasoning. Bounded execution.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-availability",
+    "statement": "NorthCannon is not generally available in any deployment model. No public deployment or design partnership is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-qualification",
+    "statement": "Implementation evidence is not production qualification.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-illustration",
+    "statement": "Illustrative · proposed workflow · not a shipped product",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-knowledge-disclosure",
+    "statement": "Planned capability · illustrative example · not shipped",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-recovery",
+    "statement": "Recoverability: prepare before, reassess after, and obtain fresh authority to intervene.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-receipt",
+    "statement": "A proposal is not permission. A receipt is not confirmation.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-recovery-distinct",
+    "statement": "Prepared does not mean available. Available does not mean authorized.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-knowledge-teaser",
+    "statement": "Planned: blast radius that reaches the engineering knowledge a change can make stale.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-understand",
+    "statement": "Understand",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-understand-question",
+    "statement": "What exact change is proposed?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-map",
+    "statement": "Map",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-map-question",
+    "statement": "What could this change affect?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-decide",
+    "statement": "Decide",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-decide-question",
+    "statement": "Should this exact transition be authorized?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-bound",
+    "statement": "Bound",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-bound-question",
+    "statement": "What effects may execution produce?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-verify",
+    "statement": "Verify",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-verify-question",
+    "statement": "What state actually resulted?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-revalidate",
+    "statement": "Revalidate",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-loop-revalidate-question",
+    "statement": "What accepted state needs checking again?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-exists-1",
+    "statement": "Exact transition authority is implemented in Phase A scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-exists-2",
+    "statement": "Outcome verification is implemented in Phase A scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-exists-3",
+    "statement": "Recoverability preparation is implemented in Phase A scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-next-1",
+    "statement": "Full Change Intelligence and engineering knowledge blast radius are planned.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-next-2",
+    "statement": "Selective revalidation and bounded execution beyond the reference path are planned.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-next-3",
+    "statement": "Product integration, qualification and deployable surfaces remain ahead.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-not-claimed-1",
+    "statement": "No general availability, public deployment, customers or revenue is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-not-claimed-2",
+    "statement": "No completed governed engineering loop or validated pricing is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-not-claimed-3",
+    "statement": "No experimental results or SPC performance advantage is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-title",
+    "statement": "Control what autonomous AI can change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-lede",
+    "statement": "NorthCannon AI Action Control is being built to govern consequential AI actions, with authority for the exact change and evidence of the outcome.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-title",
+    "statement": "The missing control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-1",
+    "statement": "Can the agent access it?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-2",
+    "statement": "Should this exact state transition happen?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-3",
+    "statement": "Identity and access: who may act.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-4",
+    "statement": "Sandbox: what the process can reach.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-5",
+    "statement": "Workflow: how work is coordinated.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-missing-control-6",
+    "statement": "NorthCannon: whether this exact change should happen, and what it affects.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-control-loop-title",
+    "statement": "How it works",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-control-loop-body",
+    "statement": "The six-stage product design extends beyond the implemented reference path.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-title",
+    "statement": "Change Intelligence, on an engineering change",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-body",
+    "statement": "An agent proposes a dependency upgrade. The intended workflow maps consequences before deciding what may change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-1",
+    "statement": "Changed dependency",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-2",
+    "statement": "Services and tests",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-3",
+    "statement": "Build and deployment artifacts",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-4",
+    "statement": "Which state could be affected?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-5",
+    "statement": "Who needs to review the consequences?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-6",
+    "statement": "What follow-up is required?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-engineering-7",
+    "statement": "What must be revalidated?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-title",
+    "statement": "Customer Zero: our own repository",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-body",
+    "statement": "The first governed engineering loop on NorthCannon’s own repository is a qualification target, not a completed result.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-1",
+    "statement": "Engineering proposal",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-2",
+    "statement": "NorthCannon control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-3",
+    "statement": "Isolated workspace change",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-4",
+    "statement": "Outcome verification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-customer-zero-5",
+    "statement": "Accepted change",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-deployment-title",
+    "statement": "Where it runs / where it applies",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-deployment-body",
+    "statement": "One control substrate, three planned deployment models. Engineering and infrastructure are the beachhead; other domains are expansion areas.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-evidence-title",
+    "statement": "A public boundary around the evidence",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-contact-title",
+    "statement": "Start with the change you need to control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-home-contact-body",
+    "statement": "We welcome engineering design-partner and deployment conversations.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-title",
+    "statement": "One control substrate. Three ways to deploy.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-lede",
+    "statement": "The intended deployment models share the same control design. Availability and broader capabilities remain planned.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-capabilities-title",
+    "statement": "One control design",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-capabilities-body",
+    "statement": "Exact transition authority, outcome verification and recoverability preparation are implemented in Phase A scope. The full six-stage loop is the broader product direction.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-title",
+    "statement": "Where NorthCannon sits",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-body",
+    "statement": "NorthCannon governs proposed changes; it is not a foundation model, a coding agent, IAM or a sandbox.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-1",
+    "statement": "Proposal layer",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-2",
+    "statement": "Agent and workflow infrastructure",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-3",
+    "statement": "NorthCannon AI Action Control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-4",
+    "statement": "Infrastructure controls",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-distinction-5",
+    "statement": "Systems of record",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-deployment-title",
+    "statement": "Planned deployment models",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-topology-title",
+    "statement": "Deployment topology at a glance",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-topology-body",
+    "statement": "These diagrams describe intended placement, not operational responsibilities or contractual commitments.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-data-title",
+    "statement": "Your data, your control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-data-body",
+    "statement": "Hybrid and Sovereign deployments are designed so that state, evidence and history can stay in infrastructure you control. This is design intent, not a qualified containment guarantee.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-independence-title",
+    "statement": "Model and compute independence",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-independence-body",
+    "statement": "Models propose changes and hold no authority. NorthCannon is designed to work across the agents and compute environments a team chooses.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-availability-title",
+    "statement": "Availability",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-products-contact-title",
+    "statement": "Plan a deployment conversation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-managed",
+    "statement": "Fully Managed",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-managed-body",
+    "statement": "Planned: NorthCannon operates the control substrate in its environment for teams seeking a managed deployment.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-hybrid",
+    "statement": "Hybrid / BYOC",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-hybrid-body",
+    "statement": "Planned: the control substrate runs in your cloud or environment for teams with existing infrastructure constraints.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-sovereign",
+    "statement": "Sovereign / Self-Hosted",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-deploy-sovereign-body",
+    "statement": "Planned: the control substrate runs in infrastructure you operate for teams that need to control its environment.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-title",
+    "statement": "Starting where AI already changes real systems: engineering.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-lede",
+    "statement": "One control substrate. Domain-specific rules, evidence and workflows.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-title",
+    "statement": "Engineering & infrastructure",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-body",
+    "statement": "The beachhead is consequential engineering change. These are proposed use cases, not currently available offerings.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-1",
+    "statement": "Dependency upgrades",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-2",
+    "statement": "Code changes",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-3",
+    "statement": "Test changes",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-4",
+    "statement": "Build configuration",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-5",
+    "statement": "Delivery workflows",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-6",
+    "statement": "Infrastructure changes",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-7",
+    "statement": "Access configuration",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-8",
+    "statement": "Schema changes",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-engineering-9",
+    "statement": "Deployment configuration",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-title",
+    "statement": "How a governed engineering change flows",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-body",
+    "statement": "Uncertain execution means reconcile first, never blindly retry.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-1",
+    "statement": "Propose an exact change",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-2",
+    "statement": "Understand intent",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-3",
+    "statement": "Map blast radius",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-4",
+    "statement": "Determine authority",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-5",
+    "statement": "Bound capability",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-6",
+    "statement": "Execute within the bound",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-7",
+    "statement": "Observe the resulting state",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-workflow-8",
+    "statement": "Revalidate affected accepted state",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-title",
+    "statement": "Blast radius should not stop at code",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-body",
+    "statement": "A change can make accepted engineering knowledge stale. The planned capability identifies explicit review obligations across code, tests, schemas, configuration, architecture, documentation, evidence and claims.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-1",
+    "statement": "Verify this architecture assertion",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-2",
+    "statement": "Check this downstream implementation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-3",
+    "statement": "Revalidate this test",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-4",
+    "statement": "Review this schema consumer",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-5",
+    "statement": "Update or reaffirm this documentation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-knowledge-blast-radius-6",
+    "statement": "Determine whether this evidence remains current",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-expansion-title",
+    "statement": "Expansion areas",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-expansion-body",
+    "statement": "These domains are not yet offered.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-expansion-1",
+    "statement": "Regulated operations: rule changes could trigger review of affected decisions, evidence, timing and follow-up. No legal conclusions are provided.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-expansion-2",
+    "statement": "Supply & physical operations: classification or origin changes could trigger re-evaluation of affected suppliers, parts, orders and shipments.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-expansion-3",
+    "statement": "Enterprise operations: approval or business-rule changes could trigger review of automated actions and downstream dependencies.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-title",
+    "statement": "NorthCannon Factory",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-body",
+    "statement": "A future add-on concept that would extend NorthCannon for your environment through the governed change process intended for NorthCannon’s own engineering.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-factory-subtitle",
+    "statement": "Governed Extensions",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-1",
+    "statement": "Request and requirements",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-2",
+    "statement": "Architecture and bounded implementation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-3",
+    "statement": "Verification and separate review",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-future-4",
+    "statement": "Evidence and customer acceptance",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-solutions-contact-title",
+    "statement": "Discuss the engineering changes you need to govern",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-title",
+    "statement": "We build control for the moment AI starts changing things.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-lede",
+    "statement": "NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-company-title",
+    "statement": "About NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-company-1",
+    "statement": "Why now: AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-company-2",
+    "statement": "Where we start: engineering and infrastructure, where a successful tool call is not proof of final state.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-company-3",
+    "statement": "What we build on: persistent verified state provides continuity between evidence, decisions and the next change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-company-4",
+    "statement": "How we work: evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-founder-title",
+    "statement": "Built from the consequences backward.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-founder-status",
+    "statement": "Max Brooks is NorthCannon’s solo technical founder, working full-time on the control foundation and its product development.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-title",
+    "statement": "What NorthCannon can substantiate, and what it does not claim yet.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-lede",
+    "statement": "Product status, research and site integrity are separate kinds of evidence.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-status-title",
+    "statement": "Current product status",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-title",
+    "statement": "Qualification milestones",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-body",
+    "statement": "A defect found at a gate requires qualification on the repaired build.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-1",
+    "statement": "Control foundation — accepted in Phase A scope",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-2",
+    "statement": "Product integration — next",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-3",
+    "statement": "Separate implementation review — target",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-4",
+    "statement": "Security qualification — target",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-5",
+    "statement": "Harness qualification — target",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-6",
+    "statement": "First governed loop on our own repository — target",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-milestones-7",
+    "statement": "Deployable product — target",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-title",
+    "statement": "Measures we will publish",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-body",
+    "statement": "Definitions only. No numeric KPI is claimed. Values require dated, versioned evidence, scope, a denominator and a statement of what the result does not show.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-1",
+    "statement": "Reference test outcome: passing versus total reference tests at a dated build, scoped to control primitives. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-2",
+    "statement": "Separate-review record: findings raised and resolved by a reviewer separate from the implementer; this is not a third-party audit. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-3",
+    "statement": "Selective revalidation fidelity: affected-state recall and false-safe exclusions against exhaustive recomputation on synthetic fixtures. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-4",
+    "statement": "Bounded-execution enforcement: out-of-scope effect attempts blocked versus attempted in a versioned adversarial suite. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-5",
+    "statement": "Execution reconciliation: uncertain executions resolved through reconciliation and blind retry counts. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-6",
+    "statement": "Evidence completeness: accepted changes with a complete evidence chain versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-7",
+    "statement": "Customer Zero: governed changes accepted, cycle time and qualification restarts on NorthCannon’s own repository. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-8",
+    "statement": "Unknown-impact disclosure: proposals explicitly marked unknown or incomplete versus proposals evaluated. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-9",
+    "statement": "Decision latency: added control-decision latency within a stated environment. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-10",
+    "statement": "Reproducibility: equivalent sealed outputs from identical captured inputs in a replay suite. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-11",
+    "statement": "Affected-surface recall: truly affected surfaces identified versus ground truth established by replay or review. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-12",
+    "statement": "Missed-impact rate: affected surfaces discovered after acceptance versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-13",
+    "statement": "Confirmed drift rate: obligations confirmed stale or inconsistent versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-14",
+    "statement": "False-positive obligation rate: obligations closed as still current versus obligations raised; reaffirmation can be useful. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-15",
+    "statement": "Review-obligation completion: obligations updated or reaffirmed before acceptance versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-16",
+    "statement": "Stale-document precision: documents confirmed stale versus documents flagged. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-17",
+    "statement": "Code-consistency precision: downstream code, test or schema-consumer inconsistencies confirmed versus flagged. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-kpis-18",
+    "statement": "Review-surface reduction: mapped review surfaces versus exhaustive review surfaces; publish only alongside recall and missed-impact rate. First publication requires approved replay or governed-loop evidence with explicit scope.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-experimental-results-title",
+    "statement": "Experimental results",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-experimental-results-body",
+    "statement": "No experimental results are claimed. Gate 1 ended before execution; a future experiment requires a recorded freeze before it runs.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-ledger-title",
+    "statement": "Evidence ledger",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-ledger-body",
+    "statement": "No public product-qualification artifact is claimed here. Site provenance establishes integrity of this website, not validation of AI Action Control.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-methodology-title",
+    "statement": "Methodology & provenance",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-methodology-body",
+    "statement": "Public copy moves from a registered claim through founder attestation and publication checks to site provenance.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-historical-title",
+    "statement": "Historical prototype",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-evidence-historical-body",
+    "statement": "The September 2026 prototype used fictional regulated cases to illustrate decision verification. It is superseded, withdrawn from the site and not evidence for the current product.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-class-product",
+    "statement": "Product & qualification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-class-research",
+    "statement": "Research & experiments",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-class-artifact",
+    "statement": "Public artifact & provenance",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-class-historical",
+    "statement": "Historical prototype",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-title",
+    "statement": "Research, held to the same evidence standard.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-lede",
+    "statement": "Research is parallel, advisory and non-gating. The commercial product does not depend on any research hypothesis succeeding.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-title",
+    "statement": "Persistent Intelligence",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-body",
+    "statement": "The research asks whether AI systems can retain verified state, evidence and decisions across time and tasks instead of reconstructing the present from context. This thesis informs the product direction; it does not establish experimental results.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-1",
+    "statement": "Hypothesis: verified state can provide useful continuity across changes.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-2",
+    "statement": "Comparison: evaluate against conventional re-inference baselines.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-3",
+    "statement": "Controls: define variables and hypotheses before execution.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-4",
+    "statement": "Falsification: specify failure criteria before execution and publish outcomes regardless of direction.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-persistent-intelligence-5",
+    "statement": "No PI experiment is running. A new freeze record is required before another experiment.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-gate-1-title",
+    "statement": "Gate 1: historical",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-gate-1-body",
+    "statement": "Gate 1 was designed as a falsification benchmark for Persistent Intelligence. Defined and frozen stages were reached; subsequent stages were not reached.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-title",
+    "statement": "Structure-Proportional Computing",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-body",
+    "statement": "SPC asks whether computation can scale with affected structure rather than repeatedly processing serialized context. It is a pre-experiment research agenda, with no experiment run and no performance or hardware advantage claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-1",
+    "statement": "Software experiment — not started",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-2",
+    "statement": "Kill gate — not started",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-3",
+    "statement": "Surviving primitive — not established",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-spc-4",
+    "statement": "Substrate exploration — not started",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-title",
+    "statement": "How research enters the product",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-body",
+    "statement": "Evidence can inform qualification; research does not grant product authority.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-1",
+    "statement": "Research idea",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-2",
+    "statement": "Recorded experiment",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-3",
+    "statement": "Evidence",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-4",
+    "statement": "Qualification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-5",
+    "statement": "Founder decision",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-research-to-product-6",
+    "statement": "Possible product adoption",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-results-title",
+    "statement": "Where results appear",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-results-body",
+    "statement": "Results belong on Evidence only after an experiment has run under its recorded freeze.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-demo-lede",
+    "statement": "An engineering-loop demonstration is a future deliverable. No current demo is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-demo-planned-loop-title",
+    "statement": "What it will show",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-demo-planned-loop-body",
+    "statement": "The planned demonstration follows a proposed engineering change through control, observation and revalidation.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-demo-contact-title",
+    "statement": "Want a walkthrough when it is ready?",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-title",
+    "statement": "Contact",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-lede",
+    "statement": "For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-intents-title",
+    "statement": "Start a conversation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-intents-1",
+    "statement": "Design partnership",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-intents-2",
+    "statement": "Product & deployment",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-intents-3",
+    "statement": "Pricing",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-intents-4",
+    "statement": "Research",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-include-title",
+    "statement": "What to include",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-include-body",
+    "statement": "Tell us about your team, the systems in scope and your deployment constraints.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-trust-title",
+    "statement": "A direct conversation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-contact-trust-body",
+    "statement": "This site has no forms or tracking. Email opens in your own mail application.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-title",
+    "statement": "Status",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-lede",
+    "statement": "Product qualification and research program status are distinct.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-status-title",
+    "statement": "Product status",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-research-title",
+    "statement": "Research programs",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-research-1",
+    "statement": "Persistent Intelligence: no experiment running.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-research-2",
+    "statement": "Gate 1: discontinued before execution on 29 September 2026.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-status-research-3",
+    "statement": "SPC: pre-experiment research; no results claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-changelog",
+    "statement": "Review proposal, 9 October 2026: product-first navigation, consolidated About, Results within Evidence, historical Gate 1 within Experiments, and planned deployment and engineering pages. Publication remains subject to founder approval.",
+    "category": "changelog",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-home",
+    "statement": "NorthCannon: AI Action Control",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-home",
+    "statement": "Control consequential AI changes. Engineering first, with exact transition authority and evidence of outcomes.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-products",
+    "statement": "Products · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-products",
+    "statement": "The intended deployment models share the same control design. Availability and broader capabilities remain planned.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-solutions",
+    "statement": "Solutions · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-solutions",
+    "statement": "Proposed engineering workflows, planned knowledge blast radius and clearly labelled expansion concepts.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-about",
+    "statement": "About · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-about",
+    "statement": "NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-evidence",
+    "statement": "Evidence · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-evidence",
+    "statement": "Product status, research and site integrity are separate kinds of evidence.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-experiments",
+    "statement": "Experiments · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-experiments",
+    "statement": "Parallel, non-gating research: Persistent Intelligence, Gate 1 history and Structure-Proportional Computing.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-demo",
+    "statement": "Demo — Coming Soon · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-demo",
+    "statement": "An engineering-loop demonstration is a future deliverable. No current demo is claimed.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-contact",
+    "statement": "Contact · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-contact",
+    "statement": "For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-title-status",
+    "statement": "Status · NorthCannon",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-meta-description-status",
+    "statement": "Product qualification and research program status are distinct.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-og-alt",
+    "statement": "NorthCannon — AI Action Control. Control what autonomous AI can change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
   }
 ]

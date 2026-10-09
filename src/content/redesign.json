@@ -1,0 +1,876 @@
+{
+  "events": {
+    "E-010": [
+      "redesign-label-products",
+      "redesign-label-solutions",
+      "redesign-label-experiments",
+      "redesign-label-site",
+      "redesign-label-planned",
+      "redesign-label-illustrative",
+      "redesign-label-concept",
+      "redesign-label-beachhead",
+      "redesign-label-expansion",
+      "redesign-label-knowledge",
+      "redesign-label-target",
+      "redesign-label-exists",
+      "redesign-label-next",
+      "redesign-label-not-claimed",
+      "redesign-label-accepted",
+      "redesign-label-not-started",
+      "redesign-label-not-reached",
+      "redesign-label-historical",
+      "redesign-label-reconciled",
+      "redesign-label-category",
+      "redesign-label-is-not",
+      "redesign-meta-title-home",
+      "redesign-meta-description-home",
+      "redesign-meta-title-products",
+      "redesign-meta-description-products",
+      "redesign-meta-title-solutions",
+      "redesign-meta-description-solutions",
+      "redesign-meta-title-about",
+      "redesign-meta-description-about",
+      "redesign-meta-title-evidence",
+      "redesign-meta-description-evidence",
+      "redesign-meta-title-experiments",
+      "redesign-meta-description-experiments",
+      "redesign-meta-title-demo",
+      "redesign-meta-description-demo",
+      "redesign-meta-title-contact",
+      "redesign-meta-description-contact",
+      "redesign-meta-title-status",
+      "redesign-meta-description-status"
+    ],
+    "E-011": [
+      "redesign-explore",
+      "redesign-evidence",
+      "redesign-pricing",
+      "redesign-partner",
+      "redesign-descriptor",
+      "redesign-availability",
+      "redesign-qualification",
+      "redesign-illustration",
+      "redesign-knowledge-disclosure",
+      "redesign-recovery",
+      "redesign-receipt",
+      "redesign-recovery-distinct",
+      "redesign-knowledge-teaser",
+      "redesign-loop-understand",
+      "redesign-loop-understand-question",
+      "redesign-loop-map",
+      "redesign-loop-map-question",
+      "redesign-loop-decide",
+      "redesign-loop-decide-question",
+      "redesign-loop-bound",
+      "redesign-loop-bound-question",
+      "redesign-loop-verify",
+      "redesign-loop-verify-question",
+      "redesign-loop-revalidate",
+      "redesign-loop-revalidate-question",
+      "redesign-home-title",
+      "redesign-home-lede",
+      "redesign-home-missing-control-title",
+      "redesign-home-missing-control-1",
+      "redesign-home-missing-control-2",
+      "redesign-home-missing-control-3",
+      "redesign-home-missing-control-4",
+      "redesign-home-missing-control-5",
+      "redesign-home-missing-control-6",
+      "redesign-home-control-loop-title",
+      "redesign-home-control-loop-body",
+      "redesign-home-engineering-title",
+      "redesign-home-engineering-body",
+      "redesign-home-engineering-1",
+      "redesign-home-engineering-2",
+      "redesign-home-engineering-3",
+      "redesign-home-engineering-4",
+      "redesign-home-engineering-5",
+      "redesign-home-engineering-6",
+      "redesign-home-engineering-7",
+      "redesign-home-customer-zero-title",
+      "redesign-home-customer-zero-body",
+      "redesign-home-customer-zero-1",
+      "redesign-home-customer-zero-2",
+      "redesign-home-customer-zero-3",
+      "redesign-home-customer-zero-4",
+      "redesign-home-customer-zero-5",
+      "redesign-home-deployment-title",
+      "redesign-home-deployment-body",
+      "redesign-home-evidence-title",
+      "redesign-home-contact-title",
+      "redesign-home-contact-body",
+      "redesign-products-title",
+      "redesign-products-lede",
+      "redesign-products-capabilities-title",
+      "redesign-products-capabilities-body",
+      "redesign-products-distinction-title",
+      "redesign-products-distinction-body",
+      "redesign-products-distinction-1",
+      "redesign-products-distinction-2",
+      "redesign-products-distinction-3",
+      "redesign-products-distinction-4",
+      "redesign-products-distinction-5",
+      "redesign-products-deployment-title",
+      "redesign-products-topology-title",
+      "redesign-products-topology-body",
+      "redesign-products-data-title",
+      "redesign-products-data-body",
+      "redesign-products-independence-title",
+      "redesign-products-independence-body",
+      "redesign-products-availability-title",
+      "redesign-products-contact-title",
+      "redesign-deploy-managed",
+      "redesign-deploy-managed-body",
+      "redesign-deploy-hybrid",
+      "redesign-deploy-hybrid-body",
+      "redesign-deploy-sovereign",
+      "redesign-deploy-sovereign-body",
+      "redesign-solutions-title",
+      "redesign-solutions-lede",
+      "redesign-solutions-engineering-title",
+      "redesign-solutions-engineering-body",
+      "redesign-solutions-engineering-1",
+      "redesign-solutions-engineering-2",
+      "redesign-solutions-engineering-3",
+      "redesign-solutions-engineering-4",
+      "redesign-solutions-engineering-5",
+      "redesign-solutions-engineering-6",
+      "redesign-solutions-engineering-7",
+      "redesign-solutions-engineering-8",
+      "redesign-solutions-engineering-9",
+      "redesign-solutions-workflow-title",
+      "redesign-solutions-workflow-body",
+      "redesign-solutions-workflow-1",
+      "redesign-solutions-workflow-2",
+      "redesign-solutions-workflow-3",
+      "redesign-solutions-workflow-4",
+      "redesign-solutions-workflow-5",
+      "redesign-solutions-workflow-6",
+      "redesign-solutions-workflow-7",
+      "redesign-solutions-workflow-8",
+      "redesign-solutions-knowledge-blast-radius-title",
+      "redesign-solutions-knowledge-blast-radius-body",
+      "redesign-solutions-knowledge-blast-radius-1",
+      "redesign-solutions-knowledge-blast-radius-2",
+      "redesign-solutions-knowledge-blast-radius-3",
+      "redesign-solutions-knowledge-blast-radius-4",
+      "redesign-solutions-knowledge-blast-radius-5",
+      "redesign-solutions-knowledge-blast-radius-6",
+      "redesign-solutions-expansion-title",
+      "redesign-solutions-expansion-body",
+      "redesign-solutions-expansion-1",
+      "redesign-solutions-expansion-2",
+      "redesign-solutions-expansion-3",
+      "redesign-solutions-future-title",
+      "redesign-solutions-future-body",
+      "redesign-factory-subtitle",
+      "redesign-solutions-future-1",
+      "redesign-solutions-future-2",
+      "redesign-solutions-future-3",
+      "redesign-solutions-future-4",
+      "redesign-solutions-contact-title",
+      "redesign-about-title",
+      "redesign-about-lede",
+      "redesign-about-company-title",
+      "redesign-about-company-1",
+      "redesign-about-company-2",
+      "redesign-about-company-3",
+      "redesign-about-company-4",
+      "redesign-demo-lede",
+      "redesign-demo-planned-loop-title",
+      "redesign-demo-planned-loop-body",
+      "redesign-demo-contact-title"
+    ],
+    "E-012": [
+      "redesign-status-exists-1",
+      "redesign-status-exists-2",
+      "redesign-status-exists-3",
+      "redesign-status-next-1",
+      "redesign-status-next-2",
+      "redesign-status-next-3",
+      "redesign-status-not-claimed-1",
+      "redesign-status-not-claimed-2",
+      "redesign-status-not-claimed-3",
+      "redesign-evidence-title",
+      "redesign-evidence-lede",
+      "redesign-evidence-status-title",
+      "redesign-evidence-milestones-title",
+      "redesign-evidence-milestones-body",
+      "redesign-evidence-milestones-1",
+      "redesign-evidence-milestones-2",
+      "redesign-evidence-milestones-3",
+      "redesign-evidence-milestones-4",
+      "redesign-evidence-milestones-5",
+      "redesign-evidence-milestones-6",
+      "redesign-evidence-milestones-7",
+      "redesign-evidence-kpis-title",
+      "redesign-evidence-kpis-body",
+      "redesign-evidence-kpis-1",
+      "redesign-evidence-kpis-2",
+      "redesign-evidence-kpis-3",
+      "redesign-evidence-kpis-4",
+      "redesign-evidence-kpis-5",
+      "redesign-evidence-kpis-6",
+      "redesign-evidence-kpis-7",
+      "redesign-evidence-kpis-8",
+      "redesign-evidence-kpis-9",
+      "redesign-evidence-kpis-10",
+      "redesign-evidence-kpis-11",
+      "redesign-evidence-kpis-12",
+      "redesign-evidence-kpis-13",
+      "redesign-evidence-kpis-14",
+      "redesign-evidence-kpis-15",
+      "redesign-evidence-kpis-16",
+      "redesign-evidence-kpis-17",
+      "redesign-evidence-kpis-18",
+      "redesign-evidence-experimental-results-title",
+      "redesign-evidence-experimental-results-body",
+      "redesign-evidence-ledger-title",
+      "redesign-evidence-ledger-body",
+      "redesign-evidence-methodology-title",
+      "redesign-evidence-methodology-body",
+      "redesign-evidence-historical-title",
+      "redesign-evidence-historical-body",
+      "redesign-class-product",
+      "redesign-class-research",
+      "redesign-class-artifact",
+      "redesign-class-historical",
+      "redesign-experiments-title",
+      "redesign-experiments-lede",
+      "redesign-experiments-persistent-intelligence-title",
+      "redesign-experiments-persistent-intelligence-body",
+      "redesign-experiments-persistent-intelligence-1",
+      "redesign-experiments-persistent-intelligence-2",
+      "redesign-experiments-persistent-intelligence-3",
+      "redesign-experiments-persistent-intelligence-4",
+      "redesign-experiments-persistent-intelligence-5",
+      "redesign-experiments-gate-1-title",
+      "redesign-experiments-gate-1-body",
+      "redesign-experiments-spc-title",
+      "redesign-experiments-spc-body",
+      "redesign-experiments-spc-1",
+      "redesign-experiments-spc-2",
+      "redesign-experiments-spc-3",
+      "redesign-experiments-spc-4",
+      "redesign-experiments-research-to-product-title",
+      "redesign-experiments-research-to-product-body",
+      "redesign-experiments-research-to-product-1",
+      "redesign-experiments-research-to-product-2",
+      "redesign-experiments-research-to-product-3",
+      "redesign-experiments-research-to-product-4",
+      "redesign-experiments-research-to-product-5",
+      "redesign-experiments-research-to-product-6",
+      "redesign-experiments-results-title",
+      "redesign-experiments-results-body",
+      "redesign-status-title",
+      "redesign-status-lede",
+      "redesign-status-status-title",
+      "redesign-status-research-title",
+      "redesign-status-research-1",
+      "redesign-status-research-2",
+      "redesign-status-research-3"
+    ],
+    "E-013": [
+      "redesign-about-founder-title",
+      "redesign-founder-status",
+      "redesign-contact-title",
+      "redesign-contact-lede",
+      "redesign-contact-intents-title",
+      "redesign-contact-intents-1",
+      "redesign-contact-intents-2",
+      "redesign-contact-intents-3",
+      "redesign-contact-intents-4",
+      "redesign-contact-include-title",
+      "redesign-contact-include-body",
+      "redesign-contact-trust-title",
+      "redesign-contact-trust-body",
+      "redesign-changelog",
+      "redesign-og-alt"
+    ]
+  },
+  "labels": {
+    "products": "redesign-label-products",
+    "solutions": "redesign-label-solutions",
+    "experiments": "redesign-label-experiments",
+    "site": "redesign-label-site",
+    "planned": "redesign-label-planned",
+    "illustrative": "redesign-label-illustrative",
+    "concept": "redesign-label-concept",
+    "beachhead": "redesign-label-beachhead",
+    "expansion": "redesign-label-expansion",
+    "knowledge": "redesign-label-knowledge",
+    "target": "redesign-label-target",
+    "exists": "redesign-label-exists",
+    "next": "redesign-label-next",
+    "not-claimed": "redesign-label-not-claimed",
+    "accepted": "redesign-label-accepted",
+    "not-started": "redesign-label-not-started",
+    "not-reached": "redesign-label-not-reached",
+    "historical": "redesign-label-historical",
+    "reconciled": "redesign-label-reconciled",
+    "category": "redesign-label-category",
+    "is-not": "redesign-label-is-not"
+  },
+  "shared": {
+    "explore": "redesign-explore",
+    "evidence": "redesign-evidence",
+    "pricing": "redesign-pricing",
+    "partner": "redesign-partner",
+    "descriptor": "redesign-descriptor",
+    "availability": "redesign-availability",
+    "qualification": "redesign-qualification",
+    "illustration": "redesign-illustration",
+    "knowledge-disclosure": "redesign-knowledge-disclosure",
+    "recovery": "redesign-recovery",
+    "receipt": "redesign-receipt",
+    "recovery-distinct": "redesign-recovery-distinct",
+    "knowledge-teaser": "redesign-knowledge-teaser"
+  },
+  "loop": [
+    [
+      "redesign-loop-understand",
+      "redesign-loop-understand-question"
+    ],
+    [
+      "redesign-loop-map",
+      "redesign-loop-map-question"
+    ],
+    [
+      "redesign-loop-decide",
+      "redesign-loop-decide-question"
+    ],
+    [
+      "redesign-loop-bound",
+      "redesign-loop-bound-question"
+    ],
+    [
+      "redesign-loop-verify",
+      "redesign-loop-verify-question"
+    ],
+    [
+      "redesign-loop-revalidate",
+      "redesign-loop-revalidate-question"
+    ]
+  ],
+  "triad": [
+    {
+      "label": "redesign-label-exists",
+      "items": [
+        "redesign-status-exists-1",
+        "redesign-status-exists-2",
+        "redesign-status-exists-3"
+      ]
+    },
+    {
+      "label": "redesign-label-next",
+      "items": [
+        "redesign-status-next-1",
+        "redesign-status-next-2",
+        "redesign-status-next-3"
+      ]
+    },
+    {
+      "label": "redesign-label-not-claimed",
+      "items": [
+        "redesign-status-not-claimed-1",
+        "redesign-status-not-claimed-2",
+        "redesign-status-not-claimed-3"
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "title": "redesign-deploy-managed",
+      "body": "redesign-deploy-managed-body"
+    },
+    {
+      "title": "redesign-deploy-hybrid",
+      "body": "redesign-deploy-hybrid-body"
+    },
+    {
+      "title": "redesign-deploy-sovereign",
+      "body": "redesign-deploy-sovereign-body"
+    }
+  ],
+  "classes": {
+    "product": "redesign-class-product",
+    "research": "redesign-class-research",
+    "artifact": "redesign-class-artifact",
+    "historical": "redesign-class-historical"
+  },
+  "pages": {
+    "/": {
+      "key": "home",
+      "title": "redesign-home-title",
+      "lede": "redesign-home-lede",
+      "eyebrow": "redesign-label-category",
+      "sections": [
+        {
+          "id": "missing-control",
+          "title": "redesign-home-missing-control-title",
+          "items": [
+            "redesign-home-missing-control-1",
+            "redesign-home-missing-control-2",
+            "redesign-home-missing-control-3",
+            "redesign-home-missing-control-4",
+            "redesign-home-missing-control-5",
+            "redesign-home-missing-control-6"
+          ],
+          "kind": "distinction"
+        },
+        {
+          "id": "control-loop",
+          "title": "redesign-home-control-loop-title",
+          "kind": "loop",
+          "body": "redesign-home-control-loop-body"
+        },
+        {
+          "id": "engineering",
+          "title": "redesign-home-engineering-title",
+          "kind": "lineage",
+          "body": "redesign-home-engineering-body",
+          "items": [
+            "redesign-home-engineering-1",
+            "redesign-home-engineering-2",
+            "redesign-home-engineering-3",
+            "redesign-home-engineering-4",
+            "redesign-home-engineering-5",
+            "redesign-home-engineering-6",
+            "redesign-home-engineering-7"
+          ]
+        },
+        {
+          "id": "customer-zero",
+          "title": "redesign-home-customer-zero-title",
+          "kind": "flow",
+          "status": "redesign-label-target",
+          "body": "redesign-home-customer-zero-body",
+          "items": [
+            "redesign-home-customer-zero-1",
+            "redesign-home-customer-zero-2",
+            "redesign-home-customer-zero-3",
+            "redesign-home-customer-zero-4",
+            "redesign-home-customer-zero-5"
+          ]
+        },
+        {
+          "id": "deployment",
+          "title": "redesign-home-deployment-title",
+          "kind": "deployment",
+          "body": "redesign-home-deployment-body"
+        },
+        {
+          "id": "evidence",
+          "title": "redesign-home-evidence-title",
+          "kind": "triad"
+        },
+        {
+          "id": "contact",
+          "title": "redesign-home-contact-title",
+          "kind": "contact",
+          "body": "redesign-home-contact-body"
+        }
+      ],
+      "meta_title": "redesign-meta-title-home",
+      "meta_description": "redesign-meta-description-home"
+    },
+    "/products/": {
+      "key": "products",
+      "title": "redesign-products-title",
+      "lede": "redesign-products-lede",
+      "eyebrow": "redesign-label-products",
+      "sections": [
+        {
+          "id": "capabilities",
+          "title": "redesign-products-capabilities-title",
+          "kind": "loop",
+          "body": "redesign-products-capabilities-body"
+        },
+        {
+          "id": "distinction",
+          "title": "redesign-products-distinction-title",
+          "kind": "stack",
+          "body": "redesign-products-distinction-body",
+          "items": [
+            "redesign-products-distinction-1",
+            "redesign-products-distinction-2",
+            "redesign-products-distinction-3",
+            "redesign-products-distinction-4",
+            "redesign-products-distinction-5"
+          ]
+        },
+        {
+          "id": "deployment",
+          "title": "redesign-products-deployment-title",
+          "kind": "deployment"
+        },
+        {
+          "id": "topology",
+          "title": "redesign-products-topology-title",
+          "kind": "topology",
+          "body": "redesign-products-topology-body"
+        },
+        {
+          "id": "data",
+          "title": "redesign-products-data-title",
+          "body": "redesign-products-data-body"
+        },
+        {
+          "id": "independence",
+          "title": "redesign-products-independence-title",
+          "kind": "agnostic",
+          "body": "redesign-products-independence-body"
+        },
+        {
+          "id": "availability",
+          "title": "redesign-products-availability-title",
+          "kind": "availability"
+        },
+        {
+          "id": "contact",
+          "title": "redesign-products-contact-title",
+          "kind": "contact"
+        }
+      ],
+      "meta_title": "redesign-meta-title-products",
+      "meta_description": "redesign-meta-description-products"
+    },
+    "/solutions/": {
+      "key": "solutions",
+      "title": "redesign-solutions-title",
+      "lede": "redesign-solutions-lede",
+      "eyebrow": "redesign-label-solutions",
+      "sections": [
+        {
+          "id": "engineering",
+          "title": "redesign-solutions-engineering-title",
+          "status": "redesign-label-beachhead",
+          "body": "redesign-solutions-engineering-body",
+          "items": [
+            "redesign-solutions-engineering-1",
+            "redesign-solutions-engineering-2",
+            "redesign-solutions-engineering-3",
+            "redesign-solutions-engineering-4",
+            "redesign-solutions-engineering-5",
+            "redesign-solutions-engineering-6",
+            "redesign-solutions-engineering-7",
+            "redesign-solutions-engineering-8",
+            "redesign-solutions-engineering-9"
+          ]
+        },
+        {
+          "id": "workflow",
+          "title": "redesign-solutions-workflow-title",
+          "kind": "flow",
+          "status": "redesign-label-planned",
+          "body": "redesign-solutions-workflow-body",
+          "items": [
+            "redesign-solutions-workflow-1",
+            "redesign-solutions-workflow-2",
+            "redesign-solutions-workflow-3",
+            "redesign-solutions-workflow-4",
+            "redesign-solutions-workflow-5",
+            "redesign-solutions-workflow-6",
+            "redesign-solutions-workflow-7",
+            "redesign-solutions-workflow-8"
+          ]
+        },
+        {
+          "id": "knowledge-blast-radius",
+          "title": "redesign-solutions-knowledge-blast-radius-title",
+          "kind": "packet",
+          "status": "redesign-label-knowledge",
+          "body": "redesign-solutions-knowledge-blast-radius-body",
+          "items": [
+            "redesign-solutions-knowledge-blast-radius-1",
+            "redesign-solutions-knowledge-blast-radius-2",
+            "redesign-solutions-knowledge-blast-radius-3",
+            "redesign-solutions-knowledge-blast-radius-4",
+            "redesign-solutions-knowledge-blast-radius-5",
+            "redesign-solutions-knowledge-blast-radius-6"
+          ]
+        },
+        {
+          "id": "expansion",
+          "title": "redesign-solutions-expansion-title",
+          "status": "redesign-label-expansion",
+          "kind": "cards",
+          "body": "redesign-solutions-expansion-body",
+          "items": [
+            "redesign-solutions-expansion-1",
+            "redesign-solutions-expansion-2",
+            "redesign-solutions-expansion-3"
+          ]
+        },
+        {
+          "id": "future",
+          "title": "redesign-solutions-future-title",
+          "kind": "future",
+          "status": "redesign-label-concept",
+          "body": "redesign-solutions-future-body",
+          "subtitle": "redesign-factory-subtitle",
+          "items": [
+            "redesign-solutions-future-1",
+            "redesign-solutions-future-2",
+            "redesign-solutions-future-3",
+            "redesign-solutions-future-4"
+          ]
+        },
+        {
+          "id": "contact",
+          "title": "redesign-solutions-contact-title",
+          "kind": "contact"
+        }
+      ],
+      "meta_title": "redesign-meta-title-solutions",
+      "meta_description": "redesign-meta-description-solutions"
+    },
+    "/about/": {
+      "key": "about",
+      "title": "redesign-about-title",
+      "lede": "redesign-about-lede",
+      "eyebrow": "about-eyebrow",
+      "sections": [
+        {
+          "id": "company",
+          "title": "redesign-about-company-title",
+          "items": [
+            "redesign-about-company-1",
+            "redesign-about-company-2",
+            "redesign-about-company-3",
+            "redesign-about-company-4"
+          ],
+          "kind": "company"
+        },
+        {
+          "id": "founder",
+          "title": "redesign-about-founder-title",
+          "kind": "founder",
+          "body": "redesign-founder-status"
+        }
+      ],
+      "meta_title": "redesign-meta-title-about",
+      "meta_description": "redesign-meta-description-about"
+    },
+    "/evidence/": {
+      "key": "evidence",
+      "title": "redesign-evidence-title",
+      "lede": "redesign-evidence-lede",
+      "eyebrow": "label-evidence",
+      "sections": [
+        {
+          "id": "status",
+          "title": "redesign-evidence-status-title",
+          "kind": "triad"
+        },
+        {
+          "id": "milestones",
+          "title": "redesign-evidence-milestones-title",
+          "kind": "milestones",
+          "body": "redesign-evidence-milestones-body",
+          "items": [
+            "redesign-evidence-milestones-1",
+            "redesign-evidence-milestones-2",
+            "redesign-evidence-milestones-3",
+            "redesign-evidence-milestones-4",
+            "redesign-evidence-milestones-5",
+            "redesign-evidence-milestones-6",
+            "redesign-evidence-milestones-7"
+          ]
+        },
+        {
+          "id": "kpis",
+          "title": "redesign-evidence-kpis-title",
+          "kind": "kpis",
+          "body": "redesign-evidence-kpis-body",
+          "items": [
+            "redesign-evidence-kpis-1",
+            "redesign-evidence-kpis-2",
+            "redesign-evidence-kpis-3",
+            "redesign-evidence-kpis-4",
+            "redesign-evidence-kpis-5",
+            "redesign-evidence-kpis-6",
+            "redesign-evidence-kpis-7",
+            "redesign-evidence-kpis-8",
+            "redesign-evidence-kpis-9",
+            "redesign-evidence-kpis-10",
+            "redesign-evidence-kpis-11",
+            "redesign-evidence-kpis-12",
+            "redesign-evidence-kpis-13",
+            "redesign-evidence-kpis-14",
+            "redesign-evidence-kpis-15",
+            "redesign-evidence-kpis-16",
+            "redesign-evidence-kpis-17",
+            "redesign-evidence-kpis-18"
+          ]
+        },
+        {
+          "id": "experimental-results",
+          "title": "redesign-evidence-experimental-results-title",
+          "kind": "results",
+          "body": "redesign-evidence-experimental-results-body"
+        },
+        {
+          "id": "ledger",
+          "title": "redesign-evidence-ledger-title",
+          "kind": "ledger",
+          "body": "redesign-evidence-ledger-body"
+        },
+        {
+          "id": "methodology",
+          "title": "redesign-evidence-methodology-title",
+          "kind": "methodology",
+          "body": "redesign-evidence-methodology-body"
+        },
+        {
+          "id": "historical",
+          "title": "redesign-evidence-historical-title",
+          "kind": "historical",
+          "body": "redesign-evidence-historical-body"
+        }
+      ],
+      "meta_title": "redesign-meta-title-evidence",
+      "meta_description": "redesign-meta-description-evidence"
+    },
+    "/experiments/": {
+      "key": "experiments",
+      "title": "redesign-experiments-title",
+      "lede": "redesign-experiments-lede",
+      "eyebrow": "redesign-label-experiments",
+      "sections": [
+        {
+          "id": "persistent-intelligence",
+          "title": "redesign-experiments-persistent-intelligence-title",
+          "body": "redesign-experiments-persistent-intelligence-body",
+          "items": [
+            "redesign-experiments-persistent-intelligence-1",
+            "redesign-experiments-persistent-intelligence-2",
+            "redesign-experiments-persistent-intelligence-3",
+            "redesign-experiments-persistent-intelligence-4",
+            "redesign-experiments-persistent-intelligence-5"
+          ]
+        },
+        {
+          "id": "gate-1",
+          "title": "redesign-experiments-gate-1-title",
+          "kind": "gate",
+          "body": "redesign-experiments-gate-1-body"
+        },
+        {
+          "id": "spc",
+          "title": "redesign-experiments-spc-title",
+          "kind": "flow",
+          "body": "redesign-experiments-spc-body",
+          "items": [
+            "redesign-experiments-spc-1",
+            "redesign-experiments-spc-2",
+            "redesign-experiments-spc-3",
+            "redesign-experiments-spc-4"
+          ]
+        },
+        {
+          "id": "research-to-product",
+          "title": "redesign-experiments-research-to-product-title",
+          "kind": "flow",
+          "body": "redesign-experiments-research-to-product-body",
+          "items": [
+            "redesign-experiments-research-to-product-1",
+            "redesign-experiments-research-to-product-2",
+            "redesign-experiments-research-to-product-3",
+            "redesign-experiments-research-to-product-4",
+            "redesign-experiments-research-to-product-5",
+            "redesign-experiments-research-to-product-6"
+          ]
+        },
+        {
+          "id": "results",
+          "title": "redesign-experiments-results-title",
+          "kind": "results",
+          "body": "redesign-experiments-results-body"
+        }
+      ],
+      "meta_title": "redesign-meta-title-experiments",
+      "meta_description": "redesign-meta-description-experiments"
+    },
+    "/demo/": {
+      "key": "demo",
+      "title": "demo-coming-soon",
+      "lede": "redesign-demo-lede",
+      "eyebrow": "redesign-label-category",
+      "sections": [
+        {
+          "id": "planned-loop",
+          "title": "redesign-demo-planned-loop-title",
+          "kind": "loop",
+          "status": "redesign-label-planned",
+          "body": "redesign-demo-planned-loop-body"
+        },
+        {
+          "id": "contact",
+          "title": "redesign-demo-contact-title",
+          "kind": "contact"
+        }
+      ],
+      "meta_title": "redesign-meta-title-demo",
+      "meta_description": "redesign-meta-description-demo"
+    },
+    "/contact/": {
+      "key": "contact",
+      "title": "redesign-contact-title",
+      "lede": "redesign-contact-lede",
+      "eyebrow": "label-contact",
+      "sections": [
+        {
+          "id": "intents",
+          "title": "redesign-contact-intents-title",
+          "kind": "intents",
+          "items": [
+            "redesign-contact-intents-1",
+            "redesign-contact-intents-2",
+            "redesign-contact-intents-3",
+            "redesign-contact-intents-4"
+          ]
+        },
+        {
+          "id": "include",
+          "title": "redesign-contact-include-title",
+          "body": "redesign-contact-include-body"
+        },
+        {
+          "id": "trust",
+          "title": "redesign-contact-trust-title",
+          "kind": "security",
+          "body": "redesign-contact-trust-body"
+        }
+      ],
+      "meta_title": "redesign-meta-title-contact",
+      "meta_description": "redesign-meta-description-contact"
+    },
+    "/trust/status/": {
+      "key": "status",
+      "title": "redesign-status-title",
+      "lede": "redesign-status-lede",
+      "eyebrow": "label-status",
+      "sections": [
+        {
+          "id": "status",
+          "title": "redesign-status-status-title",
+          "kind": "triad"
+        },
+        {
+          "id": "research",
+          "title": "redesign-status-research-title",
+          "items": [
+            "redesign-status-research-1",
+            "redesign-status-research-2",
+            "redesign-status-research-3"
+          ]
+        }
+      ],
+      "meta_title": "redesign-meta-title-status",
+      "meta_description": "redesign-meta-description-status"
+    }
+  },
+  "changelog": "redesign-changelog",
+  "og_alt": "redesign-og-alt"
+}
