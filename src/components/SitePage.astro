@@ -4,7 +4,6 @@ import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import HomePage from './pages/HomePage.astro';
 import GatePage from './pages/GatePage.astro';
-import ResultsPage from './pages/ResultsPage.astro';
 import EvidencePage from './pages/EvidencePage.astro';
 import FounderPage from './pages/FounderPage.astro';
 import AboutCompanyPage from './pages/AboutCompanyPage.astro';
@@ -44,7 +43,7 @@ const items = navigationTree(routes, { review, claims: data.claims }).map(link);
 for (const id of ['brand-core-principle', 'label-trust', 'label-disclosure', 'label-contact']) t(id);
 // Every page composition accepts the same shell props.
 const pages = {
-  '/': HomePage, '/gate-1/': GatePage, '/results/': ResultsPage, '/evidence/': EvidencePage,
+  '/': HomePage, '/gate-1/': GatePage, '/evidence/': EvidencePage,
   '/about/company/': AboutCompanyPage, '/about/features/': AboutFeaturesPage, '/about/founder/': FounderPage, '/contact/': ContactPage, '/demo/': DemoPage,
 } as unknown as Record<string, typeof SupportingPage>;
 const Page = pages[route.path] ?? SupportingPage;

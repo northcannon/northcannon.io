@@ -10,7 +10,7 @@ export const requiredHeaders = {
 };
 
 // Cloudflare Pages redirects: exactly these permanent moves, so no route is silently lost or hijacked.
-export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301'];
+export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301', '/results/ /evidence/ 301'];
 export function readRedirects(text) {
   const lines = text.trim().split(/\r?\n/);
   if (JSON.stringify(lines) !== JSON.stringify(requiredRedirects)) throw new Error('Redirects do not match the reviewed policy');
