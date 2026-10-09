@@ -315,11 +315,10 @@
       "brand-core-principle",
       "label-trust",
       "label-disclosure",
-      "label-contact"
-    ],
-    "review_claim_ids": [
+      "label-contact",
       "gate1-historical-statement"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true
   },
@@ -336,7 +335,9 @@
       "methodology-evidence",
       "label-status",
       "label-changelog",
-      "label-claims"
+      "label-claims",
+      "evidence-status-current",
+      "ledger-empty-current"
     ],
     "review_claim_ids": [
       "label-company",
@@ -373,9 +374,7 @@
       "viewer-title",
       "viewer-empty",
       "viewer-action",
-      "changelog-link",
-      "evidence-status-current",
-      "ledger-empty-current"
+      "changelog-link"
     ],
     "nav": true,
     "publish": true
@@ -392,13 +391,12 @@
       "contact-hello",
       "brand-company-motto",
       "label-provenance",
-      "label-evidence"
+      "label-evidence",
+      "demo-coming-soon-lede"
     ],
     "nav": false,
     "publish": true,
-    "review_claim_ids": [
-      "demo-coming-soon-lede"
-    ]
+    "review_claim_ids": []
   },
   {
     "path": "/contact/",
@@ -539,7 +537,8 @@
       "brand-core-principle",
       "label-trust",
       "label-disclosure",
-      "contact-hello"
+      "contact-hello",
+      "status-gate1-discontinued"
     ],
     "review_claim_ids": [
       "label-company",
@@ -557,8 +556,7 @@
       "arm-baseline-a",
       "arm-baseline-b",
       "arm-r-plus",
-      "arms-title",
-      "status-gate1-discontinued"
+      "arms-title"
     ],
     "nav": false,
     "publish": true
@@ -720,7 +718,8 @@
       "label-trust",
       "label-disclosure",
       "contact-hello",
-      "changelog-empty"
+      "changelog-empty",
+      "changelog-2026-10-truth-correction"
     ],
     "review_claim_ids": [
       "label-company",
@@ -739,8 +738,7 @@
       "arm-baseline-b",
       "arm-r-plus",
       "arms-title",
-      "changelog-2026-09-site-redesign",
-      "changelog-2026-10-truth-correction"
+      "changelog-2026-09-site-redesign"
     ],
     "nav": false,
     "publish": true

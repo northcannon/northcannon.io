@@ -126,13 +126,13 @@ test.describe('approved design acceptance (review build)', () => {
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });
 
-  test('gate 1: minimal historical page with pending text only in review', async ({ page }) => {
+  test('gate 1: minimal historical page with the founder-approved statement in both builds', async ({ page }) => {
     for (const base of [REVIEW, PRODUCTION]) {
       await page.goto(base + '/gate-1/');
       await expect(page.locator('h1')).toHaveText('Gate 1');
       await expect(page.locator('main .lifecycle, main .checklist, main .link-card, main h2')).toHaveCount(0);
-      await expect(page.locator('main p')).toHaveCount(base === REVIEW ? 1 : 0);
-      if (base === REVIEW) await expect(page.locator('main p')).toHaveText('Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.');
+      await expect(page.locator('main p')).toHaveCount(1);
+      await expect(page.locator('main p')).toHaveText('Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.');
     }
   });
 
@@ -657,6 +657,20 @@ test('production keeps the removed routes alive with permanent redirects', async
   }
 });
 
+test('the six founder-approved Phase 0.5 statements render exactly in production', async ({ page }) => {
+  for (const [route, text] of [
+    ['/trust/status/', 'Gate 1 was discontinued on 29 September 2026, before execution. No results were produced, and none are forthcoming.'],
+    ['/gate-1/', 'Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.'],
+    ['/evidence/', 'No experiment results are published. Evidence appears here only once it exists.'],
+    ['/evidence/', 'No evidence records are published yet.'],
+    ['/demo/', 'A product demonstration will be published once an approved demonstration exists.'],
+    ['/trust/changelog/', 'October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution.'],
+  ]) {
+    await page.goto(PRODUCTION + route);
+    await expect(page.locator('main')).toContainText(text);
+  }
+});
+
 test('production links only target published pages', async ({ page }) => {
   const published = new Set(readRoutes().filter(r => r.publish).map(r => r.path));
   for (const path of published) {
@@ -667,11 +681,12 @@ test('production links only target published pages', async ({ page }) => {
   }
 });
 
-test('changelog records the redesign in both builds once attested', async ({ page }) => {
+test('changelog records the redesign and the October truth correction in both builds once attested', async ({ page }) => {
   for (const base of [REVIEW, PRODUCTION]) {
     await page.goto(base + '/trust/changelog/');
-    await expect(page.locator('.claim-list li')).toHaveCount(base === REVIEW ? 2 : 1);
+    await expect(page.locator('.claim-list li')).toHaveCount(2);
     await expect(page.locator('.claim-list')).toContainText('New visual system across the site');
+    await expect(page.locator('.claim-list')).toContainText('October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution.');
     await expect(page.locator('main')).not.toContainText('No changelog entries are listed.');
   }
 });

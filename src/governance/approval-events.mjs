@@ -475,5 +475,16 @@ export const approvalEvents = {
       "demo-transcript-13",
       "demo-transcript-14"
     ]
+  },
+  "founder-approval-009": {
+    "sha256": "94629e9133928e8a4593a30719241b61db3ed79309629b48962618d79454a793",
+    "claim_ids": [
+      "status-gate1-discontinued",
+      "gate1-historical-statement",
+      "evidence-status-current",
+      "ledger-empty-current",
+      "demo-coming-soon-lede",
+      "changelog-2026-10-truth-correction"
+    ]
   }
 };

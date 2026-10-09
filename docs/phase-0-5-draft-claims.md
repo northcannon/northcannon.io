@@ -1,4 +1,6 @@
-# Pending draft claims
+# Phase 0.5 claims
+
+These six statements were founder-approved on 2026-10-09 as founder-approval-009. The attestation record is `docs/FOUNDER_APPROVALS.md`, which is the basis of each claim in the registry. This document is the readable list of the approved texts and is not itself an approval record.
 
 ## status-gate1-discontinued
 

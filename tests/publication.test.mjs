@@ -6,6 +6,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { readRoutes, draftBanner, routeCopy, navigationRoutes, navigationTree, navigationClaimId } from '../src/governance/routes.mjs';
 import { loadGovernance, verifyAttestations } from '../src/governance/registry.mjs';
+import { approvalEvents } from '../src/governance/approval-events.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
 import { publicationIdentity } from '../scripts/check-publication.mjs';
 import { provenance, verifyProvenance, sitemap, finalizeProduction } from '../scripts/publication.mjs';
@@ -41,8 +42,9 @@ test('manifest follows the approved information architecture and rejects publish
 test('optional copy renders in review, is omitted from production, and appears there only once attested', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
   const home = routes.find(r => r.path === '/');
-  const gate = routes.find(r => r.path === '/gate-1/');
-  const draft = claims.find(c => c.claim_id === 'gate1-historical-statement');
+  const gate = routes.find(r => r.path === '/about/company/');
+  const draft = claims.find(c => c.claim_id === 'interop-sources-body');
+  assert.equal(draft.approval_state, 'pending');
   assert.equal(routeCopy(claims, gate, routes, draft.claim_id, { review: true }), draft.statement);
   assert.equal(routeCopy(claims, gate, routes, draft.claim_id, { review: false }), undefined);
   for (const id of ['cta-view-gate-1', 'brand-mission']) assert.throws(() => routeCopy(claims, home, routes, id, { review: false }), /Undeclared route claim/);
@@ -204,9 +206,9 @@ test('standalone review build rebuilds current provenance from source only and r
     const manifestPath = path.join(root, 'src/content/routes.json');
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
     for (const [route, id, list] of [
-      ['/trust/status/', 'status-gate1-discontinued', 'review_claim_ids'], ['/trust/claims/', 'brand-company-motto', 'claim_ids'],
+      ['/trust/status/', 'status-gate1-discontinued', 'claim_ids'], ['/trust/claims/', 'brand-company-motto', 'claim_ids'],
       ['/evidence/', 'methodology-evidence', 'claim_ids'], ['/trust/', 'label-disclosure', 'claim_ids'],
-      ['/gate-1/', 'gate1-historical-statement', 'review_claim_ids'], ['/about/company/', 'about-headline', 'review_claim_ids'],
+      ['/gate-1/', 'gate1-historical-statement', 'claim_ids'], ['/about/company/', 'about-headline', 'review_claim_ids'],
     ]) {
       const changed = structuredClone(manifest);
       const entry = changed.find(r => r.path === route);
@@ -222,19 +224,23 @@ test('standalone review build rebuilds current provenance from source only and r
 });
 
 
-test('Phase 0.5 drafts are review-only and withdrawn claims have no route references', () => {
+test('Phase 0.5 claims are founder-attested by event 009, required on their routes, and withdrawn claims have no route references', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
   const ids = ['status-gate1-discontinued', 'gate1-historical-statement', 'evidence-status-current', 'ledger-empty-current', 'demo-coming-soon-lede', 'changelog-2026-10-truth-correction'];
+  assert.deepEqual([...approvalEvents['founder-approval-009'].claim_ids].sort(), [...ids].sort());
   for (const id of ids) {
     const claim = claims.find(c => c.claim_id === id);
-    assert.equal(claim.approval_state, 'pending');
-    assert.equal(claim.approval_record, 'none');
-    assert.ok(!routes.some(r => r.claim_ids.includes(id)));
-    const owners = routes.filter(r => r.review_claim_ids.includes(id));
+    assert.equal(claim.approval_state, 'approved');
+    assert.equal(claim.lifecycle_state, 'approved');
+    assert.equal(claim.approval_record, 'founder_attestation');
+    assert.equal(claim.review_date, '2026-10-09');
+    assert.equal(claim.basis, 'docs/FOUNDER_APPROVALS.md');
+    assert.ok(!routes.some(r => r.review_claim_ids.includes(id)));
+    const owners = routes.filter(r => r.claim_ids.includes(id));
     assert.equal(owners.length, 1);
-    assert.equal(routeCopy(claims, owners[0], routes, id, { review: false }), undefined);
+    assert.equal(routeCopy(claims, owners[0], routes, id, { review: false }), claim.statement);
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: true }), claim.statement);
-    assert.ok(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners[0].path.slice(1) + 'index.html', { review: false }).length);
+    assert.deepEqual(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners[0].path.slice(1) + 'index.html', { review: false }), []);
   }
   const referenced = new Set(routes.flatMap(r => [...r.claim_ids, ...r.review_claim_ids]));
   for (const claim of claims.filter(c => /^(results-|demo-video-|demo-transcript-|founder-gate-)/.test(c.claim_id))) assert.ok(!referenced.has(claim.claim_id), claim.claim_id);

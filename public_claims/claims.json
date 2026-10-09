@@ -4825,60 +4825,60 @@
     "claim_id": "status-gate1-discontinued",
     "statement": "Gate 1 was discontinued on 29 September 2026, before execution. No results were produced, and none are forthcoming.",
     "category": "other",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "gate1-historical-statement",
     "statement": "Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.",
     "category": "other",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "evidence-status-current",
     "statement": "No experiment results are published. Evidence appears here only once it exists.",
     "category": "other",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "ledger-empty-current",
     "statement": "No evidence records are published yet.",
     "category": "other",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "demo-coming-soon-lede",
     "statement": "A product demonstration will be published once an approved demonstration exists.",
     "category": "other",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   },
   {
     "claim_id": "changelog-2026-10-truth-correction",
     "statement": "October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution.",
     "category": "changelog",
-    "basis": "docs/phase-0-5-draft-claims.md",
-    "approval_state": "pending",
-    "lifecycle_state": "review",
-    "review_date": null,
-    "approval_record": "none"
+    "basis": "docs/FOUNDER_APPROVALS.md",
+    "approval_state": "approved",
+    "lifecycle_state": "approved",
+    "review_date": "2026-10-09",
+    "approval_record": "founder_attestation"
   }
 ]
