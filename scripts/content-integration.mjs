@@ -19,7 +19,7 @@ export default function contentGovernance() {
     name: 'public-content-governance',
     hooks: {
       'astro:config:done': ({ config }) => { wp4 = fileURLToPath(config.root).includes(`${path.sep}fixtures${path.sep}wp4${path.sep}`); readRoutes(); review = fileURLToPath(config.root).includes(`${path.sep}tests${path.sep}fixtures${path.sep}design-system${path.sep}`); },
-      'astro:build:start': () => { if (review) execFileSync('npm', ['run', 'build'], { cwd: projectRoot, stdio: 'pipe' }); },
+      'astro:build:start': () => { if (review) execFileSync('npm', ['run', 'build'], { cwd: projectRoot, stdio: 'pipe', env: { ...process.env, NORTHCANNON_SKIP_REVIEW_INVENTORY: '1' } }); },
       'astro:build:done': async ({ dir }) => {
         const { claims } = loadGovernance();
         const root = fileURLToPath(dir);

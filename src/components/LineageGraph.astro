@@ -2,9 +2,10 @@
 // Static left-to-right plate graph drawn from precomputed positions. Affected plates carry a corner
 // fold and solid heavy edges, so colour is never the only signal; the text alternative is HTML.
 interface Node { id: string; col: 0 | 1 | 2; row: number; affected: boolean }
-interface Props { id: string; alt: string; columns: [string, string, string]; nodes?: Node[]; edges?: Array<[string,string]> }
-const { id, alt, columns } = Astro.props;
-const W = 160, H = 44, X = [20, 350, 680], ROW = 68, TOP = 20;
+interface Props { id: string; alt: string; columns: [string, string, string]; nodes?: Node[]; edges?: Array<[string,string]>; large?: boolean | undefined }
+const { id, alt, columns, large = false } = Astro.props;
+// The large variant fills the redesign container; the default keeps the production Features proportions.
+const W = large ? 220 : 160, H = large ? 64 : 44, X = large ? [16, 320, 624] : [20, 350, 680], ROW = large ? 96 : 68, TOP = large ? 24 : 20;
 const nodes: Node[] = Astro.props.nodes ?? [
   { id: 's', col: 0, row: 2, affected: true },
   { id: 'a', col: 1, row: 0, affected: true }, { id: 'b', col: 1, row: 1, affected: true }, { id: 'c', col: 1, row: 2, affected: true },
@@ -25,13 +26,13 @@ const path = ([from, to]: [string, string]) => {
   <div class="lineage__scroll" role="region" aria-labelledby={id} tabindex="0">
   <div class="lineage__plane">
   <ul class="lineage__cols" aria-hidden="true">{columns.map(column => <li>{column}</li>)}</ul>
-  <svg class="lineage__svg" viewBox="0 0 860 340" role="img" aria-labelledby={id} preserveAspectRatio="xMidYMid meet" focusable="false">
+  <svg class="lineage__svg" viewBox={large ? "0 0 860 330" : "0 0 860 340"} role="img" aria-labelledby={id} preserveAspectRatio="xMidYMid meet" focusable="false">
     {edges.map(edge => { const p = path(edge); return <path class:list={['lineage__edge', { 'lineage__edge--affected': p.affected }]} d={p.d} fill="none" />; })}
     {nodes.map(node => { const p = at(node); return (
       <g class:list={['lineage__plate', node.affected ? 'lineage__plate--affected' : 'lineage__plate--neutral']}>
         <rect x={p.x} y={p.y} width={W} height={H} rx="8" />
-        <rect class="lineage__bar" x={p.x + 14} y={p.y + 12} width="90" height="6" rx="3" />
-        <rect class="lineage__bar" x={p.x + 14} y={p.y + 26} width="56" height="6" rx="3" />
+        <rect class="lineage__bar" x={p.x + 16} y={p.y + (large ? 18 : 12)} width={large ? 130 : 90} height={large ? 8 : 6} rx="3" />
+        <rect class="lineage__bar" x={p.x + 16} y={p.y + (large ? 38 : 26)} width={large ? 84 : 56} height={large ? 8 : 6} rx="3" />
         {node.affected && <polygon class="lineage__fold" points={`${p.x + W - 22},${p.y} ${p.x + W},${p.y} ${p.x + W},${p.y + 22}`} />}
       </g>
     ); })}

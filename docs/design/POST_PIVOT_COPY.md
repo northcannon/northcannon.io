@@ -256,6 +256,10 @@ Find the product, evidence and contact pages for NorthCannon.
 
 This review page describes the production build, not this review build.
 
+### redesign-label-phase-a
+
+Phase A scope
+
 ## E-011
 
 ### redesign-explore
@@ -766,22 +770,6 @@ Discuss the engineering changes you need to govern
 
 We build control for the moment AI starts changing things.
 
-### redesign-about-company-1
-
-Why now: AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.
-
-### redesign-about-company-2
-
-Where we start: engineering and infrastructure, where a successful tool call is not proof of final state.
-
-### redesign-about-company-3
-
-Research: persistent verified state is a parallel, non-gating research question, not part of the Phase A product.
-
-### redesign-about-company-4
-
-How we work: evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change.
-
 ### redesign-demo-planned-loop-title
 
 What it will show
@@ -849,6 +837,39 @@ Your environment
 ### interop-sources-body
 
 APIs, docs, web, internal
+
+### redesign-about-row-label-1
+
+Why now
+
+### redesign-about-row-body-1
+
+AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.
+
+### redesign-about-row-label-2
+
+Where we start
+
+### redesign-about-row-body-2
+
+Engineering and infrastructure, where a successful tool call is not proof of final state.
+
+### redesign-about-row-label-3
+
+Research
+
+### redesign-about-row-body-3
+
+Persistent verified state is a parallel, non-gating research question, not part of the Phase A product.
+
+### redesign-about-row-label-4
+
+How we work
+
+### redesign-about-row-body-4
+
+Evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change.
+
 ## E-012
 
 ### redesign-status-exists-1
@@ -1387,3 +1408,7 @@ Review proposal, 9 October 2026: product-first navigation, consolidated About, R
 ### redesign-og-alt
 
 NorthCannon — AI Action Control. Control what autonomous AI can change.
+
+### redesign-about-founder-transition
+
+That question led to a broader concern: how to verify the state AI systems act on, and the state their actions produce.

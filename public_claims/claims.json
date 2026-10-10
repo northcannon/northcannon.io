@@ -6478,7 +6478,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6488,7 +6488,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6498,7 +6498,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6508,7 +6508,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -8315,6 +8315,106 @@
   {
     "claim_id": "redesign-provenance-scope",
     "statement": "This review page describes the production build, not this review build.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-label-1",
+    "statement": "Why now",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-body-1",
+    "statement": "AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-label-2",
+    "statement": "Where we start",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-body-2",
+    "statement": "Engineering and infrastructure, where a successful tool call is not proof of final state.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-label-3",
+    "statement": "Research",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-body-3",
+    "statement": "Persistent verified state is a parallel, non-gating research question, not part of the Phase A product.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-label-4",
+    "statement": "How we work",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-row-body-4",
+    "statement": "Evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-about-founder-transition",
+    "statement": "That question led to a broader concern: how to verify the state AI systems act on, and the state their actions produce.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-label-phase-a",
+    "statement": "Phase A scope",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",

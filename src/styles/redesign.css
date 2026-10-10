@@ -3,7 +3,7 @@
    All sizes come from the tokens below and the shared spacing scale in global.css. */
 .redesign-main {
   --text-h1: 3.5rem; --text-h2: 2.25rem; --text-h3: 1.375rem; --text-body: 1.0625rem; --text-support: 0.9375rem; --text-label: 0.75rem;
-  --section-gap: var(--space-8);
+  --section-gap: 4rem;
   --card-pad: var(--space-5);
   --card-gap: var(--space-5);
   padding-block: var(--space-7) var(--space-9);
@@ -12,7 +12,7 @@
 .redesign-main .full-width-content { min-width: 0; }
 
 /* Hero */
-.product-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); align-items: center; gap: var(--space-7); padding-block: var(--space-5) var(--space-7); }
+.product-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); align-items: center; gap: var(--space-7); padding-block: var(--space-5) var(--space-5); }
 .product-hero:not(:has(> :nth-child(2))) { grid-template-columns: minmax(0, 1fr); }
 .product-hero h1 { max-width: none; margin: 0 0 var(--space-4); font-size: var(--text-h1); line-height: 1.1; letter-spacing: -0.035em; }
 .product-hero .lede { max-width: none; margin: 0 0 var(--space-5); font-size: 1.25rem; line-height: 1.55; }
@@ -160,9 +160,10 @@
 .principles p { margin: 0; padding: var(--card-pad); border: 1px solid var(--color-plate-border); border-radius: var(--radius-card); background: var(--color-panel); font-size: 1.5rem; line-height: 1.4; }
 
 /* Call to action band. */
-.cta-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); padding: var(--space-6); border: 1px solid var(--color-violet); border-radius: var(--radius-card); background: color-mix(in srgb, var(--color-violet) 12%, var(--color-panel)); }
-.cta-band__copy { display: grid; gap: var(--space-2); min-width: 0; flex: 1 1 24rem; }
-.cta-band__copy p { margin: 0; }
+.product-section--cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-6); align-items: center; padding: var(--space-6); border: 1px solid var(--color-violet); border-radius: var(--radius-card); background: color-mix(in srgb, var(--color-violet) 12%, var(--color-panel)); }
+.product-section--cta > h2 { grid-column: 1; margin-bottom: var(--space-2); }
+.product-section--cta > .section-lede { grid-column: 1; margin: 0; }
+.product-section--cta > .action-group { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
 
 /* Scope columns, topology boundary and worked example. */
 .scope-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--card-gap); }
@@ -237,6 +238,8 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
  .offering-grid, .status-triad, .principles, .scope-columns, .knowledge-branches, .research-grid, .worked-example__summary { grid-template-columns: minmax(0, 1fr); }
  .stage-grid, .stage-grid--7 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
  .compare { grid-template-columns: minmax(0, 1fr); }
+ .product-section--cta { grid-template-columns: minmax(0, 1fr); }
+ .product-section--cta > .action-group { grid-column: 1; grid-row: auto; margin-top: var(--space-4); }
  .compare__marker { justify-self: center; transform: rotate(90deg); }
  .control-loop ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
  .editorial-rows__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
@@ -258,7 +261,8 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
  .data-table td { display: grid; grid-template-columns: minmax(0, 1fr); border-bottom: 0; }
  .data-table__label { display: block; color: var(--color-violet-text); font-size: var(--text-label); margin-bottom: var(--space-2); }
  .product-section--instrument { padding: var(--space-4); }
- .cta-band { padding: var(--space-5); }
+ .product-section--cta { padding: var(--space-5); grid-template-columns: minmax(0, 1fr); }
+ .product-section--cta > .action-group { grid-column: 1; grid-row: auto; margin-top: var(--space-4); }
  .hero-aside { padding: var(--space-5); }
 }
 
@@ -296,3 +300,12 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
  .site-footer__inner { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width:47.99rem) { .site-footer__groups { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); } .site-footer__group--wide .site-footer__list { grid-template-columns: minmax(0, 1fr); } }
+
+/* Change Intelligence illustration: the graph fills its column, the consequence questions fill the adjacent one. */
+.lineage-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--space-6); align-items: center; padding: var(--space-5); border: 1px solid var(--color-plate-border); border-radius: var(--radius-card); background: var(--color-panel); }
+.lineage-layout .lineage { margin: 0; }
+.consequence { display: grid; gap: var(--space-4); align-content: center; }
+.consequence__list { display: grid; gap: var(--space-3); counter-reset: consequence; }
+.consequence__list li { counter-increment: consequence; padding: var(--space-3) var(--space-4); border-left: 2px solid var(--color-violet); background: color-mix(in srgb, var(--color-violet) 7%, transparent); font-size: 1.125rem; }
+.consequence__list li::before { content: counter(consequence, decimal-leading-zero); margin-right: var(--space-3); font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-violet-text); }
+@media (max-width: 63.99rem) { .lineage-layout { grid-template-columns: minmax(0, 1fr); padding: var(--space-4); } }

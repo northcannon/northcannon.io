@@ -31,7 +31,7 @@ for (const name of files) {
   errors.push(...forbiddenCopyErrors(prose.join(' '),name));
 }
 const reviewRoutes=readRoutes().filter(r=>!migratedReviewPaths.has(r.path));
-const reviewPresent=review&&await access('.review-dist').then(()=>true,()=>false);
+const reviewPresent=review&&await access('.review-dist/index.html').then(()=>true,()=>false);
 if(reviewPresent) for(const route of reviewRoutes) await access('.review-dist/'+routeFile(route));
 for(const route of readRoutes().filter(r=>!r.publish)) if(files.includes(routeFile(route))) errors.push(`${route.path}: unpublished production route`);
 if(errors.length) throw new Error(errors.join('\n'));

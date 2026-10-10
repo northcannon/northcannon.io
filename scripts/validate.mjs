@@ -129,7 +129,7 @@ if (!wp4 && !fixture && files.has('provenance.json')) await verifyProvenance(roo
 if (!wp4 && !fixture && root === path.resolve('dist') && !files.has('provenance.json')) errors.push('Missing production provenance');
 if (!wp4 && !fixture && root === path.resolve('dist')) {
   // Production forbidden-copy guard; the review inventory half is skipped when `.review-dist` is absent.
-  try { await checkRedesignOutput('dist'); } catch (error) { errors.push(error.message); }
+  try { await checkRedesignOutput('dist', { review: !process.env.NORTHCANNON_SKIP_REVIEW_INVENTORY }); } catch (error) { errors.push(error.message); }
 }
 if (errors.length) throw new Error(errors.join('\n'));
 console.log(`Validated ${files.size} output files, ${actualRoutes.length} routes, local references, disclosure patterns, and strict headers; no JavaScript or inline styles.`);
