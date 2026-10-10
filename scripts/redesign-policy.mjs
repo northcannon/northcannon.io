@@ -16,5 +16,10 @@ const forbiddenPhrases = /trust infrastructure|after Gate 1 runs|will be publish
 const forbiddenNames = /\b(?:GPT(?:-?\d[\w.]*)?|Claude|OpenAI|Anthropic|NVIDIA|Astra|Luna|Sonnet|Opus|Haiku|Codex|Ollama|Gemini|Llama|Mistral|Postgres(?:QL)?|H100|A100)\b/i;
 const forbiddenProperNames = /\b(?:Sol|Cursor)\b/;
 export function forbiddenCopyErrors(text, name) {
-  return forbiddenPhrases.test(text) || forbiddenNames.test(text) || forbiddenProperNames.test(text) ? [`${name}: forbidden public copy`] : [];
+  return conceptOutputErrors(text, name).length || forbiddenPhrases.test(text) || forbiddenNames.test(text) || forbiddenProperNames.test(text) ? [`${name}: forbidden public copy`] : [];
+}
+
+// Synthetic identifiers and fixture dependency names cannot enter any production text asset.
+export function conceptOutputErrors(text, name) {
+  return /\bconcept-[a-z0-9-]+\b|\blattice-fixture-sdk\b/i.test(text) ? [`${name}: synthetic concept in production`] : [];
 }

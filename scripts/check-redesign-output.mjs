@@ -4,7 +4,7 @@ import { fileInventory } from './publication.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { readRoutes, routeFile } from '../src/governance/routes.mjs';
-import { migratedReviewPaths, forbiddenCopyErrors } from './redesign-policy.mjs';
+import { migratedReviewPaths, forbiddenCopyErrors, conceptOutputErrors } from './redesign-policy.mjs';
 import { pathToFileURL } from 'node:url';
 import { publicOutputDisclosureErrors, isSecretLikeFile } from './policy.mjs';
 // The production half checks one built output directory; the review half needs `.review-dist` and is skipped without it.
@@ -17,6 +17,7 @@ for (const name of files) {
   if (isSecretLikeFile(name.split('/').at(-1))) { errors.push(`${name}: forbidden filename; not read`); continue; }
   if (/\.(mp4|webm|vtt|mp3|wav)$/i.test(name) || /demo-poster/.test(name)) errors.push(`${name}: withdrawn media`);
   if (name === 'og/northcannon-default.png') errors.push('Pending OG image in production');
+  if (/\.(?:html|css|json|svg|txt|xml)$/.test(name)) errors.push(...conceptOutputErrors(await readFile(root+'/'+name,'utf8'),name));
   if (!name.endsWith('.html')) continue;
   pages++;
   const html = await readFile(root+'/'+name,'utf8');
