@@ -1,0 +1,8 @@
+---
+import StatusChip from './StatusChip.astro';
+import ObligationRow from './ObligationRow.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<details class="ci-inspector ci-panel" open><summary>{t(f.labels.inspector)}</summary><div class="ci-panel-content">{f.nodes.map(n => <article class:list={['ci-inspection',n.id === 'sdk' && 'ci-inspection--default']} data-inspector={n.id}><h4>{t(n.label)}</h4><StatusChip label={t(f.states[n.state as keyof typeof f.states])} tone={n.state === 'UNKNOWN_COVERAGE' ? 'inactive' : 'illustrative'} /><p>{t(n.reason)}</p>{n.state === 'SUPPORTED_UNAFFECTED' && <p>{t(f.labels['unaffected-note'])}</p>}<details><summary>{t(f.labels.relation)}</summary>{f.edges.filter(e => e.source === n.id || e.target === n.id).map(e => <p>{t(f.evidence.find(r => r.id === e.evidence)!.label)}</p>)}{n.id === 'isolated' && <p>{t(f.evidence.find(e => e.id === 'isolation')!.label)}</p>}{f.coverage_gaps.filter(g => g.node === n.id).map(g => <p>{t(g.claim)}</p>)}</details><ul>{f.obligations.filter(o => o.node === n.id).map(obligation => <ObligationRow t={t} obligation={obligation} />)}</ul></article>)}</div></details>

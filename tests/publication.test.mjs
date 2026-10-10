@@ -118,6 +118,8 @@ test('standalone review build rebuilds current provenance from source only and r
       'scripts/redesign-policy.mjs', 'scripts/check-redesign-output.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
       ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric','StateChip','HashValue'].map(n => `src/components/${n}.astro`),
       'src/components/pages/RedesignPage.astro',
+      'src/content/concept-scenario.json', 'src/styles/concept.css',
+      ...['AuthorityBoundary', 'ChangeHeader', 'ChangeTimeline', 'ConsequenceGraph', 'ConsequenceInspector', 'ContextPanel', 'CoverageGap', 'EvidencePacket', 'HashBlock', 'ObligationRow', 'ReconciliationLadder', 'RevalidationQueue', 'StateComparison', 'StatusChip'].map(n => `src/components/concept/${n}.astro`),
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
       'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md', 'docs/phase-0-5-draft-claims.md',
       'public/_headers', 'public/_redirects', 'public/robots.txt', 'public/.well-known/security.txt',

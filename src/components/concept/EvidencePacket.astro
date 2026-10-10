@@ -1,0 +1,9 @@
+---
+import StatusChip from './StatusChip.astro';
+import HashBlock from './HashBlock.astro';
+import ReconciliationLadder from './ReconciliationLadder.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<div class="ci-packet"><header><p>{t(f.labels.truth)}</p><StatusChip label={t(f.labels.illustrative)} /><h3>{t(f.identity.packet)}</h3><p>{t(f.labels['packet-separation'])}</p><dl class="ci-identity"><div><dt>{t(f.labels.candidate)}</dt><dd>{t(f.identity.candidate)}</dd></div><div><dt>{t(f.labels.repo)}</dt><dd>{t(f.identity.repository)}</dd></div><div><dt>{t(f.labels.configuration)}</dt><dd>{t(f.identity.configuration)}</dd></div></dl></header><div class="ci-packet-body"><section><h3>{t(f.labels.decision)}</h3><p>{t(f.identity.proposed)}</p><StatusChip label={t(f.labels.withheld)} tone="planned" /><p>{t(f.labels.acceptance)}</p><p>{t(f.labels['seed-note'])}</p></section><section><h3>{t(f.labels.evidence)}</h3>{f.evidence.map(e => <details class="ci-evidence"><summary>{t(e.label)}</summary><p>{t(f.identity.candidate)}</p><HashBlock value={t(e.hash_claim)} label={t(f.labels.hash)} identity={`synthetic-${e.id}`} /><p>{t(f.labels['seed-note'])}</p></details>)}</section></div><ReconciliationLadder t={t} /></div>
