@@ -255,7 +255,8 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
  .product-hero .lede { font-size: 1.0625rem; }
  .grid, .grid--2, .grid--3, .grid--4, .grid--5, .grid--6, .flow-steps--grid { --cols: 1; grid-template-columns: minmax(0, 1fr); }
  .flow-steps { flex-direction: column; }
- .control-loop ol, .stage-grid, .stage-grid--7 { grid-template-columns: minmax(0, 1fr); }
+ .control-loop ol { grid-template-columns: minmax(0, 1fr); }
+ .stage-grid, .stage-grid--7 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
  .distinction { flex-direction: column; align-items: stretch; gap: var(--space-1); }
  .distinction p { margin: 0; }
  .distinction__symbol { text-align: center; }
