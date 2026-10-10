@@ -1,0 +1,22 @@
+---
+import ChangeHeader from './ChangeHeader.astro';
+import ContextPanel from './ContextPanel.astro';
+import ConsequenceGraph from './ConsequenceGraph.astro';
+import ConsequenceInspector from './ConsequenceInspector.astro';
+import CoverageGap from './CoverageGap.astro';
+import RevalidationQueue from './RevalidationQueue.astro';
+import ChangeTimeline from './ChangeTimeline.astro';
+import StateComparison from './StateComparison.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<div class="ci-console">
+{f.nodes.map(n => <span class="ci-fragment" id={`ci-node-${n.id}`} aria-hidden="true" />)}
+{['direct','transitive','compare'].map(mode => <span class="ci-fragment" id={`ci-mode-${mode}`} aria-hidden="true" />)}
+<ChangeHeader t={t} />
+<nav class="ci-controls" aria-label={t(f.labels.graph)}><a href="#ci-mode-direct">{t(f.labels.direct)}</a><a href="#ci-mode-transitive">{t(f.labels.transitive)}</a><a href="#ci-mode-compare">{t(f.labels.compare)}</a></nav>
+<ul class="ci-metrics">{Object.values(f.count_claims).map(id => <li>{t(id)}</li>)}</ul>
+<div class="ci-workspace"><ContextPanel t={t} /><ContextPanel t={t} expanded={false} /><ConsequenceGraph t={t} /><ConsequenceInspector t={t} /><ConsequenceInspector t={t} expanded={false} /></div>
+<StateComparison t={t} /><CoverageGap t={t} /><RevalidationQueue t={t} /><ChangeTimeline t={t} />
+</div>

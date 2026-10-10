@@ -84,3 +84,85 @@
 .ci-edge-key { display: grid; gap: var(--space-2); padding: var(--space-4); font-size: var(--text-label); }
 .ci-edge-key li { display: flex; flex-wrap: wrap; gap: var(--space-2); border-top: 1px solid var(--color-plate-border); padding-top: var(--space-2); }
 .ci-edge-key li > span:nth-child(2) { color: var(--color-violet-text); }
+
+/* Fragment states are mutually exclusive; selecting a node returns to graph mode. */
+.ci-fragment { position: absolute; top: 0; scroll-margin-top: 7rem; }
+.ci-controls { display: flex; flex-wrap: wrap; gap: var(--space-3); padding: var(--space-4) var(--space-5); }
+.ci-controls a { padding: var(--space-3); border: 1px solid var(--color-plate-border); border-radius: var(--radius-control); }
+.ci-inspection, .ci-comparison, .ci-panel--collapsed { display: none; }
+.ci-inspection--default { display: block; }
+.ci-console:has([id^="ci-node-"]:target) .ci-inspection--default { display: none; }
+.ci-console:has(#ci-mode-compare:target) .ci-workspace { display: none; }
+.ci-console:has(#ci-mode-compare:target) .ci-comparison { display: block; }
+.ci-console:has(#ci-mode-compare:target) a[href="#ci-mode-compare"],
+.ci-console:has(#ci-mode-direct:target) a[href="#ci-mode-direct"],
+.ci-console:has(#ci-mode-transitive:target) a[href="#ci-mode-transitive"] { background: var(--color-panel); border-color: var(--color-violet-text); }
+.ci-console:not(:has(.ci-fragment:target)) .ci-node[data-node="sdk"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has([id^="ci-node-"]:target) .ci-edge { opacity: .35; }
+.ci-console:has(#ci-node-sdk:target) .ci-inspection[data-inspector="sdk"] { display: block; }
+.ci-console:has(#ci-node-sdk:target) .ci-node[data-node="sdk"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-1"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-1"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-2"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-2"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-3"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-3"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-4"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-4"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-5"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-5"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-6"] { opacity: 1; }
+.ci-console:has(#ci-node-sdk:target) .ci-edge[data-edge="edge-6"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-lock:target) .ci-inspection[data-inspector="lock"] { display: block; }
+.ci-console:has(#ci-node-lock:target) .ci-node[data-node="lock"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-lock:target) .ci-edge[data-edge="edge-1"] { opacity: 1; }
+.ci-console:has(#ci-node-lock:target) .ci-edge[data-edge="edge-1"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-engine:target) .ci-inspection[data-inspector="engine"] { display: block; }
+.ci-console:has(#ci-node-engine:target) .ci-node[data-node="engine"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-2"] { opacity: 1; }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-2"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-4"] { opacity: 1; }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-4"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-5"] { opacity: 1; }
+.ci-console:has(#ci-node-engine:target) .ci-edge[data-edge="edge-5"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-api:target) .ci-inspection[data-inspector="api"] { display: block; }
+.ci-console:has(#ci-node-api:target) .ci-node[data-node="api"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-api:target) .ci-edge[data-edge="edge-3"] { opacity: 1; }
+.ci-console:has(#ci-node-api:target) .ci-edge[data-edge="edge-3"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-api:target) .ci-edge[data-edge="edge-6"] { opacity: 1; }
+.ci-console:has(#ci-node-api:target) .ci-edge[data-edge="edge-6"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-tests:target) .ci-inspection[data-inspector="tests"] { display: block; }
+.ci-console:has(#ci-node-tests:target) .ci-node[data-node="tests"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-tests:target) .ci-edge[data-edge="edge-2"] { opacity: 1; }
+.ci-console:has(#ci-node-tests:target) .ci-edge[data-edge="edge-2"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-tests:target) .ci-edge[data-edge="edge-4"] { opacity: 1; }
+.ci-console:has(#ci-node-tests:target) .ci-edge[data-edge="edge-4"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-knowledge:target) .ci-inspection[data-inspector="knowledge"] { display: block; }
+.ci-console:has(#ci-node-knowledge:target) .ci-node[data-node="knowledge"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-knowledge:target) .ci-edge[data-edge="edge-2"] { opacity: 1; }
+.ci-console:has(#ci-node-knowledge:target) .ci-edge[data-edge="edge-2"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-knowledge:target) .ci-edge[data-edge="edge-5"] { opacity: 1; }
+.ci-console:has(#ci-node-knowledge:target) .ci-edge[data-edge="edge-5"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-schema:target) .ci-inspection[data-inspector="schema"] { display: block; }
+.ci-console:has(#ci-node-schema:target) .ci-node[data-node="schema"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-schema:target) .ci-edge[data-edge="edge-3"] { opacity: 1; }
+.ci-console:has(#ci-node-schema:target) .ci-edge[data-edge="edge-3"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-schema:target) .ci-edge[data-edge="edge-6"] { opacity: 1; }
+.ci-console:has(#ci-node-schema:target) .ci-edge[data-edge="edge-6"] path { stroke: var(--color-violet-text); stroke-width: 3; }
+.ci-console:has(#ci-node-config:target) .ci-inspection[data-inspector="config"] { display: block; }
+.ci-console:has(#ci-node-config:target) .ci-node[data-node="config"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-recovery:target) .ci-inspection[data-inspector="recovery"] { display: block; }
+.ci-console:has(#ci-node-recovery:target) .ci-node[data-node="recovery"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-node-isolated:target) .ci-inspection[data-inspector="isolated"] { display: block; }
+.ci-console:has(#ci-node-isolated:target) .ci-node[data-node="isolated"] rect { stroke-width: 5; fill: color-mix(in srgb, var(--color-violet) 22%, var(--color-panel)); }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="tests"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="knowledge"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="schema"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="config"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="recovery"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-node[data-node="isolated"] { opacity: .35; }
+.ci-console:has(#ci-mode-direct:target) .ci-edge[data-edge="edge-4"] { opacity: .2; }
+.ci-console:has(#ci-mode-direct:target) .ci-edge[data-edge="edge-5"] { opacity: .2; }
+.ci-console:has(#ci-mode-direct:target) .ci-edge[data-edge="edge-6"] { opacity: .2; }
+@media (max-width: 79.99rem) { .ci-panel--expanded { display: none; } .ci-panel--collapsed { display: block; } }
+@media (prefers-reduced-motion: no-preference) { .ci-node rect, .ci-edge { transition: stroke-width .15s ease, opacity .15s ease; } }
