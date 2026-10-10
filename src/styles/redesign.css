@@ -215,7 +215,8 @@
 .kpi-definitions > div { padding-block: var(--space-4); border-bottom: 1px solid var(--color-plate-border); }
 .kpi-definitions dt { font-weight: 600; color: var(--color-text); }
 .kpi-definitions dd { margin: var(--space-2) 0 0; }
-.evidence-ledger .data-table { table-layout: auto; min-width: 62rem; }
+.evidence-ledger .data-table { table-layout: auto; }
+@media (min-width: 48rem) { .evidence-ledger .data-table { min-width: 62rem; } }
 .evidence-ledger .data-table td { overflow-wrap: normal; hyphens: none; }
 .evidence-ledger .data-table td:nth-child(5) { overflow-wrap: anywhere; }
 .evidence-ledger .state-chip { white-space: normal; }
@@ -242,7 +243,7 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
  .compare { grid-template-columns: minmax(0, 1fr); }
  .cta-section { grid-template-columns: minmax(0, 1fr); }
  .cta-section > .action-group { grid-column: 1; grid-row: auto; margin-top: var(--space-4); }
- .compare__marker { justify-self: center; transform: rotate(90deg); }
+ .compare__marker { justify-self: center; }
  .control-loop ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
  .editorial-rows__label { display: block; margin: 0 0 var(--space-2); }
  .editorial-rows__body { display: block; }
@@ -313,3 +314,12 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
 @media (max-width: 63.99rem) { .lineage-layout { grid-template-columns: minmax(0, 1fr); padding: var(--space-4); } }
 .stage-grid { margin-top: var(--space-5); }
 .stage-grid + .chip-row { margin-top: var(--space-4); }
+
+/* Milestones: the last row stretches instead of leaving empty grid cells. */
+.stage-grid--fill { display: flex; flex-wrap: wrap; gap: var(--card-gap); }
+.stage-grid--fill > li { flex: 1 1 17rem; }
+/* Worked example: support cells wrap as whole words at every width. */
+.worked-example .support-cells { grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); }
+.worked-example .support-cell__label { overflow-wrap: normal; letter-spacing: 0.06em; }
+.worked-example__facts { display: grid; gap: var(--space-4); min-width: 0; }
+.worked-example__facts .readout__value { overflow-wrap: normal; }
