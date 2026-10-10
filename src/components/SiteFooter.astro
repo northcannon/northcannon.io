@@ -1,22 +1,40 @@
 ---
+import { loadGovernance } from '../governance/registry.mjs';
+import { draftClaim } from '../governance/routes.mjs';
 import { claim } from '../governance/claim';
-interface Props { fragmentFixture?: boolean }
-const { fragmentFixture = false } = Astro.props;
+interface Props { fragmentFixture?: boolean; review?: boolean }
+const { fragmentFixture = false, review = false } = Astro.props;
 const copy = {
   company: await claim('brand-company'),
   principle: await claim('brand-core-principle'),
+  trust: await claim('label-trust'),
+  companyGroup: await claim('label-company'),
 };
-const links = [
-  { label: await claim('label-trust'), href: '/trust/' },
+const trustLinks = [
+  { label: await claim('label-status'), href: '/trust/status/' },
+  { label: await claim('label-claims'), href: '/trust/claims/' },
+  { label: await claim('label-provenance'), href: '/trust/provenance/' },
+  { label: await claim('label-changelog'), href: '/trust/changelog/' },
   { label: await claim('label-disclosure'), href: '/trust/disclosure/' },
-  { label: await claim('label-contact'), href: '/contact/' },
+  { label: await claim('label-site-security'), href: '/trust/site-security/' },
 ];
+const companyLinks = [{ label: await claim('label-contact'), href: '/contact/' }];
+const href = (target: string) => (fragmentFixture ? '#review' : target);
 ---
 <footer class="site-footer">
   <div class="site-container site-footer__inner">
     <p class="site-footer__brand"><span>{copy.company}</span><span class="rule-divider" aria-hidden="true"></span><span>{copy.principle}</span></p>
-    <ul class="site-footer__links">
-      {links.map(link => <li><a href={fragmentFixture ? '#review' : link.href}>{link.label}</a></li>)}
-    </ul>
+    <nav aria-label={review ? draftClaim(loadGovernance().claims, 'redesign-label-site') : copy.trust}>
+      <div class="site-footer__groups">
+        <div class="site-footer__group site-footer__group--wide">
+          <p class="site-footer__heading" id="footer-trust"><a href={href('/trust/')}>{copy.trust}</a></p>
+          <ul class="site-footer__list" aria-labelledby="footer-trust">{trustLinks.map(link => <li><a href={href(link.href)}>{link.label}</a></li>)}</ul>
+        </div>
+        <div class="site-footer__group">
+          <p class="site-footer__heading" id="footer-company">{copy.companyGroup}</p>
+          <ul class="site-footer__list" aria-labelledby="footer-company">{companyLinks.map(link => <li><a href={href(link.href)}>{link.label}</a></li>)}</ul>
+        </div>
+      </div>
+    </nav>
   </div>
 </footer>

@@ -1,0 +1,6 @@
+---
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<section class="ci-ladder"><h3>{t(f.labels.reconciliation)}</h3><p>{t(f.labels['receipt-boundary'])}</p><ol>{f.ladder.map(step => <li class={`ci-ladder--${step.state}`}><h4>{t(step.label)}</h4><p>{t(step.detail)}</p></li>)}</ol></section>

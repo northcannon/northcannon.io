@@ -1,3 +1,6 @@
+import { redesignRedirects } from './redesign-policy.mjs';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { parse } from 'parse5';
 
 export const requiredHeaders = {
@@ -10,10 +13,10 @@ export const requiredHeaders = {
 };
 
 // Cloudflare Pages redirects: exactly these permanent moves, so no route is silently lost or hijacked.
-export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301'];
-export function readRedirects(text) {
+export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301', '/results/ /evidence/ 301'];
+export function readRedirects(text, { review = false } = {}) {
   const lines = text.trim().split(/\r?\n/);
-  if (JSON.stringify(lines) !== JSON.stringify(requiredRedirects)) throw new Error('Redirects do not match the reviewed policy');
+  if (JSON.stringify(lines) !== JSON.stringify(review ? redesignRedirects : requiredRedirects)) throw new Error('Redirects do not match the reviewed policy');
   return lines.map(line => { const [from, to, status] = line.split(' '); return { from, to, status: Number(status) }; });
 }
 
@@ -35,11 +38,14 @@ export function readHeaders(text) {
 }
 
 // The founder portrait and the demo video's poster are the only permitted image content: exactly these files, with no metadata chunks.
-export const allowedImages = { '/founder/max-brooks-480.webp': 'webp', '/founder/max-brooks-960.webp': 'webp', '/founder/max-brooks-480.png': 'png', '/demo/northcannon-demo-poster.webp': 'webp' };
+export const allowedImages = { '/founder/max-brooks-480.webp': 'webp', '/founder/max-brooks-960.webp': 'webp', '/founder/max-brooks-480.png': 'png', '/og/northcannon-default.png': 'png' };
 
 // The product demonstration video and its captions are the only permitted media: exactly these files.
 // They ship to production only once every demo video claim is founder-attested (see publication.mjs).
-export const allowedMedia = { '/demo/northcannon-demo.mp4': 'mp4', '/demo/northcannon-demo.en.vtt': 'vtt' };
+export const allowedMedia = {};
+// Historical source assets remain verifiable but are never an output allow-list.
+export const historicalMedia = { '/demo/northcannon-demo.mp4': 'mp4', '/demo/northcannon-demo.en.vtt': 'vtt' };
+export const historicalImages = { '/demo/northcannon-demo-poster.webp': 'webp' };
 // The video's page copy and its transcript, one claim per spoken paragraph; the captions must speak exactly these.
 export const demoTranscriptClaimIds = Array.from({ length: 14 }, (_, i) => `demo-transcript-${String(i + 1).padStart(2, '0')}`);
 export const demoVideoClaimIds = ['demo-video-title', 'demo-video-lede', 'demo-video-label', 'demo-video-captions-label', 'demo-video-disclosure', 'demo-video-transcript-title', ...demoTranscriptClaimIds];
@@ -88,6 +94,10 @@ export function captionText(text) {
 }
 export function inspectImage(buffer, kind, name) {
   const errors = [];
+  if (name.endsWith('og/northcannon-default.png')) {
+    const pin = JSON.parse(readFileSync('src/content/og-image.json', 'utf8'));
+    if (createHash('sha256').update(buffer).digest('hex') !== pin.sha256 || buffer.readUInt32BE(16) !== 1200 || buffer.readUInt32BE(20) !== 630) errors.push(`${name}: OG image identity or dimensions mismatch`);
+  }
   if (kind === 'png') {
     if (buffer.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a') return [`${name}: not a PNG`];
     for (let i = 8; i < buffer.length; i += 12 + buffer.readUInt32BE(i)) {
@@ -138,6 +148,7 @@ export function inspectMarkup(text, name) {
         ids.add(value);
       }
       if (['src', 'href', 'action', 'data', 'poster', 'background'].includes(key)) {
+        if (tag === 'link' && attrs.rel === 'canonical' && key === 'href' && /^https:\/\/northcannon\.io\/(?:[a-z0-9-]+\/)*$/.test(value)) continue;
         // Only local references, same-document fragments, and approved mail links.
         if (/^mailto:(hello|contact|security)@northcannon\.io(?:\?|$)/.test(value) && tag === 'a') continue;
         if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(value) || /[\\\u0000-\u0020]/.test(value)) {
@@ -145,6 +156,7 @@ export function inspectMarkup(text, name) {
         } else references.push(value);
       }
     }
+    if (tag === 'meta' && ['og:url', 'og:image'].includes(attrs.property) && !/^https:\/\/northcannon\.io\/(?:[a-z0-9/-]+|og\/northcannon-default\.png)?$/.test(attrs.content ?? '')) errors.push(`${name}: invalid OG URL`);
     if (tag === 'meta' && attrs['http-equiv']) errors.push(`${name}: http-equiv is prohibited`);
     if (tag === 'link' && !['stylesheet', 'icon', 'canonical'].includes(attrs.rel)) errors.push(`${name}: prohibited link relation`);
     for (const child of node.childNodes ?? []) visit(child, node);
@@ -166,4 +178,12 @@ export function disclosureErrors(text, name) {
     /\b(?:ghp_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b/,
   ];
   return patterns.some(pattern => pattern.test(text)) ? [`${name}: prohibited disclosure pattern`] : [];
+}
+
+// Product implementation identities must not enter public output; split tokens keep
+// the deny-list itself out of disclosure text scans of repository documentation.
+const internalIdentityNames = ['Task' + 'Contract', 'Work' + 'Item', 'ReviewInstruction' + 'Packet', 'DepartmentKnowledge' + 'Pack', 'EngineeringAgent' + 'Memory', 'Context' + 'Compiler'];
+export function publicOutputDisclosureErrors(text, name) {
+  const pattern = new RegExp('\\b(?:' + internalIdentityNames.join('|') + ')\\b');
+  return pattern.test(text) ? [`${name}: prohibited implementation identity`] : [];
 }

@@ -57,7 +57,7 @@ test('unique IDs include retired entries and retired references fail closed', ()
   assert.equal(referenceSchema(current.claims).safeParse({ entry_id: 'example', claim_ids: ['unknown'] }).success, false);
 });
 
-test('status rejects result fields and requires replacement attestation on stage change', () => {
+test('status rejects result fields and mismatched stages', () => {
   const schema = statusSchema(current.claims);
   const entry = current.status[0];
   assert.equal(schema.safeParse(entry).success, true);
@@ -69,9 +69,9 @@ test('status rejects result fields and requires replacement attestation on stage
   assert.ok(current.claims.find(c => c.claim_id === entry.claim_id).statement.includes('Gate 1'));
 });
 
-test('founder-approved frozen status replaces preparation without execution authorization', () => {
-  assert.deepEqual(current.status, [{ entry_id: 'gate1', stage: 'frozen', claim_id: 'status-gate1-frozen-stress' }]);
-  assert.equal(current.claims.find(c => c.claim_id === current.status[0].claim_id).statement, 'Gate 1 is frozen, pending independent stress testing.');
+test('discontinued status replaces retired frozen status without losing history', () => {
+  assert.deepEqual(current.status, [{ entry_id: 'pi-gate1', stage: 'discontinued', claim_id: 'status-gate1-discontinued' }]);
+  assert.match(current.claims.find(c => c.claim_id === current.status[0].claim_id).statement, /discontinued/);
   assert.deepEqual(current.gate1, []);
   assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('status-gate1-preparation'), 'historical approval remains intact');
 });
@@ -104,8 +104,12 @@ test('migration preserves each baseline ID and approval state once, with a singl
   assert.ok(current.claims.length >= 13);
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
-  // and 5 pending lending-only diagram claims replaced by industry-agnostic ones.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 46);
+  // 5 pending lending-only diagram claims replaced by industry-agnostic ones, and the approved mission (retired by
+  // founder decision N-11, approval history preserved), plus 20 pending run-1 drafts superseded by split or reused claims.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 69);
+  const mission = current.claims.find(c => c.claim_id === 'brand-mission');
+  assert.deepEqual([mission.approval_state, mission.lifecycle_state, mission.approval_record], ['approved', 'retired', 'founder_attestation']);
+  assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('brand-mission'), 'mission approval history remains pinned');
   for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
     const claim = current.claims.find(c => c.claim_id === id);
     assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');
@@ -122,7 +126,7 @@ test('no two active claims share a statement, except one founder-attested pair a
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 435);
+  assert.equal(attested.length, 441);
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));
@@ -185,4 +189,166 @@ test('Astro builds fail at the accessor for pending, rejected, retired and unkno
       assert.match(result.stdout + result.stderr, /Claim gate: (unknown|ineligible) claim/, `${name}: ${result.stdout}${result.stderr}`);
     }
   } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('retirement preserves pinned history but is ineligible in every accessor', async () => {
+  const { eligibleClaim } = await import('../src/governance/schema.mjs');
+  const { draftClaim } = await import('../src/governance/routes.mjs');
+  for (const id of ['status-gate1-preparation', 'status-gate1-frozen-stress']) {
+    const retired = current.claims.find(c => c.claim_id === id);
+    assert.equal(retired.lifecycle_state, 'retired');
+    assert.equal(retired.approval_record, 'founder_attestation');
+    assert.throws(() => eligibleClaim(retired, id), /ineligible/);
+    assert.throws(() => draftClaim(current.claims, id), /Ineligible/);
+  }
+  verifyAttestations(current.claims, await readFile('docs/FOUNDER_APPROVALS.md', 'utf8'));
+});
+
+test('evidence classes and complete KPI payloads fail closed', async () => {
+  const { evidenceMetric, evidenceRecord, validateEvidencePlacement } = await import('../src/governance/evidence.mjs');
+  assert.equal(evidenceRecord.safeParse({ subject: 'fixture', status: 'fixture' }).success, false);
+  assert.throws(() => validateEvidencePlacement({ evidence_class: 'historical', subject: 'fixture', status: 'fixture' }, 'kpis'));
+  assert.equal(evidenceMetric.safeParse({ evidence_class: 'product', value: 1 }).success, false);
+});
+
+test('template parser rejects dormant prose but accepts governed expressions', async () => {
+  const { templateCopyErrors } = await import('../scripts/check-template-copy.mjs');
+  assert.equal((await templateCopyErrors('<p>Unregistered dormant prose</p>', 'fixture')).length, 1);
+  assert.deepEqual(await templateCopyErrors('<p>{t("label-about")}</p>', 'fixture'), []);
+});
+
+test('rendered prose, SVG, accessibility and metadata have the same claim boundary', async () => {
+  const { inspectReviewOutput } = await import('../src/governance/wp4-output.mjs');
+  for (const html of ['<p>Unregistered sentence.</p>', '<svg><text>Unregistered sentence.</text></svg>', '<img alt="Unregistered sentence.">', '<div aria-description="Unregistered sentence."></div>', '<meta name="description" content="Unregistered sentence.">', '<meta property="og:description" content="Unregistered sentence.">']) {
+    assert.ok(inspectReviewOutput(html, current.claims, 'index.html', { review: true }).length, html);
+    assert.ok(inspectReviewOutput(html, current.claims, 'index.html', { review: false }).length, html);
+  }
+  const statement = current.claims.find(c => c.claim_id === 'redesign-home-title').statement;
+  assert.deepEqual(inspectReviewOutput(`<svg><text>${statement}</text></svg>`, current.claims, 'index.html', { review: true }), []);
+  assert.ok(inspectReviewOutput(`<meta name="description" content="${statement}">`, current.claims, 'index.html', { review: false }).length);
+});
+
+test('actual production claims must be present in the public register', async () => {
+  const { claimRegisterErrors } = await import('../src/governance/output.mjs');
+  const docs = new Map([['index.html','<h1>NorthCannon</h1>'],['trust/claims/index.html','<li data-claim-id="brand-company">NorthCannon</li>']]);
+  assert.deepEqual(claimRegisterErrors(docs,current.claims), []);
+  docs.set('trust/claims/index.html','');
+  assert.ok(claimRegisterErrors(docs,current.claims).length);
+});
+
+
+function checkPendingInventory(claims, routes, events, text) {
+  const listed = new Map();
+  let batch;
+  for (const section of text.split(/(?=^## E-)/m)) {
+    const match = /^## (E-\d+)/m.exec(section);
+    if (!match) continue;
+    batch = match[1];
+    for (const entry of section.matchAll(/^### (\S+)\n\n([\s\S]*?)(?=\n### |\n## |$)/gm)) {
+      const id = entry[1];
+      assert.ok(!listed.has(id), `${id}: duplicate inventory entry`);
+      listed.set(id, { batch, statement: entry[2].trim() });
+    }
+  }
+  const pending = claims.filter(c => c.approval_state === 'pending');
+  const review = pending.filter(c => c.lifecycle_state === 'review');
+  const retired = pending.filter(c => c.lifecycle_state === 'retired');
+  assert.equal(review.length + retired.length, pending.length, 'pending lifecycle is exhaustively review or retired');
+  assert.equal(listed.size, review.length, 'only active pending claims request approval');
+  const eventIds = Object.values(events).flat();
+  assert.equal(eventIds.length, review.length, 'event inventory is exhaustive');
+  for (const c of review) {
+    assert.equal(listed.get(c.claim_id)?.statement, c.statement, `${c.claim_id}: exact statement`);
+    assert.equal(eventIds.filter(id => id === c.claim_id).length, 1, `${c.claim_id}: exactly one batch`);
+    assert.ok(events[listed.get(c.claim_id).batch].includes(c.claim_id), `${c.claim_id}: correct batch`);
+  }
+  for (const c of retired) {
+    assert.ok(!listed.has(c.claim_id) && !eventIds.includes(c.claim_id), `${c.claim_id}: retired is not requesting approval`);
+    assert.ok(!routes.some(r => [...r.claim_ids, ...r.review_claim_ids].includes(c.claim_id)), `${c.claim_id}: retired route reference`);
+  }
+}
+
+test('pending inventory exhaustively accounts for review and retired claims with exact text and batches', async () => {
+  const { readRoutes, draftClaim } = await import('../src/governance/routes.mjs');
+  const { eligibleClaim } = await import('../src/governance/schema.mjs');
+  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+  const { events } = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  checkPendingInventory(current.claims, readRoutes(), events, text);
+  for (const c of current.claims.filter(c => c.approval_state === 'pending' && c.lifecycle_state === 'retired')) {
+    assert.throws(() => draftClaim(current.claims, c.claim_id), /Ineligible/);
+    assert.throws(() => eligibleClaim(c, c.claim_id), /ineligible/);
+  }
+});
+
+test('pending inventory rejects omissions, duplicates, altered text, wrong batches, retired requests and route references', () => {
+  const active = { ...fixture, claim_id: 'inventory-active' };
+  const retired = { ...fixture, claim_id: 'inventory-retired', lifecycle_state: 'retired' };
+  const claims = [active, retired], events = { 'E-010': [active.claim_id] };
+  const text = `## E-010\n\n### ${active.claim_id}\n\n${active.statement}\n`;
+  const check = (cs = claims, rs = [], es = events, md = text) => checkPendingInventory(cs, rs, es, md);
+  check();
+  assert.throws(() => check(claims, [], events, '## E-010\n'));
+  assert.throws(() => check(claims, [], events, text + text));
+  assert.throws(() => check(claims, [], events, text.replace(active.statement, 'Wrong text.')));
+  assert.throws(() => check(claims, [], { 'E-011': [active.claim_id] }));
+  assert.throws(() => check(claims, [], { 'E-010': [active.claim_id, active.claim_id] }));
+  assert.throws(() => check(claims, [], { 'E-010': [active.claim_id, retired.claim_id] }, text + `\n### ${retired.claim_id}\n\n${retired.statement}\n`));
+  for (const slot of ['claim_ids', 'review_claim_ids']) {
+    const route = { claim_ids: [], review_claim_ids: [], [slot]: [retired.claim_id] };
+    assert.throws(() => check(claims, [route]), /retired route reference/);
+  }
+  for (const lifecycle_state of ['draft', 'approved']) assert.throws(() => check([active, { ...retired, lifecycle_state }]), /exhaustively/);
+});
+
+function checkMetadataConfirmation(claims, draft, text) {
+  const claim = claims.find(c => c.claim_id === 'status-gate1-discontinued');
+  assert.deepEqual(draft.metadata_confirmation_requests?.['E-013'], [{ claim_id: claim.claim_id, fields: { category: claim.category, status_stage: claim.status_stage }, state: 'requested' }]);
+  const section = text.split('## E-013')[1]?.split(/\n## /)[0];
+  assert.ok(section?.includes('#### Metadata confirmation requested'));
+  for (const value of [claim.claim_id, `category=${claim.category}`, `status_stage=${claim.status_stage}`]) assert.ok(section.includes('`' + value + '`'), value);
+}
+
+test('E-013 explicitly requests founder confirmation of actual category and stage metadata', async () => {
+  const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+  checkMetadataConfirmation(current.claims, draft, text);
+  const absent = structuredClone(draft); delete absent.metadata_confirmation_requests;
+  assert.throws(() => checkMetadataConfirmation(current.claims, absent, text));
+  for (const field of ['category', 'status_stage']) {
+    const wrong = structuredClone(draft); wrong.metadata_confirmation_requests['E-013'][0].fields[field] = 'wrong';
+    assert.throws(() => checkMetadataConfirmation(current.claims, wrong, text));
+    assert.throws(() => checkMetadataConfirmation(current.claims, draft, text.replace(`${field}=`, 'missing=')));
+  }
+  assert.throws(() => checkMetadataConfirmation(current.claims, draft, text.replace('#### Metadata confirmation requested', '')));
+});
+
+test('synthetic scenario identities, counts, relations and obligations are internally consistent', async () => {
+  const { createHash } = await import('node:crypto');
+  const f = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
+  assert.equal(f.synthetic, true);
+  const ids = new Set(f.nodes.map(n => n.id));
+  assert.equal(ids.size, f.nodes.length);
+  for (const e of f.edges) { assert.ok(ids.has(e.source)); assert.ok(ids.has(e.target)); assert.ok(f.evidence.some(r => r.id === e.evidence)); }
+  for (const o of f.obligations) { assert.ok(ids.has(o.node)); assert.ok(f.evidence.some(r => r.id === o.evidence)); }
+  const counts = {
+    changed: f.nodes.filter(n => n.state === 'CHANGED').length,
+    potential: f.nodes.filter(n => n.state === 'POTENTIALLY_AFFECTED').length,
+    services: f.nodes.filter(n => n.kind === 'service').length,
+    tests: f.nodes.filter(n => n.kind === 'test' && n.state !== 'SUPPORTED_UNAFFECTED').length,
+    knowledge: f.nodes.filter(n => n.kind === 'knowledge' && n.state === 'POTENTIALLY_AFFECTED').length,
+    obligations: f.obligations.length,
+    unresolved: f.edges.filter(e => e.state !== 'admitted').length,
+    gaps: f.coverage_gaps.length,
+  };
+  assert.deepEqual(Object.keys(f.count_claims).sort(), Object.keys(counts).sort());
+  for (const [key, count] of Object.entries(counts)) assert.equal(current.claims.find(c => c.claim_id === f.count_claims[key]).statement, `${count} ${f.count_labels[key]}`);
+  for (const e of f.evidence) {
+    assert.equal(e.sha256, createHash('sha256').update(e.seed).digest('hex'));
+    assert.equal(current.claims.find(c => c.claim_id === e.hash_claim).statement, e.sha256);
+  }
+  for (const [, id] of JSON.stringify(f).matchAll(/"(concept-[a-z0-9-]+)"/g)) {
+    const claim = current.claims.find(c => c.claim_id === id);
+    assert.equal(claim?.approval_state, 'pending', id);
+    assert.equal(claim?.lifecycle_state, 'review', id);
+  }
 });

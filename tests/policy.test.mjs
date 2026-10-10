@@ -4,7 +4,7 @@ import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, captionText, demoTranscriptClaimIds, demoMediaErrors } from '../scripts/policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, requiredRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, historicalMedia, inspectMedia, captionText, demoTranscriptClaimIds, demoMediaErrors } from '../scripts/policy.mjs';
 
 for (const markup of [
   '<script src="/local.js"></script>', '<script>alert(1)</script>',
@@ -40,9 +40,9 @@ test('repository and well-known security disclosure files agree', async () => {
 
 test('output validator fails on actual artifact violations', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'northcannon-policy-'));
-  const html = '<!doctype html><html lang="en"><head><title>Fixture</title><link rel="stylesheet" href="/site.css"></head><body><main><h1>Fixture</h1></main></body></html>';
+  const html = '<!doctype html><html lang="en"><head><title>WP2 component review</title><link rel="stylesheet" href="/site.css"></head><body><main><h1>WP2 component review</h1></main></body></html>';
   const policy = await readFile('public/_headers', 'utf8');
-  const run = () => spawnSync(process.execPath, ['scripts/validate.mjs', dir, '--review'], { encoding: 'utf8' });
+  const run = () => spawnSync(process.execPath, ['scripts/validate.mjs', dir, '--specimen'], { encoding: 'utf8' });
   try {
     await writeFile(path.join(dir, '_headers'), policy);
     await writeFile(path.join(dir, 'index.html'), html);
@@ -67,10 +67,10 @@ test('output validator fails on actual artifact violations', async () => {
 
 test('review output uses the same rejection policy with a separate route inventory', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'northcannon-review-policy-'));
-  const run = review => spawnSync(process.execPath, ['scripts/validate.mjs', dir, ...(review ? ['--review'] : [])], { encoding: 'utf8' });
+  const run = review => spawnSync(process.execPath, ['scripts/validate.mjs', dir, ...(review ? ['--specimen'] : [])], { encoding: 'utf8' });
   try {
     await writeFile(path.join(dir, '_headers'), await readFile('public/_headers', 'utf8'));
-    const html = '<!doctype html><html lang="en"><head><title>Review</title></head><body><h1>Review</h1></body></html>';
+    const html = '<!doctype html><html lang="en"><head><title>Review fixture</title></head><body><h1>Review fixture</h1></body></html>';
     await writeFile(path.join(dir, 'index.html'), html);
     assert.equal(run(true).status, 0);
     assert.notEqual(run(false).status, 0, 'review inventory is not production inventory');
@@ -84,8 +84,8 @@ test('review output uses the same rejection policy with a separate route invento
 
 test('output validator permits only self-hosted woff2 @font-face', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'northcannon-font-policy-'));
-  const html = '<!doctype html><html lang="en"><head><title>Fixture</title><link rel="stylesheet" href="/site.css"></head><body><main><h1>Fixture</h1></main></body></html>';
-  const run = () => spawnSync(process.execPath, ['scripts/validate.mjs', dir, '--review'], { encoding: 'utf8' });
+  const html = '<!doctype html><html lang="en"><head><title>WP2 component review</title><link rel="stylesheet" href="/site.css"></head><body><main><h1>WP2 component review</h1></main></body></html>';
+  const run = () => spawnSync(process.execPath, ['scripts/validate.mjs', dir, '--specimen'], { encoding: 'utf8' });
   try {
     await writeFile(path.join(dir, '_headers'), await readFile('public/_headers', 'utf8'));
     await writeFile(path.join(dir, 'index.html'), html);
@@ -109,16 +109,16 @@ test('output validator permits only self-hosted woff2 @font-face', async () => {
   }
 });
 
-test('redirects file holds exactly the four reviewed permanent moves', async () => {
+test('redirects file holds exactly the five reviewed permanent moves', async () => {
   const text = await readFile('public/_redirects', 'utf8');
   assert.deepEqual(text.trim().split('\n'), requiredRedirects);
-  assert.equal(requiredRedirects.length, 4);
+  assert.equal(requiredRedirects.length, 5);
   assert.doesNotThrow(() => readRedirects(text));
   for (const invalid of [text + '/x /y 301\n', text.replace('301', '302'), text.replace('/about/company/', 'https://example.com/'), text.split('\n').slice(1).join('\n'), '']) assert.throws(() => readRedirects(invalid));
 });
 
 test('founder portrait files carry no metadata and only they are allowed as picture sources', async () => {
-  assert.deepEqual(Object.keys(allowedImages).sort(), ['/demo/northcannon-demo-poster.webp', '/founder/max-brooks-480.png', '/founder/max-brooks-480.webp', '/founder/max-brooks-960.webp']);
+  assert.deepEqual(Object.keys(allowedImages).sort(), ['/founder/max-brooks-480.png', '/founder/max-brooks-480.webp', '/founder/max-brooks-960.webp', '/og/northcannon-default.png']);
   for (const [url, kind] of Object.entries(allowedImages)) assert.deepEqual(inspectImage(await readFile('public' + url), kind, url), [], url);
   // A PNG with a content-credentials chunk (like the original) and a WebP with EXIF are rejected.
   const png = await readFile('public/founder/max-brooks-480.png');
@@ -132,13 +132,13 @@ test('founder portrait files carry no metadata and only they are allowed as pict
   assert.ok(inspectMarkup('<img src="/founder/max-brooks-480.png" srcset="/founder/max-brooks-480.webp 1x" alt="x">', 'f').errors.length, 'img srcset stays prohibited');
 });
 
-test('only the reviewed demo video, user-started with captions, is allowed as media', async () => {
-  assert.deepEqual(Object.keys(allowedMedia).sort(), ['/demo/northcannon-demo.en.vtt', '/demo/northcannon-demo.mp4']);
-  for (const [url, kind] of Object.entries(allowedMedia)) assert.deepEqual(inspectMedia(await readFile('public' + url), kind, url), [], url);
+test('withdrawn demo video is forbidden in output while historical bytes remain verifiable', async () => {
+  assert.deepEqual(Object.keys(allowedMedia), []);
+  for (const [url, kind] of Object.entries(historicalMedia)) assert.deepEqual(inspectMedia(await readFile('public' + url), kind, url), [], url);
   const video = (attrs, inner = '<track kind="captions" src="/demo/northcannon-demo.en.vtt" srclang="en" label="English" default>') =>
     `<video ${attrs}>${inner}</video>`;
   const ok = 'controls preload="metadata" src="/demo/northcannon-demo.mp4" poster="/demo/northcannon-demo-poster.webp"';
-  assert.deepEqual(inspectMarkup(video(ok), 'f').errors, []);
+  assert.ok(inspectMarkup(video(ok), 'f').errors.length);
   for (const bad of [
     ok + ' autoplay', ok + ' loop', ok + ' muted', ok.replace('controls ', ''), ok.replace('metadata', 'auto'),
     ok.replace('/demo/northcannon-demo.mp4', '/other.mp4'), ok.replace('/demo/northcannon-demo.mp4', 'https://example.com/v.mp4'),
@@ -174,7 +174,7 @@ test('the security policy allows media only from this site', async () => {
 
 test('demo media never reach production output before every demo video claim is attested', async () => {
   const media = new Map();
-  for (const url of Object.keys(allowedMedia)) media.set(url.slice(1), await readFile('public' + url));
+  for (const url of Object.keys(historicalMedia)) media.set(url.slice(1), await readFile('public' + url));
   const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
   // As attested (founder-approval-008): allowed in production and review.
   assert.deepEqual(demoMediaErrors(media, claims, { production: true }), []);
@@ -187,4 +187,37 @@ test('demo media never reach production output before every demo video claim is 
   assert.deepEqual(demoMediaErrors(altered, claims, { production: false }), ['Demo captions do not match the transcript claims']);
   const alone = new Map([...media].filter(([name]) => name.endsWith('.mp4')));
   assert.deepEqual(demoMediaErrors(alone, claims, { production: false }), ['Demo video and captions must ship together']);
+});
+
+test('canonical and OG exceptions are restricted to this public origin', () => {
+  assert.deepEqual(inspectMarkup('<link rel="canonical" href="https://northcannon.io/about/">', 'fixture').errors, []);
+  for (const markup of ['<a href="https://northcannon.io/about/">About</a>', '<link rel="canonical" href="https://example.com/about/">', '<link rel="canonical" href="https://northcannon.io.evil.test/about/">', '<meta property="og:url" content="https://example.com/">']) assert.ok(inspectMarkup(markup, 'fixture').errors.length);
+});
+
+test('public output rejects implementation identities and OG mutations', async () => {
+  const { publicOutputDisclosureErrors } = await import('../scripts/policy.mjs');
+  assert.ok(publicOutputDisclosureErrors('<p>' + ['Task','Contract'].join('') + '</p>', 'fixture').length);
+  const bytes = await readFile('public/og/northcannon-default.png');
+  assert.deepEqual(inspectImage(bytes, 'png', 'og/northcannon-default.png'), []);
+  const altered = Buffer.from(bytes); altered[altered.length-1] ^= 1;
+  assert.ok(inspectImage(altered, 'png', 'og/northcannon-default.png').length);
+});
+
+test('production forbidden-copy guard rejects forbidden phrases and names on word boundaries', async () => {
+  const { forbiddenCopyErrors } = await import('../scripts/redesign-policy.mjs');
+  for (const text of ['<p>trust infrastructure</p>', 'Gate 1 will run next spring', 'Built on Claude', 'Built on GPT-6', 'Reviewed by Astra', 'Stored in PostgreSQL', 'Runs on H100 hardware', 'Powered by Ollama', 'Sol reviewed it']) {
+    assert.equal(forbiddenCopyErrors(text, 'index.html').length, 1, text);
+  }
+  for (const text of ['A solution for engineering change', 'Consolidated solutions', 'The cursor moves', 'Evidence over confidence.', 'Opusculum is not a name']) {
+    assert.deepEqual(forbiddenCopyErrors(text, 'index.html'), [], text);
+  }
+});
+
+test('production rejects concept claim IDs and the synthetic SDK in text and non-visible attributes', async () => {
+  const { conceptOutputErrors, forbiddenCopyErrors } = await import('../scripts/redesign-policy.mjs');
+  for (const text of ['concept-truth', '<div data-claim-id="concept-node-sdk"></div>', 'lattice-fixture-sdk 2.5.0', '{"fixture":"concept-evidence-candidate"}']) {
+    assert.equal(conceptOutputErrors(text, 'fixture').length, 1);
+    assert.equal(forbiddenCopyErrors(text, 'fixture').length, 1);
+  }
+  assert.deepEqual(conceptOutputErrors('Conceptual engineering change', 'fixture'), []);
 });

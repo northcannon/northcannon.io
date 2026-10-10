@@ -1,0 +1,10 @@
+---
+interface Stage { label: string; question: string; state?: { label: string; tone: 'implemented' | 'planned' } | undefined }
+interface Props { stages: Stage[]; recovery: string; compact?: boolean }
+import StateChip from './StateChip.astro';
+const { stages, recovery, compact = false } = Astro.props;
+---
+<div class:list={['control-loop', { 'control-loop--compact': compact }]}>
+  <ol>{stages.map(stage => <li><h3>{stage.label}</h3><p>{stage.question}</p>{stage.state && <StateChip label={stage.state.label} tone={stage.state.tone} />}</li>)}</ol>
+  <p class="recovery-rail">{recovery}</p>
+</div>

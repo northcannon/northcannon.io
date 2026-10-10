@@ -2,7 +2,7 @@ import { z } from 'astro/zod';
 import { disclosureErrors } from '../../scripts/policy.mjs';
 
 export const identifier = z.string().regex(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/);
-export const stageSchema = z.enum(['preparation', 'frozen', 'executing', 'complete']);
+export const stageSchema = z.enum(['preparation', 'frozen', 'executing', 'complete', 'discontinued']);
 const publicBasis = z.string().min(1).refine(value =>
   /^(?:docs\/[A-Za-z0-9_./-]+\.md(?:#[a-z0-9-]+)?)$/.test(value) &&
   !value.split('/').includes('..') && disclosureErrors(value, 'basis').length === 0,
@@ -19,7 +19,7 @@ export const claimSchema = z.object({
   approval_record: z.enum(['founder_attestation', 'transcription', 'none']),
   status_stage: stageSchema.optional(),
 }).strict().superRefine((claim, ctx) => {
-  if (claim.approval_state === 'approved' && (claim.lifecycle_state !== 'approved' || claim.review_date === null || claim.approval_record === 'none')) {
+  if (claim.approval_state === 'approved' && (!['approved', 'retired'].includes(claim.lifecycle_state) || claim.review_date === null || claim.approval_record === 'none')) {
     ctx.addIssue({ code: 'custom', message: 'Approved claims require approved lifecycle, review date, basis and approval record' });
   }
   if (claim.approval_state !== 'approved' && claim.review_date !== null) ctx.addIssue({ code: 'custom', message: 'Unapproved review_date must be null' });

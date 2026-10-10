@@ -73,3 +73,7 @@ founder confirmation at pull-request review. Only a verbatim transcription of th
 founder's own words may create one. Pins catch coordinated registry/record edits,
 but a coordinated edit to the registry, record and pins still requires human
 review.
+
+## Redesign route mechanics
+
+`nav_cta` is unique and last in registry navigation order. `alias_of` is restricted to the About company compatibility route, excluded from navigation and sitemap. Metadata slots are registered copy, admitted in the review build while pending. Proposed route promotion and OG-image publication remain founder acts. Review redirect targets are separately pinned until their destinations can publish.

@@ -9,8 +9,6 @@ export interface Copy {
   /** The route path when it exists in this build, otherwise undefined. */
   href: (path: string) => string | undefined;
   review: boolean;
-  /** Date the current Gate 1 status statement was founder-attested. */
-  statusDate: string;
-  /** Zero-based lifecycle stage implied by the governed Gate 1 status. */
-  stageIndex: number;
+  /** A named status entry; no global experiment status. */
+  status: (entryId: string) => { stage: string; claim_id: string } | undefined;
 }

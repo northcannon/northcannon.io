@@ -1,0 +1,446 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "labels": {
+    "truth": "concept-truth",
+    "planned": "concept-planned",
+    "illustrative": "concept-illustrative",
+    "console": "concept-console",
+    "context": "concept-context",
+    "graph": "concept-graph",
+    "inspector": "concept-inspector",
+    "queue": "concept-queue",
+    "timeline": "concept-timeline",
+    "obligations": "concept-obligations",
+    "coverage": "concept-coverage",
+    "evidence": "concept-evidence",
+    "provenance": "concept-provenance",
+    "hash": "concept-hash",
+    "direct": "concept-direct",
+    "transitive": "concept-transitive",
+    "compare": "concept-compare",
+    "graph-mode": "concept-graph-mode",
+    "before": "concept-before",
+    "after": "concept-after",
+    "preview-link": "concept-preview-link",
+    "graph-access": "concept-graph-access",
+    "authority": "concept-authority",
+    "boundary": "concept-boundary",
+    "proposal": "concept-proposal",
+    "evaluation": "concept-evaluation",
+    "decision": "concept-decision",
+    "withheld": "concept-withheld",
+    "authorized": "concept-authorized",
+    "packet": "concept-packet",
+    "reconciliation": "concept-reconciliation",
+    "packet-separation": "concept-packet-separation",
+    "seed-note": "concept-seed-note",
+    "repo": "concept-repo",
+    "candidate": "concept-candidate",
+    "configuration": "concept-configuration",
+    "scope": "concept-scope",
+    "source": "concept-source",
+    "previous": "concept-previous",
+    "proposed": "concept-proposed",
+    "reason": "concept-reason",
+    "relation": "concept-relation",
+    "gap": "concept-gap",
+    "unknown-note": "concept-unknown-note",
+    "unaffected-note": "concept-unaffected-note",
+    "acceptance": "concept-acceptance",
+    "receipt-boundary": "concept-receipt-boundary",
+    "comparison-known": "concept-comparison-known",
+    "comparison-potential": "concept-comparison-potential",
+    "comparison-gap": "concept-comparison-gap",
+    "before-knowledge": "concept-before-knowledge",
+    "after-knowledge": "concept-after-knowledge",
+    "before-evidence": "concept-before-evidence",
+    "after-evidence": "concept-after-evidence",
+    "qualification": "concept-qualification",
+    "research-boundary": "concept-research-boundary"
+  },
+  "states": {
+    "CHANGED": "concept-state-changed",
+    "POTENTIALLY_AFFECTED": "concept-state-potentially-affected",
+    "ADMITTED": "concept-state-admitted",
+    "UNRESOLVED": "concept-state-unresolved",
+    "UNKNOWN_COVERAGE": "concept-state-unknown-coverage",
+    "SUPPORTED_UNAFFECTED": "concept-state-supported-unaffected"
+  },
+  "identity": {
+    "change": "concept-identity-change",
+    "repository": "concept-identity-repository",
+    "candidate": "concept-identity-candidate",
+    "configuration": "concept-identity-configuration",
+    "packet": "concept-identity-packet",
+    "previous": "concept-identity-previous",
+    "proposed": "concept-identity-proposed",
+    "scope": "concept-identity-scope",
+    "source": "concept-identity-source"
+  },
+  "nodes": [
+    {
+      "id": "sdk",
+      "kind": "dependency",
+      "state": "CHANGED",
+      "label": "concept-node-sdk",
+      "reason": "concept-reason-sdk",
+      "x": 30,
+      "y": 270
+    },
+    {
+      "id": "lock",
+      "kind": "configuration",
+      "state": "CHANGED",
+      "label": "concept-node-lock",
+      "reason": "concept-reason-lock",
+      "x": 300,
+      "y": 30
+    },
+    {
+      "id": "engine",
+      "kind": "service",
+      "state": "POTENTIALLY_AFFECTED",
+      "label": "concept-node-engine",
+      "reason": "concept-reason-engine",
+      "x": 300,
+      "y": 210
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "state": "POTENTIALLY_AFFECTED",
+      "label": "concept-node-api",
+      "reason": "concept-reason-api",
+      "x": 300,
+      "y": 450
+    },
+    {
+      "id": "tests",
+      "kind": "test",
+      "state": "ADMITTED",
+      "label": "concept-node-tests",
+      "reason": "concept-reason-tests",
+      "x": 570,
+      "y": 60
+    },
+    {
+      "id": "knowledge",
+      "kind": "knowledge",
+      "state": "POTENTIALLY_AFFECTED",
+      "label": "concept-node-knowledge",
+      "reason": "concept-reason-knowledge",
+      "x": 570,
+      "y": 220
+    },
+    {
+      "id": "schema",
+      "kind": "schema",
+      "state": "UNRESOLVED",
+      "label": "concept-node-schema",
+      "reason": "concept-reason-schema",
+      "x": 570,
+      "y": 440
+    },
+    {
+      "id": "config",
+      "kind": "configuration",
+      "state": "UNKNOWN_COVERAGE",
+      "label": "concept-node-config",
+      "reason": "concept-reason-config",
+      "x": 30,
+      "y": 650
+    },
+    {
+      "id": "recovery",
+      "kind": "knowledge",
+      "state": "UNKNOWN_COVERAGE",
+      "label": "concept-node-recovery",
+      "reason": "concept-reason-recovery",
+      "x": 300,
+      "y": 650
+    },
+    {
+      "id": "isolated",
+      "kind": "test",
+      "state": "SUPPORTED_UNAFFECTED",
+      "label": "concept-node-isolated",
+      "reason": "concept-reason-isolated",
+      "x": 570,
+      "y": 650
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "sdk",
+      "target": "lock",
+      "state": "admitted",
+      "label": "concept-edge-1",
+      "evidence": "relationship-1"
+    },
+    {
+      "id": "edge-2",
+      "source": "sdk",
+      "target": "engine",
+      "state": "admitted",
+      "label": "concept-edge-2",
+      "evidence": "relationship-2"
+    },
+    {
+      "id": "edge-3",
+      "source": "sdk",
+      "target": "api",
+      "state": "admitted",
+      "label": "concept-edge-3",
+      "evidence": "relationship-3"
+    },
+    {
+      "id": "edge-4",
+      "source": "engine",
+      "target": "tests",
+      "state": "admitted",
+      "label": "concept-edge-4",
+      "evidence": "relationship-4"
+    },
+    {
+      "id": "edge-5",
+      "source": "engine",
+      "target": "knowledge",
+      "state": "candidate",
+      "label": "concept-edge-5",
+      "evidence": "relationship-5"
+    },
+    {
+      "id": "edge-6",
+      "source": "api",
+      "target": "schema",
+      "state": "unresolved",
+      "label": "concept-edge-6",
+      "evidence": "relationship-6"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "relationship-1",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-1",
+      "sha256": "ee7f0c86510bcb01fdc6e5e33740f266d624abb9231c196c2f65c145c4ccd562",
+      "label": "concept-evidence-relationship-1",
+      "hash_claim": "concept-hash-relationship-1"
+    },
+    {
+      "id": "relationship-2",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-2",
+      "sha256": "f8a712f0d22a4f4907df05044db88977a3920174f5d47857d388cb90f7c7c448",
+      "label": "concept-evidence-relationship-2",
+      "hash_claim": "concept-hash-relationship-2"
+    },
+    {
+      "id": "relationship-3",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-3",
+      "sha256": "c081c280ee43196536ae5c1a51760a9ac40e949f4d85e686ea9b9f924d70904f",
+      "label": "concept-evidence-relationship-3",
+      "hash_claim": "concept-hash-relationship-3"
+    },
+    {
+      "id": "relationship-4",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-4",
+      "sha256": "b5c346505986730d77e8f87354dbc248c2f8c737ee94e768e5031e7a1e907e8c",
+      "label": "concept-evidence-relationship-4",
+      "hash_claim": "concept-hash-relationship-4"
+    },
+    {
+      "id": "relationship-5",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-5",
+      "sha256": "cb6295e633a26bd1cb987874ca9b88c5180b60f5024a0c883a639b3a5c00bcbd",
+      "label": "concept-evidence-relationship-5",
+      "hash_claim": "concept-hash-relationship-5"
+    },
+    {
+      "id": "relationship-6",
+      "kind": "relationship",
+      "seed": "northcannon-public-concept-v1:relationship-6",
+      "sha256": "d69ee9b71ccfb3514790f56d895e9d3ea22e8eba6262aa9c48f1249e35e38779",
+      "label": "concept-evidence-relationship-6",
+      "hash_claim": "concept-hash-relationship-6"
+    },
+    {
+      "id": "isolation",
+      "kind": "scope",
+      "seed": "northcannon-public-concept-v1:isolation",
+      "sha256": "d917d1b4a69be8f9968aa9329189ac74dcf388aa722831cba8f5ae094af539a4",
+      "label": "concept-evidence-isolation",
+      "hash_claim": "concept-hash-isolation"
+    },
+    {
+      "id": "candidate",
+      "kind": "source",
+      "seed": "northcannon-public-concept-v1:candidate",
+      "sha256": "5b1adb8df38975fd657f5c53ee471f26d5fb619698edd3d0c86581a9342f39ae",
+      "label": "concept-evidence-candidate",
+      "hash_claim": "concept-hash-candidate"
+    },
+    {
+      "id": "rehearsal",
+      "kind": "receipt",
+      "seed": "northcannon-public-concept-v1:rehearsal",
+      "sha256": "16059cefc8b1dfecaa12434108fa983c500fad1dbb19ed63928f15e73eeca3de",
+      "label": "concept-evidence-rehearsal",
+      "hash_claim": "concept-hash-rehearsal"
+    },
+    {
+      "id": "observation",
+      "kind": "observation",
+      "seed": "northcannon-public-concept-v1:observation",
+      "sha256": "0c8b063875f816d8a59081f82c923027935ad10f420a3ab0feefd720a7d1b5ed",
+      "label": "concept-evidence-observation",
+      "hash_claim": "concept-hash-observation"
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "node": "config",
+      "claim": "concept-gap-config"
+    },
+    {
+      "node": "recovery",
+      "claim": "concept-gap-recovery"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "implementation",
+      "node": "engine",
+      "evidence": "relationship-2",
+      "reason": "concept-obligation-implementation",
+      "state": "Requires review",
+      "status": "concept-obligation-status-implementation"
+    },
+    {
+      "id": "integration",
+      "node": "tests",
+      "evidence": "relationship-4",
+      "reason": "concept-obligation-integration",
+      "state": "Awaiting evidence",
+      "status": "concept-obligation-status-integration"
+    },
+    {
+      "id": "architecture",
+      "node": "knowledge",
+      "evidence": "relationship-5",
+      "reason": "concept-obligation-architecture",
+      "state": "Requires review",
+      "status": "concept-obligation-status-architecture"
+    },
+    {
+      "id": "schema",
+      "node": "schema",
+      "evidence": "relationship-6",
+      "reason": "concept-obligation-schema",
+      "state": "Requires review",
+      "status": "concept-obligation-status-schema"
+    },
+    {
+      "id": "history",
+      "node": "api",
+      "evidence": "candidate",
+      "reason": "concept-obligation-history",
+      "state": "Awaiting evidence",
+      "status": "concept-obligation-status-history"
+    },
+    {
+      "id": "recovery",
+      "node": "recovery",
+      "evidence": "observation",
+      "reason": "concept-obligation-recovery",
+      "state": "Blocked by unknown coverage",
+      "status": "concept-obligation-status-recovery"
+    }
+  ],
+  "lifecycle": [
+    {
+      "label": "concept-lifecycle-1",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-lifecycle-2",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-lifecycle-3",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-lifecycle-4",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-lifecycle-5",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-lifecycle-6",
+      "state": "planned"
+    },
+    {
+      "label": "concept-lifecycle-7",
+      "state": "inactive"
+    },
+    {
+      "label": "concept-lifecycle-8",
+      "state": "inactive"
+    }
+  ],
+  "count_claims": {
+    "changed": "concept-count-changed",
+    "potential": "concept-count-potential",
+    "services": "concept-count-services",
+    "tests": "concept-count-tests",
+    "knowledge": "concept-count-knowledge",
+    "obligations": "concept-count-obligations",
+    "unresolved": "concept-count-unresolved",
+    "gaps": "concept-count-gaps"
+  },
+  "count_labels": {
+    "changed": "directly changed artifacts",
+    "potential": "potentially affected artifacts",
+    "services": "impacted services",
+    "tests": "relevant test",
+    "knowledge": "stale knowledge candidate",
+    "obligations": "outstanding review obligations",
+    "unresolved": "unresolved relationships",
+    "gaps": "coverage gaps"
+  },
+  "ladder": [
+    {
+      "label": "concept-ladder-1",
+      "detail": "concept-ladder-detail-1",
+      "state": "planned"
+    },
+    {
+      "label": "concept-ladder-2",
+      "detail": "concept-ladder-detail-2",
+      "state": "illustrative"
+    },
+    {
+      "label": "concept-ladder-3",
+      "detail": "concept-ladder-detail-3",
+      "state": "inactive"
+    },
+    {
+      "label": "concept-ladder-4",
+      "detail": "concept-ladder-detail-4",
+      "state": "inactive"
+    },
+    {
+      "label": "concept-ladder-5",
+      "detail": "concept-ladder-detail-5",
+      "state": "inactive"
+    }
+  ]
+}

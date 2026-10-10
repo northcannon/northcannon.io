@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { readRoutes, draftBanner } from '../../src/governance/routes.mjs';
 import { loadGovernance } from '../../src/governance/registry.mjs';
+import { migratedReviewPaths } from '../../scripts/redesign-policy.mjs';
 import { requiredHeaders } from '../../scripts/policy.mjs';
 
 // Acceptance tests for the approved public-site design (Wireframes A, implementation
@@ -10,14 +11,14 @@ import { requiredHeaders } from '../../scripts/policy.mjs';
 // pending copy; production (4321) renders only founder-attested claims.
 const REVIEW = 'http://127.0.0.1:4323';
 const PRODUCTION = 'http://127.0.0.1:4321';
-const status = 'Gate 1 is frozen, pending independent stress testing.';
-const statusDate = loadGovernance().claims.find(c => c.claim_id === 'status-gate1-frozen-stress').review_date;
 const fabricated = /Frozen —|Evidence System Operational|NC-\d|Jan \d|2025|[a-f0-9]{16,}|Not supplied/;
+const concept = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
+const syntheticHashes = new Set(concept.evidence.map(record => record.sha256));
 const desktop = testInfo => testInfo.project.name === 'desktop';
 
 test.use({ bypassCSP: true });
 
-for (const review of [true, false]) for (const route of readRoutes().filter(r => review || r.publish)) {
+for (const review of [true, false]) for (const route of readRoutes().filter(r => review ? !migratedReviewPaths.has(r.path) : r.publish)) {
   test(`${review ? 'review' : 'production'} route ${route.path} is static, accessible and responsive`, async ({ page, browser }, testInfo) => {
     const base = review ? REVIEW : PRODUCTION;
     const response = await page.goto(base + route.path);
@@ -30,13 +31,25 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     if (review) await expect(page.getByText(draftBanner, { exact: true })).toBeVisible();
     else await expect(page.getByText(draftBanner, { exact: true })).toHaveCount(0);
     await expect(page.locator('.site-header')).toBeVisible();
-    await expect(page.locator('.status-chip')).toHaveAttribute('aria-label', status);
+    await expect(page.locator('.status-chip')).toHaveCount(0);
     await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();
-    if (!route.path.startsWith('/trust/')) {
-      const actual = await page.locator('main').evaluate(el => el.textContent);
+    if (!route.path.startsWith('/trust/') && !(review && route.path === '/evidence/')) {
+      // Only registered fixture hashes inside explicitly labeled review concepts
+      // are exempt; fabricated text and hashes elsewhere remain prohibited.
+      if (review) for (const panel of await page.locator('main .ci-console, main .ci-authority').all()) {
+        await expect(panel).toContainText('Concept visualization — synthetic engineering scenario');
+        for (const code of await panel.locator('.ci-hash code').all()) {
+          expect(syntheticHashes.has(await code.textContent())).toBe(true);
+        }
+      }
+      const actual = await page.locator('main').evaluate((el, isReview) => {
+        const copy = el.cloneNode(true);
+        if (isReview) copy.querySelectorAll('.ci-console .ci-hash code, .ci-authority .ci-hash code').forEach(code => code.remove());
+        return copy.textContent;
+      }, review);
       expect(actual).not.toMatch(fabricated);
     }
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
@@ -67,41 +80,17 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
   });
 }
 
-test.describe('approved design acceptance (review build)', () => {
-  const navigation = ['About', 'Company', 'Features', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact'];
-  const hrefs = ['/about/company/', '/about/company/', '/about/features/', '/about/founder/', '/gate-1/', '/results/', '/evidence/', '/demo/', '/contact/'];
+test.describe('retained Phase 0.5 production compositions', () => {
 
-  test('primary navigation, header and footer', async ({ page }, testInfo) => {
-    for (const path of [...new Set(hrefs)]) {
-      await page.goto(REVIEW + path);
-      const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
-      if (!desktop(testInfo)) {
-        await expect(page.locator('.desktop-navigation')).toBeHidden();
-        await expect(page.locator('.status-chip')).toBeVisible();
-        await expect(page.locator('.status-chip')).toHaveText(/Gate 1\s*Frozen/);
-        await page.locator('.mobile-navigation summary').click();
-      } else {
-        await expect(page.locator('.status-chip')).toBeHidden();
-        expect((await page.locator('.site-header__inner').boundingBox()).height).toBe(80);
-        expect((await page.locator('main .site-container').boundingBox()).x).toBe(72);
-        expect((await page.locator('main .site-container').boundingBox()).width).toBe(1296);
-      }
-      await expect(links).toHaveText(navigation);
-      expect(await links.evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(hrefs);
-      // The About link marks the section; the page's own link carries aria-current.
-      await expect(links.locator('xpath=self::*[@aria-current="page"]')).toHaveCount(1);
-      await expect(links.and(page.locator('[aria-current="page"]'))).toHaveAttribute('href', path);
-      await expect(page.locator('.site-footer__links a')).toHaveText(['Trust Center', 'Disclosure', 'Contact']);
-    }
-  });
 
   test('home: slim hero with calls to action and a decorative verification module', async ({ page }, testInfo) => {
-    await page.goto(REVIEW + '/');
+    await page.goto(PRODUCTION + '/');
     await expect(page.locator('.home-hero .eyebrow')).toHaveText('Evidence over confidence.');
     await expect(page.locator('h1')).toHaveText('Designed to be falsified. Built for trust.');
-    await expect(page.getByRole('link', { name: 'View Gate 1' })).toHaveAttribute('href', '/gate-1/');
-    await expect(page.getByRole('link', { name: 'Explore Evidence' })).toHaveAttribute('href', '/evidence/');
-    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'View Gate 1' })).toHaveCount(0);
+    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'Evidence', exact: true })).toHaveAttribute('href', '/evidence/');
+    await expect(page.locator('.home-hero__copy').getByRole('link', { name: 'About', exact: true })).toHaveAttribute('href', '/about/company/');
+    await expect(page.locator('.home-hero .lede')).toHaveCount(0);
     await expect(page.locator('.home-hero__visual')).toHaveAttribute('aria-hidden', 'true');
     await expect(page.locator('.verify-module .support-cell')).toHaveCount(5);
     // Company content moved to /about/company/.
@@ -113,7 +102,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('about company: capabilities, is / is not, interoperability and contact moved from the homepage', async ({ page }) => {
-    await page.goto(REVIEW + '/about/company/');
+    await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('.capability-card h3')).toHaveText(['Verification', 'Provenance', 'Change Intelligence']);
     await expect(page.locator('.truth--is li')).toHaveCount(4);
     await expect(page.locator('.truth--not li')).toHaveCount(4);
@@ -124,61 +113,36 @@ test.describe('approved design acceptance (review build)', () => {
     await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('.lmap__band--sources h3')).toHaveText('Authoritative sources');
     await expect(page.locator('.lmap--basic')).toHaveCount(0);
-    await page.goto(REVIEW + '/about/company/');
+    await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
   });
 
-  test('gate 1: status banner, lifecycle, explanation, arms, falsification, readiness and links', async ({ page }) => {
-    await page.goto(REVIEW + '/gate-1/');
-    await expect(page.locator('h1')).toHaveText(/Gate 1\s*Frozen/);
-    await expect(page.locator('.status-banner')).toContainText(status);
-    await expect(page.locator('.status-banner')).toHaveClass(/status-banner--pending/);
-    await expect(page.locator('.status-banner time')).toHaveText(statusDate);
-    await expect(page.locator('.lifecycle__label')).toHaveText(['Defined', 'Frozen', 'Independent Review', 'Stress Test', 'Authorized', 'Executing', 'Results Published']);
-    await expect(page.locator('.lifecycle [aria-current="step"]')).toHaveCount(1);
-    await expect(page.locator('.lifecycle [aria-current="step"] .lifecycle__label')).toHaveText('Frozen');
-    await expect(page.locator('.lifecycle .is-complete')).toHaveCount(0);
-    await expect(page.getByRole('heading', { name: 'What is Gate 1?' })).toBeVisible();
-    await expect(page.locator('.arm-card__name')).toHaveText(['Treatment', 'Baseline A', 'Baseline B', 'R+']);
-    await expect(page.locator('.criteria li')).toHaveCount(1);
-    await expect(page.locator('.checklist li')).toHaveCount(8);
-    await expect(page.locator('.checklist .checklist__state--pending')).toHaveCount(8);
-    expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/results/', '/evidence/']);
-  });
-
-  test('results: pre-execution, readiness, approved metrics, metadata, arm tabs and placeholder', async ({ page }) => {
-    await page.goto(REVIEW + '/results/');
-    await expect(page.locator('h1')).toHaveText('Pre-execution');
-    await expect(page.locator('.status-banner')).toContainText(status);
-    await expect(page.locator('.readiness__name')).toHaveText(['Definition', 'Datasets', 'Methods', 'Independent Review', 'Execution']);
-    await expect(page.locator('.readiness__state')).toHaveText(Array(5).fill('Pending'));
-    await expect(page.locator('.metric-card__name')).toHaveText(['Verification rate', 'Failed evaluations', 'Abstention rate', 'p95 latency', 'Token usage', 'Average context size']);
-    await expect(page.locator('.metadata-grid dt')).toHaveCount(8);
-    await expect(page.locator('.arm-tabs__tab')).toHaveText(['Treatment (T)', 'Baseline A', 'Baseline B', 'R+']);
-    await expect(page.locator('.arm-tabs__panel:visible')).toHaveCount(1);
-    await expect(page.locator('#arm-treatment')).toBeVisible();
-    await page.locator('.arm-tabs__tab--arm-baseline-a').click();
-    await expect(page.locator('#arm-baseline-a')).toBeVisible();
-    await expect(page.locator('#arm-treatment')).toBeHidden();
-    await expect(page.locator('#arm-baseline-a .chart-placeholder__title')).toHaveText('Results (coming soon)');
-    await expect(page.locator('.link-card')).toHaveAttribute('href', '/evidence/');
+  test('gate 1: minimal historical page with the founder-approved statement in both builds', async ({ page }) => {
+    for (const base of [PRODUCTION]) {
+      await page.goto(base + '/gate-1/');
+      await expect(page.locator('h1')).toHaveText('Gate 1');
+      await expect(page.locator('main .lifecycle, main .checklist, main .link-card, main h2')).toHaveCount(0);
+      await expect(page.locator('main p')).toHaveCount(1);
+      await expect(page.locator('main p')).toHaveText('Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.');
+    }
   });
 
   test('evidence: status, explainers, ledger empty state, hash, viewer and change log', async ({ page }) => {
-    await page.goto(REVIEW + '/evidence/');
+    await page.goto(PRODUCTION + '/evidence/');
     await expect(page.locator('h1')).toHaveText('From claims to verifiable evidence.');
-    await expect(page.locator('.status-banner')).toContainText('Execution evidence will appear after Gate 1 runs.');
-    await expect(page.locator('.explainer-card h2')).toHaveText(['What was frozen', 'What was executed', 'What supports the claim']);
+    await expect(page.locator('main')).toContainText('No experiment results are published. Evidence appears here only once it exists.');
+    await expect(page.locator('.status-banner')).toHaveCount(0);
+    await expect(page.locator('.explainer-card h2')).toHaveText(['What was frozen', 'What supports the claim']);
     await expect(page.locator('.ledger th')).toHaveText(['Date (UTC)', 'Claim / Topic', 'Evidence Type', 'Artifact Hash', 'Status', '']);
     await expect(page.locator('.ledger tbody tr')).toHaveCount(1);
-    await expect(page.locator('.ledger tbody')).toHaveText('No evidence records yet. Evidence will appear after execution.');
+    await expect(page.locator('.ledger tbody')).toHaveText('No evidence records are published yet.');
     await expect(page.locator('.hash-block')).toHaveText(/SHA-256\s*No public artifact hash yet\./);
     await expect(page.locator('.artifact-viewer')).toContainText('No public artifact available yet.');
     await expect(page.locator('.updated-strip a')).toHaveAttribute('href', '/trust/changelog/');
   });
 
   test('about company opens with the overview: eyebrow, headline, mission and two intro cards', async ({ page }) => {
-    await page.goto(REVIEW + '/about/company/');
+    await page.goto(PRODUCTION + '/about/company/');
     await expect(page.locator('main .eyebrow').first()).toHaveText('About NorthCannon');
     await expect(page.locator('h1')).toHaveText('Verification, evidence, and change intelligence for consequential machine decisions.');
     expect(await page.locator('main .site-container > *').first().evaluate(el => el.className)).toContain('about-subnav');
@@ -205,7 +169,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('features: labelled illustrative mocks with no scores, dollars, penalties or Gate 1 language', async ({ page }) => {
-    await page.goto(REVIEW + '/about/features/');
+    await page.goto(PRODUCTION + '/about/features/');
     await expect(page.locator('h1')).toHaveText('Change Intelligence and Evidence, illustrated');
     await expect(page.locator('.disclosure-line').first()).toHaveText('Illustrative · fictional data · designed behavior, not yet implemented');
     await expect(page.locator('.disclosure-line--inline')).toHaveCount(3);
@@ -257,7 +221,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('features workload table stacks on narrow screens without clipping or broken words', async ({ page }, testInfo) => {
-    await page.goto(REVIEW + '/about/features/');
+    await page.goto(PRODUCTION + '/about/features/');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const cells = await page.locator('.workload td, .workload tbody th').evaluateAll(els => els.map(el => ({ fits: el.scrollWidth <= el.clientWidth + 1, text: el.textContent.trim() })));
     for (const cell of cells) expect(cell.fits, cell.text).toBe(true);
@@ -278,7 +242,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('lineage graph keeps a readable scale inside a labelled scroll region on narrow screens', async ({ page }, testInfo) => {
-    await page.goto(REVIEW + '/about/features/');
+    await page.goto(PRODUCTION + '/about/features/');
     const region = page.getByRole('region', { name: /Lineage graph: one changed source/ });
     await expect(region).toHaveAttribute('tabindex', '0');
     const svg = await page.locator('.lineage__svg').boundingBox();
@@ -292,7 +256,7 @@ test.describe('approved design acceptance (review build)', () => {
 
   test('About pages use charcoal inner boxes inside purple modules', async ({ page }) => {
     for (const [path, selector] of [['/about/company/', '.box--intro, .capability-card, .truth, .lmap__band.box, .lmap__flow'], ['/about/features/', '.event-strip, .readout-row, .lineage, .support-cells, .drawer'], ['/about/founder/', '.box']]) {
-      await page.goto(REVIEW + path);
+      await page.goto(PRODUCTION + path);
       const boxes = await page.locator(selector).evaluateAll(els => els.map(el => { const s = getComputedStyle(el); return { border: s.borderTopWidth + ' ' + s.borderTopColor, radius: s.borderTopLeftRadius, image: s.backgroundImage }; }));
       expect(boxes.length, path).toBeGreaterThan(2);
       for (const box of boxes) {
@@ -308,19 +272,19 @@ test.describe('approved design acceptance (review build)', () => {
 
   test('About pages carry no module numbering; other pages keep it', async ({ page }) => {
     const numbers = () => page.locator('main .module__head').evaluateAll(els => els.map(el => getComputedStyle(el, '::before').content));
-    for (const base of [REVIEW, PRODUCTION]) for (const path of ['/about/company/', '/about/features/', '/about/founder/']) {
+    for (const base of [PRODUCTION]) for (const path of ['/about/company/', '/about/features/', '/about/founder/']) {
       await page.goto(base + path);
       const heads = await numbers();
       expect(heads.length, path).toBeGreaterThan(0);
       for (const content of heads) expect(content, path).toBe('none');
       expect(await page.locator('main').innerText(), path).not.toMatch(/\b0\d ·/);
     }
-    await page.goto(REVIEW + '/gate-1/');
+    await page.goto(PRODUCTION + '/evidence/');
     expect((await numbers()).some(content => /counter|0\d/.test(content) || content.includes('·'))).toBe(true);
   });
 
   test('company page order: banner, eyebrow, headline, mission, Why now, Vision, capabilities, is / is not, interoperate, contact', async ({ page }) => {
-    for (const base of [REVIEW, PRODUCTION]) {
+    for (const base of [PRODUCTION]) {
       await page.goto(base + '/about/company/');
       const order = await page.locator('main .site-container > *').evaluateAll(els => els.map(el => {
         if (el.matches('.about-subnav')) return 'subnav';
@@ -330,15 +294,15 @@ test.describe('approved design acceptance (review build)', () => {
         return el.querySelector(':scope > .module__head')?.textContent.trim() ?? el.className;
       }));
       // label-about-sections is attested (founder-approval-006), so both builds carry the subnav.
-      expect(order, base).toEqual(['subnav', 'banner', 'eyebrow>h1>mission', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
-      await expect(page.locator('main .page-hero .lede')).toHaveText(loadGovernance().claims.find(c => c.claim_id === 'brand-mission').statement);
+      expect(order, base).toEqual(['subnav', 'banner', 'eyebrow>h1', 'Why now', 'Vision', 'Core Capabilities', 'What NorthCannon is / is not', 'Built to interoperate', 'contact']);
+      await expect(page.locator('main .page-hero .lede')).toHaveCount(0);
       await expect(page.locator('main .contact-cta')).toContainText('Get in touch');
     }
   });
 
   test('non-About pages keep the Module treatment', async ({ page }) => {
-    for (const path of ['/gate-1/', '/results/', '/evidence/', '/contact/']) {
-      await page.goto(REVIEW + path);
+    for (const path of ['/evidence/', '/contact/']) {
+      await page.goto(PRODUCTION + path);
       const module = page.locator('main .module').first();
       expect(await module.evaluate(el => getComputedStyle(el).borderTopColor), path).toBe('rgba(197, 173, 221, 0.72)');
       expect(await module.locator('.module__head').first().evaluate(el => getComputedStyle(el).backgroundImage), path).toContain('rgb(51, 31, 88)');
@@ -351,7 +315,7 @@ test.describe('approved design acceptance (review build)', () => {
       const context = await browser.newContext({ viewport: { width, height: 1000 } });
       try {
         const page = await context.newPage();
-        for (const base of [REVIEW, PRODUCTION]) for (const path of ['/about/company/', '/about/founder/']) {
+        for (const base of [PRODUCTION]) for (const path of ['/about/company/', '/about/founder/']) {
           await page.goto(base + path);
           const prose = await page.locator('main .module .prose p, main .module .prose-lead, main .module .vision-box__p').evaluateAll(els => els.map(el => {
             const box = el.closest('.box'), s = getComputedStyle(box), inner = box.clientWidth - parseFloat(s.paddingLeft) - parseFloat(s.paddingRight);
@@ -377,7 +341,7 @@ test.describe('approved design acceptance (review build)', () => {
   test('company vision section: verbatim approved statement in one charcoal box, anchored at #vision', async ({ page }) => {
     const statement = loadGovernance().claims.find(c => c.claim_id === 'vision-statement').statement.split('\n\n');
     expect(statement).toHaveLength(6);
-    for (const base of [REVIEW, PRODUCTION]) {
+    for (const base of [PRODUCTION]) {
       await page.goto(base + '/about/company/#vision');
       await expect(page.locator('h2#vision')).toHaveText('Vision');
       await expect(page.locator('.vision-box')).toHaveCount(1);
@@ -392,7 +356,7 @@ test.describe('approved design acceptance (review build)', () => {
       expect(await page.locator('.vision-box').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
     }
     // The Vision lives on Company only; the Founder page no longer repeats or links it. /vision/ stays published.
-    await page.goto(REVIEW + '/about/founder/');
+    await page.goto(PRODUCTION + '/about/founder/');
     await expect(page.locator('main')).not.toContainText('AI should be able to reason');
     expect((await page.goto(PRODUCTION + '/vision/')).status()).toBe(200);
   });
@@ -400,7 +364,7 @@ test.describe('approved design acceptance (review build)', () => {
   test('interoperability diagram: four layers, three checkpoint paths through NorthCannon, the change loop and outputs', async ({ page }) => {
     const claims = loadGovernance().claims;
     const text = id => claims.find(c => c.claim_id === id).statement;
-    await page.goto(REVIEW + '/about/company/');
+    await page.goto(PRODUCTION + '/about/company/');
     const map = page.locator('.lmap');
     // Four layers top to bottom; the sources label reuses interop-auth-title and the band reuses the approved interop-layer.
     await expect(map.locator('.lmap__grid > .lmap__band h3')).toHaveText(['Authoritative sources', 'Reasoning', 'NorthCannon Verification + Change Intelligence Layer', 'Systems of record and actions']);
@@ -541,7 +505,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('founder portrait: circle-masked picture with alt text in both builds', async ({ page }) => {
-    for (const [base, alt] of [[REVIEW, 'Max Brooks, founder of NorthCannon'], [PRODUCTION, 'Max Brooks, founder of NorthCannon']]) {
+    for (const [base, alt] of [[PRODUCTION, 'Max Brooks, founder of NorthCannon']]) {
       await page.goto(base + '/about/founder/');
       const img = page.locator('.founder-hero__portrait img');
       await expect(img).toHaveAttribute('alt', alt);
@@ -560,62 +524,18 @@ test.describe('approved design acceptance (review build)', () => {
     }
   });
 
-  test('about subnav and dropdown mark the current page with aria-current', async ({ page }, testInfo) => {
-    for (const [index, path] of ['/about/company/', '/about/features/', '/about/founder/'].entries()) {
-      await page.goto(REVIEW + path);
-      const subnav = page.getByRole('navigation', { name: 'About sections' });
-      await expect(subnav.getByRole('link')).toHaveText(['Company', 'Features', 'Founder']);
-      await expect(subnav.locator('[aria-current="page"]')).toHaveCount(1);
-      await expect(subnav.getByRole('link').nth(index)).toHaveAttribute('aria-current', 'page');
-      if (desktop(testInfo)) await expect(page.locator('.desktop-navigation [aria-current="page"]')).toHaveAttribute('href', path);
-      await expect(page.getByRole('navigation', { name: 'About sections' }).getByRole('link')).toHaveCount(3);
-    }
-  });
 
-  test('about dropdown opens on hover and keyboard focus with no JavaScript, and reaches every subpage', async ({ browser }) => {
-    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
-    try {
-      const page = await context.newPage();
-      await page.goto(REVIEW + '/');
-      const submenu = page.locator('.desktop-navigation .submenu');
-      const about = page.locator('.desktop-navigation > li > a').first();
-      await expect(about).toHaveText('About');
-      await expect(about).toHaveAttribute('href', '/about/company/');
-      await expect(submenu).toBeHidden();
-      await about.hover();
-      await expect(submenu).toBeVisible();
-      await expect(submenu.getByRole('link')).toHaveText(['Company', 'Features', 'Founder']);
-      await page.mouse.move(700, 600);
-      await expect(submenu).toBeHidden();
-      await about.focus();
-      await expect(submenu).toBeVisible();
-      for (const name of ['Company', 'Features', 'Founder']) {
-        await page.keyboard.press('Tab');
-        await expect(page.locator('.submenu a', { hasText: name })).toBeFocused();
-      }
-      await page.keyboard.press('Tab');
-      await expect(page.locator('.desktop-navigation a', { hasText: 'Gate 1' })).toBeFocused();
-      await expect(submenu).toBeHidden();
-    } finally { await context.close(); }
-  });
 
-  test('mobile menu lists About with its subpages indented', async ({ page }, testInfo) => {
-    test.skip(desktop(testInfo), 'mobile menu only');
-    await page.goto(REVIEW + '/');
-    await page.locator('.mobile-navigation summary').click();
-    await expect(page.locator('.mobile-navigation .submenu-mobile a')).toHaveText(['Company', 'Features', 'Founder']);
-    await expect(page.locator('.mobile-navigation .submenu-mobile a').first()).toBeVisible();
-  });
 
   test('founder: hero, why, background, credibility, currently building, contact and links', async ({ page }) => {
-    await page.goto(REVIEW + '/about/founder/');
-    await expect(page.locator('h1')).toHaveText('Building trust infrastructure for machine intelligence.');
+    await page.goto(PRODUCTION + '/about/founder/');
+    await expect(page.locator('h1')).toHaveText('Founder');
     for (const heading of ['Why NorthCannon exists', 'Selected background', 'Currently building', 'Get in touch']) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible();
     await expect(page.locator('.background-card')).toContainText('Max Brooks is the founder of NorthCannon.');
     await expect(page.locator('.credibility li')).toHaveCount(5);
     await expect(page.locator('.prose .bullet-list li')).toHaveCount(4);
     await expect(page.locator('.contact-cta a')).toHaveAttribute('href', '/contact/');
-    expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/', '/gate-1/']);
+    expect(await page.locator('.link-card').evaluateAll(els => els.map(el => el.getAttribute('href')))).toEqual(['/about/company/']);
     await expect(page.getByRole('link', { name: 'Vision' })).toHaveCount(0);
   });
 
@@ -626,7 +546,7 @@ test.describe('approved design acceptance (review build)', () => {
     const why = body.statement.split('\n\n');
     expect(why).toHaveLength(4);
     const section = page.locator('section:has(> #why-title)');
-    await page.goto(REVIEW + '/about/founder/');
+    await page.goto(PRODUCTION + '/about/founder/');
     await expect(section.locator('.module__head')).toHaveText('Why NorthCannon exists');
     await expect(section.locator('.box .prose p')).toHaveText(why);
     await expect(section.locator('.box .prose .pull-quote')).toHaveText(why[3]);
@@ -639,7 +559,7 @@ test.describe('approved design acceptance (review build)', () => {
   });
 
   test('contact: general and security destinations', async ({ page }) => {
-    await page.goto(REVIEW + '/contact/');
+    await page.goto(PRODUCTION + '/contact/');
     await expect(page.locator('main a[href="mailto:hello@northcannon.io"]')).toBeVisible();
     await expect(page.locator('main a[href="mailto:security@northcannon.io"]')).toBeVisible();
   });
@@ -650,11 +570,10 @@ test('production renders only attested navigation and publishes all approved pri
   if (!desktop(testInfo)) await page.locator('.mobile-navigation summary').click();
   const links = desktop(testInfo) ? page.locator('.desktop-navigation a') : page.locator('.mobile-navigation .navigation a');
   // Features is published (founder direction after approval 006).
-  await expect(links).toHaveText(['About', 'Company', 'Features', 'Founder', 'Gate 1', 'Results', 'Evidence', 'Demo', 'Contact']);
+  await expect(links).toHaveText(['About', 'Evidence', 'Contact']);
   for (const path of ['/gate-1/', '/about/company/', '/about/features/', '/about/founder/', '/contact/']) expect((await page.goto(PRODUCTION + path)).status()).toBe(200);
   await page.goto(PRODUCTION + '/results/');
-  await expect(page.locator('h1')).toHaveText('Pre-execution');
-  await expect(page.locator('.status-banner')).toContainText(status);
+  await expect(page).toHaveURL(PRODUCTION + '/evidence/');
 });
 
 for (const review of [true, false]) test(`${review ? 'review' : 'production'} mobile menu works by keyboard without JavaScript`, async ({ browser }) => {
@@ -665,8 +584,6 @@ for (const review of [true, false]) test(`${review ? 'review' : 'production'} mo
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await expect(page.locator('.wordmark')).toBeFocused();
-    await page.keyboard.press('Tab');
-    await expect(page.locator('.status-chip')).toBeFocused();
     await page.keyboard.press('Tab');
     await expect(page.locator('summary')).toBeFocused();
     await page.keyboard.press('Enter');
@@ -680,10 +597,24 @@ for (const review of [true, false]) test(`${review ? 'review' : 'production'} mo
 });
 
 test('production keeps the removed routes alive with permanent redirects', async ({ request }) => {
-  for (const [from, to] of [['/founder/', '/about/founder/'], ['/founder', '/about/founder/'], ['/about/', '/about/company/'], ['/about', '/about/company/']]) {
+  for (const [from, to] of [['/founder/', '/about/founder/'], ['/founder', '/about/founder/'], ['/about/', '/about/company/'], ['/about', '/about/company/'], ['/results/', '/evidence/']]) {
     const response = await request.get(PRODUCTION + from, { maxRedirects: 0 });
     expect(response.status(), from).toBe(301);
     expect(response.headers().location, from).toBe(to);
+  }
+});
+
+test('the six founder-approved Phase 0.5 statements render exactly in production', async ({ page }) => {
+  for (const [route, text] of [
+    ['/trust/status/', 'Gate 1 was discontinued on 29 September 2026, before execution. No results were produced, and none are forthcoming.'],
+    ['/gate-1/', 'Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran.'],
+    ['/evidence/', 'No experiment results are published. Evidence appears here only once it exists.'],
+    ['/evidence/', 'No evidence records are published yet.'],
+    ['/demo/', 'A product demonstration will be published once an approved demonstration exists.'],
+    ['/trust/changelog/', 'October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution.'],
+  ]) {
+    await page.goto(PRODUCTION + route);
+    await expect(page.locator('main')).toContainText(text);
   }
 });
 
@@ -697,22 +628,23 @@ test('production links only target published pages', async ({ page }) => {
   }
 });
 
-test('changelog records the redesign in both builds once attested', async ({ page }) => {
+test('changelog records the redesign and the October truth correction in both builds once attested', async ({ page }) => {
   for (const base of [REVIEW, PRODUCTION]) {
     await page.goto(base + '/trust/changelog/');
-    await expect(page.locator('.claim-list li')).toHaveCount(1);
-    await expect(page.locator('.claim-list li')).toContainText('New visual system across the site');
+    await expect(page.locator('.claim-list li')).toHaveCount(base === REVIEW ? 3 : 2);
+    await expect(page.locator('.claim-list')).toContainText('New visual system across the site');
+    await expect(page.locator('.claim-list')).toContainText('October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution.');
     await expect(page.locator('main')).not.toContainText('No changelog entries are listed.');
   }
 });
 
-test('founder origin quote and detailed Why now render in both builds once attested', async ({ page }) => {
-  await page.goto(REVIEW + '/about/founder/');
+test('retained production founder origin and Why now stay attested', async ({ page }) => {
+  await page.goto(PRODUCTION + '/about/founder/');
   const quote = page.locator('.founder-hero .founder-quote');
   await expect(quote.locator('blockquote p')).toHaveText('Why should an agent regenerate an answer probabilistically if an answer that was factually correct was already generated?');
   await expect(quote.locator('.founder-quote__note')).toHaveCSS('font-style', 'italic');
   await expect(quote.locator('figcaption')).toHaveText('Max Brooks, Founder, NorthCannon');
-  await page.goto(REVIEW + '/about/company/');
+  await page.goto(PRODUCTION + '/about/company/');
   await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(3);
   await page.goto(PRODUCTION + '/about/company/');
   await expect(page.locator('section:has(> #about-why) .prose-lead')).toHaveCount(3);

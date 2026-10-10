@@ -1,16 +1,19 @@
+import { migratedReviewPaths } from './redesign-policy.mjs';
 import { readdir, readFile, lstat } from 'node:fs/promises';
 import path from 'node:path';
-import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, demoMediaErrors } from './policy.mjs';
+import { inspectMarkup, readHeaders, readRedirects, disclosureErrors, publicOutputDisclosureErrors, allowedImages, inspectImage, allowedMedia, inspectMedia, demoMediaErrors } from './policy.mjs';
 import { parse, walk } from 'css-tree';
 import { loadGovernance } from '../src/governance/registry.mjs';
-import { inspectClaimOutput } from '../src/governance/output.mjs';
+import { inspectClaimOutput, claimRegisterErrors } from '../src/governance/output.mjs';
 import { readRoutes, routeFile, draftBanner } from '../src/governance/routes.mjs';
 import { inspectReviewOutput } from '../src/governance/wp4-output.mjs';
 import { verifyProvenance } from './publication.mjs';
+import { checkRedesignOutput } from './check-redesign-output.mjs';
 const { claims } = loadGovernance();
 const routes = readRoutes(claims);
 const wp4 = process.argv[3] === '--wp4';
-const fixture = process.argv[3] === '--review';
+const specimen = process.argv[3] === '--specimen';
+const fixture = process.argv[3] === '--review' || specimen;
 
 const root = path.resolve(process.argv[2] ?? 'dist');
 const files = new Map();
@@ -54,19 +57,25 @@ await collect(root);
 errors.push(...demoMediaErrors(media, claims, { production: !wp4 && !fixture }));
 readHeaders(files.get('_headers') ?? '');
 // Production carries the reviewed redirects; each must land on a page that exists in this output.
-if (!wp4 && !fixture && (files.has('_redirects') || root === path.resolve('dist'))) {
-  for (const { to } of readRedirects(files.get('_redirects') ?? '')) if (!files.has(to.slice(1) + 'index.html')) errors.push(`_redirects: target is not a published page: ${to}`);
+if (files.has('_redirects')) {
+  for (const { to } of readRedirects(files.get('_redirects'), { review: wp4 || fixture })) {
+    const [target, fragment] = to.split('#');
+    const html = files.get(target.slice(1) + 'index.html');
+    if (!html) errors.push(`_redirects: missing target: ${to}`);
+    else if (fragment && !inspectMarkup(html, target).ids.has(fragment)) errors.push(`_redirects: missing fragment: ${to}`);
+  }
 }
-const expectedRoutes = fixture ? ['index.html'] : routes.filter(r => wp4 || r.publish).map(routeFile);
-if (wp4 && root === path.resolve('dist')) throw new Error('Review output may never be dist');
+const expectedRoutes = specimen ? ['index.html'] : [...routes.filter(r => (wp4 || fixture) ? !migratedReviewPaths.has(r.path) : r.publish).map(routeFile), ...(fixture ? ['specimen/index.html'] : [])];
+if ((wp4 || fixture) && root === path.resolve('dist')) throw new Error('Review output may never be dist');
 const actualRoutes = [...files.keys()].filter(name => name.endsWith('.html')).sort();
 if (JSON.stringify(actualRoutes) !== JSON.stringify(expectedRoutes.sort())) errors.push('Route inventory mismatch');
 const documents = new Map();
 for (const [name, text] of files) {
   errors.push(...disclosureErrors(text, name));
   if (name.endsWith('.html')) {
-    errors.push(...(wp4 ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture })));
-    if (!wp4 && text.includes(draftBanner)) errors.push('Review banner in production');
+    errors.push(...publicOutputDisclosureErrors(text, name));
+    errors.push(...((wp4 || fixture) && !specimen && name !== 'specimen/index.html' ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture, rejectUnregistered: fixture })));
+    if (!wp4 && !fixture && text.includes(draftBanner)) errors.push('Review banner in production');
     if (wp4 && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
   // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.
@@ -110,8 +119,17 @@ for (const [name, document] of documents) {
     if (url.hash && !documents.get(target)?.ids.has(decodeURIComponent(url.hash.slice(1)))) errors.push(`${name}: missing fragment ${reference}`);
   }
 }
+if (!wp4 && !fixture) errors.push(...claimRegisterErrors(files, claims));
 if (wp4) await verifyProvenance(path.resolve('dist'));
+if ((wp4 || fixture) && files.has('provenance.json')) {
+  // The review copy of the production manifest must be byte-identical to the production manifest.
+  if (files.get('provenance.json') !== await readFile(path.resolve('dist/provenance.json'), 'utf8')) errors.push('provenance.json: review copy differs from dist/provenance.json');
+}
 if (!wp4 && !fixture && files.has('provenance.json')) await verifyProvenance(root);
 if (!wp4 && !fixture && root === path.resolve('dist') && !files.has('provenance.json')) errors.push('Missing production provenance');
+if (!wp4 && !fixture && root === path.resolve('dist')) {
+  // Production forbidden-copy guard; the review inventory half is skipped when `.review-dist` is absent.
+  try { await checkRedesignOutput('dist', { review: !process['env'].NORTHCANNON_SKIP_REVIEW_INVENTORY }); } catch (error) { errors.push(error.message); }
+}
 if (errors.length) throw new Error(errors.join('\n'));
 console.log(`Validated ${files.size} output files, ${actualRoutes.length} routes, local references, disclosure patterns, and strict headers; no JavaScript or inline styles.`);

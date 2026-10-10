@@ -1,0 +1,5 @@
+---
+interface Props { statements: string[]; alternative: string }
+const { statements, alternative } = Astro.props;
+---
+<div class="distinction">{statements.map((text, index) => <>{index > 0 && <span class="distinction__symbol"><span aria-hidden="true">≠</span><span class="visually-hidden">{alternative}</span></span>}<p>{text}</p></>)}</div>

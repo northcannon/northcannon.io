@@ -5,66 +5,26 @@ import { draftClaim } from '../governance/routes.mjs';
 import Icon from './Icon.astro';
 interface Props {
   company: string;
-  items: ReadonlyArray<{ label: string; href: string; children?: ReadonlyArray<{ label: string; href: string }> }>;
+  items: ReadonlyArray<{ label: string; href: string; cta?: boolean | undefined; children?: ReadonlyArray<{ label: string; href: string }> }>;
   currentPath: string;
-  status: { label: string; gate?: string | undefined; description: string; href: string };
-  /** Review builds may show pending draft labels; production and fixtures require approval. */
-  review?: boolean;
+  review?: boolean | undefined;
 }
-const { company, items, currentPath, status, review = false } = Astro.props;
+const { company, items, currentPath, review = false } = Astro.props;
 const { claims } = loadGovernance();
-for (const text of [company, ...items.flatMap(item => [item.label, ...(item.children ?? []).map(child => child.label)]), status.label, status.gate, status.description].filter(Boolean)) {
+for (const text of [company, ...items.map(item => item.label)].filter(Boolean)) {
   const registered = claims.find(c => c.statement === text);
   if (!registered) throw new Error('Unregistered header copy');
   if (review) draftClaim(claims, registered.claim_id); else eligibleClaim(registered, registered.claim_id);
 }
-const current = (href: string) => (href === currentPath ? 'page' : undefined);
-// A group's own link marks the section, not the page: the matching child carries aria-current.
-const inSection = (item: { children?: ReadonlyArray<{ href: string }> }) => Boolean(item.children?.some(child => child.href === currentPath));
-const groupCurrent = (item: { href: string; children?: ReadonlyArray<{ href: string }> }) => (item.children?.length ? undefined : current(item.href));
+const current = (href: string) => href === currentPath ? 'page' : undefined;
 ---
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="site-container site-header__inner">
-    <a class="wordmark" href="/" aria-label={`${company} home`}>
-      <img src="/northcannon-mark.svg" width="36" height="24" alt="" />
-      <span>{company}</span>
-    </a>
-    <a class="status-chip" href={status.href} aria-label={status.description}>
-      <span class="status-dot status-dot--pending" aria-hidden="true"></span>
-      {status.gate && <span class="status-chip__gate">{status.gate}</span>}
-      <span>{status.label}</span>
-    </a>
-    {items.length > 0 && (
-      <nav aria-label="Primary" class="primary-nav">
-        <ul class="navigation desktop-navigation">
-          {items.map(item => (
-            <li class:list={{ 'has-submenu': item.children?.length, 'is-section': inSection(item) }}>
-              <a href={item.href} aria-current={groupCurrent(item)}>{item.label}</a>
-              {item.children?.length ? (
-                <ul class="submenu">
-                  {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
-                </ul>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-        <details class="mobile-navigation">
-          <summary><Icon name="menu" /><span class="visually-hidden">Menu</span></summary>
-          <ul class="navigation">
-            {items.map(item => (
-              <li>
-                <a href={item.href} aria-current={groupCurrent(item)}>{item.label}</a>
-                {item.children?.length ? (
-                  <ul class="submenu-mobile">
-                    {item.children.map(child => <li><a href={child.href} aria-current={current(child.href)}>{child.label}</a></li>)}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </details>
-      </nav>
-    )}
-  </div>
-</header>
+<header class="site-header"><div class="site-container site-header__inner">
+  <a class="wordmark" href="/" aria-label={`${company} home`}><img src="/northcannon-mark.svg" width="36" height="24" alt="" /><span>{company}</span></a>
+  {items.length > 0 && <nav aria-label="Primary" class="primary-nav">
+    <ul class="navigation desktop-navigation">{items.map(item => <li><a class:list={{ 'nav-cta': item.cta }} href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}</ul>
+    <details class="mobile-navigation"><summary><Icon name="menu" /><span>Menu</span></summary>
+      <ul class="navigation">{items.map(item => <li><a class:list={{ 'nav-cta': item.cta }} href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}</ul>
+    </details>
+  </nav>}
+</div></header>

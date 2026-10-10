@@ -23,9 +23,9 @@ test('design tokens and layout system match the implementation brief', async ({ 
     return Object.fromEntries(['--color-bg', '--color-panel', '--color-elevated', '--color-text', '--color-muted', '--color-border', '--color-violet', '--color-indigo', '--color-verified', '--color-pending', '--color-failed', '--margin', '--gutter', '--section-space', '--radius-card', '--nav-height', '--text-width', '--canvas'].map(k => [k, s.getPropertyValue(k).trim()]));
   });
   expect(tokens).toEqual({ '--color-bg': '#0e0b14', '--color-panel': '#1a1128', '--color-elevated': '#261a3a', '--color-text': '#f5f7fb', '--color-muted': '#b4aec4', '--color-border': '#3f3358', '--color-violet': '#8b5cf6', '--color-indigo': '#6366f1', '--color-verified': '#5ec48b', '--color-pending': '#f59e0b', '--color-failed': '#e57a74', '--margin': '72px', '--gutter': '24px', '--section-space': '96px', '--radius-card': '16px', '--nav-height': '80px', '--text-width': '760px', '--canvas': '1440px' });
-  expect(await page.locator('.verify-module').first().evaluate(el => getComputedStyle(el).borderRadius)).toBe('16px');
-  expect(await page.locator('.home-hero').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(12);
-  expect(await page.locator('.home-hero').evaluate(el => getComputedStyle(el).columnGap)).toBe('24px');
+  expect(await page.locator('.control-loop ol').first().evaluate(el => getComputedStyle(el).borderRadius)).toBe('16px');
+  expect(await page.locator('.product-hero').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(2);
+  expect(await page.locator('.product-hero').evaluate(el => getComputedStyle(el).columnGap)).toBe('48px');
   await page.setViewportSize({ width: 390, height: 844 });
   expect((await page.locator('main .site-container').boundingBox()).x).toBe(24);
 });
@@ -40,7 +40,7 @@ test('component review supports wrapping, contrast, keyboard use, and static sec
     } else await route.continue();
   });
   page.on('response', response => { if (response.headers()['set-cookie']) unexpected.push('Set-Cookie'); });
-  const response = await page.goto('http://127.0.0.1:4322/');
+  const response = await page.goto('http://127.0.0.1:4322/specimen/');
   for (const [key, value] of Object.entries(requiredHeaders)) expect(response.headers()[key]).toBe(value);
   await expect(page.locator('script, style, form, [style], [onclick]')).toHaveCount(0);
   const menu = page.locator('.mobile-navigation summary');
@@ -87,8 +87,8 @@ test('native menu opens and closes by keyboard with JavaScript disabled', async 
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
   try {
     const page = await context.newPage();
-    await page.goto('http://127.0.0.1:4322/');
-    for (let i = 0; i < 4; i++) await page.keyboard.press('Tab');
+    await page.goto('http://127.0.0.1:4322/specimen/');
+    for (let i = 0; i < 3; i++) await page.keyboard.press('Tab');
     await expect(page.locator('summary')).toBeFocused();
     await page.keyboard.press('Enter');
     const links = page.locator('.mobile-navigation .navigation a');

@@ -1,8 +1,10 @@
+import { createHash } from 'node:crypto';
 import { parse } from 'parse5';
 import { readFileSync } from 'node:fs';
+import { productionProvenancePath } from './evidence.mjs';
 import { draftBanner, legacyLabels, readRoutes, routeFile, reviewDependencies } from './routes.mjs';
 
-export const readProductionProvenance = () => JSON.parse(readFileSync('dist/provenance.json', 'utf8'));
+export const readProductionProvenance = () => JSON.parse(readFileSync(productionProvenancePath(), 'utf8'));
 
 export function inspectReviewOutput(html, claims, name, { review = true } = {}) {
   const routes = readRoutes(claims);
@@ -11,7 +13,7 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   const dependencies = reviewDependencies(route, routes, { review, claims });
   const declared = claims.filter(c => dependencies.has(c.claim_id));
   const data = review && name === 'trust/provenance/index.html' ? readProductionProvenance() : null;
-  const allowed = new Set([...legacyLabels, ...(review ? [draftBanner] : []), ...declared.filter(c => c.lifecycle_state !== 'retired' && (review ? c.approval_state !== 'rejected' : c.approval_state === 'approved')).flatMap(c => [c.statement, ...c.statement.split('\n\n')]).map(s => s.replace(/\s+/gu, ' ').trim())]);
+  const allowed = new Set(['—', ...legacyLabels, ...(review ? [draftBanner] : []), ...declared.filter(c => c.lifecycle_state !== 'retired' && (review ? c.approval_state !== 'rejected' : c.approval_state === 'approved')).flatMap(c => [c.statement, ...c.statement.split('\n\n')]).map(s => s.replace(/\s+/gu, ' ').trim())]);
   const company = claims.find(c => c.claim_id === 'brand-company').statement;
   allowed.add(`${company} home`);
   // A declared status claim may show the date its current statement was attested.
@@ -23,10 +25,15 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   for (const group of data ? [data.sources, data.files, data.approval_events] : []) for (const [key, value] of Object.entries(group)) { allowed.add(key); allowed.add(value); }
   if (data) allowed.add(data.astro_version);
   if (data && data.source_commit !== null) allowed.add(data.source_commit);
+  const evidenceData = review && name === 'evidence/index.html' ? JSON.parse(readFileSync('src/content/redesign.json', 'utf8')) : null;
+  if (evidenceData) { allowed.add(evidenceData.historical.sha256); allowed.add(evidenceData.historical.date); allowed.add(createHash('sha256').update(readFileSync(productionProvenancePath())).digest('hex')); }
   const errors = [];
   const visit = node => {
-    if (node.nodeName === '#text' && node.value.trim() && !allowed.has(node.value.replace(/\s+/gu, ' ').trim())) errors.push('Unregistered review text');
-    for (const a of node.attrs ?? []) if (['aria-label', 'alt', 'title'].includes(a.name) && a.value && !allowed.has(a.value)) errors.push('Unregistered review interface');
+    if (node.nodeName === '#text' && ['≠','◇','✓','○','×'].includes(node.value.trim()) && node.parentNode?.attrs?.some(a => a.name === 'aria-hidden' && a.value === 'true')) return;
+    if (node.nodeName === '#text' && node.value.trim() && !allowed.has(node.value.replace(/\s+/gu, ' ').trim())) errors.push(`${name}: visible text: ${node.value.trim()}`);
+    for (const a of node.attrs ?? []) if (['aria-label', 'aria-description', 'alt', 'title'].includes(a.name) && a.value && !allowed.has(a.value)) errors.push(`${name}: accessibility ${a.name}: ${a.value}`);
+    const attrs = Object.fromEntries((node.attrs ?? []).map(a => [a.name, a.value]));
+    if (node.tagName === 'meta' && ['description', 'og:title', 'og:description', 'og:image:alt'].includes(attrs.name ?? attrs.property) && !allowed.has(attrs.content)) errors.push(`${name}: metadata: ${attrs.content}`);
     for (const child of node.childNodes ?? []) visit(child);
   };
   visit(parse(html));

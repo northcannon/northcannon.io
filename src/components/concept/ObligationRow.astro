@@ -1,0 +1,7 @@
+---
+import StatusChip from './StatusChip.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string; obligation: typeof f.obligations[number] }
+const { t, obligation } = Astro.props;
+---
+<li class="ci-obligation"><p>{t(obligation.reason)}</p><a href={`#ci-node-${obligation.node}`}>{t(f.nodes.find(n => n.id === obligation.node)!.label)}</a><StatusChip label={t(obligation.status)} tone={obligation.state === 'Blocked by unknown coverage' ? 'inactive' : 'planned'} /><details><summary>{t(f.labels.relation)}</summary><p>{t(f.evidence.find(e => e.id === obligation.evidence)!.label)}</p></details></li>

@@ -2,15 +2,13 @@
 // Evidence — Wireframes B, 04. No evidence exists before execution, so the ledger,
 // hash and viewer render deliberate empty states rather than illustrative records.
 import Icon from '../Icon.astro';
-import StatusBanner from '../StatusBanner.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; [key: string]: unknown }
 const { copy } = Astro.props;
-const { t, href, statusDate } = copy;
+const { t, href } = copy;
 const headline = t('evidence-headline');
 const cards = [
   { title: 'evidence-frozen-title', body: 'evidence-frozen-body', icon: 'cube' },
-  { title: 'evidence-executed-title', body: 'evidence-executed-body', icon: 'gear' },
   { title: 'evidence-supports-title', body: 'evidence-supports-body', icon: 'document' },
 ].filter(card => t(card.title));
 const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'label-status'];
@@ -30,10 +28,8 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
       </div>
     </section>
 
-    <StatusBanner tone="pending" id="evidence-status" meta={[{ label: t('label-last-updated'), date: statusDate }]}>
-      {t('evidence-status-title') && <Fragment slot="title">{t('evidence-status-title')}</Fragment>}
-      <p class="status-banner__text">{t('status-gate1-frozen-stress')}</p>
-    </StatusBanner>
+
+    {t('evidence-status-current') && <p class="lede">{t('evidence-status-current')}</p>}
 
     {cards.length > 0 && (
       <ul class="explainer-grid">
@@ -57,7 +53,7 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
           <table class="ledger">
             <thead><tr>{columns.map(id => <th scope="col">{t(id)}</th>)}<th scope="col" class="ledger__action"></th></tr></thead>
             <tbody>
-              <tr><td colspan="6"><div class="ledger__empty"><Icon name="ledger" size={28} /><span>{t('ledger-empty') ?? t('evidence-status-title')}</span></div></td></tr>
+              <tr><td colspan="6"><div class="ledger__empty"><Icon name="ledger" size={28} /><span>{t('ledger-empty-current')}</span></div></td></tr>
             </tbody>
           </table>
         </div>
@@ -74,7 +70,7 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
 
             <div class="hash-block">
               <p class="hash-block__algorithm">{t('hash-algorithm')}</p>
-              <p class="hash-block__value">{t('hash-empty') ?? t('evidence-status-title')}</p>
+              <p class="hash-block__value">{t('hash-empty')}</p>
             </div>
             {t('hash-caption') && <p class="card-text">{t('hash-caption')}</p>}
           </div>
@@ -88,7 +84,7 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
             <div class="artifact-viewer">
               <span class="artifact-viewer__thumb" aria-hidden="true"><img src="/northcannon-mark.svg" width="72" height="48" alt="" /></span>
               <div class="artifact-viewer__body">
-                <p class="artifact-viewer__empty">{t('viewer-empty') ?? t('evidence-status-title')}</p>
+                <p class="artifact-viewer__empty">{t('viewer-empty')}</p>
                 {t('viewer-action') && <span class="action-link action-link--static">{t('viewer-action')}<Icon name="arrow-up-right" /></span>}
               </div>
             </div>
@@ -99,7 +95,6 @@ const columns = ['ledger-date', 'ledger-claim', 'ledger-type', 'ledger-hash', 'l
     )}
 
     <div class="panel updated-strip">
-      <p class="updated-strip__time"><Icon name="clock" size={28} />{t('label-last-updated') && <span class="label-colon">{t('label-last-updated')}</span>}<time datetime={statusDate}>{statusDate}</time></p>
       {t('changelog-link') && <a class="inline-link" href="/trust/changelog/">{t('changelog-link')}<Icon name="arrow-right" /></a>}
     </div>
   </div>

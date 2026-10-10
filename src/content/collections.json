@@ -1,9 +1,9 @@
 {
   "status": [
     {
-      "entry_id": "gate1",
-      "stage": "frozen",
-      "claim_id": "status-gate1-frozen-stress"
+      "entry_id": "pi-gate1",
+      "stage": "discontinued",
+      "claim_id": "status-gate1-discontinued"
     }
   ],
   "gate1": [],
@@ -16,6 +16,12 @@
     }
   ],
   "changelog": [
+    {
+      "entry_id": "truth-correction-2026-10",
+      "claim_ids": [
+        "changelog-2026-10-truth-correction"
+      ]
+    },
     {
       "entry_id": "site-redesign-2026-09",
       "claim_ids": [

@@ -1816,6 +1816,38 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Transcribed by Claude Code in the founder's session on 2026-09-26 from one founder message. It approves the product demonstration video on /demo/ in PR #12 (branch feat/demo-video at beaa8d0e) and authorizes recording this event and re-pushing. It covers exactly the 20 pending demo video claims of that PR (demo-video-title, demo-video-lede, demo-video-label, demo-video-captions-label, demo-video-disclosure, demo-video-transcript-title, and demo-transcript-01 to demo-transcript-14, the narration word for word), each recorded exactly as rendered. The video, captions, and poster ship to production only because all 20 are attested."
+  },
+  {
+    "event_id": "founder-approval-009",
+    "timestamp": "2026-10-09T15:45:11-04:00",
+    "founder_words": "Yes to all",
+    "claims": [
+      {
+        "claim_id": "status-gate1-discontinued",
+        "statement": "Gate 1 was discontinued on 29 September 2026, before execution. No results were produced, and none are forthcoming."
+      },
+      {
+        "claim_id": "gate1-historical-statement",
+        "statement": "Gate 1 was a planned evaluation for an earlier research direction. It was discontinued on 29 September 2026, before it ran."
+      },
+      {
+        "claim_id": "evidence-status-current",
+        "statement": "No experiment results are published. Evidence appears here only once it exists."
+      },
+      {
+        "claim_id": "ledger-empty-current",
+        "statement": "No evidence records are published yet."
+      },
+      {
+        "claim_id": "demo-coming-soon-lede",
+        "statement": "A product demonstration will be published once an approved demonstration exists."
+      },
+      {
+        "claim_id": "changelog-2026-10-truth-correction",
+        "statement": "October 2026: removed discontinued Gate 1, results and demonstration content. Gate 1 was discontinued on 29 September 2026, before execution."
+      }
+    ],
+    "relay": "Founder approval given in the Opus session in reply to the Phase 0.5 approval request (six claims as written; D2 neutralise and D5 withdraw confirmed; retirement of status-gate1-frozen-stress approved), relayed in the architect's follow-up brief, and recorded by Sonnet."
   }
 ]
 ```

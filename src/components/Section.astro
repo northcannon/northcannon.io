@@ -1,0 +1,7 @@
+---
+interface Props { id: string; title: string; intro?: string | undefined; instrument?: boolean | undefined; cta?: boolean | undefined; secondary?: boolean | undefined }
+const { id, title, intro, instrument = false, cta = false, secondary = false } = Astro.props;
+---
+<section id={id} aria-labelledby={`${id}-heading`} class:list={[cta ? 'cta-section' : 'product-section', { 'product-section--instrument': instrument, 'product-section--secondary': secondary }]}>
+  <h2 id={`${id}-heading`}>{title}</h2>{intro && <p class="section-lede">{intro}</p>}<slot />
+</section>

@@ -1,0 +1,6 @@
+---
+import { evidenceMetric } from '../governance/evidence.mjs';
+interface Props { record: unknown }
+const record = evidenceMetric.parse(Astro.props.record);
+---
+<article class="offering-card" data-evidence-class={record.evidence_class}><h3>{record.name}</h3><p>{record.value}</p><p>{record.denominator}</p><p>{record.scope}</p><p>{record.date}</p><p>{record.version}</p><p>{record.limitation}</p><p>{record.evidence}</p></article>

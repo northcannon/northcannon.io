@@ -1,0 +1,6 @@
+---
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<section class="ci-comparison"><h4>{t(f.labels.compare)}</h4><div class="ci-comparison-columns"><div><h5>{t(f.labels.before)}</h5><p class="ci-version">{t(f.identity.previous)}</p><p>{t(f.labels['before-knowledge'])}</p><p>{t(f.labels['before-evidence'])}</p></div><div><h5>{t(f.labels.after)}</h5><p class="ci-version">{t(f.identity.proposed)}</p><p>{t(f.labels['after-knowledge'])}</p><p>{t(f.labels['after-evidence'])}</p></div></div><ul>{['comparison-known','comparison-potential','comparison-gap'].map(k => <li>{t(f.labels[k as keyof typeof f.labels])}</li>)}</ul></section>
