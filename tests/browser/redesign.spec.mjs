@@ -32,7 +32,13 @@ test('review IA, aliases, native navigation, metadata and disclosure boundaries'
 });
 
 test('review redirects preserve fragments in one hop without changing production targets', async ({ request, page }) => {
-  for (const line of redesignRedirects) {
+  // The plan §39 pairs, hard-coded so the list under test cannot validate itself.
+  const planRedirects = [
+    '/gate-1/ /experiments/#gate-1 301', '/results/ /evidence/#experimental-results 301', '/about/features/ /products/ 301',
+    '/about/founder/ /about/#founder 301', '/founder/ /about/#founder 301', '/founder /about/#founder 301', '/vision/ /about/#company 301',
+  ];
+  expect(redesignRedirects).toEqual(planRedirects);
+  for (const line of planRedirects) {
     const [from,to] = line.split(' ');
     const response = await request.get(REVIEW + from, { maxRedirects: 0 });
     expect(response.status()).toBe(301); expect(response.headers().location).toBe(to);

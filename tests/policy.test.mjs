@@ -202,3 +202,13 @@ test('public output rejects implementation identities and OG mutations', async (
   const altered = Buffer.from(bytes); altered[altered.length-1] ^= 1;
   assert.ok(inspectImage(altered, 'png', 'og/northcannon-default.png').length);
 });
+
+test('production forbidden-copy guard rejects forbidden phrases and names on word boundaries', async () => {
+  const { forbiddenCopyErrors } = await import('../scripts/redesign-policy.mjs');
+  for (const text of ['<p>trust infrastructure</p>', 'Gate 1 will run next spring', 'Built on Claude', 'Built on GPT-6', 'Reviewed by Astra', 'Stored in PostgreSQL', 'Runs on H100 hardware', 'Powered by Ollama', 'Sol reviewed it']) {
+    assert.equal(forbiddenCopyErrors(text, 'index.html').length, 1, text);
+  }
+  for (const text of ['A solution for engineering change', 'Consolidated solutions', 'The cursor moves', 'Evidence over confidence.', 'Opusculum is not a name']) {
+    assert.deepEqual(forbiddenCopyErrors(text, 'index.html'), [], text);
+  }
+});

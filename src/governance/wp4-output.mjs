@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
 import { parse } from 'parse5';
 import { readFileSync } from 'node:fs';
+import { productionProvenancePath } from './evidence.mjs';
 import { draftBanner, legacyLabels, readRoutes, routeFile, reviewDependencies } from './routes.mjs';
 
-export const readProductionProvenance = () => JSON.parse(readFileSync('dist/provenance.json', 'utf8'));
+export const readProductionProvenance = () => JSON.parse(readFileSync(productionProvenancePath(), 'utf8'));
 
 export function inspectReviewOutput(html, claims, name, { review = true } = {}) {
   const routes = readRoutes(claims);
@@ -25,7 +26,7 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   if (data) allowed.add(data.astro_version);
   if (data && data.source_commit !== null) allowed.add(data.source_commit);
   const evidenceData = review && name === 'evidence/index.html' ? JSON.parse(readFileSync('src/content/redesign.json', 'utf8')) : null;
-  if (evidenceData) { allowed.add(evidenceData.historical.sha256); allowed.add(evidenceData.historical.date); allowed.add(createHash('sha256').update(readFileSync('dist/provenance.json')).digest('hex')); }
+  if (evidenceData) { allowed.add(evidenceData.historical.sha256); allowed.add(evidenceData.historical.date); allowed.add(createHash('sha256').update(readFileSync(productionProvenancePath())).digest('hex')); }
   const errors = [];
   const visit = node => {
     if (node.nodeName === '#text' && ['≠','◇','✓','○','×'].includes(node.value.trim()) && node.parentNode?.attrs?.some(a => a.name === 'aria-hidden' && a.value === 'true')) return;

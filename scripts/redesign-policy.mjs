@@ -9,3 +9,12 @@ export const redesignRedirects = [
   '/vision/ /about/#company 301',
 ];
 export const migratedReviewPaths = new Set(['/gate-1/', '/about/features/', '/about/founder/', '/vision/']);
+
+// Production forbidden-copy guard: phrases and the "never name" list (models, vendors, tools, hardware, team handles).
+// Names match on word boundaries so ordinary words such as "solution" never match; "Sol" and "Cursor" are case-sensitive.
+const forbiddenPhrases = /trust infrastructure|after Gate 1 runs|will be published after the run|pending independent stress testing|Gate 1 will run/i;
+const forbiddenNames = /\b(?:GPT(?:-?\d[\w.]*)?|Claude|OpenAI|Anthropic|NVIDIA|Astra|Luna|Sonnet|Opus|Haiku|Codex|Ollama|Gemini|Llama|Mistral|Postgres(?:QL)?|H100|A100)\b/i;
+const forbiddenProperNames = /\b(?:Sol|Cursor)\b/;
+export function forbiddenCopyErrors(text, name) {
+  return forbiddenPhrases.test(text) || forbiddenNames.test(text) || forbiddenProperNames.test(text) ? [`${name}: forbidden public copy`] : [];
+}

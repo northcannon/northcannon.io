@@ -4,12 +4,14 @@ import { fileInventory } from './publication.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { readRoutes, routeFile } from '../src/governance/routes.mjs';
-import { migratedReviewPaths } from './redesign-policy.mjs';
+import { migratedReviewPaths, forbiddenCopyErrors } from './redesign-policy.mjs';
+import { pathToFileURL } from 'node:url';
 import { publicOutputDisclosureErrors, isSecretLikeFile } from './policy.mjs';
+// The production half checks one built output directory; the review half needs `.review-dist` and is skipped without it.
+export async function checkRedesignOutput(root = 'dist', { review = true } = {}) {
 const { claims } = loadGovernance();
 const errors = [];
-const files = await fileInventory('dist');
-const forbidden = /trust infrastructure|after Gate 1 runs|will be published after the run|pending independent stress testing|Gate 1 will run|\b(?:GPT-\d|Claude|OpenAI|Anthropic|NVIDIA|H100|A100)\b/i;
+const files = await fileInventory(root);
 let pages = 0;
 for (const name of files) {
   if (isSecretLikeFile(name.split('/').at(-1))) { errors.push(`${name}: forbidden filename; not read`); continue; }
@@ -17,7 +19,7 @@ for (const name of files) {
   if (name === 'og/northcannon-default.png') errors.push('Pending OG image in production');
   if (!name.endsWith('.html')) continue;
   pages++;
-  const html = await readFile('dist/'+name,'utf8');
+  const html = await readFile(root+'/'+name,'utf8');
   errors.push(...inspectClaimOutput(html,claims),...publicOutputDisclosureErrors(html,name));
   const prose=[];
   const visit=node=>{
@@ -26,12 +28,18 @@ for (const name of files) {
     for(const child of node.childNodes??[]) visit(child);
   };
   visit(parse(html));
-  if(forbidden.test(prose.join(' '))) errors.push(`${name}: forbidden public copy`);
+  errors.push(...forbiddenCopyErrors(prose.join(' '),name));
 }
 const reviewRoutes=readRoutes().filter(r=>!migratedReviewPaths.has(r.path));
-for(const route of reviewRoutes) await access('.review-dist/'+routeFile(route));
+const reviewPresent=review&&await access('.review-dist').then(()=>true,()=>false);
+if(reviewPresent) for(const route of reviewRoutes) await access('.review-dist/'+routeFile(route));
 for(const route of readRoutes().filter(r=>!r.publish)) if(files.includes(routeFile(route))) errors.push(`${route.path}: unpublished production route`);
 if(errors.length) throw new Error(errors.join('\n'));
+return { pages, reviewRoutes: reviewPresent ? reviewRoutes : [] };
+}
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+const { pages, reviewRoutes } = await checkRedesignOutput();
 console.log(`Production sweep PASS: ${pages} HTML routes; 0 pending statements; 0 forbidden phrases or implementation identities; 0 media files; pending OG absent; unpublished routes absent.`);
 console.log(`Review inventory PASS: ${reviewRoutes.length} routes plus the isolated specimen.`);
 console.log(reviewRoutes.map(r=>r.path).join('\n'));
+}

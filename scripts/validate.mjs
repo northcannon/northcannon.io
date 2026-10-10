@@ -8,6 +8,7 @@ import { inspectClaimOutput, claimRegisterErrors } from '../src/governance/outpu
 import { readRoutes, routeFile, draftBanner } from '../src/governance/routes.mjs';
 import { inspectReviewOutput } from '../src/governance/wp4-output.mjs';
 import { verifyProvenance } from './publication.mjs';
+import { checkRedesignOutput } from './check-redesign-output.mjs';
 const { claims } = loadGovernance();
 const routes = readRoutes(claims);
 const wp4 = process.argv[3] === '--wp4';
@@ -120,7 +121,15 @@ for (const [name, document] of documents) {
 }
 if (!wp4 && !fixture) errors.push(...claimRegisterErrors(files, claims));
 if (wp4) await verifyProvenance(path.resolve('dist'));
+if ((wp4 || fixture) && files.has('provenance.json')) {
+  // The review copy of the production manifest must be byte-identical to the production manifest.
+  if (files.get('provenance.json') !== await readFile(path.resolve('dist/provenance.json'), 'utf8')) errors.push('provenance.json: review copy differs from dist/provenance.json');
+}
 if (!wp4 && !fixture && files.has('provenance.json')) await verifyProvenance(root);
 if (!wp4 && !fixture && root === path.resolve('dist') && !files.has('provenance.json')) errors.push('Missing production provenance');
+if (!wp4 && !fixture && root === path.resolve('dist')) {
+  // Production forbidden-copy guard; the review inventory half is skipped when `.review-dist` is absent.
+  try { await checkRedesignOutput('dist'); } catch (error) { errors.push(error.message); }
+}
 if (errors.length) throw new Error(errors.join('\n'));
 console.log(`Validated ${files.size} output files, ${actualRoutes.length} routes, local references, disclosure patterns, and strict headers; no JavaScript or inline styles.`);

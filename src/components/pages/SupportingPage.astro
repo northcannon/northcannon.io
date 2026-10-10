@@ -58,6 +58,7 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
       </ul>
     )}
     {route.path === '/trust/provenance/' && !review && <p><a class="inline-link" href="/provenance.json">{t('label-provenance')}<Icon name="arrow-right" /></a></p>}
+    {provenance && <p class="state-label">{t('redesign-provenance-scope')}</p>}
     {provenance && (
       <div class="page-stack">
         <dl class="panel record-fields">

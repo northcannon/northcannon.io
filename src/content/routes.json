@@ -7771,7 +7771,8 @@
       "redesign-example-your-environment",
       "redesign-label-build-version",
       "redesign-meta-title-trust-provenance",
-      "redesign-meta-description-trust-provenance"
+      "redesign-meta-description-trust-provenance",
+      "redesign-provenance-scope"
     ],
     "nav": false,
     "publish": true,
