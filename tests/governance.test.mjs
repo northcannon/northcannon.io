@@ -236,14 +236,66 @@ test('actual production claims must be present in the public register', async ()
   assert.ok(claimRegisterErrors(docs,current.claims).length);
 });
 
-test('the approval inventory lists every pending claim once with its exact registered statement', async () => {
-  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+
+function checkPendingInventory(claims, routes, events, text) {
   const listed = new Map();
-  const heading = /^### (\S+)\n\n([\s\S]*?)(?=\n### |\n## |\s*$)/gm;
-  for (let match = heading.exec(text); match; match = heading.exec(text)) listed.set(match[1], [...(listed.get(match[1]) ?? []), match[2].trim()]);
-  const pending = current.claims.filter(c => c.approval_state === 'pending' && c.lifecycle_state === 'review');
-  assert.equal(pending.length, listed.size, 'inventory and register list the same number of pending claims');
-  for (const claim of pending) {
-    assert.deepEqual(listed.get(claim.claim_id), [claim.statement], `${claim.claim_id}: listed exactly once with the registered statement`);
+  let batch;
+  for (const section of text.split(/(?=^## E-)/m)) {
+    const match = /^## (E-\d+)/m.exec(section);
+    if (!match) continue;
+    batch = match[1];
+    for (const entry of section.matchAll(/^### (\S+)\n\n([\s\S]*?)(?=\n### |\n## |$)/gm)) {
+      const id = entry[1];
+      assert.ok(!listed.has(id), `${id}: duplicate inventory entry`);
+      listed.set(id, { batch, statement: entry[2].trim() });
+    }
   }
+  const pending = claims.filter(c => c.approval_state === 'pending');
+  const review = pending.filter(c => c.lifecycle_state === 'review');
+  const retired = pending.filter(c => c.lifecycle_state === 'retired');
+  assert.equal(review.length + retired.length, pending.length, 'pending lifecycle is exhaustively review or retired');
+  assert.equal(listed.size, review.length, 'only active pending claims request approval');
+  const eventIds = Object.values(events).flat();
+  assert.equal(eventIds.length, review.length, 'event inventory is exhaustive');
+  for (const c of review) {
+    assert.equal(listed.get(c.claim_id)?.statement, c.statement, `${c.claim_id}: exact statement`);
+    assert.equal(eventIds.filter(id => id === c.claim_id).length, 1, `${c.claim_id}: exactly one batch`);
+    assert.ok(events[listed.get(c.claim_id).batch].includes(c.claim_id), `${c.claim_id}: correct batch`);
+  }
+  for (const c of retired) {
+    assert.ok(!listed.has(c.claim_id) && !eventIds.includes(c.claim_id), `${c.claim_id}: retired is not requesting approval`);
+    assert.ok(!routes.some(r => [...r.claim_ids, ...r.review_claim_ids].includes(c.claim_id)), `${c.claim_id}: retired route reference`);
+  }
+}
+
+test('pending inventory exhaustively accounts for review and retired claims with exact text and batches', async () => {
+  const { readRoutes, draftClaim } = await import('../src/governance/routes.mjs');
+  const { eligibleClaim } = await import('../src/governance/schema.mjs');
+  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+  const { events } = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  checkPendingInventory(current.claims, readRoutes(), events, text);
+  for (const c of current.claims.filter(c => c.approval_state === 'pending' && c.lifecycle_state === 'retired')) {
+    assert.throws(() => draftClaim(current.claims, c.claim_id), /Ineligible/);
+    assert.throws(() => eligibleClaim(c, c.claim_id), /ineligible/);
+  }
+});
+
+test('pending inventory rejects omissions, duplicates, altered text, wrong batches, retired requests and route references', () => {
+  const active = { ...fixture, claim_id: 'inventory-active' };
+  const retired = { ...fixture, claim_id: 'inventory-retired', lifecycle_state: 'retired' };
+  const claims = [active, retired], events = { 'E-010': [active.claim_id] };
+  const text = `## E-010\n\n### ${active.claim_id}\n\n${active.statement}\n`;
+  const check = (cs = claims, rs = [], es = events, md = text) => checkPendingInventory(cs, rs, es, md);
+  check();
+  assert.throws(() => check(claims, [], events, '## E-010\n'));
+  assert.throws(() => check(claims, [], events, text + text));
+  assert.throws(() => check(claims, [], events, text.replace(active.statement, 'Wrong text.')));
+  assert.throws(() => check(claims, [], { 'E-011': [active.claim_id] }));
+  assert.throws(() => check(claims, [], { 'E-010': [active.claim_id, active.claim_id] }));
+  assert.throws(() => check(claims, [], { 'E-010': [active.claim_id, retired.claim_id] }, text + `\n### ${retired.claim_id}\n\n${retired.statement}\n`));
+  for (const slot of ['claim_ids', 'review_claim_ids']) {
+    const route = { claim_ids: [], review_claim_ids: [], [slot]: [retired.claim_id] };
+    assert.throws(() => check(claims, [route]), /retired route reference/);
+  }
+  for (const lifecycle_state of ['draft', 'approved']) assert.throws(() => check([active, { ...retired, lifecycle_state }]), /exhaustively/);
 });
