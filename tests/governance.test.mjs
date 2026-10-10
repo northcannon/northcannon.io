@@ -321,3 +321,34 @@ test('E-013 explicitly requests founder confirmation of actual category and stag
   }
   assert.throws(() => checkMetadataConfirmation(current.claims, draft, text.replace('#### Metadata confirmation requested', '')));
 });
+
+test('synthetic scenario identities, counts, relations and obligations are internally consistent', async () => {
+  const { createHash } = await import('node:crypto');
+  const f = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
+  assert.equal(f.synthetic, true);
+  const ids = new Set(f.nodes.map(n => n.id));
+  assert.equal(ids.size, f.nodes.length);
+  for (const e of f.edges) { assert.ok(ids.has(e.source)); assert.ok(ids.has(e.target)); assert.ok(f.evidence.some(r => r.id === e.evidence)); }
+  for (const o of f.obligations) { assert.ok(ids.has(o.node)); assert.ok(f.evidence.some(r => r.id === o.evidence)); }
+  const counts = {
+    changed: f.nodes.filter(n => n.state === 'CHANGED').length,
+    potential: f.nodes.filter(n => n.state === 'POTENTIALLY_AFFECTED').length,
+    services: f.nodes.filter(n => n.kind === 'service').length,
+    tests: f.nodes.filter(n => n.kind === 'test' && n.state !== 'SUPPORTED_UNAFFECTED').length,
+    knowledge: f.nodes.filter(n => n.kind === 'knowledge' && n.state === 'POTENTIALLY_AFFECTED').length,
+    obligations: f.obligations.length,
+    unresolved: f.edges.filter(e => e.state !== 'admitted').length,
+    gaps: f.coverage_gaps.length,
+  };
+  assert.deepEqual(Object.keys(f.count_claims).sort(), Object.keys(counts).sort());
+  for (const [key, count] of Object.entries(counts)) assert.equal(current.claims.find(c => c.claim_id === f.count_claims[key]).statement, `${count} ${f.count_labels[key]}`);
+  for (const e of f.evidence) {
+    assert.equal(e.sha256, createHash('sha256').update(e.seed).digest('hex'));
+    assert.equal(current.claims.find(c => c.claim_id === e.hash_claim).statement, e.sha256);
+  }
+  for (const [, id] of JSON.stringify(f).matchAll(/"(concept-[a-z0-9-]+)"/g)) {
+    const claim = current.claims.find(c => c.claim_id === id);
+    assert.equal(claim?.approval_state, 'pending', id);
+    assert.equal(claim?.lifecycle_state, 'review', id);
+  }
+});

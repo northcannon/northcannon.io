@@ -1515,3 +1515,633 @@ NorthCannon — AI Action Control. Control what autonomous AI can change.
 ### redesign-about-founder-transition
 
 That question led to a broader concern: how to verify the state AI systems act on, and the state their actions produce.
+
+## E-014 — Concept visualizations
+
+### concept-truth
+
+Concept visualization — synthetic engineering scenario
+
+### concept-planned
+
+PLANNED
+
+### concept-illustrative
+
+ILLUSTRATIVE
+
+### concept-console
+
+Change Intelligence Console
+
+### concept-context
+
+Change context
+
+### concept-graph
+
+Dependency and consequence graph
+
+### concept-inspector
+
+Consequence inspector
+
+### concept-queue
+
+Revalidation queue
+
+### concept-timeline
+
+Illustrative change lifecycle
+
+### concept-obligations
+
+Review obligations
+
+### concept-coverage
+
+Coverage and uncertainty
+
+### concept-evidence
+
+Synthetic evidence records
+
+### concept-provenance
+
+Inspect synthetic provenance
+
+### concept-hash
+
+Inspect full synthetic SHA-256
+
+### concept-direct
+
+Direct consequences
+
+### concept-transitive
+
+Transitive consequences
+
+### concept-compare
+
+Before / proposed
+
+### concept-graph-mode
+
+Graph view
+
+### concept-before
+
+Before the proposal
+
+### concept-after
+
+After / proposed
+
+### concept-preview-link
+
+Explore the synthetic change in Solutions
+
+### concept-graph-access
+
+Synthetic dependency graph; scroll to explore and select an artifact
+
+### concept-authority
+
+Exact Transition Authority
+
+### concept-boundary
+
+Capability ≠ permission
+
+### concept-proposal
+
+Proposed transition
+
+### concept-evaluation
+
+Authority evaluation
+
+### concept-decision
+
+Illustrative disposition
+
+### concept-withheld
+
+Withheld pending evidence
+
+### concept-authorized
+
+Authorized state remains unchanged
+
+### concept-packet
+
+Synthetic Evidence Packet
+
+### concept-reconciliation
+
+Reconciliation ladder
+
+### concept-packet-separation
+
+Illustrative records below are separate from the published evidence ledger.
+
+### concept-seed-note
+
+All digests are synthetic SHA-256 values derived from labelled fixture seeds. They identify no real repository or evidence.
+
+### concept-repo
+
+Repository identity
+
+### concept-candidate
+
+Exact candidate
+
+### concept-configuration
+
+Configuration identity
+
+### concept-scope
+
+Requested scope
+
+### concept-source
+
+Change source
+
+### concept-previous
+
+Previous dependency
+
+### concept-proposed
+
+Proposed dependency
+
+### concept-reason
+
+Reason in scope
+
+### concept-relation
+
+Relationship evidence
+
+### concept-gap
+
+Discovery gap
+
+### concept-unknown-note
+
+Incomplete discovery cannot support an unaffected conclusion.
+
+### concept-unaffected-note
+
+Supported unaffected only within the recorded isolated-build scope.
+
+### concept-acceptance
+
+Acceptance withheld; evidence and coverage obligations remain open.
+
+### concept-receipt-boundary
+
+The receipt belongs to a synthetic rehearsal, not an authorized transition.
+
+### concept-comparison-known
+
+Known change: the dependency and lock record differ.
+
+### concept-comparison-potential
+
+Potential consequences: services, tests, schema compatibility and engineering knowledge require review.
+
+### concept-comparison-gap
+
+Evidence gap: dynamic configuration and recovery coverage remain unknown.
+
+### concept-before-knowledge
+
+Earlier architecture and recovery assumptions reference version 2.4.1.
+
+### concept-after-knowledge
+
+The proposed version requires reassessment of those assumptions.
+
+### concept-before-evidence
+
+Earlier synthetic test evidence applies to the old dependency only.
+
+### concept-after-evidence
+
+New compatibility evidence is missing; earlier results cannot authorize this candidate.
+
+### concept-qualification
+
+Qualification remains incomplete in this synthetic scenario.
+
+### concept-research-boundary
+
+Research evidence informs a proposal; separate review controls product adoption.
+
+### concept-state-changed
+
+CHANGED
+
+### concept-state-potentially-affected
+
+POTENTIALLY AFFECTED
+
+### concept-state-admitted
+
+ADMITTED
+
+### concept-state-unresolved
+
+UNRESOLVED
+
+### concept-state-unknown-coverage
+
+UNKNOWN COVERAGE
+
+### concept-state-supported-unaffected
+
+SUPPORTED UNAFFECTED
+
+### concept-node-sdk
+
+lattice-fixture-sdk
+
+### concept-reason-sdk
+
+Dependency upgrade 2.4.1 → 2.5.0 is proposed; compatibility is not established.
+
+### concept-node-lock
+
+fixture.lock
+
+### concept-reason-lock
+
+The lock record identifies the changed dependency bytes.
+
+### concept-node-engine
+
+Harbor fixture engine
+
+### concept-reason-engine
+
+The engine imports the changed SDK; its integration behavior requires revalidation.
+
+### concept-node-api
+
+Harbor fixture API
+
+### concept-reason-api
+
+The API consumes the changed SDK through an admitted import relationship.
+
+### concept-node-tests
+
+Compatibility test fixture
+
+### concept-reason-tests
+
+The test dependency is admitted; a passing result for the proposed version is still missing.
+
+### concept-node-knowledge
+
+Architecture assumption fixture
+
+### concept-reason-knowledge
+
+The engine behavior supports an architecture assertion that may now be stale.
+
+### concept-node-schema
+
+Envelope schema fixture
+
+### concept-reason-schema
+
+A candidate API-to-schema relationship requires review before it can be admitted.
+
+### concept-node-config
+
+Dynamic configuration fixture
+
+### concept-reason-config
+
+Dynamic loading is outside the discovered relationship scope; impact is unknown.
+
+### concept-node-recovery
+
+Recovery assumption fixture
+
+### concept-reason-recovery
+
+Restoration compatibility has no relationship evidence for the proposed SDK.
+
+### concept-node-isolated
+
+Isolated render test fixture
+
+### concept-reason-isolated
+
+A synthetic isolated-build record supports no dependency on the SDK within this test scope.
+
+### concept-edge-1
+
+pins
+
+### concept-edge-2
+
+imports
+
+### concept-edge-3
+
+imports
+
+### concept-edge-4
+
+validated by
+
+### concept-edge-5
+
+supports assumption
+
+### concept-edge-6
+
+may consume
+
+### concept-evidence-relationship-1
+
+Admitted synthetic relationship record: sdk → lock.
+
+### concept-hash-relationship-1
+
+ee7f0c86510bcb01fdc6e5e33740f266d624abb9231c196c2f65c145c4ccd562
+
+### concept-evidence-relationship-2
+
+Admitted synthetic relationship record: sdk → engine.
+
+### concept-hash-relationship-2
+
+f8a712f0d22a4f4907df05044db88977a3920174f5d47857d388cb90f7c7c448
+
+### concept-evidence-relationship-3
+
+Admitted synthetic relationship record: sdk → api.
+
+### concept-hash-relationship-3
+
+c081c280ee43196536ae5c1a51760a9ac40e949f4d85e686ea9b9f924d70904f
+
+### concept-evidence-relationship-4
+
+Admitted synthetic relationship record: engine → tests.
+
+### concept-hash-relationship-4
+
+b5c346505986730d77e8f87354dbc248c2f8c737ee94e768e5031e7a1e907e8c
+
+### concept-evidence-relationship-5
+
+Unadmitted synthetic relationship record: engine → knowledge.
+
+### concept-hash-relationship-5
+
+cb6295e633a26bd1cb987874ca9b88c5180b60f5024a0c883a639b3a5c00bcbd
+
+### concept-evidence-relationship-6
+
+Unadmitted synthetic relationship record: api → schema.
+
+### concept-hash-relationship-6
+
+d69ee9b71ccfb3514790f56d895e9d3ea22e8eba6262aa9c48f1249e35e38779
+
+### concept-evidence-isolation
+
+Synthetic isolated-build record excludes SDK linkage only for the isolated render test.
+
+### concept-hash-isolation
+
+d917d1b4a69be8f9968aa9329189ac74dcf388aa722831cba8f5ae094af539a4
+
+### concept-evidence-candidate
+
+Synthetic candidate source and lock snapshot for the proposed upgrade.
+
+### concept-hash-candidate
+
+5b1adb8df38975fd657f5c53ee471f26d5fb619698edd3d0c86581a9342f39ae
+
+### concept-evidence-rehearsal
+
+Synthetic rehearsal receipt reports 2.5.0; the separate observation still records 2.4.1.
+
+### concept-hash-rehearsal
+
+16059cefc8b1dfecaa12434108fa983c500fad1dbb19ed63928f15e73eeca3de
+
+### concept-evidence-observation
+
+Synthetic observation disagrees with the intended dependency version; verification is unresolved.
+
+### concept-hash-observation
+
+0c8b063875f816d8a59081f82c923027935ad10f420a3ab0feefd720a7d1b5ed
+
+### concept-obligation-implementation
+
+Review the changed SDK integration before widening the execution scope.
+
+### concept-obligation-status-implementation
+
+Requires review
+
+### concept-obligation-integration
+
+Revalidate compatibility tests against the exact proposed candidate.
+
+### concept-obligation-status-integration
+
+Awaiting evidence
+
+### concept-obligation-architecture
+
+Reassess the architecture assertion derived from engine behavior.
+
+### concept-obligation-status-architecture
+
+Requires review
+
+### concept-obligation-schema
+
+Establish the candidate schema relationship and examine compatibility.
+
+### concept-obligation-status-schema
+
+Requires review
+
+### concept-obligation-history
+
+Determine whether earlier evidence applies to the proposed dependency bytes.
+
+### concept-obligation-status-history
+
+Awaiting evidence
+
+### concept-obligation-recovery
+
+Resolve recovery and dynamic configuration coverage before authority can be granted.
+
+### concept-obligation-status-recovery
+
+Blocked by unknown coverage
+
+### concept-gap-config
+
+Dynamic loading coverage is missing; the configuration cannot be classified unaffected.
+
+### concept-gap-recovery
+
+Recovery compatibility evidence is missing for the proposed version.
+
+### concept-lifecycle-1
+
+Change proposed
+
+### concept-lifecycle-2
+
+Exact candidate identified
+
+### concept-lifecycle-3
+
+Relationships evaluated within stated scope
+
+### concept-lifecycle-4
+
+Potential consequences identified
+
+### concept-lifecycle-5
+
+Review obligations derived
+
+### concept-lifecycle-6
+
+Authority withheld pending evidence
+
+### concept-lifecycle-7
+
+Execution not authorized
+
+### concept-lifecycle-8
+
+Verification and reconciliation unresolved
+
+### concept-identity-change
+
+SYN-CHANGE-014
+
+### concept-identity-repository
+
+synthetic/harbor-fixture
+
+### concept-identity-candidate
+
+synthetic-revision-014
+
+### concept-identity-configuration
+
+synthetic-config-014
+
+### concept-identity-packet
+
+SYN-PACKET-014
+
+### concept-identity-previous
+
+lattice-fixture-sdk 2.4.1
+
+### concept-identity-proposed
+
+lattice-fixture-sdk 2.5.0
+
+### concept-identity-scope
+
+Proposed scope: dependency and lock record only; no service deployment.
+
+### concept-identity-source
+
+Synthetic dependency proposal and local rehearsal records.
+
+### concept-count-changed
+
+2 directly changed artifacts
+
+### concept-count-potential
+
+3 potentially affected artifacts
+
+### concept-count-services
+
+2 impacted services
+
+### concept-count-tests
+
+1 relevant tests
+
+### concept-count-knowledge
+
+1 stale knowledge candidates
+
+### concept-count-obligations
+
+6 outstanding review obligations
+
+### concept-count-unresolved
+
+2 unresolved relationships
+
+### concept-count-gaps
+
+2 coverage gaps
+
+### concept-ladder-1
+
+Intended
+
+### concept-ladder-detail-1
+
+Proposed dependency version: 2.5.0.
+
+### concept-ladder-2
+
+Receipt
+
+### concept-ladder-detail-2
+
+Synthetic rehearsal reports version 2.5.0.
+
+### concept-ladder-3
+
+Observed
+
+### concept-ladder-detail-3
+
+Observed fixture version: 2.4.1 — mismatch.
+
+### concept-ladder-4
+
+Verified
+
+### concept-ladder-detail-4
+
+Outcome verification remains unresolved.
+
+### concept-ladder-5
+
+Reconciled
+
+### concept-ladder-detail-5
+
+Not reconciled; no accepted change is represented.
