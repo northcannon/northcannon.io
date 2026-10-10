@@ -1524,7 +1524,7 @@ Concept visualization — synthetic engineering scenario
 
 ### concept-planned
 
-PLANNED
+PLANNED CAPABILITY
 
 ### concept-illustrative
 
@@ -1852,11 +1852,11 @@ pins
 
 ### concept-edge-2
 
-imports
+engine import
 
 ### concept-edge-3
 
-imports
+API import
 
 ### concept-edge-4
 
@@ -1956,7 +1956,7 @@ Review the changed SDK integration before widening the execution scope.
 
 ### concept-obligation-status-implementation
 
-Requires review
+Implementation review required
 
 ### concept-obligation-integration
 
@@ -1964,7 +1964,7 @@ Revalidate compatibility tests against the exact proposed candidate.
 
 ### concept-obligation-status-integration
 
-Awaiting evidence
+Compatibility evidence pending
 
 ### concept-obligation-architecture
 
@@ -1972,7 +1972,7 @@ Reassess the architecture assertion derived from engine behavior.
 
 ### concept-obligation-status-architecture
 
-Requires review
+Architecture review required
 
 ### concept-obligation-schema
 
@@ -1980,7 +1980,7 @@ Establish the candidate schema relationship and examine compatibility.
 
 ### concept-obligation-status-schema
 
-Requires review
+Schema review required
 
 ### concept-obligation-history
 
@@ -1988,7 +1988,7 @@ Determine whether earlier evidence applies to the proposed dependency bytes.
 
 ### concept-obligation-status-history
 
-Awaiting evidence
+Historical evidence pending
 
 ### concept-obligation-recovery
 
@@ -2088,11 +2088,11 @@ Synthetic dependency proposal and local rehearsal records.
 
 ### concept-count-tests
 
-1 relevant tests
+1 relevant test
 
 ### concept-count-knowledge
 
-1 stale knowledge candidates
+1 stale knowledge candidate
 
 ### concept-count-obligations
 

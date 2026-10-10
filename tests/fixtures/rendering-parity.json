@@ -6,8 +6,8 @@
     ".review-dist-wp4/404.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/about/company/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/contact/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
-    ".review-dist-wp4/evidence/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
-    ".review-dist-wp4/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist-wp4/evidence/index.html": "Run 2: Evidence separates the synthetic packet and mismatched reconciliation from the real ledger; event-009 status is removed from the off-owner ledger row. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist-wp4/index.html": "Run 2: Home replaces lineage with the compact synthetic scenario preview. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/trust/changelog/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/trust/claims/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/trust/disclosure/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance.",
@@ -30,7 +30,14 @@
     "dist/trust/site-security/index.html": "Run 1 layout revision: production pages change only in the footer, now grouped into Trust Center and Company lists with approved labels (Company is the approved label-company); copy, claims and approvals unchanged; implementation regression baseline, not independent acceptance.",
     "dist/trust/status/index.html": "Run 1 layout revision: production pages change only in the footer, now grouped into Trust Center and Company lists with approved labels (Company is the approved label-company); copy, claims and approvals unchanged; implementation regression baseline, not independent acceptance.",
     "dist/vision/index.html": "Run 1 layout revision: production pages change only in the footer, now grouped into Trust Center and Company lists with approved labels (Company is the approved label-company); copy, claims and approvals unchanged; implementation regression baseline, not independent acceptance.",
-    ".review-dist/index.html": "Run 1 layout revision of the review composition: full-width layout, status chips, grouped footer and the revised page compositions; all new or changed copy remains pending; implementation regression baseline, not independent acceptance."
+    ".review-dist/index.html": "Run 2: Home replaces lineage with the compact synthetic scenario preview. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist-wp4/experiments/index.html": "Run 2: Experiments refines research-only visual rules with existing copy. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist-wp4/products/index.html": "Run 2: Products adds the withheld exact-transition authority concept beside the existing stack. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist-wp4/solutions/index.html": "Run 2: Solutions replaces the workflow grid and worked example with one fragment-driven console. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist/evidence/index.html": "Run 2: Evidence separates the synthetic packet and mismatched reconciliation from the real ledger; event-009 status is removed from the off-owner ledger row. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist/experiments/index.html": "Run 2: Experiments refines research-only visual rules with existing copy. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist/products/index.html": "Run 2: Products adds the withheld exact-transition authority concept beside the existing stack. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance.",
+    ".review-dist/solutions/index.html": "Run 2: Solutions replaces the workflow grid and worked example with one fragment-driven console. Concept stylesheet linked only on the five changed review pages. New copy is pending; implementation regression baseline, not independent acceptance."
   },
   "excluded": {
     ".review-dist-wp4/trust/provenance/index.html": "Source-bound digests change with this baseline; independently validated by provenance tests."
@@ -40,8 +47,8 @@
     ".review-dist-wp4/about/company/index.html": "e267c9fb6a4c21cedc7368bdfc0272cc3c8a5d96a754515bf877c5885c91f959",
     ".review-dist-wp4/contact/index.html": "184706db53a193c432f7703c45ab0f051a8d6e0a1a55f615a378763276493699",
     ".review-dist-wp4/demo/index.html": "2a19c4b8dadb396dac5bc8b40cbbe44c2003fb20da9b62c858b71fe0f0c74dda",
-    ".review-dist-wp4/evidence/index.html": "cb2e9a80fc888f19e1bb70b44d8c720fdb95b7644a1b5ace24bf74790a81a66e",
-    ".review-dist-wp4/index.html": "d71b40a3ead966773530779bae3ed3c0f8f2c1cf688056ddfabd825e92270318",
+    ".review-dist-wp4/evidence/index.html": "27d2e7d5822c3d4ddae6f18678731d88830f923cdbea6071900a2c690671233c",
+    ".review-dist-wp4/index.html": "f16ef18abd860cb4144856c67c7037a517870313ab3e03884ce5b1d73bf7ceed",
     ".review-dist-wp4/trust/changelog/index.html": "713750b33bacd3184983aa0a112d2a9803252330d3c07cbcc0652e0e7b32ab73",
     ".review-dist-wp4/trust/claims/index.html": "74b92d95a8e2ee6b900041483a43dc901f57329159ed11a3200f6ff05fd167eb",
     ".review-dist-wp4/trust/disclosure/index.html": "de9e092d6cb18acac2baabda21a9fede75411c4b5221902d37dd33acf7a6b7d1",
@@ -65,6 +72,13 @@
     "dist/trust/site-security/index.html": "511337d32e9eda38e9931e17f6bd077bb8e40945d4173c26c213081796645b03",
     "dist/trust/status/index.html": "e2294f391b749e5b3d941d75b996fdc1ffe639ce6ba4d69668382690c238331a",
     "dist/vision/index.html": "7ca7f8f82e501643cca2464e54dde47b588aed44236e31579de96d1e3d4aab68",
-    ".review-dist/index.html": "d71b40a3ead966773530779bae3ed3c0f8f2c1cf688056ddfabd825e92270318"
+    ".review-dist/index.html": "f16ef18abd860cb4144856c67c7037a517870313ab3e03884ce5b1d73bf7ceed",
+    ".review-dist-wp4/experiments/index.html": "c0000dde840d35fd9f11502491937280809e392d8359b84aa34b9e1da9777e1c",
+    ".review-dist-wp4/products/index.html": "1453bbaba4abe3c7ffaa06145df2cfa17d45ae45eb084f79363949bc578a3fc0",
+    ".review-dist-wp4/solutions/index.html": "2e072b4f8ed26cab069a0af0d8b8204a052a910f94e0534c1c5ff84fe892c6a4",
+    ".review-dist/evidence/index.html": "27d2e7d5822c3d4ddae6f18678731d88830f923cdbea6071900a2c690671233c",
+    ".review-dist/experiments/index.html": "c0000dde840d35fd9f11502491937280809e392d8359b84aa34b9e1da9777e1c",
+    ".review-dist/products/index.html": "1453bbaba4abe3c7ffaa06145df2cfa17d45ae45eb084f79363949bc578a3fc0",
+    ".review-dist/solutions/index.html": "2e072b4f8ed26cab069a0af0d8b8204a052a910f94e0534c1c5ff84fe892c6a4"
   }
 }

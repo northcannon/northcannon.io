@@ -51,7 +51,7 @@ All elements below are pending E-014 claims. Every interface is qualified by `co
 | Claim ID | Illustrative text / interface element | Qualification |
 | --- | --- | --- |
 | `concept-truth` | Concept visualization — synthetic engineering scenario | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-planned` | PLANNED | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-planned` | PLANNED CAPABILITY | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-illustrative` | ILLUSTRATIVE | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-console` | Change Intelligence Console | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-context` | Change context | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
@@ -133,8 +133,8 @@ All elements below are pending E-014 claims. Every interface is qualified by `co
 | `concept-node-isolated` | Isolated render test fixture | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-reason-isolated` | A synthetic isolated-build record supports no dependency on the SDK within this test scope. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-edge-1` | pins | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-edge-2` | imports | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-edge-3` | imports | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-edge-2` | engine import | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-edge-3` | API import | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-edge-4` | validated by | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-edge-5` | supports assumption | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-edge-6` | may consume | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
@@ -159,15 +159,15 @@ All elements below are pending E-014 claims. Every interface is qualified by `co
 | `concept-evidence-observation` | Synthetic observation disagrees with the intended dependency version; verification is unresolved. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-hash-observation` | 0c8b063875f816d8a59081f82c923027935ad10f420a3ab0feefd720a7d1b5ed | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-implementation` | Review the changed SDK integration before widening the execution scope. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-obligation-status-implementation` | Requires review | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-obligation-status-implementation` | Implementation review required | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-integration` | Revalidate compatibility tests against the exact proposed candidate. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-obligation-status-integration` | Awaiting evidence | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-obligation-status-integration` | Compatibility evidence pending | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-architecture` | Reassess the architecture assertion derived from engine behavior. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-obligation-status-architecture` | Requires review | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-obligation-status-architecture` | Architecture review required | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-schema` | Establish the candidate schema relationship and examine compatibility. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-obligation-status-schema` | Requires review | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-obligation-status-schema` | Schema review required | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-history` | Determine whether earlier evidence applies to the proposed dependency bytes. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-obligation-status-history` | Awaiting evidence | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-obligation-status-history` | Historical evidence pending | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-recovery` | Resolve recovery and dynamic configuration coverage before authority can be granted. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-obligation-status-recovery` | Blocked by unknown coverage | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-gap-config` | Dynamic loading coverage is missing; the configuration cannot be classified unaffected. | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
@@ -192,8 +192,8 @@ All elements below are pending E-014 claims. Every interface is qualified by `co
 | `concept-count-changed` | 2 directly changed artifacts | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-count-potential` | 3 potentially affected artifacts | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-count-services` | 2 impacted services | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-count-tests` | 1 relevant tests | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
-| `concept-count-knowledge` | 1 stale knowledge candidates | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-count-tests` | 1 relevant test | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
+| `concept-count-knowledge` | 1 stale knowledge candidate | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-count-obligations` | 6 outstanding review obligations | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-count-unresolved` | 2 unresolved relationships | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
 | `concept-count-gaps` | 2 coverage gaps | `concept-truth`; PLANNED / ILLUSTRATIVE interface |
