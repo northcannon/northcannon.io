@@ -299,3 +299,25 @@ test('pending inventory rejects omissions, duplicates, altered text, wrong batch
   }
   for (const lifecycle_state of ['draft', 'approved']) assert.throws(() => check([active, { ...retired, lifecycle_state }]), /exhaustively/);
 });
+
+function checkMetadataConfirmation(claims, draft, text) {
+  const claim = claims.find(c => c.claim_id === 'status-gate1-discontinued');
+  assert.deepEqual(draft.metadata_confirmation_requests?.['E-013'], [{ claim_id: claim.claim_id, fields: { category: claim.category, status_stage: claim.status_stage }, state: 'requested' }]);
+  const section = text.split('## E-013')[1]?.split(/\n## /)[0];
+  assert.ok(section?.includes('#### Metadata confirmation requested'));
+  for (const value of [claim.claim_id, `category=${claim.category}`, `status_stage=${claim.status_stage}`]) assert.ok(section.includes('`' + value + '`'), value);
+}
+
+test('E-013 explicitly requests founder confirmation of actual category and stage metadata', async () => {
+  const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+  checkMetadataConfirmation(current.claims, draft, text);
+  const absent = structuredClone(draft); delete absent.metadata_confirmation_requests;
+  assert.throws(() => checkMetadataConfirmation(current.claims, absent, text));
+  for (const field of ['category', 'status_stage']) {
+    const wrong = structuredClone(draft); wrong.metadata_confirmation_requests['E-013'][0].fields[field] = 'wrong';
+    assert.throws(() => checkMetadataConfirmation(current.claims, wrong, text));
+    assert.throws(() => checkMetadataConfirmation(current.claims, draft, text.replace(`${field}=`, 'missing=')));
+  }
+  assert.throws(() => checkMetadataConfirmation(current.claims, draft, text.replace('#### Metadata confirmation requested', '')));
+});

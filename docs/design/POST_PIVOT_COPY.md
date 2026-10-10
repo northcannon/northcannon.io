@@ -1454,6 +1454,12 @@ Study arms
 
 ## E-013
 
+#### Metadata confirmation requested
+
+- `status-gate1-discontinued` — founder confirmation requested; not granted.
+  - `category=status`
+  - `status_stage=discontinued`
+
 ### redesign-about-founder-title
 
 Built from the consequences backward.

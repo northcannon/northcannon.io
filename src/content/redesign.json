@@ -1179,5 +1179,17 @@
     "planned",
     "implemented",
     "planned"
-  ]
+  ],
+  "metadata_confirmation_requests": {
+    "E-013": [
+      {
+        "claim_id": "status-gate1-discontinued",
+        "fields": {
+          "category": "status",
+          "status_stage": "discontinued"
+        },
+        "state": "requested"
+      }
+    ]
+  }
 }
