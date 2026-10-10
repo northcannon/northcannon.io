@@ -8834,7 +8834,7 @@
   },
   {
     "claim_id": "concept-planned",
-    "statement": "PLANNED",
+    "statement": "PLANNED CAPABILITY",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9654,7 +9654,7 @@
   },
   {
     "claim_id": "concept-edge-2",
-    "statement": "imports",
+    "statement": "engine import",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9664,7 +9664,7 @@
   },
   {
     "claim_id": "concept-edge-3",
-    "statement": "imports",
+    "statement": "API import",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9914,7 +9914,7 @@
   },
   {
     "claim_id": "concept-obligation-status-implementation",
-    "statement": "Requires review",
+    "statement": "Implementation review required",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9934,7 +9934,7 @@
   },
   {
     "claim_id": "concept-obligation-status-integration",
-    "statement": "Awaiting evidence",
+    "statement": "Compatibility evidence pending",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9954,7 +9954,7 @@
   },
   {
     "claim_id": "concept-obligation-status-architecture",
-    "statement": "Requires review",
+    "statement": "Architecture review required",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9974,7 +9974,7 @@
   },
   {
     "claim_id": "concept-obligation-status-schema",
-    "statement": "Requires review",
+    "statement": "Schema review required",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -9994,7 +9994,7 @@
   },
   {
     "claim_id": "concept-obligation-status-history",
-    "statement": "Awaiting evidence",
+    "statement": "Historical evidence pending",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -10244,7 +10244,7 @@
   },
   {
     "claim_id": "concept-count-tests",
-    "statement": "1 relevant tests",
+    "statement": "1 relevant test",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -10254,7 +10254,7 @@
   },
   {
     "claim_id": "concept-count-knowledge",
-    "statement": "1 stale knowledge candidates",
+    "statement": "1 stale knowledge candidate",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",

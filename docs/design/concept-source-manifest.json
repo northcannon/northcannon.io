@@ -1,0 +1,50 @@
+{
+  "review_status": "UNREVIEWED_PRESENTATION_ONLY",
+  "scenario": "src/content/concept-scenario.json",
+  "copy": "docs/design/POST_PIVOT_COPY.md",
+  "design": "docs/design/CONCEPT_VISUALIZATIONS.md",
+  "references": [
+    {
+      "path": "NorthCannon_Wireframes_A.PNG",
+      "sha256": "d9d4fa3c34e662a6eb0038f2ee287475a382d714cddb3a769085ac0290206aa4",
+      "role": "historical visual reference only"
+    },
+    {
+      "path": "NorthCannon_Wireframes_B.PNG",
+      "sha256": "10b1f57c1aa345fd9456db1fcf4eb34e2481f21e52da9ffe45317bc17cb068e1",
+      "role": "historical visual reference only"
+    },
+    {
+      "path": "NorthCannon_Public_Site_Implementation_Brief.PNG",
+      "sha256": "4771249189c7181b571b5bd46a40f5154768dc1873edd304a553a5909ceb9c40",
+      "role": "historical visual reference only"
+    }
+  ],
+  "diagrams": [
+    {
+      "component": "src/components/concept/ConsequenceGraph.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/AuthorityBoundary.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/ReconciliationLadder.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/StateComparison.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/ChangeTimeline.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    }
+  ]
+}

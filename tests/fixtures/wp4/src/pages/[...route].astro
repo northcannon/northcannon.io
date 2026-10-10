@@ -1,5 +1,5 @@
 ---
-import '../../../../../src/styles/concept.css';
+import conceptStyles from '../../../../../src/styles/concept.css?url';
 import ReviewPage from '../../../../../src/components/SitePage.astro';
 import { migratedReviewPaths } from '../../../../../scripts/redesign-policy.mjs';
 import { readRoutes } from '../../../../../src/governance/routes.mjs';
@@ -8,4 +8,4 @@ export function getStaticPaths() {
 }
 const { route } = Astro.props;
 ---
-<ReviewPage route={route} />
+<ReviewPage conceptStyles={["/","/solutions/","/products/","/evidence/","/experiments/"].includes(route.path) ? conceptStyles : undefined} route={route} />

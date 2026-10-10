@@ -1,7 +1,7 @@
 ---
-import '../../../../../src/styles/concept.css';
+import conceptStyles from '../../../../../src/styles/concept.css?url';
 import SitePage from '../../../../../src/components/SitePage.astro';
 import { readRoutes } from '../../../../../src/governance/routes.mjs';
 const route = readRoutes().find(r => r.path === '/')!;
 ---
-<SitePage route={route} />
+<SitePage conceptStyles={["/","/solutions/","/products/","/evidence/","/experiments/"].includes(route.path) ? conceptStyles : undefined} route={route} />

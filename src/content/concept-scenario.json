@@ -410,8 +410,8 @@
     "changed": "directly changed artifacts",
     "potential": "potentially affected artifacts",
     "services": "impacted services",
-    "tests": "relevant tests",
-    "knowledge": "stale knowledge candidates",
+    "tests": "relevant test",
+    "knowledge": "stale knowledge candidate",
     "obligations": "outstanding review obligations",
     "unresolved": "unresolved relationships",
     "gaps": "coverage gaps"

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { readRoutes, draftBanner } from '../../src/governance/routes.mjs';
 import { loadGovernance } from '../../src/governance/registry.mjs';
 import { migratedReviewPaths } from '../../scripts/redesign-policy.mjs';
@@ -12,6 +12,8 @@ import { requiredHeaders } from '../../scripts/policy.mjs';
 const REVIEW = 'http://127.0.0.1:4323';
 const PRODUCTION = 'http://127.0.0.1:4321';
 const fabricated = /Frozen —|Evidence System Operational|NC-\d|Jan \d|2025|[a-f0-9]{16,}|Not supplied/;
+const concept = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
+const syntheticHashes = new Set(concept.evidence.map(record => record.sha256));
 const desktop = testInfo => testInfo.project.name === 'desktop';
 
 test.use({ bypassCSP: true });
@@ -35,7 +37,19 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();
     if (!route.path.startsWith('/trust/') && !(review && route.path === '/evidence/')) {
-      const actual = await page.locator('main').evaluate(el => el.textContent);
+      // Only registered fixture hashes inside explicitly labeled review concepts
+      // are exempt; fabricated text and hashes elsewhere remain prohibited.
+      if (review) for (const panel of await page.locator('main .ci-console, main .ci-authority').all()) {
+        await expect(panel).toContainText('Concept visualization — synthetic engineering scenario');
+        for (const code of await panel.locator('.ci-hash code').all()) {
+          expect(syntheticHashes.has(await code.textContent())).toBe(true);
+        }
+      }
+      const actual = await page.locator('main').evaluate((el, isReview) => {
+        const copy = el.cloneNode(true);
+        if (isReview) copy.querySelectorAll('.ci-console .ci-hash code, .ci-authority .ci-hash code').forEach(code => code.remove());
+        return copy.textContent;
+      }, review);
       expect(actual).not.toMatch(fabricated);
     }
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');
