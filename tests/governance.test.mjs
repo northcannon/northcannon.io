@@ -105,8 +105,8 @@ test('migration preserves each baseline ID and approval state once, with a singl
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
   // 5 pending lending-only diagram claims replaced by industry-agnostic ones, and the approved mission (retired by
-  // founder decision N-11, approval history preserved).
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 49);
+  // founder decision N-11, approval history preserved), plus 20 pending run-1 drafts superseded by split or reused claims.
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 69);
   const mission = current.claims.find(c => c.claim_id === 'brand-mission');
   assert.deepEqual([mission.approval_state, mission.lifecycle_state, mission.approval_record], ['approved', 'retired', 'founder_attestation']);
   assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('brand-mission'), 'mission approval history remains pinned');

@@ -84,7 +84,8 @@ test('provenance detects modified output and sitemap equals the publish set', as
     await writeFile(path.join(root, 'index.html'), '<p>NorthCannon</p>');
     const xml = sitemap(readRoutes());
     assert.ok(!xml.includes('lastmod'));
-    assert.deepEqual([...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]), readRoutes().filter(r => r.publish && !r.alias_of).map(r => 'https://northcannon.io' + r.path));
+    assert.deepEqual([...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]), readRoutes().filter(r => r.publish && !r.alias_of && r.path !== '/404.html').map(r => 'https://northcannon.io' + r.path));
+    assert.ok(!xml.includes('404'), 'the sitemap omits the 404 page');
     await writeFile(path.join(root, 'sitemap.xml'), xml);
     const data = await provenance(root);
     assert.equal(data.source_commit, null);

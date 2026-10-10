@@ -101,3 +101,32 @@ test('every published and review page renders with browser JavaScript disabled',
     }
   } finally { await context.close(); }
 });
+
+test('full-width layout: About rows, founder biography and editorial blocks use the container at 1440', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'The width contract is asserted at the 1440 desktop viewport.');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(REVIEW + '/about/');
+  const container = await page.locator('main .site-container').first().evaluate(el => { const r = el.getBoundingClientRect(); return { left: r.left, width: r.width }; });
+  expect(container.width).toBeGreaterThan(1250);
+  const rows = page.locator('.editorial-rows__row');
+  await expect(rows).toHaveCount(4);
+  for (const row of await rows.all()) {
+    expect((await row.boundingBox()).width).toBeGreaterThanOrEqual(container.width * 0.9);
+    expect(await row.locator('.editorial-rows__body').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
+  }
+  // The longest row wraps across the whole container: its text reaches at least 85% of the container width.
+  const reach = await rows.first().evaluate(el => { const range = document.createRange(); range.selectNodeContents(el); return Math.max(...[...range.getClientRects()].map(r => r.right)); });
+  expect(reach - container.left).toBeGreaterThanOrEqual(container.width * 0.85);
+  // The biography fills the grid track beside the photo column.
+  const photo = await page.locator('.founder-profile picture').boundingBox();
+  const bio = await page.locator('.founder-profile__bio').boundingBox();
+  const track = container.width - (photo.width + 32);
+  expect(bio.width).toBeGreaterThanOrEqual(track * 0.9);
+  expect(await page.locator('.founder-profile__bio').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
+  for (const route of ['/', '/about/', '/products/', '/solutions/', '/evidence/', '/experiments/']) {
+    await page.goto(REVIEW + route);
+    for (const block of await page.locator('.product-section > p, .product-section > .section-lede, .editorial-list').all()) {
+      expect((await block.boundingBox()).width, route).toBeGreaterThanOrEqual(container.width * 0.85);
+    }
+  }
+});
