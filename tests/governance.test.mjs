@@ -57,7 +57,7 @@ test('unique IDs include retired entries and retired references fail closed', ()
   assert.equal(referenceSchema(current.claims).safeParse({ entry_id: 'example', claim_ids: ['unknown'] }).success, false);
 });
 
-test('status rejects result fields and requires replacement attestation on stage change', () => {
+test('status rejects result fields and mismatched stages', () => {
   const schema = statusSchema(current.claims);
   const entry = current.status[0];
   assert.equal(schema.safeParse(entry).success, true);
@@ -104,8 +104,12 @@ test('migration preserves each baseline ID and approval state once, with a singl
   assert.ok(current.claims.length >= 13);
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
-  // and 5 pending lending-only diagram claims replaced by industry-agnostic ones.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 48);
+  // 5 pending lending-only diagram claims replaced by industry-agnostic ones, and the approved mission (retired by
+  // founder decision N-11, approval history preserved).
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 49);
+  const mission = current.claims.find(c => c.claim_id === 'brand-mission');
+  assert.deepEqual([mission.approval_state, mission.lifecycle_state, mission.approval_record], ['approved', 'retired', 'founder_attestation']);
+  assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('brand-mission'), 'mission approval history remains pinned');
   for (const id of ['interop-origin-title', 'interop-origin-enterprise', 'interop-origin-devices', 'interop-origin-workflow', 'interop-arrow-out', 'interop-arrow-back']) {
     const claim = current.claims.find(c => c.claim_id === id);
     assert.equal(claim.lifecycle_state, 'retired'); assert.equal(claim.approval_state, 'pending');
@@ -230,4 +234,16 @@ test('actual production claims must be present in the public register', async ()
   assert.deepEqual(claimRegisterErrors(docs,current.claims), []);
   docs.set('trust/claims/index.html','');
   assert.ok(claimRegisterErrors(docs,current.claims).length);
+});
+
+test('the approval inventory lists every pending claim once with its exact registered statement', async () => {
+  const text = await readFile('docs/design/POST_PIVOT_COPY.md', 'utf8');
+  const listed = new Map();
+  const heading = /^### (\S+)\n\n([\s\S]*?)(?=\n### |\n## |\s*$)/gm;
+  for (let match = heading.exec(text); match; match = heading.exec(text)) listed.set(match[1], [...(listed.get(match[1]) ?? []), match[2].trim()]);
+  const pending = current.claims.filter(c => c.approval_state === 'pending' && c.lifecycle_state === 'review');
+  assert.equal(pending.length, listed.size, 'inventory and register list the same number of pending claims');
+  for (const claim of pending) {
+    assert.deepEqual(listed.get(claim.claim_id), [claim.statement], `${claim.claim_id}: listed exactly once with the registered statement`);
+  }
 });

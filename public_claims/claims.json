@@ -35,7 +35,7 @@
     "category": "mission",
     "basis": "docs/FOUNDER_APPROVALS.md",
     "approval_state": "approved",
-    "lifecycle_state": "approved",
+    "lifecycle_state": "retired",
     "review_date": "2026-09-13",
     "approval_record": "founder_attestation"
   },
@@ -5544,7 +5544,7 @@
   },
   {
     "claim_id": "redesign-home-engineering-title",
-    "statement": "Change Intelligence, on an engineering change",
+    "statement": "Planned Change Intelligence, illustrated on an engineering change",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -6494,7 +6494,7 @@
   },
   {
     "claim_id": "redesign-about-company-3",
-    "statement": "What we build on: persistent verified state provides continuity between evidence, decisions and the next change.",
+    "statement": "Research: persistent verified state is a parallel, non-gating research question, not part of the Phase A product.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -6584,7 +6584,7 @@
   },
   {
     "claim_id": "redesign-evidence-milestones-1",
-    "statement": "Control foundation — accepted in Phase A scope",
+    "statement": "Control foundation — implemented in Phase A scope",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -8305,6 +8305,16 @@
   {
     "claim_id": "redesign-kpi-term-18",
     "statement": "Review-surface reduction",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-provenance-scope",
+    "statement": "This review page describes the production build, not this review build.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",

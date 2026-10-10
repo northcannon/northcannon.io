@@ -88,4 +88,4 @@ regenerated only after founder visual approval.
 | About | `/about/` | Overview: founder text, NorthCannon and Why now modules, subpage links | `AboutPage.astro` | Replaces the mock evidence packet and console |
 | About | `/about/company/` | Capabilities, is / is not, interoperability, contact | `AboutCompanyPage.astro` | Moved from the landing page |
 | About | `/about/features/` | Illustrative Change Intelligence, lineage and Evidence views | `AboutFeaturesPage.astro` | Fictional data; pending claims only |
-| About | `/about/founder/` | Founder page | `FounderPage.astro` | Moved from `/founder/`; unpublished |
+| About | `/about/founder/` | Founder page | `FounderPage.astro` | Moved from `/founder/`; production retains it until promotion, the redesign page is review-only |

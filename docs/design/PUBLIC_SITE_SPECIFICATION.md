@@ -46,8 +46,9 @@ The wordmark links to the landing page (`/`). The About dropdown lists Company
 opens on hover and keyboard focus with no JavaScript, the mobile menu (a `<details>`
 element) indents the same links under About, and every About page carries a local
 subnav (Overview, Company, Features, Founder) with `aria-current` on the active page.
-`/about/company/`, `/about/features/` and `/about/founder/` are review-only until the
-founder promotes them; production navigation lists only published, attested routes.
+Production retains the Phase 0.5 pages (`/about/company/`, `/about/features/`, `/about/founder/`, `/gate-1/`,
+`/vision/`) until the founder promotes the redesign; the redesign pages are review-only. Production navigation lists only
+published, attested routes.
 The former `/founder/` route is removed. Trust Center pages and the vision page are
 supporting routes outside the primary navigation.
 

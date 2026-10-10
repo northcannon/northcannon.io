@@ -251,6 +251,11 @@ Page not found · NorthCannon
 ### redesign-meta-description-404
 
 Find the product, evidence and contact pages for NorthCannon.
+
+### redesign-provenance-scope
+
+This review page describes the production build, not this review build.
+
 ## E-011
 
 ### redesign-explore
@@ -399,7 +404,7 @@ The six-stage product design extends beyond the implemented reference path.
 
 ### redesign-home-engineering-title
 
-Change Intelligence, on an engineering change
+Planned Change Intelligence, illustrated on an engineering change
 
 ### redesign-home-engineering-body
 
@@ -771,7 +776,7 @@ Where we start: engineering and infrastructure, where a successful tool call is 
 
 ### redesign-about-company-3
 
-What we build on: persistent verified state provides continuity between evidence, decisions and the next change.
+Research: persistent verified state is a parallel, non-gating research question, not part of the Phase A product.
 
 ### redesign-about-company-4
 
@@ -900,7 +905,7 @@ A defect found at a gate requires qualification on the repaired build.
 
 ### redesign-evidence-milestones-1
 
-Control foundation — accepted in Phase A scope
+Control foundation — implemented in Phase A scope
 
 ### redesign-evidence-milestones-2
 
@@ -936,75 +941,75 @@ Definitions only. No numeric KPI is claimed. Values require dated, versioned evi
 
 ### redesign-evidence-kpis-1
 
-Reference test outcome: passing versus total reference tests at a dated build, scoped to control primitives. First publication requires approved replay or governed-loop evidence with explicit scope.
+Passing versus total reference tests at a dated build, scoped to control primitives. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-2
 
-Separate-review record: findings raised and resolved by a reviewer separate from the implementer; this is not a third-party audit. First publication requires approved replay or governed-loop evidence with explicit scope.
+Findings raised and resolved by a reviewer separate from the implementer; this is not a third-party audit. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-3
 
-Selective revalidation fidelity: affected-state recall and false-safe exclusions against exhaustive recomputation on synthetic fixtures. First publication requires approved replay or governed-loop evidence with explicit scope.
+Affected-state recall and false-safe exclusions against exhaustive recomputation on synthetic fixtures. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-4
 
-Bounded-execution enforcement: out-of-scope effect attempts blocked versus attempted in a versioned adversarial suite. First publication requires approved replay or governed-loop evidence with explicit scope.
+Out-of-scope effect attempts blocked versus attempted in a versioned adversarial suite. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-5
 
-Execution reconciliation: uncertain executions resolved through reconciliation and blind retry counts. First publication requires approved replay or governed-loop evidence with explicit scope.
+Uncertain executions resolved through reconciliation and blind retry counts. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-6
 
-Evidence completeness: accepted changes with a complete evidence chain versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.
+Accepted changes with a complete evidence chain versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-7
 
-Customer Zero: governed changes accepted, cycle time and qualification restarts on NorthCannon’s own repository. First publication requires approved replay or governed-loop evidence with explicit scope.
+Governed changes accepted, cycle time and qualification restarts on NorthCannon’s own repository. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-8
 
-Unknown-impact disclosure: proposals explicitly marked unknown or incomplete versus proposals evaluated. First publication requires approved replay or governed-loop evidence with explicit scope.
+Proposals explicitly marked unknown or incomplete versus proposals evaluated. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-9
 
-Decision latency: added control-decision latency within a stated environment. First publication requires approved replay or governed-loop evidence with explicit scope.
+Added control-decision latency within a stated environment. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-10
 
-Reproducibility: equivalent sealed outputs from identical captured inputs in a replay suite. First publication requires approved replay or governed-loop evidence with explicit scope.
+Equivalent sealed outputs from identical captured inputs in a replay suite. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-11
 
-Affected-surface recall: truly affected surfaces identified versus ground truth established by replay or review. First publication requires approved replay or governed-loop evidence with explicit scope.
+Truly affected surfaces identified versus ground truth established by replay or review. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-12
 
-Missed-impact rate: affected surfaces discovered after acceptance versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.
+Affected surfaces discovered after acceptance versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-13
 
-Confirmed drift rate: obligations confirmed stale or inconsistent versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.
+Obligations confirmed stale or inconsistent versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-14
 
-False-positive obligation rate: obligations closed as still current versus obligations raised; reaffirmation can be useful. First publication requires approved replay or governed-loop evidence with explicit scope.
+Obligations closed as still current versus obligations raised; reaffirmation can be useful. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-15
 
-Review-obligation completion: obligations updated or reaffirmed before acceptance versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.
+Obligations updated or reaffirmed before acceptance versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-16
 
-Stale-document precision: documents confirmed stale versus documents flagged. First publication requires approved replay or governed-loop evidence with explicit scope.
+Documents confirmed stale versus documents flagged. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-17
 
-Code-consistency precision: downstream code, test or schema-consumer inconsistencies confirmed versus flagged. First publication requires approved replay or governed-loop evidence with explicit scope.
+Downstream code, test or schema-consumer inconsistencies confirmed versus flagged. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-kpis-18
 
-Review-surface reduction: mapped review surfaces versus exhaustive review surfaces; publish only alongside recall and missed-impact rate. First publication requires approved replay or governed-loop evidence with explicit scope.
+Mapped review surfaces versus exhaustive review surfaces; publish only alongside recall and missed-impact rate. First publication requires approved replay or governed-loop evidence with explicit scope.
 
 ### redesign-evidence-experimental-results-title
 

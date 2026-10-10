@@ -44,6 +44,7 @@ test('pending redesign copy is review-only and undeclared, retired and unknown c
   assert.equal(routeCopy(attest(claims,[id]), home, routes, id, { review: false }), claims.find(c => c.claim_id === id).statement);
   for (const id of ['unknown', 'status-gate1-frozen-stress', 'brand-mission']) assert.throws(() => routeCopy(claims, home, routes, id), /Undeclared/);
   assert.ok(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: false }).length);
+  assert.ok(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: true }).length);
 });
 
 test('publication identity requires exact commit and clean tree', async () => {
@@ -113,7 +114,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const pages = ['AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
       'src/content/redesign.json', 'src/content/og-image.json', 'public/og/northcannon-default.png', 'docs/design/POST_PIVOT_COPY.md',
-      'scripts/redesign-policy.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
+      'scripts/redesign-policy.mjs', 'scripts/check-redesign-output.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
       ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric'].map(n => `src/components/${n}.astro`),
       'src/components/pages/RedesignPage.astro',
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
@@ -206,6 +207,11 @@ test('Phase 0.5 claims are founder-attested by event 009, required on their rout
   const claims = loadGovernance().claims, routes = readRoutes(claims);
   const ids = ['status-gate1-discontinued', 'gate1-historical-statement', 'evidence-status-current', 'ledger-empty-current', 'demo-coming-soon-lede', 'changelog-2026-10-truth-correction'];
   assert.deepEqual([...approvalEvents['founder-approval-009'].claim_ids].sort(), [...ids].sort());
+  const designatedOwners = {
+    'status-gate1-discontinued': ['/trust/status/', '/trust/claims/'], 'gate1-historical-statement': ['/gate-1/', '/trust/claims/'],
+    'evidence-status-current': ['/evidence/', '/trust/claims/'], 'ledger-empty-current': ['/evidence/', '/trust/claims/'],
+    'demo-coming-soon-lede': ['/demo/', '/trust/claims/'], 'changelog-2026-10-truth-correction': ['/trust/claims/', '/trust/changelog/'],
+  };
   for (const id of ids) {
     const claim = claims.find(c => c.claim_id === id);
     assert.equal(claim.approval_state, 'approved');
@@ -214,8 +220,12 @@ test('Phase 0.5 claims are founder-attested by event 009, required on their rout
     assert.equal(claim.review_date, '2026-10-09');
     assert.equal(claim.basis, 'docs/FOUNDER_APPROVALS.md');
     // Reused approved statements may also be declared on the draft compositions.
+    // Each attested claim has exactly its designated owner routes; reuse elsewhere is a review slot only.
     const owners = routes.filter(r => r.claim_ids.includes(id));
-    assert.ok(owners.length >= 1);
+    assert.deepEqual(owners.map(r => r.path).sort(), [...designatedOwners[id]].sort(), id);
+    for (const route of routes.filter(r => r.review_claim_ids.includes(id) && !r.claim_ids.includes(id))) {
+      assert.equal(routeCopy(claims, route, routes, id, { review: false }), claim.statement, `${route.path}: approved reuse only`);
+    }
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: false }), claim.statement);
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: true }), claim.statement);
     assert.deepEqual(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners[0].path.slice(1) + 'index.html', { review: false }), []);
