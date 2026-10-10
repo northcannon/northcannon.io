@@ -220,13 +220,10 @@ test('Phase 0.5 claims are founder-attested by event 009, required on their rout
     assert.equal(claim.approval_record, 'founder_attestation');
     assert.equal(claim.review_date, '2026-10-09');
     assert.equal(claim.basis, 'docs/FOUNDER_APPROVALS.md');
-    // Reused approved statements may also be declared on the draft compositions.
-    // Each attested claim has exactly its designated owner routes; reuse elsewhere is a review slot only.
+    // One content owner plus the public claims register; no published review slots.
+    assertNoPublishedReviewSlot(routes, id);
     const owners = routes.filter(r => r.claim_ids.includes(id));
     assert.deepEqual(owners.map(r => r.path).sort(), [...designatedOwners[id]].sort(), id);
-    for (const route of routes.filter(r => r.review_claim_ids.includes(id) && !r.claim_ids.includes(id))) {
-      assert.equal(routeCopy(claims, route, routes, id, { review: false }), claim.statement, `${route.path}: approved reuse only`);
-    }
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: false }), claim.statement);
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: true }), claim.statement);
     assert.deepEqual(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners[0].path.slice(1) + 'index.html', { review: false }), []);
@@ -251,4 +248,19 @@ test('production finalization removes withdrawn demo assets even though historic
     const inventory = JSON.parse(await readFile(path.join(root, 'provenance.json'), 'utf8')).files;
     assert.ok(!Object.keys(inventory).some(name => /\.(mp4|vtt)$|demo-poster/.test(name)));
   } finally { await rm(root, { recursive: true }); }
+});
+
+function assertNoPublishedReviewSlot(routes, id) {
+  assert.ok(!routes.some(r => r.publish && r.review_claim_ids.includes(id)), `${id}: prohibited published review slot`);
+}
+
+test('N-4 rejects each event-009 claim in every published route review slot', () => {
+  const routes = readRoutes();
+  for (const id of approvalEvents['founder-approval-009'].claim_ids) {
+    for (const route of routes.filter(r => r.publish)) {
+      const invalid = structuredClone(routes);
+      invalid.find(r => r.path === route.path).review_claim_ids.push(id);
+      assert.throws(() => assertNoPublishedReviewSlot(invalid, id), /prohibited published review slot/);
+    }
+  }
 });
