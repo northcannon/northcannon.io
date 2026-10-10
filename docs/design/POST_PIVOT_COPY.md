@@ -404,7 +404,7 @@ How it works
 
 ### redesign-home-control-loop-body
 
-The six-stage product design extends beyond the implemented reference path.
+The six-stage design is broader than the implemented Phase A reference path.
 
 ### redesign-home-engineering-title
 
@@ -472,7 +472,7 @@ Accepted change
 
 ### redesign-home-deployment-title
 
-Where it runs / where it applies
+Where it runs and where it applies
 
 ### redesign-home-deployment-body
 
@@ -480,7 +480,7 @@ One control substrate, three planned deployment models. Engineering and infrastr
 
 ### redesign-home-evidence-title
 
-A public boundary around the evidence
+What exists, what is next, and what is not claimed
 
 ### redesign-home-contact-title
 
@@ -500,7 +500,7 @@ One control design
 
 ### redesign-products-capabilities-body
 
-Exact transition authority, outcome verification and recoverability preparation are implemented in Phase A scope. The full six-stage loop is the broader product direction.
+One design governs every deployment model. The Phase A reference path is implemented; the rest of the product direction is planned.
 
 ### redesign-products-distinction-title
 
@@ -534,10 +534,6 @@ Systems of record
 
 Planned deployment models
 
-### redesign-products-topology-title
-
-Deployment topology at a glance
-
 ### redesign-products-topology-body
 
 These diagrams describe intended placement, not operational responsibilities or contractual commitments.
@@ -558,13 +554,9 @@ Model and compute independence
 
 Models propose changes and hold no authority. NorthCannon is designed to work across the agents and compute environments a team chooses.
 
-### redesign-products-availability-title
-
-Availability
-
 ### redesign-products-contact-title
 
-Plan a deployment conversation
+Start a conversation about your environment
 
 ### redesign-deploy-managed
 
@@ -648,7 +640,7 @@ How a governed engineering change flows
 
 ### redesign-solutions-workflow-body
 
-Uncertain execution means reconcile first, never blindly retry.
+When an execution is uncertain, reconcile first; never retry blindly.
 
 ### redesign-solutions-workflow-1
 
@@ -838,10 +830,6 @@ Your environment
 
 APIs, docs, web, internal
 
-### redesign-about-row-label-1
-
-Why now
-
 ### redesign-about-row-body-1
 
 AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition.
@@ -853,10 +841,6 @@ Where we start
 ### redesign-about-row-body-2
 
 Engineering and infrastructure, where a successful tool call is not proof of final state.
-
-### redesign-about-row-label-3
-
-Research
 
 ### redesign-about-row-body-3
 
@@ -923,34 +907,6 @@ Qualification milestones
 ### redesign-evidence-milestones-body
 
 A defect found at a gate requires qualification on the repaired build.
-
-### redesign-evidence-milestones-1
-
-Control foundation — implemented in Phase A scope
-
-### redesign-evidence-milestones-2
-
-Product integration — next
-
-### redesign-evidence-milestones-3
-
-Separate implementation review — target
-
-### redesign-evidence-milestones-4
-
-Security qualification — target
-
-### redesign-evidence-milestones-5
-
-Harness qualification — target
-
-### redesign-evidence-milestones-6
-
-First governed loop on our own repository — target
-
-### redesign-evidence-milestones-7
-
-Deployable product — target
 
 ### redesign-evidence-kpis-title
 
@@ -1054,7 +1010,7 @@ Methodology & provenance
 
 ### redesign-evidence-methodology-body
 
-Public copy moves from a registered claim through founder attestation and publication checks to site provenance.
+Public copy is registered as a claim, attested by the founder, checked at publication and recorded in site provenance.
 
 ### redesign-evidence-historical-title
 
@@ -1091,22 +1047,6 @@ Persistent Intelligence
 ### redesign-experiments-persistent-intelligence-body
 
 The research asks whether AI systems can retain verified state, evidence and decisions across time and tasks instead of reconstructing the present from context. This thesis informs the product direction; it does not establish experimental results.
-
-### redesign-experiments-persistent-intelligence-1
-
-Hypothesis: verified state can provide useful continuity across changes.
-
-### redesign-experiments-persistent-intelligence-2
-
-Comparison: evaluate against conventional re-inference baselines.
-
-### redesign-experiments-persistent-intelligence-3
-
-Controls: define variables and hypotheses before execution.
-
-### redesign-experiments-persistent-intelligence-4
-
-Falsification: specify failure criteria before execution and publish outcomes regardless of direction.
 
 ### redesign-experiments-persistent-intelligence-5
 
@@ -1178,7 +1118,7 @@ Where results appear
 
 ### redesign-experiments-results-body
 
-Results belong on Evidence only after an experiment has run under its recorded freeze.
+Results are published on Evidence only after an experiment has run under its recorded freeze.
 
 ### redesign-status-status-title
 
@@ -1355,6 +1295,163 @@ Code-consistency precision
 ### redesign-kpi-term-18
 
 Review-surface reduction
+
+### redesign-milestone-name-1
+
+Control foundation
+
+### redesign-milestone-name-2
+
+Product integration
+
+### redesign-milestone-name-3
+
+Separate implementation review
+
+### redesign-milestone-name-4
+
+Security qualification
+
+### redesign-milestone-name-5
+
+Harness qualification
+
+### redesign-milestone-name-6
+
+First governed loop on our own repository
+
+### redesign-milestone-name-7
+
+Deployable product
+
+### redesign-milestone-state-implemented
+
+Implemented in Phase A scope
+
+### redesign-kpi-line-1
+
+Passing reference tests against the total, at a dated build.
+
+### redesign-kpi-line-2
+
+Findings raised and resolved by a separate reviewer.
+
+### redesign-kpi-line-3
+
+Affected-state recall and false-safe exclusions on synthetic fixtures.
+
+### redesign-kpi-line-4
+
+Out-of-scope effect attempts blocked versus attempted.
+
+### redesign-kpi-line-5
+
+Uncertain executions resolved by reconciliation, not blind retry.
+
+### redesign-kpi-line-6
+
+Accepted changes with a complete evidence chain.
+
+### redesign-kpi-line-7
+
+Governed changes accepted on NorthCannon’s own repository.
+
+### redesign-kpi-line-8
+
+Proposals marked unknown or incomplete versus evaluated.
+
+### redesign-kpi-line-9
+
+Added control-decision latency in a stated environment.
+
+### redesign-kpi-line-10
+
+Equivalent sealed outputs from identical captured inputs.
+
+### redesign-kpi-line-11
+
+Truly affected surfaces identified versus ground truth.
+
+### redesign-kpi-line-12
+
+Affected surfaces found only after acceptance.
+
+### redesign-kpi-line-13
+
+Obligations confirmed stale or inconsistent.
+
+### redesign-kpi-line-14
+
+Obligations closed as still current.
+
+### redesign-kpi-line-15
+
+Obligations updated or reaffirmed before acceptance.
+
+### redesign-kpi-line-16
+
+Documents confirmed stale versus flagged.
+
+### redesign-kpi-line-17
+
+Downstream inconsistencies confirmed versus flagged.
+
+### redesign-kpi-line-18
+
+Mapped review surfaces versus exhaustive review.
+
+### redesign-kpi-category-1
+
+Control and enforcement
+
+### redesign-kpi-category-2
+
+Evidence and review
+
+### redesign-kpi-category-3
+
+Impact analysis
+
+### redesign-kpi-category-4
+
+Knowledge obligations
+
+### redesign-pi-label-hypothesis
+
+Hypothesis
+
+### redesign-pi-body-hypothesis
+
+Verified state can provide useful continuity across changes.
+
+### redesign-pi-label-comparison
+
+Comparison
+
+### redesign-pi-body-comparison
+
+Evaluate against conventional re-inference baselines.
+
+### redesign-pi-label-controls
+
+Controls
+
+### redesign-pi-body-controls
+
+Define variables and hypotheses before execution.
+
+### redesign-pi-label-falsification
+
+Falsification
+
+### redesign-pi-body-falsification
+
+Specify failure criteria before execution and publish outcomes regardless of direction.
+
+### redesign-experiments-arms-label
+
+Study arms
+
 ## E-013
 
 ### redesign-about-founder-title

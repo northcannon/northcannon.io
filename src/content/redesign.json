@@ -63,7 +63,8 @@
       "redesign-meta-description-trust-provenance",
       "redesign-meta-title-404",
       "redesign-meta-description-404",
-      "redesign-provenance-scope"
+      "redesign-provenance-scope",
+      "redesign-label-phase-a"
     ],
     "E-011": [
       "redesign-explore",
@@ -134,13 +135,11 @@
       "redesign-products-distinction-4",
       "redesign-products-distinction-5",
       "redesign-products-deployment-title",
-      "redesign-products-topology-title",
       "redesign-products-topology-body",
       "redesign-products-data-title",
       "redesign-products-data-body",
       "redesign-products-independence-title",
       "redesign-products-independence-body",
-      "redesign-products-availability-title",
       "redesign-products-contact-title",
       "redesign-deploy-managed",
       "redesign-deploy-managed-body",
@@ -209,11 +208,9 @@
       "redesign-example-obligations",
       "redesign-example-northcannon-environment",
       "redesign-example-your-environment",
-      "redesign-about-row-label-1",
       "redesign-about-row-body-1",
       "redesign-about-row-label-2",
       "redesign-about-row-body-2",
-      "redesign-about-row-label-3",
       "redesign-about-row-body-3",
       "redesign-about-row-label-4",
       "redesign-about-row-body-4"
@@ -232,13 +229,6 @@
       "redesign-evidence-status-title",
       "redesign-evidence-milestones-title",
       "redesign-evidence-milestones-body",
-      "redesign-evidence-milestones-1",
-      "redesign-evidence-milestones-2",
-      "redesign-evidence-milestones-3",
-      "redesign-evidence-milestones-4",
-      "redesign-evidence-milestones-5",
-      "redesign-evidence-milestones-6",
-      "redesign-evidence-milestones-7",
       "redesign-evidence-kpis-title",
       "redesign-evidence-kpis-body",
       "redesign-evidence-kpis-1",
@@ -274,10 +264,6 @@
       "redesign-experiments-lede",
       "redesign-experiments-persistent-intelligence-title",
       "redesign-experiments-persistent-intelligence-body",
-      "redesign-experiments-persistent-intelligence-1",
-      "redesign-experiments-persistent-intelligence-2",
-      "redesign-experiments-persistent-intelligence-3",
-      "redesign-experiments-persistent-intelligence-4",
       "redesign-experiments-persistent-intelligence-5",
       "redesign-experiments-gate-1-title",
       "redesign-experiments-gate-1-body",
@@ -339,7 +325,46 @@
       "redesign-kpi-term-15",
       "redesign-kpi-term-16",
       "redesign-kpi-term-17",
-      "redesign-kpi-term-18"
+      "redesign-kpi-term-18",
+      "redesign-milestone-name-1",
+      "redesign-milestone-name-2",
+      "redesign-milestone-name-3",
+      "redesign-milestone-name-4",
+      "redesign-milestone-name-5",
+      "redesign-milestone-name-6",
+      "redesign-milestone-name-7",
+      "redesign-milestone-state-implemented",
+      "redesign-kpi-line-1",
+      "redesign-kpi-line-2",
+      "redesign-kpi-line-3",
+      "redesign-kpi-line-4",
+      "redesign-kpi-line-5",
+      "redesign-kpi-line-6",
+      "redesign-kpi-line-7",
+      "redesign-kpi-line-8",
+      "redesign-kpi-line-9",
+      "redesign-kpi-line-10",
+      "redesign-kpi-line-11",
+      "redesign-kpi-line-12",
+      "redesign-kpi-line-13",
+      "redesign-kpi-line-14",
+      "redesign-kpi-line-15",
+      "redesign-kpi-line-16",
+      "redesign-kpi-line-17",
+      "redesign-kpi-line-18",
+      "redesign-kpi-category-1",
+      "redesign-kpi-category-2",
+      "redesign-kpi-category-3",
+      "redesign-kpi-category-4",
+      "redesign-pi-label-hypothesis",
+      "redesign-pi-body-hypothesis",
+      "redesign-pi-label-comparison",
+      "redesign-pi-body-comparison",
+      "redesign-pi-label-controls",
+      "redesign-pi-body-controls",
+      "redesign-pi-label-falsification",
+      "redesign-pi-body-falsification",
+      "redesign-experiments-arms-label"
     ],
     "E-013": [
       "redesign-about-founder-title",
@@ -572,7 +597,7 @@
         {
           "id": "capabilities",
           "title": "redesign-products-capabilities-title",
-          "kind": "loop",
+          "kind": "scope",
           "body": "redesign-products-capabilities-body"
         },
         {
@@ -591,18 +616,17 @@
         {
           "id": "deployment",
           "title": "redesign-products-deployment-title",
-          "kind": "deployment"
-        },
-        {
-          "id": "topology",
-          "title": "redesign-products-topology-title",
-          "kind": "topology",
-          "body": "redesign-products-topology-body"
+          "kind": "deployment",
+          "qualifiers": [
+            "redesign-products-topology-body"
+          ],
+          "topology": true
         },
         {
           "id": "data",
           "title": "redesign-products-data-title",
-          "body": "redesign-products-data-body"
+          "body": "redesign-products-data-body",
+          "kind": "panel"
         },
         {
           "id": "independence",
@@ -611,14 +635,11 @@
           "body": "redesign-products-independence-body"
         },
         {
-          "id": "availability",
-          "title": "redesign-products-availability-title",
-          "kind": "availability"
-        },
-        {
           "id": "contact",
           "title": "redesign-products-contact-title",
-          "kind": "contact"
+          "kind": "contact",
+          "body": "redesign-home-contact-body",
+          "cta": "cta-get-in-touch"
         }
       ],
       "meta_title": "redesign-meta-title-products",
@@ -645,7 +666,8 @@
             "redesign-solutions-engineering-7",
             "redesign-solutions-engineering-8",
             "redesign-solutions-engineering-9"
-          ]
+          ],
+          "kind": "usecases"
         },
         {
           "id": "workflow",
@@ -695,7 +717,6 @@
           "id": "future",
           "title": "redesign-solutions-future-title",
           "kind": "future",
-          "status": "redesign-label-concept",
           "body": "redesign-solutions-future-body",
           "subtitle": "redesign-factory-subtitle",
           "items": [
@@ -708,7 +729,9 @@
         {
           "id": "contact",
           "title": "redesign-solutions-contact-title",
-          "kind": "contact"
+          "kind": "contact",
+          "body": "redesign-home-contact-body",
+          "cta": "cta-get-in-touch"
         }
       ],
       "meta_title": "redesign-meta-title-solutions",
@@ -726,7 +749,7 @@
           "kind": "company",
           "rows": [
             [
-              "redesign-about-row-label-1",
+              "about-why-title",
               "redesign-about-row-body-1"
             ],
             [
@@ -734,7 +757,7 @@
               "redesign-about-row-body-2"
             ],
             [
-              "redesign-about-row-label-3",
+              "redesign-contact-intents-4",
               "redesign-about-row-body-3"
             ],
             [
@@ -779,13 +802,43 @@
           "kind": "milestones",
           "body": "redesign-evidence-milestones-body",
           "items": [
-            "redesign-evidence-milestones-1",
-            "redesign-evidence-milestones-2",
-            "redesign-evidence-milestones-3",
-            "redesign-evidence-milestones-4",
-            "redesign-evidence-milestones-5",
-            "redesign-evidence-milestones-6",
-            "redesign-evidence-milestones-7"
+            "redesign-milestone-name-1",
+            "redesign-milestone-name-2",
+            "redesign-milestone-name-3",
+            "redesign-milestone-name-4",
+            "redesign-milestone-name-5",
+            "redesign-milestone-name-6",
+            "redesign-milestone-name-7"
+          ],
+          "stages": [
+            [
+              "redesign-milestone-name-1",
+              "implemented"
+            ],
+            [
+              "redesign-milestone-name-2",
+              "next"
+            ],
+            [
+              "redesign-milestone-name-3",
+              "target"
+            ],
+            [
+              "redesign-milestone-name-4",
+              "target"
+            ],
+            [
+              "redesign-milestone-name-5",
+              "target"
+            ],
+            [
+              "redesign-milestone-name-6",
+              "target"
+            ],
+            [
+              "redesign-milestone-name-7",
+              "target"
+            ]
           ]
         },
         {
@@ -812,6 +865,46 @@
             "redesign-evidence-kpis-16",
             "redesign-evidence-kpis-17",
             "redesign-evidence-kpis-18"
+          ],
+          "categories": [
+            [
+              "redesign-kpi-category-1",
+              [
+                1,
+                3,
+                4,
+                5,
+                9,
+                10
+              ]
+            ],
+            [
+              "redesign-kpi-category-2",
+              [
+                2,
+                6,
+                7,
+                8
+              ]
+            ],
+            [
+              "redesign-kpi-category-3",
+              [
+                11,
+                12,
+                18
+              ]
+            ],
+            [
+              "redesign-kpi-category-4",
+              [
+                13,
+                14,
+                15,
+                16,
+                17
+              ]
+            ]
           ]
         },
         {
@@ -836,7 +929,8 @@
           "id": "historical",
           "title": "redesign-evidence-historical-title",
           "kind": "historical",
-          "body": "redesign-evidence-historical-body"
+          "body": "redesign-evidence-historical-body",
+          "secondary": true
         }
       ],
       "meta_title": "redesign-meta-title-evidence",
@@ -852,11 +946,28 @@
           "id": "persistent-intelligence",
           "title": "redesign-experiments-persistent-intelligence-title",
           "body": "redesign-experiments-persistent-intelligence-body",
-          "items": [
-            "redesign-experiments-persistent-intelligence-1",
-            "redesign-experiments-persistent-intelligence-2",
-            "redesign-experiments-persistent-intelligence-3",
-            "redesign-experiments-persistent-intelligence-4",
+          "items": [],
+          "kind": "research",
+          "rows": [
+            [
+              "redesign-pi-label-hypothesis",
+              "redesign-pi-body-hypothesis"
+            ],
+            [
+              "redesign-pi-label-comparison",
+              "redesign-pi-body-comparison"
+            ],
+            [
+              "redesign-pi-label-controls",
+              "redesign-pi-body-controls"
+            ],
+            [
+              "redesign-pi-label-falsification",
+              "redesign-pi-body-falsification"
+            ]
+          ],
+          "status_row": [
+            "label-current-status",
             "redesign-experiments-persistent-intelligence-5"
           ]
         },
@@ -869,7 +980,7 @@
         {
           "id": "spc",
           "title": "redesign-experiments-spc-title",
-          "kind": "flow",
+          "kind": "cards",
           "body": "redesign-experiments-spc-body",
           "items": [
             "redesign-experiments-spc-1",

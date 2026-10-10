@@ -5534,7 +5534,7 @@
   },
   {
     "claim_id": "redesign-home-control-loop-body",
-    "statement": "The six-stage product design extends beyond the implemented reference path.",
+    "statement": "The six-stage design is broader than the implemented Phase A reference path.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -5704,7 +5704,7 @@
   },
   {
     "claim_id": "redesign-home-deployment-title",
-    "statement": "Where it runs / where it applies",
+    "statement": "Where it runs and where it applies",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -5724,7 +5724,7 @@
   },
   {
     "claim_id": "redesign-home-evidence-title",
-    "statement": "A public boundary around the evidence",
+    "statement": "What exists, what is next, and what is not claimed",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -5784,7 +5784,7 @@
   },
   {
     "claim_id": "redesign-products-capabilities-body",
-    "statement": "Exact transition authority, outcome verification and recoverability preparation are implemented in Phase A scope. The full six-stage loop is the broader product direction.",
+    "statement": "One design governs every deployment model. The Phase A reference path is implemented; the rest of the product direction is planned.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -5878,7 +5878,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -5938,13 +5938,13 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
   {
     "claim_id": "redesign-products-contact-title",
-    "statement": "Plan a deployment conversation",
+    "statement": "Start a conversation about your environment",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -6154,7 +6154,7 @@
   },
   {
     "claim_id": "redesign-solutions-workflow-body",
-    "statement": "Uncertain execution means reconcile first, never blindly retry.",
+    "statement": "When an execution is uncertain, reconcile first; never retry blindly.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -6588,7 +6588,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6598,7 +6598,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6608,7 +6608,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6618,7 +6618,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6628,7 +6628,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6638,7 +6638,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6648,7 +6648,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -6904,7 +6904,7 @@
   },
   {
     "claim_id": "redesign-evidence-methodology-body",
-    "statement": "Public copy moves from a registered claim through founder attestation and publication checks to site provenance.",
+    "statement": "Public copy is registered as a claim, attested by the founder, checked at publication and recorded in site provenance.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -7008,7 +7008,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -7018,7 +7018,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -7028,7 +7028,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -7038,7 +7038,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -7214,7 +7214,7 @@
   },
   {
     "claim_id": "redesign-experiments-results-body",
-    "statement": "Results belong on Evidence only after an experiment has run under its recorded freeze.",
+    "statement": "Results are published on Evidence only after an experiment has run under its recorded freeze.",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
@@ -8328,7 +8328,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -8368,7 +8368,7 @@
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",
-    "lifecycle_state": "review",
+    "lifecycle_state": "retired",
     "review_date": null,
     "approval_record": "none"
   },
@@ -8415,6 +8415,406 @@
   {
     "claim_id": "redesign-label-phase-a",
     "statement": "Phase A scope",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-1",
+    "statement": "Control foundation",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-2",
+    "statement": "Product integration",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-3",
+    "statement": "Separate implementation review",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-4",
+    "statement": "Security qualification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-5",
+    "statement": "Harness qualification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-6",
+    "statement": "First governed loop on our own repository",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-name-7",
+    "statement": "Deployable product",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-milestone-state-implemented",
+    "statement": "Implemented in Phase A scope",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-1",
+    "statement": "Passing reference tests against the total, at a dated build.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-2",
+    "statement": "Findings raised and resolved by a separate reviewer.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-3",
+    "statement": "Affected-state recall and false-safe exclusions on synthetic fixtures.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-4",
+    "statement": "Out-of-scope effect attempts blocked versus attempted.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-5",
+    "statement": "Uncertain executions resolved by reconciliation, not blind retry.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-6",
+    "statement": "Accepted changes with a complete evidence chain.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-7",
+    "statement": "Governed changes accepted on NorthCannon’s own repository.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-8",
+    "statement": "Proposals marked unknown or incomplete versus evaluated.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-9",
+    "statement": "Added control-decision latency in a stated environment.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-10",
+    "statement": "Equivalent sealed outputs from identical captured inputs.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-11",
+    "statement": "Truly affected surfaces identified versus ground truth.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-12",
+    "statement": "Affected surfaces found only after acceptance.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-13",
+    "statement": "Obligations confirmed stale or inconsistent.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-14",
+    "statement": "Obligations closed as still current.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-15",
+    "statement": "Obligations updated or reaffirmed before acceptance.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-16",
+    "statement": "Documents confirmed stale versus flagged.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-17",
+    "statement": "Downstream inconsistencies confirmed versus flagged.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-line-18",
+    "statement": "Mapped review surfaces versus exhaustive review.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-category-1",
+    "statement": "Control and enforcement",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-category-2",
+    "statement": "Evidence and review",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-category-3",
+    "statement": "Impact analysis",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-kpi-category-4",
+    "statement": "Knowledge obligations",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-label-hypothesis",
+    "statement": "Hypothesis",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-body-hypothesis",
+    "statement": "Verified state can provide useful continuity across changes.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-label-comparison",
+    "statement": "Comparison",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-body-comparison",
+    "statement": "Evaluate against conventional re-inference baselines.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-label-controls",
+    "statement": "Controls",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-body-controls",
+    "statement": "Define variables and hypotheses before execution.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-label-falsification",
+    "statement": "Falsification",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-body-falsification",
+    "statement": "Specify failure criteria before execution and publish outcomes regardless of direction.",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "review",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-pi-label-status",
+    "statement": "Current status",
+    "category": "other",
+    "basis": "docs/design/POST_PIVOT_COPY.md",
+    "approval_state": "pending",
+    "lifecycle_state": "retired",
+    "review_date": null,
+    "approval_record": "none"
+  },
+  {
+    "claim_id": "redesign-experiments-arms-label",
+    "statement": "Study arms",
     "category": "other",
     "basis": "docs/design/POST_PIVOT_COPY.md",
     "approval_state": "pending",

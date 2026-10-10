@@ -17,6 +17,6 @@ export function validateEvidencePlacement(record, section) {
   return record;
 }
 
-// The integration sets NORTHCANNON_PRODUCTION_PROVENANCE to an absolute project-root path, so bundled and fixture builds never depend on the cwd.
-export const productionProvenancePath = () => process.env.NORTHCANNON_PRODUCTION_PROVENANCE ?? 'dist/provenance.json';
+// The integration publishes an absolute project-root path on globalThis, so bundled and fixture builds never depend on the cwd.
+export const productionProvenancePath = () => globalThis.northcannonProductionProvenance ?? 'dist/provenance.json';
 export const productionManifestHash = () => createHash('sha256').update(readFileSync(productionProvenancePath())).digest('hex');

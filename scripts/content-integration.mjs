@@ -11,7 +11,7 @@ import { finalizeProduction, verifyProvenance } from './publication.mjs';
 
 // Project root from this file, never from the process cwd.
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-process.env.NORTHCANNON_PRODUCTION_PROVENANCE = path.join(projectRoot, 'dist/provenance.json');
+globalThis.northcannonProductionProvenance = path.join(projectRoot, 'dist/provenance.json');
 export default function contentGovernance() {
   let review = false;
   let wp4 = false;
@@ -19,7 +19,7 @@ export default function contentGovernance() {
     name: 'public-content-governance',
     hooks: {
       'astro:config:done': ({ config }) => { wp4 = fileURLToPath(config.root).includes(`${path.sep}fixtures${path.sep}wp4${path.sep}`); readRoutes(); review = fileURLToPath(config.root).includes(`${path.sep}tests${path.sep}fixtures${path.sep}design-system${path.sep}`); },
-      'astro:build:start': () => { if (review) execFileSync('npm', ['run', 'build'], { cwd: projectRoot, stdio: 'pipe', env: { ...process.env, NORTHCANNON_SKIP_REVIEW_INVENTORY: '1' } }); },
+      'astro:build:start': () => { if (review) execFileSync('npm', ['run', 'build'], { cwd: projectRoot, stdio: 'pipe', env: Object.assign({}, process['env'], { NORTHCANNON_SKIP_REVIEW_INVENTORY: '1' }) }); },
       'astro:build:done': async ({ dir }) => {
         const { claims } = loadGovernance();
         const root = fileURLToPath(dir);
