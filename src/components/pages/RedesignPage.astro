@@ -1,7 +1,10 @@
 ---
 import { productionManifestHash } from '../../governance/evidence.mjs';
 import { validateEvidencePlacement } from '../../governance/evidence.mjs';
-import LineageGraph from '../LineageGraph.astro';
+import ChangeConsole from '../concept/ChangeConsole.astro';
+import AuthorityBoundary from '../concept/AuthorityBoundary.astro';
+import EvidencePacket from '../concept/EvidencePacket.astro';
+import concept from '../../content/concept-scenario.json';
 import StateChip from '../StateChip.astro';
 import Readout from '../Readout.astro';
 import Verdict from '../Verdict.astro';
@@ -35,7 +38,7 @@ const manifestHash = page.key === 'evidence' ? productionManifestHash() : '';
 validateEvidencePlacement(draft.historical, 'ledger');
 const statusTone: Record<string, 'planned' | 'illustrative' | 'future' | 'inactive' | 'neutral'> = { [draft.labels.planned]: 'planned', [draft.labels.knowledge]: 'illustrative', [draft.labels.target]: 'planned', [draft.labels.expansion]: 'inactive', [draft.labels.concept]: 'future' };
 const flowColumns: Record<string, 2 | 3 | 4 | 5 | 6> = { 'customer-zero': 5, workflow: 4, 'research-to-product': 6 };
-const special = new Set(['research','usecases','scope','panel','compare','distinction','loop','triad','deployment','topology','stack','lineage','founder','packet','intents','gate','ledger','historical','methodology','results','security','availability','agnostic','contact']);
+const special = new Set(['concept-preview','concept-console','concept-authority','concept-evidence','research','usecases','scope','panel','compare','distinction','loop','triad','deployment','topology','stack','lineage','founder','packet','intents','gate','ledger','historical','methodology','results','security','availability','agnostic','contact']);
 ---
 <main id="main" tabindex="-1" class:list={['redesign-main', instrument ? 'instrument-zone' : 'product-zone']}>
 <div class="site-container">
@@ -59,7 +62,10 @@ const special = new Set(['research','usecases','scope','panel','compare','distin
     {section.kind === 'panel' && section.body && <div class="panel-note"><p>{t(section.body)}</p></div>}
     {section.kind === 'deployment' && <><div class="offering-grid">{draft.deployments.map((card, index) => <OfferingCard title={t(card.title)} body={t(card.body)} status={t(draft.labels.planned)}>{section.topology && <div class="topology-boundary"><p class="state-label">{t(index === 0 ? draft.example['northcannon-environment'] : draft.example['your-environment'])}</p><p>{t('brand-company')}</p></div>}</OfferingCard>)}</div><div class="group-qualifier"><p>{t(draft.shared.availability)}</p>{(section.qualifiers ?? []).map(id => <p>{t(id)}</p>)}</div></>}
     {section.kind === 'stack' && <ControlStack layers={words(section)} />}
-    {section.kind === 'lineage' && <><div class="lineage-layout"><div><LineageGraph id="engineering-lineage" large alt={t(draft.shared.illustration)} columns={words(section).slice(0,3) as [string,string,string]} nodes={[{id:"dependency",col:0,row:1,affected:true},{id:"service",col:1,row:0,affected:true},{id:"test",col:1,row:1,affected:true},{id:"docs",col:1,row:2,affected:false},{id:"build",col:2,row:0,affected:true},{id:"artifact",col:2,row:1,affected:true},{id:"other",col:2,row:2,affected:false}]} edges={[["dependency","service"],["dependency","test"],["service","build"],["test","artifact"],["test","build"],["docs","other"]]} /></div><div class="consequence"><div class="chip-row"><StateChip label={t(draft.labels.knowledge)} tone="illustrative" /></div><ol class="consequence__list">{words(section).slice(3).map(text => <li>{text}</li>)}</ol><a class="inline-link" href="/solutions/#knowledge-blast-radius">{t(draft.shared['knowledge-teaser'])}</a></div></div></>}
+    {section.kind === 'concept-preview' && <div class="ci-preview"><p>{t(concept.labels.truth)}</p><StateChip label={t(concept.labels.planned)} tone="planned" /><div class="ci-preview-path"><div><h3>{t(concept.identity.proposed)}</h3><p>{t(concept.count_claims.changed)}</p></div><div><h3>{t(concept.labels.inspector)}</h3><p>{t(concept.count_claims.potential)}</p><p>{t(concept.count_claims.gaps)}</p></div><div><h3>{t(concept.labels.decision)}</h3><p>{t(concept.labels.withheld)}</p><p>{t(concept.count_claims.obligations)}</p></div></div><a class="inline-link" href="/solutions/#workflow">{t(concept.labels['preview-link'])}</a></div>}
+    {section.kind === 'concept-console' && <ChangeConsole t={t} />}
+    {section.kind === 'concept-authority' && <AuthorityBoundary t={t} />}
+    {section.kind === 'concept-evidence' && <EvidencePacket t={t} />}
     {section.kind === 'usecases' && <div class="grid grid--3">{words(section).map((text, index) => <p class="use-case" data-index={String(index + 1).padStart(2, '0')}>{text}</p>)}</div>}
     {section.kind === 'flow' && <><FlowSteps steps={words(section)} grid={flowColumns[section.id]} vertical={!flowColumns[section.id]} />{page.key === 'solutions' && <div class="worked-example"><p class="state-label">{t(draft.shared.illustration)}</p><div class="worked-example__summary"><div class="worked-example__facts"><Readout label={t(draft.example.intent)} value={t(draft.example.dependency)} /><Verdict tone="reeval">{t(draft.example.verdict)}</Verdict></div><SupportCells label={t(draft.example.record)} cells={['intent','impact','authority','scope','observation'].map(key => ({label:t(draft.example[key as keyof typeof draft.example]),state:'supported',stateLabel:t(draft.labels.illustrative)}))} /></div><EvidenceDrawer id="illustrative-record" title={t(draft.example.record)} rows={[{label:t(draft.example.observation),value:t(draft.example['record-body'])}]} /></div>}</>}
     {section.kind === 'milestones' && <ol class="stage-grid stage-grid--fill">{(section.stages ?? []).map(([name, state]) => <li><span>{t(name!)}</span><StateChip label={t(state === 'implemented' ? 'redesign-milestone-state-implemented' : state === 'next' ? draft.labels.next : draft.labels.target)} tone={state === 'implemented' ? 'implemented' : state === 'next' ? 'planned' : 'neutral'} /></li>)}</ol>}

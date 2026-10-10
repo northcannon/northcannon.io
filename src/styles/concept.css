@@ -166,3 +166,6 @@
 .ci-console:has(#ci-mode-direct:target) .ci-edge[data-edge="edge-6"] { opacity: .2; }
 @media (max-width: 79.99rem) { .ci-panel--expanded { display: none; } .ci-panel--collapsed { display: block; } }
 @media (prefers-reduced-motion: no-preference) { .ci-node rect, .ci-edge { transition: stroke-width .15s ease, opacity .15s ease; } }
+
+#research-to-product .flow-steps { border-block: 1px solid var(--color-plate-border); padding-block: var(--space-5); }
+#persistent-intelligence .research-grid > div { border-radius: 0; border-width: 0 0 1px; border-left: 2px solid var(--color-violet); }

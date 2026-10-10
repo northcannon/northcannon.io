@@ -699,7 +699,7 @@
         {
           "id": "engineering",
           "title": "redesign-home-engineering-title",
-          "kind": "lineage",
+          "kind": "concept-preview",
           "body": "redesign-home-engineering-body",
           "items": [
             "redesign-home-engineering-1",
@@ -774,6 +774,11 @@
           ]
         },
         {
+          "id": "exact-transition-authority",
+          "kind": "concept-authority",
+          "title": "concept-authority"
+        },
+        {
           "id": "deployment",
           "title": "redesign-products-deployment-title",
           "kind": "deployment",
@@ -831,20 +836,9 @@
         },
         {
           "id": "workflow",
-          "title": "redesign-solutions-workflow-title",
-          "kind": "flow",
-          "status": "redesign-label-planned",
-          "body": "redesign-solutions-workflow-body",
-          "items": [
-            "redesign-solutions-workflow-1",
-            "redesign-solutions-workflow-2",
-            "redesign-solutions-workflow-3",
-            "redesign-solutions-workflow-4",
-            "redesign-solutions-workflow-5",
-            "redesign-solutions-workflow-6",
-            "redesign-solutions-workflow-7",
-            "redesign-solutions-workflow-8"
-          ]
+          "title": "concept-console",
+          "kind": "concept-console",
+          "status": "redesign-label-planned"
         },
         {
           "id": "knowledge-blast-radius",
@@ -1000,6 +994,11 @@
               "target"
             ]
           ]
+        },
+        {
+          "id": "synthetic-evidence",
+          "kind": "concept-evidence",
+          "title": "concept-packet"
         },
         {
           "id": "kpis",
@@ -1350,5 +1349,17 @@
         "state": "requested"
       }
     ]
-  }
+  },
+  "retired_presentations": [
+    {
+      "id": "solutions-eight-stage-grid",
+      "replacement": "concept-console",
+      "reason": "The console lifecycle carries the sequence; the old standalone grid and worked example are no longer rendered. Existing pending wording remains awaiting founder disposition."
+    },
+    {
+      "id": "home-lineage-illustration",
+      "replacement": "concept-preview",
+      "reason": "A compact preview now uses the same synthetic fixture as Solutions."
+    }
+  ]
 }
