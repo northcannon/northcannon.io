@@ -320,7 +320,6 @@ body:has(.redesign-main) .graphene--hero { mask-image: linear-gradient(#000 0 75
 .stage-grid--fill { display: flex; flex-wrap: wrap; gap: var(--card-gap); }
 .stage-grid--fill > li { flex: 1 1 17rem; }
 /* Worked example: support cells wrap as whole words at every width. */
-.worked-example .support-cells { grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); }
+.worked-example .support-cells { grid-template-columns: repeat(auto-fit, minmax(min(7rem, 100%), 1fr)); }
 .worked-example .support-cell__label { overflow-wrap: normal; letter-spacing: 0.06em; }
 .worked-example__facts { display: grid; gap: var(--space-4); min-width: 0; }
-.worked-example__facts .readout__value { overflow-wrap: normal; }
