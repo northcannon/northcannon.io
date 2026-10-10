@@ -1,5 +1,5 @@
 ---
-interface Props { steps: string[]; vertical?: boolean | undefined; current?: number | undefined }
-const { steps, vertical = false, current } = Astro.props;
+interface Props { steps: string[]; vertical?: boolean | undefined; grid?: 3 | 4 | 5 | 6 | undefined; current?: number | undefined }
+const { steps, vertical = false, grid, current } = Astro.props;
 ---
-<ol class:list={['flow-steps', { 'flow-steps--vertical': vertical }]}>{steps.map((step, index) => <li aria-current={current === index ? 'step' : undefined}><span>{step}</span></li>)}</ol>
+<ol class:list={['flow-steps', { 'flow-steps--vertical': vertical && !grid, 'flow-steps--grid': Boolean(grid) }, grid && `flow-steps--cols-${grid}`]}>{steps.map((step, index) => <li aria-current={current === index ? 'step' : undefined}><span>{step}</span></li>)}</ol>

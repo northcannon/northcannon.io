@@ -1,5 +1,5 @@
 ---
-interface Props { name: string; alt: string; bio: string; quote: string; note: string }
-const { name, alt, bio, quote, note } = Astro.props;
+interface Props { name: string; alt: string; bio: string; quote: string; note: string; transition?: string | undefined }
+const { name, alt, bio, quote, note, transition } = Astro.props;
 ---
-<div class="founder-profile"><picture><source type="image/webp" srcset="/founder/max-brooks-480.webp 480w, /founder/max-brooks-960.webp 960w" sizes="(max-width: 767px) 128px, 192px" /><img src="/founder/max-brooks-480.png" width="480" height="480" loading="lazy" alt={alt} /></picture><div><p>{name}</p><p>{bio}</p><blockquote>{quote}</blockquote><p class="section-lede">{note}</p></div></div>
+<div class="founder-profile"><picture><source type="image/webp" srcset="/founder/max-brooks-480.webp 480w, /founder/max-brooks-960.webp 960w" sizes="(max-width: 767px) 128px, 224px" /><img src="/founder/max-brooks-480.png" width="480" height="480" loading="lazy" alt={alt} /></picture><div class="founder-profile__body"><p class="founder-profile__name">{name}</p><p class="founder-profile__bio">{bio}</p><blockquote>{quote}</blockquote><p class="founder-profile__note">{note}</p>{transition && <p class="founder-profile__transition">{transition}</p>}</div></div>

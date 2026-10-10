@@ -115,7 +115,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const files = [
       'src/content/redesign.json', 'src/content/og-image.json', 'public/og/northcannon-default.png', 'docs/design/POST_PIVOT_COPY.md',
       'scripts/redesign-policy.mjs', 'scripts/check-redesign-output.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
-      ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric'].map(n => `src/components/${n}.astro`),
+      ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric','StateChip','HashValue'].map(n => `src/components/${n}.astro`),
       'src/components/pages/RedesignPage.astro',
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',
       'public_claims/claims.json', 'docs/FOUNDER_APPROVALS.md', 'docs/public-conceptual-direction.md', 'docs/design/PUBLIC_SITE_COPY.md', 'docs/CONCEPT_PREVIEW.md', 'docs/phase-0-5-draft-claims.md',

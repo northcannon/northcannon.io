@@ -16,7 +16,8 @@
       "label-status",
       "label-claims",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "cta-explore-evidence",
@@ -370,7 +371,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "redesign-label-products",
@@ -726,6 +728,7 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
+      "label-company",
       "redesign-label-products"
     ],
     "review_claim_ids": [
@@ -1081,6 +1084,7 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
+      "label-company",
       "redesign-label-solutions"
     ],
     "review_claim_ids": [
@@ -1436,7 +1440,8 @@
       "evidence-status-current",
       "ledger-empty-current",
       "label-provenance",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -1850,6 +1855,7 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
+      "label-company",
       "redesign-label-experiments"
     ],
     "review_claim_ids": [
@@ -2235,7 +2241,8 @@
       "label-status",
       "label-claims",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "nav": false,
     "publish": true,
@@ -2586,6 +2593,7 @@
       "label-early-access",
       "disclosure-report",
       "label-site-security",
+      "label-company",
       "label-status",
       "label-claims",
       "label-provenance",
@@ -3431,7 +3439,8 @@
       "label-status",
       "label-claims",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -3863,7 +3872,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -4246,7 +4256,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "redesign-label-products",
@@ -4598,7 +4609,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -4963,6 +4975,7 @@
       "label-status",
       "label-claims",
       "label-site-security",
+      "label-company",
       "label-changelog",
       "label-provenance"
     ],
@@ -5334,7 +5347,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -6306,7 +6320,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -6665,6 +6680,7 @@
     "title_claim_or_label": "label-site-security",
     "claim_ids": [
       "label-site-security",
+      "label-company",
       "brand-company",
       "brand-core-principle",
       "label-trust",
@@ -7046,7 +7062,8 @@
       "label-status",
       "label-claims",
       "label-provenance",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -7421,7 +7438,8 @@
       "label-status",
       "label-claims",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
@@ -7792,7 +7810,8 @@
       "label-claims",
       "label-provenance",
       "label-changelog",
-      "label-site-security"
+      "label-site-security",
+      "label-company"
     ],
     "review_claim_ids": [
       "label-company",
