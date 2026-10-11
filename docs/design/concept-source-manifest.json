@@ -1,0 +1,136 @@
+{
+  "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
+  "scenario": "src/content/concept-scenario.json",
+  "copy": "docs/design/POST_PIVOT_COPY.md",
+  "design": "docs/design/CONCEPT_VISUALIZATIONS.md",
+  "references": [
+    {
+      "path": "NorthCannon_Wireframes_A.PNG",
+      "sha256": "d9d4fa3c34e662a6eb0038f2ee287475a382d714cddb3a769085ac0290206aa4",
+      "role": "historical visual reference only"
+    },
+    {
+      "path": "NorthCannon_Wireframes_B.PNG",
+      "sha256": "10b1f57c1aa345fd9456db1fcf4eb34e2481f21e52da9ffe45317bc17cb068e1",
+      "role": "historical visual reference only"
+    },
+    {
+      "path": "NorthCannon_Public_Site_Implementation_Brief.PNG",
+      "sha256": "4771249189c7181b571b5bd46a40f5154768dc1873edd304a553a5909ceb9c40",
+      "role": "historical visual reference only"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_08 PM-1.png",
+      "sha256": "94f3f5780bab324218f76fad89e1ef4e519e99de53688410a1598a8e61d1c337",
+      "role": "Home founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_09 PM-2.png",
+      "sha256": "571fec326e152c0d56b5bd3d940e160523e3c5b9f3b78ebe4bb19f1485e8f81c",
+      "role": "About founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_10 PM-3.png",
+      "sha256": "6a2ccf24caec7de9cdfcfc4e3808a3aaec151d988360bf930ec99e8188244389",
+      "role": "Products founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_11 PM-4.png",
+      "sha256": "f3ea6043e8a61a6d6798d88c1418ec825e853066d084ee425c18bfceb737b78c",
+      "role": "Solutions founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_12 PM-5.png",
+      "sha256": "8c641c4b39a31278cd234d0a12a1ad99918ff01a16f38bd8d864e1e5f42ff402",
+      "role": "Evidence founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_13 PM-6.png",
+      "sha256": "50a3a2d7c90c1b71922ca22046228b1909a42f23977624aa98a985bf96aa3a80",
+      "role": "Experiments founder supplied visual reference; ignored local input"
+    }
+  ],
+  "diagrams": [
+    {
+      "component": "src/components/concept/ConsequenceGraph.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/AuthorityBoundary.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/ReconciliationLadder.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/StateComparison.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/concept/ChangeTimeline.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/reference/ConceptDisplay.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/reference/Terrain.astro",
+      "source": "docs/design/REFERENCE_REBUILD.md",
+      "review_status": "DECORATIVE_ONLY"
+    },
+    {
+      "component": "src/components/reference/GrapheneMesh.astro",
+      "source": "docs/design/REFERENCE_REBUILD.md",
+      "review_status": "DECORATIVE_ONLY"
+    }
+  ],
+  "served_assets": [
+    {
+      "path": "/graphene-lattice.svg",
+      "source": "scripts/generate-lattice.mjs",
+      "review_status": "DECORATIVE_ONLY",
+      "sha256": "sha256:c3889cc17d627f3c57d02b0c314e37f5c20946b017af0edcc2c22039f8054ef8",
+      "note": "Header and hero art. Reproduced exactly by node scripts/generate-lattice.mjs --check."
+    },
+    {
+      "path": "/northcannon-mark.svg",
+      "source": "committed in 8647da47; no generator in this repository",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
+      "sha256": "sha256:fe38c5fb1d9fdb8fe24f26493de9fa41b1316739df67c5d72c1d5f4dda857d23",
+      "note": "Brand mark. Provenance of the file is not recorded beyond its commit; founder to confirm."
+    },
+    {
+      "path": "/founder/max-brooks-480.png",
+      "source": "public/founder/max-brooks-480.png, derived from the founder-supplied photograph (committed in 57884bfb; the original photograph is not in this repository)",
+      "review_status": "founder-supplied photo",
+      "sha256": "sha256:9e1430a917e223d80815aec279d3d80cf5c522509281822bb467c7fd46bbaedd"
+    },
+    {
+      "path": "/founder/max-brooks-480.webp",
+      "source": "public/founder/max-brooks-480.webp, derived from the founder-supplied photograph (committed in 57884bfb; the original photograph is not in this repository)",
+      "review_status": "founder-supplied photo",
+      "sha256": "sha256:2f9f48e3eadbd9a58c9f628b57769eab66aa7f97300f594a4d890a0bf4a2d923"
+    },
+    {
+      "path": "/founder/max-brooks-960.webp",
+      "source": "public/founder/max-brooks-960.webp, derived from the founder-supplied photograph (committed in 57884bfb; the original photograph is not in this repository)",
+      "review_status": "founder-supplied photo",
+      "sha256": "sha256:754870748a9fb0c0cbb4383356d6f541c8dd5a0a3e31121b11e9f8ae5c3c8fc5"
+    },
+    {
+      "path": "/og/northcannon-default.png",
+      "source": "scripts/generate-og.mjs (docs/design/OG_IMAGE.md)",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
+      "sha256": "sha256:e064479f9e7277b29b3bf9cef2d4d905a161335f6f6a0e0ec534a3f4c76117f1",
+      "note": "Review build only; the proposed default OG image is absent from production."
+    }
+  ]
+}

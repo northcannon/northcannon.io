@@ -7,14 +7,14 @@ import { loadGovernance } from '../src/governance/registry.mjs';
 import { eligibleClaim } from '../src/governance/schema.mjs';
 import { readRoutes } from '../src/governance/routes.mjs';
 import { publicationIdentity } from './check-publication.mjs';
-import { allowedMedia, allowedImages, demoVideoClaimIds } from './policy.mjs';
+import { historicalMedia, historicalImages, demoVideoClaimIds } from './policy.mjs';
 
 export const sourceFiles = ['public_claims/claims.json', 'src/content/collections.json', 'src/content/routes.json', 'docs/FOUNDER_APPROVALS.md', 'package-lock.json'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 export async function fileInventory(root) {
   return (await readdir(root, { recursive: true, withFileTypes: true })).filter(e => e.isFile()).map(e => path.relative(root, path.join(e.parentPath, e.name))).sort();
 }
-export const sitemap = routes => '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + routes.filter(r => r.publish).map(r => `<url><loc>https://northcannon.io${r.path}</loc></url>`).join('') + '</urlset>\n';
+export const sitemap = routes => '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + routes.filter(r => r.publish && !r.alias_of && r.path !== '/404.html').map(r => `<url><loc>https://northcannon.io${r.path}</loc></url>`).join('') + '</urlset>\n';
 export async function provenance(root) {
   const sources = {};
   for (const name of sourceFiles) sources[name] = sha256(await readFile(name));
@@ -30,11 +30,15 @@ export async function finalizeProduction(root) {
     eligibleClaim(security, 'contact-security');
     if (security.approval_record !== 'founder_attestation' || !(await readFile(path.join(root, '.well-known/security.txt'), 'utf8')).includes(`Contact: mailto:${security.statement}\n`)) throw new Error('Security contact must match its pinned approval');
   }
-  // The demo video, captions, and poster stay out of production until every demo video claim is attested.
+  // Approval history alone cannot publish withdrawn media: require a published route and its copy references.
   const claims = loadGovernance().claims;
-  if (!demoVideoClaimIds.every(id => claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
-    for (const file of [...Object.keys(allowedMedia), ...Object.keys(allowedImages).filter(f => f.startsWith('/demo/'))]) await rm(path.join(root, file), { force: true });
+  const demo = readRoutes(claims).find(route => route.path === '/demo/' && route.publish);
+  const referenced = new Set(demo ? [...demo.claim_ids, ...demo.review_claim_ids] : []);
+  if (!demoVideoClaimIds.every(id => referenced.has(id) && claims.find(c => c.claim_id === id)?.approval_state === 'approved')) {
+    for (const file of [...Object.keys(historicalMedia), ...Object.keys(historicalImages)]) await rm(path.join(root, file), { force: true });
   }
+  // The proposed raster has no founder image attestation; never publish it in this phase.
+  await rm(path.join(root, 'og/northcannon-default.png'), { force: true });
   await writeFile(path.join(root, 'sitemap.xml'), sitemap(readRoutes()));
   await writeFile(path.join(root, 'provenance.json'), JSON.stringify(await provenance(root), null, 2) + '\n');
 }

@@ -484,6 +484,21 @@
   .about-banner { flex-direction: column; align-items: flex-start; }
   .arm-grid, .metric-grid, .readiness__steps, .metadata-grid { grid-template-columns: minmax(0, 1fr); }
 }
+/* Claims register: one compact table. Phones stack each row; the header stays in the accessibility tree. */
+.claim-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.claim-table th, .claim-table td { text-align: left; vertical-align: top; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--color-border); }
+.claim-table thead th { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-muted); }
+.claim-table tbody th { font-weight: 400; }
+.claim-table td, .claim-table code { font-family: var(--font-mono); font-size: 0.75rem; overflow-wrap: anywhere; }
+.claim-table code { font-size: inherit; background: none; padding: 0; }
+.page-stack--narrow:has(> .claim-table-wrap) { max-width: none; }
+@media (max-width: 47.99rem) {
+  .claim-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .claim-table, .claim-table tbody, .claim-table tr, .claim-table th, .claim-table td { display: block; width: auto; }
+  .claim-table tr { padding: 0.75rem 0; border-bottom: 1px solid var(--color-border); }
+  .claim-table th, .claim-table td { border: 0; padding: 0.15rem 0; }
+  .claim-table tbody th { font-size: 0.875rem; margin-bottom: 0.35rem; }
+}
 @media (forced-colors: active) {
   .lineage__plate rect:first-child, .lineage__edge { stroke: CanvasText; }
   .lineage__fold, .lineage__bar { forced-color-adjust: none; fill: CanvasText; }

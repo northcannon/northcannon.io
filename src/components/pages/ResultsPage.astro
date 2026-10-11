@@ -6,7 +6,7 @@ import LinkCard from '../LinkCard.astro';
 import type { Copy } from '../copy';
 interface Props { copy: Copy; [key: string]: unknown }
 const { copy } = Astro.props;
-const { t, statusDate } = copy;
+const { t } = copy;
 const steps = [
   { id: 'readiness-definition', icon: 'document' },
   { id: 'readiness-datasets', icon: 'database' },
@@ -33,7 +33,7 @@ const arms = [
 ---
 <main id="main" tabindex="-1" class="page-main">
   <div class="site-container page-stack">
-    <StatusBanner tone="pending" headingLevel="h1" id="results-title" meta={[{ label: t('label-experiment-id') }, { label: t('label-last-updated'), date: statusDate }]}>
+    <StatusBanner tone="pending" headingLevel="h1" id="results-title" meta={[{ label: t('label-experiment-id') }]}>
       <Fragment slot="title">{t('results-banner-title') ?? t('label-results')}</Fragment>
       {t('results-banner-body') && <p class="status-banner__text status-banner__text--lead">{t('results-banner-body')}</p>}
       <p class="status-banner__text">{t('status-gate1-frozen-stress')}</p>

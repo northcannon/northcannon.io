@@ -1,0 +1,6 @@
+---
+// The one status chip: PLANNED, FUTURE, ILLUSTRATIVE, NOT CLAIMED, NOT STARTED, ACCEPTED and similar registered labels.
+interface Props { label: string; tone?: 'planned' | 'implemented' | 'reached' | 'illustrative' | 'future' | 'inactive' | 'neutral' }
+const { label, tone = 'neutral' } = Astro.props;
+---
+<span class:list={['state-chip', `state-chip--${tone}`]}>{label}</span>

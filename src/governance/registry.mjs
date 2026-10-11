@@ -64,6 +64,5 @@ export function loadGovernance(root = process.cwd()) {
     collections[name] = entries.map(entry => schema.parse(entry));
     if (new Set(collections[name].map(entry => entry.entry_id)).size !== entries.length) throw new Error(`Duplicate entry_id: ${name}`);
   }
-  if (collections.status.length !== 1 || collections.status[0].entry_id !== 'gate1') throw new Error('Exactly one Gate 1 status is required');
   return { claims, status: collections.status, gate1: collections.gate1, methodology: collections.methodology, changelog: collections.changelog };
 }

@@ -1,0 +1,7 @@
+---
+interface Props { id: string; title: string; intro?: string | undefined; instrument?: boolean | undefined; cta?: boolean | undefined; secondary?: boolean | undefined; editorial?: boolean | undefined; kind?: string | undefined }
+const { id, title, intro, instrument = false, cta = false, secondary = false, editorial = false, kind } = Astro.props;
+---
+<section id={id} aria-labelledby={`${id}-heading`} class:list={[cta ? 'cta-section' : 'product-section', { 'reference-section': editorial, 'product-section--instrument': instrument, 'product-section--secondary': secondary }]}>
+  {editorial ? <><div class="reference-section__copy"><h2 id={`${id}-heading`}>{title}</h2>{intro && <p class="section-lede">{intro}</p>}</div><div class="reference-section__content" data-kind={kind}><slot /></div></> : <><h2 id={`${id}-heading`}>{title}</h2>{intro && <p class="section-lede">{intro}</p>}<slot /></>}
+</section>

@@ -65,6 +65,9 @@
   --fs-body: 0.9375rem;
   --fs-small: 0.875rem;
   --fs-quote: 1.0625rem;
+  /* Content width and spacing scale shared by the redesign compositions; --content-max matches the .site-container usable width. */
+  --content-max: calc(var(--canvas) - 2 * var(--margin));
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4.5rem; --space-9: 6rem;
 }
 
 @layer base {
@@ -79,7 +82,8 @@
 
 @layer components {
   .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .site-container { width: min(100% - 2 * var(--margin), var(--canvas) - 2 * var(--margin)); margin-inline: auto; }
+  .site-container { width: min(100% - 2 * var(--margin), var(--content-max)); margin-inline: auto; }
+  .full-width-content { width: 100%; max-width: none; min-width: 0; grid-column: 1 / -1; }
   .icon { flex: none; display: block; }
 
   /* Full-page lattice; the SVG tiles in pixel units, so cells keep one scale on every page length. */

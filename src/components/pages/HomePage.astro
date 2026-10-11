@@ -5,7 +5,7 @@ import type { Copy } from '../copy';
 interface Props { copy: Copy; [key: string]: unknown }
 const { copy } = Astro.props;
 const { t, href } = copy;
-const gateHref = href('/gate-1/');
+const aboutHref = href('/about/company/');
 const evidenceHref = href('/evidence/');
 ---
 <main id="main" tabindex="-1" class="page-main page-main--home">
@@ -14,10 +14,9 @@ const evidenceHref = href('/evidence/');
       <div class="home-hero__copy">
         <p class="eyebrow">{t('brand-core-principle')}</p>
         <h1 class="home-hero__title" id="home-title">{t('brand-company-motto')}</h1>
-        <p class="lede">{t('brand-mission')}</p>
         <div class="action-group">
-          {gateHref && t('cta-view-gate-1') && <a class="action-link action-link--primary" href={gateHref}>{t('cta-view-gate-1')}<Icon name="arrow-right" /></a>}
-          {evidenceHref && t('cta-explore-evidence') && <a class="action-link action-link--secondary" href={evidenceHref}>{t('cta-explore-evidence')}</a>}
+          {evidenceHref && <a class="action-link action-link--primary" href={evidenceHref}>{t('label-evidence')}<Icon name="arrow-right" /></a>}
+          {aboutHref && <a class="action-link action-link--secondary" href={aboutHref}>{t('label-about')}</a>}
         </div>
       </div>
       <div class="home-hero__visual" aria-hidden="true">

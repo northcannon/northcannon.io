@@ -1,0 +1,6 @@
+---
+// A digest the reader can expand: CSS abbreviates it, the document keeps the full value, and the disclosure is native.
+interface Props { value: string; identity?: string | undefined }
+const { value, identity } = Astro.props;
+---
+<details class="hash"><summary><code data-evidence-hash={identity}>{value}</code></summary></details>

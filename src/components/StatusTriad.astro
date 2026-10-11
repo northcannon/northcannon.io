@@ -1,0 +1,5 @@
+---
+interface Props { columns: { label: string; items: string[] }[] }
+const { columns } = Astro.props;
+---
+<div class="status-triad">{columns.map((column,index) => <section class={`status-triad__column status-triad__column--${index}`}><h3><span aria-hidden="true">{['✓', '○', '×'][index]}</span> {column.label}</h3><ul>{column.items.map(text => <li>{text}</li>)}</ul></section>)}</div>

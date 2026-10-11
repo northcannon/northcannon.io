@@ -35,7 +35,6 @@ const whyNow = whyDetail.every(Boolean) ? whyDetail as string[] : [t('about-why-
     <section class="page-hero page-hero--text" aria-labelledby="company-title">
       {t('about-eyebrow') && <p class="eyebrow">{t('about-eyebrow')}</p>}
       <h1 class="page-title" id="company-title">{t('about-headline') ?? title}</h1>
-      <p class="lede">{t('brand-mission')}</p>
     </section>
 
     {t('about-why-title') && whyNow.length > 0 && (

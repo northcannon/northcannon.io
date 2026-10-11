@@ -1,0 +1,7 @@
+---
+import HashBlock from './HashBlock.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string; expanded?: boolean }
+const { t, expanded = true } = Astro.props as Props;
+---
+<details class:list={["ci-context", "ci-panel", expanded ? "ci-panel--expanded" : "ci-panel--collapsed"]} open={expanded}><summary>{t(f.labels.context)}</summary><div class="ci-panel-content"><dl><div><dt>{t(f.labels.previous)}</dt><dd>{t(f.identity.previous)}</dd></div><div><dt>{t(f.labels.proposed)}</dt><dd>{t(f.identity.proposed)}</dd></div><div><dt>{t(f.labels.scope)}</dt><dd>{t(f.identity.scope)}</dd></div><div><dt>{t(f.labels.source)}</dt><dd>{t(f.identity.source)}</dd></div></dl><ul class="ci-artifacts">{f.nodes.filter(n => n.state === 'CHANGED').map(n => <li><a href={`#ci-node-${n.id}`}>{t(n.label)}</a></li>)}</ul><HashBlock value={t(f.evidence.find(e => e.id === 'candidate')!.hash_claim)} label={t(f.labels.hash)} identity="synthetic-candidate" /></div></details>

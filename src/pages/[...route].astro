@@ -1,4 +1,5 @@
 ---
+import conceptStyles from '../styles/concept.css?url';
 import SitePage from '../components/SitePage.astro';
 import { readRoutes } from '../governance/routes.mjs';
 export function getStaticPaths() {
@@ -6,4 +7,4 @@ export function getStaticPaths() {
 }
 const { route } = Astro.props;
 ---
-<SitePage route={route} review={false} />
+<SitePage conceptStyles={["/","/solutions/","/products/","/evidence/","/experiments/"].includes(route.path) ? conceptStyles : undefined} route={route} review={false} />

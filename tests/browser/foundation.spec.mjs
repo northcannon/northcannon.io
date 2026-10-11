@@ -20,7 +20,7 @@ for (const route of ['/', '/404.html']) {
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('script, style, form, [style]')).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    expect(await page.locator('main .site-container').evaluate(el => el.getBoundingClientRect().left)).toBeGreaterThanOrEqual(20);
+    expect(await page.locator('main h1').evaluate(el => el.getBoundingClientRect().left)).toBeGreaterThanOrEqual(20);
     // Axe is test-runner instrumentation, never a page dependency or output script.
     const report = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     expect(report.violations).toEqual([]);
@@ -45,7 +45,7 @@ test('works with browser JavaScript disabled and handles missing routes', async 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/');
-  await expect(page.getByRole('heading', { name: 'Designed to be falsified. Built for trust.', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Control what autonomous AI can change.', exact: true })).toBeVisible();
   const response = await page.goto('http://127.0.0.1:4321/missing/');
   expect(response.status()).toBe(404);
   await page.getByRole('link', { name: 'Return home' }).click();

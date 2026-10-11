@@ -1,0 +1,6 @@
+---
+import StateChip from '../StateChip.astro';
+interface Props { label: string; tone?: 'planned' | 'illustrative' | 'inactive' | 'neutral' }
+const { label, tone = 'illustrative' } = Astro.props;
+---
+<StateChip label={label} tone={tone} />

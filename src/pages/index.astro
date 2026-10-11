@@ -1,6 +1,7 @@
 ---
+import conceptStyles from '../styles/concept.css?url';
 import SitePage from '../components/SitePage.astro';
 import { readRoutes } from '../governance/routes.mjs';
 const route = readRoutes().find(r => r.path === '/')!;
 ---
-<SitePage route={route} review={false} />
+<SitePage conceptStyles={conceptStyles} route={route} review={false} />

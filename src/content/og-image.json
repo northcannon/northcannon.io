@@ -1,0 +1,12 @@
+{
+  "path": "/og/northcannon-default.png",
+  "width": 1200,
+  "height": 630,
+  "sha256": "e064479f9e7277b29b3bf9cef2d4d905a161335f6f6a0e0ec534a3f4c76117f1",
+  "claim_ids": [
+    "brand-company",
+    "redesign-label-category",
+    "redesign-home-title"
+  ],
+  "status": "pending"
+}

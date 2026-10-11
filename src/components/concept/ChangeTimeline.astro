@@ -1,0 +1,6 @@
+---
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<section class="ci-timeline"><h4>{t(f.labels.timeline)}</h4><ol>{f.lifecycle.map(stage => <li class={`ci-stage--${stage.state}`}><span>{t(stage.label)}</span></li>)}</ol><p>{t(f.labels.acceptance)}</p></section>

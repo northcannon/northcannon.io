@@ -1,0 +1,6 @@
+---
+import HashValue from '../HashValue.astro';
+interface Props { value: string; label: string; identity: string }
+const { value, label, identity } = Astro.props;
+---
+<div class="ci-hash"><HashValue value={value} identity={identity} /><details><summary>{label}</summary><code>{value}</code></details></div>

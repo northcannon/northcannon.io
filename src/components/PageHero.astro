@@ -1,0 +1,8 @@
+---
+interface Props { title: string; eyebrow?: string; lede?: string; instrument?: boolean }
+const { title, eyebrow, lede, instrument = false } = Astro.props;
+---
+<header class:list={['product-hero', { 'product-hero--instrument': instrument }]}>
+  <div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1>{lede && <p class="lede">{lede}</p>}<slot name="actions" /></div>
+  <slot />
+</header>

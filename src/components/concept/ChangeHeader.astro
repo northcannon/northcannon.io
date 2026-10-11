@@ -1,0 +1,7 @@
+---
+import StatusChip from './StatusChip.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<header class="ci-header"><div><p class="eyebrow">{t(f.labels.console)}</p><h3>{t(f.identity.proposed)}</h3><p>{t(f.labels.truth)}</p></div><StatusChip label={t(f.labels.planned)} tone="planned" /><dl class="ci-identity"><div><dt>{t(f.labels.repo)}</dt><dd>{t(f.identity.repository)}</dd></div><div><dt>{t(f.labels.candidate)}</dt><dd>{t(f.identity.candidate)}</dd></div><div><dt>{t(f.labels.decision)}</dt><dd>{t(f.labels.withheld)}</dd></div></dl></header>

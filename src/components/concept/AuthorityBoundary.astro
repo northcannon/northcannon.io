@@ -1,0 +1,8 @@
+---
+import StatusChip from './StatusChip.astro';
+import HashBlock from './HashBlock.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<div class="ci-authority"><p>{t(f.labels.truth)}</p><StatusChip label={t(f.labels.illustrative)} /><div class="ci-authority-columns"><section><h3>{t(f.labels.proposal)}</h3><p class="ci-version">{t(f.identity.proposed)}</p><p>{t(f.identity.candidate)}</p><p>{t(f.identity.scope)}</p><HashBlock value={t(f.evidence.find(e => e.id === 'candidate')!.hash_claim)} label={t(f.labels.hash)} identity="synthetic-authority-candidate" /></section><section class="ci-authority-gate"><h3>{t(f.labels.evaluation)}</h3><p class="ci-boundary">{t(f.labels.boundary)}</p><p>{t(f.labels.qualification)}</p><p>{t(f.count_claims.obligations)}</p><p>{t(f.count_claims.gaps)}</p><p>{t(f.labels['unknown-note'])}</p></section><section><h3>{t(f.labels.decision)}</h3><StatusChip label={t(f.labels.withheld)} tone="planned" /><p>{t(f.labels.authorized)}</p><p>{t(f.identity.previous)}</p><p>{t(f.labels.acceptance)}</p></section></div></div>

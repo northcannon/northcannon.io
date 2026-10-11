@@ -1,3 +1,7 @@
-<div class="graphene" aria-hidden="true">
+---
+interface Props { density?: 'hero' | 'quiet' | 'none' }
+const { density = 'hero' } = Astro.props;
+---
+<div class:list={["graphene", `graphene--${density}`]} aria-hidden="true">
   <img src="/graphene-lattice.svg" width="660" height="572" alt="" decoding="async" />
 </div>

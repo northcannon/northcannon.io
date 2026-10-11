@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { lstat, readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { disclosureErrors, isSecretLikeFile, allowedImages, inspectImage, allowedMedia, inspectMedia } from './policy.mjs';
+import { disclosureErrors, isSecretLikeFile, allowedImages, inspectImage, allowedMedia, inspectMedia, historicalMedia, historicalImages } from './policy.mjs';
 
 const textExtensions = new Set(['.md', '.mdx', '.json', '.yaml', '.yml', '.ts', '.mjs', '.astro', '.css', '.svg', '.txt']);
 
@@ -36,14 +36,14 @@ export async function scanTracked(root, read = readFile) {
       if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
       continue;
     }
-    if (name.startsWith('public/') && name.slice(6) in allowedImages) {
-      errors.push(...inspectImage(await readFile(full), allowedImages[name.slice(6)], name));
+    if (name.startsWith('public/') && name.slice(6) in { ...allowedImages, ...historicalImages }) {
+      errors.push(...inspectImage(await readFile(full), ({ ...allowedImages, ...historicalImages })[name.slice(6)], name));
       continue;
     }
-    if (name.startsWith('public/') && name.slice(6) in allowedMedia) {
+    if (name.startsWith('public/') && name.slice(6) in { ...allowedMedia, ...historicalMedia }) {
       const bytes = await readFile(full);
-      errors.push(...inspectMedia(bytes, allowedMedia[name.slice(6)], name));
-      if (allowedMedia[name.slice(6)] === 'vtt') errors.push(...disclosureErrors(bytes.toString('utf8'), name));
+      errors.push(...inspectMedia(bytes, ({ ...allowedMedia, ...historicalMedia })[name.slice(6)], name));
+      if (({ ...allowedMedia, ...historicalMedia })[name.slice(6)] === 'vtt') errors.push(...disclosureErrors(bytes.toString('utf8'), name));
       continue;
     }
     if (!textExtensions.has(path.extname(name)) && !['.gitignore', '_headers', '_redirects'].includes(basename) && !name.endsWith('.example')) {

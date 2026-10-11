@@ -1,0 +1,7 @@
+---
+import ObligationRow from './ObligationRow.astro';
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<section class="ci-queue"><h4>{t(f.labels.queue)}</h4><ul>{f.obligations.map(obligation => <ObligationRow t={t} obligation={obligation} />)}</ul></section>

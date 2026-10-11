@@ -1,0 +1,6 @@
+---
+import f from '../../content/concept-scenario.json';
+interface Props { t: (id: string) => string }
+const { t } = Astro.props as Props;
+---
+<aside class="ci-coverage"><h4>{t(f.labels.coverage)}</h4><p>{t(f.labels['unknown-note'])}</p><ul>{f.coverage_gaps.map(g => <li><a href={`#ci-node-${g.node}`}>{t(g.claim)}</a></li>)}</ul></aside>

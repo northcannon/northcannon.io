@@ -7,10 +7,10 @@ test.use({ bypassCSP: true });
 
 // Rendered WCAG AA contrast for text over panels and the decorative hex pattern.
 for (const [name, url, selectors] of [
-  ['home', 'http://127.0.0.1:4323/', ['h1', '.home-hero .eyebrow', '.home-hero .lede', '.action-link--primary', '.site-footer__brand span']],
-  ['results', 'http://127.0.0.1:4323/results/', ['.status-banner__text', '.metric-card__name']],
+  ['home', 'http://127.0.0.1:4323/', ['h1', '.product-hero .eyebrow', '.action-link--primary', '.site-footer__brand span']],
+  ['evidence', 'http://127.0.0.1:4323/evidence/', ['.status-triad li', '.product-section h2']],
   ['404', '/404.html', ['.wordmark span', '.action-link--primary']],
-  ['fixture', 'http://127.0.0.1:4322/', ['.action-link--secondary', '.module__body p']],
+  ['fixture', 'http://127.0.0.1:4322/specimen/', ['.action-link--secondary', '.module__body p']],
 ]) {
   test(`${name} text keeps rendered AA contrast`, async ({ page }, testInfo) => {
     await page.goto(url);
