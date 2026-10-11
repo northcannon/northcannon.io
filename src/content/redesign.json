@@ -761,6 +761,12 @@
           "body": "redesign-products-capabilities-body"
         },
         {
+          "id": "control-process",
+          "title": "redesign-home-control-loop-title",
+          "body": "redesign-home-control-loop-body",
+          "kind": "loop"
+        },
+        {
           "id": "distinction",
           "title": "redesign-products-distinction-title",
           "kind": "stack",
@@ -835,6 +841,12 @@
           "kind": "usecases"
         },
         {
+          "id": "control-process",
+          "title": "redesign-home-control-loop-title",
+          "body": "redesign-home-control-loop-body",
+          "kind": "loop"
+        },
+        {
           "id": "workflow",
           "title": "concept-console",
           "kind": "concept-console",
@@ -899,7 +911,7 @@
       "sections": [
         {
           "id": "company",
-          "title": "about-eyebrow",
+          "title": "redesign-about-row-body-1",
           "kind": "company",
           "rows": [
             [
@@ -919,6 +931,36 @@
               "redesign-about-row-body-4"
             ]
           ]
+        },
+        {
+          "id": "about-pillars",
+          "title": "redesign-products-capabilities-title",
+          "body": "redesign-products-capabilities-body",
+          "kind": "pillars",
+          "rows": [
+            [
+              "redesign-loop-decide",
+              "redesign-status-exists-1"
+            ],
+            [
+              "redesign-loop-verify",
+              "redesign-status-exists-2"
+            ],
+            [
+              "redesign-loop-revalidate",
+              "redesign-status-exists-3"
+            ],
+            [
+              "redesign-loop-bound",
+              "redesign-about-row-body-2"
+            ]
+          ]
+        },
+        {
+          "id": "about-process",
+          "title": "redesign-home-control-loop-title",
+          "body": "redesign-home-control-loop-body",
+          "kind": "loop"
         },
         {
           "id": "founder",

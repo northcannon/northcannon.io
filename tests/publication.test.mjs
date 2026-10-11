@@ -118,6 +118,7 @@ test('standalone review build rebuilds current provenance from source only and r
       'scripts/redesign-policy.mjs', 'scripts/check-redesign-output.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
       ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric','StateChip','HashValue'].map(n => `src/components/${n}.astro`),
       'src/components/pages/RedesignPage.astro',
+      ...['Terrain','ConceptDisplay','GrapheneMesh'].map(n => `src/components/reference/${n}.astro`),
       'src/content/concept-scenario.json', 'src/styles/concept.css',
       ...['ChangeConsole', 'AuthorityBoundary', 'ChangeHeader', 'ChangeTimeline', 'ConsequenceGraph', 'ConsequenceInspector', 'ContextPanel', 'CoverageGap', 'EvidencePacket', 'HashBlock', 'ObligationRow', 'ReconciliationLadder', 'RevalidationQueue', 'StateComparison', 'StatusChip'].map(n => `src/components/concept/${n}.astro`),
       'astro.config.mjs', 'tsconfig.json', 'package.json', 'package-lock.json',

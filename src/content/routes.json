@@ -834,7 +834,8 @@
       "redesign-about-row-body-4",
       "redesign-about-founder-transition",
       "cta-get-in-touch",
-      "about-why-title"
+      "about-why-title",
+      "redesign-label-phase-a"
     ],
     "nav": true,
     "publish": false,
@@ -1825,7 +1826,8 @@
       "concept-ladder-4",
       "concept-ladder-detail-4",
       "concept-ladder-5",
-      "concept-ladder-detail-5"
+      "concept-ladder-detail-5",
+      "redesign-label-phase-a"
     ],
     "nav": true,
     "publish": false,
@@ -3935,7 +3937,8 @@
       "redesign-about-row-body-3",
       "redesign-about-row-label-4",
       "redesign-about-row-body-4",
-      "redesign-about-founder-transition"
+      "redesign-about-founder-transition",
+      "redesign-label-phase-a"
     ],
     "nav": false,
     "publish": true,

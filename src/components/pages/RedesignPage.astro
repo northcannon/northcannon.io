@@ -1,4 +1,6 @@
 ---
+import Terrain from '../reference/Terrain.astro';
+import ConceptDisplay from '../reference/ConceptDisplay.astro';
 import { productionManifestHash } from '../../governance/evidence.mjs';
 import { validateEvidencePlacement } from '../../governance/evidence.mjs';
 import ChangeConsole from '../concept/ChangeConsole.astro';
@@ -29,40 +31,44 @@ const { copy, route } = Astro.props;
 const t = (id: string) => { const value = copy.t(id); if (value === undefined) throw new Error(`Missing redesign claim: ${id}`); return value; };
 const pages = draft.pages as Record<string, PageData>;
 const page = pages[route.alias_of ?? route.path]!;
+const reference = ['home','about','products','solutions','evidence','experiments'].includes(page.key);
 const instrument = ['evidence', 'experiments', 'status'].includes(page.key);
 const columns = draft.triad.map(col => ({ label: t(col.label), items: col.items.map(t) }));
 const stageLabels = draft.loop.map(([label]) => t(label!));
-const stages = page.key !== 'home' ? [] : draft.loop.map(([label, question], index) => ({ label: t(label!), question: t(question!), state: draft.loop_states[index] === 'implemented' ? { label: t('redesign-label-phase-a'), tone: 'implemented' as const } : { label: t(draft.labels.planned), tone: 'planned' as const } }));
+const stages = !reference || !page.sections.some(section => section.kind === 'loop') ? [] : draft.loop.map(([label, question], index) => ({ label: t(label!), question: t(question!), state: draft.loop_states[index] === 'implemented' ? { label: t('redesign-label-phase-a'), tone: 'implemented' as const } : { label: t(draft.labels.planned), tone: 'planned' as const } }));
 const words = (section: SectionData) => (section.items ?? []).map(t);
 const manifestHash = page.key === 'evidence' ? productionManifestHash() : '';
 validateEvidencePlacement(draft.historical, 'ledger');
 const statusTone: Record<string, 'planned' | 'illustrative' | 'future' | 'inactive' | 'neutral'> = { [draft.labels.planned]: 'planned', [draft.labels.knowledge]: 'illustrative', [draft.labels.target]: 'planned', [draft.labels.expansion]: 'inactive', [draft.labels.concept]: 'future' };
 const flowColumns: Record<string, 2 | 3 | 4 | 5 | 6> = { 'customer-zero': 5, workflow: 4, 'research-to-product': 6 };
-const special = new Set(['concept-preview','concept-console','concept-authority','concept-evidence','research','usecases','scope','panel','compare','distinction','loop','triad','deployment','topology','stack','lineage','founder','packet','intents','gate','ledger','historical','methodology','results','security','availability','agnostic','contact']);
+const special = new Set(['pillars','concept-preview','concept-console','concept-authority','concept-evidence','research','usecases','scope','panel','compare','distinction','loop','triad','deployment','topology','stack','lineage','founder','packet','intents','gate','ledger','historical','methodology','results','security','availability','agnostic','contact']);
 ---
-<main id="main" tabindex="-1" class:list={['redesign-main', instrument ? 'instrument-zone' : 'product-zone']}>
+<main id="main" tabindex="-1" data-page={reference ? page.key : undefined} class:list={['redesign-main', {'reference-page': reference}, instrument ? 'instrument-zone' : 'product-zone']}>
 <div class="site-container">
   <PageHero title={t(page.title)} eyebrow={t(page.eyebrow)} lede={t(page.lede)} instrument={instrument}>
     <div slot="actions" class="action-group">
-      {['home','demo'].includes(page.key) && <a class="action-link action-link--primary" href="/products/">{t(draft.shared.explore)}</a>}
-      {page.key === 'home' && <a class="action-link action-link--secondary" href="/evidence/">{t(draft.shared.evidence)}</a>}
+      {['home','about','demo'].includes(page.key) && <a class="action-link action-link--primary" href="/products/">{t(draft.shared.explore)}</a>}
+      {['home','about'].includes(page.key) && <a class="action-link action-link--secondary" href="/evidence/">{t(draft.shared.evidence)}</a>}
       {page.key === 'products' && <a class="action-link action-link--primary" href="/contact/">{t('cta-get-in-touch')}</a>}
       {page.key === 'solutions' && <a class="action-link action-link--primary" href="/contact/">{t('cta-get-in-touch')}</a>}
     </div>
-    {page.key === 'home' && <aside class="hero-aside"><p class="eyebrow">{t(draft.shared.descriptor)}</p><p class="hero-aside__statement">{t(draft.shared.receipt)}</p><div class="chip-row"><StateChip label={t(draft.example.design)} tone="planned" /></div></aside>}
+    {['home','solutions'].includes(page.key) && <ConceptDisplay t={t} />}
+    {page.key === 'products' && <ConceptDisplay t={t} variant="substrate" />}
+    {['about','experiments'].includes(page.key) && <div class="reference-hero-terrain"><Terrain /></div>}
+    {page.key === 'evidence' && <div id="status" class="reference-status-panel"><h2>{t('redesign-evidence-status-title')}</h2><StatusTriad columns={columns} /><p>{t(draft.shared.qualification)}</p></div>}
   </PageHero>
   {instrument && <p class="state-label">{t(draft.labels.reconciled)}</p>}
-  {page.sections.map(section => <Section id={section.id} cta={section.kind === 'contact'} secondary={Boolean((section as { secondary?: unknown }).secondary) && section.kind === 'historical'} title={t(section.title)} intro={section.body && !['future', 'panel', 'kpis', 'results', 'methodology'].includes(section.kind ?? '') ? t(section.body) : undefined} instrument={instrument}>
+  {page.sections.filter(section => !(page.key === 'evidence' && section.id === 'status')).map(section => <Section editorial={reference} kind={section.kind} id={section.id} cta={section.kind === 'contact'} secondary={Boolean((section as { secondary?: unknown }).secondary) && section.kind === 'historical'} title={t(section.title)} intro={section.body && !['future', 'panel', 'kpis', 'results', 'methodology'].includes(section.kind ?? '') ? t(section.body) : undefined} instrument={instrument}>
     {section.status && <p class="chip-row"><StateChip label={t(section.status)} tone={statusTone[section.status] ?? 'neutral'} /></p>}
     {section.kind === 'compare' && (() => { const w = words(section); return <div class="compare"><div class="compare__panel"><h3>{w[0]}</h3><ul>{w.slice(2,5).map(text => <li>{text}</li>)}</ul></div><span class="compare__marker"><span aria-hidden="true">≠</span><span class="visually-hidden">{t(draft.labels['is-not'])}</span></span><div class="compare__panel compare__panel--control"><h3>{w[1]}</h3><ul><li>{w[5]}</li></ul></div></div>; })()}
     {section.kind === 'distinction' && <><Distinction statements={words(section).slice(0,2)} alternative={t(draft.labels['is-not'])} /><ul class="editorial-list">{words(section).slice(2).map(text => <li>{text}</li>)}</ul></>}
-    {section.kind === 'loop' && (page.key === 'home' ? <><ControlLoop stages={stages} recovery={t(draft.shared.recovery)} /><div class="group-qualifier"><p>{t(draft.shared['recovery-distinct'])}</p></div></> : <FlowSteps steps={stageLabels} grid={6} />)}
+    {section.kind === 'loop' && (reference ? <><ControlLoop stages={stages} recovery={t(draft.shared.recovery)} /><div class="group-qualifier"><p>{t(draft.shared['recovery-distinct'])}</p></div></> : <FlowSteps steps={stageLabels} grid={6} />)}
     {section.kind === 'triad' && <><StatusTriad columns={columns} /><div class="group-qualifier"><p>{t(draft.shared.qualification)}</p>{page.key !== 'evidence' && <a class="inline-link" href="/evidence/#status">{t(draft.shared.evidence)}</a>}</div></>}
     {section.kind === 'scope' && <div class="scope-columns">{[[0,'implemented',t('redesign-label-phase-a')],[1,'planned',t(draft.labels.planned)]].map(([index,tone,label]) => <div class="card"><p class="chip-row"><StateChip label={label as string} tone={tone as 'implemented' | 'planned'} /></p><ul>{draft.triad[index as number]!.items.map(id => <li>{t(id)}</li>)}</ul></div>)}</div>}
     {section.kind === 'panel' && section.body && <div class="panel-note"><p>{t(section.body)}</p></div>}
     {section.kind === 'deployment' && <><div class="offering-grid">{draft.deployments.map((card, index) => <OfferingCard title={t(card.title)} body={t(card.body)} status={t(draft.labels.planned)}>{section.topology && <div class="topology-boundary"><p class="state-label">{t(index === 0 ? draft.example['northcannon-environment'] : draft.example['your-environment'])}</p><p>{t('brand-company')}</p></div>}</OfferingCard>)}</div><div class="group-qualifier"><p>{t(draft.shared.availability)}</p>{(section.qualifiers ?? []).map(id => <p>{t(id)}</p>)}</div></>}
     {section.kind === 'stack' && <ControlStack layers={words(section)} />}
-    {section.kind === 'concept-preview' && <div class="ci-preview"><p>{t(concept.labels.truth)}</p><StateChip label={t(concept.labels.planned)} tone="planned" /><div class="ci-preview-path"><div><h3>{t(concept.identity.proposed)}</h3><p>{t(concept.count_claims.changed)}</p></div><div><h3>{t(concept.labels.inspector)}</h3><p>{t(concept.count_claims.potential)}</p><p>{t(concept.count_claims.gaps)}</p></div><div><h3>{t(concept.labels.decision)}</h3><p>{t(concept.labels.withheld)}</p><p>{t(concept.count_claims.obligations)}</p></div></div><a class="inline-link" href="/solutions/#workflow">{t(concept.labels['preview-link'])}</a></div>}
+    {section.kind === 'concept-preview' && <div class="ci-preview"><ConceptDisplay t={t} variant="obligations" /><a class="inline-link" href="/solutions/#workflow">{t(concept.labels['preview-link'])}</a></div>}
     {section.kind === 'concept-console' && <ChangeConsole t={t} />}
     {section.kind === 'concept-authority' && <AuthorityBoundary t={t} />}
     {section.kind === 'concept-evidence' && <EvidencePacket t={t} />}
@@ -72,6 +78,7 @@ const special = new Set(['concept-preview','concept-console','concept-authority'
     {section.kind === 'packet' && <><div class="group-qualifier"><p>{t(draft.shared['knowledge-disclosure'])}</p></div><FlowSteps steps={[t(draft.example.dependency),t('label-change-intelligence')]} grid={2} /><div class="knowledge-branches"><div><p>{t(draft.example.runtime)}</p></div><div><p>{t(draft.example.knowledge)}</p><ul class="tag-list">{draft.packet.map(([surface]) => <li>{t(surface!)}</li>)}</ul></div></div><p>{t(draft.example.obligations)}</p><DataTable caption={t(section.title)} columns={[t(draft.labels.obligation),t(draft.labels.surface),t(draft.labels.reason)]} rows={words(section).map((text,i) => [text,t(draft.packet[i]![0]!),t(draft.packet[i]![1]!)])} /></>}
     {section.kind === 'cards' && <div class={`grid grid--${Math.min(4, (section.items ?? []).length)}`}>{words(section).map(text => <OfferingCard body={text} variant="muted" />)}</div>}
     {section.kind === 'future' && <OfferingCard title={t(section.subtitle!)} status={t(draft.labels.concept)} tone="future" variant="future"><p>{t(section.body!)}</p><FlowSteps steps={words(section)} grid={4} /><a class="inline-link" href="/contact/">{t('label-contact')}</a></OfferingCard>}
+    {section.kind === 'pillars' && <div class="reference-pillars">{(section.rows ?? []).map(([label,body]) => <div><span class="reference-symbol" aria-hidden="true">◇</span><h3>{t(label!)}</h3><p>{t(body!)}</p></div>)}</div>}
     {section.kind === 'company' && <><div class="editorial-rows">{(section.rows ?? []).map(([label, body]) => <p class="editorial-rows__row"><span class="editorial-rows__label">{t(label!)}</span><span class="editorial-rows__body">{t(body!)}</span></p>)}</div><div class="principles"><blockquote>{t('brand-company-motto')}</blockquote><p>{t('brand-core-principle')}</p></div></>}
     {section.kind === 'founder' && <FounderProfile name={t('founder-origin-attribution')} alt={t('founder-photo-alt')} bio={t('about-founder-bio')} quote={t('founder-origin-quote')} note={t('founder-origin-note')} transition={section.transition ? t(section.transition) : undefined} />}
     {section.kind === 'kpis' && <div data-evidence-class="product"><div class="group-qualifier"><StateChip label={t(draft.classes.product)} tone="neutral" /><p>{t(section.body!)}</p></div><div class="grid grid--2 grid--start">{(section.categories ?? []).map(([category, numbers]) => <div class="card metric-category"><h3>{t(category)}</h3>{numbers.map(number => <details class="metric"><summary><span class="metric__name">{t(draft.kpi_terms[`redesign-evidence-kpis-${number}` as keyof typeof draft.kpi_terms])}</span><span class="metric__line">{t(`redesign-kpi-line-${number}`)}</span></summary><p>{t(`redesign-evidence-kpis-${number}`)}</p></details>)}</div>)}</div></div>}
@@ -93,4 +100,5 @@ const special = new Set(['concept-preview','concept-console','concept-authority'
     {section.kind === 'contact' && <div class="action-group"><a class="action-link action-link--primary" href="/contact/">{t(section.cta ?? 'cta-get-in-touch')}</a>{section.secondary && <a class="action-link action-link--secondary" href="/products/">{t(section.secondary)}</a>}</div>}
     {!special.has(section.kind ?? '') && !['flow','milestones','cards','future','company','kpis'].includes(section.kind ?? '') && section.items && <ul class="editorial-list">{words(section).map(text => <li>{text}</li>)}</ul>}
   </Section>)}
+{reference && <div class="reference-end-terrain"><Terrain /></div>}
 </div></main>

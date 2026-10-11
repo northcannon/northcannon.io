@@ -76,7 +76,7 @@ test('changed pages and every console mode reflow at 375, 390 and 320 with 200 p
       await page.goto(REVIEW + route);
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
       for (const panel of await page.locator('.ci-panel--collapsed:visible').all()) await panel.locator(':scope > summary').click();
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), route + ':' + width).toBe(true);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), route + ':' + width + ':' + JSON.stringify(await page.locator('main *').evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth && getComputedStyle(el).position !== 'absolute').slice(0,12).map(el => ({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right}))))).toBe(true);
     }
   }
 });

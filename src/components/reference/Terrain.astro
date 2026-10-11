@@ -1,0 +1,15 @@
+---
+// Decorative wire surface derived from the founder-supplied six-page renderings.
+const point = (x: number, z: number) => {
+  const height = 190 * Math.exp(-((x-11)**2/34 + (z-9)**2/22)) + 115 * Math.exp(-((x-24)**2/23 + (z-5)**2/15));
+  return [x*25 + z*14 - 130, 125 + z*13 - height];
+};
+const rows = Array.from({length:19},(_,z)=>Array.from({length:35},(_,x)=>point(x,z).join(',')).join(' '));
+const cols = Array.from({length:35},(_,x)=>Array.from({length:19},(_,z)=>point(x,z).join(',')).join(' '));
+const peaks = [[11,9],[24,5],[5,14],[28,13],[18,16]];
+---
+<svg class="reference-terrain" viewBox="0 0 980 390" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width=".65" opacity=".38">{rows.map(points=><polyline points={points}/>)}{cols.map(points=><polyline points={points}/>)}</g>
+  {Array.from({length:19},(_,z)=>Array.from({length:35},(_,x)=>{const [cx,cy]=point(x,z);return (x+z)%3===0 && <circle cx={cx} cy={cy} r={(x*z)%7===0?2:1} fill="currentColor" opacity=".65"/>;}))}
+  {peaks.map(([x,z])=>{const [cx,cy]=point(x!,z!); return <g stroke="currentColor"><path d={`M${cx} ${cy}v-88`} stroke-width=".9"/><circle cx={cx} cy={cy} r="3" fill="currentColor"/><circle cx={cx} cy={cy!-88} r="2" fill="currentColor"/></g>;})}
+</svg>

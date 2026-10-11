@@ -16,7 +16,7 @@ test('review IA, aliases, native navigation, metadata and disclosure boundaries'
   await expect(page.locator('main')).not.toContainText('NorthCannon Factory');
   await page.goto(REVIEW + '/about/company/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://northcannon.io/about/');
-  await expect(page.locator('.product-section')).toHaveCount(2);
+  await expect(page.locator('.product-section')).toHaveCount(4);
   await expect(page.locator('#company, #founder')).toHaveCount(2);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content','https://northcannon.io/og/northcannon-default.png');
   // A cached /about/ -> /about/company/ move terminates at a 200 alias.
@@ -53,6 +53,7 @@ test('review redirects preserve fragments in one hop without changing production
 test('evidence renders source-bound hashes and no numeric or historical KPI tiles', async ({ page }) => {
   const draft = JSON.parse(await readFile('src/content/redesign.json','utf8'));
   await page.goto(REVIEW + '/evidence/');
+  await expect(page.getByRole('heading', { name:'Current product status', exact:true })).toHaveCount(1);
   await expect(page.locator('[data-evidence-hash="historical"]')).toHaveText(draft.historical.sha256);
   await expect(page.locator('[data-evidence-hash="site"]')).toHaveText(createHash('sha256').update(await readFile('dist/provenance.json')).digest('hex'));
   await expect(page.locator('#kpis [data-evidence-class="historical"], #status [data-evidence-class="historical"], .metric-card')).toHaveCount(0);
@@ -102,31 +103,30 @@ test('every published and review page renders with browser JavaScript disabled',
   } finally { await context.close(); }
 });
 
-test('full-width layout: About rows, founder biography and editorial blocks use the container at 1440', async ({ page }, info) => {
-  test.skip(info.project.name !== 'desktop', 'The width contract is asserted at the 1440 desktop viewport.');
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto(REVIEW + '/about/');
-  const container = await page.locator('main .site-container').first().evaluate(el => { const r = el.getBoundingClientRect(); return { left: r.left, width: r.width }; });
-  expect(container.width).toBeGreaterThan(1250);
-  const rows = page.locator('.editorial-rows__row');
-  await expect(rows).toHaveCount(4);
-  for (const row of await rows.all()) {
-    expect((await row.boundingBox()).width).toBeGreaterThanOrEqual(container.width * 0.9);
-    expect(await row.locator('.editorial-rows__body').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
-  }
-  // The longest row wraps across the whole container: its text reaches at least 85% of the container width.
-  const reach = await rows.first().evaluate(el => { const range = document.createRange(); range.selectNodeContents(el); return Math.max(...[...range.getClientRects()].map(r => r.right)); });
-  expect(reach - container.left).toBeGreaterThanOrEqual(container.width * 0.85);
-  // The biography fills the grid track beside the photo column.
-  const photo = await page.locator('.founder-profile picture').boundingBox();
-  const bio = await page.locator('.founder-profile__bio').boundingBox();
-  const track = container.width - (photo.width + 32);
-  expect(bio.width).toBeGreaterThanOrEqual(track * 0.9);
-  expect(await page.locator('.founder-profile__bio').evaluate(el => getComputedStyle(el).maxWidth)).toBe('none');
+test('reference compositions: serif heroes, split panels, pillars and research pair at 1440', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop composition contract; reflow is covered by the width matrix.');
+  await page.setViewportSize({ width:1440, height:1000 });
   for (const route of ['/', '/about/', '/products/', '/solutions/', '/evidence/', '/experiments/']) {
     await page.goto(REVIEW + route);
-    for (const block of await page.locator('.product-section > p, .product-section > .section-lede, .editorial-list').all()) {
-      expect((await block.boundingBox()).width, route).toBeGreaterThanOrEqual(container.width * 0.85);
-    }
+    await expect(page.locator('main.reference-page')).toBeVisible();
+    const hero = page.locator('.product-hero');
+    expect(await hero.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(2);
+    expect(await page.locator('.reference-section__copy h2').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Georgia');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+  await page.goto(REVIEW + '/about/');
+  await expect(page.locator('.reference-pillars > div')).toHaveCount(4);
+  await expect(page.locator('#about-process .control-loop li')).toHaveCount(6);
+  const badgeTops = await page.locator('#about-process .state-chip').evaluateAll(els => els.map(el => el.getBoundingClientRect().top));
+  expect(Math.max(...badgeTops)-Math.min(...badgeTops)).toBeLessThan(1);
+  const photo = await page.locator('.founder-profile picture').boundingBox();
+  const bio = await page.locator('.founder-profile__bio').boundingBox();
+  const quote = await page.locator('.founder-profile blockquote').boundingBox();
+  expect(photo.x + photo.width).toBeLessThan(bio.x);
+  expect(bio.x + bio.width).toBeLessThan(quote.x);
+  await page.goto(REVIEW + '/experiments/');
+  const pi = await page.locator('#persistent-intelligence').boundingBox();
+  const spc = await page.locator('#spc').boundingBox();
+  expect(Math.abs(pi.y-spc.y)).toBeLessThan(2);
+  expect(pi.x + pi.width).toBeLessThan(spc.x);
 });

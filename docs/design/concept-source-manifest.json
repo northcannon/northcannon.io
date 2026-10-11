@@ -18,6 +18,36 @@
       "path": "NorthCannon_Public_Site_Implementation_Brief.PNG",
       "sha256": "4771249189c7181b571b5bd46a40f5154768dc1873edd304a553a5909ceb9c40",
       "role": "historical visual reference only"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_08 PM-1.png",
+      "sha256": "94f3f5780bab324218f76fad89e1ef4e519e99de53688410a1598a8e61d1c337",
+      "role": "Home founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_09 PM-2.png",
+      "sha256": "571fec326e152c0d56b5bd3d940e160523e3c5b9f3b78ebe4bb19f1485e8f81c",
+      "role": "About founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_10 PM-3.png",
+      "sha256": "6a2ccf24caec7de9cdfcfc4e3808a3aaec151d988360bf930ec99e8188244389",
+      "role": "Products founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_11 PM-4.png",
+      "sha256": "f3ea6043e8a61a6d6798d88c1418ec825e853066d084ee425c18bfceb737b78c",
+      "role": "Solutions founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_12 PM-5.png",
+      "sha256": "8c641c4b39a31278cd234d0a12a1ad99918ff01a16f38bd8d864e1e5f42ff402",
+      "role": "Evidence founder supplied visual reference; ignored local input"
+    },
+    {
+      "path": "site-review/ChatGPT Image Oct 10, 2026, 05_19_13 PM-6.png",
+      "sha256": "50a3a2d7c90c1b71922ca22046228b1909a42f23977624aa98a985bf96aa3a80",
+      "role": "Experiments founder supplied visual reference; ignored local input"
     }
   ],
   "diagrams": [
@@ -45,6 +75,21 @@
       "component": "src/components/concept/ChangeTimeline.astro",
       "source": "src/content/concept-scenario.json",
       "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/reference/ConceptDisplay.astro",
+      "source": "src/content/concept-scenario.json",
+      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+    },
+    {
+      "component": "src/components/reference/Terrain.astro",
+      "source": "docs/design/REFERENCE_REBUILD.md",
+      "review_status": "DECORATIVE_ONLY"
+    },
+    {
+      "component": "src/components/reference/GrapheneMesh.astro",
+      "source": "docs/design/REFERENCE_REBUILD.md",
+      "review_status": "DECORATIVE_ONLY"
     }
   ]
 }

@@ -1,4 +1,5 @@
 ---
+import GrapheneMesh from './reference/GrapheneMesh.astro';
 import { loadGovernance } from '../governance/registry.mjs';
 import { draftClaim } from '../governance/routes.mjs';
 import { claim } from '../governance/claim';
@@ -21,7 +22,7 @@ const trustLinks = [
 const companyLinks = [{ label: await claim('label-contact'), href: '/contact/' }];
 const href = (target: string) => (fragmentFixture ? '#review' : target);
 ---
-<footer class="site-footer">
+<footer class="site-footer">{review && ['/', '/about/', '/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/'].includes(Astro.url.pathname) && <GrapheneMesh id="footer-mesh" />}
   <div class="site-container site-footer__inner">
     <p class="site-footer__brand"><span>{copy.company}</span><span class="rule-divider" aria-hidden="true"></span><span>{copy.principle}</span></p>
     <nav aria-label={review ? draftClaim(loadGovernance().claims, 'redesign-label-site') : copy.trust}>

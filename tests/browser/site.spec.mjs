@@ -61,7 +61,7 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     // 200% text at 320px must reflow without horizontal page scroll.
     await page.setViewportSize({ width: 320, height: 800 });
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), JSON.stringify(await page.locator('main *').evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth).slice(0,12).map(el => ({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right}))))).toBe(true);
     await page.emulateMedia({ forcedColors: 'active' });
     await expect(page.locator('.graphene')).toBeHidden();
     const normal = await browser.newContext({ viewport: { width: 1440, height: 1000 } });

@@ -1,4 +1,5 @@
 ---
+import GrapheneMesh from './reference/GrapheneMesh.astro';
 import { loadGovernance } from '../governance/registry.mjs';
 import { eligibleClaim } from '../governance/schema.mjs';
 import { draftClaim } from '../governance/routes.mjs';
@@ -19,7 +20,7 @@ for (const text of [company, ...items.map(item => item.label)].filter(Boolean)) 
 const current = (href: string) => href === currentPath ? 'page' : undefined;
 ---
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="site-container site-header__inner">
+<header class="site-header">{review && ['/', '/about/', '/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/'].includes(currentPath) && <GrapheneMesh id="header-mesh" />}<div class="site-container site-header__inner">
   <a class="wordmark" href="/" aria-label={`${company} home`}><img src="/northcannon-mark.svg" width="36" height="24" alt="" /><span>{company}</span></a>
   {items.length > 0 && <nav aria-label="Primary" class="primary-nav">
     <ul class="navigation desktop-navigation">{items.map(item => <li><a class:list={{ 'nav-cta': item.cta }} href={item.href} aria-current={current(item.href)}>{item.label}</a></li>)}</ul>
