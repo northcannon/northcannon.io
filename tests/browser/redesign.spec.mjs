@@ -16,7 +16,7 @@ test('review IA, aliases, native navigation, metadata and disclosure boundaries'
   await expect(page.locator('main')).not.toContainText('NorthCannon Factory');
   await page.goto(REVIEW + '/about/company/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://northcannon.io/about/company/');
-  await expect(page.locator('.product-section')).toHaveCount(4);
+  await expect(page.locator('.product-section')).toHaveCount(3); // Architect review 2026-10-11: the duplicate pillar block was removed.
   await expect(page.locator('#company, #founder')).toHaveCount(2);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content','https://northcannon.io/og/northcannon-default.png');
   // The About page is one route. The duplicate /about/ page is not in the review output.
@@ -116,7 +116,8 @@ test('reference compositions: serif heroes, split panels, pillars and research p
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await page.goto(REVIEW + '/about/company/');
-  await expect(page.locator('.reference-pillars > div')).toHaveCount(3);
+  // Architect review 2026-10-11: About states implemented capabilities once, through the status cards (F-1).
+  await expect(page.locator('.reference-pillars')).toHaveCount(0);
   // Architect D-1: the six-stage loop appears on Home only; About shows the Phase A and planned status cards.
   await expect(page.locator('#about-process')).toHaveCount(0);
   await expect(page.locator('#status .scope-columns > .card')).toHaveCount(2);

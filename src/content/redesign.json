@@ -538,9 +538,6 @@
       "concept-ladder-5",
       "concept-ladder-detail-5"
     ],
-    "E-015": [
-      "redesign-label-recoverability"
-    ],
     "E-016": [
       "redesign-experiments-arms-sentence",
       "redesign-governed-extensions-title",
@@ -703,21 +700,6 @@
           "title": "redesign-home-control-loop-title",
           "kind": "loop",
           "body": "redesign-home-control-loop-body"
-        },
-        {
-          "id": "engineering",
-          "title": "redesign-home-engineering-title",
-          "kind": "concept-preview",
-          "body": "redesign-home-engineering-body",
-          "items": [
-            "redesign-home-engineering-1",
-            "redesign-home-engineering-2",
-            "redesign-home-engineering-3",
-            "redesign-home-engineering-4",
-            "redesign-home-engineering-5",
-            "redesign-home-engineering-6",
-            "redesign-home-engineering-7"
-          ]
         },
         {
           "id": "customer-zero",
@@ -929,26 +911,6 @@
             [
               "redesign-about-row-label-4",
               "redesign-about-row-body-4"
-            ]
-          ]
-        },
-        {
-          "id": "about-pillars",
-          "title": "redesign-products-capabilities-title",
-          "body": "redesign-products-capabilities-body",
-          "kind": "pillars",
-          "rows": [
-            [
-              "redesign-loop-decide",
-              "redesign-status-exists-1"
-            ],
-            [
-              "redesign-loop-verify",
-              "redesign-status-exists-2"
-            ],
-            [
-              "redesign-label-recoverability",
-              "redesign-status-exists-3"
             ]
           ]
         },

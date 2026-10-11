@@ -2138,12 +2138,6 @@ Reconciled
 
 Not reconciled; no accepted change is represented.
 
-## E-015 — Architect remediation 2026-10-11
-
-### redesign-label-recoverability
-
-Recoverability
-
 ## E-016 — Editorial remediation 2026-10-11
 
 ### redesign-experiments-arms-sentence
@@ -2181,4 +2175,5 @@ Retired pending claims are kept here for history. They are not requested for app
 - `redesign-founder-status` (retired; founder lede (E-2): the approved bio is the attested introduction): Max Brooks is NorthCannon’s solo technical founder, working full-time on the control foundation and its product development.
 - `redesign-solutions-future-title` (retired; Factory title (F-2): replaced by redesign-governed-extensions-title): NorthCannon Factory
 - `redesign-factory-subtitle` (retired; duplicate sub-heading (F-2): name now appears once): Governed Extensions
+- `redesign-label-recoverability` (retired; About pillars removed (architect review 2026-10-11): the About status cards already state the implemented Phase A capabilities, per founder decision F-1): Recoverability
 - `redesign-experiments-arms-label` (retired; Study arms chips (E-1): replaced by redesign-experiments-arms-sentence): Study arms

@@ -106,8 +106,9 @@ test('migration preserves each baseline ID and approval state once, with a singl
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
   // 5 pending lending-only diagram claims replaced by industry-agnostic ones, and the approved mission (retired by
   // founder decision N-11, approval history preserved), plus 20 pending run-1 drafts superseded by split or reused claims,
-  // plus 4 pending claims retired by the 2026-10-11 editorial remediation (E-1 study arms, E-2 founder lede, F-2 Factory title and sub-heading).
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 73);
+  // plus 4 pending claims retired by the 2026-10-11 editorial remediation (E-1 study arms, E-2 founder lede, F-2 Factory title and sub-heading),
+  // plus 1 pending label retired by the 2026-10-11 architect review (the About pillar block duplicated the status cards).
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 74);
   const mission = current.claims.find(c => c.claim_id === 'brand-mission');
   assert.deepEqual([mission.approval_state, mission.lifecycle_state, mission.approval_record], ['approved', 'retired', 'founder_attestation']);
   assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('brand-mission'), 'mission approval history remains pinned');
@@ -354,16 +355,16 @@ test('synthetic scenario identities, counts, relations and obligations are inter
   }
 });
 
-// Architect review 2026-10-11, B-1 and B-2: the About pillars state implemented Phase A capabilities only,
-// and no page pairs the Revalidate stage with the Recoverability status.
-test('About pillars show exactly the implemented Decide, Verify and Recoverability capabilities', async () => {
+// Architect review 2026-10-11, B-1 and B-2: About states the implemented Phase A capabilities once, through the
+// status cards (founder decision F-1); the pillar block that repeated them was removed and its label retired.
+// No page pairs the Revalidate stage with the Recoverability status.
+test('About states implemented capabilities once, through the status cards (B-1, F-1)', async () => {
   const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
-  const pillars = draft.pages['/about/company/'].sections.find(section => section.id === 'about-pillars');
-  assert.deepEqual(pillars.rows, [
-    ['redesign-loop-decide', 'redesign-status-exists-1'],
-    ['redesign-loop-verify', 'redesign-status-exists-2'],
-    ['redesign-label-recoverability', 'redesign-status-exists-3'],
-  ]);
+  const sections = draft.pages['/about/company/'].sections;
+  assert.equal(sections.filter(section => section.kind === 'pillars').length, 0);
+  assert.equal(sections.filter(section => section.id === 'status' && section.kind === 'scope').length, 1);
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  assert.equal(claims.find(claim => claim.claim_id === 'redesign-label-recoverability').lifecycle_state, 'retired');
 });
 
 test('no page pairs the Revalidate stage with the Recoverability status in one row (B-2)', async () => {
