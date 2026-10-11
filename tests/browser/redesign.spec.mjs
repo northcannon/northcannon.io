@@ -251,3 +251,20 @@ test('the trust claims register is one table with one row per approved claim on 
   await expect(page.locator('table.claim-table tbody tr[data-claim-id]')).toHaveCount(expected);
   await expect(page.locator('table.claim-table thead th')).toHaveCount(5);
 });
+
+test('historical stage labels stay inside their cards at 200 percent text with loaded and fallback fonts', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  for (const base of [REVIEW, PRODUCTION]) {
+    await page.goto(base + '/experiments/');
+    await page.evaluate(async () => { document.documentElement.style.fontSize = '200%'; await document.fonts.ready; });
+    for (const fallback of [false, true]) {
+      if (fallback) await page.evaluate(() => document.documentElement.style.setProperty('--font-mono', 'monospace'));
+      const overflow = await page.locator('#gate-1 .stage-grid li').evaluateAll(cards => cards.flatMap(card => {
+        const bounds = card.getBoundingClientRect();
+        return [...card.querySelectorAll('span')].filter(label => label.getBoundingClientRect().right > bounds.right || label.scrollWidth > label.clientWidth).map(label => label.textContent);
+      }));
+      expect(overflow, `${base}, fallback=${fallback}`).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+  }
+});

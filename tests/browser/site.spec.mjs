@@ -63,7 +63,9 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     // Skip-link checks scroll the main into view; reset before full-page capture
     // so the sticky header does not cover the heading in visual evidence.
     await page.evaluate(() => scrollTo(0, 0));
-    await page.screenshot({ path: `test-results/site-${review ? 'review' : 'production'}/${name}-${testInfo.project.use.viewport.width}.png`, fullPage: true });
+    // The claims register has hundreds of rows; full-page PNGs can exceed 50 MB
+    // and exhaust the CI test budget. Keep a viewport capture; all DOM checks still cover the page.
+    await page.screenshot({ path: `test-results/site-${review ? 'review' : 'production'}/${name}-${testInfo.project.use.viewport.width}.png`, fullPage: route.path !== '/trust/claims/' });
     // 200% text at 320px must reflow without horizontal page scroll.
     await page.setViewportSize({ width: 320, height: 800 });
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });

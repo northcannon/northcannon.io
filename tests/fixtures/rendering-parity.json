@@ -21,7 +21,7 @@
     ".review-dist-wp4/about/company/index.html": "Architect review 2026-10-11: Home concept-preview section and About pillar block removed (duplicates); all copy pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/contact/index.html": "Architect remediation 2026-10-11 (D-1 to D-5, E-1 to E-6, F-2, F-3): layout, composition, editorial and claim-batch changes on this review page; production unchanged except as noted; all new copy pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/demo/index.html": "Architect remediation 2026-10-11 (D-1, D-5): review navigation now links About to /about/company/ (the duplicate /about/ page is removed); Home keeps one console and the six-stage loop; Products, Solutions and About show status cards. Review composition only; production unchanged; all new copy pending; implementation regression baseline, not independent acceptance.",
-    ".review-dist-wp4/evidence/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
+    ".review-dist-wp4/evidence/index.html": "2026-10-11 stage-card overflow fix: CSS asset digest changes the production provenance displayed by review Evidence and Provenance. No copy or composition change.",
     ".review-dist-wp4/experiments/index.html": "Architect remediation 2026-10-11 (D-1 to D-5, E-1 to E-6, F-2, F-3): layout, composition, editorial and claim-batch changes on this review page; production unchanged except as noted; all new copy pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/index.html": "Architect review 2026-10-11: Home concept-preview section and About pillar block removed (duplicates); all copy pending; implementation regression baseline, not independent acceptance.",
     ".review-dist-wp4/products/index.html": "Architect remediation 2026-10-11 (D-1 to D-5, E-1 to E-6, F-2, F-3): layout, composition, editorial and claim-batch changes on this review page; production unchanged except as noted; all new copy pending; implementation regression baseline, not independent acceptance.",
@@ -30,7 +30,7 @@
     ".review-dist-wp4/trust/claims/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
     ".review-dist-wp4/trust/disclosure/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
     ".review-dist-wp4/trust/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
-    ".review-dist-wp4/trust/provenance/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
+    ".review-dist-wp4/trust/provenance/index.html": "2026-10-11 stage-card overflow fix: CSS asset digest changes the production provenance displayed by review Evidence and Provenance. No copy or composition change.",
     ".review-dist-wp4/trust/site-security/index.html": "Founder approval 010 production cutover, 2026-10-11: approved redesign, labelled synthetic concepts, six-item navigation and migrated legacy routes. Production omits the unapproved OG image and links its provenance manifest without a circular digest. Implementation regression baseline; independent redesign acceptance confirmed by founder.",
     ".review-dist-wp4/trust/status/index.html": "Architect remediation 2026-10-11 (D-1 to D-5, E-1 to E-6, F-2, F-3): layout, composition, editorial and claim-batch changes on this review page; production unchanged except as noted; all new copy pending; implementation regression baseline, not independent acceptance."
   },
@@ -55,7 +55,7 @@
     ".review-dist-wp4/about/company/index.html": "8704241e92d2757ad1cdb2151d067cf4efc61896ea4cb88b6fc10eec5fe3906e",
     ".review-dist-wp4/contact/index.html": "4aeed51f4a023a523eeb8e32f1c3eb1eb228306fac0571eac7ed4e01452088c7",
     ".review-dist-wp4/demo/index.html": "a5fd4208a30c3d192f7bb5e5b2fabfc6411bb5c0c2669bd74fa8e0a069d789cb",
-    ".review-dist-wp4/evidence/index.html": "74bb17d422f44baa47fdd7414cc97b710eec0432ece0ab1ae40e77d622b291bd",
+    ".review-dist-wp4/evidence/index.html": "345bc699efb7495ceeaf9d7de7a9193a137a5e888f695260353244d423a16560",
     ".review-dist-wp4/experiments/index.html": "8d2996ca7151b57a0d3ad09e787833525494d4f58dce5e11ec1e03d7e7a8f1a0",
     ".review-dist-wp4/index.html": "10dca86034f2cf10a2c7a5bdcb489e555d3b1882a63cf733e45430c222e649f8",
     ".review-dist-wp4/products/index.html": "1bb67db8073a702862d3a7fab454c92364a815cbb23d97309f88bad061b0635d",
@@ -64,7 +64,7 @@
     ".review-dist-wp4/trust/claims/index.html": "1d63765d4ea949d05348376b57bc0959d3c38d62d0794971120c85fa710b9349",
     ".review-dist-wp4/trust/disclosure/index.html": "81875b7094e1aee6b3f88c890678a1d8206a5584ab6de8b54a68da546f1726d5",
     ".review-dist-wp4/trust/index.html": "839eaafaade8db7420149c1de11942b0fdcffa8879b0297c6df18968829e66e4",
-    ".review-dist-wp4/trust/provenance/index.html": "482c8680ab718d9a00a3873f284ffd82a676f4a4819de9ff1c2aacce5a1d7460",
+    ".review-dist-wp4/trust/provenance/index.html": "1177c85e4ce0cb07876c9afe47ec6d0d772206341672ee67a6ddd910d9c53d33",
     ".review-dist-wp4/trust/site-security/index.html": "f24235d2c188ec3dfdf33649a34251eecb8d8afc52ef98664b62cd0fe36cdb42",
     ".review-dist-wp4/trust/status/index.html": "d1dd56a68cde4064f4143e9e9c8669d017c0191d79a346bd3a9ee634337bc4ff"
   }

@@ -101,9 +101,9 @@
 
 /* Stage grid: states with chips (milestones, Gate 1). */
 .stage-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--card-gap); }
-.stage-grid li { display: grid; align-content: space-between; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-plate-border); border-radius: 0.75rem; background: var(--color-panel); }
+.stage-grid li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; align-content: space-between; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-plate-border); border-radius: 0.75rem; background: var(--color-panel); }
 .stage-grid li > span:first-child { color: var(--color-text); font-weight: 600; }
-.stage-grid li .state-chip { justify-self: start; }
+.stage-grid li .state-chip { justify-self: start; max-width: 100%; overflow-wrap: anywhere; }
 .stage-grid--7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
 
 .distinction { display: flex; gap: var(--space-5); align-items: center; }
