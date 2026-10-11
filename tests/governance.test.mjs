@@ -105,8 +105,9 @@ test('migration preserves each baseline ID and approval state once, with a singl
   // Nine baseline retirements, 21 pending mock-* claims, 4 pending About-overview claims retired by the redesign,
   // 6 pending claims of the earlier two-way interoperability diagram, 1 pending duplicate (feat-wl-row-source),
   // 5 pending lending-only diagram claims replaced by industry-agnostic ones, and the approved mission (retired by
-  // founder decision N-11, approval history preserved), plus 20 pending run-1 drafts superseded by split or reused claims.
-  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 69);
+  // founder decision N-11, approval history preserved), plus 20 pending run-1 drafts superseded by split or reused claims,
+  // plus 4 pending claims retired by the 2026-10-11 editorial remediation (E-1 study arms, E-2 founder lede, F-2 Factory title and sub-heading).
+  assert.equal(current.claims.filter(c => c.lifecycle_state === 'retired').length, 73);
   const mission = current.claims.find(c => c.claim_id === 'brand-mission');
   assert.deepEqual([mission.approval_state, mission.lifecycle_state, mission.approval_record], ['approved', 'retired', 'founder_attestation']);
   assert.ok(approvalEvents['founder-approval-001'].claim_ids.includes('brand-mission'), 'mission approval history remains pinned');
@@ -387,4 +388,21 @@ test('every served image or SVG has a manifest entry with its exact SHA-256 (B-4
   assert.deepEqual(servedAssetErrors(new Map([['/new-art.svg', Buffer.from('<svg/>')]]), manifest), ['/new-art.svg: no served-asset manifest entry']);
   const tampered = servedAssetErrors(new Map([['/graphene-lattice.svg', Buffer.from('<svg/>')]]), manifest);
   assert.deepEqual(tampered, ['/graphene-lattice.svg: sha256 mismatch with its manifest entry']);
+});
+
+// Architect remediation 2026-10-11 (F-2, F-3): the synthetic scenario says "scenario", and "Factory" is not public copy.
+test('concept scenario names say scenario, not fixture, and seed hashes are unchanged (F-3)', async () => {
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  const concept = claims.filter(c => c.claim_id.startsWith('concept-'));
+  assert.ok(concept.filter(c => /scenario/i.test(c.statement)).length >= 15);
+  for (const c of concept) assert.doesNotMatch(c.statement, /fixture/i, c.claim_id);
+  assert.doesNotMatch(await readFile('src/content/concept-scenario.json', 'utf8'), /fixture/i);
+  const { createHash } = await import('node:crypto');
+  const scenario = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
+  for (const e of scenario.evidence) assert.equal(e.sha256, createHash('sha256').update(e.seed).digest('hex'));
+});
+
+test('Factory is not used in any active public claim (F-2)', async () => {
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  assert.deepEqual(claims.filter(c => c.lifecycle_state !== 'retired' && /Factory/.test(c.statement)).map(c => c.claim_id), []);
 });

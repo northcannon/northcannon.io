@@ -170,3 +170,83 @@ test('About rows and biography reach at least 80% of their column at 1440 (D-6)'
   });
   expect(bioShare).toBeGreaterThanOrEqual(0.8);
 });
+
+// Architect remediation 2026-10-11 (D-2, D-3, E-1, E-2, E-5, E-6, F-2). Desktop text checks run once.
+test('PI and SPC are expanded on first use and the study-arm chips are replaced by one sentence (E-1)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop text check; run once.');
+  await page.goto(REVIEW + '/experiments/');
+  const text = await page.locator('main').innerText();
+  expect(text).toContain('Persistent Intelligence (PI)');
+  expect(text).toContain('Structure-Proportional Computing (SPC)');
+  expect(text).toContain('Gate 1 compared the system against two baselines.');
+  expect(text).not.toContain('BASELINE A');
+  expect(text).not.toMatch(/R\+/);
+  await page.goto(REVIEW + '/evidence/');
+  expect(await page.locator('main').innerText()).toContain('Structure-Proportional Computing (SPC)');
+});
+
+test('the founder lede is retired from About; the approved bio is the only introduction (E-2)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop text check; run once.');
+  await page.goto(REVIEW + '/about/company/');
+  await expect(page.locator('main')).not.toContainText('working full-time on the control foundation');
+});
+
+test('Factory is absent and the add-on name appears once on Solutions (F-2)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop text check; run once.');
+  await page.goto(REVIEW + '/solutions/');
+  const text = await page.locator('main').innerText();
+  expect(text).not.toContain('Factory');
+  expect(text.split('Governed Extensions').length - 1).toBe(1);
+});
+
+test('each contact topic has one description and keeps its mailto subject (E-6)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop text check; run once.');
+  await page.goto(REVIEW + '/contact/');
+  const items = page.locator('#intents .editorial-list > li');
+  await expect(items).toHaveCount(4);
+  for (const li of await items.all()) {
+    await expect(li.locator(':scope > p')).toHaveCount(1);
+    expect(await li.locator('a').getAttribute('href')).toMatch(/^mailto:.+\?subject=/);
+  }
+});
+
+test('the historical prototype carries its version-history line and spans the full width at 1440 (E-5, D-2)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop measure; run once.');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(REVIEW + '/evidence/');
+  await expect(page.locator('#historical')).toContainText('The recording remains in version history only.');
+  const section = await page.locator('#historical').boundingBox();
+  const content = await page.locator('#historical .reference-section__content').boundingBox();
+  expect(content.width / section.width).toBeGreaterThanOrEqual(0.8);
+});
+
+test('PI and SPC cards on Experiments have equal size at 1440 (D-2)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop measure; run once.');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(REVIEW + '/experiments/');
+  const pi = await page.locator('#persistent-intelligence').boundingBox();
+  const spc = await page.locator('#spc').boundingBox();
+  expect(Math.abs(pi.height - spc.height)).toBeLessThanOrEqual(2);
+  expect(Math.abs(pi.width - spc.width)).toBeLessThanOrEqual(2);
+});
+
+test('Solutions console panels are disclosures on phones and keep their text (D-3)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'Phone check; run on the 390 project.');
+  await page.goto(REVIEW + '/solutions/');
+  const panels = page.locator('.reference-console__panel');
+  expect(await panels.count()).toBeGreaterThanOrEqual(4);
+  for (const panel of await panels.all()) {
+    expect(await panel.evaluate(el => el.tagName)).toBe('DETAILS');
+    expect(await panel.evaluate(el => el.textContent.trim().length)).toBeGreaterThan(10);
+  }
+});
+
+test('the trust claims register is one table with one row per approved claim on its route (D-3)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Register count; run once.');
+  const route = readRoutes().find(r => r.path === '/trust/claims/');
+  const claims = JSON.parse(await readFile('public_claims/claims.json', 'utf8'));
+  const expected = claims.filter(c => c.approval_state === 'approved' && route.claim_ids.includes(c.claim_id)).length;
+  await page.goto(REVIEW + '/trust/claims/');
+  await expect(page.locator('table.claim-table tbody tr[data-claim-id]')).toHaveCount(expected);
+  await expect(page.locator('table.claim-table thead th')).toHaveCount(5);
+});

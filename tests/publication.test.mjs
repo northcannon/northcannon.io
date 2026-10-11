@@ -116,7 +116,7 @@ test('standalone review build rebuilds current provenance from source only and r
     const components = ['ActionLink', 'Container', 'ContactCTA', 'Graphene', 'Icon', 'LinkCard', 'SiteFooter', 'SiteHeader', 'SitePage', 'StatusBanner', 'Module', 'AboutSubnav', 'Readout', 'Verdict', 'SupportCells', 'WorkloadTable', 'LineageGraph', 'EvidenceDrawer', 'InteropDiagram'].map(name => `src/components/${name}.astro`);
     const pages = ['AboutCompanyPage', 'AboutFeaturesPage', 'ContactPage', 'DemoPage', 'EvidencePage', 'FounderPage', 'GatePage', 'HomePage', 'ResultsPage', 'SupportingPage'].map(name => `src/components/pages/${name}.astro`);
     const files = [
-      'src/content/redesign.json', 'src/content/og-image.json', 'public/og/northcannon-default.png', 'docs/design/POST_PIVOT_COPY.md',
+      'src/content/redesign.json', 'src/content/og-image.json', 'public/og/northcannon-default.png', 'docs/design/POST_PIVOT_COPY.md', 'docs/design/concept-source-manifest.json',
       'scripts/redesign-policy.mjs', 'scripts/check-redesign-output.mjs', 'scripts/check-template-copy.mjs', 'src/governance/evidence.mjs', 'src/styles/redesign.css',
       ...['PageHero','Section','OfferingCard','FlowSteps','ControlLoop','Distinction','StatusTriad','LifecycleStepper','DataTable','ControlStack','FounderProfile','EvidenceMetric','StateChip','HashValue'].map(n => `src/components/${n}.astro`),
       'src/components/pages/RedesignPage.astro',
@@ -132,7 +132,7 @@ test('standalone review build rebuilds current provenance from source only and r
       ...['ibm-plex-mono-latin-400-normal', 'ibm-plex-mono-latin-500-normal', 'inter-latin-400-normal', 'inter-latin-500-normal', 'inter-latin-600-normal'].map(name => `public/fonts/${name}.woff2`),
       'src/content.config.ts', 'src/content/collections.json', 'src/content/routes.json',
       'src/governance/approval-events.mjs', 'src/governance/claim.ts',
-      'src/governance/output.mjs', 'src/governance/registry.mjs', 'src/governance/routes.mjs',
+      'src/governance/output.mjs', 'src/governance/registry.mjs', 'src/governance/routes.mjs', 'src/governance/review-banner.mjs', 'src/governance/served-assets.mjs',
       'src/governance/schema.mjs', 'src/governance/wp4-output.mjs',
       ...components, ...pages, 'src/components/copy.ts',
       'src/layouts/Document.astro', 'src/pages/404.astro', 'src/pages/index.astro', 'src/pages/[...route].astro',

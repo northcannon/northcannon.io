@@ -40,7 +40,7 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();
     if (!route.path.startsWith('/trust/')) {
-      // Only registered fixture hashes inside explicitly labeled review concepts
+      // Only registered synthetic hashes inside explicitly labeled review concepts
       // are exempt; fabricated text and hashes elsewhere remain prohibited.
       if (review) for (const panel of await page.locator('main .ci-console, main .ci-authority').all()) {
         await expect(panel).toContainText('Concept visualization — synthetic engineering scenario');
@@ -592,7 +592,7 @@ for (const review of [true, false]) test(`${review ? 'review' : 'production'} mo
     await page.keyboard.press('Tab');
     await expect(page.locator('.wordmark')).toBeFocused();
     await page.keyboard.press('Tab');
-    await expect(page.locator('summary')).toBeFocused();
+    await expect(page.getByRole('navigation', { name: 'Primary' }).locator('summary')).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.locator('.mobile-navigation .navigation')).toBeVisible();
     await page.keyboard.press('Tab');

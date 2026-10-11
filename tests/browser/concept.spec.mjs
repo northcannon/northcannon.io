@@ -40,8 +40,8 @@ test('direct/transitive and comparison fragments switch views without scripts', 
   await page.locator('a[href="#ci-mode-compare"]').click();
   await expect(page.locator('.ci-comparison')).toBeVisible();
   await expect(page.locator('.ci-workspace')).toBeHidden();
-  await expect(page.locator('.ci-comparison')).toContainText('lattice-fixture-sdk 2.4.1');
-  await expect(page.locator('.ci-comparison')).toContainText('lattice-fixture-sdk 2.5.0');
+  await expect(page.locator('.ci-comparison')).toContainText('lattice-scenario-sdk 2.4.1');
+  await expect(page.locator('.ci-comparison')).toContainText('lattice-scenario-sdk 2.5.0');
   await page.locator('a[href="#ci-mode-transitive"]').click();
   await expect(page.locator('.ci-workspace')).toBeVisible();
   await expect(page.locator('.ci-comparison')).toBeHidden();
@@ -62,7 +62,7 @@ test('concept pages pass WCAG AA and preserve explicit truth and mismatched outc
   await page.goto(REVIEW + '/evidence/');
   await expect(page.locator('.ci-ladder')).toContainText('2.4.1 — mismatch');
   await expect(page.locator('.ci-ladder')).toContainText('Not reconciled');
-  await expect(page.locator('.evidence-ledger')).not.toContainText('lattice-fixture-sdk');
+  await expect(page.locator('.evidence-ledger')).not.toContainText('lattice-scenario-sdk');
   await page.goto(REVIEW + '/about/company/');
   await expect(page.locator('.ci-console, .ci-authority, .ci-packet, .ci-preview')).toHaveCount(0);
 });

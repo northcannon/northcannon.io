@@ -215,7 +215,7 @@ test('production forbidden-copy guard rejects forbidden phrases and names on wor
 
 test('production rejects concept claim IDs and the synthetic SDK in text and non-visible attributes', async () => {
   const { conceptOutputErrors, forbiddenCopyErrors } = await import('../scripts/redesign-policy.mjs');
-  for (const text of ['concept-truth', '<div data-claim-id="concept-node-sdk"></div>', 'lattice-fixture-sdk 2.5.0', '{"fixture":"concept-evidence-candidate"}']) {
+  for (const text of ['concept-truth', '<div data-claim-id="concept-node-sdk"></div>', 'lattice-scenario-sdk 2.5.0', '{"fixture":"concept-evidence-candidate"}']) {
     assert.equal(conceptOutputErrors(text, 'fixture').length, 1);
     assert.equal(forbiddenCopyErrors(text, 'fixture').length, 1);
   }
