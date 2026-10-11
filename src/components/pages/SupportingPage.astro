@@ -46,16 +46,19 @@ const email = route.path === '/trust/disclosure/' ? t('contact-security') : unde
     {route.path === '/404.html' && <div class="action-group"><a class="action-link action-link--primary" href="/">Return home</a>{review && <a class="inline-link" href="/products/">{t(draft.labels.products)}</a>}<a class="inline-link" href="/evidence/">{t('label-evidence')}</a><a class="inline-link" href="/contact/">{t('label-contact')}</a></div>}
     {trustLinks.length > 0 && <div class="link-cards">{trustLinks.map(r => <LinkCard href={r.path} icon="shield-check" title={t(r.title_claim_or_label)!} />)}</div>}
     {approved.length > 0 && (
-      <ul class="claim-list">
-        {approved.map(c => (
-          <li class="panel claim-record" data-claim-id={c.claim_id}>
-            <h2 class="card-title">{t(c.claim_id)?.split('\n\n')[0]}</h2>
-            <dl class="record-fields">
-              {[['label-claim-id', c.claim_id], ['label-category', c.category], ['label-basis', c.basis], ['label-review-date', c.review_date]].map(([label, value]) => <div><dt>{t(label!)}</dt><dd>{value}</dd></div>)}
-            </dl>
-          </li>
-        ))}
-      </ul>
+      <div class="claim-table-wrap">
+        <table class="claim-table" role="table">
+          <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">{t('ledger-claim')}</th><th role="columnheader" scope="col">{t('label-claim-id')}</th><th role="columnheader" scope="col">{t('label-category')}</th><th role="columnheader" scope="col">{t('label-basis')}</th><th role="columnheader" scope="col">{t('label-review-date')}</th></tr></thead>
+          <tbody role="rowgroup">
+            {approved.map(c => (
+              <tr role="row" data-claim-id={c.claim_id}>
+                <th role="rowheader" scope="row">{t(c.claim_id)?.split('\n\n')[0]}</th>
+                <td role="cell"><code>{c.claim_id}</code></td><td role="cell">{c.category}</td><td role="cell">{c.basis}</td><td role="cell">{c.review_date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     )}
     {route.path === '/trust/provenance/' && !review && <p><a class="inline-link" href="/provenance.json">{t('label-provenance')}<Icon name="arrow-right" /></a></p>}
     {provenance && <p class="state-label">{t('redesign-provenance-scope')}</p>}

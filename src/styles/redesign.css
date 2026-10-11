@@ -405,7 +405,12 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
 .reference-console__proposal .reference-kicker { font-size:.6rem; letter-spacing:.02em; text-transform:none; }
 .reference-console h4 { margin:0 0 .6rem; font-size:.75rem; color:#f5f3fa; font-weight:600; }
 .reference-console__grid { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:.7rem; }
-.reference-impact,.reference-activity,.reference-console__bottom > div { border:1px solid #393142; border-radius:5px; padding:.75rem; background:linear-gradient(145deg,#1c172566,#0b0a12aa); min-width:0; }
+.reference-console__panel { border:1px solid #393142; border-radius:5px; padding:.75rem; background:linear-gradient(145deg,#1c172566,#0b0a12aa); min-width:0; }
+/* Console panels are disclosures: collapsed on phones, always shown on desktop (no JavaScript). */
+.reference-console__panel > summary { list-style:none; cursor:pointer; }
+.reference-console__panel > summary::-webkit-details-marker { display:none; }
+.reference-console__panel > summary h3 { margin:0; }
+@media (min-width:48rem) { .reference-console__panel::details-content { display:block; content-visibility:visible; } .reference-console__panel > summary { pointer-events:none; cursor:default; } }
 .reference-impact svg { width:100%; height:auto; display:block; }
 .reference-counts { display:flex; gap:.5rem; flex-wrap:wrap; font-size:.56rem; color:#c8bed6; }
 .reference-counts span::before { content:'●'; color:#a574ed; margin-right:.3rem; }
@@ -521,6 +526,11 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
 .reference-status-panel > p { font-size:.75rem; }
 .reference-page[data-page='evidence'] > .site-container > .state-label { margin:0; padding:0 var(--reference-inset) 1.5rem; font-size:.65rem; }
 .reference-page[data-page='evidence'] #status { padding-block:1.5rem; }
+/* D-2: the historical prototype spans the full width; its label no longer sits alone in a half-empty column. */
+.reference-page[data-page='evidence'] #historical { grid-template-columns:minmax(0,1fr); gap:1.2rem; }
+.reference-page[data-page='evidence'] #historical .reference-section__content { border-left:2px solid #8b5cf6; padding-left:1.2rem; }
+/* D-2: the trust status research programmes span the container at desktop width instead of one narrow list. */
+@media (min-width:48rem) { .redesign-main #research .editorial-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; } }
 .reference-page .ci-packet { font-size:.77rem; }
 .reference-page .ci-packet h3 { font-size:1rem; }
 .reference-page .ci-packet-body { padding:1rem; gap:1rem; }
@@ -541,6 +551,9 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
 .reference-page[data-page='experiments'] > .site-container > .state-label { padding:0 var(--reference-inset) 1rem; margin:0; }
 .reference-page[data-page='experiments'] #persistent-intelligence,.reference-page[data-page='experiments'] #spc { grid-column:auto; display:block; padding:2rem; margin:1rem .75rem 2rem var(--reference-inset); border:1px solid #524961; border-radius:8px; grid-row:3; box-shadow:0 2px 8px #21142f25; }
 .reference-page[data-page='experiments'] #spc { margin:1rem var(--reference-inset) 2rem .75rem; }
+/* D-2: the SPC card is as tall as the PI card; its shorter list spreads over that height instead of leaving a void. */
+.reference-page[data-page='experiments'] #spc { display:flex; flex-direction:column; align-items:stretch; }
+.reference-page[data-page='experiments'] #spc .grid { flex:1; align-content:space-evenly; }
 .reference-page[data-page='experiments'] :is(#persistent-intelligence,#spc) h2 { font-size:2.1rem; letter-spacing:-.025em; }
 .reference-page[data-page='experiments'] :is(#persistent-intelligence,#spc) .section-lede { font-size:.86rem; margin-bottom:1.2rem; }
 .reference-page .research-grid { grid-template-columns:minmax(0,1fr); gap:.8rem; }
@@ -589,10 +602,9 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
  .reference-console { padding:.7rem; }
  .reference-console__proposal { flex-wrap:wrap; }
  .reference-console__bar { flex-wrap:wrap; gap:.5rem; }
- .reference-console__grid .reference-activity { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+ .reference-console__grid .reference-activity__list { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
  .reference-activity h4 { grid-column:1/-1; }
- .reference-activity > div { margin:0; }
- .reference-console__bottom { display:none; }
+ .reference-activity__list > div { margin:0; }
  .reference-substrate-flow { grid-template-columns:repeat(3,minmax(0,1fr)); }
  .reference-fabric { padding:.7rem; margin-inline:0; }
  .reference-fabric ul { grid-template-columns:repeat(2,minmax(0,1fr)); }
