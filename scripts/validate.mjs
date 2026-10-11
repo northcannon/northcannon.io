@@ -10,7 +10,7 @@ import { inspectReviewOutput } from '../src/governance/wp4-output.mjs';
 import { verifyProvenance } from './publication.mjs';
 import { checkRedesignOutput } from './check-redesign-output.mjs';
 import { reviewBannerErrors } from '../src/governance/review-banner.mjs';
-import { servedAssetErrors, servedAssetPattern, sha256 } from '../src/governance/served-assets.mjs';
+import { servedAssetErrors, servedAssetPattern } from '../src/governance/served-assets.mjs';
 import { readFile as readManifestFile } from 'node:fs/promises';
 const { claims } = loadGovernance();
 const routes = readRoutes(claims);
