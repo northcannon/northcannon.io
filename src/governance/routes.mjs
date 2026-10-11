@@ -5,7 +5,7 @@ import { loadGovernance } from './registry.mjs';
 
 export const legacyLabels = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
 export const draftBanner = 'DRAFT — pending founder approval';
-const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean(), nav_cta: z.boolean().optional(), alias_of: z.literal('/about/').optional(), meta_title: z.string().optional(), meta_description: z.string().optional() }).strict();
+const routeSchema = z.object({ path: z.string().regex(/^(?:\/|\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/|\/404\.html)$/), title_claim_or_label: z.string().min(1), claim_ids: z.array(z.string()).min(1), review_claim_ids: z.array(z.string()).default([]), nav: z.boolean(), publish: z.boolean(), nav_cta: z.boolean().optional(), meta_title: z.string().optional(), meta_description: z.string().optional() }).strict();
 const isApproved = claim => claim?.approval_state === 'approved' && claim.lifecycle_state === 'approved' && claim.approval_record === 'founder_attestation';
 
 // claim_ids are required: a published route needs every one approved.
@@ -17,7 +17,6 @@ export function readRoutes(claims = loadGovernance().claims, input = JSON.parse(
   const ctas = routes.filter(r => r.nav_cta);
   if (ctas.length > 1 || ctas.some(r => !r.nav || r !== routes.filter(r => r.nav).at(-1))) throw new Error('Navigation CTA must be unique and last');
   if (ctas.some(r => !isApproved(claims.find(c => c.claim_id === r.title_claim_or_label)))) throw new Error('Navigation CTA requires an attested label');
-  for (const r of routes) if (r.alias_of && (r.nav || r.path !== '/about/company/' || !routes.some(t => t.path === r.alias_of))) throw new Error('Invalid alias route');
   for (const route of routes) {
     for (const id of route.review_claim_ids) draftClaim(claims, id);
     for (const id of route.claim_ids) {
@@ -43,7 +42,7 @@ export const routeFile = route => route.path === '/404.html' ? '404.html' : rout
 export const navigationClaimId = route => route.path === '/demo/' ? 'label-demo' : route.path === '/about/company/' ? 'label-about' : route.title_claim_or_label;
 // Every route that appears in navigation, in registry order.
 export function navigationRoutes(routes, { review = true, claims = loadGovernance().claims } = {}) {
-  return routes.filter(r => (r.nav || (!review && r.alias_of && !routes.find(target => target.path === r.alias_of)?.publish)) && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r)))))).sort((a,b) => a.alias_of ? -1 : b.alias_of ? 1 : 0);
+  return routes.filter(r => r.nav && (review || (r.publish && isApproved(claims.find(c => c.claim_id === navigationClaimId(r))))));
 }
 // Navigation items in order: a plain route, or a group (own label and link) with its visible members as children.
 // A group needs its approved label and its target page; members never appear without it.

@@ -357,7 +357,7 @@ test('synthetic scenario identities, counts, relations and obligations are inter
 // and no page pairs the Revalidate stage with the Recoverability status.
 test('About pillars show exactly the implemented Decide, Verify and Recoverability capabilities', async () => {
   const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
-  const pillars = draft.pages['/about/'].sections.find(section => section.id === 'about-pillars');
+  const pillars = draft.pages['/about/company/'].sections.find(section => section.id === 'about-pillars');
   assert.deepEqual(pillars.rows, [
     ['redesign-loop-decide', 'redesign-status-exists-1'],
     ['redesign-loop-verify', 'redesign-status-exists-2'],

@@ -26,11 +26,11 @@ import DataTable from '../DataTable.astro';
 import type { Copy } from '../copy';
 interface SectionData { id: string; title: string; body?: string | undefined; items?: string[]; kind?: string | undefined; status?: string | undefined; subtitle?: string | undefined; rows?: string[][]; transition?: string | undefined; cta?: string | undefined; secondary?: string | undefined; qualifiers?: string[]; topology?: boolean; stages?: string[][]; categories?: [string, number[]][]; status_row?: string[] }
 interface PageData { key: string; title: string; lede: string; eyebrow: string; sections: SectionData[] }
-interface Props { copy: Copy; route: { path: string; alias_of?: string | undefined } }
+interface Props { copy: Copy; route: { path: string } }
 const { copy, route } = Astro.props;
 const t = (id: string) => { const value = copy.t(id); if (value === undefined) throw new Error(`Missing redesign claim: ${id}`); return value; };
 const pages = draft.pages as Record<string, PageData>;
-const page = pages[route.alias_of ?? route.path]!;
+const page = pages[route.path]!;
 const reference = ['home','about','products','solutions','evidence','experiments'].includes(page.key);
 const instrument = ['evidence', 'experiments', 'status'].includes(page.key);
 const columns = draft.triad.map(col => ({ label: t(col.label), items: col.items.map(t) }));
@@ -68,7 +68,7 @@ const special = new Set(['pillars','concept-preview','concept-console','concept-
     {section.kind === 'panel' && section.body && <div class="panel-note"><p>{t(section.body)}</p></div>}
     {section.kind === 'deployment' && <><div class="offering-grid">{draft.deployments.map((card, index) => <OfferingCard title={t(card.title)} body={t(card.body)} status={t(draft.labels.planned)}>{section.topology && <div class="topology-boundary"><p class="state-label">{t(index === 0 ? draft.example['northcannon-environment'] : draft.example['your-environment'])}</p><p>{t('brand-company')}</p></div>}</OfferingCard>)}</div><div class="group-qualifier"><p>{t(draft.shared.availability)}</p>{(section.qualifiers ?? []).map(id => <p>{t(id)}</p>)}</div></>}
     {section.kind === 'stack' && <ControlStack layers={words(section)} />}
-    {section.kind === 'concept-preview' && <div class="ci-preview"><ConceptDisplay t={t} variant="obligations" /><a class="inline-link" href="/solutions/#workflow">{t(concept.labels['preview-link'])}</a></div>}
+    {section.kind === 'concept-preview' && <div class="ci-preview"><a class="inline-link" href="/solutions/#workflow">{t(concept.labels['preview-link'])}</a></div>}
     {section.kind === 'concept-console' && <ChangeConsole t={t} />}
     {section.kind === 'concept-authority' && <AuthorityBoundary t={t} />}
     {section.kind === 'concept-evidence' && <EvidencePacket t={t} />}

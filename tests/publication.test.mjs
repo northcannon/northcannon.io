@@ -18,16 +18,18 @@ const attest = (claims, ids) => claims.map(c => ids.includes(c.claim_id) ? { ...
 
 test('redesign routes stay unpublished and flat navigation obeys approval and CTA rules', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
-  assert.deepEqual(navigationRoutes(routes, { review: true, claims }).map(r => r.path), ['/about/', '/products/', '/solutions/', '/evidence/', '/experiments/', '/contact/']);
+  assert.deepEqual(navigationRoutes(routes, { review: true, claims }).map(r => r.path), ['/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/', '/contact/']);
   assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/about/company/', '/evidence/', '/contact/']);
   assert.ok(navigationTree(routes).every(item => item.children.length === 0));
-  for (const path of ['/about/', '/products/', '/solutions/', '/experiments/']) assert.equal(routes.find(r => r.path === path).publish, false);
+  for (const path of ['/products/', '/solutions/', '/experiments/']) assert.equal(routes.find(r => r.path === path).publish, false);
+  // The About page is one route: /about/company/. The duplicate /about/ route is removed (architect D-5).
+  assert.equal(routes.find(r => r.path === '/about/'), undefined);
   const invalid = structuredClone(routes); invalid.find(r => r.path === '/products/').publish = true;
   assert.throws(() => readRoutes(claims, invalid), /ineligible/);
   const two = structuredClone(routes); two[0].nav_cta = true;
   assert.throws(() => readRoutes(claims, two), /CTA/);
-  const alias = structuredClone(routes); alias.find(r => r.alias_of).nav = true;
-  assert.throws(() => readRoutes(claims, alias), /alias|CTA/);
+  const misplaced = structuredClone(routes); misplaced.find(r => r.path === '/about/company/').nav_cta = true;
+  assert.throws(() => readRoutes(claims, misplaced), /CTA/);
   const pending = claims.map(c => c.claim_id === 'methodology-evidence' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
   assert.throws(() => readRoutes(pending, routes), /ineligible/);
   const label = structuredClone(routes); label[0].title_claim_or_label = 'Unapproved label';
@@ -84,7 +86,7 @@ test('provenance detects modified output and sitemap equals the publish set', as
     await writeFile(path.join(root, 'index.html'), '<p>NorthCannon</p>');
     const xml = sitemap(readRoutes());
     assert.ok(!xml.includes('lastmod'));
-    assert.deepEqual([...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]), readRoutes().filter(r => r.publish && !r.alias_of && r.path !== '/404.html').map(r => 'https://northcannon.io' + r.path));
+    assert.deepEqual([...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]), readRoutes().filter(r => r.publish && r.path !== '/404.html').map(r => 'https://northcannon.io' + r.path));
     assert.ok(!xml.includes('404'), 'the sitemap omits the 404 page');
     await writeFile(path.join(root, 'sitemap.xml'), xml);
     const data = await provenance(root);

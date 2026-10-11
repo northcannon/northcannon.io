@@ -63,7 +63,7 @@ test('concept pages pass WCAG AA and preserve explicit truth and mismatched outc
   await expect(page.locator('.ci-ladder')).toContainText('2.4.1 — mismatch');
   await expect(page.locator('.ci-ladder')).toContainText('Not reconciled');
   await expect(page.locator('.evidence-ledger')).not.toContainText('lattice-fixture-sdk');
-  await page.goto(REVIEW + '/about/');
+  await page.goto(REVIEW + '/about/company/');
   await expect(page.locator('.ci-console, .ci-authority, .ci-packet, .ci-preview')).toHaveCount(0);
 });
 

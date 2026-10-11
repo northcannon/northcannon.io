@@ -764,12 +764,6 @@
           "body": "redesign-products-capabilities-body"
         },
         {
-          "id": "control-process",
-          "title": "redesign-home-control-loop-title",
-          "body": "redesign-home-control-loop-body",
-          "kind": "loop"
-        },
-        {
           "id": "distinction",
           "title": "redesign-products-distinction-title",
           "kind": "stack",
@@ -844,10 +838,9 @@
           "kind": "usecases"
         },
         {
-          "id": "control-process",
-          "title": "redesign-home-control-loop-title",
-          "body": "redesign-home-control-loop-body",
-          "kind": "loop"
+          "id": "status",
+          "title": "redesign-evidence-status-title",
+          "kind": "scope"
         },
         {
           "id": "workflow",
@@ -906,7 +899,7 @@
       "meta_title": "redesign-meta-title-solutions",
       "meta_description": "redesign-meta-description-solutions"
     },
-    "/about/": {
+    "/about/company/": {
       "key": "about",
       "title": "redesign-about-title",
       "lede": "redesign-about-lede",
@@ -956,10 +949,9 @@
           ]
         },
         {
-          "id": "about-process",
-          "title": "redesign-home-control-loop-title",
-          "body": "redesign-home-control-loop-body",
-          "kind": "loop"
+          "id": "status",
+          "title": "redesign-evidence-status-title",
+          "kind": "scope"
         },
         {
           "id": "founder",

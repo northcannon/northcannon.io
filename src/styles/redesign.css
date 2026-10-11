@@ -477,7 +477,7 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
 .reference-page .panel-note { padding:1.3rem; font-size:.92rem; }
 /* About */
 .reference-page[data-page='about'] #company { align-items:start; }
-.reference-page[data-page='about'] .editorial-rows { grid-template-columns:1fr 1fr; gap:1.3rem; }
+.reference-page[data-page='about'] .editorial-rows { grid-template-columns:minmax(0,1fr); gap:1.3rem; }
 .reference-page[data-page='about'] .editorial-rows__row { padding:0 0 1rem; font-size:.95rem; border-top:0; }
 .reference-page[data-page='about'] .editorial-rows__label { display:block; font-size:.68rem; margin-bottom:.6rem; }
 .reference-page[data-page='about'] .principles { gap:1rem; margin-top:1rem; }
@@ -602,7 +602,8 @@ body:has(.reference-page) .site-footer__brand { font-size:.7rem; }
  .reference-page .status-triad,.reference-page .offering-grid { grid-template-columns:minmax(0,1fr); }
  .reference-page .compare { grid-template-columns:minmax(0,1fr); }
  .reference-page .flow-steps--grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
- .reference-page .founder-profile { grid-template-columns:minmax(0,1fr); }
+ .reference-page .founder-profile,.reference-page .founder-profile__body { grid-template-columns:minmax(0,1fr); }
+ .reference-page .founder-profile__name,.reference-page .founder-profile__bio,.reference-page .founder-profile blockquote,.reference-page .founder-profile__note,.reference-page .founder-profile__transition { grid-column:1 / -1; grid-row:auto; }
  .reference-page[data-page='about'] .editorial-rows { grid-template-columns:minmax(0,1fr); }
  .reference-page[data-page='experiments'] > .site-container { display:block; }
  .reference-page[data-page='experiments'] #persistent-intelligence,.reference-page[data-page='experiments'] #spc { margin:1.2rem var(--reference-inset); }

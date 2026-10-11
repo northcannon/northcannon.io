@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { mkdir, readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { readRoutes, draftBanner } from '../../src/governance/routes.mjs';
 import { loadGovernance } from '../../src/governance/registry.mjs';
 import { migratedReviewPaths } from '../../scripts/redesign-policy.mjs';
@@ -14,6 +15,8 @@ const PRODUCTION = 'http://127.0.0.1:4321';
 const fabricated = /Frozen —|Evidence System Operational|NC-\d|Jan \d|2025|[a-f0-9]{16,}|Not supplied/;
 const concept = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8'));
 const syntheticHashes = new Set(concept.evidence.map(record => record.sha256));
+const draftHistoricalHash = JSON.parse(await readFile('src/content/redesign.json', 'utf8')).historical.sha256;
+const siteManifestHash = createHash('sha256').update(await readFile('dist/provenance.json')).digest('hex');
 const desktop = testInfo => testInfo.project.name === 'desktop';
 
 test.use({ bypassCSP: true });
@@ -36,7 +39,7 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
     await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();
-    if (!route.path.startsWith('/trust/') && !(review && route.path === '/evidence/')) {
+    if (!route.path.startsWith('/trust/')) {
       // Only registered fixture hashes inside explicitly labeled review concepts
       // are exempt; fabricated text and hashes elsewhere remain prohibited.
       if (review) for (const panel of await page.locator('main .ci-console, main .ci-authority').all()) {
@@ -45,11 +48,15 @@ for (const review of [true, false]) for (const route of readRoutes().filter(r =>
           expect(syntheticHashes.has(await code.textContent())).toBe(true);
         }
       }
-      const actual = await page.locator('main').evaluate((el, isReview) => {
+      // Exact matches to registered hashes are removed before the fabricated-text check: the synthetic concept hashes and the two
+      // real artifact hashes (the site provenance manifest and the historical recording), which are verified byte for byte elsewhere.
+      const allowedHashes = [...syntheticHashes, ...(review && route.path === '/evidence/' ? [draftHistoricalHash, siteManifestHash] : [])];
+      const actual = await page.locator('main').evaluate((el, { isReview, allowed }) => {
         const copy = el.cloneNode(true);
         if (isReview) copy.querySelectorAll('.ci-console .ci-hash code, .ci-authority .ci-hash code').forEach(code => code.remove());
+        for (const node of copy.querySelectorAll('*')) if (node.children.length === 0 && allowed.includes(node.textContent.trim())) node.remove();
         return copy.textContent;
-      }, review);
+      }, { isReview: review, allowed: allowedHashes });
       expect(actual).not.toMatch(fabricated);
     }
     const name = route.path === '/' ? 'home' : route.path.replace(/^\/|\/$/g, '').replaceAll('/', '-').replace('.html', '');

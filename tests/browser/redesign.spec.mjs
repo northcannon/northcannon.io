@@ -15,13 +15,14 @@ test('review IA, aliases, native navigation, metadata and disclosure boundaries'
   await expect(page.locator('.product-hero a').first()).toHaveAttribute('href','/products/');
   await expect(page.locator('main')).not.toContainText('NorthCannon Factory');
   await page.goto(REVIEW + '/about/company/');
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://northcannon.io/about/');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://northcannon.io/about/company/');
   await expect(page.locator('.product-section')).toHaveCount(4);
   await expect(page.locator('#company, #founder')).toHaveCount(2);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content','https://northcannon.io/og/northcannon-default.png');
-  // A cached /about/ -> /about/company/ move terminates at a 200 alias.
+  // The About page is one route. The duplicate /about/ page is not in the review output.
   expect((await request.get(REVIEW + '/about/company/', { maxRedirects: 0 })).status()).toBe(200);
-  expect((await request.get(PRODUCTION + '/sitemap.xml')).text()).resolves.not.toContain('/about/company/');
+  expect((await request.get(REVIEW + '/about/', { maxRedirects: 0 })).status()).toBe(404);
+  expect(await (await request.get(PRODUCTION + '/sitemap.xml')).text()).toContain('https://northcannon.io/about/company/');
   await page.goto(REVIEW + '/solutions/');
   await expect(page.locator('#knowledge-blast-radius')).toContainText('Planned capability · illustrative example · not shipped');
   await expect(page.locator('#knowledge-blast-radius tbody tr')).toHaveCount(6);
@@ -35,7 +36,7 @@ test('review redirects preserve fragments in one hop without changing production
   // The plan §39 pairs, hard-coded so the list under test cannot validate itself.
   const planRedirects = [
     '/gate-1/ /experiments/#gate-1 301', '/results/ /evidence/#experimental-results 301', '/about/features/ /products/ 301',
-    '/about/founder/ /about/#founder 301', '/founder/ /about/#founder 301', '/founder /about/#founder 301', '/vision/ /about/#company 301',
+    '/about/founder/ /about/company/#founder 301', '/founder/ /about/company/#founder 301', '/founder /about/company/#founder 301', '/vision/ /about/company/#company 301',
   ];
   expect(redesignRedirects).toEqual(planRedirects);
   for (const line of planRedirects) {
@@ -106,7 +107,7 @@ test('every published and review page renders with browser JavaScript disabled',
 test('reference compositions: serif heroes, split panels, pillars and research pair at 1440', async ({ page }, info) => {
   test.skip(info.project.name !== 'desktop', 'Desktop composition contract; reflow is covered by the width matrix.');
   await page.setViewportSize({ width:1440, height:1000 });
-  for (const route of ['/', '/about/', '/products/', '/solutions/', '/evidence/', '/experiments/']) {
+  for (const route of ['/', '/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/']) {
     await page.goto(REVIEW + route);
     await expect(page.locator('main.reference-page')).toBeVisible();
     const hero = page.locator('.product-hero');
@@ -114,11 +115,11 @@ test('reference compositions: serif heroes, split panels, pillars and research p
     expect(await page.locator('.reference-section__copy h2').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Georgia');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  await page.goto(REVIEW + '/about/');
-  await expect(page.locator('.reference-pillars > div')).toHaveCount(4);
-  await expect(page.locator('#about-process .control-loop li')).toHaveCount(6);
-  const badgeTops = await page.locator('#about-process .state-chip').evaluateAll(els => els.map(el => el.getBoundingClientRect().top));
-  expect(Math.max(...badgeTops)-Math.min(...badgeTops)).toBeLessThan(1);
+  await page.goto(REVIEW + '/about/company/');
+  await expect(page.locator('.reference-pillars > div')).toHaveCount(3);
+  // Architect D-1: the six-stage loop appears on Home only; About shows the Phase A and planned status cards.
+  await expect(page.locator('#about-process')).toHaveCount(0);
+  await expect(page.locator('#status .scope-columns > .card')).toHaveCount(2);
   const photo = await page.locator('.founder-profile picture').boundingBox();
   const bio = await page.locator('.founder-profile__bio').boundingBox();
   const quote = await page.locator('.founder-profile blockquote').boundingBox();
@@ -129,4 +130,43 @@ test('reference compositions: serif heroes, split panels, pillars and research p
   const spc = await page.locator('#spc').boundingBox();
   expect(Math.abs(pi.y-spc.y)).toBeLessThan(2);
   expect(pi.x + pi.width).toBeLessThan(spc.x);
+});
+
+// Architect review 2026-10-11, B-5: below 48rem the founder block is one column and the name stays legible.
+test('founder block is legible on phones: name box at least 200px and portrait loaded', async ({ page }, info) => {
+  test.skip(info.project.name === 'desktop', 'Phone widths only; the desktop composition is covered above.');
+  await page.goto(REVIEW + '/about/company/');
+  const name = await page.locator('.founder-profile__name').boundingBox();
+  expect(name.width).toBeGreaterThanOrEqual(200);
+  expect(await page.locator('.founder-profile picture img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('.founder-profile picture img')).not.toHaveAttribute('loading', 'lazy');
+});
+
+// Architect review 2026-10-11, D-4: section headings nest without skipping levels on the Home, Products and Solutions pages.
+test('heading order does not skip levels on Home, Products and Solutions (D-4)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Structural check; run once.');
+  for (const route of ['/', '/products/', '/solutions/']) {
+    await page.goto(REVIEW + route);
+    const levels = await page.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].map(el => Number(el.tagName[1])));
+    expect(levels[0], route).toBe(1);
+    for (let index = 1; index < levels.length; index++) expect(levels[index] - levels[index - 1], `${route} heading ${index}`).toBeLessThanOrEqual(1);
+  }
+});
+
+// Architect review 2026-10-11, D-6: About rows and the biography reach at least 80% of their column at 1440.
+// Rows are measured by their box (the layout's column). The biography is measured against the grid track it occupies.
+test('About rows and biography reach at least 80% of their column at 1440 (D-6)', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop measure; run once.');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(REVIEW + '/about/company/');
+  const column = await page.locator('#company .reference-section__content').boundingBox();
+  for (const row of await page.locator('#company .editorial-rows__row').all()) {
+    expect((await row.boundingBox()).width / column.width).toBeGreaterThanOrEqual(0.8);
+  }
+  const bioShare = await page.evaluate(() => {
+    const body = document.querySelector('#founder .founder-profile__body');
+    const track = parseFloat(getComputedStyle(body).gridTemplateColumns.split(' ')[0]);
+    return document.querySelector('.founder-profile__bio').getBoundingClientRect().width / track;
+  });
+  expect(bioShare).toBeGreaterThanOrEqual(0.8);
 });
