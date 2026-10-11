@@ -183,9 +183,7 @@
       "redesign-solutions-expansion-1",
       "redesign-solutions-expansion-2",
       "redesign-solutions-expansion-3",
-      "redesign-solutions-future-title",
       "redesign-solutions-future-body",
-      "redesign-factory-subtitle",
       "redesign-solutions-future-1",
       "redesign-solutions-future-2",
       "redesign-solutions-future-3",
@@ -364,12 +362,10 @@
       "redesign-pi-label-controls",
       "redesign-pi-body-controls",
       "redesign-pi-label-falsification",
-      "redesign-pi-body-falsification",
-      "redesign-experiments-arms-label"
+      "redesign-pi-body-falsification"
     ],
     "E-013": [
       "redesign-about-founder-title",
-      "redesign-founder-status",
       "redesign-contact-intents-title",
       "redesign-contact-intents-1",
       "redesign-contact-intents-2",
@@ -544,6 +540,15 @@
     ],
     "E-015": [
       "redesign-label-recoverability"
+    ],
+    "E-016": [
+      "redesign-experiments-arms-sentence",
+      "redesign-governed-extensions-title",
+      "redesign-evidence-historical-version",
+      "redesign-contact-intents-desc-1",
+      "redesign-contact-intents-desc-2",
+      "redesign-contact-intents-desc-3",
+      "redesign-contact-intents-desc-4"
     ]
   },
   "labels": {
@@ -877,10 +882,9 @@
         },
         {
           "id": "future",
-          "title": "redesign-solutions-future-title",
+          "title": "redesign-governed-extensions-title",
           "kind": "future",
           "body": "redesign-solutions-future-body",
-          "subtitle": "redesign-factory-subtitle",
           "items": [
             "redesign-solutions-future-1",
             "redesign-solutions-future-2",
@@ -957,7 +961,6 @@
           "id": "founder",
           "title": "redesign-about-founder-title",
           "kind": "founder",
-          "body": "redesign-founder-status",
           "transition": "redesign-about-founder-transition"
         },
         {
@@ -1242,6 +1245,12 @@
             "redesign-contact-intents-2",
             "redesign-contact-intents-3",
             "redesign-contact-intents-4"
+          ],
+          "descriptions": [
+            "redesign-contact-intents-desc-1",
+            "redesign-contact-intents-desc-2",
+            "redesign-contact-intents-desc-3",
+            "redesign-contact-intents-desc-4"
           ]
         },
         {
@@ -1357,12 +1366,6 @@
     "redesign-evidence-kpis-17": "redesign-kpi-term-17",
     "redesign-evidence-kpis-18": "redesign-kpi-term-18"
   },
-  "arms": [
-    "arm-treatment",
-    "arm-baseline-a",
-    "arm-baseline-b",
-    "arm-r-plus"
-  ],
   "loop_states": [
     "planned",
     "planned",
@@ -1392,7 +1395,7 @@
     {
       "id": "home-lineage-illustration",
       "replacement": "concept-preview",
-      "reason": "A compact preview now uses the same synthetic fixture as Solutions."
+      "reason": "A compact preview now uses the same synthetic scenario as Solutions."
     }
   ]
 }

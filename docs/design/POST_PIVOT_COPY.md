@@ -726,17 +726,13 @@ Supply & physical operations: classification or origin changes could trigger re-
 
 Enterprise operations: approval or business-rule changes could trigger review of automated actions and downstream dependencies.
 
-### redesign-solutions-future-title
 
-NorthCannon Factory
 
 ### redesign-solutions-future-body
 
 A future add-on concept that would extend NorthCannon for your environment through the governed change process intended for NorthCannon’s own engineering.
 
-### redesign-factory-subtitle
 
-Governed Extensions
 
 ### redesign-solutions-future-1
 
@@ -890,7 +886,7 @@ No completed governed engineering loop or validated pricing is claimed.
 
 ### redesign-status-not-claimed-3
 
-No experimental results or SPC performance advantage is claimed.
+No experimental results or Structure-Proportional Computing (SPC) performance advantage is claimed.
 
 ### redesign-evidence-title
 
@@ -1050,7 +1046,7 @@ The research asks whether AI systems can retain verified state, evidence and dec
 
 ### redesign-experiments-persistent-intelligence-5
 
-No PI experiment is running. A new freeze record is required before another experiment.
+No Persistent Intelligence (PI) experiment is running. A new freeze record is required before another experiment.
 
 ### redesign-experiments-gate-1-title
 
@@ -1066,7 +1062,7 @@ Structure-Proportional Computing
 
 ### redesign-experiments-spc-body
 
-SPC asks whether computation can scale with affected structure rather than repeatedly processing serialized context. It is a pre-experiment research agenda, with no experiment run and no performance or hardware advantage claimed.
+Structure-Proportional Computing (SPC) asks whether computation can scale with affected structure rather than repeatedly processing serialized context. It is a pre-experiment research agenda, with no experiment run and no performance or hardware advantage claimed.
 
 ### redesign-experiments-spc-1
 
@@ -1138,7 +1134,7 @@ Gate 1: discontinued before execution on 29 September 2026.
 
 ### redesign-status-research-3
 
-SPC: pre-experiment research; no results claimed.
+Structure-Proportional Computing (SPC): pre-experiment research; no results claimed.
 
 ### redesign-surface-architecture
 
@@ -1448,9 +1444,7 @@ Falsification
 
 Specify failure criteria before execution and publish outcomes regardless of direction.
 
-### redesign-experiments-arms-label
 
-Study arms
 
 ## E-013
 
@@ -1464,9 +1458,7 @@ Study arms
 
 Built from the consequences backward.
 
-### redesign-founder-status
 
-Max Brooks is NorthCannon’s solo technical founder, working full-time on the control foundation and its product development.
 
 ### redesign-contact-intents-title
 
@@ -1648,7 +1640,7 @@ Illustrative records below are separate from the published evidence ledger.
 
 ### concept-seed-note
 
-All digests are synthetic SHA-256 values derived from labelled fixture seeds. They identify no real repository or evidence.
+All digests are synthetic SHA-256 values derived from labelled scenario seeds. They identify no real repository or evidence.
 
 ### concept-repo
 
@@ -1768,7 +1760,7 @@ SUPPORTED UNAFFECTED
 
 ### concept-node-sdk
 
-lattice-fixture-sdk
+lattice-scenario-sdk
 
 ### concept-reason-sdk
 
@@ -1776,7 +1768,7 @@ Dependency upgrade 2.4.1 → 2.5.0 is proposed; compatibility is not established
 
 ### concept-node-lock
 
-fixture.lock
+scenario.lock
 
 ### concept-reason-lock
 
@@ -1784,7 +1776,7 @@ The lock record identifies the changed dependency bytes.
 
 ### concept-node-engine
 
-Harbor fixture engine
+Harbor scenario engine
 
 ### concept-reason-engine
 
@@ -1792,7 +1784,7 @@ The engine imports the changed SDK; its integration behavior requires revalidati
 
 ### concept-node-api
 
-Harbor fixture API
+Harbor scenario API
 
 ### concept-reason-api
 
@@ -1800,7 +1792,7 @@ The API consumes the changed SDK through an admitted import relationship.
 
 ### concept-node-tests
 
-Compatibility test fixture
+Compatibility test scenario
 
 ### concept-reason-tests
 
@@ -1808,7 +1800,7 @@ The test dependency is admitted; a passing result for the proposed version is st
 
 ### concept-node-knowledge
 
-Architecture assumption fixture
+Architecture assumption scenario
 
 ### concept-reason-knowledge
 
@@ -1816,7 +1808,7 @@ The engine behavior supports an architecture assertion that may now be stale.
 
 ### concept-node-schema
 
-Envelope schema fixture
+Envelope schema scenario
 
 ### concept-reason-schema
 
@@ -1824,7 +1816,7 @@ A candidate API-to-schema relationship requires review before it can be admitted
 
 ### concept-node-config
 
-Dynamic configuration fixture
+Dynamic configuration scenario
 
 ### concept-reason-config
 
@@ -1832,7 +1824,7 @@ Dynamic loading is outside the discovered relationship scope; impact is unknown.
 
 ### concept-node-recovery
 
-Recovery assumption fixture
+Recovery assumption scenario
 
 ### concept-reason-recovery
 
@@ -1840,7 +1832,7 @@ Restoration compatibility has no relationship evidence for the proposed SDK.
 
 ### concept-node-isolated
 
-Isolated render test fixture
+Isolated render test scenario
 
 ### concept-reason-isolated
 
@@ -2044,7 +2036,7 @@ SYN-CHANGE-014
 
 ### concept-identity-repository
 
-synthetic/harbor-fixture
+synthetic/harbor-scenario
 
 ### concept-identity-candidate
 
@@ -2060,11 +2052,11 @@ SYN-PACKET-014
 
 ### concept-identity-previous
 
-lattice-fixture-sdk 2.4.1
+lattice-scenario-sdk 2.4.1
 
 ### concept-identity-proposed
 
-lattice-fixture-sdk 2.5.0
+lattice-scenario-sdk 2.5.0
 
 ### concept-identity-scope
 
@@ -2128,7 +2120,7 @@ Observed
 
 ### concept-ladder-detail-3
 
-Observed fixture version: 2.4.1 — mismatch.
+Observed scenario version: 2.4.1 — mismatch.
 
 ### concept-ladder-4
 
@@ -2151,3 +2143,42 @@ Not reconciled; no accepted change is represented.
 ### redesign-label-recoverability
 
 Recoverability
+
+## E-016 — Editorial remediation 2026-10-11
+
+### redesign-experiments-arms-sentence
+
+Gate 1 compared the system against two baselines.
+
+### redesign-governed-extensions-title
+
+Governed Extensions
+
+### redesign-evidence-historical-version
+
+The recording remains in version history only.
+
+### redesign-contact-intents-desc-1
+
+Discuss a design partnership on the control foundation.
+
+### redesign-contact-intents-desc-2
+
+Ask about product status, deployment models and qualification.
+
+### redesign-contact-intents-desc-3
+
+Ask about pricing. No validated pricing is claimed.
+
+### redesign-contact-intents-desc-4
+
+Ask about research programmes. Research is parallel, advisory and non-gating.
+
+## Retirement history (2026-10-11)
+
+Retired pending claims are kept here for history. They are not requested for approval and are not rendered.
+
+- `redesign-founder-status` (retired; founder lede (E-2): the approved bio is the attested introduction): Max Brooks is NorthCannon’s solo technical founder, working full-time on the control foundation and its product development.
+- `redesign-solutions-future-title` (retired; Factory title (F-2): replaced by redesign-governed-extensions-title): NorthCannon Factory
+- `redesign-factory-subtitle` (retired; duplicate sub-heading (F-2): name now appears once): Governed Extensions
+- `redesign-experiments-arms-label` (retired; Study arms chips (E-1): replaced by redesign-experiments-arms-sentence): Study arms

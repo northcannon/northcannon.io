@@ -21,5 +21,5 @@ export function forbiddenCopyErrors(text, name) {
 
 // Synthetic identifiers and fixture dependency names cannot enter any production text asset.
 export function conceptOutputErrors(text, name) {
-  return /\bconcept-[a-z0-9-]+\b|\blattice-fixture-sdk\b/i.test(text) ? [`${name}: synthetic concept in production`] : [];
+  return /\bconcept-[a-z0-9-]+\b|\blattice-scenario-sdk\b/i.test(text) ? [`${name}: synthetic concept in production`] : [];
 }
