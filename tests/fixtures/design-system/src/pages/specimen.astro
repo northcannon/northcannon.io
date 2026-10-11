@@ -7,12 +7,14 @@ import Panel from '../../../../../src/components/Panel.astro';
 import StatusLabel from '../../../../../src/components/StatusLabel.astro';
 import ActionLink from '../../../../../src/components/ActionLink.astro';
 import { claim } from '../../../../../src/governance/claim';
+import { draftBanner } from '../../../../../src/governance/routes.mjs';
 // These destinations are fragment fixtures, not additional website routes.
 const labels = await Promise.all(['label-company', 'label-about', 'label-gate-1', 'label-demo', 'label-evidence', 'label-trust', 'label-early-access', 'label-contact'].map(claim));
 const items = labels.map((label, index) => ({ label, href: index === 0 ? '/' : '#review' }));
 const company = await claim('brand-company');
 ---
 <Document title="WP2 component review">
+  <p class="draft-bar">{draftBanner}</p>
   <SiteHeader company={company} items={items} currentPath="/" />
   <main id="main" tabindex="-1" class="page-main">
     <Container>

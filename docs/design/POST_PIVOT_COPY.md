@@ -2145,3 +2145,9 @@ Reconciled
 ### concept-ladder-detail-5
 
 Not reconciled; no accepted change is represented.
+
+## E-015 — Architect remediation 2026-10-11
+
+### redesign-label-recoverability
+
+Recoverability

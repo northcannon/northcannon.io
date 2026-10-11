@@ -9,15 +9,20 @@ import { readRoutes, routeFile, draftBanner } from '../src/governance/routes.mjs
 import { inspectReviewOutput } from '../src/governance/wp4-output.mjs';
 import { verifyProvenance } from './publication.mjs';
 import { checkRedesignOutput } from './check-redesign-output.mjs';
+import { reviewBannerErrors } from '../src/governance/review-banner.mjs';
+import { servedAssetErrors, servedAssetPattern, sha256 } from '../src/governance/served-assets.mjs';
+import { readFile as readManifestFile } from 'node:fs/promises';
 const { claims } = loadGovernance();
 const routes = readRoutes(claims);
 const wp4 = process.argv[3] === '--wp4';
 const specimen = process.argv[3] === '--specimen';
 const fixture = process.argv[3] === '--review' || specimen;
+const review = process.argv[3] === '--review';
 
 const root = path.resolve(process.argv[2] ?? 'dist');
 const files = new Map();
 const media = new Map();
+const served = new Map();
 const errors = [];
 async function collect(dir) {
   for (const item of await readdir(dir, { withFileTypes: true })) {
@@ -31,6 +36,7 @@ async function collect(dir) {
         if ((await readFile(full)).subarray(0, 4).toString('latin1') !== 'wOF2') errors.push(`${name}: not a WOFF2 font`);
         continue;
       }
+      if (servedAssetPattern.test(name)) served.set('/' + name, await readFile(full));
       if ('/' + name in allowedImages) {
         errors.push(...inspectImage(await readFile(full), allowedImages['/' + name], name));
         files.set(name, '');
@@ -76,7 +82,6 @@ for (const [name, text] of files) {
     errors.push(...publicOutputDisclosureErrors(text, name));
     errors.push(...((wp4 || fixture) && !specimen && name !== 'specimen/index.html' ? inspectReviewOutput(text, claims, name) : !fixture && name !== '404.html' ? [...inspectReviewOutput(text, claims, name, { review: false }), ...inspectClaimOutput(text, claims)] : inspectClaimOutput(text, claims, { review: fixture, rejectUnregistered: fixture })));
     if (!wp4 && !fixture && text.includes(draftBanner)) errors.push('Review banner in production');
-    if (wp4 && !text.includes(draftBanner)) errors.push('Missing review banner');
   }
   // Field names (Contact:, Allow:, …) are protocol syntax; check only field values for pending copy.
   // Font license texts are third-party legal text, not site copy, so short claim words appear in them by chance.
@@ -120,6 +125,9 @@ for (const [name, document] of documents) {
   }
 }
 if (!wp4 && !fixture) errors.push(...claimRegisterErrors(files, claims));
+// Every review page carries the draft banner; every served image or SVG is listed in the source manifest with its exact hash.
+errors.push(...reviewBannerErrors(files, { required: wp4 || review }));
+if (!specimen) errors.push(...servedAssetErrors(served, JSON.parse(await readManifestFile('docs/design/concept-source-manifest.json', 'utf8'))));
 if (wp4) await verifyProvenance(path.resolve('dist'));
 if ((wp4 || fixture) && files.has('provenance.json')) {
   // The review copy of the production manifest must be byte-identical to the production manifest.

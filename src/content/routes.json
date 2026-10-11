@@ -835,7 +835,8 @@
       "redesign-about-founder-transition",
       "cta-get-in-touch",
       "about-why-title",
-      "redesign-label-phase-a"
+      "redesign-label-phase-a",
+      "redesign-label-recoverability"
     ],
     "nav": true,
     "publish": false,
@@ -3938,7 +3939,8 @@
       "redesign-about-row-label-4",
       "redesign-about-row-body-4",
       "redesign-about-founder-transition",
-      "redesign-label-phase-a"
+      "redesign-label-phase-a",
+      "redesign-label-recoverability"
     ],
     "nav": false,
     "publish": true,

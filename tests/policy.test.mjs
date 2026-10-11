@@ -221,3 +221,14 @@ test('production rejects concept claim IDs and the synthetic SDK in text and non
   }
   assert.deepEqual(conceptOutputErrors('Conceptual engineering change', 'fixture'), []);
 });
+
+// Architect review 2026-10-11, B-3: the review build requires the draft banner on every page; specimen runs stay
+// permissive so they keep testing their own rules.
+test('review builds require the draft banner on every page (B-3)', async () => {
+  const { reviewBannerErrors } = await import('../src/governance/review-banner.mjs');
+  const { draftBanner } = await import('../src/governance/routes.mjs');
+  const pages = new Map([['index.html', `<p class="draft-bar">${draftBanner}</p>`], ['specimen/index.html', '<p>Review fixture</p>']]);
+  assert.deepEqual(reviewBannerErrors(pages, { required: true }), ['specimen/index.html: missing review banner']);
+  assert.deepEqual(reviewBannerErrors(pages, { required: false }), []);
+  assert.deepEqual(reviewBannerErrors(new Map([['index.html', `<p>${draftBanner}</p>`]]), { required: true }), []);
+});

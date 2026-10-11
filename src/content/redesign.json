@@ -541,6 +541,9 @@
       "concept-ladder-detail-4",
       "concept-ladder-5",
       "concept-ladder-detail-5"
+    ],
+    "E-015": [
+      "redesign-label-recoverability"
     ]
   },
   "labels": {
@@ -947,12 +950,8 @@
               "redesign-status-exists-2"
             ],
             [
-              "redesign-loop-revalidate",
+              "redesign-label-recoverability",
               "redesign-status-exists-3"
-            ],
-            [
-              "redesign-loop-bound",
-              "redesign-about-row-body-2"
             ]
           ]
         },

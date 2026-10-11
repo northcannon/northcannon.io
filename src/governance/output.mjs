@@ -1,8 +1,9 @@
 import { parse } from 'parse5';
+import { draftBanner } from './routes.mjs';
 const normalize = value => value.replace(/\s+/gu, ' ').trim();
 // Interface labels describe navigation/errors and review specimens, not company facts.
 const interfaceText = new Set(['Skip to content', 'Page not found', 'Return home', 'Menu', 'Primary']);
-const reviewText = new Set(['WP2 component review', 'Home', 'About', 'Research', 'Product', 'Evidence', 'Trust Center', 'Early Access', 'Contact', 'Primary link', 'Secondary link', 'Panel heading', 'Presentation fixture for text wrapping, contrast, and keyboard review.', 'Review fixture']);
+const reviewText = new Set(['WP2 component review', 'Home', 'About', 'Research', 'Product', 'Evidence', 'Trust Center', 'Early Access', 'Contact', 'Primary link', 'Secondary link', 'Panel heading', 'Presentation fixture for text wrapping, contrast, and keyboard review.', 'Review fixture', draftBanner]);
 
 export function inspectClaimOutput(html, claims, { review = false, rejectUnregistered = false } = {}) {
   const document = parse(html);

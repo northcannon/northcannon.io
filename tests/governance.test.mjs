@@ -352,3 +352,39 @@ test('synthetic scenario identities, counts, relations and obligations are inter
     assert.equal(claim?.lifecycle_state, 'review', id);
   }
 });
+
+// Architect review 2026-10-11, B-1 and B-2: the About pillars state implemented Phase A capabilities only,
+// and no page pairs the Revalidate stage with the Recoverability status.
+test('About pillars show exactly the implemented Decide, Verify and Recoverability capabilities', async () => {
+  const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  const pillars = draft.pages['/about/'].sections.find(section => section.id === 'about-pillars');
+  assert.deepEqual(pillars.rows, [
+    ['redesign-loop-decide', 'redesign-status-exists-1'],
+    ['redesign-loop-verify', 'redesign-status-exists-2'],
+    ['redesign-label-recoverability', 'redesign-status-exists-3'],
+  ]);
+});
+
+test('no page pairs the Revalidate stage with the Recoverability status in one row (B-2)', async () => {
+  const draft = JSON.parse(await readFile('src/content/redesign.json', 'utf8'));
+  for (const [route, page] of Object.entries(draft.pages)) for (const section of page.sections) for (const row of section.rows ?? []) {
+    assert.ok(!(row.includes('redesign-loop-revalidate') && row.includes('redesign-status-exists-3')), `${route} ${section.id}`);
+  }
+  const triadRow = draft.triad.flatMap(column => column.items);
+  assert.ok(!(triadRow.includes('redesign-loop-revalidate')), 'Revalidate is not a Phase A status item');
+});
+
+// Architect review 2026-10-11, B-4: every served image or SVG has a manifest entry with its exact SHA-256.
+test('every served image or SVG has a manifest entry with its exact SHA-256 (B-4)', async () => {
+  const { servedAssetErrors, listServedAssets } = await import('../src/governance/served-assets.mjs');
+  const manifest = JSON.parse(await readFile('docs/design/concept-source-manifest.json', 'utf8'));
+  const assets = new Map();
+  const { historicalImages } = await import('../scripts/policy.mjs');
+  // Withdrawn historical media is kept for verification but is never served (policy.mjs historicalImages).
+  for (const name of await listServedAssets('public')) if (!(('/' + name) in historicalImages)) assets.set('/' + name, await readFile('public/' + name));
+  assert.ok(assets.size >= 6, 'the served asset inventory is not empty');
+  assert.deepEqual(servedAssetErrors(assets, manifest), []);
+  assert.deepEqual(servedAssetErrors(new Map([['/new-art.svg', Buffer.from('<svg/>')]]), manifest), ['/new-art.svg: no served-asset manifest entry']);
+  const tampered = servedAssetErrors(new Map([['/graphene-lattice.svg', Buffer.from('<svg/>')]]), manifest);
+  assert.deepEqual(tampered, ['/graphene-lattice.svg: sha256 mismatch with its manifest entry']);
+});
