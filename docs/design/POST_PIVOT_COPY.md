@@ -1,6 +1,6 @@
-# Post-pivot copy awaiting founder approval
+# Post-pivot copy approved by the founder (founder-approval-010, 2026-10-11)
 
-All proposed copy is PENDING, for local founder review only. This public basis records draft wording, not approval or evidence of general availability. The mission remains neutralised. Every new route remains unpublished.
+The 535 active claims in batches E-010 through E-016 were approved for publication in founder-approval-010 on 11 October 2026; E-015 was retired before approval. Exact attestations are in docs/FOUNDER_APPROVALS.md. This inventory records wording, not evidence of general availability. The mission remains neutralised. The approved redesign routes are promoted to production.
 
 ## E-010
 

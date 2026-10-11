@@ -16,16 +16,19 @@ import { env as environment } from 'node:process';
 
 const attest = (claims, ids) => claims.map(c => ids.includes(c.claim_id) ? { ...c, approval_state: 'approved', lifecycle_state: 'approved', review_date: '2026-09-14', approval_record: 'founder_attestation' } : c);
 
-test('redesign routes stay unpublished and flat navigation obeys approval and CTA rules', () => {
+test('redesign routes are published at cutover and flat navigation obeys approval and CTA rules', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
   assert.deepEqual(navigationRoutes(routes, { review: true, claims }).map(r => r.path), ['/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/', '/contact/']);
-  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/about/company/', '/evidence/', '/contact/']);
+  assert.deepEqual(navigationRoutes(routes, { review: false, claims }).map(r => r.path), ['/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/', '/contact/']);
   assert.ok(navigationTree(routes).every(item => item.children.length === 0));
-  for (const path of ['/products/', '/solutions/', '/experiments/']) assert.equal(routes.find(r => r.path === path).publish, false);
+  // Founder-approval-010 cutover: the redesign routes publish; the migrated legacy routes do not (they 301 instead).
+  for (const path of ['/products/', '/solutions/', '/experiments/']) assert.equal(routes.find(r => r.path === path).publish, true);
+  for (const path of ['/gate-1/', '/vision/', '/about/features/', '/about/founder/']) assert.equal(routes.find(r => r.path === path).publish, false);
   // The About page is one route: /about/company/. The duplicate /about/ route is removed (architect D-5).
   assert.equal(routes.find(r => r.path === '/about/'), undefined);
-  const invalid = structuredClone(routes); invalid.find(r => r.path === '/products/').publish = true;
-  assert.throws(() => readRoutes(claims, invalid), /ineligible/);
+  // A published route still fails closed if any of its copy loses its founder attestation.
+  const unattested = claims.map(c => c.claim_id === 'redesign-products-lede' ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
+  assert.throws(() => readRoutes(unattested, routes), /ineligible|attestation/);
   const two = structuredClone(routes); two[0].nav_cta = true;
   assert.throws(() => readRoutes(claims, two), /CTA/);
   const misplaced = structuredClone(routes); misplaced.find(r => r.path === '/about/company/').nav_cta = true;
@@ -37,13 +40,15 @@ test('redesign routes stay unpublished and flat navigation obeys approval and CT
   assert.throws(() => verifyAttestations([...claims, { ...claims[0], claim_id: 'synthetic-approval' }], '```json\n[]\n```'), /mismatch/);
 });
 
-test('pending redesign copy is review-only and undeclared, retired and unknown copy fail closed', () => {
+test('approved redesign copy renders in both builds; pending, undeclared, retired and unknown copy fail closed', () => {
   const claims = loadGovernance().claims, routes = readRoutes(claims);
   const home = routes.find(r => r.path === '/');
   const id = 'redesign-home-title';
-  assert.equal(routeCopy(claims, home, routes, id, { review: false }), undefined);
+  assert.equal(routeCopy(claims, home, routes, id, { review: false }), claims.find(c => c.claim_id === id).statement);
   assert.equal(routeCopy(claims, home, routes, id, { review: true }), claims.find(c => c.claim_id === id).statement);
-  assert.equal(routeCopy(attest(claims,[id]), home, routes, id, { review: false }), claims.find(c => c.claim_id === id).statement);
+  const pending = claims.map(c => c.claim_id === id ? { ...c, approval_state: 'pending', lifecycle_state: 'review', review_date: null, approval_record: 'none' } : c);
+  assert.throws(() => routeCopy(pending, home, routes, id, { review: false }), /ineligible/i);
+  assert.equal(routeCopy(attest(pending,[id]), home, routes, id, { review: false }), claims.find(c => c.claim_id === id).statement);
   for (const id of ['unknown', 'status-gate1-frozen-stress', 'brand-mission']) assert.throws(() => routeCopy(claims, home, routes, id), /Undeclared/);
   assert.ok(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: false }).length);
   assert.ok(inspectReviewOutput('<p>View Gate 1</p>', claims, 'index.html', { review: true }).length);
@@ -70,7 +75,9 @@ test('production gates reject pending navigation and undeclared text while accep
   assert.throws(() => readRoutes(pending), /ineligible/);
   const vision = claims.find(c => c.claim_id === 'vision-statement').statement;
   const html = vision.split('\n\n').map(p => `<p>${p}</p>`).join('');
-  assert.deepEqual(inspectReviewOutput(html, claims, 'vision/index.html', { review: false }), []);
+  assert.ok(inspectReviewOutput(html, claims, 'vision/index.html', { review: false }).length, 'withdrawn route cannot render');
+  const approved = claims.find(c => c.claim_id === 'redesign-products-lede').statement;
+  assert.deepEqual(inspectReviewOutput(`<p>${approved}</p>`, claims, 'products/index.html', { review: false }), []);
   assert.ok(inspectReviewOutput(html.replace('AI should', 'AI definitely should'), claims, 'vision/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput(html, claims, 'evidence/index.html', { review: false }).length);
   assert.ok(inspectReviewOutput(`<p>${draftBanner}</p>`, claims, 'vision/index.html', { review: false }).length);
@@ -214,7 +221,7 @@ test('Phase 0.5 claims are founder-attested by event 009, required on their rout
   const ids = ['status-gate1-discontinued', 'gate1-historical-statement', 'evidence-status-current', 'ledger-empty-current', 'demo-coming-soon-lede', 'changelog-2026-10-truth-correction'];
   assert.deepEqual([...approvalEvents['founder-approval-009'].claim_ids].sort(), [...ids].sort());
   const designatedOwners = {
-    'status-gate1-discontinued': ['/trust/status/', '/trust/claims/'], 'gate1-historical-statement': ['/gate-1/', '/trust/claims/'],
+    'status-gate1-discontinued': ['/experiments/', '/trust/status/', '/trust/claims/'], 'gate1-historical-statement': ['/gate-1/', '/trust/claims/'],
     'evidence-status-current': ['/evidence/', '/trust/claims/'], 'ledger-empty-current': ['/evidence/', '/trust/claims/'],
     'demo-coming-soon-lede': ['/demo/', '/trust/claims/'], 'changelog-2026-10-truth-correction': ['/trust/claims/', '/trust/changelog/'],
   };
@@ -231,7 +238,7 @@ test('Phase 0.5 claims are founder-attested by event 009, required on their rout
     assert.deepEqual(owners.map(r => r.path).sort(), [...designatedOwners[id]].sort(), id);
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: false }), claim.statement);
     assert.equal(routeCopy(claims, owners[0], routes, id, { review: true }), claim.statement);
-    assert.deepEqual(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners[0].path.slice(1) + 'index.html', { review: false }), []);
+    assert.deepEqual(inspectReviewOutput(`<p>${claim.statement}</p>`, claims, owners.find(r => r.publish).path.slice(1) + 'index.html', { review: false }), []);
   }
   const referenced = new Set(routes.flatMap(r => [...r.claim_ids, ...r.review_claim_ids]));
   for (const claim of claims.filter(c => /^(results-|demo-video-|demo-transcript-|founder-gate-)/.test(c.claim_id))) assert.ok(!referenced.has(claim.claim_id), claim.claim_id);

@@ -25,8 +25,12 @@ export function inspectReviewOutput(html, claims, name, { review = true } = {}) 
   for (const group of data ? [data.sources, data.files, data.approval_events] : []) for (const [key, value] of Object.entries(group)) { allowed.add(key); allowed.add(value); }
   if (data) allowed.add(data.astro_version);
   if (data && data.source_commit !== null) allowed.add(data.source_commit);
-  const evidenceData = review && name === 'evidence/index.html' ? JSON.parse(readFileSync('src/content/redesign.json', 'utf8')) : null;
-  if (evidenceData) { allowed.add(evidenceData.historical.sha256); allowed.add(evidenceData.historical.date); allowed.add(createHash('sha256').update(readFileSync(productionProvenancePath())).digest('hex')); }
+  // The Evidence ledger's registered historical record (exact date and recording SHA-256) is machine data in both
+  // builds since the founder-approval-010 cutover; only review cites the production manifest hash (production
+  // cannot cite its own manifest, which is written after and over the build).
+  const evidenceData = name === 'evidence/index.html' ? JSON.parse(readFileSync('src/content/redesign.json', 'utf8')) : null;
+  if (evidenceData) { allowed.add(evidenceData.historical.sha256); allowed.add(evidenceData.historical.date); }
+  if (evidenceData && review) allowed.add(createHash('sha256').update(readFileSync(productionProvenancePath())).digest('hex'));
   const errors = [];
   const visit = node => {
     if (node.nodeName === '#text' && ['≠','◇','✓','○','×'].includes(node.value.trim()) && node.parentNode?.attrs?.some(a => a.name === 'aria-hidden' && a.value === 'true')) return;

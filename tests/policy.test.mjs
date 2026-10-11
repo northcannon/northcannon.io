@@ -109,10 +109,10 @@ test('output validator permits only self-hosted woff2 @font-face', async () => {
   }
 });
 
-test('redirects file holds exactly the five reviewed permanent moves', async () => {
+test('redirects file holds exactly the nine reviewed permanent moves', async () => {
   const text = await readFile('public/_redirects', 'utf8');
   assert.deepEqual(text.trim().split('\n'), requiredRedirects);
-  assert.equal(requiredRedirects.length, 5);
+  assert.equal(requiredRedirects.length, 9);
   assert.doesNotThrow(() => readRedirects(text));
   for (const invalid of [text + '/x /y 301\n', text.replace('301', '302'), text.replace('/about/company/', 'https://example.com/'), text.split('\n').slice(1).join('\n'), '']) assert.throws(() => readRedirects(invalid));
 });
@@ -232,3 +232,11 @@ test('review builds require the draft banner on every page (B-3)', async () => {
   assert.deepEqual(reviewBannerErrors(pages, { required: false }), []);
   assert.deepEqual(reviewBannerErrors(new Map([['index.html', `<p>${draftBanner}</p>`]]), { required: true }), []);
 });
+
+ test('synthetic concepts require a label and cannot leak through prose or attributes', async () => {
+  const { parse } = await import('parse5');
+  const { conceptPanelErrors, conceptLabel } = await import('../scripts/redesign-policy.mjs');
+  const check = html => conceptPanelErrors(parse(html), 'index.html', ['abcdef1234567890']);
+  assert.deepEqual(check(`<section class="ci-console"><p>${conceptLabel}</p><p>lattice-scenario-sdk 2.5.0</p></section>`), []);
+  for (const html of ['<section class="ci-console">lattice-scenario-sdk</section>', '<p>lattice-scenario-sdk</p>', '<div data-scenario="synthetic-revision-014"></div>', '<p>abcdef1234567890</p>']) assert.ok(check(html).length, html);
+ });

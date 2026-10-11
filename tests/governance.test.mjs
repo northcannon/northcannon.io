@@ -128,7 +128,7 @@ test('no two active claims share a statement, except one founder-attested pair a
 test('both founder events match exactly and single-character mutations fail on either side', async () => {
   const markdown = await readFile('docs/FOUNDER_APPROVALS.md', 'utf8');
   const attested = current.claims.filter(c => c.approval_record === 'founder_attestation');
-  assert.equal(attested.length, 441);
+  assert.equal(attested.length, 976); // 441 + 535 attested by founder-approval-010 (2026-10-11)
   assert.deepEqual(attested.map(c => c.claim_id).sort(), Object.values(approvalEvents).flatMap(e => e.claim_ids).sort());
   assert.equal(approvalEvents['founder-approval-002'].claim_ids.length, 38);
   assert.doesNotThrow(() => verifyAttestations(current.claims, markdown));
@@ -227,7 +227,10 @@ test('rendered prose, SVG, accessibility and metadata have the same claim bounda
   }
   const statement = current.claims.find(c => c.claim_id === 'redesign-home-title').statement;
   assert.deepEqual(inspectReviewOutput(`<svg><text>${statement}</text></svg>`, current.claims, 'index.html', { review: true }), []);
-  assert.ok(inspectReviewOutput(`<meta name="description" content="${statement}">`, current.claims, 'index.html', { review: false }).length);
+  // After founder-approval-010 the redesign copy is approved; a retired pending statement still fails in production.
+  assert.deepEqual(inspectReviewOutput(`<meta name="description" content="${statement}">`, current.claims, 'index.html', { review: false }), []);
+  const retired = current.claims.find(c => c.claim_id === 'redesign-founder-status').statement;
+  assert.ok(inspectReviewOutput(`<meta name="description" content="${retired}">`, current.claims, 'index.html', { review: false }).length);
 });
 
 test('actual production claims must be present in the public register', async () => {
@@ -256,10 +259,14 @@ function checkPendingInventory(claims, routes, events, text) {
   const review = pending.filter(c => c.lifecycle_state === 'review');
   const retired = pending.filter(c => c.lifecycle_state === 'retired');
   assert.equal(review.length + retired.length, pending.length, 'pending lifecycle is exhaustively review or retired');
-  assert.equal(listed.size, review.length, 'only active pending claims request approval');
+  // Batched claims are pending review or, after founder-approval-010, founder-attested; nothing else is listed.
   const eventIds = Object.values(events).flat();
-  assert.equal(eventIds.length, review.length, 'event inventory is exhaustive');
-  for (const c of review) {
+  const requested = claims.filter(c => eventIds.includes(c.claim_id));
+  for (const c of review) assert.ok(eventIds.includes(c.claim_id), `${c.claim_id}: active pending claim outside the batches`);
+  assert.equal(listed.size, requested.length, 'only batched claims are listed');
+  assert.equal(eventIds.length, requested.length, 'event inventory is exhaustive');
+  for (const c of requested) {
+    assert.ok(c.lifecycle_state === 'review' || (c.approval_state === 'approved' && c.approval_record === 'founder_attestation'), `${c.claim_id}: batched claim is pending review or founder-attested`);
     assert.equal(listed.get(c.claim_id)?.statement, c.statement, `${c.claim_id}: exact statement`);
     assert.equal(eventIds.filter(id => id === c.claim_id).length, 1, `${c.claim_id}: exactly one batch`);
     assert.ok(events[listed.get(c.claim_id).batch].includes(c.claim_id), `${c.claim_id}: correct batch`);
@@ -350,8 +357,9 @@ test('synthetic scenario identities, counts, relations and obligations are inter
   }
   for (const [, id] of JSON.stringify(f).matchAll(/"(concept-[a-z0-9-]+)"/g)) {
     const claim = current.claims.find(c => c.claim_id === id);
-    assert.equal(claim?.approval_state, 'pending', id);
-    assert.equal(claim?.lifecycle_state, 'review', id);
+    // Founder-approval-010 attests every concept claim for publication (labelled panels only; see conceptPanelErrors).
+    assert.equal(claim?.approval_state, 'approved', id);
+    assert.equal(claim?.approval_record, 'founder_attestation', id);
   }
 });
 

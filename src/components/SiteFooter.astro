@@ -3,8 +3,8 @@ import GrapheneMesh from './reference/GrapheneMesh.astro';
 import { loadGovernance } from '../governance/registry.mjs';
 import { draftClaim } from '../governance/routes.mjs';
 import { claim } from '../governance/claim';
-interface Props { fragmentFixture?: boolean; review?: boolean }
-const { fragmentFixture = false, review = false } = Astro.props;
+interface Props { fragmentFixture?: boolean; review?: boolean; decorated?: boolean }
+const { fragmentFixture = false, review = false, decorated = review } = Astro.props;
 const copy = {
   company: await claim('brand-company'),
   principle: await claim('brand-core-principle'),
@@ -22,10 +22,10 @@ const trustLinks = [
 const companyLinks = [{ label: await claim('label-contact'), href: '/contact/' }];
 const href = (target: string) => (fragmentFixture ? '#review' : target);
 ---
-<footer class="site-footer">{review && ['/', '/about/', '/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/'].includes(Astro.url.pathname) && <GrapheneMesh id="footer-mesh" />}
+<footer class="site-footer">{decorated && ['/', '/about/', '/about/company/', '/products/', '/solutions/', '/evidence/', '/experiments/'].includes(Astro.url.pathname) && <GrapheneMesh id="footer-mesh" />}
   <div class="site-container site-footer__inner">
     <p class="site-footer__brand"><span>{copy.company}</span><span class="rule-divider" aria-hidden="true"></span><span>{copy.principle}</span></p>
-    <nav aria-label={review ? draftClaim(loadGovernance().claims, 'redesign-label-site') : copy.trust}>
+    <nav aria-label={review ? draftClaim(loadGovernance().claims, 'redesign-label-site') : decorated ? await claim('redesign-label-site') : copy.trust}>
       <div class="site-footer__groups">
         <div class="site-footer__group site-footer__group--wide">
           <p class="site-footer__heading" id="footer-trust"><a href={href('/trust/')}>{copy.trust}</a></p>

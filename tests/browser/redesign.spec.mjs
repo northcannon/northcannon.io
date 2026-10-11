@@ -32,7 +32,7 @@ test('review IA, aliases, native navigation, metadata and disclosure boundaries'
   await expect(page.locator('#spc')).toContainText('no performance or hardware advantage claimed');
 });
 
-test('review redirects preserve fragments in one hop without changing production targets', async ({ request, page }) => {
+test('review and production redirects preserve fragments in one hop', async ({ request, page }) => {
   // The plan §39 pairs, hard-coded so the list under test cannot validate itself.
   const planRedirects = [
     '/gate-1/ /experiments/#gate-1 301', '/results/ /evidence/#experimental-results 301', '/about/features/ /products/ 301',
@@ -48,7 +48,7 @@ test('review redirects preserve fragments in one hop without changing production
     await expect(page).toHaveURL(REVIEW + to);
     if (to.includes('#')) await expect(page.locator('#'+to.split('#')[1])).toBeVisible();
   }
-  expect((await request.get(PRODUCTION + '/gate-1/', { maxRedirects: 0 })).status()).toBe(200);
+  expect((await request.get(PRODUCTION + '/gate-1/', { maxRedirects: 0 })).status()).toBe(301);
 });
 
 test('evidence renders source-bound hashes and no numeric or historical KPI tiles', async ({ page }) => {

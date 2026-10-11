@@ -1,5 +1,5 @@
 {
-  "review_status": "UNREVIEWED_PRESENTATION_ONLY",
+  "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
   "scenario": "src/content/concept-scenario.json",
   "copy": "docs/design/POST_PIVOT_COPY.md",
   "design": "docs/design/CONCEPT_VISUALIZATIONS.md",
@@ -54,32 +54,32 @@
     {
       "component": "src/components/concept/ConsequenceGraph.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/concept/AuthorityBoundary.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/concept/ReconciliationLadder.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/concept/StateComparison.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/concept/ChangeTimeline.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/reference/ConceptDisplay.astro",
       "source": "src/content/concept-scenario.json",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY"
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY"
     },
     {
       "component": "src/components/reference/Terrain.astro",
@@ -103,7 +103,7 @@
     {
       "path": "/northcannon-mark.svg",
       "source": "committed in 8647da47; no generator in this repository",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
       "sha256": "sha256:fe38c5fb1d9fdb8fe24f26493de9fa41b1316739df67c5d72c1d5f4dda857d23",
       "note": "Brand mark. Provenance of the file is not recorded beyond its commit; founder to confirm."
     },
@@ -128,7 +128,7 @@
     {
       "path": "/og/northcannon-default.png",
       "source": "scripts/generate-og.mjs (docs/design/OG_IMAGE.md)",
-      "review_status": "UNREVIEWED_PRESENTATION_ONLY",
+      "review_status": "FOUNDER_APPROVED_PRESENTATION_ONLY",
       "sha256": "sha256:e064479f9e7277b29b3bf9cef2d4d905a161335f6f6a0e0ec534a3f4c76117f1",
       "note": "Review build only; the proposed default OG image is absent from production."
     }

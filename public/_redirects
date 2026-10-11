@@ -1,5 +1,9 @@
-/founder/ /about/founder/ 301
-/founder /about/founder/ 301
+/gate-1/ /experiments/#gate-1 301
+/results/ /evidence/#experimental-results 301
+/about/features/ /products/ 301
+/about/founder/ /about/company/#founder 301
+/founder/ /about/company/#founder 301
+/founder /about/company/#founder 301
+/vision/ /about/company/#company 301
 /about/ /about/company/ 301
 /about /about/company/ 301
-/results/ /evidence/ 301

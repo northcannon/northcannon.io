@@ -1848,6 +1848,2154 @@ said 24 interface labels; its instruction to approve all label-* rows covers the
       }
     ],
     "relay": "Founder approval given in the Opus session in reply to the Phase 0.5 approval request (six claims as written; D2 neutralise and D5 withdraw confirmed; retirement of status-gate1-frozen-stress approved), relayed in the architect's follow-up brief, and recorded by Sonnet."
+  },
+  {
+    "event_id": "founder-approval-010",
+    "timestamp": "2026-10-11T08:20:00-04:00",
+    "founder_words": "Both are approved",
+    "claims": [
+      {
+        "claim_id": "redesign-label-products",
+        "statement": "Products"
+      },
+      {
+        "claim_id": "redesign-label-solutions",
+        "statement": "Solutions"
+      },
+      {
+        "claim_id": "redesign-label-experiments",
+        "statement": "Experiments"
+      },
+      {
+        "claim_id": "redesign-label-site",
+        "statement": "Site"
+      },
+      {
+        "claim_id": "redesign-label-planned",
+        "statement": "PLANNED"
+      },
+      {
+        "claim_id": "redesign-label-illustrative",
+        "statement": "Illustrative"
+      },
+      {
+        "claim_id": "redesign-label-concept",
+        "statement": "FUTURE ADD-ON · CONCEPT"
+      },
+      {
+        "claim_id": "redesign-label-beachhead",
+        "statement": "BEACHHEAD"
+      },
+      {
+        "claim_id": "redesign-label-expansion",
+        "statement": "EXPANSION AREA · NOT YET OFFERED"
+      },
+      {
+        "claim_id": "redesign-label-knowledge",
+        "statement": "PLANNED · ILLUSTRATIVE"
+      },
+      {
+        "claim_id": "redesign-label-target",
+        "statement": "QUALIFICATION TARGET"
+      },
+      {
+        "claim_id": "redesign-label-exists",
+        "statement": "Exists"
+      },
+      {
+        "claim_id": "redesign-label-next",
+        "statement": "Next"
+      },
+      {
+        "claim_id": "redesign-label-not-claimed",
+        "statement": "Not claimed"
+      },
+      {
+        "claim_id": "redesign-label-accepted",
+        "statement": "ACCEPTED"
+      },
+      {
+        "claim_id": "redesign-label-not-started",
+        "statement": "NOT STARTED"
+      },
+      {
+        "claim_id": "redesign-label-not-reached",
+        "statement": "Not reached"
+      },
+      {
+        "claim_id": "redesign-label-historical",
+        "statement": "Historical · withdrawn from the site"
+      },
+      {
+        "claim_id": "redesign-label-reconciled",
+        "statement": "Status reconciled 9 October 2026"
+      },
+      {
+        "claim_id": "redesign-label-category",
+        "statement": "AI Action Control"
+      },
+      {
+        "claim_id": "redesign-label-is-not",
+        "statement": "is not"
+      },
+      {
+        "claim_id": "redesign-meta-title-home",
+        "statement": "NorthCannon: AI Action Control"
+      },
+      {
+        "claim_id": "redesign-meta-description-home",
+        "statement": "Control consequential AI changes. Engineering first, with exact transition authority and evidence of outcomes."
+      },
+      {
+        "claim_id": "redesign-meta-title-products",
+        "statement": "Products · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-products-lede",
+        "statement": "The intended deployment models share the same control design. Availability and broader capabilities remain planned."
+      },
+      {
+        "claim_id": "redesign-meta-title-solutions",
+        "statement": "Solutions · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-solutions",
+        "statement": "Proposed engineering workflows, planned knowledge blast radius and clearly labelled expansion concepts."
+      },
+      {
+        "claim_id": "redesign-meta-title-about",
+        "statement": "About · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-about-lede",
+        "statement": "NorthCannon AI Action Control governs consequential actions through exact transition authority and evidence of the resulting state."
+      },
+      {
+        "claim_id": "redesign-meta-title-evidence",
+        "statement": "Evidence · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-evidence-lede",
+        "statement": "Product status, research and site integrity are separate kinds of evidence."
+      },
+      {
+        "claim_id": "redesign-meta-title-experiments",
+        "statement": "Experiments · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-experiments",
+        "statement": "Parallel, non-gating research: Persistent Intelligence, Gate 1 history and Structure-Proportional Computing."
+      },
+      {
+        "claim_id": "redesign-meta-title-demo",
+        "statement": "Demo — Coming Soon · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-demo-lede",
+        "statement": "An engineering-loop demonstration is a future deliverable. No current demo is claimed."
+      },
+      {
+        "claim_id": "redesign-meta-title-contact",
+        "statement": "Contact · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-contact-lede",
+        "statement": "For engineering design-partner, deployment, pricing and research conversations, use the relevant email subject below."
+      },
+      {
+        "claim_id": "redesign-meta-title-status",
+        "statement": "Status · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-status-lede",
+        "statement": "Product qualification and research program status are distinct."
+      },
+      {
+        "claim_id": "redesign-label-obligation",
+        "statement": "Obligation"
+      },
+      {
+        "claim_id": "redesign-label-surface",
+        "statement": "Surface"
+      },
+      {
+        "claim_id": "redesign-label-reason",
+        "statement": "Why it is in scope"
+      },
+      {
+        "claim_id": "redesign-label-class",
+        "statement": "Class"
+      },
+      {
+        "claim_id": "redesign-label-subject",
+        "statement": "Subject"
+      },
+      {
+        "claim_id": "redesign-label-type",
+        "statement": "Evidence type"
+      },
+      {
+        "claim_id": "redesign-label-hash",
+        "statement": "Artifact identity (SHA-256)"
+      },
+      {
+        "claim_id": "redesign-label-link",
+        "statement": "Link"
+      },
+      {
+        "claim_id": "redesign-label-build-version",
+        "statement": "Site build version"
+      },
+      {
+        "claim_id": "redesign-meta-title-trust",
+        "statement": "Trust Center · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust",
+        "statement": "How this public site governs claims, disclosure, security and provenance."
+      },
+      {
+        "claim_id": "redesign-meta-title-trust-claims",
+        "statement": "Public claims · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust-claims",
+        "statement": "The claims rendered on this public site, with their founder attestation metadata."
+      },
+      {
+        "claim_id": "redesign-meta-title-trust-disclosure",
+        "statement": "Disclosure · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust-disclosure",
+        "statement": "Contact NorthCannon about a security disclosure."
+      },
+      {
+        "claim_id": "redesign-meta-title-trust-site-security",
+        "statement": "Site security · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust-site-security",
+        "statement": "The static public site’s browser security posture and resource boundaries."
+      },
+      {
+        "claim_id": "redesign-meta-title-trust-changelog",
+        "statement": "Changelog · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust-changelog",
+        "statement": "Governed changes to NorthCannon’s public site and its published claims."
+      },
+      {
+        "claim_id": "redesign-meta-title-trust-provenance",
+        "statement": "Provenance · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-trust-provenance",
+        "statement": "Build identity and integrity of this website. Site provenance is not product validation."
+      },
+      {
+        "claim_id": "redesign-meta-title-404",
+        "statement": "Page not found · NorthCannon"
+      },
+      {
+        "claim_id": "redesign-meta-description-404",
+        "statement": "Find the product, evidence and contact pages for NorthCannon."
+      },
+      {
+        "claim_id": "redesign-provenance-scope",
+        "statement": "This review page describes the production build, not this review build."
+      },
+      {
+        "claim_id": "redesign-label-phase-a",
+        "statement": "Phase A scope"
+      },
+      {
+        "claim_id": "redesign-explore",
+        "statement": "Explore the product"
+      },
+      {
+        "claim_id": "redesign-evidence",
+        "statement": "View the evidence"
+      },
+      {
+        "claim_id": "redesign-pricing",
+        "statement": "Talk to us about deployment and pricing"
+      },
+      {
+        "claim_id": "redesign-partner",
+        "statement": "Discuss a design partnership"
+      },
+      {
+        "claim_id": "redesign-descriptor",
+        "statement": "Autonomous reasoning. Bounded execution."
+      },
+      {
+        "claim_id": "redesign-availability",
+        "statement": "NorthCannon is not generally available in any deployment model. No public deployment or design partnership is claimed."
+      },
+      {
+        "claim_id": "redesign-qualification",
+        "statement": "Implementation evidence is not production qualification."
+      },
+      {
+        "claim_id": "redesign-illustration",
+        "statement": "Illustrative · proposed workflow · not a shipped product"
+      },
+      {
+        "claim_id": "redesign-knowledge-disclosure",
+        "statement": "Planned capability · illustrative example · not shipped"
+      },
+      {
+        "claim_id": "redesign-recovery",
+        "statement": "Recoverability: prepare before, reassess after, and obtain fresh authority to intervene."
+      },
+      {
+        "claim_id": "redesign-receipt",
+        "statement": "A proposal is not permission. A receipt is not confirmation."
+      },
+      {
+        "claim_id": "redesign-recovery-distinct",
+        "statement": "Prepared does not mean available. Available does not mean authorized."
+      },
+      {
+        "claim_id": "redesign-knowledge-teaser",
+        "statement": "Planned: blast radius that reaches the engineering knowledge a change can make stale."
+      },
+      {
+        "claim_id": "redesign-loop-understand",
+        "statement": "Understand"
+      },
+      {
+        "claim_id": "redesign-loop-understand-question",
+        "statement": "What exact change is proposed?"
+      },
+      {
+        "claim_id": "redesign-loop-map",
+        "statement": "Map"
+      },
+      {
+        "claim_id": "redesign-loop-map-question",
+        "statement": "What could this change affect?"
+      },
+      {
+        "claim_id": "redesign-loop-decide",
+        "statement": "Decide"
+      },
+      {
+        "claim_id": "redesign-loop-decide-question",
+        "statement": "Should this exact transition be authorized?"
+      },
+      {
+        "claim_id": "redesign-loop-bound",
+        "statement": "Bound"
+      },
+      {
+        "claim_id": "redesign-loop-bound-question",
+        "statement": "What effects may execution produce?"
+      },
+      {
+        "claim_id": "redesign-loop-verify",
+        "statement": "Verify"
+      },
+      {
+        "claim_id": "redesign-loop-verify-question",
+        "statement": "What state actually resulted?"
+      },
+      {
+        "claim_id": "redesign-loop-revalidate",
+        "statement": "Revalidate"
+      },
+      {
+        "claim_id": "redesign-loop-revalidate-question",
+        "statement": "What accepted state needs checking again?"
+      },
+      {
+        "claim_id": "redesign-home-title",
+        "statement": "Control what autonomous AI can change."
+      },
+      {
+        "claim_id": "redesign-home-lede",
+        "statement": "NorthCannon AI Action Control is being built to govern consequential AI actions, with authority for the exact change and evidence of the outcome."
+      },
+      {
+        "claim_id": "redesign-home-missing-control-title",
+        "statement": "The missing control"
+      },
+      {
+        "claim_id": "redesign-home-missing-control-1",
+        "statement": "Can the agent access it?"
+      },
+      {
+        "claim_id": "redesign-home-missing-control-2",
+        "statement": "Should this exact state transition happen?"
+      },
+      {
+        "claim_id": "redesign-home-missing-control-3",
+        "statement": "Identity and access: who may act."
+      },
+      {
+        "claim_id": "redesign-home-missing-control-4",
+        "statement": "Sandbox: what the process can reach."
+      },
+      {
+        "claim_id": "redesign-home-missing-control-5",
+        "statement": "Workflow: how work is coordinated."
+      },
+      {
+        "claim_id": "redesign-home-missing-control-6",
+        "statement": "NorthCannon: whether this exact change should happen, and what it affects."
+      },
+      {
+        "claim_id": "redesign-home-control-loop-title",
+        "statement": "How it works"
+      },
+      {
+        "claim_id": "redesign-home-control-loop-body",
+        "statement": "The six-stage design is broader than the implemented Phase A reference path."
+      },
+      {
+        "claim_id": "redesign-home-engineering-title",
+        "statement": "Planned Change Intelligence, illustrated on an engineering change"
+      },
+      {
+        "claim_id": "redesign-home-engineering-body",
+        "statement": "An agent proposes a dependency upgrade. The intended workflow maps consequences before deciding what may change."
+      },
+      {
+        "claim_id": "redesign-home-engineering-1",
+        "statement": "Changed dependency"
+      },
+      {
+        "claim_id": "redesign-home-engineering-2",
+        "statement": "Services and tests"
+      },
+      {
+        "claim_id": "redesign-home-engineering-3",
+        "statement": "Build and deployment artifacts"
+      },
+      {
+        "claim_id": "redesign-home-engineering-4",
+        "statement": "Which state could be affected?"
+      },
+      {
+        "claim_id": "redesign-home-engineering-5",
+        "statement": "Who needs to review the consequences?"
+      },
+      {
+        "claim_id": "redesign-home-engineering-6",
+        "statement": "What follow-up is required?"
+      },
+      {
+        "claim_id": "redesign-home-engineering-7",
+        "statement": "What must be revalidated?"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-title",
+        "statement": "Customer Zero: our own repository"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-body",
+        "statement": "The first governed engineering loop on NorthCannon’s own repository is a qualification target, not a completed result."
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-1",
+        "statement": "Engineering proposal"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-2",
+        "statement": "NorthCannon control"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-3",
+        "statement": "Isolated workspace change"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-4",
+        "statement": "Outcome verification"
+      },
+      {
+        "claim_id": "redesign-home-customer-zero-5",
+        "statement": "Accepted change"
+      },
+      {
+        "claim_id": "redesign-home-deployment-title",
+        "statement": "Where it runs and where it applies"
+      },
+      {
+        "claim_id": "redesign-home-deployment-body",
+        "statement": "One control substrate, three planned deployment models. Engineering and infrastructure are the beachhead; other domains are expansion areas."
+      },
+      {
+        "claim_id": "redesign-home-evidence-title",
+        "statement": "What exists, what is next, and what is not claimed"
+      },
+      {
+        "claim_id": "redesign-home-contact-title",
+        "statement": "Start with the change you need to control"
+      },
+      {
+        "claim_id": "redesign-home-contact-body",
+        "statement": "We welcome engineering design-partner and deployment conversations."
+      },
+      {
+        "claim_id": "redesign-products-title",
+        "statement": "One control substrate. Three ways to deploy."
+      },
+      {
+        "claim_id": "redesign-products-capabilities-title",
+        "statement": "One control design"
+      },
+      {
+        "claim_id": "redesign-products-capabilities-body",
+        "statement": "One design governs every deployment model. The Phase A reference path is implemented; the rest of the product direction is planned."
+      },
+      {
+        "claim_id": "redesign-products-distinction-title",
+        "statement": "Where NorthCannon sits"
+      },
+      {
+        "claim_id": "redesign-products-distinction-body",
+        "statement": "NorthCannon governs proposed changes; it is not a foundation model, a coding agent, IAM or a sandbox."
+      },
+      {
+        "claim_id": "redesign-products-distinction-1",
+        "statement": "Proposal layer"
+      },
+      {
+        "claim_id": "redesign-products-distinction-2",
+        "statement": "Agent and workflow infrastructure"
+      },
+      {
+        "claim_id": "redesign-products-distinction-3",
+        "statement": "NorthCannon AI Action Control"
+      },
+      {
+        "claim_id": "redesign-products-distinction-4",
+        "statement": "Infrastructure controls"
+      },
+      {
+        "claim_id": "redesign-products-distinction-5",
+        "statement": "Systems of record"
+      },
+      {
+        "claim_id": "redesign-products-deployment-title",
+        "statement": "Planned deployment models"
+      },
+      {
+        "claim_id": "redesign-products-topology-body",
+        "statement": "These diagrams describe intended placement, not operational responsibilities or contractual commitments."
+      },
+      {
+        "claim_id": "redesign-products-data-title",
+        "statement": "Your data, your control"
+      },
+      {
+        "claim_id": "redesign-products-data-body",
+        "statement": "Hybrid and Sovereign deployments are designed so that state, evidence and history can stay in infrastructure you control. This is design intent, not a qualified containment guarantee."
+      },
+      {
+        "claim_id": "redesign-products-independence-title",
+        "statement": "Model and compute independence"
+      },
+      {
+        "claim_id": "redesign-products-independence-body",
+        "statement": "Models propose changes and hold no authority. NorthCannon is designed to work across the agents and compute environments a team chooses."
+      },
+      {
+        "claim_id": "redesign-products-contact-title",
+        "statement": "Start a conversation about your environment"
+      },
+      {
+        "claim_id": "redesign-deploy-managed",
+        "statement": "Fully Managed"
+      },
+      {
+        "claim_id": "redesign-deploy-managed-body",
+        "statement": "Planned: NorthCannon operates the control substrate in its environment for teams seeking a managed deployment."
+      },
+      {
+        "claim_id": "redesign-deploy-hybrid",
+        "statement": "Hybrid / BYOC"
+      },
+      {
+        "claim_id": "redesign-deploy-hybrid-body",
+        "statement": "Planned: the control substrate runs in your cloud or environment for teams with existing infrastructure constraints."
+      },
+      {
+        "claim_id": "redesign-deploy-sovereign",
+        "statement": "Sovereign / Self-Hosted"
+      },
+      {
+        "claim_id": "redesign-deploy-sovereign-body",
+        "statement": "Planned: the control substrate runs in infrastructure you operate for teams that need to control its environment."
+      },
+      {
+        "claim_id": "redesign-solutions-title",
+        "statement": "Starting where AI already changes real systems: engineering."
+      },
+      {
+        "claim_id": "redesign-solutions-lede",
+        "statement": "One control substrate. Domain-specific rules, evidence and workflows."
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-title",
+        "statement": "Engineering & infrastructure"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-body",
+        "statement": "The beachhead is consequential engineering change. These are proposed use cases, not currently available offerings."
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-1",
+        "statement": "Dependency upgrades"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-2",
+        "statement": "Code changes"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-3",
+        "statement": "Test changes"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-4",
+        "statement": "Build configuration"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-5",
+        "statement": "Delivery workflows"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-6",
+        "statement": "Infrastructure changes"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-7",
+        "statement": "Access configuration"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-8",
+        "statement": "Schema changes"
+      },
+      {
+        "claim_id": "redesign-solutions-engineering-9",
+        "statement": "Deployment configuration"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-title",
+        "statement": "How a governed engineering change flows"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-body",
+        "statement": "When an execution is uncertain, reconcile first; never retry blindly."
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-1",
+        "statement": "Propose an exact change"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-2",
+        "statement": "Understand intent"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-3",
+        "statement": "Map blast radius"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-4",
+        "statement": "Determine authority"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-5",
+        "statement": "Bound capability"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-6",
+        "statement": "Execute within the bound"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-7",
+        "statement": "Observe the resulting state"
+      },
+      {
+        "claim_id": "redesign-solutions-workflow-8",
+        "statement": "Revalidate affected accepted state"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-title",
+        "statement": "Blast radius should not stop at code"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-body",
+        "statement": "A change can make accepted engineering knowledge stale. The planned capability identifies explicit review obligations across code, tests, schemas, configuration, architecture, documentation, evidence and claims."
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-1",
+        "statement": "Verify this architecture assertion"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-2",
+        "statement": "Check this downstream implementation"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-3",
+        "statement": "Revalidate this test"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-4",
+        "statement": "Review this schema consumer"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-5",
+        "statement": "Update or reaffirm this documentation"
+      },
+      {
+        "claim_id": "redesign-solutions-knowledge-blast-radius-6",
+        "statement": "Determine whether this evidence remains current"
+      },
+      {
+        "claim_id": "redesign-solutions-expansion-title",
+        "statement": "Expansion areas"
+      },
+      {
+        "claim_id": "redesign-solutions-expansion-body",
+        "statement": "These domains are not yet offered."
+      },
+      {
+        "claim_id": "redesign-solutions-expansion-1",
+        "statement": "Regulated operations: rule changes could trigger review of affected decisions, evidence, timing and follow-up. No legal conclusions are provided."
+      },
+      {
+        "claim_id": "redesign-solutions-expansion-2",
+        "statement": "Supply & physical operations: classification or origin changes could trigger re-evaluation of affected suppliers, parts, orders and shipments."
+      },
+      {
+        "claim_id": "redesign-solutions-expansion-3",
+        "statement": "Enterprise operations: approval or business-rule changes could trigger review of automated actions and downstream dependencies."
+      },
+      {
+        "claim_id": "redesign-solutions-future-body",
+        "statement": "A future add-on concept that would extend NorthCannon for your environment through the governed change process intended for NorthCannon’s own engineering."
+      },
+      {
+        "claim_id": "redesign-solutions-future-1",
+        "statement": "Request and requirements"
+      },
+      {
+        "claim_id": "redesign-solutions-future-2",
+        "statement": "Architecture and bounded implementation"
+      },
+      {
+        "claim_id": "redesign-solutions-future-3",
+        "statement": "Verification and separate review"
+      },
+      {
+        "claim_id": "redesign-solutions-future-4",
+        "statement": "Evidence and customer acceptance"
+      },
+      {
+        "claim_id": "redesign-solutions-contact-title",
+        "statement": "Discuss the engineering changes you need to govern"
+      },
+      {
+        "claim_id": "redesign-about-title",
+        "statement": "We build control for the moment AI starts changing things."
+      },
+      {
+        "claim_id": "redesign-demo-planned-loop-title",
+        "statement": "What it will show"
+      },
+      {
+        "claim_id": "redesign-demo-planned-loop-body",
+        "statement": "The planned demonstration follows a proposed engineering change through control, observation and revalidation."
+      },
+      {
+        "claim_id": "redesign-demo-contact-title",
+        "statement": "Want a walkthrough when it is ready?"
+      },
+      {
+        "claim_id": "redesign-example-dependency",
+        "statement": "Dependency v1 → v2 · PROPOSED"
+      },
+      {
+        "claim_id": "redesign-example-intent",
+        "statement": "Intent"
+      },
+      {
+        "claim_id": "redesign-example-scope",
+        "statement": "Scope"
+      },
+      {
+        "claim_id": "redesign-example-observation",
+        "statement": "Observation"
+      },
+      {
+        "claim_id": "redesign-example-verdict",
+        "statement": "Authorization depends on the exact proposal and evidence."
+      },
+      {
+        "claim_id": "redesign-example-record",
+        "statement": "Illustrative execution record"
+      },
+      {
+        "claim_id": "redesign-example-record-body",
+        "statement": "An execution receipt would be followed by observation of the resulting state. An uncertain outcome would require reconciliation before any retry."
+      },
+      {
+        "claim_id": "redesign-example-design",
+        "statement": "Product design · broader capabilities planned"
+      },
+      {
+        "claim_id": "redesign-example-runtime",
+        "statement": "Runtime and code surfaces"
+      },
+      {
+        "claim_id": "redesign-example-knowledge",
+        "statement": "Engineering knowledge"
+      },
+      {
+        "claim_id": "redesign-example-obligations",
+        "statement": "Explicit review obligations"
+      },
+      {
+        "claim_id": "redesign-example-northcannon-environment",
+        "statement": "NorthCannon environment"
+      },
+      {
+        "claim_id": "redesign-example-your-environment",
+        "statement": "Your environment"
+      },
+      {
+        "claim_id": "redesign-about-row-body-1",
+        "statement": "AI systems are moving from answers to changes. Authority needs to be specific to the consequences of each proposed transition."
+      },
+      {
+        "claim_id": "redesign-about-row-label-2",
+        "statement": "Where we start"
+      },
+      {
+        "claim_id": "redesign-about-row-body-2",
+        "statement": "Engineering and infrastructure, where a successful tool call is not proof of final state."
+      },
+      {
+        "claim_id": "redesign-about-row-body-3",
+        "statement": "Persistent verified state is a parallel, non-gating research question, not part of the Phase A product."
+      },
+      {
+        "claim_id": "redesign-about-row-label-4",
+        "statement": "How we work"
+      },
+      {
+        "claim_id": "redesign-about-row-body-4",
+        "statement": "Evidence and falsification shape what we claim. Our longer-term direction is consequential enterprise change."
+      },
+      {
+        "claim_id": "interop-sources-body",
+        "statement": "APIs, docs, web, internal"
+      },
+      {
+        "claim_id": "redesign-status-exists-1",
+        "statement": "Exact transition authority is implemented in Phase A scope."
+      },
+      {
+        "claim_id": "redesign-status-exists-2",
+        "statement": "Outcome verification is implemented in Phase A scope."
+      },
+      {
+        "claim_id": "redesign-status-exists-3",
+        "statement": "Recoverability preparation is implemented in Phase A scope."
+      },
+      {
+        "claim_id": "redesign-status-next-1",
+        "statement": "Full Change Intelligence and engineering knowledge blast radius are planned."
+      },
+      {
+        "claim_id": "redesign-status-next-2",
+        "statement": "Selective revalidation and bounded execution beyond the reference path are planned."
+      },
+      {
+        "claim_id": "redesign-status-next-3",
+        "statement": "Product integration, qualification and deployable surfaces remain ahead."
+      },
+      {
+        "claim_id": "redesign-status-not-claimed-1",
+        "statement": "No general availability, public deployment, customers or revenue is claimed."
+      },
+      {
+        "claim_id": "redesign-status-not-claimed-2",
+        "statement": "No completed governed engineering loop or validated pricing is claimed."
+      },
+      {
+        "claim_id": "redesign-status-not-claimed-3",
+        "statement": "No experimental results or Structure-Proportional Computing (SPC) performance advantage is claimed."
+      },
+      {
+        "claim_id": "redesign-evidence-title",
+        "statement": "What NorthCannon can substantiate, and what it does not claim yet."
+      },
+      {
+        "claim_id": "redesign-evidence-status-title",
+        "statement": "Current product status"
+      },
+      {
+        "claim_id": "redesign-evidence-milestones-title",
+        "statement": "Qualification milestones"
+      },
+      {
+        "claim_id": "redesign-evidence-milestones-body",
+        "statement": "A defect found at a gate requires qualification on the repaired build."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-title",
+        "statement": "Measures we will publish"
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-body",
+        "statement": "Definitions only. No numeric KPI is claimed. Values require dated, versioned evidence, scope, a denominator and a statement of what the result does not show."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-1",
+        "statement": "Passing versus total reference tests at a dated build, scoped to control primitives. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-2",
+        "statement": "Findings raised and resolved by a reviewer separate from the implementer; this is not a third-party audit. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-3",
+        "statement": "Affected-state recall and false-safe exclusions against exhaustive recomputation on synthetic fixtures. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-4",
+        "statement": "Out-of-scope effect attempts blocked versus attempted in a versioned adversarial suite. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-5",
+        "statement": "Uncertain executions resolved through reconciliation and blind retry counts. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-6",
+        "statement": "Accepted changes with a complete evidence chain versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-7",
+        "statement": "Governed changes accepted, cycle time and qualification restarts on NorthCannon’s own repository. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-8",
+        "statement": "Proposals explicitly marked unknown or incomplete versus proposals evaluated. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-9",
+        "statement": "Added control-decision latency within a stated environment. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-10",
+        "statement": "Equivalent sealed outputs from identical captured inputs in a replay suite. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-11",
+        "statement": "Truly affected surfaces identified versus ground truth established by replay or review. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-12",
+        "statement": "Affected surfaces discovered after acceptance versus accepted changes. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-13",
+        "statement": "Obligations confirmed stale or inconsistent versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-14",
+        "statement": "Obligations closed as still current versus obligations raised; reaffirmation can be useful. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-15",
+        "statement": "Obligations updated or reaffirmed before acceptance versus obligations raised. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-16",
+        "statement": "Documents confirmed stale versus documents flagged. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-17",
+        "statement": "Downstream code, test or schema-consumer inconsistencies confirmed versus flagged. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-kpis-18",
+        "statement": "Mapped review surfaces versus exhaustive review surfaces; publish only alongside recall and missed-impact rate. First publication requires approved replay or governed-loop evidence with explicit scope."
+      },
+      {
+        "claim_id": "redesign-evidence-experimental-results-title",
+        "statement": "Experimental results"
+      },
+      {
+        "claim_id": "redesign-evidence-experimental-results-body",
+        "statement": "No experimental results are claimed. Gate 1 ended before execution; a future experiment requires a recorded freeze before it runs."
+      },
+      {
+        "claim_id": "redesign-evidence-ledger-title",
+        "statement": "Evidence ledger"
+      },
+      {
+        "claim_id": "redesign-evidence-ledger-body",
+        "statement": "No public product-qualification artifact is claimed here. Site provenance establishes integrity of this website, not validation of AI Action Control."
+      },
+      {
+        "claim_id": "redesign-evidence-methodology-title",
+        "statement": "Methodology & provenance"
+      },
+      {
+        "claim_id": "redesign-evidence-methodology-body",
+        "statement": "Public copy is registered as a claim, attested by the founder, checked at publication and recorded in site provenance."
+      },
+      {
+        "claim_id": "redesign-evidence-historical-title",
+        "statement": "Historical prototype"
+      },
+      {
+        "claim_id": "redesign-evidence-historical-body",
+        "statement": "The September 2026 prototype used fictional regulated cases to illustrate decision verification. It is superseded, withdrawn from the site and not evidence for the current product."
+      },
+      {
+        "claim_id": "redesign-class-product",
+        "statement": "Product & qualification"
+      },
+      {
+        "claim_id": "redesign-class-research",
+        "statement": "Research & experiments"
+      },
+      {
+        "claim_id": "redesign-class-artifact",
+        "statement": "Public artifact & provenance"
+      },
+      {
+        "claim_id": "redesign-experiments-title",
+        "statement": "Research, held to the same evidence standard."
+      },
+      {
+        "claim_id": "redesign-experiments-lede",
+        "statement": "Research is parallel, advisory and non-gating. The commercial product does not depend on any research hypothesis succeeding."
+      },
+      {
+        "claim_id": "redesign-experiments-persistent-intelligence-title",
+        "statement": "Persistent Intelligence"
+      },
+      {
+        "claim_id": "redesign-experiments-persistent-intelligence-body",
+        "statement": "The research asks whether AI systems can retain verified state, evidence and decisions across time and tasks instead of reconstructing the present from context. This thesis informs the product direction; it does not establish experimental results."
+      },
+      {
+        "claim_id": "redesign-experiments-persistent-intelligence-5",
+        "statement": "No Persistent Intelligence (PI) experiment is running. A new freeze record is required before another experiment."
+      },
+      {
+        "claim_id": "redesign-experiments-gate-1-title",
+        "statement": "Gate 1: historical"
+      },
+      {
+        "claim_id": "redesign-experiments-gate-1-body",
+        "statement": "Gate 1 was designed as a falsification benchmark for Persistent Intelligence. Defined and frozen stages were reached; subsequent stages were not reached."
+      },
+      {
+        "claim_id": "redesign-experiments-spc-title",
+        "statement": "Structure-Proportional Computing"
+      },
+      {
+        "claim_id": "redesign-experiments-spc-body",
+        "statement": "Structure-Proportional Computing (SPC) asks whether computation can scale with affected structure rather than repeatedly processing serialized context. It is a pre-experiment research agenda, with no experiment run and no performance or hardware advantage claimed."
+      },
+      {
+        "claim_id": "redesign-experiments-spc-1",
+        "statement": "Software experiment — not started"
+      },
+      {
+        "claim_id": "redesign-experiments-spc-2",
+        "statement": "Kill gate — not started"
+      },
+      {
+        "claim_id": "redesign-experiments-spc-3",
+        "statement": "Surviving primitive — not established"
+      },
+      {
+        "claim_id": "redesign-experiments-spc-4",
+        "statement": "Substrate exploration — not started"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-title",
+        "statement": "How research enters the product"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-body",
+        "statement": "Evidence can inform qualification; research does not grant product authority."
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-1",
+        "statement": "Research idea"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-2",
+        "statement": "Recorded experiment"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-4",
+        "statement": "Qualification"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-5",
+        "statement": "Founder decision"
+      },
+      {
+        "claim_id": "redesign-experiments-research-to-product-6",
+        "statement": "Possible product adoption"
+      },
+      {
+        "claim_id": "redesign-experiments-results-title",
+        "statement": "Where results appear"
+      },
+      {
+        "claim_id": "redesign-experiments-results-body",
+        "statement": "Results are published on Evidence only after an experiment has run under its recorded freeze."
+      },
+      {
+        "claim_id": "redesign-status-status-title",
+        "statement": "Product status"
+      },
+      {
+        "claim_id": "redesign-status-research-title",
+        "statement": "Research programs"
+      },
+      {
+        "claim_id": "redesign-status-research-1",
+        "statement": "Persistent Intelligence: no experiment running."
+      },
+      {
+        "claim_id": "redesign-status-research-2",
+        "statement": "Gate 1: discontinued before execution on 29 September 2026."
+      },
+      {
+        "claim_id": "redesign-status-research-3",
+        "statement": "Structure-Proportional Computing (SPC): pre-experiment research; no results claimed."
+      },
+      {
+        "claim_id": "redesign-surface-architecture",
+        "statement": "Architecture"
+      },
+      {
+        "claim_id": "redesign-reason-architecture",
+        "statement": "A changed dependency could invalidate an accepted assertion."
+      },
+      {
+        "claim_id": "redesign-surface-implementation",
+        "statement": "Implementation"
+      },
+      {
+        "claim_id": "redesign-reason-implementation",
+        "statement": "A downstream caller could depend on changed behavior."
+      },
+      {
+        "claim_id": "redesign-surface-test",
+        "statement": "Test"
+      },
+      {
+        "claim_id": "redesign-reason-test",
+        "statement": "An existing assertion could no longer describe intended behavior."
+      },
+      {
+        "claim_id": "redesign-surface-schema-consumer",
+        "statement": "Schema consumer"
+      },
+      {
+        "claim_id": "redesign-reason-schema-consumer",
+        "statement": "A changed contract could affect a consuming surface."
+      },
+      {
+        "claim_id": "redesign-surface-documentation",
+        "statement": "Documentation"
+      },
+      {
+        "claim_id": "redesign-reason-documentation",
+        "statement": "An accepted description could become stale."
+      },
+      {
+        "claim_id": "redesign-reason-evidence",
+        "statement": "Earlier evidence may no longer apply to the changed state."
+      },
+      {
+        "claim_id": "redesign-ledger-prototype",
+        "statement": "September 2026 demonstration recording"
+      },
+      {
+        "claim_id": "redesign-ledger-site",
+        "statement": "Site build provenance manifest: integrity of this website only."
+      },
+      {
+        "claim_id": "redesign-ledger-recording",
+        "statement": "Demonstration recording"
+      },
+      {
+        "claim_id": "redesign-ledger-statement",
+        "statement": "Discontinuation statement"
+      },
+      {
+        "claim_id": "redesign-ledger-manifest",
+        "statement": "Build provenance manifest"
+      },
+      {
+        "claim_id": "redesign-ledger-site-only",
+        "statement": "Website integrity only"
+      },
+      {
+        "claim_id": "redesign-ledger-no-results",
+        "statement": "Discontinued before execution; no results"
+      },
+      {
+        "claim_id": "redesign-ledger-research-date",
+        "statement": "2026-09-29"
+      },
+      {
+        "claim_id": "redesign-ledger-reached",
+        "statement": "Reached"
+      },
+      {
+        "claim_id": "redesign-ledger-product-empty",
+        "statement": "No public product or qualification artifact is claimed."
+      },
+      {
+        "claim_id": "redesign-kpi-term-1",
+        "statement": "Reference test outcome"
+      },
+      {
+        "claim_id": "redesign-kpi-term-2",
+        "statement": "Separate-review record"
+      },
+      {
+        "claim_id": "redesign-kpi-term-3",
+        "statement": "Selective revalidation fidelity"
+      },
+      {
+        "claim_id": "redesign-kpi-term-4",
+        "statement": "Bounded-execution enforcement"
+      },
+      {
+        "claim_id": "redesign-kpi-term-5",
+        "statement": "Execution reconciliation"
+      },
+      {
+        "claim_id": "redesign-kpi-term-6",
+        "statement": "Evidence completeness"
+      },
+      {
+        "claim_id": "redesign-kpi-term-7",
+        "statement": "Customer Zero"
+      },
+      {
+        "claim_id": "redesign-kpi-term-8",
+        "statement": "Unknown-impact disclosure"
+      },
+      {
+        "claim_id": "redesign-kpi-term-9",
+        "statement": "Decision latency"
+      },
+      {
+        "claim_id": "redesign-kpi-term-10",
+        "statement": "Reproducibility"
+      },
+      {
+        "claim_id": "redesign-kpi-term-11",
+        "statement": "Affected-surface recall"
+      },
+      {
+        "claim_id": "redesign-kpi-term-12",
+        "statement": "Missed-impact rate"
+      },
+      {
+        "claim_id": "redesign-kpi-term-13",
+        "statement": "Confirmed drift rate"
+      },
+      {
+        "claim_id": "redesign-kpi-term-14",
+        "statement": "False-positive obligation rate"
+      },
+      {
+        "claim_id": "redesign-kpi-term-15",
+        "statement": "Review-obligation completion"
+      },
+      {
+        "claim_id": "redesign-kpi-term-16",
+        "statement": "Stale-document precision"
+      },
+      {
+        "claim_id": "redesign-kpi-term-17",
+        "statement": "Code-consistency precision"
+      },
+      {
+        "claim_id": "redesign-kpi-term-18",
+        "statement": "Review-surface reduction"
+      },
+      {
+        "claim_id": "redesign-milestone-name-1",
+        "statement": "Control foundation"
+      },
+      {
+        "claim_id": "redesign-milestone-name-2",
+        "statement": "Product integration"
+      },
+      {
+        "claim_id": "redesign-milestone-name-3",
+        "statement": "Separate implementation review"
+      },
+      {
+        "claim_id": "redesign-milestone-name-4",
+        "statement": "Security qualification"
+      },
+      {
+        "claim_id": "redesign-milestone-name-5",
+        "statement": "Harness qualification"
+      },
+      {
+        "claim_id": "redesign-milestone-name-6",
+        "statement": "First governed loop on our own repository"
+      },
+      {
+        "claim_id": "redesign-milestone-name-7",
+        "statement": "Deployable product"
+      },
+      {
+        "claim_id": "redesign-milestone-state-implemented",
+        "statement": "Implemented in Phase A scope"
+      },
+      {
+        "claim_id": "redesign-kpi-line-1",
+        "statement": "Passing reference tests against the total, at a dated build."
+      },
+      {
+        "claim_id": "redesign-kpi-line-2",
+        "statement": "Findings raised and resolved by a separate reviewer."
+      },
+      {
+        "claim_id": "redesign-kpi-line-3",
+        "statement": "Affected-state recall and false-safe exclusions on synthetic fixtures."
+      },
+      {
+        "claim_id": "redesign-kpi-line-4",
+        "statement": "Out-of-scope effect attempts blocked versus attempted."
+      },
+      {
+        "claim_id": "redesign-kpi-line-5",
+        "statement": "Uncertain executions resolved by reconciliation, not blind retry."
+      },
+      {
+        "claim_id": "redesign-kpi-line-6",
+        "statement": "Accepted changes with a complete evidence chain."
+      },
+      {
+        "claim_id": "redesign-kpi-line-7",
+        "statement": "Governed changes accepted on NorthCannon’s own repository."
+      },
+      {
+        "claim_id": "redesign-kpi-line-8",
+        "statement": "Proposals marked unknown or incomplete versus evaluated."
+      },
+      {
+        "claim_id": "redesign-kpi-line-9",
+        "statement": "Added control-decision latency in a stated environment."
+      },
+      {
+        "claim_id": "redesign-kpi-line-10",
+        "statement": "Equivalent sealed outputs from identical captured inputs."
+      },
+      {
+        "claim_id": "redesign-kpi-line-11",
+        "statement": "Truly affected surfaces identified versus ground truth."
+      },
+      {
+        "claim_id": "redesign-kpi-line-12",
+        "statement": "Affected surfaces found only after acceptance."
+      },
+      {
+        "claim_id": "redesign-kpi-line-13",
+        "statement": "Obligations confirmed stale or inconsistent."
+      },
+      {
+        "claim_id": "redesign-kpi-line-14",
+        "statement": "Obligations closed as still current."
+      },
+      {
+        "claim_id": "redesign-kpi-line-15",
+        "statement": "Obligations updated or reaffirmed before acceptance."
+      },
+      {
+        "claim_id": "redesign-kpi-line-16",
+        "statement": "Documents confirmed stale versus flagged."
+      },
+      {
+        "claim_id": "redesign-kpi-line-17",
+        "statement": "Downstream inconsistencies confirmed versus flagged."
+      },
+      {
+        "claim_id": "redesign-kpi-line-18",
+        "statement": "Mapped review surfaces versus exhaustive review."
+      },
+      {
+        "claim_id": "redesign-kpi-category-1",
+        "statement": "Control and enforcement"
+      },
+      {
+        "claim_id": "redesign-kpi-category-2",
+        "statement": "Evidence and review"
+      },
+      {
+        "claim_id": "redesign-kpi-category-3",
+        "statement": "Impact analysis"
+      },
+      {
+        "claim_id": "redesign-kpi-category-4",
+        "statement": "Knowledge obligations"
+      },
+      {
+        "claim_id": "redesign-pi-label-hypothesis",
+        "statement": "Hypothesis"
+      },
+      {
+        "claim_id": "redesign-pi-body-hypothesis",
+        "statement": "Verified state can provide useful continuity across changes."
+      },
+      {
+        "claim_id": "redesign-pi-label-comparison",
+        "statement": "Comparison"
+      },
+      {
+        "claim_id": "redesign-pi-body-comparison",
+        "statement": "Evaluate against conventional re-inference baselines."
+      },
+      {
+        "claim_id": "redesign-pi-label-controls",
+        "statement": "Controls"
+      },
+      {
+        "claim_id": "redesign-pi-body-controls",
+        "statement": "Define variables and hypotheses before execution."
+      },
+      {
+        "claim_id": "redesign-pi-label-falsification",
+        "statement": "Falsification"
+      },
+      {
+        "claim_id": "redesign-pi-body-falsification",
+        "statement": "Specify failure criteria before execution and publish outcomes regardless of direction."
+      },
+      {
+        "claim_id": "redesign-about-founder-title",
+        "statement": "Built from the consequences backward."
+      },
+      {
+        "claim_id": "redesign-contact-intents-title",
+        "statement": "Start a conversation"
+      },
+      {
+        "claim_id": "redesign-contact-intents-1",
+        "statement": "Design partnership"
+      },
+      {
+        "claim_id": "redesign-contact-intents-2",
+        "statement": "Product & deployment"
+      },
+      {
+        "claim_id": "redesign-contact-intents-3",
+        "statement": "Pricing"
+      },
+      {
+        "claim_id": "redesign-contact-intents-4",
+        "statement": "Research"
+      },
+      {
+        "claim_id": "redesign-contact-include-title",
+        "statement": "What to include"
+      },
+      {
+        "claim_id": "redesign-contact-include-body",
+        "statement": "Tell us about your team, the systems in scope and your deployment constraints."
+      },
+      {
+        "claim_id": "redesign-contact-trust-title",
+        "statement": "A direct conversation"
+      },
+      {
+        "claim_id": "redesign-contact-trust-body",
+        "statement": "This site has no forms or tracking. Email opens in your own mail application."
+      },
+      {
+        "claim_id": "redesign-changelog",
+        "statement": "Review proposal, 9 October 2026: product-first navigation, consolidated About, Results within Evidence, historical Gate 1 within Experiments, and planned deployment and engineering pages. Publication remains subject to founder approval."
+      },
+      {
+        "claim_id": "redesign-og-alt",
+        "statement": "NorthCannon — AI Action Control. Control what autonomous AI can change."
+      },
+      {
+        "claim_id": "redesign-about-founder-transition",
+        "statement": "That question led to a broader concern: how to verify the state AI systems act on, and the state their actions produce."
+      },
+      {
+        "claim_id": "concept-truth",
+        "statement": "Concept visualization — synthetic engineering scenario"
+      },
+      {
+        "claim_id": "concept-planned",
+        "statement": "PLANNED CAPABILITY"
+      },
+      {
+        "claim_id": "concept-illustrative",
+        "statement": "ILLUSTRATIVE"
+      },
+      {
+        "claim_id": "concept-console",
+        "statement": "Change Intelligence Console"
+      },
+      {
+        "claim_id": "concept-context",
+        "statement": "Change context"
+      },
+      {
+        "claim_id": "concept-graph",
+        "statement": "Dependency and consequence graph"
+      },
+      {
+        "claim_id": "concept-inspector",
+        "statement": "Consequence inspector"
+      },
+      {
+        "claim_id": "concept-queue",
+        "statement": "Revalidation queue"
+      },
+      {
+        "claim_id": "concept-timeline",
+        "statement": "Illustrative change lifecycle"
+      },
+      {
+        "claim_id": "concept-obligations",
+        "statement": "Review obligations"
+      },
+      {
+        "claim_id": "concept-coverage",
+        "statement": "Coverage and uncertainty"
+      },
+      {
+        "claim_id": "concept-evidence",
+        "statement": "Synthetic evidence records"
+      },
+      {
+        "claim_id": "concept-provenance",
+        "statement": "Inspect synthetic provenance"
+      },
+      {
+        "claim_id": "concept-hash",
+        "statement": "Inspect full synthetic SHA-256"
+      },
+      {
+        "claim_id": "concept-direct",
+        "statement": "Direct consequences"
+      },
+      {
+        "claim_id": "concept-transitive",
+        "statement": "Transitive consequences"
+      },
+      {
+        "claim_id": "concept-compare",
+        "statement": "Before / proposed"
+      },
+      {
+        "claim_id": "concept-graph-mode",
+        "statement": "Graph view"
+      },
+      {
+        "claim_id": "concept-before",
+        "statement": "Before the proposal"
+      },
+      {
+        "claim_id": "concept-after",
+        "statement": "After / proposed"
+      },
+      {
+        "claim_id": "concept-preview-link",
+        "statement": "Explore the synthetic change in Solutions"
+      },
+      {
+        "claim_id": "concept-graph-access",
+        "statement": "Synthetic dependency graph; scroll to explore and select an artifact"
+      },
+      {
+        "claim_id": "concept-authority",
+        "statement": "Exact Transition Authority"
+      },
+      {
+        "claim_id": "concept-boundary",
+        "statement": "Capability ≠ permission"
+      },
+      {
+        "claim_id": "concept-proposal",
+        "statement": "Proposed transition"
+      },
+      {
+        "claim_id": "concept-evaluation",
+        "statement": "Authority evaluation"
+      },
+      {
+        "claim_id": "concept-decision",
+        "statement": "Illustrative disposition"
+      },
+      {
+        "claim_id": "concept-withheld",
+        "statement": "Withheld pending evidence"
+      },
+      {
+        "claim_id": "concept-authorized",
+        "statement": "Authorized state remains unchanged"
+      },
+      {
+        "claim_id": "concept-packet",
+        "statement": "Synthetic Evidence Packet"
+      },
+      {
+        "claim_id": "concept-reconciliation",
+        "statement": "Reconciliation ladder"
+      },
+      {
+        "claim_id": "concept-packet-separation",
+        "statement": "Illustrative records below are separate from the published evidence ledger."
+      },
+      {
+        "claim_id": "concept-seed-note",
+        "statement": "All digests are synthetic SHA-256 values derived from labelled scenario seeds. They identify no real repository or evidence."
+      },
+      {
+        "claim_id": "concept-repo",
+        "statement": "Repository identity"
+      },
+      {
+        "claim_id": "concept-candidate",
+        "statement": "Exact candidate"
+      },
+      {
+        "claim_id": "concept-configuration",
+        "statement": "Configuration identity"
+      },
+      {
+        "claim_id": "concept-scope",
+        "statement": "Requested scope"
+      },
+      {
+        "claim_id": "concept-source",
+        "statement": "Change source"
+      },
+      {
+        "claim_id": "concept-previous",
+        "statement": "Previous dependency"
+      },
+      {
+        "claim_id": "concept-proposed",
+        "statement": "Proposed dependency"
+      },
+      {
+        "claim_id": "concept-reason",
+        "statement": "Reason in scope"
+      },
+      {
+        "claim_id": "concept-relation",
+        "statement": "Relationship evidence"
+      },
+      {
+        "claim_id": "concept-gap",
+        "statement": "Discovery gap"
+      },
+      {
+        "claim_id": "concept-unknown-note",
+        "statement": "Incomplete discovery cannot support an unaffected conclusion."
+      },
+      {
+        "claim_id": "concept-unaffected-note",
+        "statement": "Supported unaffected only within the recorded isolated-build scope."
+      },
+      {
+        "claim_id": "concept-acceptance",
+        "statement": "Acceptance withheld; evidence and coverage obligations remain open."
+      },
+      {
+        "claim_id": "concept-receipt-boundary",
+        "statement": "The receipt belongs to a synthetic rehearsal, not an authorized transition."
+      },
+      {
+        "claim_id": "concept-comparison-known",
+        "statement": "Known change: the dependency and lock record differ."
+      },
+      {
+        "claim_id": "concept-comparison-potential",
+        "statement": "Potential consequences: services, tests, schema compatibility and engineering knowledge require review."
+      },
+      {
+        "claim_id": "concept-comparison-gap",
+        "statement": "Evidence gap: dynamic configuration and recovery coverage remain unknown."
+      },
+      {
+        "claim_id": "concept-before-knowledge",
+        "statement": "Earlier architecture and recovery assumptions reference version 2.4.1."
+      },
+      {
+        "claim_id": "concept-after-knowledge",
+        "statement": "The proposed version requires reassessment of those assumptions."
+      },
+      {
+        "claim_id": "concept-before-evidence",
+        "statement": "Earlier synthetic test evidence applies to the old dependency only."
+      },
+      {
+        "claim_id": "concept-after-evidence",
+        "statement": "New compatibility evidence is missing; earlier results cannot authorize this candidate."
+      },
+      {
+        "claim_id": "concept-qualification",
+        "statement": "Qualification remains incomplete in this synthetic scenario."
+      },
+      {
+        "claim_id": "concept-research-boundary",
+        "statement": "Research evidence informs a proposal; separate review controls product adoption."
+      },
+      {
+        "claim_id": "concept-state-changed",
+        "statement": "CHANGED"
+      },
+      {
+        "claim_id": "concept-state-potentially-affected",
+        "statement": "POTENTIALLY AFFECTED"
+      },
+      {
+        "claim_id": "concept-state-admitted",
+        "statement": "ADMITTED"
+      },
+      {
+        "claim_id": "concept-state-unresolved",
+        "statement": "UNRESOLVED"
+      },
+      {
+        "claim_id": "concept-state-unknown-coverage",
+        "statement": "UNKNOWN COVERAGE"
+      },
+      {
+        "claim_id": "concept-state-supported-unaffected",
+        "statement": "SUPPORTED UNAFFECTED"
+      },
+      {
+        "claim_id": "concept-node-sdk",
+        "statement": "lattice-scenario-sdk"
+      },
+      {
+        "claim_id": "concept-reason-sdk",
+        "statement": "Dependency upgrade 2.4.1 → 2.5.0 is proposed; compatibility is not established."
+      },
+      {
+        "claim_id": "concept-node-lock",
+        "statement": "scenario.lock"
+      },
+      {
+        "claim_id": "concept-reason-lock",
+        "statement": "The lock record identifies the changed dependency bytes."
+      },
+      {
+        "claim_id": "concept-node-engine",
+        "statement": "Harbor scenario engine"
+      },
+      {
+        "claim_id": "concept-reason-engine",
+        "statement": "The engine imports the changed SDK; its integration behavior requires revalidation."
+      },
+      {
+        "claim_id": "concept-node-api",
+        "statement": "Harbor scenario API"
+      },
+      {
+        "claim_id": "concept-reason-api",
+        "statement": "The API consumes the changed SDK through an admitted import relationship."
+      },
+      {
+        "claim_id": "concept-node-tests",
+        "statement": "Compatibility test scenario"
+      },
+      {
+        "claim_id": "concept-reason-tests",
+        "statement": "The test dependency is admitted; a passing result for the proposed version is still missing."
+      },
+      {
+        "claim_id": "concept-node-knowledge",
+        "statement": "Architecture assumption scenario"
+      },
+      {
+        "claim_id": "concept-reason-knowledge",
+        "statement": "The engine behavior supports an architecture assertion that may now be stale."
+      },
+      {
+        "claim_id": "concept-node-schema",
+        "statement": "Envelope schema scenario"
+      },
+      {
+        "claim_id": "concept-reason-schema",
+        "statement": "A candidate API-to-schema relationship requires review before it can be admitted."
+      },
+      {
+        "claim_id": "concept-node-config",
+        "statement": "Dynamic configuration scenario"
+      },
+      {
+        "claim_id": "concept-reason-config",
+        "statement": "Dynamic loading is outside the discovered relationship scope; impact is unknown."
+      },
+      {
+        "claim_id": "concept-node-recovery",
+        "statement": "Recovery assumption scenario"
+      },
+      {
+        "claim_id": "concept-reason-recovery",
+        "statement": "Restoration compatibility has no relationship evidence for the proposed SDK."
+      },
+      {
+        "claim_id": "concept-node-isolated",
+        "statement": "Isolated render test scenario"
+      },
+      {
+        "claim_id": "concept-reason-isolated",
+        "statement": "A synthetic isolated-build record supports no dependency on the SDK within this test scope."
+      },
+      {
+        "claim_id": "concept-edge-1",
+        "statement": "pins"
+      },
+      {
+        "claim_id": "concept-edge-2",
+        "statement": "engine import"
+      },
+      {
+        "claim_id": "concept-edge-3",
+        "statement": "API import"
+      },
+      {
+        "claim_id": "concept-edge-4",
+        "statement": "validated by"
+      },
+      {
+        "claim_id": "concept-edge-5",
+        "statement": "supports assumption"
+      },
+      {
+        "claim_id": "concept-edge-6",
+        "statement": "may consume"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-1",
+        "statement": "Admitted synthetic relationship record: sdk → lock."
+      },
+      {
+        "claim_id": "concept-hash-relationship-1",
+        "statement": "ee7f0c86510bcb01fdc6e5e33740f266d624abb9231c196c2f65c145c4ccd562"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-2",
+        "statement": "Admitted synthetic relationship record: sdk → engine."
+      },
+      {
+        "claim_id": "concept-hash-relationship-2",
+        "statement": "f8a712f0d22a4f4907df05044db88977a3920174f5d47857d388cb90f7c7c448"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-3",
+        "statement": "Admitted synthetic relationship record: sdk → api."
+      },
+      {
+        "claim_id": "concept-hash-relationship-3",
+        "statement": "c081c280ee43196536ae5c1a51760a9ac40e949f4d85e686ea9b9f924d70904f"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-4",
+        "statement": "Admitted synthetic relationship record: engine → tests."
+      },
+      {
+        "claim_id": "concept-hash-relationship-4",
+        "statement": "b5c346505986730d77e8f87354dbc248c2f8c737ee94e768e5031e7a1e907e8c"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-5",
+        "statement": "Unadmitted synthetic relationship record: engine → knowledge."
+      },
+      {
+        "claim_id": "concept-hash-relationship-5",
+        "statement": "cb6295e633a26bd1cb987874ca9b88c5180b60f5024a0c883a639b3a5c00bcbd"
+      },
+      {
+        "claim_id": "concept-evidence-relationship-6",
+        "statement": "Unadmitted synthetic relationship record: api → schema."
+      },
+      {
+        "claim_id": "concept-hash-relationship-6",
+        "statement": "d69ee9b71ccfb3514790f56d895e9d3ea22e8eba6262aa9c48f1249e35e38779"
+      },
+      {
+        "claim_id": "concept-evidence-isolation",
+        "statement": "Synthetic isolated-build record excludes SDK linkage only for the isolated render test."
+      },
+      {
+        "claim_id": "concept-hash-isolation",
+        "statement": "d917d1b4a69be8f9968aa9329189ac74dcf388aa722831cba8f5ae094af539a4"
+      },
+      {
+        "claim_id": "concept-evidence-candidate",
+        "statement": "Synthetic candidate source and lock snapshot for the proposed upgrade."
+      },
+      {
+        "claim_id": "concept-hash-candidate",
+        "statement": "5b1adb8df38975fd657f5c53ee471f26d5fb619698edd3d0c86581a9342f39ae"
+      },
+      {
+        "claim_id": "concept-evidence-rehearsal",
+        "statement": "Synthetic rehearsal receipt reports 2.5.0; the separate observation still records 2.4.1."
+      },
+      {
+        "claim_id": "concept-hash-rehearsal",
+        "statement": "16059cefc8b1dfecaa12434108fa983c500fad1dbb19ed63928f15e73eeca3de"
+      },
+      {
+        "claim_id": "concept-evidence-observation",
+        "statement": "Synthetic observation disagrees with the intended dependency version; verification is unresolved."
+      },
+      {
+        "claim_id": "concept-hash-observation",
+        "statement": "0c8b063875f816d8a59081f82c923027935ad10f420a3ab0feefd720a7d1b5ed"
+      },
+      {
+        "claim_id": "concept-obligation-implementation",
+        "statement": "Review the changed SDK integration before widening the execution scope."
+      },
+      {
+        "claim_id": "concept-obligation-status-implementation",
+        "statement": "Implementation review required"
+      },
+      {
+        "claim_id": "concept-obligation-integration",
+        "statement": "Revalidate compatibility tests against the exact proposed candidate."
+      },
+      {
+        "claim_id": "concept-obligation-status-integration",
+        "statement": "Compatibility evidence pending"
+      },
+      {
+        "claim_id": "concept-obligation-architecture",
+        "statement": "Reassess the architecture assertion derived from engine behavior."
+      },
+      {
+        "claim_id": "concept-obligation-status-architecture",
+        "statement": "Architecture review required"
+      },
+      {
+        "claim_id": "concept-obligation-schema",
+        "statement": "Establish the candidate schema relationship and examine compatibility."
+      },
+      {
+        "claim_id": "concept-obligation-status-schema",
+        "statement": "Schema review required"
+      },
+      {
+        "claim_id": "concept-obligation-history",
+        "statement": "Determine whether earlier evidence applies to the proposed dependency bytes."
+      },
+      {
+        "claim_id": "concept-obligation-status-history",
+        "statement": "Historical evidence pending"
+      },
+      {
+        "claim_id": "concept-obligation-recovery",
+        "statement": "Resolve recovery and dynamic configuration coverage before authority can be granted."
+      },
+      {
+        "claim_id": "concept-obligation-status-recovery",
+        "statement": "Blocked by unknown coverage"
+      },
+      {
+        "claim_id": "concept-gap-config",
+        "statement": "Dynamic loading coverage is missing; the configuration cannot be classified unaffected."
+      },
+      {
+        "claim_id": "concept-gap-recovery",
+        "statement": "Recovery compatibility evidence is missing for the proposed version."
+      },
+      {
+        "claim_id": "concept-lifecycle-1",
+        "statement": "Change proposed"
+      },
+      {
+        "claim_id": "concept-lifecycle-2",
+        "statement": "Exact candidate identified"
+      },
+      {
+        "claim_id": "concept-lifecycle-3",
+        "statement": "Relationships evaluated within stated scope"
+      },
+      {
+        "claim_id": "concept-lifecycle-4",
+        "statement": "Potential consequences identified"
+      },
+      {
+        "claim_id": "concept-lifecycle-5",
+        "statement": "Review obligations derived"
+      },
+      {
+        "claim_id": "concept-lifecycle-6",
+        "statement": "Authority withheld pending evidence"
+      },
+      {
+        "claim_id": "concept-lifecycle-7",
+        "statement": "Execution not authorized"
+      },
+      {
+        "claim_id": "concept-lifecycle-8",
+        "statement": "Verification and reconciliation unresolved"
+      },
+      {
+        "claim_id": "concept-identity-change",
+        "statement": "SYN-CHANGE-014"
+      },
+      {
+        "claim_id": "concept-identity-repository",
+        "statement": "synthetic/harbor-scenario"
+      },
+      {
+        "claim_id": "concept-identity-candidate",
+        "statement": "synthetic-revision-014"
+      },
+      {
+        "claim_id": "concept-identity-configuration",
+        "statement": "synthetic-config-014"
+      },
+      {
+        "claim_id": "concept-identity-packet",
+        "statement": "SYN-PACKET-014"
+      },
+      {
+        "claim_id": "concept-identity-previous",
+        "statement": "lattice-scenario-sdk 2.4.1"
+      },
+      {
+        "claim_id": "concept-identity-proposed",
+        "statement": "lattice-scenario-sdk 2.5.0"
+      },
+      {
+        "claim_id": "concept-identity-scope",
+        "statement": "Proposed scope: dependency and lock record only; no service deployment."
+      },
+      {
+        "claim_id": "concept-identity-source",
+        "statement": "Synthetic dependency proposal and local rehearsal records."
+      },
+      {
+        "claim_id": "concept-count-changed",
+        "statement": "2 directly changed artifacts"
+      },
+      {
+        "claim_id": "concept-count-potential",
+        "statement": "3 potentially affected artifacts"
+      },
+      {
+        "claim_id": "concept-count-services",
+        "statement": "2 impacted services"
+      },
+      {
+        "claim_id": "concept-count-tests",
+        "statement": "1 relevant test"
+      },
+      {
+        "claim_id": "concept-count-knowledge",
+        "statement": "1 stale knowledge candidate"
+      },
+      {
+        "claim_id": "concept-count-obligations",
+        "statement": "6 outstanding review obligations"
+      },
+      {
+        "claim_id": "concept-count-unresolved",
+        "statement": "2 unresolved relationships"
+      },
+      {
+        "claim_id": "concept-count-gaps",
+        "statement": "2 coverage gaps"
+      },
+      {
+        "claim_id": "concept-ladder-1",
+        "statement": "Intended"
+      },
+      {
+        "claim_id": "concept-ladder-detail-1",
+        "statement": "Proposed dependency version: 2.5.0."
+      },
+      {
+        "claim_id": "concept-ladder-2",
+        "statement": "Receipt"
+      },
+      {
+        "claim_id": "concept-ladder-detail-2",
+        "statement": "Synthetic rehearsal reports version 2.5.0."
+      },
+      {
+        "claim_id": "concept-ladder-3",
+        "statement": "Observed"
+      },
+      {
+        "claim_id": "concept-ladder-detail-3",
+        "statement": "Observed scenario version: 2.4.1 — mismatch."
+      },
+      {
+        "claim_id": "concept-ladder-4",
+        "statement": "Verified"
+      },
+      {
+        "claim_id": "concept-ladder-detail-4",
+        "statement": "Outcome verification remains unresolved."
+      },
+      {
+        "claim_id": "concept-ladder-5",
+        "statement": "Reconciled"
+      },
+      {
+        "claim_id": "concept-ladder-detail-5",
+        "statement": "Not reconciled; no accepted change is represented."
+      },
+      {
+        "claim_id": "redesign-experiments-arms-sentence",
+        "statement": "Gate 1 compared the system against two baselines."
+      },
+      {
+        "claim_id": "redesign-governed-extensions-title",
+        "statement": "Governed Extensions"
+      },
+      {
+        "claim_id": "redesign-evidence-historical-version",
+        "statement": "The recording remains in version history only."
+      },
+      {
+        "claim_id": "redesign-contact-intents-desc-1",
+        "statement": "Discuss a design partnership on the control foundation."
+      },
+      {
+        "claim_id": "redesign-contact-intents-desc-2",
+        "statement": "Ask about product status, deployment models and qualification."
+      },
+      {
+        "claim_id": "redesign-contact-intents-desc-3",
+        "statement": "Ask about pricing. No validated pricing is claimed."
+      },
+      {
+        "claim_id": "redesign-contact-intents-desc-4",
+        "statement": "Ask about research programmes. Research is parallel, advisory and non-gating."
+      }
+    ],
+    "relay": "Founder approval given in the architect's (Claude Opus 5.5) Claude Code session in reply to the go-live request, which named two founder acts: (1) approval of all pending claims in batches E-010 through E-016 exactly as listed in docs/design/POST_PIVOT_COPY.md, for publication, and (2) route promotion including the legacy-route question. Copy read at commit a123e474464b886df6807dff94d3aa535e628a89: 535 claims (E-010 64, E-011 146, E-012 148, E-013 13, E-014 157, E-016 7; E-015 retired before approval). The founder then answered \"option a for both\": production shows the synthetic concept visualizations, each labelled \"Concept visualization — synthetic engineering scenario\", and /gate-1/, /vision/, /about/features/ and /about/founder/ are unpublished at cutover. The timestamp is approximate to the minute. Transcribed by Claude Opus 5.5."
   }
 ]
 ```

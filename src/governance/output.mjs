@@ -57,7 +57,9 @@ export function claimRegisterErrors(documents, claims) {
     if (!name.endsWith('.html') || name === 'trust/claims/index.html') continue;
     const check = text => {
       const ids = byText.get(normalize(text));
-      if (ids && !ids.some(id => registered.has(id))) errors.push(`${name}: rendered claim absent from public register: ${ids.join(', ')}`);
+      // Synthetic concept-* text is illustrative content inside labelled panels (conceptPanelErrors), not a public
+      // claim about NorthCannon, so it is excluded from the register (founder decision 2026-10-11, option a).
+      if (ids && !ids.every(id => id.startsWith('concept-')) && !ids.some(id => registered.has(id))) errors.push(`${name}: rendered claim absent from public register: ${ids.join(', ')}`);
     };
     const visit = node => {
       if (node.nodeName === '#text') check(node.value);

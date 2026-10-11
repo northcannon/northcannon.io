@@ -17,9 +17,7 @@
       "label-claims",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
+      "label-company",
       "cta-explore-evidence",
       "redesign-label-products",
       "redesign-label-solutions",
@@ -478,6 +476,7 @@
       "concept-ladder-5",
       "concept-ladder-detail-5"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-home",
@@ -501,9 +500,7 @@
       "label-status",
       "label-claims",
       "label-changelog",
-      "label-site-security"
-    ],
-    "review_claim_ids": [
+      "label-site-security",
       "label-gate-1",
       "label-founder",
       "label-contact",
@@ -933,10 +930,9 @@
       "redesign-about-row-label-4",
       "redesign-about-row-body-4",
       "redesign-about-founder-transition",
-      "redesign-label-phase-a",
-      "brand-company-motto",
-      "contact-hello"
+      "redesign-label-phase-a"
     ],
+    "review_claim_ids": [],
     "nav": true,
     "publish": true,
     "meta_title": "redesign-meta-title-about",
@@ -960,9 +956,7 @@
       "label-changelog",
       "label-site-security",
       "label-company",
-      "redesign-label-products"
-    ],
-    "review_claim_ids": [
+      "redesign-label-products",
       "redesign-label-solutions",
       "redesign-label-experiments",
       "redesign-label-site",
@@ -1430,8 +1424,9 @@
       "concept-ladder-5",
       "concept-ladder-detail-5"
     ],
+    "review_claim_ids": [],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "meta_title": "redesign-meta-title-products",
     "meta_description": "redesign-products-lede"
   },
@@ -1453,9 +1448,7 @@
       "label-changelog",
       "label-site-security",
       "label-company",
-      "redesign-label-solutions"
-    ],
-    "review_claim_ids": [
+      "redesign-label-solutions",
       "redesign-label-products",
       "redesign-label-experiments",
       "redesign-label-site",
@@ -1924,8 +1917,9 @@
       "redesign-label-phase-a",
       "redesign-governed-extensions-title"
     ],
+    "review_claim_ids": [],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "meta_title": "redesign-meta-title-solutions",
     "meta_description": "redesign-meta-description-solutions"
   },
@@ -1947,9 +1941,6 @@
       "ledger-empty-current",
       "label-provenance",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -2505,6 +2496,7 @@
       "concept-ladder-detail-5",
       "redesign-evidence-historical-version"
     ],
+    "review_claim_ids": [],
     "nav": true,
     "publish": true,
     "meta_title": "redesign-meta-title-evidence",
@@ -2528,9 +2520,7 @@
       "label-changelog",
       "label-site-security",
       "label-company",
-      "redesign-label-experiments"
-    ],
-    "review_claim_ids": [
+      "redesign-label-experiments",
       "redesign-label-products",
       "redesign-label-solutions",
       "redesign-label-site",
@@ -2880,8 +2870,9 @@
       "label-current-status",
       "redesign-experiments-arms-sentence"
     ],
+    "review_claim_ids": [],
     "nav": true,
-    "publish": false,
+    "publish": true,
     "meta_title": "redesign-meta-title-experiments",
     "meta_description": "redesign-meta-description-experiments"
   },
@@ -2903,11 +2894,7 @@
       "label-claims",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "nav": false,
-    "publish": true,
-    "review_claim_ids": [
+      "label-company",
       "redesign-label-products",
       "redesign-label-solutions",
       "redesign-label-experiments",
@@ -3216,6 +3203,9 @@
       "label-change-intelligence",
       "cta-get-in-touch"
     ],
+    "nav": false,
+    "publish": true,
+    "review_claim_ids": [],
     "meta_title": "redesign-meta-title-demo",
     "meta_description": "redesign-demo-lede"
   },
@@ -3237,10 +3227,7 @@
       "label-status",
       "label-claims",
       "label-provenance",
-      "label-changelog"
-    ],
-    "review_claim_ids": [
-      "label-company",
+      "label-changelog",
       "label-gate-1",
       "label-founder",
       "label-last-updated",
@@ -3567,6 +3554,7 @@
       "redesign-contact-intents-desc-3",
       "redesign-contact-intents-desc-4"
     ],
+    "review_claim_ids": [],
     "nav": true,
     "publish": true,
     "nav_cta": true,
@@ -3590,9 +3578,6 @@
       "label-claims",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-founder",
       "label-about-sections",
@@ -3979,8 +3964,9 @@
       "redesign-example-your-environment",
       "label-change-intelligence"
     ],
+    "review_claim_ids": [],
     "nav": false,
-    "publish": true
+    "publish": false
   },
   {
     "path": "/about/founder/",
@@ -4001,9 +3987,6 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-contact",
@@ -4344,8 +4327,9 @@
       "redesign-example-northcannon-environment",
       "redesign-example-your-environment"
     ],
+    "review_claim_ids": [],
     "nav": false,
-    "publish": true
+    "publish": false
   },
   {
     "path": "/gate-1/",
@@ -4363,9 +4347,7 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
+      "label-company",
       "redesign-label-products",
       "redesign-label-solutions",
       "redesign-label-experiments",
@@ -4676,8 +4658,9 @@
       "redesign-example-your-environment",
       "label-change-intelligence"
     ],
+    "review_claim_ids": [],
     "nav": false,
-    "publish": true
+    "publish": false
   },
   {
     "path": "/vision/",
@@ -4695,9 +4678,6 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -5022,8 +5002,9 @@
       "redesign-example-northcannon-environment",
       "redesign-example-your-environment"
     ],
+    "review_claim_ids": [],
     "nav": false,
-    "publish": true
+    "publish": false
   },
   {
     "path": "/trust/",
@@ -5040,10 +5021,7 @@
       "label-site-security",
       "label-company",
       "label-changelog",
-      "label-provenance"
-    ],
-    "review_claim_ids": [
-      "label-company",
+      "label-provenance",
       "label-gate-1",
       "label-founder",
       "label-contact",
@@ -5369,6 +5347,7 @@
       "redesign-meta-title-trust",
       "redesign-meta-description-trust"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust",
@@ -5389,9 +5368,6 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -5716,6 +5692,7 @@
       "redesign-example-northcannon-environment",
       "redesign-example-your-environment"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-status",
@@ -5995,9 +5972,7 @@
       "feat-letter-ev-evidence-value",
       "feat-letter-ev-rule-value",
       "feat-letter-ev-time-value",
-      "feat-letter-ev-state-value"
-    ],
-    "review_claim_ids": [
+      "feat-letter-ev-state-value",
       "label-last-updated",
       "label-experiment-id",
       "state-pending",
@@ -6298,8 +6273,104 @@
       "redesign-example-northcannon-environment",
       "redesign-example-your-environment",
       "redesign-meta-title-trust-claims",
-      "redesign-meta-description-trust-claims"
+      "redesign-meta-description-trust-claims",
+      "redesign-label-build-version",
+      "redesign-meta-title-trust",
+      "redesign-meta-description-trust",
+      "redesign-meta-title-trust-disclosure",
+      "redesign-meta-description-trust-disclosure",
+      "redesign-meta-title-trust-site-security",
+      "redesign-meta-description-trust-site-security",
+      "redesign-meta-title-trust-changelog",
+      "redesign-meta-description-trust-changelog",
+      "redesign-meta-title-trust-provenance",
+      "redesign-meta-description-trust-provenance",
+      "redesign-meta-title-404",
+      "redesign-meta-description-404",
+      "redesign-provenance-scope",
+      "redesign-label-phase-a",
+      "redesign-about-row-body-1",
+      "redesign-about-row-label-2",
+      "redesign-about-row-body-2",
+      "redesign-about-row-body-3",
+      "redesign-about-row-label-4",
+      "redesign-about-row-body-4",
+      "interop-sources-body",
+      "redesign-ledger-recording",
+      "redesign-ledger-statement",
+      "redesign-ledger-manifest",
+      "redesign-ledger-site-only",
+      "redesign-ledger-no-results",
+      "redesign-ledger-research-date",
+      "redesign-ledger-reached",
+      "redesign-ledger-product-empty",
+      "redesign-kpi-term-1",
+      "redesign-kpi-term-2",
+      "redesign-kpi-term-3",
+      "redesign-kpi-term-4",
+      "redesign-kpi-term-5",
+      "redesign-kpi-term-6",
+      "redesign-kpi-term-7",
+      "redesign-kpi-term-8",
+      "redesign-kpi-term-9",
+      "redesign-kpi-term-10",
+      "redesign-kpi-term-11",
+      "redesign-kpi-term-12",
+      "redesign-kpi-term-13",
+      "redesign-kpi-term-14",
+      "redesign-kpi-term-15",
+      "redesign-kpi-term-16",
+      "redesign-kpi-term-17",
+      "redesign-kpi-term-18",
+      "redesign-milestone-name-1",
+      "redesign-milestone-name-2",
+      "redesign-milestone-name-3",
+      "redesign-milestone-name-4",
+      "redesign-milestone-name-5",
+      "redesign-milestone-name-6",
+      "redesign-milestone-name-7",
+      "redesign-milestone-state-implemented",
+      "redesign-kpi-line-1",
+      "redesign-kpi-line-2",
+      "redesign-kpi-line-3",
+      "redesign-kpi-line-4",
+      "redesign-kpi-line-5",
+      "redesign-kpi-line-6",
+      "redesign-kpi-line-7",
+      "redesign-kpi-line-8",
+      "redesign-kpi-line-9",
+      "redesign-kpi-line-10",
+      "redesign-kpi-line-11",
+      "redesign-kpi-line-12",
+      "redesign-kpi-line-13",
+      "redesign-kpi-line-14",
+      "redesign-kpi-line-15",
+      "redesign-kpi-line-16",
+      "redesign-kpi-line-17",
+      "redesign-kpi-line-18",
+      "redesign-kpi-category-1",
+      "redesign-kpi-category-2",
+      "redesign-kpi-category-3",
+      "redesign-kpi-category-4",
+      "redesign-pi-label-hypothesis",
+      "redesign-pi-body-hypothesis",
+      "redesign-pi-label-comparison",
+      "redesign-pi-body-comparison",
+      "redesign-pi-label-controls",
+      "redesign-pi-body-controls",
+      "redesign-pi-label-falsification",
+      "redesign-pi-body-falsification",
+      "redesign-about-founder-transition",
+      "redesign-experiments-arms-sentence",
+      "redesign-governed-extensions-title",
+      "redesign-evidence-historical-version",
+      "redesign-contact-intents-desc-1",
+      "redesign-contact-intents-desc-2",
+      "redesign-contact-intents-desc-3",
+      "redesign-contact-intents-desc-4",
+      "label-current-status"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust-claims",
@@ -6321,9 +6392,6 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -6648,6 +6716,7 @@
       "redesign-meta-title-trust-disclosure",
       "redesign-meta-description-trust-disclosure"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust-disclosure",
@@ -6669,10 +6738,7 @@
       "label-status",
       "label-claims",
       "label-provenance",
-      "label-changelog"
-    ],
-    "review_claim_ids": [
-      "label-company",
+      "label-changelog",
       "label-gate-1",
       "label-founder",
       "label-contact",
@@ -6998,6 +7064,7 @@
       "redesign-meta-title-trust-site-security",
       "redesign-meta-description-trust-site-security"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust-site-security",
@@ -7019,9 +7086,6 @@
       "label-claims",
       "label-provenance",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -7349,6 +7413,7 @@
       "redesign-meta-title-trust-changelog",
       "redesign-meta-description-trust-changelog"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust-changelog",
@@ -7373,9 +7438,6 @@
       "label-claims",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -7704,6 +7766,7 @@
       "redesign-meta-description-trust-provenance",
       "redesign-provenance-scope"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-trust-provenance",
@@ -7723,9 +7786,6 @@
       "label-provenance",
       "label-changelog",
       "label-site-security",
-      "label-company"
-    ],
-    "review_claim_ids": [
       "label-company",
       "label-gate-1",
       "label-founder",
@@ -8052,6 +8112,7 @@
       "redesign-meta-title-404",
       "redesign-meta-description-404"
     ],
+    "review_claim_ids": [],
     "nav": false,
     "publish": true,
     "meta_title": "redesign-meta-title-404",

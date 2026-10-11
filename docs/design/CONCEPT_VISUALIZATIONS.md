@@ -1,6 +1,6 @@
 # Concept visualizations — design review package
 
-Review status: IMPLEMENTED DRAFT — pending independent review and founder approval. These are static conceptual website interfaces, not operational product functionality. No publication or product execution is authorized.
+Publication update, 11 October 2026: founder approval 010 records approval of the synthetic copy and labelled concept publication (option a). The production validator requires the concept label on every panel and rejects scenario identities outside those panels. These remain illustrative presentation artifacts; no product execution or qualification is represented. The design-development record below is historical and includes superseded placements and draft questions. Independent release validation is recorded in REDESIGN_VALIDATION.md.
 
 ## Part 1 section 10 — coordinated visual direction
 

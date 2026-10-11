@@ -4,12 +4,13 @@ import { fileInventory } from './publication.mjs';
 import { inspectClaimOutput } from '../src/governance/output.mjs';
 import { loadGovernance } from '../src/governance/registry.mjs';
 import { readRoutes, routeFile } from '../src/governance/routes.mjs';
-import { migratedReviewPaths, forbiddenCopyErrors, conceptOutputErrors } from './redesign-policy.mjs';
+import { migratedReviewPaths, forbiddenCopyErrors, conceptOutputErrors, conceptPanelErrors } from './redesign-policy.mjs';
 import { pathToFileURL } from 'node:url';
 import { publicOutputDisclosureErrors, isSecretLikeFile } from './policy.mjs';
 // The production half checks one built output directory; the review half needs `.review-dist` and is skipped without it.
 export async function checkRedesignOutput(root = 'dist', { review = true } = {}) {
 const { claims } = loadGovernance();
+const syntheticHashes = JSON.parse(await readFile('src/content/concept-scenario.json', 'utf8')).evidence.map(record => record.sha256);
 const errors = [];
 const files = await fileInventory(root);
 let pages = 0;
@@ -28,7 +29,9 @@ for (const name of files) {
     for(const attr of node.attrs??[]) if(['alt','aria-label','aria-description','title','content'].includes(attr.name)) prose.push(attr.value);
     for(const child of node.childNodes??[]) visit(child);
   };
-  visit(parse(html));
+  const document = parse(html);
+  visit(document);
+  errors.push(...conceptPanelErrors(document, name, syntheticHashes));
   errors.push(...forbiddenCopyErrors(prose.join(' '),name));
 }
 const reviewRoutes=readRoutes().filter(r=>!migratedReviewPaths.has(r.path));

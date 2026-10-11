@@ -13,7 +13,8 @@ export const requiredHeaders = {
 };
 
 // Cloudflare Pages redirects: exactly these permanent moves, so no route is silently lost or hijacked.
-export const requiredRedirects = ['/founder/ /about/founder/ 301', '/founder /about/founder/ 301', '/about/ /about/company/ 301', '/about /about/company/ 301', '/results/ /evidence/ 301'];
+// Founder-approval-010 cutover (legacy routes option a): the migrated routes move to their redesign homes.
+export const requiredRedirects = [...redesignRedirects, '/about/ /about/company/ 301', '/about /about/company/ 301'];
 export function readRedirects(text, { review = false } = {}) {
   const lines = text.trim().split(/\r?\n/);
   if (JSON.stringify(lines) !== JSON.stringify(review ? redesignRedirects : requiredRedirects)) throw new Error('Redirects do not match the reviewed policy');

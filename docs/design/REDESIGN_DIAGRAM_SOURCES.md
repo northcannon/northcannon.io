@@ -1,6 +1,6 @@
 # Redesign diagram source manifest
 
-All entries are presentation artifacts, pending independent and founder review. Sources are claim identities, never private implementation material.
+These remain presentation artifacts. Founder approval 010 authorizes the redesign copy and labelled synthetic concepts for publication; the founder confirmed Opus had independently accepted the redesign on 11 October 2026. Sources are claim identities, never private implementation material. Publication does not grant product execution authority.
 
 | Visual | Component | Source claims | Review status |
 | --- | --- | --- | --- |

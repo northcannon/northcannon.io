@@ -37,7 +37,9 @@ const columns = draft.triad.map(col => ({ label: t(col.label), items: col.items.
 const stageLabels = draft.loop.map(([label]) => t(label!));
 const stages = !reference || !page.sections.some(section => section.kind === 'loop') ? [] : draft.loop.map(([label, question], index) => ({ label: t(label!), question: t(question!), state: draft.loop_states[index] === 'implemented' ? { label: t('redesign-label-phase-a'), tone: 'implemented' as const } : { label: t(draft.labels.planned), tone: 'planned' as const } }));
 const words = (section: SectionData) => (section.items ?? []).map(t);
-const manifestHash = page.key === 'evidence' ? productionManifestHash() : '';
+// Production cannot cite its own provenance manifest's hash (the manifest is written after, and over, the build);
+// the ledger row links to /provenance.json instead. Review builds cite the production manifest.
+const manifestHash = page.key === 'evidence' && copy.review ? productionManifestHash() : '';
 validateEvidencePlacement(draft.historical, 'ledger');
 const statusTone: Record<string, 'planned' | 'illustrative' | 'future' | 'inactive' | 'neutral'> = { [draft.labels.planned]: 'planned', [draft.labels.knowledge]: 'illustrative', [draft.labels.target]: 'planned', [draft.labels.expansion]: 'inactive', [draft.labels.concept]: 'future' };
 const flowColumns: Record<string, 2 | 3 | 4 | 5 | 6> = { 'customer-zero': 5, workflow: 4, 'research-to-product': 6 };
