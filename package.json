@@ -4,20 +4,20 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.12.0"
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && npm run validate",
+    "dev": "node scripts/check-node-runtime.mjs && astro dev",
+    "build": "node scripts/check-node-runtime.mjs && astro build && npm run validate",
     "build:review": "astro build --root tests/fixtures/design-system && node scripts/validate.mjs .review-dist --review",
     "preview": "node scripts/serve.mjs",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "astro check",
     "validate": "node scripts/validate.mjs",
     "validate:source": "node scripts/scan-source.mjs",
-    "test": "node --test tests/policy.test.mjs tests/source.test.mjs tests/governance.test.mjs tests/publication.test.mjs",
+    "test": "node --test tests/policy.test.mjs tests/source.test.mjs tests/governance.test.mjs tests/publication.test.mjs tests/node-runtime.test.mjs",
     "test:browser": "playwright test",
-    "check": "npm run validate:source && npm run check:content && npm run lint && npm run typecheck && npm test && npm run build:wp4 && npm run test:browser && npm run check:parity",
+    "check": "node scripts/check-node-runtime.mjs && npm run validate:source && npm run check:content && npm run lint && npm run typecheck && npm test && npm run build:wp4 && npm run test:browser && npm run check:parity",
     "check:content": "node scripts/check-content.mjs",
     "check:parity": "node scripts/check-parity.mjs",
     "build:wp4": "npm run build && astro build --root tests/fixtures/wp4 && node scripts/validate.mjs .review-dist-wp4 --wp4",
@@ -25,17 +25,17 @@
     "predeploy": "node scripts/deploy.mjs"
   },
   "dependencies": {
-    "astro": "7.3.2",
     "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.8",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
+    "css-tree": "3.1.0",
     "eslint": "10.10.0",
     "eslint-plugin-astro": "3.1.0",
-    "css-tree": "3.1.0",
     "parse5": "8.0.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.70.0"
