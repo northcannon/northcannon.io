@@ -145,7 +145,7 @@ test('standalone review build rebuilds current provenance from source only and r
       'src/layouts/Document.astro', 'src/pages/404.astro', 'src/pages/index.astro', 'src/pages/[...route].astro',
       'src/styles/global.css', 'src/styles/pages.css',
       'scripts/content-integration.mjs', 'scripts/publication.mjs', 'scripts/check-publication.mjs',
-      'scripts/validate.mjs', 'scripts/policy.mjs',
+      'scripts/validate.mjs', 'scripts/policy.mjs', 'scripts/check-node-runtime.mjs',
       'tests/fixtures/wp4/astro.config.mjs', 'tests/fixtures/wp4/src/content.config.ts',
       'tests/fixtures/wp4/src/pages/404.astro', 'tests/fixtures/wp4/src/pages/[...route].astro',
     ];
