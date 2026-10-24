@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node scripts/check-node-runtime.mjs && astro dev",
     "build": "node scripts/check-node-runtime.mjs && astro build && npm run validate",
-    "build:review": "astro build --root tests/fixtures/design-system && node scripts/validate.mjs .review-dist --review",
+    "build:review": "node scripts/check-node-runtime.mjs && astro build --root tests/fixtures/design-system && node scripts/validate.mjs .review-dist --review",
     "preview": "node scripts/serve.mjs",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "astro check",

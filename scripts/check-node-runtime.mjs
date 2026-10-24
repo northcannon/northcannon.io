@@ -5,7 +5,7 @@ export const floors = { 22: [22, 23, 4], 24: [24, 22, 1], 26: [26, 12, 1] };
 
 export function evaluateNodeRuntime(version) {
   const match = /^v?(\d+)\.(\d+)\.(\d+)$/.exec(typeof version === 'string' ? version : '');
-  if (!match) return { exit: 2, observed: String(version ?? ''), floor: 'none', reason: 'malformed-version' };
+  if (!match) return { exit: 2, observed: 'unparseable', floor: 'none', reason: 'malformed-version' };
   const parts = match.slice(1).map(Number);
   const floor = floors[parts[0]];
   if (!floor) return { exit: 1, observed: parts.join('.'), floor: 'none', reason: 'unsupported-major' };
